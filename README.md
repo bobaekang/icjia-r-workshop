@@ -72,7 +72,7 @@ This module focuses on manimuplating and transforming tabular data using R. Part
 ## Module 4: Data visualization
 In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular ggplot2 package. Participants will also be introduced to some options for generating maps and interactive plots.
 
-# base R plots
+* base R plots
 * ggplot2 package
     * basic components
     * histogram
