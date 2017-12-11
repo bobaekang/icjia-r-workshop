@@ -1,0 +1,64 @@
+.header {
+    background: #0D4474;
+    position: fixed;
+    top: 0%;
+    width:100%;
+    height:15%;
+}
+
+.footer {
+    background: #0D4474;
+    position: fixed;
+    top: 90%;
+    width:100%;
+    height:10%;
+}
+
+.logo {
+  position: fixed;
+  top: 1%;
+  height: 12%;
+  left: 5%;
+    
+}
+
+.seal {
+  position: fixed;
+  top: 1%;
+  height: 12%;
+  right: 5%
+}
+
+.section .reveal .state-background {
+    background: transparent;
+}
+
+.reveal .slides>section.present,
+.reveal .slides>section.future, 
+.reveal .slides>section.past {
+  padding-top: 5%;
+}
+
+.section .reveal h1 {
+  font-size: 3em;
+  color: #000;
+}
+
+.section .reveal p {
+  color: #000;
+}
+
+.reveal h2, .reveal h3, .reveal h4 {
+  font-size: 2em;
+  text-align: center;
+  color: #000;
+  <!-- text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; -->
+}
+
+.reveal .slides section .mediaOnly {
+  top: 3em;
+}
+
+.reveal pre code {
+  font-size: 1em;
+}

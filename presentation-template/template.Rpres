@@ -1,0 +1,47 @@
+# template elements
+<div class="header"></div>
+<div class="footer"></div>
+<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" class="logo"></img>
+<img src="https://www2.illinois.gov/PublishingImages/seal.gif" class="seal"></img>
+
+
+# presentation
+ICJIA presentation template
+========================================================
+author: Bobae Kang
+date: 2017-12-05
+type: slide-body
+css: style.css
+
+
+First Slide
+========================================================
+This is a template for ICJIA presentation slides
+
+Ordered list
+
+1. item 1
+2. item 2
+
+Unordered list 
+
+* item 1
+* item 2
+
+  
+========================================================
+<h1 style="text-align:center">Slide with no heading</h1>
+
+
+Slide With Code
+========================================================
+```{r}
+summary(cars)
+```
+
+
+Slide With Plot
+========================================================
+```{r}
+plot(cars)
+```
