@@ -1,0 +1,85 @@
+/* base elements */
+.header,
+.footer {
+    background: #0D4474;
+    position: fixed;
+    width:100%;
+}
+
+.header {
+    top: 0%;
+    height:15%;
+}
+
+.footer {
+    top: 90%;
+    height:10%;
+}
+
+
+.logo {
+  position: fixed;
+  top: 1%;
+  height: 13%;
+  left: 5%;
+    
+}
+
+.seal {
+  position: fixed;
+  top: 1%;
+  height: 13%;
+  right: 5%
+}
+
+
+/* general */
+.slides>section.present,
+.slides>section.future, 
+.slides>section.past {
+  padding-top: 5%;
+}
+
+
+/* section */
+.section .reveal .state-background {
+    background: transparent;
+}
+
+.section .reveal h1,
+.section .reveal h2,
+.section .reveal h3 {
+  color: #00061a;
+}
+
+.section .reveal h1 {
+  font-size: 3em;
+}
+
+.section .reveal h2 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.slides h3 {
+  font-size: 2em;
+}
+
+.section .reveal p {
+  color: #789;
+}
+
+
+/* image */
+.reveal .mediaInline img {
+  margin-left: 50px;
+}
+
+.reveal .section img {
+  box-shadow: 0px;
+}
+
+/* code block */
+.reveal pre code {
+  font-size: 1em;
+}

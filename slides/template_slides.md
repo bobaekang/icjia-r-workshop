@@ -14,6 +14,11 @@ type: slide-body
 css: style.css
 
 
+Section Slide
+========================================================
+type: section
+
+
 First Slide
 ========================================================
 This is a template for ICJIA presentation slides
@@ -30,18 +35,37 @@ Unordered list
 
   
 ========================================================
-<h1 style="text-align:center">Slide with no heading</h1>
+Slide with no heading
 
 
-Slide With Code
+Slide with Image (from web)
 ========================================================
-```{r}
+<img src="https://www.r-project.org/logo/Rlogo.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="45%" />
+
+
+Slide with Code
+========================================================
+
+```r
 summary(cars)
 ```
 
+```
+     speed           dist       
+ Min.   : 4.0   Min.   :  2.00  
+ 1st Qu.:12.0   1st Qu.: 26.00  
+ Median :15.0   Median : 36.00  
+ Mean   :15.4   Mean   : 42.98  
+ 3rd Qu.:19.0   3rd Qu.: 56.00  
+ Max.   :25.0   Max.   :120.00  
+```
 
-Slide With Plot
+
+Slide With Plot (centered)
 ========================================================
-```{r}
+
+```r
 plot(cars)
 ```
+
+<img src="template-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="45%" style="display: block; margin: 0 auto;" />

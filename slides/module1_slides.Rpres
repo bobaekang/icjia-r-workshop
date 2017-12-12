@@ -1,0 +1,177 @@
+# template elements
+<div class="header"></div>
+<div class="footer"></div>
+<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" class="logo"></img>
+<img src="https://www2.illinois.gov/PublishingImages/seal.gif" class="seal"></img>
+
+
+# presentation
+R Workshop
+========================================================
+type: slide-body
+css: ../css/style.css
+<h3 style="color: #789">Module 1: Introduction to R</h3>  
+2018-01-01  
+Bobae Kang  
+<small>(Bobae.Kang@illinois.gov)</small>  
+
+
+Introducing ... R!
+========================================================
+type:section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+print("Hellow World!")
+include_graphics("https://www.r-project.org/logo/Rlogo.png")
+```
+  
+  
+What is R?
+========================================================
+> "R is a language and environment for statistical computing and graphics." - The R Foundation
+
+* *Built for* data analysis and visualization
+* One of the the most popular choices of programming language among academic researchers and data scientists
+
+
+========================================================
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
+```
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">David Robinson, 2017, "The Impresseive Growth of R"</a>
+</p>
+
+
+Why R?
+========================================================
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jpg")
+```
+
+
+========================================================
+<p style="text-align:center">(Becasue ... DUH!)</p>
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto;"'}
+include_graphics("http://www.reactiongifs.com/r/2013/09/duh.gif")
+```
+
+And more reasons
+========================================================
+* Open source (free!)
+* Built for statistical analysis
+* Reproducible and transparent
+* Extensible through powerful third-party libraries
+* Enabling researchers to tackle a variety of tasks using a *single* platform
+
+
+Comparisons
+========================================================
+type:section
+
+
+R vs Excel
+========================================================
+* License cost
+* Speed
+* Scalability
+* Complex and advanced analysis
+* Visualization
+
+
+R vs SPSS
+========================================================
+* License cost (again)
+* Syntax
+* Visualization
+* Presentation
+
+
+R vs Tableau
+========================================================
+* License cost (DUH!)
+* Cleaning data
+* Complex and advanced analysis
+
+
+========================================================
+type:section
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
+```
+
+
+What is RStudio? Why use it?
+========================================================
+* Best Integrated Development Environment (IDE) for R
+* Powerful and convenient features
+* Interactive workflow
+* Open source (again!)
+
+
+========================================================
+```{r echo=FALSE, out.width="100%"}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg")
+```
+
+
+Basic Workflow
+========================================================
+type:section
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg/2000px-Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg.png")
+```
+
+
+Workshop Overview
+========================================================
+type:section
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg")
+```
+
+
+Module 2
+========================================================
+<h2>R basics</h2>
+* Fundamental building blocks of R programming.
+* Libraries and packages
+* `tidyverse` framework
+* Recommended R style guide
+
+
+Module 3
+========================================================
+<h2>Data manipulation</h2>
+* Importing/exporting data
+* Essential `dpylr` and `tidyr` commends
+* Working with character strings
+* Working with `Date` objects
+
+
+Module 4
+========================================================
+<h2>Data visualization</h2>
+* Base R plots
+* `ggplot2` package
+* Plotting maps
+* Interactive plots
+
+
+Module 5
+========================================================
+<h2>Statistical analysis</h2>
+
+
+Module 6
+========================================================
+<h2>Presentations and beyond</h2>
+* R Markdown and R Notebook
+* R Presentation and `ioslides`
+* Shiny applications
+* ... and more!
+
+
+Questions?
+========================================================
+type: section
+
