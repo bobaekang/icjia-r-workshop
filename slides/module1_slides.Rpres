@@ -50,7 +50,7 @@ include_graphics("https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jp
 
 
 ========================================================
-<p style="text-align:center">(Becasue ... DUH!)</p>
+<p style="text-align:center">(Because ... DUH!)</p>
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto;"'}
 include_graphics("http://www.reactiongifs.com/r/2013/09/duh.gif")
 ```
@@ -106,6 +106,7 @@ What is RStudio? Why use it?
 * Powerful and convenient features
 * Interactive workflow
 * Open source (again!)
+* ... and many more!
 
 
 ========================================================
@@ -114,11 +115,67 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_
 ```
 
 
-Basic Workflow
+Basic Setup
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg/2000px-Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg.png")
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png")
+```
+
+
+Installing R
+========================================================
+* Visit https://cran.r-project.org/
+* Or simply google "download R" to find the link to download page.
+* *Installation requires the Administrator account*; talk to DoIT!
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/installing_r1.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/installing_r2.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/installing_r3.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/installing_r4.png")
+```
+
+
+Installing RStudio
+========================================================
+* Visit https://www.rstudio.com/products/rstudio/download/
+* Or simply google "download Rstudio" to find the link to download page.
+* Agin, *installation requires the Administrator account*; talk to DoIT!
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/install_rstudio1.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/install_rstudio2.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="85%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/install_rstudio3.png")
 ```
 
 

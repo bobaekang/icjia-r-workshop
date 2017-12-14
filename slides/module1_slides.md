@@ -48,7 +48,7 @@ Why R?
 
 
 ========================================================
-<p style="text-align:center">(Becasue ... DUH!)</p>
+<p style="text-align:center">(Because ... DUH!)</p>
 <img src="http://www.reactiongifs.com/r/2013/09/duh.gif" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
 
 And more reasons
@@ -100,22 +100,65 @@ What is RStudio? Why use it?
 * Powerful and convenient features
 * Interactive workflow
 * Open source (again!)
+* ... and many more!
 
 
 ========================================================
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="100%" />
 
 
-Basic Workflow
+Basic Setup
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg/2000px-Simpleicons_Places_map-marker-with-two-arrows-pointing-opposite-directions.svg.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+Installing R
+========================================================
+* Visit https://cran.r-project.org/
+* Or simply google "download R" to find the link to download page.
+* *Installation requires the Administrator account*; talk to DoIT!
+
+
+========================================================
+<img src="../images/installing_r1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+========================================================
+<img src="../images/installing_r2.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+========================================================
+<img src="../images/installing_r3.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+========================================================
+<img src="../images/installing_r4.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+Installing RStudio
+========================================================
+* Visit https://www.rstudio.com/products/rstudio/download/
+* Or simply google "download Rstudio" to find the link to download page.
+* Agin, *installation requires the Administrator account*; talk to DoIT!
+
+
+========================================================
+<img src="../images/install_rstudio1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+========================================================
+<img src="../images/install_rstudio2.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+========================================================
+<img src="../images/install_rstudio3.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Workshop Overview
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Module 2
