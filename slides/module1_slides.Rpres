@@ -23,8 +23,8 @@ type:section
 print("Hellow World!")
 include_graphics("https://www.r-project.org/logo/Rlogo.png")
 ```
-  
-  
+
+
 What is R?
 ========================================================
 > "R is a language and environment for statistical computing and graphics." - The R Foundation

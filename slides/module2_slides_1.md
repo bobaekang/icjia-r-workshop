@@ -30,11 +30,11 @@ Fundamental Building Blocks of R Programming
 type:section
 
 ```r
-print("Hellow World!")
+print("Hello World!")
 ```
 
 ```
-[1] "Hellow World!"
+[1] "Hello World!"
 ```
   
 
@@ -530,8 +530,8 @@ while ( condition ) {
 
 
 ```r
-for ( i in expression_1 ) {
-  expression_2
+for (element in iterable_object) {
+  expression
 }
 ```
 
@@ -603,7 +603,7 @@ for (element in iterable_object) {
 ```r
 fruits <- c("apple", "banana", "clementine")
 
-# iterating over elements directly
+# iterate over elements directly
 for (fruit in fruits) {
   print(paste("I love ", fruit, "!", sep=""))
 }
@@ -619,7 +619,7 @@ for (fruit in fruits) {
 ```r
 flavors <- c("chocolate", "vanilla", "cookie dough")
 
-# iterating over elements indirectly
+# iterate over elements indirectly
 for (i in 1:length(flavors)) {
   flavor <- flavors[i]
   print(paste("Do you want some", flavor, "ice cream?"))

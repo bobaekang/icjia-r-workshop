@@ -25,8 +25,8 @@ type:section
 ```
 
 <img src="https://www.r-project.org/logo/Rlogo.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="45%" style="display: block; margin: auto; box-shadow: none;" />
-  
-  
+
+
 What is R?
 ========================================================
 > "R is a language and environment for statistical computing and graphics." - The R Foundation
