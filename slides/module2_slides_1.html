@@ -912,7 +912,6 @@ Bobae Kang<br/>
 <li>Expressions</li>
 <li>Functions</li>
 <li>Environments</li>
-<li>R data frames</li>
 </ul>
 
 </div>
@@ -1934,7 +1933,7 @@ identical(some_variable, global_env$some_variable)
 <p>Searching for an object in R follows the lexical scoping rules.  </p>
 
 <ul>
-<li>First, R looks for the object the current environment<br/></li>
+<li>First, R looks for the object in the current environment<br/></li>
 <li>If the object is not found in the current environment, R moves up to its parent environment.<br/></li>
 <li>The process is repeated until the object is found or the outermost environment (<code>emptyenv()</code>) is reached.</li>
 </ul>

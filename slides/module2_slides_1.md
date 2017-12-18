@@ -44,7 +44,6 @@ Key concepts
 * Expressions
 * Functions
 * Environments
-* R data frames
 
 
 R Objects
@@ -805,7 +804,7 @@ Local environments
 Lexical scoping
 ========================================================
 Searching for an object in R follows the lexical scoping rules.  
-* First, R looks for the object the current environment  
+* First, R looks for the object in the current environment  
 * If the object is not found in the current environment, R moves up to its parent environment.  
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
 
