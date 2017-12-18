@@ -118,6 +118,7 @@ This module will introduce participants to various ways to share their work by u
 
 
 # Resources
+* [Official Introduction to R Manual](https://cran.r-project.org/doc/manuals/R-intro.html)
 * [Quick-R](https://www.statmethods.net/index.html)
 * [R Tutorial](http://www.r-tutor.com/r-introduction)
 * [R Tutorial](http://www.cyclismo.org/tutorial/R/index.html)

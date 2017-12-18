@@ -20,9 +20,7 @@ Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
   <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Fundamental building blocks of R programming
-  </p>
-  <p>(break)</p>
+    Session 1: Fundamental building blocks of R programming</p>
   <p>Session 2: Gearing up for data analysis in R</p>
 </div>
 
@@ -159,6 +157,7 @@ class(character_vector)
 ========================================================
 
 ```r
+# an object with a single element is also a vector!
 x <- 1
 y <- "Am I a vector?"
 
@@ -178,16 +177,251 @@ is.vector(y)
 ```
 
 
-Accessing elements in a vector
+Accessing vector elements
 ========================================================
+Use index with `[]` to access an element in a vector:
+
+
+```r
+fruits <- c("apple", "banana", "clementine")
+first_fruit <- fruits[1]
+
+print(first_fruit)
+```
+
+```
+[1] "apple"
+```
+
+```r
+second_fruit <- fruits[2]
+
+print(second_fruit)
+```
+
+```
+[1] "banana"
+```
+
+
+========================================================
+We can also assign a new value to the accessed vector element:
+
+
+```r
+# giving a new value to an existing element
+fruits[1] <- "apricot"
+
+print(fruits)
+```
+
+```
+[1] "apricot"    "banana"     "clementine"
+```
+
+Or create a new element:
+
+
+```r
+# creating a new element
+fruits[4] <- "dried mango"
+
+fruits
+```
+
+```
+[1] "apricot"     "banana"      "clementine"  "dried mango"
+```
+
+
+========================================================
+Multiple elements can be accessed
+* Using a vector of indices:
+
+
+```r
+first_and_third_fruits <- fruits[c(1, 3)]
+
+print(first_and_third_fruits)
+```
+
+```
+[1] "apricot"    "clementine"
+```
+
+* Using the colon operator for a sequence:
+
+
+```r
+first_thru_third_fruits <- fruits[1:3]
+
+print(first_thru_third_fruits)
+```
+
+```
+[1] "apricot"    "banana"     "clementine"
+```
+
+
+========================================================
+Vector elements can be accessed conditionally as well
+
+
+```r
+my_vector <- c(1, 2, 3, 4, 5)
+
+# print only elements less than 3 
+print(my_vector[my_vector < 3])
+```
+
+```
+[1] 1 2
+```
+
+```r
+# assign 0 to such elements
+my_vector[my_vector < 3] <- 0
+
+print(my_vector)
+```
+
+```
+[1] 0 0 3 4 5
+```
 
 
 Lists
 ========================================================
+* An R list, created by `list()` function, can contain elements of different types
+
+```r
+my_list <- list("abc", 125, FALSE, c("Hello", "World"))
+
+print(my_list)
+```
+
+```
+[[1]]
+[1] "abc"
+
+[[2]]
+[1] 125
+
+[[3]]
+[1] FALSE
+
+[[4]]
+[1] "Hello" "World"
+```
 
 
-Accessing elements in a list
+Naming list elements
 ========================================================
+
+```r
+names(my_list) <- c("character", "numeric", "logical", "character vector")
+
+my_list
+```
+
+```
+$character
+[1] "abc"
+
+$numeric
+[1] 125
+
+$logical
+[1] FALSE
+
+$`character vector`
+[1] "Hello" "World"
+```
+
+
+Accessing list elements
+========================================================
+Elements in a list can be accessed using their indices or names:
+
+```r
+# using index (this returns a list element, NOT the actual content)
+my_list[4]
+```
+
+```
+$`character vector`
+[1] "Hello" "World"
+```
+
+
+```r
+# using name (this returns the content itself)
+my_list$`character vector`
+```
+
+```
+[1] "Hello" "World"
+```
+
+
+========================================================
+In order to access the content of a list element using the index approach, we must use `[[]]` instead:
+
+```r
+my_list[[1]]
+```
+
+```
+[1] "abc"
+```
+
+
+```r
+# the result is the same with accessing an element using name
+identical(my_list[[1]], my_list$character)
+```
+
+```
+[1] TRUE
+```
+
+
+```r
+# in contrast:
+identical(my_list[1], my_list$character)
+```
+
+```
+[1] FALSE
+```
+
+
+Lists to vector
+========================================================
+A list can be "unlisted", i.e., converted into a vector
+
+```r
+new_list <- list(1:5)
+to_vector <- unlist(new_list)
+
+# this is a list
+print(new_list)
+```
+
+```
+[[1]]
+[1] 1 2 3 4 5
+```
+
+```r
+# this is a vector
+print(to_vector)
+```
+
+```
+[1] 1 2 3 4 5
+```
+
 
 
 R Expressions
@@ -207,6 +441,7 @@ Operators
 * Logical operators
 * Relational operators
 * Assignment operators
+* Miscellaneous operators
 * Others
     * User-defined operators
     * From third-party pacakges
@@ -216,46 +451,62 @@ Arithmetic operators
 ========================================================
 |Operator|Description|Example|
 |--------|--------------------------------|--------------------------------|
-|`+`|addition|`1 + 1    # returns 2`|
-|`-`|subtraction|`3 - 2  # returns 1`|
-|`*`|multiplication|`3 * 4  # returns 12`|
-|`/`|division|`5 / 2 # returns 2.5`|
-|`^` or `**`|exponentiation|`2**4  # returns 16`|
-|`%%`|modulus|`5 %% 2  # returns 1`|
-|`%/%`|integer division|`5 %% 2  # returns 2`|
+|`+`|Addition|`1 + 1    # returns 2`|
+|`-`|Subtraction|`3 - 2  # returns 1`|
+|`*`|Multiplication|`3 * 4  # returns 12`|
+|`/`|Division|`5 / 2 # returns 2.5`|
+|`^` or `**`|Exponentiation|`2**4  # returns 16`|
+|`%%`|Modulus|`5 %% 2  # returns 1`|
+|`%/%`|Integer division|`5 %% 2  # returns 2`|
 
 
 Logical operators
 ========================================================
 |Operator|Description|Example|
 |--------|--------------------------------|--------------------------------|
-||||
-||||
-||||
-||||
-||||
-
+|`&`|Element-wise logical AND|`c(TRUE, TRUE) & c(TRUE, FALSE)  # returns TRUE FALSE`|
+|&#124;|Element-wise logical OR|`c(TRUE, FALSE) ` &#124; ` c(FALSE, FALSE)  # returns TRUE FALSE`|
+|`!`|Logical NOT|`!c(TRUE, FALSE)  # retruns FALSE TRUE`|
+|`&&`|Logical AND (considers the first element only)|`c(TRUE, TRUE) && c(FALSE, TRUE)  # returns FALSE`|
+|&#124;&#124;|Logical OR (considers the first element only)|`c(TRUE, TRUE) ` &#124;&#124; `c(FALSE, TRUE)  # returns TRUE`|
 
 Relational operators
 ========================================================
 |Operator|Description|Example|
 |--------|--------------------------------|--------------------------------|
-||||
-||||
-||||
-||||
-||||
+|`>`|Greater than|`3 > 1  # returns TRUE`|
+|`<`|Less than|`3 < 1  # returns FALSE`|
+|`==`|Equal to|`2 == 2  # returns TRUE`|
+|`<=`|Less than or equal to|`4 <= 4 # returns TRUE`|
+|`>=`|Greater than or equal to|`3 >= 4  # returns FALSE`|
+|`!=`|Not equal to|`2 != 3  # returns TRUE`|
 
 
 Assignment operators
 ========================================================
 |Operator|Description|Example|
 |--------|--------------------------------|--------------------------------|
-||||
-||||
-||||
-||||
-||||
+|`<-` or `=`|Left assignment|`a <- "Hello" # print(a) returns "Hello"`|
+|`->`|Right assignment|The use of `->` is mostly discouraged|
+|`<<-`|Left scoping assignment|Search for the variable in the parent environments takes place before assignment|
+|`->>`|Right scoping assignment|Ditto|
+
+
+Miscellaneous operators
+========================================================
+|Operator|Description|Example|
+|--------|--------------------------------|--------------------------------|
+|`:`|Colon operator to generate sequences|`a <- "Hello" # print(a) returns "Hello"`|
+|`?`|Help function to see documentation|`?some_function # equivalent to help(some_function)`|
+|`%in%`|In operator|`1 %in% c(1, 2, 3)  # returns TRUE`|
+|`%*%`|Matrix multiplication||
+
+
+Other operators
+========================================================
+* Operators can be defined by users
+* Some third party packages offer custom operators
+    * e.g. the "pipe" operator (`%>%`) from `magrittr` package (also available through `dplyr` pacakge)
 
 
 Flow Control
@@ -287,6 +538,19 @@ for ( i in expression_1 ) {
 
 while loop
 ========================================================
+<img src="https://www.tutorialspoint.com/r/images/swift_while_loop.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="https://www.tutorialspoint.com/r/r_while_loop.htm">tutorialspoint.com, "R - While Loop"</a>
+</p>
+
+========================================================
+
+```r
+while (condition) {
+  expression
+}
+```
+
 * If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
 * Onces the `expression` is executed, the `condition` is re-evaluated.
 * The `expression` is repetitively executed as long as the `condition` is satisfied.
@@ -315,16 +579,23 @@ while (count < 5) {
 
 for loop
 ========================================================
-* Requires an iterable object (e.g. vector or list).
-* Iterates over all elements of the given object in order.
-* At each step of iteration, can use the given element for the `expression` if appropriate.
+<img src="https://www.tutorialspoint.com/r/images/r_for_loop.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="https://www.tutorialspoint.com/r/r_for_loop.htm">tutorialspoint.com, "R - For Loop"</a>
+</p>
 
+
+========================================================
 
 ```r
-for (element in iterable_obj) {
+for (element in iterable_object) {
   expression
 }
 ```
+
+* Requires an iterable object (e.g. vector or list).
+* Iterates over all elements of the given object in order.
+* At each step of iteration, can use the given element for the `expression` if appropriate.
 
 
 ========================================================
@@ -411,9 +682,137 @@ R Functions
 type: section
 
 
+Functions
+========================================================
+* Functions are "call-able" objects
+    * can be called or invoked by following `()`
+    * can be manipulated in the same way as any other object
+* Three elements of a function (or function closure)
+    1. an argument list (a.k.a. parameters; optional)
+    2. body
+    3. function environment
+
+    
+========================================================
+
+```r
+# creating a new function
+name <- function(arg1, arg2) {
+  
+  # body exist in a local environment
+  body expression1
+  body expression2
+  body expression3
+
+}
+```
+
+========================================================
+
+```r
+# example: a custom function for adding two numbers
+add <- function(num1, num2) {
+  num1 + num2
+}
+
+add_output <- add(3, 5) # assign the function output to a variable
+
+print(add_output)
+```
+
+```
+[1] 8
+```
+
+
+```r
+# example: a custom function without arguments
+print_hello_world <- function() {
+  print("Hello world")
+}
+
+print_hello_world()
+```
+
+```
+[1] "Hello world"
+```
+
+
+Why use functions
+========================================================
+* Encapsulate repeated operations
+    * Simplify code (clearner and more concise)
+    * Avoid unintended bugs/errors
+    * Enhance reproducibility
+
+
 R Environments
 ========================================================
 type: section
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/bindings.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+</p>
+
+
+Environments
+========================================================
+* Simply put, an environment is a place to store variables.
+* All variables (as bindings of symbols and objects) exist in a specific environment.
+    * More precisely, *objects* live in memory outside all environment;
+    * It is the *symbols* and the *associations* of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.
+* Environments can have nested structure.
+
+
+Nesting of environments
+========================================================
+* Variables in a parent environment are accessible in a child environment
+* Variables in a child environment are *NOT* accessible in a parent environment
+
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/parents.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+</p>
+
+
+The global environment
+========================================================
+* The interactive workspace for the given R session.
+* Its immediate parent is the environment of the package that is imported last.
+* Can be accessed using `globalenv()`, which works like a named list
+
+```r
+some_variable <- 1 # a variable in the global environment
+global_env <-globalenv() # the environment itself can be assigned to a variable
+
+# the following two are identical 
+identical(some_variable, global_env$some_variable)
+```
+
+```
+[1] TRUE
+```
+
+Local environments
+========================================================
+* Local environments are created by
+    * any function calls
+    * `new.env()`
+* Can be used to protect the global environment from arbitrarily created variables
+
+
+Lexical scoping
+========================================================
+Searching for an object in R follows the lexical scoping rules.  
+* First, R looks for the object the current environment  
+* If the object is not found in the current environment, R moves up to its parent environment.  
+* The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
+
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/search-path.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="text-align: center; color: #333; font-size:0.5em;">
+<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+</p>
 
 
 Questions?
@@ -423,4 +822,4 @@ type: section
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="45%" style="display: block; margin: auto; box-shadow: none;" />
