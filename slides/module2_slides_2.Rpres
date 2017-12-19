@@ -20,10 +20,8 @@ Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
   <p>Session 1: Fundamental building blocks of R programming</p>
-  <p>(break)</p>
   <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: Gearing up for data analysis in R
-  </p>
+    Session 2: Gearing up for data analysis in R</p>
 </div>
 
 
@@ -35,27 +33,192 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Symb
 ```
   
   
-
-R data.frame
+R Data Frame
 ========================================================
 type: section
+```{r echo=FALSE}
+print("Look, a data frame!")
+data.frame(
+  column1 = seq(1,5)*10 + 1,
+  column2 = seq(1,5)*10 + 2,
+  column3 = seq(1,5)*10 + 3,
+  column4 = seq(1,5)*10 + 4,
+  column5 = seq(1,5)*10 + 5
+)
+```
 
 
-What is data.frame?
+What is a data frame?
 ========================================================
+* A tabular representation of data where each column is a vector of some type.
+    * think of Excel spreadsheets, SPSS tables, etc.!
+* Can be seen as a *list of vectors* of *the same length*, but with additional functionalities for data analysis!
+    * accessing data in a data frame works similarly
+    * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
+
+
+Example: Iris data 
+========================================================
+R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
+```{r}
+class(iris)  # the class of iris object is "data.frame"
+is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
+```
+
+
+========================================================
+```{r}
+str(iris) # reports the "structure" of the data frame 
+head(iris, 5)  # returns the first n rows of the data frame (default 6)
+```
+
+
+========================================================
+```{r}
+dim(iris)  # returns the dimension of the data frame (row  column)
+nrow(iris)  # returns the number of rows in the data frame
+ncol(iris)  # returns the number of columns in the data frame
+colnames(iris)  # returns a vector containing the column names 
+```
+
+
+========================================================
+```{r eval=FALSE}
+iris$Sepal.Length  # access a column by name
+iris[[1]]          # access the first column by index
+iris[, 1]          # yet another way to access the first column!
+```
+```{r echo=FALSE}
+iris$Sepal.Length
+```
+```{r}
+iris[1, ]  # access the first row by index
+iris[1, 1]  # access a specific cell (first row of the first column)
+```
+
+
+Creating a data frame
+========================================================
+* Using `data.frame()`
+    * with existing vectors as arguments
+    * with simultanesouly creating vectors and assigning column names to them  
+* Coercing a list using `as.data.frame()`
+
+
+Using data.frame() 1
+========================================================
+```{r}
+fruits <- c("apple", "banana", "clementine")
+animals <- c("dogs", "cats", "llamas")
+icecream_flavors <- c("chocolate", "vanila", "cookie dough")
+
+df1 <- data.frame(fruits, animals, icecream_flavors)
+
+print(df1)
+```
+
+
+Using data.frame() 2
+========================================================
+```{r}
+df2 <- data.frame(
+  fruits = c("apple", "banana", "clementine"),
+  animals = c("dogs", "cats", "llamas"),
+  icecream_flavors = c("chocolate", "vanila", "cookie dough")
+)
+
+print(df2)
+```
+
+
+Converting a list using as.data.frame()
+========================================================
+```{r}
+lt <- list(
+  fruits = c("apple", "banana", "clementine"),
+  animals = c("dogs", "cats", "llamas"),
+  icecream_flavors = c("chocolate", "vanila", "cookie dough")
+)
+
+df3 <- as.data.frame(lt)
+
+print(df3)
+```
+
+
+Transforming a data frame
+========================================================
+* change column names
+* add / modify / remove columns
+* add / modify / remove rows
+* modify cell values
+
+
+Extending data frame
+========================================================
+* In practice, R's original `data.frame` is rarely used since better alternatives are available.
+    * `tibble`
+    * `data.table`
+* Both alternatives are extension of the original `data.frame`
+    * either can be manipulated just like a data frame
 
 
 tibble
 ========================================================
+* Part of the `tidyverse` framework (we'll come back to this)
+* More easily understood `tidyverse` syntax
+* Refined print method (showing dimension and column type information ... and more)
+* Coercing a data frame into a tibble can be done with `as_tibble()` from `tibble` package 
+
+<div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</div>
 
 
 data.table
 ========================================================
+* Made available via `data.frame` package.
+* Highly optimized for larger tables (e.g. >100K rows).
+* Compact syntax for advanced slicing and dicing of tablular data.
+* Coercing a data frame into a data table can be done with `as.data.table()` 
+
+<div style="font-size:0.75em; text-align:center">See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on data.table</div>
 
 
-Libraries/Packages
+R Add-On Packages
 ========================================================
 type:section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png")
+```
+<div style="font-size:0.5em; text-align:center">
+<a href="https://www.datacamp.com/">DataCamp</a>
+</div>
+
+
+What are add-on packages?
+========================================================
+> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc. - "R (programming language)", Wikipedia
+
+
+Using packages
+========================================================
+```{r eval=FALSE}
+# first we should install the desired package
+install.packages("some_package")
+
+# then we import the package to use its functionalities
+library(some_package)
+```
+
+
+Two ways of installing packages
+========================================================
+* From CRAN (Comprehensive R Archive Network)
+    * tested and trusted
+    * using `install.packages("package")`
+* From specific Github repositories (i.e., development versions)
+    * latest versions with cutting-edge features 
+    * using `install_github("author/package")`
+        * `install_github()` is available via `devtools` package.
 
 
 Tidyverse Framework
@@ -68,12 +231,41 @@ include_graphics("../images/tidyverse.png")
 <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
-"Tidy" approach to data science
+
+Tidy approach to data science
 ========================================================
 Tidy data is data where:
 > 1. Each variable is in a column
 > 2. Each observation is a row
 > 3. Each value is a cell.
+
+
+========================================================
+```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin-top:10%; box-shadow: none;"'}
+include_graphics("http://r4ds.had.co.nz/images/tidy-1.png")
+```
+<div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data</div>
+<div style="font-size:0.5em; text-align:center">
+Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
+</div>
+
+
+Untidy data?
+========================================================
+asdf
+
+
+========================================================
+```{r}
+# untidy example 1
+```
+
+
+========================================================
+```{r}
+# untidy example 2
+```
+
 
 Tidyverse core packages
 ========================================================
@@ -85,12 +277,44 @@ Tidyverse core packages
 * `tibble` for data representation
 
 
-Recommended Stlye Guide
+Good Code, Bad Code
 ========================================================
 type:section
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ic_thumbs_up_down_48px.svg/2000px-Ic_thumbs_up_down_48px.svg.png")
+```
+
+Why style guide?
+========================================================
+asdf
+
+
+Which style guide?
+========================================================
+asdf
+
+
+Naming convention
+========================================================
+asdf
+
+
+Whitespaces for readable code
+========================================================
+asdf
+
+
+Comments for intelligible code 
+========================================================
+asdf
+
+Most importantly...
+========================================================
+* Be consistent!
+* Be concise!
+* Be clear!
 
 
 Questions?
 ========================================================
 type: section
-
