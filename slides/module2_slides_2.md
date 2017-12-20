@@ -85,7 +85,7 @@ is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
 ========================================================
 
 ```r
-str(iris) # reports the "structure" of the data frame 
+str(iris)  # reports the "structure" of the data frame 
 ```
 
 ```
@@ -343,7 +343,7 @@ df1
 
 ```r
 # subsetting
-df1 <- df1[, 1:3] # or c("my_fruits", "my_animals", "my_flavors")
+df1 <- df1[, 1:3]  # or c("my_fruits", "my_animals", "my_flavors")
 
 df1
 ```
@@ -660,11 +660,11 @@ firearm_arr
 fa_arr
 
 # Bad
-arrests_with_firearm_charges # too verbose
-firearmArrests               # violating underscore convention
-FireArm_Arrests              # mixing underscore with other way of naming
-farr                         # not descriptive enough
-x                            # not descriptive at all
+arrests_with_firearm_charges  # too verbose
+firearmArrests                # violating underscore convention
+FireArm_Arrests               # mixing underscore with other way of naming
+farr                          # not descriptive enough
+x                             # not descriptive at all
 ```
 
 Naming a function (e.g. for counting arrests)
@@ -684,22 +684,22 @@ Reserved words in R
 
 ```r
 if else repeat while function for  
-in next break # used in loops, conditions, functions
+in next break  # used in loops, conditions, functions
 
-TRUE FALSE # logical values
+TRUE FALSE  # logical values
 
-NULL # undefined
+NULL  # undefined
 
-Inf # infinity
+Inf  # infinity
 
-NaN # Not a Number
+NaN  # Not a Number
 
-NA # not available (missing)
+NA  # not available (missing)
 
 NA_integer_ NA_real_
-NA_complex_ NA_character_ # NA for atomic vector types
+NA_complex_ NA_character_  # NA for atomic vector types
 
-... # dot method for one function to pass arguments to another
+...  # dot method for one function to pass arguments to another
 ```
 
 Whitespaces for readable code
@@ -735,7 +735,7 @@ base :: Random ()
 Extra spacing
 
 ```r
-# for aligning in function arguments
+# for aligning function arguments
 some_function (
   first_argument   = value_1
   another_argument = value_2
@@ -781,14 +781,15 @@ message("y is not positive")
 
 Comments for intelligible code 
 ========================================================
-* Use comments (code after `#` symbole in each line) for clarification
-* However, whenever possible, use *descriptive names* to reduce the need for clarification and avoide verbosity!
+* Use comments (code after the `#` symbol) for clarification
+    * add two spaces before starting a comment if the comment comes after an expression
+* However, whenever possible, use *descriptive names* to reduce the need for clarification and avoid verbosity!
 * Example of unnecesary comment:
 
 ```r
 # the following code calculates the average of some numbers
-numbers <- c(1, 3, 5) # assign a vector of numbers to numbers object
-average <- sum(numbers) / length(numbers) # divide the sum of numbers vecotr by its length to get the average
+numbers <- c(1, 3, 5)  # assign a vector of numbers to numbers object
+average <- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by its length to get the average
 ```
 
 

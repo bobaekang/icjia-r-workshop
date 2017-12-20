@@ -964,7 +964,7 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 <section data-transition="linear" data-transition-speed="default">
 
 <div class="slideContent noTitle" >
-<pre><code class="r">str(iris) # reports the &quot;structure&quot; of the data frame 
+<pre><code class="r">str(iris)  # reports the &quot;structure&quot; of the data frame 
 </code></pre>
 
 <pre><code>&#39;data.frame&#39;:   150 obs. of  5 variables:
@@ -1234,7 +1234,7 @@ df1
 </code></pre>
 
 <pre><code class="r"># subsetting
-df1 &lt;- df1[, 1:3] # or c(&quot;my_fruits&quot;, &quot;my_animals&quot;, &quot;my_flavors&quot;)
+df1 &lt;- df1[, 1:3]  # or c(&quot;my_fruits&quot;, &quot;my_animals&quot;, &quot;my_flavors&quot;)
 
 df1
 </code></pre>
@@ -1664,11 +1664,11 @@ firearm_arr
 fa_arr
 
 # Bad
-arrests_with_firearm_charges # too verbose
-firearmArrests               # violating underscore convention
-FireArm_Arrests              # mixing underscore with other way of naming
-farr                         # not descriptive enough
-x                            # not descriptive at all
+arrests_with_firearm_charges  # too verbose
+firearmArrests                # violating underscore convention
+FireArm_Arrests               # mixing underscore with other way of naming
+farr                          # not descriptive enough
+x                             # not descriptive at all
 </code></pre>
 
 <p>Naming a function (e.g. for counting arrests)</p>
@@ -1691,22 +1691,22 @@ count   &lt;- function(x) { ... }  # too generic (common name)
 <p>Reserved words in R</p>
 
 <pre><code class="r">if else repeat while function for  
-in next break # used in loops, conditions, functions
+in next break  # used in loops, conditions, functions
 
-TRUE FALSE # logical values
+TRUE FALSE  # logical values
 
-NULL # undefined
+NULL  # undefined
 
-Inf # infinity
+Inf  # infinity
 
-NaN # Not a Number
+NaN  # Not a Number
 
-NA # not available (missing)
+NA  # not available (missing)
 
 NA_integer_ NA_real_
-NA_complex_ NA_character_ # NA for atomic vector types
+NA_complex_ NA_character_  # NA for atomic vector types
 
-... # dot method for one function to pass arguments to another
+...  # dot method for one function to pass arguments to another
 </code></pre>
 
 </div>
@@ -1760,7 +1760,7 @@ base :: Random ()
 <div class="slideContent noTitle" >
 <p>Extra spacing</p>
 
-<pre><code class="r"># for aligning in function arguments
+<pre><code class="r"># for aligning function arguments
 some_function (
   first_argument   = value_1
   another_argument = value_2
@@ -1813,14 +1813,18 @@ message(&quot;y is not positive&quot;)
 <h3>Comments for intelligible code </h3>
 <div class="slideContent" >
 <ul>
-<li>Use comments (code after <code>#</code> symbole in each line) for clarification</li>
-<li>However, whenever possible, use <em>descriptive names</em> to reduce the need for clarification and avoide verbosity!</li>
+<li>Use comments (code after the <code>#</code> symbol) for clarification
+
+<ul>
+<li>add two spaces before starting a comment if the comment comes after an expression</li>
+</ul></li>
+<li>However, whenever possible, use <em>descriptive names</em> to reduce the need for clarification and avoid verbosity!</li>
 <li>Example of unnecesary comment:</li>
 </ul>
 
 <pre><code class="r"># the following code calculates the average of some numbers
-numbers &lt;- c(1, 3, 5) # assign a vector of numbers to numbers object
-average &lt;- sum(numbers) / length(numbers) # divide the sum of numbers vecotr by its length to get the average
+numbers &lt;- c(1, 3, 5)  # assign a vector of numbers to numbers object
+average &lt;- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by its length to get the average
 </code></pre>
 
 </div>
