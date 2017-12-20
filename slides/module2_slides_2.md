@@ -29,7 +29,10 @@ Gearing Up for Data Analysis in R
 ========================================================
 type:section
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Symbole_travaux_marteau_et_clef.svg/1080px-Symbole_travaux_marteau_et_clef.svg.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
-  
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
+</div>
+
   
 R Data Frame
 ========================================================
@@ -185,13 +188,14 @@ iris[1, 1]  # access a specific cell (first row of the first column)
 Creating a data frame
 ========================================================
 * Using `data.frame()`
-    * with existing vectors as arguments
-    * with simultanesouly creating vectors and assigning column names to them  
+    * Using existing vectors as arguments
+    * Simultanesouly creating vectors and assigning column names to them  
 * Coercing a list using `as.data.frame()`
 
 
-Using data.frame() 1
+Using data.frame()
 ========================================================
+Using existing vectors
 
 ```r
 fruits <- c("apple", "banana", "clementine")
@@ -211,8 +215,9 @@ print(df1)
 ```
 
 
-Using data.frame() 2
+Using data.frame()
 ========================================================
+Simultaneously creating vectors and assigning names
 
 ```r
 df2 <- data.frame(
@@ -263,6 +268,184 @@ Transforming a data frame
 * modify cell values
 
 
+========================================================
+Change column names
+
+```r
+colnames(df1) <- c("my_fruits", "my_animals", "my_flavors")
+
+print(df1)
+```
+
+```
+   my_fruits my_animals   my_flavors
+1      apple       dogs    chocolate
+2     banana       cats       vanila
+3 clementine     llamas cookie dough
+```
+
+========================================================
+Add columns
+
+```r
+# using $ index
+df1$my_colors <- c("red", "green", "orange")
+
+# using cbind() function
+my_cities <- c("Chicago", "New Work", "Los Angeles")
+df1 <- cbind(df1, my_cities)
+
+print(df1)
+```
+
+```
+   my_fruits my_animals   my_flavors my_colors   my_cities
+1      apple       dogs    chocolate       red     Chicago
+2     banana       cats       vanila     green    New Work
+3 clementine     llamas cookie dough    orange Los Angeles
+```
+
+
+========================================================
+Modify columns
+
+```r
+df1[["my_colors"]] <- c("maroon", "blue", "purple")
+df1$my_cities <- c("Chicago", "London", "Paris")
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors my_colors my_cities
+1      apple       dogs    chocolate    maroon   Chicago
+2     banana       cats       vanila      blue    London
+3 clementine     llamas cookie dough    purple     Paris
+```
+
+
+========================================================
+Remove columns
+
+```r
+# assinging NULL
+df1$my_colors <- NULL
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors my_cities
+1      apple       dogs    chocolate   Chicago
+2     banana       cats       vanila    London
+3 clementine     llamas cookie dough     Paris
+```
+
+```r
+# subsetting
+df1 <- df1[, 1:3] # or c("my_fruits", "my_animals", "my_flavors")
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors
+1      apple       dogs    chocolate
+2     banana       cats       vanila
+3 clementine     llamas cookie dough
+```
+
+
+========================================================
+Add rows
+
+```r
+new_row <- data.frame(
+  my_fruits = "strawberry",
+  my_animals = "monkeys",
+  my_flavors = "butter pecan"
+)
+df1 <- rbind(df1, new_row)
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors
+1      apple       dogs    chocolate
+2     banana       cats       vanila
+3 clementine     llamas cookie dough
+4 strawberry    monkeys butter pecan
+```
+
+
+========================================================
+Remove rows
+
+```r
+# subsetting
+df1 <- df1[1:3, ]
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors
+1      apple       dogs    chocolate
+2     banana       cats       vanila
+3 clementine     llamas cookie dough
+```
+
+
+========================================================
+Modify cells
+
+```r
+# this doesn't work ... why?
+df1$my_flavors[1] <- "mint chocolate chip"
+
+df1
+```
+
+```
+   my_fruits my_animals   my_flavors
+1      apple       dogs         <NA>
+2     banana       cats       vanila
+3 clementine     llamas cookie dough
+```
+
+```r
+# because the column is a factor and only
+# new values of the existing levels can be added
+df1$my_flavors
+```
+
+```
+[1] <NA>         vanila       cookie dough
+Levels: chocolate cookie dough vanila butter pecan
+```
+
+
+========================================================
+
+```r
+# first we coerce the column into character class
+df1$my_flavors <- as.character(df1$my_flavors)
+
+# now works!
+df1$my_flavors[1] <- "mint chocolate chip"
+
+df1
+```
+
+```
+   my_fruits my_animals          my_flavors
+1      apple       dogs mint chocolate chip
+2     banana       cats              vanila
+3 clementine     llamas        cookie dough
+```
+
+
 Extending data frame
 ========================================================
 * In practice, R's original `data.frame` is rarely used since better alternatives are available.
@@ -274,9 +457,21 @@ Extending data frame
 
 tibble
 ========================================================
+
+```
+# A tibble: 5 x 5
+  column1 column2 column3 column4 column5
+    <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+1      11      12      13      14      15
+2      21      22      23      24      25
+3      31      32      33      34      35
+4      41      42      43      44      45
+5      51      52      53      54      55
+```
+
 * Part of the `tidyverse` framework (we'll come back to this)
 * More easily understood `tidyverse` syntax
-* Refined print method (showing dimension and column type information ... and more)
+* Refined print method
 * Coercing a data frame into a tibble can be done with `as_tibble()` from `tibble` package 
 
 <div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</div>
@@ -284,6 +479,15 @@ tibble
 
 data.table
 ========================================================
+
+```
+   column1 column2 column3 column4 column5
+1:      11      12      13      14      15
+2:      21      22      23      24      25
+3:      31      32      33      34      35
+4:      41      42      43      44      45
+5:      51      52      53      54      55
+```
 * Made available via `data.frame` package.
 * Highly optimized for larger tables (e.g. >100K rows).
 * Compact syntax for advanced slicing and dicing of tablular data.
@@ -295,9 +499,9 @@ data.table
 R Add-On Packages
 ========================================================
 type:section
-<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="45%" style="display: block; margin: auto; box-shadow: none;" />
-<div style="font-size:0.5em; text-align:center">
-<a href="https://www.datacamp.com/">DataCamp</a>
+<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.datacamp.com/">DataCamp</a>
 </div>
 
 
@@ -332,9 +536,9 @@ Two ways of installing packages
 Tidyverse Framework
 ========================================================
 type:section
-<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="100%" style="display: block; margin: auto; box-shadow: none;" />
-<div style="font-size:0.5em; text-align:center">
-<a href="https://www.tidyverse.org/">tidyverse.org</a>
+<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
 
@@ -347,29 +551,51 @@ Tidy data is data where:
 
 
 ========================================================
-<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
-<div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data</div>
-<div style="font-size:0.5em; text-align:center">
-Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
+<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
+</div>
+<div style="font-size:0.75em; text-align:center; margin-top:5%;">
+See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data
 </div>
 
 
 Untidy data?
 ========================================================
-asdf
-
+Anything that is not tidy!
+* Multiple variables in a single column
+* Multiple observations in a single row
+* Multiple rows for a single observation
+* Multiple values in a single cell
+* Multiple cells for a single value
 
 ========================================================
+Untidy example 1
 
-```r
-# untidy example 1
+```
+  Sepal.Length/Width Petal.Length/Width Species
+1            5.1/3.5            1.4/0.2  setosa
+2              4.9/3            1.4/0.2  setosa
+3            4.7/3.2            1.3/0.2  setosa
+4            4.6/3.1            1.5/0.2  setosa
+5              5/3.6            1.4/0.2  setosa
+6            5.4/3.9            1.7/0.4  setosa
 ```
 
+Untidy example 2
 
-========================================================
-
-```r
-# untidy example 2
+```
+   index         type value Species
+1      1 Sepal.Length   5.1  setosa
+2      1  Sepal.Width   3.5  setosa
+3      1 Petal.Length   1.4  setosa
+4      1  Petal.Width   0.2  setosa
+5      2 Sepal.Length   4.9  setosa
+6      2  Sepal.Width   3.0  setosa
+7      2 Petal.Length   1.4  setosa
+8      2  Petal.Width   0.2  setosa
+9      3 Sepal.Length   4.7  setosa
+10     3  Sepal.Width   3.2  setosa
 ```
 
 
@@ -386,31 +612,185 @@ Tidyverse core packages
 Good Code, Bad Code
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ic_thumbs_up_down_48px.svg/2000px-Ic_thumbs_up_down_48px.svg.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.nytimes.com/">The New York Times</a>
+</div>
+
 
 Why style guide?
 ========================================================
-asdf
+> The goal [of the style guide] is to make our R code easier to read, share, and verify.  - Google's R Style guide
+
+* Readability
+* Productivity
+* Reproducibility
 
 
 Which style guide?
 ========================================================
-asdf
+* Currently, there is no single style guide adopted by the R community as *the* standard.
+    * [Google's R Style guide](https://google.github.io/styleguide/Rguide.xml)
+    * [Tidyverse style guide](http://style.tidyverse.org/)
 
 
-Naming convention
+Personal recommendation
 ========================================================
-asdf
+* Start with the tidyverse style guide
+* Consider adding extra rules *only if* they will help your team to better collaborate and maintain code
+* Keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!
 
+
+Object naming
+========================================================
+* Be descriptive yet concise
+    * somewhat dependent on the shared knowledge on the subject matter
+* Use underscore for names consisting of multiple words
+* Nouns for variables, verbs for functions
+* Avoid re-using common names for functions and variables
+    * Using "reserved words" to assign objects will throw errors
+
+
+========================================================
+Naming a variable (e.g. for firearm arrests)
+
+```r
+# Good
+firearm_arr
+fa_arr
+
+# Bad
+arrests_with_firearm_charges # too verbose
+firearmArrests               # violating underscore convention
+FireArm_Arrests              # mixing underscore with other way of naming
+farr                         # not descriptive enough
+x                            # not descriptive at all
+```
+
+Naming a function (e.g. for counting arrests)
+
+```r
+# Good
+count_arr <- function(x) { ... }
+
+# Bad
+num_arr <- function(x) { ... }  # noun for a function
+do_arr  <- function(x) { ... }  # not descriptive enough
+count   <- function(x) { ... }  # too generic (common name)
+```
+
+========================================================
+Reserved words in R
+
+```r
+if else repeat while function for  
+in next break # used in loops, conditions, functions
+
+TRUE FALSE # logical values
+
+NULL # undefined
+
+Inf # infinity
+
+NaN # Not a Number
+
+NA # not available (missing)
+
+NA_integer_ NA_real_
+NA_complex_ NA_character_ # NA for atomic vector types
+
+... # dot method for one function to pass arguments to another
+```
 
 Whitespaces for readable code
 ========================================================
-asdf
+* Add a space
+    * around operators (`+`, `-`, `<`, `=`, etc.)
+        * Exceptions include `:`, `::`, and `:::`  
+    * after a comma (but not before--like in regular English)
+    * before a left paranthesis `(`, except when it is a function call
+* Extra spacing for alignment of code
+* Indentation for clarifying hierarchy
+
+
+========================================================
+Adding spaces
+
+```r
+# Good
+greetings <- paste("Hello", "World!", sep = " ")
+df[2, ]
+x <- 1:10 
+base::Random() # calling a function with specifying the package
+
+# Bad
+greetings<-paste("Hello","world!",sep="")
+df[ 2,]
+x<- 1 : 10
+base :: Random ()
+```
+
+
+========================================================
+Extra spacing
+
+```r
+# for aligning in function arguments
+some_function (
+  first_argument   = value_1
+  another_argument = value_2
+  example          = value_3
+)
+
+# for aligning variable assignments
+numbers        <- c(1, 2, 3)
+roman_numerals <- c("I", "II", "III")
+letters        <- c("a", "b", "c")        
+```
+
+
+========================================================
+Indentation
+
+```r
+# Good
+if (x > 0) {
+  i = 0
+  while (i < 10) {
+    message("Wait, I'm in a loop")  
+    i <- i + 1
+  }
+  message("x is positive.")
+} else {
+  message("x is not positive")
+}
+
+# Bad
+if (y > 0) {
+    j = 0
+while (j < 10) {
+message("Wait, I'm in a loop")  
+j <- j + 1
+    }
+      message("y is positive.")
+} else {
+message("y is not positive")
+}
+```
 
 
 Comments for intelligible code 
 ========================================================
-asdf
+* Use comments (code after `#` symbole in each line) for clarification
+* However, whenever possible, use *descriptive names* to reduce the need for clarification and avoide verbosity!
+* Example of unnecesary comment:
+
+```r
+# the following code calculates the average of some numbers
+numbers <- c(1, 3, 5) # assign a vector of numbers to numbers object
+average <- sum(numbers) / length(numbers) # divide the sum of numbers vecotr by its length to get the average
+```
+
 
 Most importantly...
 ========================================================
@@ -422,3 +802,7 @@ Most importantly...
 Questions?
 ========================================================
 type: section
+<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
+</div>

@@ -24,7 +24,10 @@ type:section
 [1] "Hellow World!"
 ```
 
-<img src="https://www.r-project.org/logo/Rlogo.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://www.r-project.org/logo/Rlogo.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+</p>
 
 
 What is R?
@@ -37,19 +40,24 @@ What is R?
 
 ========================================================
 <img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">David Robinson, 2017, "The Impresseive Growth of R"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
 </p>
 
 
 Why R?
 ========================================================
 <img src="https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jpg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.flickr.com/">flickr.com</a>
+</p>
 
 ========================================================
 <p style="text-align:center">(Because ... DUH!)</p>
 <img src="http://www.reactiongifs.com/r/2013/09/duh.gif" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.reactiongifs.com/">Reaction GIFs</a>
+</p>
 
 And more reasons
 ========================================================
@@ -92,6 +100,9 @@ R vs Tableau
 ========================================================
 type:section
 <img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.rstudio.com//">RStudio</a>
+</p>
 
 
 What is RStudio? Why use it?
@@ -105,12 +116,18 @@ What is RStudio? Why use it?
 
 ========================================================
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="100%" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Basic Setup
 ========================================================
 type:section
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Installing R
@@ -159,6 +176,9 @@ Workshop Overview
 ========================================================
 type:section
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Module 2
@@ -205,4 +225,8 @@ Module 6
 Questions?
 ========================================================
 type: section
+<img src="https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://tenor.com/view/beyonce-question-gif-5966034">tenor.com</a>
+</p>
 

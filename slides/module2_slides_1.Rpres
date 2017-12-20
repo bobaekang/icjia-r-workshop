@@ -364,8 +364,8 @@ while loop
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://www.tutorialspoint.com/r/images/swift_while_loop.jpg")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://www.tutorialspoint.com/r/r_while_loop.htm">tutorialspoint.com, "R - While Loop"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
 </p>
 
 ========================================================
@@ -397,8 +397,8 @@ for loop
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://www.tutorialspoint.com/r/images/r_for_loop.jpg")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://www.tutorialspoint.com/r/r_for_loop.htm">tutorialspoint.com, "R - For Loop"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
 </p>
 
 
@@ -534,8 +534,8 @@ type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/bindings.png")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
@@ -556,8 +556,8 @@ Nesting of environments
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/parents.png")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
@@ -592,18 +592,26 @@ Searching for an object in R follows the lexical scoping rules.
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/search-path.png")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
 Questions?
 ========================================================
 type: section
-
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
+</p>
 
 ========================================================
 type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png")
 ```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+</p>

@@ -538,8 +538,8 @@ for (element in iterable_object) {
 while loop
 ========================================================
 <img src="https://www.tutorialspoint.com/r/images/swift_while_loop.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="30%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://www.tutorialspoint.com/r/r_while_loop.htm">tutorialspoint.com, "R - While Loop"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
 </p>
 
 ========================================================
@@ -579,8 +579,8 @@ while (count < 5) {
 for loop
 ========================================================
 <img src="https://www.tutorialspoint.com/r/images/r_for_loop.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="30%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://www.tutorialspoint.com/r/r_for_loop.htm">tutorialspoint.com, "R - For Loop"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
 </p>
 
 
@@ -750,8 +750,8 @@ R Environments
 ========================================================
 type: section
 <img src="http://adv-r.had.co.nz/diagrams/environments.png/bindings.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="45%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
@@ -770,8 +770,8 @@ Nesting of environments
 * Variables in a child environment are *NOT* accessible in a parent environment
 
 <img src="http://adv-r.had.co.nz/diagrams/environments.png/parents.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
@@ -809,16 +809,22 @@ Searching for an object in R follows the lexical scoping rules.
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
 
 <img src="http://adv-r.had.co.nz/diagrams/environments.png/search-path.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="45%" style="display: block; margin: auto; box-shadow: none;" />
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="http://adv-r.had.co.nz/Environments.html">Hadley Wickham, 2017, <span style="font-style: italic">Advanced R</span></a>
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
 Questions?
 ========================================================
 type: section
-
+<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
+</p>
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+</p>

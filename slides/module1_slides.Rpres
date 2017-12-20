@@ -19,10 +19,13 @@ Bobae Kang
 Introducing ... R!
 ========================================================
 type:section
-```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 print("Hellow World!")
 include_graphics("https://www.r-project.org/logo/Rlogo.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+</p>
 
 
 What is R?
@@ -37,8 +40,8 @@ What is R?
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
 ```
-<p style="text-align: center; color: #333; font-size:0.5em;">
-<a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">David Robinson, 2017, "The Impresseive Growth of R"</a>
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
 </p>
 
 
@@ -47,13 +50,18 @@ Why R?
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jpg")
 ```
-
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.flickr.com/">flickr.com</a>
+</p>
 
 ========================================================
 <p style="text-align:center">(Because ... DUH!)</p>
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto;"'}
 include_graphics("http://www.reactiongifs.com/r/2013/09/duh.gif")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.reactiongifs.com/">Reaction GIFs</a>
+</p>
 
 And more reasons
 ========================================================
@@ -98,6 +106,9 @@ type:section
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.rstudio.com//">RStudio</a>
+</p>
 
 
 What is RStudio? Why use it?
@@ -113,6 +124,9 @@ What is RStudio? Why use it?
 ```{r echo=FALSE, out.width="100%"}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Basic Setup
@@ -121,6 +135,9 @@ type:section
 ```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Installing R
@@ -185,6 +202,9 @@ type:section
 ```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 
 
 Module 2
@@ -231,4 +251,10 @@ Module 6
 Questions?
 ========================================================
 type: section
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://tenor.com/view/beyonce-question-gif-5966034">tenor.com</a>
+</p>
 
