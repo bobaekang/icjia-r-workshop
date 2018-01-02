@@ -18,14 +18,22 @@ knitr::opts_chunk$set(echo = FALSE)
 ***
 
 # About ICJIA
-```{r}
+```{r include=FALSE}
 knitr::include_graphics("http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png")
 ```
   
-
+<div class="row">
+<div class="col-sm-9 col-xs-12>
 Created in 1983, [**the Illinois Criminal Justice Information Authority**](http://www.icjia.state.il.us) is a state agency dedicated to improving the administration of criminal justice.
 
 The Authority brings together key leaders from the justice system and the public to identify critical issues facing the criminal justice system in Illinois, and to propose and evaluate policies, programs, and legislation that address those issues. The agency also works to ensure the criminal justice system in Illinois is efficient and effective. The Authority's specific powers and duties are detailed in the Illinois Criminal Justice Information Act [[**20 ILCS 3930 et. seq.**](http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=397&ChapterID=5)].
+</div>
+<div class="col-sm-3 col-xs-4 offset-xs-4">
+<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png">
+</div>
+</div>
+
+
 
 The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, [**click here**](http://www.icjia.state.il.us/assets/img/orgchart15.png).
 
@@ -39,9 +47,13 @@ For information about contacting the Authority, please see [**this page**](http:
 ***
 
 # About Me
-```{r out.width=200}
-knitr::include_graphics("https://avatars3.githubusercontent.com/u/22449454?s=460&v=4")
-```
+<div class="row">
+<div style="max-width:40%" class="col-sm-3 col-xs-12">
+<img src="https://avatars3.githubusercontent.com/u/22449454?s=460&v=4">
+</div>
+<div class="col-sm-9 col-xs-12>
+My name is Bobae Kang and I joined ICJIA as a Research Analyst in the Center for Criminal Justice Data and Analytics in October 2017. I earned my [**MA in Social Sciences from the University of Chicago**](https://mapss.uchicago.edu/), with a [**Certificate in Computational Social Sciences**](https://macss.uchicago.edu/content/certificate-current-students), and [**BA in Sociology and Anthropology from Colgate University**](http://www.colgate.edu/academics/departments-and-programs/sociology-and-anthropology). My areas of interest include machine learning and computational methods in social sciences and data analysis. Please contact me via **Bobae.Kang@illinois.gov** for any questions regarding this workshop.
+</div>
+</div>
 
-
-My name is Bobae Kang and I joined ICJIA as a Research Analyst in the Center for Criminal Justice Data and Analytics in October 2017. I earned my [**MA in Social Sciences from the University of Chicago**](https://mapss.uchicago.edu/), with a [**Certificate in Computational Social Sciences**](https://macss.uchicago.edu/content/certificate-current-students), and [**BA in Sociology and Anthropology from Colgate University**](http://www.colgate.edu/academics/departments-and-programs/sociology-and-anthropology). My areas of interest include machine learning and computational methods in social sciences and data analysis.
+***
