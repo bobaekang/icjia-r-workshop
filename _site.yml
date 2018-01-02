@@ -1,17 +1,19 @@
-name: "ICJIA R Workshop"
-output_dir: "."
+name: ICJIA R Workshop
+output_dir: '.'
 navbar:
-  title: "ICJIA R WORKSHOP"
+  title: ICJIA R WORKSHOP
   right:
-    - text: "Home"
-      href: index.html
-    - text: "Modules"
-      href: modules.html
-    - text: "About"
-      href: about.html
+  - text: Home
+    href: index.html
+  - text: Modules
+    href: modules.html
+  - text: About
+    href: about.html
 output:
   html_document:
     includes:
       after_body: include_footer.html
-    css: css/style_notes.css
-    
+    css: css/style.css
+    lib_dir: site_libs
+    self_contained: no
+

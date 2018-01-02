@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>ICJIA R Workshop</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -30,10 +30,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -66,7 +68,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="css\style_notes.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 
 </head>
 
@@ -197,6 +199,7 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">ICJIA R Workshop</h1>
 
 </div>
 
@@ -209,16 +212,18 @@ body {
 }
 </style>
 <div id="welcome">
-<p>Welcome to ICJIA R Workshop Homepage!</p>
+<p style="padding: 40px;">
+Welcome to ICJIA R Workshop Homepage!
+<p>
+<a href="modules.html">
+<button type="button" id="welcome-button">
+Get Started
+</button>
+</a>
 </div>
-<div id="icjias-first-r-workshop" class="section level1">
-<h1>ICJIA’s First R Workshop</h1>
-<div id="who-this-workshop-is-for" class="section level2">
-<h2>Who this workshop is for</h2>
-</div>
-<div id="the-goals" class="section level2">
-<h2>The goals</h2>
-</div>
+<div id="first-r-workshop-in-icjia" class="section level1">
+<h1>First R Workshop in ICJIA</h1>
+<p>This workshop is planned to offer a gentle introduction to the R programming language for ICJIA researchers who want to leverage the power and flexibility of R to improve their technical prowess as researcher.</p>
 </div>
 
 <footer>

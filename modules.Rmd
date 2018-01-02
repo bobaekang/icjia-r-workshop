@@ -1,8 +1,7 @@
 ---
-title: "Modules"
+title: "ICJIA R Workshop: Modules"
 output:
-  html_document:
-    toc_float: false
+  html_document
 ---
 <!-- fontawesome CDN -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -14,64 +13,83 @@ body {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, fig.align="center")
 ```
 
-About the structure of the workshop
+```{r image, out.width=800}
+knitr::include_graphics("images/module.jpg")
+```
+
+The workshop consists of six separate modules which are meant to be followed in order. Each module has a specific focus. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
+
+Read the below to get an overview of each module and follow the links to relevant workshop materials. Enjoy!  
+
+***
 
 # Module 1: Introduction to R
-About module 1
+In this module, participants will be introduced to the R language and the benefits of using R for their research projects. They will also get familiar with the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
 
-* [Slides](slides/module1_slides.html)
-* [Notes](notes/module1_notes.html)
+* [**Slides**](slides/module1_slides.html)
+* [**Notes**](notes/module1_notes.html)
+
+***
 
 # Module 2: R basics
-About module 2
+Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.
 
-## Part 1:
+### Part 1: Fundamental building blocks of R programming
 
-* [Slides](slides/module2_slides1.html)
-* [Notes](notes/module2_notes1.html)
+* [**Slides**](slides/module2_slides1.html)
+* [**Notes**](notes/module2_notes1.html) (currently unavailable)
 
-## Part 2:
+### Part 2: Gearing up for data analysis in R
 
-* [Slides](slides/module2_slides1.html)
-* [Notes](notes/module2_notes1.html)
+* [**Slides**](slides/module2_slides1.html)
+* [**Notes**](notes/module2_notes1.html) (currently unavailable)
+
+***
 
 # Module 3: Data analysis in R
-About module 3
-## Part 1: 
+This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common "tidyverse" syntax to clean and analyze data. Specifically, core functions from `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered.
 
-* [Slides](slides/module3_slides1.html)
-* [Notes](notes/module3_notes1.html)
+### Part 1: Getting started with tidyverse
 
-## Part 2:
+* [**Slides**](slides/module3_slides1.html) (in development)
+* [**Notes**](notes/module3_notes1.html) (currently unavailable)
 
-* [Slides](slides/module3_slides2.html)
-* [Notes](notes/module3_notes2.html)
+### Part 2: More on data manipulation
+
+* [**Slides**](slides/module3_slides2.html) (in development)
+* [**Notes**](notes/module3_notes2.html) (currently unavailable)
+
+***
 
 # Module 4: Data visualiation in R
-About module 4
+In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package. Participants will also be introduced to some options for generating maps and interactive plots.
 
-## Part 1: 
+### Part 1: The Grammar of Graphics
 
-* [Slides](slides/module4_slides1.html)
-* [Notes](notes/module4_notes1.html)
+* [**Slides**](slides/module4_slides1.html) (currently unavailable)
+* [**Notes**](notes/module4_notes1.html) (currently unavailable)
 
-## Part 2:
+### Part 2: Advanced visualization
 
-* [Slides](slides/module4_slides2.html)
-* [Notes](notes/module4_notes2.html)
+* [**Slides**](slides/module4_slides2.html) (currently unavailable)
+* [**Notes**](notes/module4_notes2.html) (currently unavailable)
+
+***
 
 # Module 5: Statistical modeling in R
-About module 5
+In this module, participants will learn how to conduct basic statistical analysis with R. 
 
-* [Slides](slides/module5_slides.html)
-* [Notes](notes/module5_notes.html)
+* [**Slides**](slides/module5_slides.html) (currently unavailable)
+* [**Notes**](notes/module5_notes.html) (currently unavailable)
+
+***
 
 # Module 6: Sharing your analysis and more
-About module 6
+This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. 
 
-* [Slides](slides/module6_slides.html)
-* [Notes](notes/module6_notes.html)
+* [**Slides**](slides/module6_slides.html) (currently unavailable)
+* [**Notes**](notes/module6_notes.html) (currently unavailable)
 

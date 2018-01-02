@@ -9,7 +9,7 @@
 R Workshop
 ========================================================
 type: slide-body
-css: ../css/style.css
+css: ../css/style_slides.css
 <h3 style="color: #789">Module 3: Data analysis with R (2)</h3>  
 2018-01-01  
 Bobae Kang  

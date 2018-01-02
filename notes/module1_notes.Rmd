@@ -4,14 +4,12 @@ author: "Bobae Kang"
 date: "December 31, 2017"
 output:
   html_document:
-    theme: united
     toc: TRUE
     toc_float	:	TRUE
     toc_depth: 2
     includes:
-      before_body: ../include_header.html
       after_body: ../include_footer.html
-css: ../css/style_notes.css
+css: ../css/style.css
 ---
 <!-- fontawesome CDN -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -23,10 +21,8 @@ css: ../css/style_notes.css
   
 <!-- logo -->
 <div class="logo">
-  <img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img>
+  <a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a>
 </div>
-
-
 
 
 ```{r setup, include=FALSE}
@@ -36,23 +32,23 @@ knitr::opts_chunk$set(echo = TRUE)
 This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
-Click [**here**]() to go to the workshop **homepage**.
+Click [**here**](../index.html) to go to the workshop **homepage**.
 
-Click [**here**]() to view the accompanying **slides for Module 1**.
+Click [**here**](../slides/module1_slides.html) to view the accompanying **slides for Module 1**.
 
 Navigate to the other workshop materials:
 
 * **Module 2: R basics**
-    * Part 1 ([**slides**](), [**note**]())
-    * Part 2 ([**slides**](), [**note**]())
+    * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
+    * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
 * **Module 3: Data analysis in R**
-    * Part 1 ([**slides**](), [**note**]())
-    * Part 2 ([**slides**](), [**note**]())
+    * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
+    * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
 * **Module 4: Data visualization in R**
-    * Part 1 ([**slides**](), [**note**]())
-    * Part 2 ([**slides**](), [**note**]())
-* **Module 5: Statistical modeling in R** ([**slides**](), [**note**]())
-* **Module 6: Sharing your analysis and more** ([**slides**](), [**note**]())
+    * Part 1 ([**slides**](../slides/module4_slides.html), [**note**](module4_notes.html))
+    * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
+* **Module 5: Statistical modeling in R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
+* **Module 6: Sharing your analysis and more** ([**slides**](../slides/module6_slides.html), [**note**](module6_notes.html))
 
 
 

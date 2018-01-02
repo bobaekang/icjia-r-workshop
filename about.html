@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>ICJIA R Workshop: About</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -30,10 +30,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -66,7 +68,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="css\style_notes.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 
 </head>
 
@@ -197,6 +199,7 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">ICJIA R Workshop: About</h1>
 
 </div>
 
@@ -211,10 +214,18 @@ body {
 <div id="about-me" class="section level1">
 <h1>About Me</h1>
 <p>about me</p>
+<hr />
 </div>
 <div id="about-icjia" class="section level1">
 <h1>About ICJIA</h1>
-<p>about ICJIA</p>
+<div class="figure">
+<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" />
+
+</div>
+<p>Created in 1983, <a href="http://www.icjia.state.il.us"><strong>the Illinois Criminal Justice Information Authority</strong></a> is a state agency dedicated to improving the administration of criminal justice.</p>
+<p>The Authority brings together key leaders from the justice system and the public to identify critical issues facing the criminal justice system in Illinois, and to propose and evaluate policies, programs, and legislation that address those issues. The agency also works to ensure the criminal justice system in Illinois is efficient and effective. The Authority’s specific powers and duties are detailed in the Illinois Criminal Justice Information Act [<a href="http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=397&amp;ChapterID=5"><strong>20 ILCS 3930 et. seq.</strong></a>].</p>
+<p>The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, <a href="http://www.icjia.state.il.us/assets/img/orgchart15.png"><strong>click here</strong></a>.</p>
+<p>For information about contacting the Authority, please see <a href="http://www.icjia.state.il.us/about/contact"><strong>this page</strong></a>.</p>
 </div>
 
 <footer>

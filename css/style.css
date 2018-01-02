@@ -2,16 +2,25 @@
 
 /* general */
 
+html {
+  height: 100%;
+}
+
 body {
   font-size: 1.7em;
   position: relative;
   font-family: "Ubuntu",Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
   line-height: 1.4;
+  min-height: 100%;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Oswald';
   color: #222;
+}
+
+.title {
+  color: #466c8c;
 }
 
 a {
@@ -91,6 +100,22 @@ footer {
 
 #welcome {
   text-align: center;
+  color: #fff;
   font-size: 1.5em;
+  padding: 150px 0 150px 0;
   margin: 50px 0 50px 0;
+  background-image: url("../images/welcome-background.jpg");
+  background-size: cover;
+}
+
+#welcome-button {
+  font-size: 16px;
+  color: #fff;
+  background: #466c8c;
+  padding: 10px;
+  border: 0;
+}
+
+#welcome-button:hover {
+  background: #999;
 }

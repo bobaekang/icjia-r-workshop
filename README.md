@@ -64,7 +64,7 @@ This module focuses on manimuplating and transforming tabular data using R. Part
     * `feather`
 
 ## Module 4: Data visualization in R
-In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular ggplot2 package. Participants will also be introduced to some options for generating maps and interactive plots.
+In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package. Participants will also be introduced to some options for generating maps and interactive plots.
 
 ### Part 1: The Grammar of Graphics
 * Base R plots
@@ -72,7 +72,7 @@ In this module, participants will get started with generating plots to visually 
     * the `ggplot2` package
 * Some guidelines
 
-### Part 2: Advanced visualiation
+### Part 2: Advanced visualization
 * Maps
     * spatial data object in R
     * the `rgdal` pacakge

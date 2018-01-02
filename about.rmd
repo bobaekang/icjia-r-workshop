@@ -1,8 +1,7 @@
 ---
-title: ""
+title: "ICJIA R Workshop: About"
 output:
-  html_document:
-    toc_float: false
+  html_document
 ---
 <!-- fontawesome CDN -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -20,6 +19,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 about me
 
-# About ICJIA
+***
 
-about ICJIA
+# About ICJIA
+![](http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png)  
+
+Created in 1983, [**the Illinois Criminal Justice Information Authority**](http://www.icjia.state.il.us) is a state agency dedicated to improving the administration of criminal justice.
+
+The Authority brings together key leaders from the justice system and the public to identify critical issues facing the criminal justice system in Illinois, and to propose and evaluate policies, programs, and legislation that address those issues. The agency also works to ensure the criminal justice system in Illinois is efficient and effective. The Authority's specific powers and duties are detailed in the Illinois Criminal Justice Information Act [[**20 ILCS 3930 et. seq.**](http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=397&ChapterID=5)].
+
+The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, [**click here**](http://www.icjia.state.il.us/assets/img/orgchart15.png).
+
+For information about contacting the Authority, please see [**this page**](http://www.icjia.state.il.us/about/contact).

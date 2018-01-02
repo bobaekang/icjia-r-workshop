@@ -1,8 +1,7 @@
 ---
-title: ""
+title: "ICJIA R Workshop"
 output:
-  html_document:
-    toc_float: false
+  html_document
 ---
 <!-- fontawesome CDN -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -18,13 +17,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <div id="welcome">
-Welcome to ICJIA R Workshop Homepage!
+<p style="padding: 40px;">Welcome to ICJIA R Workshop Homepage!<p>
+<a href="modules.html">
+<button type="button" id="welcome-button">Get Started</button>
+</a>
 </div>
 
-# ICJIA's First R Workshop
-## Who this workshop is for
-
-## The goals
-
+# First R Workshop in ICJIA
+This workshop is planned to offer a gentle introduction to the R programming language for ICJIA researchers who want to leverage the power and flexibility of R to improve their technical prowess as researcher.
 
 
