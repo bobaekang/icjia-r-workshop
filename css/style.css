@@ -45,18 +45,29 @@ a:hover {
   color: #466c8c;
 }
 
-.navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:focus,
-.navbar-default .navbar-nav>.active>a:hover {
+.navbar-default .navbar-nav>.active>a {
   background-color: #fff;
   color: #466c8c;
   border-left: 1px solid #466c8c;
   border-right: 1px solid #466c8c;
+  border-bottom: 0;
 
 }
 
 .navbar-default .navbar-nav>.active>a:hover {
   background-color: #ccc;
+}
+
+.navbar-default .in,
+.navbar-default .collapsing {
+  background-color: #fff;
+  border-bottom: 1px solid #466c8c;
+}
+
+.navbar-default .in .navbar-nav>.active>a,
+.navbar-default .collapsing .navbar-nav>.active>a {
+  border-left: 10px solid #466c8c;
+  border-right: 0;
 }
 
 /* footer */
@@ -89,14 +100,9 @@ footer {
 .list-group-item.active:hover {
   background-color: #466c8c;
   border-color: #466c8c;
-  
 }
 
-.logo {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
+/* welcome */
 
 #welcome {
   text-align: center;
@@ -118,4 +124,13 @@ footer {
 
 #welcome-button:hover {
   background: #999;
+}
+
+/* notes logo */
+
+.logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 150px;
 }
