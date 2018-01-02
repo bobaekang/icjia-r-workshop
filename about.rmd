@@ -12,17 +12,16 @@ body {
 }
 </style>
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
-
-# About Me
-
-about me
 
 ***
 
 # About ICJIA
-![](http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png)  
+```{r}
+knitr::include_graphics("http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png")
+```
+  
 
 Created in 1983, [**the Illinois Criminal Justice Information Authority**](http://www.icjia.state.il.us) is a state agency dedicated to improving the administration of criminal justice.
 
@@ -31,3 +30,18 @@ The Authority brings together key leaders from the justice system and the public
 The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, [**click here**](http://www.icjia.state.il.us/assets/img/orgchart15.png).
 
 For information about contacting the Authority, please see [**this page**](http://www.icjia.state.il.us/about/contact).
+
+***
+
+# About ICJIA Research & Analysis Unit
+[**The Research & Analysis Unit**](http://www.icjia.state.il.us/research/overview#tab_research-overview) serves as Illinois' Statistical Analysis Center (SAC). State SACs provide objective analysis of criminal justice data for informing statewide policy and practice. The Illinois SAC is affiliated with and supported by the Justice Research and Statistics Association, a national nonprofit organization that promotes collaboration and exchange of information among state SACs, and acts as a liaison between state agencies and the U.S. Department of Justice.
+
+***
+
+# About Me
+```{r out.width=200}
+knitr::include_graphics("https://avatars3.githubusercontent.com/u/22449454?s=460&v=4")
+```
+
+
+My name is Bobae Kang and I joined ICJIA as a Research Analyst in the Center for Criminal Justice Data and Analytics in October 2017. I earned my [**MA in Social Sciences from the University of Chicago**](https://mapss.uchicago.edu/), with a [**Certificate in Computational Social Sciences**](https://macss.uchicago.edu/content/certificate-current-students), and [**BA in Sociology and Anthropology from Colgate University**](http://www.colgate.edu/academics/departments-and-programs/sociology-and-anthropology). My areas of interest include machine learning and computational methods in social sciences and data analysis.
