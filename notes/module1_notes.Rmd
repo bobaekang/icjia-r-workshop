@@ -4,6 +4,7 @@ author: "Bobae Kang"
 date: "December 31, 2017"
 output:
   html_document:
+    self_contained: no
     toc: TRUE
     toc_float	:	TRUE
     toc_depth: 2
@@ -14,11 +15,6 @@ css: ../css/style.css
 <!-- fontawesome CDN -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- font -->
-<style type="text/css">
-  @import url('http://fonts.googleapis.com/css?family=Oswald');
-</style>
-  
 <!-- logo -->
 <div class="logo">
   <a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a>
