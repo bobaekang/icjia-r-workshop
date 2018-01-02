@@ -93,3 +93,4 @@ This module will introduce participants to various ways to share their work by u
 * [**Slides**](slides/module6_slides.html) (currently unavailable)
 * [**Notes**](notes/module6_notes.html) (currently unavailable)
 
+***
