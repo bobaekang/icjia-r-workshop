@@ -1,0 +1,17 @@
+name: "ICJIA R Workshop"
+output_dir: "."
+navbar:
+  title: "ICJIA R WORKSHOP"
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Modules"
+      href: modules.html
+    - text: "About"
+      href: about.html
+output:
+  html_document:
+    includes:
+      after_body: include_footer.html
+    css: css/style_notes.css
+    

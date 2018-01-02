@@ -1,0 +1,126 @@
+---
+title: "R Workshop: Module 1"
+author: "Bobae Kang"
+date: "December 31, 2017"
+output:
+  html_document:
+    theme: united
+    toc: TRUE
+    toc_float	:	TRUE
+    toc_depth: 2
+    includes:
+      before_body: ../include_header.html
+      after_body: ../include_footer.html
+css: ../css/style_notes.css
+---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- font -->
+<style type="text/css">
+  @import url('http://fonts.googleapis.com/css?family=Oswald');
+</style>
+  
+<!-- logo -->
+<div class="logo">
+  <img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img>
+</div>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+
+### Links
+Click [**here**]() to go to the workshop **homepage**.
+
+Click [**here**]() to view the accompanying **slides for Module 1**.
+
+Navigate to the other workshop materials:
+
+* **Module 2: R basics**
+    * Part 1 ([**slides**](), [**note**]())
+    * Part 2 ([**slides**](), [**note**]())
+* **Module 3: Data analysis in R**
+    * Part 1 ([**slides**](), [**note**]())
+    * Part 2 ([**slides**](), [**note**]())
+* **Module 4: Data visualization in R**
+    * Part 1 ([**slides**](), [**note**]())
+    * Part 2 ([**slides**](), [**note**]())
+* **Module 5: Statistical modeling in R** ([**slides**](), [**note**]())
+* **Module 6: Sharing your analysis and more** ([**slides**](), [**note**]())
+
+
+
+***
+
+# Introducing R
+## What is R?
+Hello
+```{r}
+head(iris)
+```
+
+## Why R?
+
+## Comparisons
+### R vs Excel
+### R vs SPSS
+### R vs Tableau
+
+
+***
+
+# RStudio
+## What is RStudio?
+## Why use RStudio?
+
+
+***
+
+# Basic Setup
+## Installing R
+## Installing RStudio
+
+***
+# Workshop Overview
+## Module 2
+### R basics 
+Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.
+
+This module consists of the following two parts:
+
+#### Part 1: Fundamental building blocks of R programming
+#### Part 2: Gearing up for data analysis in R
+
+## Module 3
+### Data analysis in R
+This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common `tidyverse` syntax to clean and analyze data. Specifically, core functions from dplyr, tidyr, stringr, and lubridate packages will be covered.
+
+This module consists of the following two parts:
+
+#### Part 1: Getting started with tidyverse
+#### Part 2: More on data manipulation
+
+## Module 4
+### Data visualization in R
+In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular ggplot2 package. Participants will also be introduced to some options for generating maps and interactive plots.
+
+This module consists of the following two parts:
+
+#### Part 1: The Grammar of Graphics
+#### Part 2: Advanced visualiation
+
+## Module 5
+### Statistical modeling in R
+In this module, participants will learn how to conduct basic statistical analysis with R. 
+
+## Module 6
+### Sharing your analysis and more
+This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. 
+
+

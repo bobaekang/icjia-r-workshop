@@ -1,0 +1,25 @@
+---
+title: ""
+output:
+  html_document:
+    toc_float: false
+---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+body {
+  padding-bottom: 100px;
+}
+</style>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# About Me
+
+about me
+
+# About ICJIA
+
+about ICJIA

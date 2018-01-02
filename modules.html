@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Modules</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css\style_notes.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">ICJIA R WORKSHOP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="modules.html">Modules</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Modules</h1>
+
+</div>
+
+
+<!-- fontawesome CDN -->
+<p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
+<style>
+body {
+  padding-bottom: 100px;
+}
+</style>
+<p>About the structure of the workshop</p>
+<div id="module-1-introduction-to-r" class="section level1">
+<h1>Module 1: Introduction to R</h1>
+<p>About module 1</p>
+<ul>
+<li><a href="slides/module1_slides.html">Slides</a></li>
+<li><a href="notes/module1_notes.html">Notes</a></li>
+</ul>
+</div>
+<div id="module-2-r-basics" class="section level1">
+<h1>Module 2: R basics</h1>
+<p>About module 2</p>
+<div id="part-1" class="section level2">
+<h2>Part 1:</h2>
+<ul>
+<li><a href="slides/module2_slides1.html">Slides</a></li>
+<li><a href="notes/module2_notes1.html">Notes</a></li>
+</ul>
+</div>
+<div id="part-2" class="section level2">
+<h2>Part 2:</h2>
+<ul>
+<li><a href="slides/module2_slides1.html">Slides</a></li>
+<li><a href="notes/module2_notes1.html">Notes</a></li>
+</ul>
+</div>
+</div>
+<div id="module-3-data-analysis-in-r" class="section level1">
+<h1>Module 3: Data analysis in R</h1>
+<p>About module 3 ## Part 1:</p>
+<ul>
+<li><a href="slides/module3_slides1.html">Slides</a></li>
+<li><a href="notes/module3_notes1.html">Notes</a></li>
+</ul>
+<div id="part-2-1" class="section level2">
+<h2>Part 2:</h2>
+<ul>
+<li><a href="slides/module3_slides2.html">Slides</a></li>
+<li><a href="notes/module3_notes2.html">Notes</a></li>
+</ul>
+</div>
+</div>
+<div id="module-4-data-visualiation-in-r" class="section level1">
+<h1>Module 4: Data visualiation in R</h1>
+<p>About module 4</p>
+<div id="part-1-1" class="section level2">
+<h2>Part 1:</h2>
+<ul>
+<li><a href="slides/module4_slides1.html">Slides</a></li>
+<li><a href="notes/module4_notes1.html">Notes</a></li>
+</ul>
+</div>
+<div id="part-2-2" class="section level2">
+<h2>Part 2:</h2>
+<ul>
+<li><a href="slides/module4_slides2.html">Slides</a></li>
+<li><a href="notes/module4_notes2.html">Notes</a></li>
+</ul>
+</div>
+</div>
+<div id="module-5-statistical-modeling-in-r" class="section level1">
+<h1>Module 5: Statistical modeling in R</h1>
+<p>About module 5</p>
+<ul>
+<li><a href="slides/module5_slides.html">Slides</a></li>
+<li><a href="notes/module5_notes.html">Notes</a></li>
+</ul>
+</div>
+<div id="module-6-sharing-your-analysis-and-more" class="section level1">
+<h1>Module 6: Sharing your analysis and more</h1>
+<p>About module 6</p>
+<ul>
+<li><a href="slides/module6_slides.html">Slides</a></li>
+<li><a href="notes/module6_notes.html">Notes</a></li>
+</ul>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
+  <a href="https://github.com/bobaekang/" class="icon-footer">
+    <i class="fa fa-github fa-2x"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+---
+title: "Modules"
+output:
+  html_document:
+    toc_float: false
+---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+body {
+  padding-bottom: 100px;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+About the structure of the workshop
+
+# Module 1: Introduction to R
+About module 1
+
+* [Slides](slides/module1_slides.html)
+* [Notes](notes/module1_notes.html)
+
+# Module 2: R basics
+About module 2
+
+## Part 1:
+
+* [Slides](slides/module2_slides1.html)
+* [Notes](notes/module2_notes1.html)
+
+## Part 2:
+
+* [Slides](slides/module2_slides1.html)
+* [Notes](notes/module2_notes1.html)
+
+# Module 3: Data analysis in R
+About module 3
+## Part 1: 
+
+* [Slides](slides/module3_slides1.html)
+* [Notes](notes/module3_notes1.html)
+
+## Part 2:
+
+* [Slides](slides/module3_slides2.html)
+* [Notes](notes/module3_notes2.html)
+
+# Module 4: Data visualiation in R
+About module 4
+
+## Part 1: 
+
+* [Slides](slides/module4_slides1.html)
+* [Notes](notes/module4_notes1.html)
+
+## Part 2:
+
+* [Slides](slides/module4_slides2.html)
+* [Notes](notes/module4_notes2.html)
+
+# Module 5: Statistical modeling in R
+About module 5
+
+* [Slides](slides/module5_slides.html)
+* [Notes](notes/module5_notes.html)
+
+# Module 6: Sharing your analysis and more
+About module 6
+
+* [Slides](slides/module6_slides.html)
+* [Notes](notes/module6_notes.html)
+

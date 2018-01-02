@@ -1,0 +1,96 @@
+@import url('http://fonts.googleapis.com/css?family=Oswald');
+
+/* general */
+
+body {
+  font-size: 1.7em;
+  position: relative;
+  font-family: "Ubuntu",Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.4;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Oswald';
+  color: #222;
+}
+
+a {
+  color: #466c8c;
+}
+
+a:hover {
+  color: #999;
+}
+
+/* navbar */
+
+.navbar-default {
+  font-family: 'Oswald';
+  background-color: #fff;
+  border-color: #466c8c;
+  height: 1rem;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  background-color: #ccc;
+  color: #466c8c;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  background-color: #fff;
+  color: #466c8c;
+  border-left: 1px solid #466c8c;
+  border-right: 1px solid #466c8c;
+
+}
+
+.navbar-default .navbar-nav>.active>a:hover {
+  background-color: #ccc;
+}
+
+/* footer */
+
+footer {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: #1f3641;
+  padding: 1rem;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+}
+
+.icon-footer {
+  padding: 0 2px 0 2px;
+}
+
+.tocify {
+  font-family: 'Oswald';
+  font-size: 16px;
+  color: #999;
+}
+
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+  background-color: #466c8c;
+  border-color: #466c8c;
+  
+}
+
+.logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#welcome {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 50px 0 50px 0;
+}
