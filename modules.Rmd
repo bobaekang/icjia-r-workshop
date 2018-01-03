@@ -44,8 +44,8 @@ Here, participants will learn the basic building blocks of R language. Once part
 
 ### Part 2: Gearing up for data analysis in R
 
-* [**Slides**](slides/module2_slides1.html)
-* [**Notes**](notes/module2_notes1.html) (in development)
+* [**Slides**](slides/module2_slides2.html)
+* [**Notes**](notes/module2_notes2.html) (in development)
 
 ***
 
