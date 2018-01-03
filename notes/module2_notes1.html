@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Bobae Kang" />
+
+<meta name="date" content="2018-01-31" />
+
+<title>R Workshop: Module 2 (1)</title>
+
+<script src="module2_notes1_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="module2_notes1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="module2_notes1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="module2_notes1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="module2_notes1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="module2_notes1_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="module2_notes1_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="module2_notes1_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="module2_notes1_files/navigation-1.1/tabsets.js"></script>
+<link href="module2_notes1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="module2_notes1_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Workshop: Module 2 (1)</h1>
+<h4 class="author"><em>Bobae Kang</em></h4>
+<h4 class="date"><em>January 31, 2018</em></h4>
+
+</div>
+
+
+<!-- fontawesome CDN -->
+<p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
+<!-- logo -->
+<div class="logo">
+<p><a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a></p>
+</div>
+<p>This page contains the notes for <strong>the first part of R Workshop Module 2: R basics</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
+<p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
+<p>Click <a href="../slides/module2_slides1.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 2, Part 1</strong>.</p>
+<p>Navigate to the other workshop materials:</p>
+<ul>
+<li><strong>Module 1: Introduction to R</strong> (<a href="../slides/module1_slides.html"><strong>slides</strong></a>, <a href="module1_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 2: R basics</strong>
+<ul>
+<li>Part 2 (<a href="../slides/module2_slides2.html"><strong>slides</strong></a>, <a href="module2_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 3: Data analysis in R</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module3_slides1.html"><strong>slides</strong></a>, <a href="module3_notes1.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module3_slides2.html"><strong>slides</strong></a>, <a href="module3_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 4: Data visualization in R</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module4_slides.html"><strong>slides</strong></a>, <a href="module4_notes.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module4_slides2.html"><strong>slides</strong></a>, <a href="module4_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 5: Statistical modeling in R</strong> (<a href="../slides/module5_slides.html"><strong>slides</strong></a>, <a href="module5_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 6: Sharing your analysis and more</strong> (<a href="../slides/module6_slides.html"><strong>slides</strong></a>, <a href="module6_notes.html"><strong>note</strong></a>)</li>
+</ul>
+<hr />
+</div>
+<div id="r-basics-1-fundamental-building-blocks-of-r-programming" class="section level1">
+<h1>R Basics (1): Fundamental Building Blocks of R Programming</h1>
+<div id="key-concepts" class="section level2">
+<h2>Key concepts</h2>
+<ul>
+<li>Obejcts</li>
+<li>Expressions</li>
+<li>Functions</li>
+<li>Environments</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="r-objects" class="section level1">
+<h1>R Objects</h1>
+<div id="key-object-types" class="section level2">
+<h2>Key object types</h2>
+<ul>
+<li>Vectors (<code>c()</code>)</li>
+<li>Lists (<code>list()</code>)</li>
+<li>Factors (<code>factor()</code>)</li>
+<li>Data frame (<code>data.frame()</code>)</li>
+</ul>
+</div>
+<div id="atomic-vectors" class="section level2">
+<h2>“Atomic” vectors</h2>
+<div id="basic-vector-types" class="section level3">
+<h3>Basic vector types</h3>
+<ul>
+<li><code>logical</code>: Boolean values of <code>TRUE</code> and <code>FALSE</code></li>
+<li><code>double</code>: floating-point numbers representing real numbers</li>
+<li><code>integer</code>: integers</li>
+<li><code>complex</code>: complex numbers</li>
+<li><code>character</code>: string of alphanumeric letters</li>
+</ul>
+<pre class="r"><code># this is a logical vector
+logical_vector &lt;- c(TRUE, FALSE, T, F)
+
+is.logical(logical_vector)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>class(logical_vector)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code># this is a double (numeric)  vector
+double_vector &lt;- c(1, 2, 3)
+
+is.double(double_vector)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>class(double_vector)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># this is an integer (numeric) vector
+integer_vector &lt;- c(1L, 2L ,3L)
+
+is.integer(integer_vector)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>class(integer_vector)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code># this is a character vector
+character_vector &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+
+is.character(character_vector)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>class(character_vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># an object with a single element is also a vector!
+x &lt;- 1
+y &lt;- &quot;Am I a vector?&quot;
+
+is.vector(x)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>is.vector(y)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="accessing-vector-elements" class="section level3">
+<h3>Accessing vector elements</h3>
+<p>Use index with <code>[]</code> to access an element in a vector:</p>
+<pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
+first_fruit &lt;- fruits[1]
+
+print(first_fruit)</code></pre>
+<pre><code>## [1] &quot;apple&quot;</code></pre>
+<pre class="r"><code>second_fruit &lt;- fruits[2]
+
+print(second_fruit)</code></pre>
+<pre><code>## [1] &quot;banana&quot;</code></pre>
+<p>We can also assign a new value to the accessed vector element:</p>
+<pre class="r"><code># giving a new value to an existing element
+fruits[1] &lt;- &quot;apricot&quot;
+
+print(fruits)</code></pre>
+<pre><code>## [1] &quot;apricot&quot;    &quot;banana&quot;     &quot;clementine&quot;</code></pre>
+<p>Or create a new element:</p>
+<pre class="r"><code># creating a new element
+fruits[4] &lt;- &quot;dried mango&quot;
+
+fruits</code></pre>
+<pre><code>## [1] &quot;apricot&quot;     &quot;banana&quot;      &quot;clementine&quot;  &quot;dried mango&quot;</code></pre>
+<p>Multiple elements can be accessed:</p>
+<ul>
+<li>Using a vector of indices:</li>
+</ul>
+<pre class="r"><code>first_and_third_fruits &lt;- fruits[c(1, 3)]
+
+print(first_and_third_fruits)</code></pre>
+<pre><code>## [1] &quot;apricot&quot;    &quot;clementine&quot;</code></pre>
+<ul>
+<li>Using the colon operator for a sequence:</li>
+</ul>
+<pre class="r"><code>first_thru_third_fruits &lt;- fruits[1:3]
+
+print(first_thru_third_fruits)</code></pre>
+<pre><code>## [1] &quot;apricot&quot;    &quot;banana&quot;     &quot;clementine&quot;</code></pre>
+<p>Vector elements can be accessed conditionally as well</p>
+<pre class="r"><code>my_vector &lt;- c(1, 2, 3, 4, 5)
+
+# print only elements less than 3 
+print(my_vector[my_vector &lt; 3])</code></pre>
+<pre><code>## [1] 1 2</code></pre>
+<pre class="r"><code># assign 0 to such elements
+my_vector[my_vector &lt; 3] &lt;- 0
+
+print(my_vector)</code></pre>
+<pre><code>## [1] 0 0 3 4 5</code></pre>
+</div>
+</div>
+<div id="lists" class="section level2">
+<h2>Lists</h2>
+<ul>
+<li>An R list, created by <code>list()</code> function, can contain elements of different types</li>
+</ul>
+<pre class="r"><code>my_list &lt;- list(&quot;abc&quot;, 125, FALSE, c(&quot;Hello&quot;, &quot;World&quot;))
+
+print(my_list)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;abc&quot;
+## 
+## [[2]]
+## [1] 125
+## 
+## [[3]]
+## [1] FALSE
+## 
+## [[4]]
+## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<div id="naming-list-elements" class="section level3">
+<h3>Naming list elements</h3>
+<pre class="r"><code>names(my_list) &lt;- c(&quot;character&quot;, &quot;numeric&quot;, &quot;logical&quot;, &quot;character vector&quot;)
+
+my_list</code></pre>
+<pre><code>## $character
+## [1] &quot;abc&quot;
+## 
+## $numeric
+## [1] 125
+## 
+## $logical
+## [1] FALSE
+## 
+## $`character vector`
+## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+</div>
+<div id="accessing-list-elements" class="section level3">
+<h3>Accessing list elements</h3>
+<p>Elements in a list can be accessed using their indices or names:</p>
+<pre class="r"><code># using index (this returns a list element, NOT the actual content)
+my_list[4]</code></pre>
+<pre><code>## $`character vector`
+## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<pre class="r"><code># using name (this returns the content itself)
+my_list$`character vector`</code></pre>
+<pre><code>## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<p>In order to access the content of a list element using the index approach, we must use <code>[[]]</code> instead:</p>
+<pre class="r"><code>my_list[[1]]</code></pre>
+<pre><code>## [1] &quot;abc&quot;</code></pre>
+<pre class="r"><code># the result is the same with accessing an element using name
+identical(my_list[[1]], my_list$character)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># in contrast:
+identical(my_list[1], my_list$character)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="lists-to-vector" class="section level3">
+<h3>Lists to vector</h3>
+<p>A list can be “unlisted”, i.e., converted into a vector</p>
+<pre class="r"><code>new_list &lt;- list(1:5)
+to_vector &lt;- unlist(new_list)
+
+# this is a list
+print(new_list)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3 4 5</code></pre>
+<pre class="r"><code># this is a vector
+print(to_vector)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="r-expressions" class="section level1">
+<h1>R Expressions</h1>
+<div id="what-are-expressions" class="section level2">
+<h2>What are expressions</h2>
+<ul>
+<li>Executable pieces of code</li>
+<li>Consisting of
+<ul>
+<li>objects</li>
+<li>operators</li>
+<li>control structures, and</li>
+<li>functions</li>
+</ul></li>
+</ul>
+</div>
+<div id="operators" class="section level2">
+<h2>Operators</h2>
+<ul>
+<li>Arithmetic operators</li>
+<li>Logical operators</li>
+<li>Relational operators</li>
+<li>Assignment operators</li>
+<li>Miscellaneous operators</li>
+<li>Others
+<ul>
+<li>User-defined operators</li>
+<li>From third-party pacakges</li>
+</ul></li>
+</ul>
+<div id="arithmetic-operators" class="section level3">
+<h3>Arithmetic operators</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Addition</td>
+<td><code>1 + 1    # returns 2</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>Subtraction</td>
+<td><code>3 - 2  # returns 1</code></td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>Multiplication</td>
+<td><code>3 * 4  # returns 12</code></td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>Division</td>
+<td><code>5 / 2 # returns 2.5</code></td>
+</tr>
+<tr class="odd">
+<td><code>^</code> or <code>**</code></td>
+<td>Exponentiation</td>
+<td><code>2**4  # returns 16</code></td>
+</tr>
+<tr class="even">
+<td><code>%%</code></td>
+<td>Modulus</td>
+<td><code>5 %% 2  # returns 1</code></td>
+</tr>
+<tr class="odd">
+<td><code>%/%</code></td>
+<td>Integer division</td>
+<td><code>5 %% 2  # returns 2</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="logical-operators" class="section level3">
+<h3>Logical operators</h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>Element-wise logical AND</td>
+<td><code>c(TRUE, TRUE) &amp; c(TRUE, FALSE)  # returns TRUE FALSE</code></td>
+</tr>
+<tr class="even">
+<td>|</td>
+<td>Element-wise logical OR</td>
+<td><code>c(TRUE, FALSE)</code> | <code>c(FALSE, FALSE)  # returns TRUE FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>!</code></td>
+<td>Logical NOT</td>
+<td><code>!c(TRUE, FALSE)  # retruns FALSE TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>&amp;&amp;</code></td>
+<td>Logical AND (considers the first element only)</td>
+<td><code>c(TRUE, TRUE) &amp;&amp; c(FALSE, TRUE)  # returns FALSE</code></td>
+</tr>
+<tr class="odd">
+<td>||</td>
+<td>Logical OR (considers the first element only)</td>
+<td><code>c(TRUE, TRUE)</code> || <code>c(FALSE, TRUE)  # returns TRUE</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="relational-operators" class="section level3">
+<h3>Relational operators</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+<td><code>3 &gt; 1  # returns TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>Less than</td>
+<td><code>3 &lt; 1  # returns FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>Equal to</td>
+<td><code>2 == 2  # returns TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>Less than or equal to</td>
+<td><code>4 &lt;= 4 # returns TRUE</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td>Greater than or equal to</td>
+<td><code>3 &gt;= 4  # returns FALSE</code></td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>Not equal to</td>
+<td><code>2 != 3  # returns TRUE</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assignment-operators" class="section level3">
+<h3>Assignment operators</h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;-</code> or <code>=</code></td>
+<td>Left assignment</td>
+<td><code>a &lt;- &quot;Hello&quot; # print(a) returns &quot;Hello&quot;</code></td>
+</tr>
+<tr class="even">
+<td><code>-&gt;</code></td>
+<td>Right assignment</td>
+<td>The use of <code>-&gt;</code> is mostly discouraged</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;&lt;-</code></td>
+<td>Left scoping assignment</td>
+<td>Search for the variable in the parent environments takes place before assignment</td>
+</tr>
+<tr class="even">
+<td><code>-&gt;&gt;</code></td>
+<td>Right scoping assignment</td>
+<td>Ditto</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="miscellaneous-operators" class="section level3">
+<h3>Miscellaneous operators</h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>:</code></td>
+<td>Colon operator to generate sequences</td>
+<td><code>a &lt;- &quot;Hello&quot; # print(a) returns &quot;Hello&quot;</code></td>
+</tr>
+<tr class="even">
+<td><code>?</code></td>
+<td>Help function to see documentation</td>
+<td><code>?some_function # equivalent to help(some_function)</code></td>
+</tr>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>In operator</td>
+<td><code>1 %in% c(1, 2, 3)  # returns TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>%*%</code></td>
+<td>Matrix multiplication</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="other-operators" class="section level3">
+<h3>Other operators</h3>
+<ul>
+<li>Operators can be defined by users</li>
+<li>Some third party packages offer custom operators
+<ul>
+<li>e.g. the “pipe” operator (<code>%&gt;%</code>) from <code>magrittr</code> package (also available through <code>dplyr</code> pacakge)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="flow-control" class="section level2">
+<h2>Flow control</h2>
+<ul>
+<li>Loops</li>
+<li>Conditionals</li>
+</ul>
+<div id="loops" class="section level3">
+<h3>Loops</h3>
+<ul>
+<li><code>while</code> loops</li>
+</ul>
+<pre class="r"><code>while ( condition ) {
+  expression
+}</code></pre>
+<ul>
+<li><code>for</code> loops</li>
+</ul>
+<pre class="r"><code>for (element in iterable_object) {
+  expression
+}</code></pre>
+<div id="while-loop" class="section level4">
+<h4><code>while</code> loop</h4>
+<img src="https://www.tutorialspoint.com/r/images/swift_while_loop.jpg" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">“R - While Loop”, tutorialspoint.com</a>
+</p>
+<pre class="r"><code>while (condition) {
+  expression
+}</code></pre>
+<ul>
+<li>If the given <code>condition</code> is satisfied (i.e. evaluates as <code>TRUE</code>), then the following <code>expression</code> is executed.</li>
+<li>Onces the <code>expression</code> is executed, the <code>condition</code> is re-evaluated.</li>
+<li>The <code>expression</code> is repetitively executed as long as the <code>condition</code> is satisfied.
+<ul>
+<li>beware of infinite loop!</li>
+</ul></li>
+</ul>
+</div>
+<div id="for-loop" class="section level4">
+<h4><code>for</code> loop</h4>
+<img src="https://www.tutorialspoint.com/r/images/r_for_loop.jpg" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">“R - For Loop”, tutorialspoint.com</a>
+</p>
+<pre class="r"><code>for (element in iterable_object) {
+  expression
+}</code></pre>
+<ul>
+<li>Requires an iterable object (e.g. vector or list).</li>
+<li>Iterates over all elements of the given object in order.</li>
+<li>At each step of iteration, can use the given element for the <code>expression</code> if appropriate.</li>
+</ul>
+<pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
+
+# iterate over elements directly
+for (fruit in fruits) {
+  print(paste(&quot;I love &quot;, fruit, &quot;!&quot;, sep=&quot;&quot;))
+}</code></pre>
+<pre><code>## [1] &quot;I love apple!&quot;
+## [1] &quot;I love banana!&quot;
+## [1] &quot;I love clementine!&quot;</code></pre>
+<pre class="r"><code>flavors &lt;- c(&quot;chocolate&quot;, &quot;vanilla&quot;, &quot;cookie dough&quot;)
+
+# iterate over elements indirectly
+for (i in 1:length(flavors)) {
+  flavor &lt;- flavors[i]
+  print(paste(&quot;Do you want some&quot;, flavor, &quot;ice cream?&quot;))
+}</code></pre>
+<pre><code>## [1] &quot;Do you want some chocolate ice cream?&quot;
+## [1] &quot;Do you want some vanilla ice cream?&quot;
+## [1] &quot;Do you want some cookie dough ice cream?&quot;</code></pre>
+</div>
+</div>
+<div id="conditionals" class="section level3">
+<h3>Conditionals</h3>
+<ul>
+<li><code>if</code> statement</li>
+<li>Basic structure
+<ul>
+<li>if ( condition ) { expression }</li>
+</ul></li>
+</ul>
+<pre class="r"><code>a &lt;- TRUE
+
+if (a) {
+  print(&quot;Hello World!&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+</div>
+<div id="multiple-conditions" class="section level3">
+<h3>Multiple conditions</h3>
+<ul>
+<li><code>if</code>-<code>else</code> statement</li>
+<li>allows for multiple conditions</li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+<div id="r-functions" class="section level1">
+<h1>R Functions</h1>
+<div id="what-are-functions" class="section level2">
+<h2>What are functions</h2>
+<ul>
+<li>Functions are “call-able” objects
+<ul>
+<li>can be called or invoked by following <code>()</code></li>
+<li>can be manipulated in the same way as any other object</li>
+</ul></li>
+<li>Three elements of a function (or function closure)
+<ol style="list-style-type: decimal">
+<li>an argument list (a.k.a. parameters; optional)</li>
+<li>body</li>
+<li>function environment</li>
+</ol></li>
+</ul>
+<pre class="r"><code># creating a new function
+name &lt;- function(arg1, arg2) {
+  
+  # body exist in a local environment
+  body expression1
+  body expression2
+  body expression3
+
+}</code></pre>
+<pre class="r"><code># example: a custom function for adding two numbers
+add &lt;- function(num1, num2) {
+  num1 + num2
+}
+
+add_output &lt;- add(3, 5) # assign the function output to a variable
+
+print(add_output)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code># example: a custom function without arguments
+print_hello_world &lt;- function() {
+  print(&quot;Hello world&quot;)
+}
+
+print_hello_world()</code></pre>
+<pre><code>## [1] &quot;Hello world&quot;</code></pre>
+</div>
+<div id="why-use-functions" class="section level2">
+<h2>Why use functions</h2>
+<ul>
+<li>Encapsulate repeated operations
+<ul>
+<li>Simplify code (clearner and more concise)</li>
+<li>Avoid unintended bugs/errors</li>
+<li>Enhance reproducibility</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="r-environments" class="section level1">
+<h1>R Environments</h1>
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/bindings.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+<div id="what-are-environments" class="section level2">
+<h2>What are environments</h2>
+<ul>
+<li>Simply put, an environment is a place to store variables.</li>
+<li>All variables (as bindings of symbols and objects) exist in a specific environment.
+<ul>
+<li>More precisely, <em>objects</em> live in memory outside all environment;</li>
+<li>It is the <em>symbols</em> and the <em>associations</em> of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.</li>
+</ul></li>
+<li>Environments can have nested structure.</li>
+</ul>
+</div>
+<div id="nesting-of-environments" class="section level2">
+<h2>Nesting of environments</h2>
+<ul>
+<li>Variables in a parent environment are accessible in a child environment</li>
+<li>Variables in a child environment are <em>NOT</em> accessible in a parent environment</li>
+</ul>
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/parents.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+</div>
+<div id="the-global-environment" class="section level2">
+<h2>The global environment</h2>
+<ul>
+<li>The interactive workspace for the given R session.</li>
+<li>Its immediate parent is the environment of the package that is imported last.</li>
+<li>Can be accessed using <code>globalenv()</code>, which works like a named list</li>
+</ul>
+<pre class="r"><code>some_variable &lt;- 1 # a variable in the global environment
+global_env &lt;-globalenv() # the environment itself can be assigned to a variable
+
+# the following two are identical 
+identical(some_variable, global_env$some_variable)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="local-environments" class="section level2">
+<h2>Local environments</h2>
+<ul>
+<li>Local environments are created by
+<ul>
+<li>any function calls</li>
+<li><code>new.env()</code></li>
+</ul></li>
+<li>Can be used to protect the global environment from arbitrarily created variables</li>
+</ul>
+</div>
+<div id="lexical-scoping" class="section level2">
+<h2>Lexical scoping</h2>
+<p>Searching for an object in R follows the lexical scoping rules.<br />
+* First, R looks for the object in the current environment<br />
+* If the object is not found in the current environment, R moves up to its parent environment.<br />
+* The process is repeated until the object is found or the outermost environment (<code>emptyenv()</code>) is reached.</p>
+<img src="http://adv-r.had.co.nz/diagrams/environments.png/search-path.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+</div>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
+  <a href="https://github.com/bobaekang/" class="icon-footer">
+    <i class="fa fa-github fa-2x"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

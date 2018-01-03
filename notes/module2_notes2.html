@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Bobae Kang" />
+
+<meta name="date" content="2018-01-31" />
+
+<title>R Workshop: Module 2 (2)</title>
+
+<script src="module2_notes2_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="module2_notes2_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="module2_notes2_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="module2_notes2_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="module2_notes2_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="module2_notes2_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="module2_notes2_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="module2_notes2_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="module2_notes2_files/navigation-1.1/tabsets.js"></script>
+<link href="module2_notes2_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="module2_notes2_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Workshop: Module 2 (2)</h1>
+<h4 class="author"><em>Bobae Kang</em></h4>
+<h4 class="date"><em>January 31, 2018</em></h4>
+
+</div>
+
+
+<!-- fontawesome CDN -->
+<p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
+<!-- logo -->
+<div class="logo">
+<p><a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a></p>
+</div>
+<p>This page contains the notes for <strong>the second part of R Workshop Module 2: R basics</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
+<p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
+<p>Click <a href="../slides/module2_slides2.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 2, Part 2</strong>.</p>
+<p>Navigate to the other workshop materials:</p>
+<ul>
+<li><strong>Module 1: Introduction to R</strong> (<a href="../slides/module1_slides.html"><strong>slides</strong></a>, <a href="module1_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 2: R basics</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module2_slides1.html"><strong>slides</strong></a>, <a href="module2_notes1.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 3: Data analysis in R</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module3_slides1.html"><strong>slides</strong></a>, <a href="module3_notes1.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module3_slides2.html"><strong>slides</strong></a>, <a href="module3_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 4: Data visualization in R</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module4_slides.html"><strong>slides</strong></a>, <a href="module4_notes.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module4_slides2.html"><strong>slides</strong></a>, <a href="module4_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 5: Statistical modeling in R</strong> (<a href="../slides/module5_slides.html"><strong>slides</strong></a>, <a href="module5_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 6: Sharing your analysis and more</strong> (<a href="../slides/module6_slides.html"><strong>slides</strong></a>, <a href="module6_notes.html"><strong>note</strong></a>)</li>
+</ul>
+<hr />
+</div>
+<div id="r-basics-2-gearing-up-for-data-analysis-in-r" class="section level1">
+<h1>R Basics (2): Gearing up for data analysis in R</h1>
+<hr />
+</div>
+<div id="r-data-frame" class="section level1">
+<h1>R Data Frame</h1>
+<pre><code>## [1] &quot;Look, a data frame!&quot;</code></pre>
+<pre><code>##   column1 column2 column3 column4 column5
+## 1      11      12      13      14      15
+## 2      21      22      23      24      25
+## 3      31      32      33      34      35
+## 4      41      42      43      44      45
+## 5      51      52      53      54      55</code></pre>
+<div id="what-is-a-data-frame" class="section level2">
+<h2>What is a data frame?</h2>
+<ul>
+<li>A tabular representation of data where each column is a vector of some type.
+<ul>
+<li>think of Excel spreadsheets, SPSS tables, etc.!</li>
+</ul></li>
+<li>Can be seen as a <em>list of vectors</em> of <em>the same length</em>, but with additional functionalities for data analysis!
+<ul>
+<li>accessing data in a data frame works similarly</li>
+<li>a list can be easily converted into a data frame using <code>as.data.frame()</code> (… and vice versa, with <code>as.list()</code>)</li>
+</ul></li>
+</ul>
+</div>
+<div id="example-iris-data" class="section level2">
+<h2>Example: Iris data</h2>
+<p>R comes with a data frame of <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">the (famous) Iris flower dataset</a>. Let’s take a look:</p>
+<pre class="r"><code>class(iris)  # the class of iris object is &quot;data.frame&quot;</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>str(iris)  # reports the &quot;structure&quot; of the data frame </code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre class="r"><code>head(iris, 5)  # returns the first n rows of the data frame (default 6)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
+<pre class="r"><code>dim(iris)  # returns the dimension of the data frame (row  column)</code></pre>
+<pre><code>## [1] 150   5</code></pre>
+<pre class="r"><code>nrow(iris)  # returns the number of rows in the data frame</code></pre>
+<pre><code>## [1] 150</code></pre>
+<pre class="r"><code>ncol(iris)  # returns the number of columns in the data frame</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>colnames(iris)  # returns a vector containing the column names </code></pre>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+## [5] &quot;Species&quot;</code></pre>
+<pre class="r"><code>iris$Sepal.Length  # access a column by name
+iris[[1]]          # access the first column by index
+iris[, 1]          # yet another way to access the first column!</code></pre>
+<pre><code>##   [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4
+##  [18] 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5
+##  [35] 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0
+##  [52] 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8
+##  [69] 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7 5.5 5.5 5.8 6.0 5.4
+##  [86] 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8
+## [103] 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7
+## [120] 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
+## [137] 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8 6.7 6.7 6.3 6.5 6.2 5.9</code></pre>
+<pre class="r"><code>iris[1, ]  # access the first row by index</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa</code></pre>
+<pre class="r"><code>iris[1, 1]  # access a specific cell (first row of the first column)</code></pre>
+<pre><code>## [1] 5.1</code></pre>
+</div>
+<div id="creating-a-data-frame" class="section level2">
+<h2>Creating a data frame</h2>
+<ul>
+<li>Using <code>data.frame()</code>
+<ul>
+<li>Using existing vectors as arguments</li>
+<li>Simultanesouly creating vectors and assigning column names to them<br />
+</li>
+</ul></li>
+<li>Coercing a list using <code>as.data.frame()</code></li>
+</ul>
+<div id="using-data.frame" class="section level3">
+<h3>Using data.frame()</h3>
+<ol style="list-style-type: decimal">
+<li>Using existing vectors</li>
+</ol>
+<pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
+animals &lt;- c(&quot;dogs&quot;, &quot;cats&quot;, &quot;llamas&quot;)
+icecream_flavors &lt;- c(&quot;chocolate&quot;, &quot;vanila&quot;, &quot;cookie dough&quot;)
+
+df1 &lt;- data.frame(fruits, animals, icecream_flavors)
+
+print(df1)</code></pre>
+<pre><code>##       fruits animals icecream_flavors
+## 1      apple    dogs        chocolate
+## 2     banana    cats           vanila
+## 3 clementine  llamas     cookie dough</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Simultaneously creating vectors and assigning names</li>
+</ol>
+<pre class="r"><code>df2 &lt;- data.frame(
+  fruits = c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;),
+  animals = c(&quot;dogs&quot;, &quot;cats&quot;, &quot;llamas&quot;),
+  icecream_flavors = c(&quot;chocolate&quot;, &quot;vanila&quot;, &quot;cookie dough&quot;)
+)
+
+print(df2)</code></pre>
+<pre><code>##       fruits animals icecream_flavors
+## 1      apple    dogs        chocolate
+## 2     banana    cats           vanila
+## 3 clementine  llamas     cookie dough</code></pre>
+</div>
+<div id="converting-a-list-using-as.data.frame" class="section level3">
+<h3>Converting a list using as.data.frame()</h3>
+<pre class="r"><code>lt &lt;- list(
+  fruits = c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;),
+  animals = c(&quot;dogs&quot;, &quot;cats&quot;, &quot;llamas&quot;),
+  icecream_flavors = c(&quot;chocolate&quot;, &quot;vanila&quot;, &quot;cookie dough&quot;)
+)
+
+df3 &lt;- as.data.frame(lt)
+
+print(df3)</code></pre>
+<pre><code>##       fruits animals icecream_flavors
+## 1      apple    dogs        chocolate
+## 2     banana    cats           vanila
+## 3 clementine  llamas     cookie dough</code></pre>
+</div>
+</div>
+<div id="transforming-a-data-frame" class="section level2">
+<h2>Transforming a data frame</h2>
+<ul>
+<li>change column names</li>
+<li>add / modify / remove columns</li>
+<li>add / modify / remove rows</li>
+<li>modify cell values</li>
+</ul>
+<div id="change-column-names" class="section level3">
+<h3>Change column names</h3>
+<pre class="r"><code>colnames(df1) &lt;- c(&quot;my_fruits&quot;, &quot;my_animals&quot;, &quot;my_flavors&quot;)
+
+print(df1)</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors
+## 1      apple       dogs    chocolate
+## 2     banana       cats       vanila
+## 3 clementine     llamas cookie dough</code></pre>
+</div>
+<div id="add-columns" class="section level3">
+<h3>Add columns</h3>
+<pre class="r"><code># using $ index
+df1$my_colors &lt;- c(&quot;red&quot;, &quot;green&quot;, &quot;orange&quot;)
+
+# using cbind() function
+my_cities &lt;- c(&quot;Chicago&quot;, &quot;New Work&quot;, &quot;Los Angeles&quot;)
+df1 &lt;- cbind(df1, my_cities)
+
+print(df1)</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors my_colors   my_cities
+## 1      apple       dogs    chocolate       red     Chicago
+## 2     banana       cats       vanila     green    New Work
+## 3 clementine     llamas cookie dough    orange Los Angeles</code></pre>
+</div>
+<div id="modify-columns" class="section level3">
+<h3>Modify columns</h3>
+<pre class="r"><code>df1[[&quot;my_colors&quot;]] &lt;- c(&quot;maroon&quot;, &quot;blue&quot;, &quot;purple&quot;)
+df1$my_cities &lt;- c(&quot;Chicago&quot;, &quot;London&quot;, &quot;Paris&quot;)
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors my_colors my_cities
+## 1      apple       dogs    chocolate    maroon   Chicago
+## 2     banana       cats       vanila      blue    London
+## 3 clementine     llamas cookie dough    purple     Paris</code></pre>
+</div>
+<div id="remove-columns" class="section level3">
+<h3>Remove columns</h3>
+<pre class="r"><code># assinging NULL
+df1$my_colors &lt;- NULL
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors my_cities
+## 1      apple       dogs    chocolate   Chicago
+## 2     banana       cats       vanila    London
+## 3 clementine     llamas cookie dough     Paris</code></pre>
+<pre class="r"><code># subsetting
+df1 &lt;- df1[, 1:3]  # or c(&quot;my_fruits&quot;, &quot;my_animals&quot;, &quot;my_flavors&quot;)
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors
+## 1      apple       dogs    chocolate
+## 2     banana       cats       vanila
+## 3 clementine     llamas cookie dough</code></pre>
+</div>
+<div id="add-rows" class="section level3">
+<h3>Add rows</h3>
+<pre class="r"><code>new_row &lt;- data.frame(
+  my_fruits = &quot;strawberry&quot;,
+  my_animals = &quot;monkeys&quot;,
+  my_flavors = &quot;butter pecan&quot;
+)
+df1 &lt;- rbind(df1, new_row)
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors
+## 1      apple       dogs    chocolate
+## 2     banana       cats       vanila
+## 3 clementine     llamas cookie dough
+## 4 strawberry    monkeys butter pecan</code></pre>
+</div>
+<div id="remove-rows" class="section level3">
+<h3>Remove rows</h3>
+<pre class="r"><code># subsetting
+df1 &lt;- df1[1:3, ]
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors
+## 1      apple       dogs    chocolate
+## 2     banana       cats       vanila
+## 3 clementine     llamas cookie dough</code></pre>
+</div>
+<div id="modify-cells" class="section level3">
+<h3>Modify cells</h3>
+<pre class="r"><code># this doesn&#39;t work ... why?
+df1$my_flavors[1] &lt;- &quot;mint chocolate chip&quot;</code></pre>
+<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 1, value = structure(c(NA, 3L, 2L), .Label
+## = c(&quot;chocolate&quot;, : invalid factor level, NA generated</code></pre>
+<pre class="r"><code>df1</code></pre>
+<pre><code>##    my_fruits my_animals   my_flavors
+## 1      apple       dogs         &lt;NA&gt;
+## 2     banana       cats       vanila
+## 3 clementine     llamas cookie dough</code></pre>
+<pre class="r"><code># because the column is a factor and only
+# new values of the existing levels can be added
+df1$my_flavors</code></pre>
+<pre><code>## [1] &lt;NA&gt;         vanila       cookie dough
+## Levels: chocolate cookie dough vanila butter pecan</code></pre>
+<pre class="r"><code># first we coerce the column into character class
+df1$my_flavors &lt;- as.character(df1$my_flavors)
+
+# now works!
+df1$my_flavors[1] &lt;- &quot;mint chocolate chip&quot;
+
+df1</code></pre>
+<pre><code>##    my_fruits my_animals          my_flavors
+## 1      apple       dogs mint chocolate chip
+## 2     banana       cats              vanila
+## 3 clementine     llamas        cookie dough</code></pre>
+</div>
+</div>
+<div id="extending-data-frame" class="section level2">
+<h2>Extending data frame</h2>
+<ul>
+<li>In practice, R’s original <code>data.frame</code> is rarely used since better alternatives are available.
+<ul>
+<li><code>tibble</code></li>
+<li><code>data.table</code></li>
+</ul></li>
+<li>Both alternatives are extension of the original <code>data.frame</code>
+<ul>
+<li>either can be manipulated just like a data frame</li>
+</ul></li>
+</ul>
+<div id="tibble" class="section level3">
+<h3><code>tibble</code></h3>
+<pre><code>## # A tibble: 5 x 5
+##   column1 column2 column3 column4 column5
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1    11.0    12.0    13.0    14.0    15.0
+## 2    21.0    22.0    23.0    24.0    25.0
+## 3    31.0    32.0    33.0    34.0    35.0
+## 4    41.0    42.0    43.0    44.0    45.0
+## 5    51.0    52.0    53.0    54.0    55.0</code></pre>
+<ul>
+<li>Part of the <code>tidyverse</code> framework (we’ll come back to this)</li>
+<li>More easily understood <code>tidyverse</code> syntax</li>
+<li>Refined print method</li>
+<li>Coercing a data frame into a tibble can be done with <code>as_tibble()</code> from <code>tibble</code> package</li>
+<li>See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</li>
+</ul>
+</div>
+<div id="data.table" class="section level3">
+<h3><code>data.table</code></h3>
+<pre><code>##    column1 column2 column3 column4 column5
+## 1:      11      12      13      14      15
+## 2:      21      22      23      24      25
+## 3:      31      32      33      34      35
+## 4:      41      42      43      44      45
+## 5:      51      52      53      54      55</code></pre>
+<ul>
+<li>Made available via <code>data.frame</code> package.</li>
+<li>Highly optimized for larger tables (e.g. &gt;100K rows).</li>
+<li>Compact syntax for advanced slicing and dicing of tablular data.</li>
+<li>Coercing a data frame into a data table can be done with <code>as.data.table()</code></li>
+<li>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on data.table</li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+<div id="r-add-on-packages" class="section level1">
+<h1>R Add-On Packages</h1>
+<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.datacamp.com/">DataCamp</a></p>
+</div>
+<div id="what-are-add-on-packages" class="section level2">
+<h2>What are add-on packages?</h2>
+<blockquote>
+<p>The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools […], etc. - “R (programming language)”, Wikipedia</p>
+</blockquote>
+</div>
+<div id="using-packages" class="section level2">
+<h2>Using packages</h2>
+<pre class="r"><code># first we should install the desired package
+install.packages(&quot;some_package&quot;)
+
+# then we import the package to use its functionalities
+library(some_package)</code></pre>
+</div>
+<div id="two-ways-of-installing-packages" class="section level2">
+<h2>Two ways of installing packages</h2>
+<ul>
+<li>From CRAN (Comprehensive R Archive Network)
+<ul>
+<li>tested and trusted</li>
+<li>using <code>install.packages(&quot;package&quot;)</code></li>
+</ul></li>
+<li>From specific Github repositories (i.e., development versions)
+<ul>
+<li>latest versions with cutting-edge features</li>
+<li>using <code>install_github(&quot;author/package&quot;)</code>
+<ul>
+<li><code>install_github()</code> is available via <code>devtools</code> package.</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="tidyverse-framework" class="section level1">
+<h1>Tidyverse Framework</h1>
+<img src="../images/tidyverse.png" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+</div>
+<div id="tidy-approach-to-data-science" class="section level2">
+<h2>Tidy approach to data science</h2>
+<p>Tidy data is data where:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Each variable is in a column</li>
+<li>Each observation is a row</li>
+<li>Each value is a cell.</li>
+</ol>
+</blockquote>
+<img src="http://r4ds.had.co.nz/images/tidy-1.png" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a></p>
+</div>
+<ul>
+<li>See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data</li>
+</ul>
+</div>
+<div id="untidy-data" class="section level2">
+<h2>Untidy data?</h2>
+<p>Anything that is not tidy!</p>
+<ul>
+<li>Multiple variables in a single column</li>
+<li>Multiple observations in a single row</li>
+<li>Multiple rows for a single observation</li>
+<li>Multiple values in a single cell</li>
+<li>Multiple cells for a single value</li>
+</ul>
+<div id="untidy-example-1" class="section level3">
+<h3>Untidy example 1</h3>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre><code>##   Sepal.Length/Width Petal.Length/Width Species
+## 1            5.1/3.5            1.4/0.2  setosa
+## 2              4.9/3            1.4/0.2  setosa
+## 3            4.7/3.2            1.3/0.2  setosa
+## 4            4.6/3.1            1.5/0.2  setosa
+## 5              5/3.6            1.4/0.2  setosa
+## 6            5.4/3.9            1.7/0.4  setosa</code></pre>
+</div>
+<div id="untidy-example-2" class="section level3">
+<h3>Untidy example 2</h3>
+<pre><code>##    index         type value Species
+## 1      1 Sepal.Length   5.1  setosa
+## 2      1  Sepal.Width   3.5  setosa
+## 3      1 Petal.Length   1.4  setosa
+## 4      1  Petal.Width   0.2  setosa
+## 5      2 Sepal.Length   4.9  setosa
+## 6      2  Sepal.Width   3.0  setosa
+## 7      2 Petal.Length   1.4  setosa
+## 8      2  Petal.Width   0.2  setosa
+## 9      3 Sepal.Length   4.7  setosa
+## 10     3  Sepal.Width   3.2  setosa</code></pre>
+</div>
+</div>
+<div id="tidyverse-core-packages" class="section level2">
+<h2>Tidyverse core packages</h2>
+<ul>
+<li><code>ggplot2</code> for data visualization</li>
+<li><code>dplyr</code> for data manipulation</li>
+<li><code>tidyr</code> for creating “tidy data”</li>
+<li><code>readr</code> for data import/export</li>
+<li><code>purrr</code> for loop operations</li>
+<li><code>tibble</code> for data representation</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="good-code-bad-code" class="section level1">
+<h1>Good Code, Bad Code</h1>
+<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.nytimes.com/">The New York Times</a></p>
+</div>
+<div id="why-style-guide" class="section level2">
+<h2>Why style guide?</h2>
+<blockquote>
+<p>The goal [of the style guide] is to make our R code easier to read, share, and verify. - Google’s R Style guide</p>
+</blockquote>
+<ul>
+<li>Readability</li>
+<li>Productivity</li>
+<li>Reproducibility</li>
+</ul>
+</div>
+<div id="which-style-guide" class="section level2">
+<h2>Which style guide?</h2>
+<ul>
+<li>Currently, there is no single style guide adopted by the R community as <em>the</em> standard.
+<ul>
+<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style guide</a></li>
+<li><a href="http://style.tidyverse.org/">Tidyverse style guide</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="personal-recommendations" class="section level2">
+<h2>Personal recommendations</h2>
+<ul>
+<li>Start with the tidyverse style guide</li>
+<li>Consider adding extra rules <em>only if</em> they will help your team to better collaborate and maintain code</li>
+<li>Keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!</li>
+</ul>
+</div>
+<div id="object-naming" class="section level2">
+<h2>Object naming</h2>
+<ul>
+<li>Be descriptive yet concise
+<ul>
+<li>somewhat dependent on the shared knowledge on the subject matter</li>
+</ul></li>
+<li>Use underscore for names consisting of multiple words</li>
+<li>Nouns for variables, verbs for functions</li>
+<li>Avoid re-using common names for functions and variables
+<ul>
+<li>Using “reserved words” to assign objects will throw errors</li>
+</ul></li>
+</ul>
+<div id="naming-a-variable-e.g.for-firearm-arrests" class="section level3">
+<h3>Naming a variable (e.g. for firearm arrests)</h3>
+<pre class="r"><code># Good
+firearm_arr
+fa_arr
+
+# Bad
+arrests_with_firearm_charges  # too verbose
+firearmArrests                # violating underscore convention
+FireArm_Arrests               # mixing underscore with other way of naming
+farr                          # not descriptive enough
+x                             # not descriptive at all</code></pre>
+</div>
+<div id="naming-a-function-e.g.for-counting-arrests" class="section level3">
+<h3>Naming a function (e.g. for counting arrests)</h3>
+<pre class="r"><code># Good
+count_arr &lt;- function(x) { ... }
+
+# Bad
+num_arr &lt;- function(x) { ... }  # noun for a function
+do_arr  &lt;- function(x) { ... }  # not descriptive enough
+count   &lt;- function(x) { ... }  # too generic (common name)</code></pre>
+</div>
+<div id="reserved-words-in-r" class="section level3">
+<h3>Reserved words in R</h3>
+<pre class="r"><code>if else repeat while function for  
+in next break  # used in loops, conditions, functions
+
+TRUE FALSE  # logical values
+
+NULL  # undefined
+
+Inf  # infinity
+
+NaN  # Not a Number
+
+NA  # not available (missing)
+
+NA_integer_ NA_real_
+NA_complex_ NA_character_  # NA for atomic vector types
+
+...  # dot method for one function to pass arguments to another</code></pre>
+</div>
+</div>
+<div id="whitespaces-for-readable-code" class="section level2">
+<h2>Whitespaces for readable code</h2>
+<ul>
+<li>Add a space
+<ul>
+<li>around operators (<code>+</code>, <code>-</code>, <code>&lt;</code>, <code>=</code>, etc.)
+<ul>
+<li>Exceptions include <code>:</code>, <code>::</code>, and <code>:::</code><br />
+</li>
+</ul></li>
+<li>after a comma (but not before–like in regular English)</li>
+<li>before a left paranthesis <code>(</code>, except when it is a function call</li>
+</ul></li>
+<li>Extra spacing for alignment of code</li>
+<li>Indentation for clarifying hierarchy</li>
+</ul>
+<div id="adding-spaces" class="section level3">
+<h3>Adding spaces</h3>
+<pre class="r"><code># Good
+greetings &lt;- paste(&quot;Hello&quot;, &quot;World!&quot;, sep = &quot; &quot;)
+df[2, ]
+x &lt;- 1:10 
+base::Random() # calling a function with specifying the package
+
+# Bad
+greetings&lt;-paste(&quot;Hello&quot;,&quot;world!&quot;,sep=&quot;&quot;)
+df[ 2,]
+x&lt;- 1 : 10
+base :: Random ()</code></pre>
+</div>
+<div id="extra-spacing" class="section level3">
+<h3>Extra spacing</h3>
+<pre class="r"><code># for aligning function arguments
+some_function (
+  first_argument   = value_1
+  another_argument = value_2
+  example          = value_3
+)
+
+# for aligning variable assignments
+numbers        &lt;- c(1, 2, 3)
+roman_numerals &lt;- c(&quot;I&quot;, &quot;II&quot;, &quot;III&quot;)
+letters        &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)        </code></pre>
+</div>
+<div id="indentation" class="section level3">
+<h3>Indentation</h3>
+<pre class="r"><code># Good
+if (x &gt; 0) {
+  i = 0
+  while (i &lt; 10) {
+    message(&quot;Wait, I&#39;m in a loop&quot;)  
+    i &lt;- i + 1
+  }
+  message(&quot;x is positive.&quot;)
+} else {
+  message(&quot;x is not positive&quot;)
+}
+
+# Bad
+if (y &gt; 0) {
+    j = 0
+while (j &lt; 10) {
+message(&quot;Wait, I&#39;m in a loop&quot;)  
+j &lt;- j + 1
+    }
+      message(&quot;y is positive.&quot;)
+} else {
+message(&quot;y is not positive&quot;)
+}</code></pre>
+</div>
+</div>
+<div id="comments-for-intelligible-code" class="section level2">
+<h2>Comments for intelligible code</h2>
+<ul>
+<li>Use comments (code after the <code>#</code> symbol) for clarification
+<ul>
+<li>add two spaces before starting a comment if the comment comes after an expression</li>
+</ul></li>
+<li>However, whenever possible, use <em>descriptive names</em> to reduce the need for clarification and avoid verbosity!</li>
+<li>Example of unnecesary comment:</li>
+</ul>
+<pre class="r"><code># the following code calculates the average of some numbers
+numbers &lt;- c(1, 3, 5)  # assign a vector of numbers to numbers object
+average &lt;- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by its length to get the average</code></pre>
+</div>
+<div id="most-importantly" class="section level2">
+<h2>Most importantly…</h2>
+<ul>
+<li>Be consistent!</li>
+<li>Be concise!</li>
+<li>Be clear!</li>
+</ul>
+</div>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
+  <a href="https://github.com/bobaekang/" class="icon-footer">
+    <i class="fa fa-github fa-2x"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
