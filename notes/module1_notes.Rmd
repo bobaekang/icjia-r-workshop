@@ -28,7 +28,9 @@ knitr::opts_chunk$set(echo = TRUE)
 This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
-Click [**here**](../index.html) to go to the workshop **homepage**.
+Click [**here**](../index.html) to go to the workshop **home page**.
+
+Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
 Click [**here**](../slides/module1_slides.html) to view the accompanying **slides for Module 1**.
 
@@ -51,24 +53,56 @@ Navigate to the other workshop materials:
 ***
 
 # Introducing R
+
 ## What is R?
-Hello
-```{r}
-head(iris)
-```
+
+> "R is a language and environment for statistical computing and graphics." - The R Foundation
+
+* *Built for* data analysis and visualization
+* One of the the most popular choices of programming language among academic researchers and data scientists
 
 ## Why R?
 
+* Open source (free!)
+* Built for statistical analysis
+* Reproducible and transparent
+* Extensible through powerful third-party libraries
+* Enabling researchers to tackle a variety of tasks using a *single* platform
+
 ## Comparisons
+
 ### R vs Excel
+
+* License cost
+* Speed
+* Scalability
+* Complex and advanced analysis
+* Visualization
+
 ### R vs SPSS
+
+* License cost (again)
+* Syntax
+* Visualization
+* Presentation
+
 ### R vs Tableau
 
+* License cost (DUH!)
+* Cleaning data
+* Complex and advanced analysis
 
 ***
 
 # RStudio
 ## What is RStudio?
+
+* Best Integrated Development Environment (IDE) for R
+* Powerful and convenient features
+* Interactive workflow
+* Open source (again!)
+* ... and many more!
+
 ## Why use RStudio?
 
 
@@ -76,7 +110,17 @@ head(iris)
 
 # Basic Setup
 ## Installing R
+
+* Visit https://cran.r-project.org/
+* Or simply google "download R" to find the link to download page.
+* *Installation requires the Administrator account*; talk to DoIT!
+
 ## Installing RStudio
+
+* Visit https://www.rstudio.com/products/rstudio/download/
+* Or simply google "download Rstudio" to find the link to download page.
+* Agin, *installation requires the Administrator account*; talk to DoIT!
+
 
 ***
 # Workshop Overview
