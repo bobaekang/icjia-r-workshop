@@ -1,15 +1,26 @@
 # template elements
 <div class="header"></div>
 <div class="footer"></div>
-<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" class="logo"></img>
-<img src="https://www2.illinois.gov/PublishingImages/seal.gif" class="seal"></img>
+<img src="../images/icjia.png" class="logo"></img>
+<img src="../images/il_seal.gif" class="seal"></img>
+<div class="buttons">
+<a href="../index.html">
+  <button type="button">Home</button>
+</a>
+<a href="../modules.html">
+  <button type="button">Modules</button>
+</a>
+<a href="../notes/module1_notes.html">
+  <button type="button">Notes</button>
+</a>
+</div>
 
 
 # presentation
 R Workshop
 ========================================================
 type: slide-body
-css: ../css/style.css
+css: ../css/style_slides.css
 <h3 style="color: #789">Module 1: Introduction to R</h3>  
 2018-01-01  
 Bobae Kang  

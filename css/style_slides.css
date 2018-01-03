@@ -32,6 +32,30 @@
   right: 5%
 }
 
+.buttons {
+  position: fixed;
+  top: 90%;
+  left: 7%;
+  height: 10%;
+  z-index: 2;
+}
+
+.buttons button {
+  display: ;
+  margin-top: 10%;
+  margin-right: 15px;
+  width: 100px;
+  height: 35px;
+  background: 0;
+  color: #25679E;
+  border: 2px solid #25679E;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  color: #ddd;
+  border: 2px solid #ddd;
+}
 
 /* general */
 .slides>section.present,
