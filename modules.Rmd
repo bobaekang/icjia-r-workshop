@@ -49,7 +49,7 @@ Here, participants will learn the basic building blocks of R language. Once part
 
 ***
 
-# Module 3: Data analysis in R
+# Module 3: Data analysis with R
 This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common "tidyverse" syntax to clean and analyze data. Specifically, core functions from `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered.
 
 ### Part 1: Getting started with tidyverse
@@ -64,7 +64,7 @@ This module focuses on manimuplating and transforming tabular data using R. Part
 
 ***
 
-# Module 4: Data visualiation in R
+# Module 4: Data visualiation with R
 In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package. Participants will also be introduced to some options for generating maps and interactive plots.
 
 ### Part 1: The Grammar of Graphics
@@ -79,7 +79,7 @@ In this module, participants will get started with generating plots to visually 
 
 ***
 
-# Module 5: Statistical modeling in R
+# Module 5: Statistical modeling with R
 In this module, participants will learn how to conduct basic statistical analysis with R. 
 
 * [**Slides**](slides/module5_slides.html) (currently unavailable)

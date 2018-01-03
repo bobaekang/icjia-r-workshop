@@ -1,15 +1,26 @@
 # template elements
 <div class="header"></div>
 <div class="footer"></div>
-<img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" class="logo"></img>
-<img src="https://www2.illinois.gov/PublishingImages/seal.gif" class="seal"></img>
+<img src="../images/icjia.png" class="logo"></img>
+<img src="../images/il_seal.gif" class="seal"></img>
+<div class="buttons">
+<a href="../index.html">
+  <button type="button">Home</button>
+</a>
+<a href="../modules.html">
+  <button type="button">Modules</button>
+</a>
+<a href="../notes/module2_notes2.html">
+  <button type="button">Notes</button>
+</a>
+</div>
 
 
 # presentation
 R Workshop
 ========================================================
 type: slide-body
-css: ../css/style.css
+css: ../css/style_slides.css
 <h3 style="color: #789">Module 2: R basics (2)</h3>  
 2018-01-01  
 Bobae Kang  
@@ -462,11 +473,11 @@ tibble
 # A tibble: 5 x 5
   column1 column2 column3 column4 column5
     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-1      11      12      13      14      15
-2      21      22      23      24      25
-3      31      32      33      34      35
-4      41      42      43      44      45
-5      51      52      53      54      55
+1    11.0    12.0    13.0    14.0    15.0
+2    21.0    22.0    23.0    24.0    25.0
+3    31.0    32.0    33.0    34.0    35.0
+4    41.0    42.0    43.0    44.0    45.0
+5    51.0    52.0    53.0    54.0    55.0
 ```
 
 * Part of the `tidyverse` framework (we'll come back to this)

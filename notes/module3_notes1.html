@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Bobae Kang" />
+
+<meta name="date" content="2018-01-31" />
+
+<title>R Workshop: Module 3 (1)</title>
+
+<script src="module3_notes1_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="module3_notes1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="module3_notes1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="module3_notes1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="module3_notes1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="module3_notes1_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="module3_notes1_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="module3_notes1_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="module3_notes1_files/navigation-1.1/tabsets.js"></script>
+<link href="module3_notes1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="module3_notes1_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Workshop: Module 3 (1)</h1>
+<h4 class="author"><em>Bobae Kang</em></h4>
+<h4 class="date"><em>January 31, 2018</em></h4>
+
+</div>
+
+
+<!-- fontawesome CDN -->
+<p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
+<!-- logo -->
+<div class="logo">
+<p><a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
+</div>
+<p>This page contains the notes for <strong>the first part of R Workshop Module 3: Data Analysis with R</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
+<p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
+<p>Click <a href="../slides/module3_slides1.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 3, Part 1</strong>.</p>
+<p>Navigate to the other workshop materials:</p>
+<ul>
+<li><strong>Module 1: Introduction to R</strong> (<a href="../slides/module1_slides.html"><strong>slides</strong></a>, <a href="module1_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 2: R basics</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module2_slides1.html"><strong>slides</strong></a>, <a href="module2_notes1.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module2_slides2.html"><strong>slides</strong></a>, <a href="module2_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 3: Data analysis with R</strong>
+<ul>
+<li>Part 2 (<a href="../slides/module3_slides2.html"><strong>slides</strong></a>, <a href="module3_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 4: Data visualization with R</strong>
+<ul>
+<li>Part 1 (<a href="../slides/module4_slides.html"><strong>slides</strong></a>, <a href="module4_notes.html"><strong>note</strong></a>)</li>
+<li>Part 2 (<a href="../slides/module4_slides2.html"><strong>slides</strong></a>, <a href="module4_notes2.html"><strong>note</strong></a>)</li>
+</ul></li>
+<li><strong>Module 5: Statistical modeling with R</strong> (<a href="../slides/module5_slides.html"><strong>slides</strong></a>, <a href="module5_notes.html"><strong>note</strong></a>)</li>
+<li><strong>Module 6: Sharing your analysis and more</strong> (<a href="../slides/module6_slides.html"><strong>slides</strong></a>, <a href="module6_notes.html"><strong>note</strong></a>)</li>
+</ul>
+<hr />
+</div>
+<div id="data-analysis-with-r-1-getting-started-with-tidyverse" class="section level1">
+<h1>Data Analysis with R (1): Getting started with <code>tidyverse</code></h1>
+<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="20%" style="box-shadow: none; margin-left: 20%" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+</div>
+<hr />
+</div>
+<div id="getting-ready" class="section level1">
+<h1>Getting Ready</h1>
+<div id="installing-the-packages" class="section level2">
+<h2>Installing the packages</h2>
+<ul>
+<li>Installing all <code>tidyverse</code> packages can be easily done with the follwoing command:</li>
+</ul>
+<pre class="r"><code># Install from CRAN
+install.packages(&quot;tidyverse&quot;)
+
+# Or the development version from GitHub
+# install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;hadley/tidyverse&quot;)</code></pre>
+<ul>
+<li>Installing <code>tidyverse</code> package installs the following:
+<ul>
+<li>core tidyverse packages
+<ul>
+<li><code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code></li>
+</ul></li>
+<li>packages to work with specific vector types
+<ul>
+<li><code>hms</code>, <code>stringr</code>, <code>lubridate</code>, <code>forcats</code></li>
+</ul></li>
+<li>packages to import data
+<ul>
+<li><code>feather</code>, <code>haven</code>, <code>httr</code>, <code>jsonlite</code>, <code>readxl</code>, <code>rvest</code>, <code>xml2</code></li>
+</ul></li>
+<li>packages to facilitate statistical modeling
+<ul>
+<li><code>modelr</code>, <code>broom</code></li>
+</ul></li>
+</ul></li>
+<li>Of course, each pacakge can be installed separately:</li>
+</ul>
+<pre class="r"><code># Install ggplot2
+install.packages(&quot;ggplot2&quot;)
+
+# Install both dplyr and tidyr with a single commend
+#   with a character vector of the package names 
+install.packages(c(&quot;dplyr&quot;, &quot;tidyr&quot;))</code></pre>
+</div>
+<div id="importing-the-packages" class="section level2">
+<h2>Importing the packages</h2>
+<ul>
+<li>Once installed, we can now import the packages using <code>library()</code>:</li>
+</ul>
+<pre class="r"><code># This imports the core tidyverse packages
+library(tidyverse)
+
+# Or import packages separately
+library(dplyr)
+library(tidyr)</code></pre>
+<hr />
+</div>
+</div>
+<div id="manipulating-your-data" class="section level1">
+<h1>Manipulating Your Data</h1>
+<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+</div>
+<div id="key-dplyr-functions" class="section level2">
+<h2>Key dplyr functions</h2>
+<ul>
+<li><code>arange()</code></li>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>mutate()</code></li>
+<li><code>group_by()</code> and <code>summarise()</code></li>
+<li><code>%&gt;%</code>, the pipe operator</li>
+</ul>
+</div>
+<div id="sorting-with-arrange" class="section level2">
+<h2>Sorting with <code>arrange()</code></h2>
+</div>
+<div id="filtering-with-filter" class="section level2">
+<h2>Filtering with <code>filter()</code></h2>
+</div>
+<div id="selecting-with-select" class="section level2">
+<h2>Selecting with <code>select()</code></h2>
+</div>
+<div id="transforming-with-mutate" class="section level2">
+<h2>Transforming with <code>mutate()</code></h2>
+</div>
+<div id="aggregating-with-group_by-and-summarise" class="section level2">
+<h2>Aggregating with <code>group_by()</code> and <code>summarise()</code></h2>
+</div>
+<div id="chaining-operations-with" class="section level2">
+<h2>Chaining operations with <code>%&gt;%</code></h2>
+</div>
+<div id="more-on-dplyr" class="section level2">
+<h2>More on <code>dplyr</code></h2>
+<ul>
+<li><code>dplyr</code> on <a href="http://dplyr.tidyverse.org/">tidyverse.org</a></li>
+<li><code>dplyr</code> <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf">CRAN documentation</a></li>
+<li><code>dplyr</code> <a href="https://github.com/tidyverse/dplyr">Github repository</a></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="tidying-up-your-data" class="section level1">
+<h1>Tidying Up Your Data</h1>
+<img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+</div>
+<div id="key-tidyr-functions" class="section level2">
+<h2>Key <code>tidyr</code> functions</h2>
+<ul>
+<li><code>gather()</code></li>
+<li><code>spread()</code></li>
+<li><code>separate()</code></li>
+<li><code>extract()</code></li>
+<li><code>unite()</code></li>
+</ul>
+</div>
+<div id="fixing-wide-data-with-gather" class="section level2">
+<h2>Fixing “wide” data with <code>gather()</code></h2>
+</div>
+<div id="fixing-long-data-with-spread" class="section level2">
+<h2>Fixing “long” data with <code>spread()</code></h2>
+</div>
+<div id="splitting-columns-with-separate" class="section level2">
+<h2>Splitting columns with <code>separate()</code></h2>
+</div>
+<div id="combining-columns-with-unite" class="section level2">
+<h2>Combining columns with <code>unite()</code></h2>
+</div>
+<div id="captuaring-groups-with-extract" class="section level2">
+<h2>Captuaring groups with <code>extract()</code></h2>
+</div>
+<div id="more-on-tidyr" class="section level2">
+<h2>More on <code>tidyr</code></h2>
+<ul>
+<li><code>tidyr</code> on <a href="http://tidyr.tidyverse.org/">tidyverse.org</a></li>
+<li><code>tidyr</code> <a href="https://cran.r-project.org/web/packages/tidyr/tidyr.pdf">CRAN documentation</a></li>
+<li><code>tidyr</code> <a href="https://github.com/tidyverse/tidyr">Github repository</a></li>
+</ul>
+</div>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
+  <a href="https://github.com/bobaekang/" class="icon-footer">
+    <i class="fa fa-github fa-2x"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
