@@ -17,7 +17,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -40,13 +40,13 @@ Navigate to the other workshop materials:
 [**note**](module1_notes.html))
 * **Module 2: R basics**
     * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
-* **Module 3: Data analysis in R**
+* **Module 3: Data analysis with R**
     * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
     * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
-* **Module 4: Data visualization in R**
+* **Module 4: Data visualization with R**
     * Part 1 ([**slides**](../slides/module4_slides.html), [**note**](module4_notes.html))
     * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
-* **Module 5: Statistical modeling in R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
+* **Module 5: Statistical modeling with R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
 * **Module 6: Sharing your analysis and more** ([**slides**](../slides/module6_slides.html), [**note**](module6_notes.html))
 
 

@@ -17,7 +17,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -39,20 +39,28 @@ Navigate to the other workshop materials:
 * **Module 2: R basics**
     * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
     * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
-* **Module 3: Data analysis in R**
+* **Module 3: Data analysis with R**
     * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
     * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
-* **Module 4: Data visualization in R**
+* **Module 4: Data visualization with R**
     * Part 1 ([**slides**](../slides/module4_slides.html), [**note**](module4_notes.html))
     * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
-* **Module 5: Statistical modeling in R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
+* **Module 5: Statistical modeling with R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
 * **Module 6: Sharing your analysis and more** ([**slides**](../slides/module6_slides.html), [**note**](module6_notes.html))
-
 
 
 ***
 
 # Introducing R
+
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+print("Hellow World!")
+knitr::include_graphics("https://www.r-project.org/logo/Rlogo.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+</p>
+
 
 ## What is R?
 
@@ -60,6 +68,13 @@ Navigate to the other workshop materials:
 
 * *Built for* data analysis and visualization
 * One of the the most popular choices of programming language among academic researchers and data scientists
+
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+knitr::include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
+</p>
 
 ## Why R?
 
@@ -95,6 +110,14 @@ Navigate to the other workshop materials:
 ***
 
 # RStudio
+
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.rstudio.com//">RStudio</a>
+</p>
+
 ## What is RStudio?
 
 * Best Integrated Development Environment (IDE) for R

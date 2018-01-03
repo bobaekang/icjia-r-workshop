@@ -1,0 +1,201 @@
+---
+title: "R Workshop: Module 3 (1)"
+author: "Bobae Kang"
+date: "January 31, 2018"
+output:
+  html_document:
+    self_contained: no
+    toc: TRUE
+    toc_float	:	TRUE
+    toc_depth: 2
+    includes:
+      after_body: ../include_footer.html
+css: ../css/style.css
+---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- logo -->
+<div class="logo">
+  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+</div>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This page contains the notes for **the first part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+
+### Links
+Click [**here**](../index.html) to go to the workshop **home page**.
+
+Click [**here**](../modules.html) to go to the workshop **Modules page**.
+
+Click [**here**](../slides/module3_slides1.html) to view the accompanying **slides for Module 3, Part 1**.
+
+Navigate to the other workshop materials:
+
+* **Module 1: Introduction to R** ([**slides**](../slides/module1_slides.html),
+[**note**](module1_notes.html))
+* **Module 2: R basics**
+    * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
+    * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
+* **Module 3: Data analysis with R**
+    * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
+* **Module 4: Data visualization with R**
+    * Part 1 ([**slides**](../slides/module4_slides.html), [**note**](module4_notes.html))
+    * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
+* **Module 5: Statistical modeling with R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
+* **Module 6: Sharing your analysis and more** ([**slides**](../slides/module6_slides.html), [**note**](module6_notes.html))
+
+
+
+***
+
+# Data Analysis with R (1): Getting started with `tidyverse`
+
+```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
+images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+knitr::include_graphics(images)
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+</div>
+
+***
+
+# Getting Ready
+
+##Installing the packages
+
+* Installing all `tidyverse` packages can be easily done with the follwoing command:
+
+```{r eval=FALSE}
+# Install from CRAN
+install.packages("tidyverse")
+
+# Or the development version from GitHub
+# install.packages("devtools")
+devtools::install_github("hadley/tidyverse")
+```
+
+* Installing `tidyverse` package installs the following:
+    * core tidyverse packages
+        * `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`
+    * packages to work with specific vector types 
+        * `hms`, `stringr`, `lubridate`, `forcats`
+    * packages to import data
+        * `feather`, `haven`, `httr`, `jsonlite`, `readxl`, `rvest`, `xml2`
+    * packages to facilitate statistical modeling
+        * `modelr`, `broom`
+
+* Of course, each pacakge can be installed separately:
+
+```{r eval=FALSE}
+# Install ggplot2
+install.packages("ggplot2")
+
+# Install both dplyr and tidyr with a single commend
+#   with a character vector of the package names 
+install.packages(c("dplyr", "tidyr"))
+```
+
+
+## Importing the packages
+
+* Once installed, we can now import the packages using `library()`:
+
+```{r eval=FALSE}
+# This imports the core tidyverse packages
+library(tidyverse)
+
+# Or import packages separately
+library(dplyr)
+library(tidyr)
+```
+
+***
+
+# Manipulating Your Data
+
+```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+knitr::include_graphics(images[1])
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+</div>
+
+
+## Key dplyr functions
+
+* `arange()`
+* `select()`
+* `filter()`
+* `mutate()`
+* `group_by()` and `summarise()`
+* `%>%`, the pipe operator
+
+## Sorting with `arrange()`
+
+
+## Filtering with `filter()`
+
+
+## Selecting with `select()`
+
+
+## Transforming with `mutate()`
+
+
+## Aggregating with `group_by()` and `summarise()`
+
+
+## Chaining operations with `%>%`
+
+
+## More on `dplyr`
+
+* `dplyr` on [tidyverse.org](http://dplyr.tidyverse.org/)
+* `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
+* `dplyr` [Github repository](https://github.com/tidyverse/dplyr)
+
+***
+
+# Tidying Up Your Data
+
+```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+knitr::include_graphics(images[2])
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+</div>
+
+## Key `tidyr` functions
+
+* `gather()`
+* `spread()`
+* `separate()`
+* `extract()`
+* `unite()`
+
+## Fixing "wide" data with `gather()`
+
+
+## Fixing "long" data with `spread()`
+
+
+## Splitting columns with `separate()`
+
+
+## Combining columns with `unite()`
+
+
+## Captuaring groups with `extract()`
+
+
+## More on `tidyr`
+
+* `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
+* `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
+* `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
