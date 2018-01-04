@@ -22,7 +22,8 @@ css: ../css/style.css
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+opts_chunk$set(echo = TRUE)
 ```
 
 This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
@@ -55,7 +56,7 @@ Navigate to the other workshop materials:
 
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 print("Hellow World!")
-knitr::include_graphics("https://www.r-project.org/logo/Rlogo.png")
+include_graphics("https://www.r-project.org/logo/Rlogo.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
@@ -69,8 +70,8 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 * *Built for* data analysis and visualization
 * One of the the most popular choices of programming language among academic researchers and data scientists
 
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-knitr::include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
@@ -89,30 +90,45 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 ### R vs Excel
 
 * License cost
-* Speed
-* Scalability
-* Complex and advanced analysis
+    * Although often taken for granted, the MS Office Suite is in fact not free. In contrast, **R is free.** (Of course, this may be a moot point since other MS Office Suite products are well loved and widely used on daily basis.) 
+* Speed and scalability
+    * Excel is slow, and its performance quickly deteriorates as the data size grows. R offers many tools highly optimized to work with large data.
+    * Excel has limits on the number of rows and columns on a worksheet (1,048,576 rows by 16,384 columns). R does not.
 * Visualization
+    * While Excel provides some basic visualzation options, it is difficult in Excel to create highly customized and publication-quality plots. R can achieve this with only several lines of code.
+* Complex and advanced analysis
+    * Data manipulation capability of R is simply superior to that of Excel.
+    * Although Excel does offer a variety of built-in functions for data analysis to many people's surprise, users are still limited to the built-in options. Not only R comes with advanced data analysis functionalities, they can also be easily exended with add-on pacakges.
+* Reproducibility
+
 
 ### R vs SPSS
 
 * License cost (again)
+    * At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.[^1] **R is free.**
 * Syntax
 * Visualization
-* Presentation
+* Reporting
+
+[^1]: See the official SPSS [Pricing page](https://www.ibm.com/products/spss-statistics/pricing) for more information.
 
 ### R vs Tableau
 
 * License cost (DUH!)
+    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^2] **R is free.**
 * Cleaning data
 * Complex and advanced analysis
+
+[^2]: See the official Tableau [Pricing page](https://www.tableau.com/pricing) for more information.
+
+This is not to say that all these softwares are useless. Each software is designed with a specific purpose, and any of them probably has a better learning curve compared to R. Nonetheless, ...
 
 ***
 
 # RStudio
 
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
+include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.rstudio.com//">RStudio</a>
@@ -128,25 +144,74 @@ Source: <a href="https://www.rstudio.com//">RStudio</a>
 
 ## Why use RStudio?
 
+## RStudio overview
+
+```{r echo=FALSE, out.width="100%"}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
+
+### Source editor pane
+
+* Write and edit R scripts
+
+### Console pane
+
+* Interactively run R commands
+
+### Environment/history pane
+
+* **Environment**: view objects in the global environment
+* **History**: search and view command history
+
+### Files/Plots/Packages/Help pane
+
+* **Files**: navigate directories
+* **Plots**: view generated plots
+* **Packages**: manage installed packages in the library
+* **Help**: view help documentations for any package/function
+
+## Customization
+
+### Panes
+
+The size and position of panes can be customized. On the top right of each pane, there are buttons to adjust the pane size. Also, place your mouse pointer/cursor on the border line between panes and when the pointer changes its shape, click and drag to adjust the pane size. For more options, go to **View > Panes** on the menu bar. Alternatively, try **Tools > Global Options > Pane Layout**.
+
+### Appearances
+
+The overall appearance can be customized as well. Go to **Tools > Global options > Appearnce** on the menu bar to change themes, fonts, and more. 
 
 ***
 
 # Basic Setup
 ## Installing R
 
-* Visit https://cran.r-project.org/
+* Visit [**https://cran.r-project.org/**](https://cran.r-project.org/)
 * Or simply google "download R" to find the link to download page.
 * *Installation requires the Administrator account*; talk to DoIT!
 
+* Also, check out "Install R" [**tutorial video**](https://vimeo.com/203516510) by RStudio, Inc.
+
 ## Installing RStudio
 
-* Visit https://www.rstudio.com/products/rstudio/download/
+* Visit [**https://www.rstudio.com/products/rstudio/download/**](https://www.rstudio.com/products/rstudio/download/)
 * Or simply google "download Rstudio" to find the link to download page.
 * Agin, *installation requires the Administrator account*; talk to DoIT!
 
+* Also, check out "Install RStudio" [**tutorial video**](https://vimeo.com/203516968) by RStudio, Inc.
 
 ***
 # Workshop Overview
+
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
+
 ## Module 2
 ### R basics 
 Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.

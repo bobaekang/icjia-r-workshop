@@ -336,6 +336,8 @@ library(some_package)
     * using `install_github("author/package")`
         * `install_github()` is available via `devtools` package.
 
+* Also, check out "Install Packages" [tutorial video](https://vimeo.com/203516241) by RStudio, Inc.
+
 ***
 
 # Tidyverse Framework
@@ -409,6 +411,10 @@ iris %>%
 * `readr` for data import/export
 * `purrr` for loop operations
 * `tibble` for data representation
+
+## Resources
+
+* RStudio, Inc., "tidy tutorial" [video](https://vimeo.com/211352331)
 
 ***
 
