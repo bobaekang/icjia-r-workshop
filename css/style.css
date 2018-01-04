@@ -16,7 +16,21 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Oswald';
+}
+
+h1 {
+  font-size: 40px;
   color: #222;
+}
+
+h2{
+  font-size: 32px;
+  color: #444;
+  
+}
+
+h3, h4{
+  color: #666;
 }
 
 .title {

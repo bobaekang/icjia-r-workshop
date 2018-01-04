@@ -275,7 +275,7 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 <li><em>Built for</em> data analysis and visualization</li>
 <li>One of the the most popular choices of programming language among academic researchers and data scientists</li>
 </ul>
-<img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">“The Impresseive Growth of R”</a>
 </p>
@@ -295,29 +295,50 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <div id="r-vs-excel" class="section level3">
 <h3>R vs Excel</h3>
 <ul>
-<li>License cost</li>
-<li>Speed</li>
-<li>Scalability</li>
-<li>Complex and advanced analysis</li>
-<li>Visualization</li>
+<li>License cost
+<ul>
+<li>Although often taken for granted, the MS Office Suite is in fact not free. In contrast, <strong>R is free.</strong> (Of course, this may be a moot point since other MS Office Suite products are well loved and widely used on daily basis.)</li>
+</ul></li>
+<li>Speed and scalability
+<ul>
+<li>Excel is slow, and its performance quickly deteriorates as the data size grows. R offers many tools highly optimized to work with large data.</li>
+<li>Excel has limits on the number of rows and columns on a worksheet (1,048,576 rows by 16,384 columns). R does not.</li>
+</ul></li>
+<li>Visualization
+<ul>
+<li>While Excel provides some basic visualzation options, it is difficult in Excel to create highly customized and publication-quality plots. R can achieve this with only several lines of code.</li>
+</ul></li>
+<li>Complex and advanced analysis
+<ul>
+<li>Data manipulation capability of R is simply superior to that of Excel.</li>
+<li>Although Excel does offer a variety of built-in functions for data analysis to many people’s surprise, users are still limited to the built-in options. Not only R comes with advanced data analysis functionalities, they can also be easily exended with add-on pacakges.</li>
+</ul></li>
+<li>Reproducibility</li>
 </ul>
 </div>
 <div id="r-vs-spss" class="section level3">
 <h3>R vs SPSS</h3>
 <ul>
-<li>License cost (again)</li>
+<li>License cost (again)
+<ul>
+<li>At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <strong>R is free.</strong></li>
+</ul></li>
 <li>Syntax</li>
 <li>Visualization</li>
-<li>Presentation</li>
+<li>Reporting</li>
 </ul>
 </div>
 <div id="r-vs-tableau" class="section level3">
 <h3>R vs Tableau</h3>
 <ul>
-<li>License cost (DUH!)</li>
+<li>License cost (DUH!)
+<ul>
+<li>At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <strong>R is free.</strong></li>
+</ul></li>
 <li>Cleaning data</li>
 <li>Complex and advanced analysis</li>
 </ul>
+<p>This is not to say that all these softwares are useless. Each software is designed with a specific purpose, and any of them probably has a better learning curve compared to R. Nonetheless, …</p>
 <hr />
 </div>
 </div>
@@ -340,7 +361,53 @@ Source: <a href="https://www.rstudio.com//">RStudio</a>
 </div>
 <div id="why-use-rstudio" class="section level2">
 <h2>Why use RStudio?</h2>
+</div>
+<div id="rstudio-overview" class="section level2">
+<h2>RStudio overview</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" width="100%" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
+<div id="source-editor-pane" class="section level3">
+<h3>Source editor pane</h3>
+<ul>
+<li>Write and edit R scripts</li>
+</ul>
+</div>
+<div id="console-pane" class="section level3">
+<h3>Console pane</h3>
+<ul>
+<li>Interactively run R commands</li>
+</ul>
+</div>
+<div id="environmenthistory-pane" class="section level3">
+<h3>Environment/history pane</h3>
+<ul>
+<li><strong>Environment</strong>: view objects in the global environment</li>
+<li><strong>History</strong>: search and view command history</li>
+</ul>
+</div>
+<div id="filesplotspackageshelp-pane" class="section level3">
+<h3>Files/Plots/Packages/Help pane</h3>
+<ul>
+<li><strong>Files</strong>: navigate directories</li>
+<li><strong>Plots</strong>: view generated plots</li>
+<li><strong>Packages</strong>: manage installed packages in the library</li>
+<li><strong>Help</strong>: view help documentations for any package/function</li>
+</ul>
+</div>
+</div>
+<div id="customization" class="section level2">
+<h2>Customization</h2>
+<div id="panes" class="section level3">
+<h3>Panes</h3>
+<p>The size and position of panes can be customized. On the top right of each pane, there are buttons to adjust the pane size. Also, place your mouse pointer/cursor on the border line between panes and when the pointer changes its shape, click and drag to adjust the pane size. For more options, go to <strong>View &gt; Panes</strong> on the menu bar. Alternatively, try <strong>Tools &gt; Global Options &gt; Pane Layout</strong>.</p>
+</div>
+<div id="appearances" class="section level3">
+<h3>Appearances</h3>
+<p>The overall appearance can be customized as well. Go to <strong>Tools &gt; Global options &gt; Appearnce</strong> on the menu bar to change themes, fonts, and more.</p>
 <hr />
+</div>
 </div>
 </div>
 <div id="basic-setup" class="section level1">
@@ -348,23 +415,29 @@ Source: <a href="https://www.rstudio.com//">RStudio</a>
 <div id="installing-r" class="section level2">
 <h2>Installing R</h2>
 <ul>
-<li>Visit <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
+<li>Visit <a href="https://cran.r-project.org/"><strong>https://cran.r-project.org/</strong></a></li>
 <li>Or simply google “download R” to find the link to download page.</li>
-<li><em>Installation requires the Administrator account</em>; talk to DoIT!</li>
+<li><p><em>Installation requires the Administrator account</em>; talk to DoIT!</p></li>
+<li><p>Also, check out “Install R” <a href="https://vimeo.com/203516510"><strong>tutorial video</strong></a> by RStudio, Inc.</p></li>
 </ul>
 </div>
 <div id="installing-rstudio" class="section level2">
 <h2>Installing RStudio</h2>
 <ul>
-<li>Visit <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
+<li>Visit <a href="https://www.rstudio.com/products/rstudio/download/"><strong>https://www.rstudio.com/products/rstudio/download/</strong></a></li>
 <li>Or simply google “download Rstudio” to find the link to download page.</li>
-<li>Agin, <em>installation requires the Administrator account</em>; talk to DoIT!</li>
+<li><p>Agin, <em>installation requires the Administrator account</em>; talk to DoIT!</p></li>
+<li><p>Also, check out “Install RStudio” <a href="https://vimeo.com/203516968"><strong>tutorial video</strong></a> by RStudio, Inc.</p></li>
 </ul>
 <hr />
 </div>
 </div>
 <div id="workshop-overview" class="section level1">
 <h1>Workshop Overview</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
 <div id="module-2" class="section level2">
 <h2>Module 2</h2>
 <div id="r-basics" class="section level3">
@@ -421,6 +494,13 @@ Source: <a href="https://www.rstudio.com//">RStudio</a>
 <p>This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny.</p>
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>See the official SPSS <a href="https://www.ibm.com/products/spss-statistics/pricing">Pricing page</a> for more information.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>See the official Tableau <a href="https://www.tableau.com/pricing">Pricing page</a> for more information.<a href="#fnref2">↩</a></p></li>
+</ol>
 </div>
 
 <footer>
