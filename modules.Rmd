@@ -16,9 +16,11 @@ body {
 knitr::opts_chunk$set(echo = FALSE, fig.align="center")
 ```
 
-```{r image, out.width=800}
+<div class="fade-in">
+```{r image, out.width=800, include=TRUE}
 knitr::include_graphics("images/module.jpg")
 ```
+</div>
 
 The workshop consists of six separate modules which are meant to be followed in order. Each module has a specific focus. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
