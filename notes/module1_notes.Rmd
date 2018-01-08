@@ -82,13 +82,24 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 * Open source (free!)
 * Built for statistical analysis
 * Reproducible and transparent
-* Extensible through powerful third-party libraries
+* Extensible through powerful third-party packages
 * Enabling researchers to tackle a variety of tasks using a *single* platform
+    * Data manipulation and analyiss
+    * Basic and advanced statistical modeling
+    * Publication-ready data visualization
+    * Generating reports in various formats (html webpage, MS word, PDF)
+    * Slideshows, websites, interactive dashboards, etc.
 
 ## Comparisons
 
 ### R vs Excel
-
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/excel-logo.png")
+```
+</div>
+<div class="col-xs-10">
 * License cost
     * Although often taken for granted, the MS Office Suite is in fact not free. In contrast, **R is free.** (Of course, this may be a moot point since other MS Office Suite products are well loved and widely used on daily basis.) 
 * Speed and scalability
@@ -100,28 +111,58 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * Data manipulation capability of R is simply superior to that of Excel.
     * Although Excel does offer a variety of built-in functions for data analysis to many people's surprise, users are still limited to the built-in options. Not only R comes with advanced data analysis functionalities, they can also be easily exended with add-on pacakges.
 * Reproducibility
-
+    * Saving one's R code as an R script can be used to easily reproduce any data manipulation and analysis. Such reproducibility ensures the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project; collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.
+    * Reproducibility can be achieved in Excel to only a limited extent, any marginally complex analysis in Excel becomes extremely difficult to reproduce.
+</div>
+</div>
 
 ### R vs SPSS
 
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/spss-logo.png")
+```
+</div>
+<div class="col-xs-10">
 * License cost (again)
     * At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.[^1] **R is free.**
 * Syntax
+    * SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.[^2] R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.
 * Visualization
+    * Although SPSS offers basic visualization options for commonly used charts and graphs, just as in Excel, only minimal customization is available and the outputs are little better than Excel graphs.
 * Reporting
+    * SPSS is capable for quickly generating a report on the data, but the output is merely functional. On the other hand, R offers RMarkdown documents that can be used to generate highly customized, publication-ready reports and articles in various formats: html webpage, MS Word, and PDF document.
+    
+</div>
+</div>
 
-[^1]: See the official SPSS [Pricing page](https://www.ibm.com/products/spss-statistics/pricing) for more information.
+[^1]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing) for more information.
+
+[^2]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference) and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/) for more on this point.
 
 ### R vs Tableau
 
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/tableau-logo.png")
+```
+</div>
+<div class="col-xs-10">
 * License cost (DUH!)
-    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^2] **R is free.**
-* Cleaning data
+    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^3] **R is free.**
+* Data manipulation
+    * Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau's data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.[^4]
 * Complex and advanced analysis
+</div>
+</div>
 
-[^2]: See the official Tableau [Pricing page](https://www.tableau.com/pricing) for more information.
+[^3]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing) for more information.
 
-This is not to say that all these softwares are useless. Each software is designed with a specific purpose, and any of them probably has a better learning curve compared to R. Nonetheless, ...
+[^4]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/) for more on the limitation of Tableau's data manipulation functionality with an example.
+
+This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferior to R in all aspects. Each software is designed with a specific set of tasks and comes with the ease of use for the right tasks. Furthermore, compared to these tools, R has a relatively steep learning curve, which makes it difficult for anyone without sufficient background knowledge to quickly master and use it for real tasks. Nonetheless, R is highly performant, versatile, flexible, and compatible with any of the tools above. R is a great addition to any researcher's toolbox while it can easily be the most preferred choice of tool.
 
 ***
 
