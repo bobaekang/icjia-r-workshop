@@ -286,14 +286,26 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <li>Open source (free!)</li>
 <li>Built for statistical analysis</li>
 <li>Reproducible and transparent</li>
-<li>Extensible through powerful third-party libraries</li>
-<li>Enabling researchers to tackle a variety of tasks using a <em>single</em> platform</li>
+<li>Extensible through powerful third-party packages</li>
+<li>Enabling researchers to tackle a variety of tasks using a <em>single</em> platform
+<ul>
+<li>Data manipulation and analyiss</li>
+<li>Basic and advanced statistical modeling</li>
+<li>Publication-ready data visualization</li>
+<li>Generating reports in various formats (html webpage, MS word, PDF)</li>
+<li>Slideshows, websites, interactive dashboards, etc.</li>
+</ul></li>
 </ul>
 </div>
 <div id="comparisons" class="section level2">
 <h2>Comparisons</h2>
 <div id="r-vs-excel" class="section level3">
 <h3>R vs Excel</h3>
+<div class="row">
+<div class="col-xs-2">
+<p><img src="../images/excel-logo.png" width="100%" /></p>
+</div>
+<div class="col-xs-10">
 <ul>
 <li>License cost
 <ul>
@@ -313,32 +325,64 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <li>Data manipulation capability of R is simply superior to that of Excel.</li>
 <li>Although Excel does offer a variety of built-in functions for data analysis to many people’s surprise, users are still limited to the built-in options. Not only R comes with advanced data analysis functionalities, they can also be easily exended with add-on pacakges.</li>
 </ul></li>
-<li>Reproducibility</li>
+<li>Reproducibility
+<ul>
+<li>Saving one’s R code as an R script can be used to easily reproduce any data manipulation and analysis. Such reproducibility ensures the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project; collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.</li>
+<li>Reproducibility can be achieved in Excel to only a limited extent, any marginally complex analysis in Excel becomes extremely difficult to reproduce.</li>
+</ul></li>
 </ul>
+</div>
+</div>
 </div>
 <div id="r-vs-spss" class="section level3">
 <h3>R vs SPSS</h3>
+<div class="row">
+<div class="col-xs-2">
+<p><img src="../images/spss-logo.png" width="100%" /></p>
+</div>
+<div class="col-xs-10">
 <ul>
 <li>License cost (again)
 <ul>
 <li>At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <strong>R is free.</strong></li>
 </ul></li>
-<li>Syntax</li>
-<li>Visualization</li>
-<li>Reporting</li>
+<li>Syntax
+<ul>
+<li>SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.</li>
+</ul></li>
+<li>Visualization
+<ul>
+<li>Although SPSS offers basic visualization options for commonly used charts and graphs, just as in Excel, only minimal customization is available and the outputs are little better than Excel graphs.</li>
+</ul></li>
+<li>Reporting
+<ul>
+<li>SPSS is capable for quickly generating a report on the data, but the output is merely functional. On the other hand, R offers RMarkdown documents that can be used to generate highly customized, publication-ready reports and articles in various formats: html webpage, MS Word, and PDF document.</li>
+</ul></li>
 </ul>
+</div>
+</div>
 </div>
 <div id="r-vs-tableau" class="section level3">
 <h3>R vs Tableau</h3>
+<div class="row">
+<div class="col-xs-2">
+<p><img src="../images/tableau-logo.png" width="100%" /></p>
+</div>
+<div class="col-xs-10">
 <ul>
 <li>License cost (DUH!)
 <ul>
-<li>At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <strong>R is free.</strong></li>
+<li>At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> <strong>R is free.</strong></li>
 </ul></li>
-<li>Cleaning data</li>
+<li>Data manipulation
+<ul>
+<li>Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau’s data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></li>
+</ul></li>
 <li>Complex and advanced analysis</li>
 </ul>
-<p>This is not to say that all these softwares are useless. Each software is designed with a specific purpose, and any of them probably has a better learning curve compared to R. Nonetheless, …</p>
+</div>
+</div>
+<p>This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferior to R in all aspects. Each software is designed with a specific set of tasks and comes with the ease of use for the right tasks. Furthermore, compared to these tools, R has a relatively steep learning curve, which makes it difficult for anyone without sufficient background knowledge to quickly master and use it for real tasks. Nonetheless, R is highly performant, versatile, flexible, and compatible with any of the tools above. R is a great addition to any researcher’s toolbox while it can easily be the most preferred choice of tool.</p>
 <hr />
 </div>
 </div>
@@ -498,8 +542,10 @@ Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>See the official SPSS <a href="https://www.ibm.com/products/spss-statistics/pricing">Pricing page</a> for more information.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>See the official Tableau <a href="https://www.tableau.com/pricing">Pricing page</a> for more information.<a href="#fnref2">↩</a></p></li>
+<li id="fn1"><p>See the official SPSS <a href="https://www.ibm.com/products/spss-statistics/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>See <a href="https://stackoverflow.com/questions/3787231/r-and-spss-difference"><strong>this Stack Overflow thread</strong></a> and <a href="https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/"><strong>this Reddit thread</strong></a> for more on this point.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>See the official Tableau <a href="https://www.tableau.com/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>See <a href="https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/"><strong>this article from AIM Consulting</strong></a> for more on the limitation of Tableau’s data manipulation functionality with an example.<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
