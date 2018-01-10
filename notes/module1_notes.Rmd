@@ -54,6 +54,11 @@ Navigate to the other workshop materials:
 
 # Introduction to the Workshop
 
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+
 ## Instructor (Bobae Kang)
 
 My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html) to read more about me.
@@ -109,13 +114,13 @@ Let us now compare how these two work differently for a simple data analysis pro
 
 ### Sterling, a typical GUI-oriented workflow
 
-1. Sterling finds out that he needs Uniform Crime Reports (UCR) data from Illinois State Police (ISP) website for his project. In fact, he needs data for the five most recent years He goes to the website and download each file separately, which lands on the default Download folder.
-2. Sterling browses to the Download folder and opens the files in MS Excel:
+1. Sterling finds out that he needs Uniform Crime Reports (UCR) data from Illinois State Police (ISP) website for his project. In fact, he needs data for the five most recent years He goes to the website and download each file separately, which lands on the default Downloads folder.
+2. Sterling browses to the Downloads folder and opens the files in MS Excel:
     * Sterling wants to have data for all years in a single spreadsheet. So he copy pastes multiple times to have all in the same place.
     * Sterling then realizes that he needs only a few variables for his analysis. He deletes all columns but the ones he needs, and saves it (`mydata.xlsx`) to the research directory that he creates as he is saving the combined data file.
 3. Sterling opens the combined data in SPSS:
     * Sterling runs a quick regression analysis and checks the results. The model fit doesn't look good--oops, he should have included another variable in the model.
-4. Sterling so goes back to the Download folder for the original files, spends some minutes to find the downloaded files (there are so many files in the Download folder!), opens all spreadsheets in Excel, and copy-and-pastes the desired column from them to the combined spreadsheet. He saves it as a separate file (`mydata2.xlsx`).
+4. Sterling so goes back to the Downloads folder for the original files, spends some minutes to find the downloaded files (there are so many files in the Downloads folder!), opens all spreadsheets in Excel, and copy-and-pastes the desired column from them to the combined spreadsheet. He saves it as a separate file (`mydata2.xlsx`).
 5. Sterling opens the updated data file in SPSS and runs the model again with more point-and-clicks. Finally, the results look good.
 6. Sterling opens MS Word to write a report on his model output.
     * He copy-and-pastes the model outputs and graphs from the SPSS report to the Word document.
