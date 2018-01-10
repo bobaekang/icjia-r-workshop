@@ -279,31 +279,101 @@ div.tocify {
 </ul>
 <p>Of course, mastering any of the listed skills requires more than this workshop. <em>This workshop alone will not make any of its participants an expert R programmer.</em> However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.</p>
 </div>
-<div id="a-programming-appraoch-to-research" class="section level2">
-<h2>A programming appraoch to research</h2>
+<div id="a-programming-approach-to-research" class="section level2">
+<h2>A programming approach to research</h2>
+<p>Among the core objectives of this workshop is to convince its participants to try a different approach to research: <strong>a programming (or programmatic) approach</strong>.</p>
+<p>Many researchers and analysts rely on “graphical user interface” (GUI) tools where a lot of point-and-clicks and drag-and-drops happens. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it–which, by the way, can be fun as well!</p>
+<div id="gui-workflow-vs.programmatic-workflow" class="section level3">
+<h3>GUI workflow vs. programmatic workflow</h3>
+<p>Before discussing specific advantages of the programmatic approach to research, let compare two different workflows–one using GUI, and the other programmatic–with examples.</p>
+<p>Here we introduce two reserchers:</p>
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+<p><img src="../images/archer.png" width="100%" /></p>
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+<ul>
+<li><strong>Sterling Malory Archer</strong> is an ICJIA research analyst relying almost explicitly on the GUI tools for his research projects.</li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+<p><img src="../images/lana.png" width="100%" /></p>
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+<ul>
+<li><strong>Lana Anthony Kane</strong>, another ICJIA research analyst, has adopted a programming approach to research.</li>
+</ul>
+</div>
+</div>
+<p>Let us now compare how these two work differently for a simple data analysis project.</p>
+</div>
+<div id="sterling-a-typical-gui-oriented-workflow" class="section level3">
+<h3>Sterling, a typical GUI-oriented workflow</h3>
+<ol style="list-style-type: decimal">
+<li>Sterling finds out that he needs Uniform Crime Reports (UCR) data from Illinois State Police (ISP) website for his project. In fact, he needs data for the five most recent years He goes to the website and download each file separately, which lands on the default Download folder.</li>
+<li>Sterling browses to the Download folder and opens the files in MS Excel:
+<ul>
+<li>Sterling wants to have data for all years in a single spreadsheet. So he copy pastes multiple times to have all in the same place.</li>
+<li>Sterling then realizes that he needs only a few variables for his analysis. He deletes all columns but the ones he needs, and saves it (<code>mydata.xlsx</code>) to the research directory that he creates as he is saving the combined data file.</li>
+</ul></li>
+<li>Sterling opens the combined data in SPSS:
+<ul>
+<li>Sterling runs a quick regression analysis and checks the results. The model fit doesn’t look good–oops, he should have included another variable in the model.</li>
+</ul></li>
+<li>Sterling so goes back to the Download folder for the original files, spends some minutes to find the downloaded files (there are so many files in the Download folder!), opens all spreadsheets in Excel, and copy-and-pastes the desired column from them to the combined spreadsheet. He saves it as a separate file (<code>mydata2.xlsx</code>).</li>
+<li>Sterling opens the updated data file in SPSS and runs the model again with more point-and-clicks. Finally, the results look good.</li>
+<li>Sterling opens MS Word to write a report on his model output.
+<ul>
+<li>He copy-and-pastes the model outputs and graphs from the SPSS report to the Word document.</li>
+</ul></li>
+<li>Sterling sends the report to his supervisor. Done!
+<ul>
+<li>If his supervisor later comes to Sterling and asks him how he came to his conclusion, will Sterling remember all the steps he took?</li>
+</ul></li>
+</ol>
+</div>
+<div id="lana-a-programmatic-workflow" class="section level3">
+<h3>Lana, a programmatic workflow</h3>
+<ol style="list-style-type: decimal">
+<li>Before anything, Lana sets up a directory specifically for the project at hand and creates some sub-directories where different types of inputs and outputs will be stored. From past experience, Lana knows that she needs at lease the following sub-directories:
+<ul>
+<li><code>data</code>: to store data inputs</li>
+<li><code>images</code>: to store image outputs</li>
+<li><code>reports</code>: to store report outputs</li>
+</ul></li>
+<li>Lana goes to the ISP website to find where the UCR data files are located. Then she writes a program to download and store them to the <code>data</code> subdirectory–<em>all at once!</em> She saves the R scrpt for the current program in the main directory.</li>
+<li>Lana writes a separate program that imports the data files and combines them into a single table. Then she takes a closer look at the table to identify which variables she needs, and writes a few more lines of code to select only the corresponding columns and save the modified version of data table into the <code>data</code> folder. Again, she saves the R script in the main directory.</li>
+<li>Lana creates another separate program, which imports the clean data file, fits a regression model, and generates some nice-looking plots. The plots are saved in the <code>images</code> folder.
+<ul>
+<li>Oops, the model fit does not look good. She should have included another variable. Lana goes back to the tab for the data cleaning script and, <em>by tweaking a few lines in her code</em>, quickly re-creates the data file.</li>
+<li>Lana then comes back to the modeling script tab and, <em>without changing a single line of code</em>, simply re-runs it to get satisfying regression results and plots.</li>
+<li>She saves the script in the main directory.</li>
+</ul></li>
+<li>Lana creates a R Markdown file for her report. Since R Markdown can easily incorporate R code, no need to copy-and-paste the results. Lana <em>knits</em> the report into a nice-looking html document, now saved in <code>reports</code> subdirectory. The R Markdown script is also saved.</li>
+<li>Lana sends the report to her supervisor with a link to her project directory. Done!
+<ul>
+<li>If the supervisor later comes back to Lana and questions how she came to her conclusion, everything is there and she has nothing to hide!</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="benefits-of-a-programming-approach" class="section level2">
+<h2>Benefits of a programming approach</h2>
 <div id="automation" class="section level3">
 <h3>Automation</h3>
-<p>About automation</p>
+</div>
+<div id="modularization" class="section level3">
+<h3>Modularization</h3>
 </div>
 <div id="reproducibiltiy" class="section level3">
 <h3>Reproducibiltiy</h3>
-<p>Define reproducibility and explain its benefits in research</p>
+<p>A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project.</p>
 </div>
 <div id="version-control" class="section level3">
 <h3>Version-control</h3>
 <p>About version-control</p>
-</div>
-<div id="gui-workflow-vs-programmatic-workflow" class="section level3">
-<h3>GUI workflow vs programmatic workflow</h3>
-<p>With artificial examples; e.g.:</p>
-<ul>
-<li>Archer, a research analyst using the GUI workflow
-<ul>
-<li>write about an artificial scenario of working on a task with GUI tools (Excel, SPSS, word …)</li>
-</ul></li>
-<li>Lana, another research analyst using the programmatic workflow</li>
-<li>write about an artificial scenario of working on a task with a programmatic approach</li>
-</ul>
 <hr />
 </div>
 </div>
@@ -345,7 +415,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 </ul></li>
 <li>Reproducible and transparent
 <ul>
-<li>Saving one’s R code as an R script can be used to easily reproduce any data manipulation and analysis. Such reproducibility ensures the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project; collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.</li>
+<li>Saving one’s R code as an R script can be used to easily reproduce any data manipulation and analysis, ensuring the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. Collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.</li>
 <li>As stated above, R is an open source. This open-source nature of R gives the language the level of transparency that other commercial softwares cannot afford. Also most of R packages are also open source, making it possible for any interested user to see precisely how things work under the hood.</li>
 </ul></li>
 <li>Extensible through powerful third-party packages</li>

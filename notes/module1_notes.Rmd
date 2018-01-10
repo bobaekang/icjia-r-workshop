@@ -73,25 +73,83 @@ This workshop is developed to offer a gentle introduction to the R programming l
 Of course, mastering any of the listed skills requires more than this workshop. *This workshop alone will not make any of its participants an expert R programmer.* However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.
 
 
-## A programming appraoch to research
+## A programming approach to research
+
+Among the core objectives of this workshop is to convince its participants to try a different approach to research: **a programming (or programmatic) approach**.
+
+Many researchers and analysts rely on "graphical user interface" (GUI) tools where a lot of point-and-clicks and drag-and-drops happens. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it--which, by the way, can be fun as well!
+
+### GUI workflow vs. programmatic workflow
+Before discussing specific advantages of the programmatic approach to research, let compare two different workflows--one using GUI, and the other programmatic--with examples.
+
+Here we introduce two reserchers:
+
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/archer.png")
+```
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+* **Sterling Malory Archer** is an ICJIA research analyst relying almost explicitly on the GUI tools for his research projects.
+</div>
+</div>
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/lana.png")
+```
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+* **Lana Anthony Kane**, another ICJIA research analyst, has adopted a programming approach to research.
+</div>
+</div>
+
+Let us now compare how these two work differently for a simple data analysis project.
+
+### Sterling, a typical GUI-oriented workflow
+
+1. Sterling finds out that he needs Uniform Crime Reports (UCR) data from Illinois State Police (ISP) website for his project. In fact, he needs data for the five most recent years He goes to the website and download each file separately, which lands on the default Download folder.
+2. Sterling browses to the Download folder and opens the files in MS Excel:
+    * Sterling wants to have data for all years in a single spreadsheet. So he copy pastes multiple times to have all in the same place.
+    * Sterling then realizes that he needs only a few variables for his analysis. He deletes all columns but the ones he needs, and saves it (`mydata.xlsx`) to the research directory that he creates as he is saving the combined data file.
+3. Sterling opens the combined data in SPSS:
+    * Sterling runs a quick regression analysis and checks the results. The model fit doesn't look good--oops, he should have included another variable in the model.
+4. Sterling so goes back to the Download folder for the original files, spends some minutes to find the downloaded files (there are so many files in the Download folder!), opens all spreadsheets in Excel, and copy-and-pastes the desired column from them to the combined spreadsheet. He saves it as a separate file (`mydata2.xlsx`).
+5. Sterling opens the updated data file in SPSS and runs the model again with more point-and-clicks. Finally, the results look good.
+6. Sterling opens MS Word to write a report on his model output.
+    * He copy-and-pastes the model outputs and graphs from the SPSS report to the Word document.
+7. Sterling sends the report to his supervisor. Done!
+    * If his supervisor later comes to Sterling and asks him how he came to his conclusion, will Sterling remember all the steps he took? 
+
+### Lana, a programmatic workflow
+
+1. Before anything, Lana sets up a directory specifically for the project at hand and creates some sub-directories where different types of inputs and outputs will be stored. From past experience, Lana knows that she needs at lease the following sub-directories:
+    * `data`: to store data inputs
+    * `images`: to store image outputs 
+    * `reports`: to store report outputs
+2. Lana goes to the ISP website to find where the UCR data files are located. Then she writes a program to download and store them to the `data` subdirectory--*all at once!* She saves the R scrpt for the current program in the main directory.
+3. Lana writes a separate program that imports the data files and combines them into a single table. Then she takes a closer look at the table to identify which variables she needs, and writes a few more lines of code to select only the corresponding columns and save the modified version of data table into the `data` folder. Again, she saves the R script in the main directory.
+4. Lana creates another separate program, which imports the clean data file, fits a regression model, and generates some nice-looking plots. The plots are saved in the `images` folder.
+    * Oops, the model fit does not look good. She should have included another variable. Lana goes back to the tab for the data cleaning script and, *by tweaking a few lines in her code*, quickly re-creates the data file.
+    * Lana then comes back to the modeling script tab and, *without changing a single line of code*, simply re-runs it to get satisfying regression results and plots.
+    * She saves the script in the main directory.
+5. Lana creates a R Markdown file for her report. Since R Markdown can easily incorporate R code, no need to copy-and-paste the results. Lana *knits* the report into a nice-looking html document, now saved in `reports` subdirectory. The R Markdown script is also saved.
+6. Lana sends the report to her supervisor with a link to her project directory. Done!
+    * If the supervisor later comes back to Lana and questions how she came to her conclusion, everything is there and she has nothing to hide!
+
+## Benefits of a programming approach
 
 ### Automation
-About automation
+
+### Modularization
 
 ### Reproducibiltiy
-Define reproducibility and explain its benefits in research
+A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project.
 
 ### Version-control
 About version-control
 
-### GUI workflow vs programmatic workflow
-With artificial examples; e.g.:
-
-* Archer, a research analyst using the GUI workflow
-    * write about an artificial scenario of working on a task with GUI tools (Excel, SPSS, word ...)
-
-* Lana, another research analyst using the programmatic workflow 
-* write about an artificial scenario of working on a task with a programmatic approach
 
 ***
 
@@ -128,7 +186,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 * Built for statistical analysis
     * R, at its very core, is designed for statistical computing. As such, a wide range of statistical and graphical techniques, which are often offered as preminum add-ons in other commercial tools, are part of the language's core pacakge.
 * Reproducible and transparent
-    * Saving one's R code as an R script can be used to easily reproduce any data manipulation and analysis. Such reproducibility ensures the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project; collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.
+    * Saving one's R code as an R script can be used to easily reproduce any data manipulation and analysis, ensuring the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. Collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.
     * As stated above, R is an open source. This open-source nature of R gives the language the level of transparency that other commercial softwares cannot afford. Also most of R packages are also open source, making it possible for any interested user to see precisely how things work under the hood.
 * Extensible through powerful third-party packages
 * Supported by its active user community
