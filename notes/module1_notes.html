@@ -280,8 +280,8 @@ div.tocify {
 </ul>
 <p>Of course, mastering any of the listed skills requires more than this workshop. <em>This workshop alone will not make any of its participants an expert R programmer.</em> However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.</p>
 </div>
-<div id="a-programming-approach-to-research" class="section level2">
-<h2>A programming approach to research</h2>
+<div id="a-programming-approach-to-research1" class="section level2">
+<h2>A programming approach to research<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h2>
 <p>Among the core objectives of this workshop is to convince its participants to try a different approach to research: <strong>a programming (or programmatic) approach</strong>.</p>
 <p>Many researchers and analysts rely on “graphical user interface” (GUI) tools where a lot of point-and-clicks and drag-and-drops happens. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it–which, by the way, can be fun as well!</p>
 <div id="gui-workflow-vs.programmatic-workflow" class="section level3">
@@ -364,9 +364,15 @@ div.tocify {
 <h2>Benefits of a programming approach</h2>
 <div id="automation" class="section level3">
 <h3>Automation</h3>
+<p>At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion.</p>
 </div>
-<div id="modularization" class="section level3">
-<h3>Modularization</h3>
+<div id="modularity" class="section level3">
+<h3>Modularity</h3>
+<blockquote>
+<p>In software design, modularity refers to a logical partitioning of the “software design” that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - <a href="https://en.wikipedia.org/wiki/Modularity">“Modularity”, Wikipedia</a></p>
+</blockquote>
+<p>A programming approach to research enables researchers to acheive a great degree of modularity, where a researcher can break down different stages or steps of research work into smaller but meaningful parts. In our example, this is shown by Lana’s writing separate programs for collecting, clearning, and analyzing her data. The benefit of modularity is clear here. When Lana had to make changes on her data clearning, she only had to change the part of the program that is relevant to the change while leaving everything else pretty much intact–a great gain in efficiency.</p>
+<p>In fact, a researcher may accomplish a greater degree of modularity, for instance, by writing custom functions that can be reused in various steps of the project–or even in another project!</p>
 </div>
 <div id="reproducibiltiy" class="section level3">
 <h3>Reproducibiltiy</h3>
@@ -422,7 +428,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <li>Extensible through powerful third-party packages</li>
 <li>Supported by its active user community
 <ul>
-<li>The strong R community is often considered as one of the key advantages of using the language.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
+<li>The strong R community is often considered as one of the key advantages of using the language.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></li>
 </ul></li>
 <li>Enabling researchers to tackle a variety of tasks using a <em>single</em> platform
 <ul>
@@ -480,11 +486,11 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <ul>
 <li>License cost (again)
 <ul>
-<li>At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <strong>R is free.</strong></li>
+<li>At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> <strong>R is free.</strong></li>
 </ul></li>
 <li>Syntax
 <ul>
-<li>SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.</li>
+<li>SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.</li>
 </ul></li>
 <li>Visualization
 <ul>
@@ -508,7 +514,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 <ul>
 <li>License cost (DUH!)
 <ul>
-<li>At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> <strong>R is free.</strong></li>
+<li>At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> <strong>R is free.</strong></li>
 </ul></li>
 <li>Reproducibility
 <ul>
@@ -516,7 +522,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 </ul></li>
 <li>Data manipulation
 <ul>
-<li>Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau’s data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></li>
+<li>Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau’s data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></li>
 <li>It is telling that Tableau offers an R integration functionality to create complex parameters. If this is the case, why not use R itself in its native environment?</li>
 </ul></li>
 <li>Complex and advanced analysis
@@ -696,11 +702,12 @@ Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>See <a href="https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/"><strong>this article</strong></a> published on R-bloggers for more on the R community.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>See the official SPSS <a href="https://www.ibm.com/products/spss-statistics/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>See <a href="https://stackoverflow.com/questions/3787231/r-and-spss-difference"><strong>this Stack Overflow thread</strong></a> and <a href="https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/"><strong>this Reddit thread</strong></a> for more on this point.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>See the official Tableau <a href="https://www.tableau.com/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>See <a href="https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/"><strong>this article from AIM Consulting</strong></a> for more on the limitation of Tableau’s data manipulation functionality with an example.<a href="#fnref5">↩</a></p></li>
+<li id="fn1"><p>This section is inspired by Dr. Benjamin Soltoff’s <a href="http://cfss.uchicago.edu">Compuation for Social Sciences course at the University of Chicago</a>, and much of this section’s contents is drawn from his work albeit with modifications.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>See <a href="https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/"><strong>this article</strong></a> published on R-bloggers for more on the R community.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>See the official SPSS <a href="https://www.ibm.com/products/spss-statistics/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>See <a href="https://stackoverflow.com/questions/3787231/r-and-spss-difference"><strong>this Stack Overflow thread</strong></a> and <a href="https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/"><strong>this Reddit thread</strong></a> for more on this point.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>See the official Tableau <a href="https://www.tableau.com/pricing"><strong>Pricing page</strong></a> for more information.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>See <a href="https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/"><strong>this article from AIM Consulting</strong></a> for more on the limitation of Tableau’s data manipulation functionality with an example.<a href="#fnref6">↩</a></p></li>
 </ol>
 </div>
 
