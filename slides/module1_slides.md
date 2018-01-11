@@ -27,6 +27,47 @@ Bobae Kang
 <small>(Bobae.Kang@illinois.gov)</small>  
 
 
+Introduction to the Workshop
+========================================================
+type:section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+Instructor (me!)
+========================================================
+<img src="../images/smily-face.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+Workshop objectives
+========================================================
+> This workshop will help YOU **to get started** and provide them with the basic skills and techniques in using R for research and data analysis. 
+
+> Ultimately, this workshop seeks to help YOU **to gain the knowledge and confidence necesary to learn** what they need to know for their own research projects.
+
+
+========================================================
+* Import and manipulate tabular data files using R;
+* Create simple data visualizations (scatterplot, histogram, bar chart, line chart, etc.) to extract insight from data using R;
+* Perform basic statistical analysis using R;
+* Generate a report on a simple data analysis task using R;
+* Understand the basic elements of the R programming language;
+* Employ the programmatic approach to research and data analysis projects; and
+* Leverage online resources to find solutions to specific questions on using R for a given task.
+
+
+A programming approach to research
+========================================================
+<img src="../images/programming-approach.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://pixabay.com/en/code-geek-talk-code-to-me-coffee-cup-2680204/">pixabay.com</a>
+</p>
+
+
+GUI workflow vs. programmatic workflow
+========================================================
+
+
+
 Introducing ... R!
 ========================================================
 type:section
@@ -35,10 +76,11 @@ type:section
 [1] "Hellow World!"
 ```
 
-<img src="https://www.r-project.org/logo/Rlogo.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/Rlogo.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 </p>
+
 
 
 What is R?
@@ -50,7 +92,7 @@ What is R?
 
 
 ========================================================
-<img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
 </p>
@@ -58,14 +100,14 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 
 Why R?
 ========================================================
-<img src="https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jpg" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://c1.staticflickr.com/4/3903/14750882233_cf43e135b9_b.jpg" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.flickr.com/">flickr.com</a>
 </p>
 
 ========================================================
 <p style="text-align:center">(Because ... DUH!)</p>
-<img src="http://www.reactiongifs.com/r/2013/09/duh.gif" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
+<img src="http://www.reactiongifs.com/r/2013/09/duh.gif" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.reactiongifs.com/">Reaction GIFs</a>
 </p>
@@ -110,7 +152,7 @@ R vs Tableau
 
 ========================================================
 type:section
-<img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.rstudio.com//">RStudio</a>
 </p>
@@ -126,7 +168,7 @@ What is RStudio? Why use it?
 
 
 ========================================================
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="100%" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="100%" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 </p>
@@ -135,7 +177,7 @@ Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 Basic Setup
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 </p>
@@ -149,19 +191,19 @@ Installing R
 
 
 ========================================================
-<img src="../images/installing_r1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r2.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r2.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r3.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r3.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r4.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r4.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Installing RStudio
@@ -172,21 +214,21 @@ Installing RStudio
 
 
 ========================================================
-<img src="../images/install_rstudio1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/install_rstudio2.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio2.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/install_rstudio3.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio3.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Workshop Overview
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 </p>
@@ -236,7 +278,7 @@ Module 6
 Questions?
 ========================================================
 type: section
-<img src="https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://tenor.com/view/beyonce-question-gif-5966034">tenor.com</a>
 </p>
