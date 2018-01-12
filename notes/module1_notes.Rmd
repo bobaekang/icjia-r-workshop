@@ -78,7 +78,9 @@ This workshop is developed to offer a gentle introduction to the R programming l
 Of course, mastering any of the listed skills requires more than this workshop. *This workshop alone will not make any of its participants an expert R programmer.* However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.
 
 
-## A programming approach to research
+## A programming approach to research[^1]
+
+[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu), and much of this section's contents is drawn from his work albeit with modifications. 
 
 Among the core objectives of this workshop is to convince its participants to try a different approach to research: **a programming (or programmatic) approach**.
 
@@ -147,9 +149,19 @@ Let us now compare how these two work differently for a simple data analysis pro
 
 ### Automation
 
-### Modularization
+At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion.
+
+
+### Modularity
+
+> In software design, modularity refers to a logical partitioning of the "software design" that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - ["Modularity", Wikipedia](https://en.wikipedia.org/wiki/Modularity)
+
+A programming approach to research enables researchers to acheive a great degree of modularity, where a researcher can break down different stages or steps of research work into smaller but meaningful parts. In our example, this is shown by Lana's writing separate programs for collecting, clearning, and analyzing her data. The benefit of modularity is clear here. When Lana had to make changes on her data clearning, she only had to change the part of the program that is relevant to the change while leaving everything else pretty much intact--a great gain in efficiency.
+
+In fact, a researcher may accomplish a greater degree of modularity, for instance, by writing custom functions that can be reused in various steps of the project--or even in another project!
 
 ### Reproducibiltiy
+
 A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project.
 
 ### Version-control
@@ -195,7 +207,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * As stated above, R is an open source. This open-source nature of R gives the language the level of transparency that other commercial softwares cannot afford. Also most of R packages are also open source, making it possible for any interested user to see precisely how things work under the hood.
 * Extensible through powerful third-party packages
 * Supported by its active user community
-    * The strong R community is often considered as one of the key advantages of using the language.[^1]
+    * The strong R community is often considered as one of the key advantages of using the language.[^2]
 * Enabling researchers to tackle a variety of tasks using a *single* platform
     * Data manipulation and analyiss
     * Basic and advanced statistical modeling
@@ -203,7 +215,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * Generating reports in various formats (html webpage, MS word, PDF)
     * Slideshows, websites, interactive dashboards, etc.
 
-[^1]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
+[^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
 
 ## Comparisons
 
@@ -240,9 +252,9 @@ include_graphics("../images/spss-logo.png")
 </div>
 <div class="col-xs-10">
 * License cost (again)
-    * At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.[^2] **R is free.**
+    * At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.[^3] **R is free.**
 * Syntax
-    * SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.[^3] R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.
+    * SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.[^4] R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.
 * Visualization
     * Although SPSS offers basic visualization options for commonly used charts and graphs, just as in Excel, only minimal customization is available and the outputs are little better than Excel graphs.
 * Reporting
@@ -251,9 +263,9 @@ include_graphics("../images/spss-logo.png")
 </div>
 </div>
 
-[^2]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing) for more information.
+[^3]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing) for more information.
 
-[^3]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference) and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/) for more on this point.
+[^4]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference) and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/) for more on this point.
 
 ### R vs Tableau
 
@@ -265,20 +277,20 @@ include_graphics("../images/tableau-logo.png")
 </div>
 <div class="col-xs-10">
 * License cost (DUH!)
-    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^4] **R is free.**
+    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^5] **R is free.**
 * Reproducibility
     * Tableau is first and foremost a Graphic User Interface tool. Accordingly, communicating the process of making the workbook is much difficult in Tableau although it is possible to share Tableau workbooks with others. (See above for more on the benefits of reproducibility.)
 * Data manipulation
-    * Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau's data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.[^5]
+    * Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau's data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.[^6]
     * It is telling that Tableau offers an R integration functionality to create complex parameters. If this is the case, why not use R itself in its native environment?
 * Complex and advanced analysis
     * Tableau's focus of quick-and-simple data visualization makes the tool largely unfit for conducting and thereby visualizing complex data analysis and statistical modeling results. R, on the other hand, is fully capable of handle both tasks of high-quality data visualization and advanced data analysis as well as modeling, either separately or jointly.
 </div>
 </div>
 
-[^4]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing) for more information.
+[^5]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing) for more information.
 
-[^5]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/) for more on the limitation of Tableau's data manipulation functionality with an example.
+[^6]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/) for more on the limitation of Tableau's data manipulation functionality with an example.
 
 This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferior to R in all aspects. Each software is designed with a specific set of tasks and comes with the ease of use for the right tasks. Furthermore, compared to these tools, R has a relatively steep learning curve, which makes it difficult for anyone without sufficient background knowledge to quickly master and use it for real tasks.
 
