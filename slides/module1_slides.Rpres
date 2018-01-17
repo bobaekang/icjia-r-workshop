@@ -71,7 +71,54 @@ Source: <a href="https://pixabay.com/en/code-geek-talk-code-to-me-coffee-cup-268
 
 GUI workflow vs. programmatic workflow
 ========================================================
+<div style="margin-top: 30%">
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/archer.png")
+```
+</div>
 
+***
+
+<div style="margin-top: 30%">
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/lana.png")
+```
+</div>
+
+
+Benefits of a programming approach
+========================================================
+* Automation
+* Modularity
+* Reproducibility
+* Version control
+
+
+Automation
+========================================================
+* Implementing the research work in programs that will run later to automatically execute the work
+* Producing consistent results
+
+Modularity
+========================================================
+> In software design, modularity refers to a logical partitioning of the "software design" that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - ["Modularity", Wikipedia](https://en.wikipedia.org/wiki/Modularity)
+
+* Breaking down different stages or steps of research work into smaller but meaningful parts
+* Separate programms for separate tasks
+* Writing custom functions
+
+
+Reproducibility
+========================================================
+> Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. [...] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - [U.S. NSF Subcommittee on Replicability in Science](https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf)
+
+* Greater productivity in a collaborative project
+
+Version control
+========================================================
+* The practice of managing changes in a document or a program in a systematic fashion
+* Protecting the work from (unintentional) corruptions
+* An example of version control system: Git
 
 
 Introducing ... R!

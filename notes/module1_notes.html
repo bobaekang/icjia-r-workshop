@@ -364,7 +364,7 @@ div.tocify {
 <h2>Benefits of a programming approach</h2>
 <div id="automation" class="section level3">
 <h3>Automation</h3>
-<p>At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion.</p>
+<p>At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion. By automating certain tasks, a researcher can rest assured that she will get consistent results when she revisit her work or share it with others.</p>
 </div>
 <div id="modularity" class="section level3">
 <h3>Modularity</h3>
@@ -376,11 +376,16 @@ div.tocify {
 </div>
 <div id="reproducibiltiy" class="section level3">
 <h3>Reproducibiltiy</h3>
-<p>A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project.</p>
+<blockquote>
+<p>Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. […] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - <a href="https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf">U.S. NSF Subcommittee on Replicability in Science</a></p>
+</blockquote>
+<p>Although it may be possible to ensure reproducibility with a GUI-oriented approach it is no less than an uphill battle, since each step in the procedure has to be documented thoroughly and separately. Also, there is little guarantee that researchers who come later will follow the directions strictly as intended by the original researcher. In contrast, the work of research stored in a program, or a set of programs, is highly reproducible. Replicating such a work does not rely on human interpretation of the documented procedure. Rather, the computer simply and faithfully follows the directions inscribed in the program.</p>
+<p>A high degree of reproducibility can also greatly enhance productivity in a collaborative project. Its co-researchers can simply share the code that has all the information about what steps to take, which leaves little room to the possibility of miscommunication while allowing the researchers to focus on what is important.</p>
 </div>
 <div id="version-control" class="section level3">
-<h3>Version-control</h3>
-<p>About version-control</p>
+<h3>Version control</h3>
+<p>The notion of version control refers to the practice of managing changes in a document or a program in a systematic fashion. One major benefit of version control is that it can protect the work of research from unwanted changes, such as mistakenly deleting files, as such changes can be easily identified and reverted.</p>
+<p>Although the topic of version control is beyond the scope of this workshop, suffice it to note that a programming approach to research makes it easy to implement version control in research as there exist many excellent version control systems available free of charge. Git is the most popular of such systems; <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">read its documentation</a> to learn more about Git.</p>
 <hr />
 </div>
 </div>
@@ -399,6 +404,15 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 </blockquote>
 <ul>
 <li><em>Built for</em> data analysis and visualization</li>
+</ul>
+<div id="example-statistical-modeling-in-r" class="section level3">
+<h3>Example: Statistical modeling in R</h3>
+<p>Import data and run a quick linear regression</p>
+</div>
+<div id="example-data-visualization-in-r" class="section level3">
+<h3>Example: Data visualization in R</h3>
+<p>Use ggplot to generate a quick bar plot</p>
+<ul>
 <li>One of the the most popular choices of programming language among academic researchers and data scientists
 <ul>
 <li>The following figure captures the growth of R in the recent years, compared to other programming languages. Although the data used to generate this figure does not provide the whole picture, it certainly reflects the reality where R has established itself as one of the most popular tool for researchers and data analysts.</li>
@@ -408,6 +422,7 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">“The Impresseive Growth of R”</a>
 </p>
+</div>
 </div>
 <div id="why-r" class="section level2">
 <h2>Why R?</h2>

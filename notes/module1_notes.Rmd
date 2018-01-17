@@ -149,7 +149,7 @@ Let us now compare how these two work differently for a simple data analysis pro
 
 ### Automation
 
-At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion.
+At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion. By automating certain tasks, a researcher can rest assured that she will get consistent results when she revisit her work or share it with others.
 
 
 ### Modularity
@@ -162,10 +162,17 @@ In fact, a researcher may accomplish a greater degree of modularity, for instanc
 
 ### Reproducibiltiy
 
-A high degree of reproducibility of analysis can also greatly enhance productivity in a collaborative project.
+> Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. [...] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - [U.S. NSF Subcommittee on Replicability in Science](https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf)
 
-### Version-control
-About version-control
+Although it may be possible to ensure reproducibility with a GUI-oriented approach it is no less than an uphill battle, since each step in the procedure has to be documented thoroughly and separately. Also, there is little guarantee that researchers who come later will follow the directions strictly as intended by the original researcher. In contrast, the work of research stored in a program, or a set of programs, is highly reproducible. Replicating such a work does not rely on human interpretation of the documented procedure. Rather, the computer simply and faithfully follows the directions inscribed in the program.
+
+A high degree of reproducibility can also greatly enhance productivity in a collaborative project. Its co-researchers can simply share the code that has all the information about what steps to take, which leaves little room to the possibility of  miscommunication while allowing the researchers to focus on what is important.  
+
+### Version control
+
+The notion of version control refers to the practice of managing changes in a document or a program in a systematic fashion. One major benefit of version control is that it can protect the work of research from unwanted changes, such as mistakenly deleting files, as such changes can be easily identified and reverted. 
+
+Although the topic of version control is beyond the scope of this workshop, suffice it to note that a programming approach to research makes it easy to implement version control in research as there exist many excellent version control systems available free of charge. Git is the most popular of such systems; [read its documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) to learn more about Git.
 
 
 ***
@@ -186,6 +193,13 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 > "R is a language and environment for statistical computing and graphics." - The R Foundation
 
 * *Built for* data analysis and visualization
+
+### Example: Statistical modeling in R
+Import data and run a quick linear regression
+
+### Example: Data visualization in R
+Use ggplot to generate a quick bar plot
+
 * One of the the most popular choices of programming language among academic researchers and data scientists
     * The following figure captures the growth of R in the recent years, compared to other programming languages. Although the data used to generate this figure does not provide the whole picture, it certainly reflects the reality where R has established itself as one of the most popular tool for researchers and data analysts.
 
@@ -216,6 +230,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * Slideshows, websites, interactive dashboards, etc.
 
 [^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
+
 
 ## Comparisons
 
