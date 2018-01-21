@@ -1,0 +1,210 @@
+# template elements
+<div class="header"></div>
+<div class="footer"></div>
+<img src="../images/icjia.png" class="logo"></img>
+<img src="../images/il_seal.gif" class="seal"></img>
+<div class="buttons">
+<a href="../index.html">
+  <button type="button">Home</button>
+</a>
+<a href="../modules.html">
+  <button type="button">Modules</button>
+</a>
+<a href="#">
+  <button type="button">Notes</button>
+</a>
+</div>
+
+# presentation
+ICJIA R Workshop
+========================================================
+type: slide-body
+css: ../css/style_slides.css
+<h3 style="color: #789; font-size:1.5em; font-weight:300;">Preface</h3>  
+2018-02-13  
+Bobae Kang  
+<small>(Bobae.Kang@illinois.gov)</small>  
+
+
+========================================================
+type:section
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/feedback.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://pixabay.com/en/feedback-star-rating-user-rating-2800867/">Pixarbay.com</a>
+</p>
+
+
+A brief intro to ...
+========================================================
+type:section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/Rlogo.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+</p>
+
+
+What is R?
+========================================================
+> "R is a language and environment for statistical computing and graphics." - The R Foundation
+
+* *Built for* data analysis and visualization
+* One of the the most popular choices of programming language among academic researchers and data scientists
+
+
+  
+========================================================
+* Open source (free!)
+* Built for statistical analysis
+* Reproducible and transparent
+* Extensible through powerful third-party libraries
+* Enabling researchers to tackle a variety of tasks using a *single* platform
+
+
+========================================================
+```{r echo=FALSE, out.width="55%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/jean_cocteau.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://timedotcom.files.wordpress.com/2013/10/13051149.jpg">Time Magazine</a>
+</p>
+
+
+Data manipulation
+========================================================
+type: section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/tools.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
+</div>
+
+
+Data visualization
+========================================================
+type: section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/chart.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
+</div>
+
+
+Statistical modeling
+========================================================
+type: section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dice.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://pixabay.com/en/white-background-design-game-icon-2398914/">pixabay</a>
+</div>
+
+
+And more!
+========================================================
+type: section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/cat_meme.gif")
+```
+
+
+Reports
+========================================================
+
+
+Slideshow
+========================================================
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/slideshow.png")
+```
+
+
+Dashboard
+========================================================
+<a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dashboard_demo.png")
+```
+</a>
+
+Website
+========================================================
+<a href="https://bobaekang.github.io/icjia-r-workshop/">
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/website.png")
+```
+</a>
+
+
+Objectives
+========================================================
+type: section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/wanderer_above_the_sea_of_fog.jpg")
+```
+
+
+Technical objectives
+========================================================
+* Import and manipulate tabular data files using R;
+* Create simple data visualizations to extract insight from data using R;
+* Perform basic statistical analysis using R;
+* Generate a report on a simple data analysis task using R
+
+
+Fundamental objectives
+========================================================
+* Understand the basic elements of the R programming language;
+* Employ the programmatic approach to research and data analysis projects; and
+* Leverage online resources to find solutions to specific questions on using R for a given task.
+
+
+Structure
+========================================================
+type: section
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/module.jpg")
+```
+
+
+Overall setup
+========================================================
+* Six modules
+* One module per week
+* Each module consists of two parts
+    * except the first module on introduction
+* All workshop materials (slides and notes) will be available
+* I will be available, too,  for answering questions
+
+
+Modules
+========================================================
+1. Introduction to R
+2. R basics
+3. Data analysis in R
+4. Data visualization in R
+5. Statistical modeling in R
+6. Sharing your analysis and more
+
+
+Questions?
+========================================================
+type: section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/psyduck_question.gif")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
+</div>
