@@ -21,8 +21,8 @@ ICJIA R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789; font-size:1.5em; font-weight:300;">Preface</h3>
-2018-02-13
-Bobae Kang
+2018-02-13  
+Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>
 
 
@@ -61,7 +61,6 @@ What is R?
 * One of the the most popular choices of programming language among academic researchers and data scientists
 
 
-
 ========================================================
 * Open source (free!)
 * Built for statistical analysis
@@ -92,9 +91,9 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 
 ========================================================
 ```{r echo=FALSE}
-library(icjiaRworkshop)
+library(icjiar)
 library(dplyr)
-# fbicrime_tbl <- tibble::as.tibble(fbicrime)
+
 ispcrime_tbl <- tibble::as.tibble(ispcrime)
 regions_tbl <- tibble::as.tibble(regions)
 ```
@@ -103,7 +102,6 @@ regions_tbl <- tibble::as.tibble(regions)
 # peak at the first rows of the data
 head(ispcrime_tbl)
 ```
-
 
 
 ========================================================
@@ -143,7 +141,6 @@ ispcrime_tbl %>%
 ```
 
 
-
 Data visualization
 ========================================================
 type: section
@@ -164,19 +161,21 @@ ispcrime_tbl2 <- left_join(ispcrime_tbl, regions) %>% na.omit()
 ```{r fig.height = 6}
 # line plot of violent crime trend by region
 ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom="line", fun.y="sum") +
+  stat_summary(geom = "line", fun.y = "sum") +
   labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
   theme_classic(base_size = 15)
 ```
+
 
 ========================================================
 ```{r fig.height = 6}
 # bar plot of violent crime mean count by region
 ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
-  stat_summary(geom="bar", fun.y="mean") +
+  stat_summary(geom = "bar", fun.y = "mean") +
   labs(title = "Violent crime count by region", x = "Region", y = "Count") +
   theme_classic(base_size = 15)
 ```
+
 
 ========================================================
 ```{r fig.width = 10, fig.height = 6}
@@ -211,6 +210,19 @@ include_graphics("../images/cat_meme.gif")
 
 Reports
 ========================================================
+* HTML documents for web publishing
+    * create interactive workflow using R Notebook
+    * add interactive elements using `htmlwidgets` and/or `shiny`
+* PDF documents for printing
+* MS Word documents
+
+
+========================================================
+Example - R Notebook
+
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/report.png")
+```
 
 
 Slideshow
@@ -228,6 +240,7 @@ include_graphics("../images/dashboard_demo.png")
 ```
 </a>
 
+
 Website
 ========================================================
 <a href="https://bobaekang.github.io/icjia-r-workshop/">
@@ -240,7 +253,7 @@ include_graphics("../images/website.png")
 Objectives
 ========================================================
 type: section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="55%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/wanderer_above_the_sea_of_fog.jpg")
 ```
 
@@ -263,7 +276,7 @@ Fundamental objectives
 Structure
 ========================================================
 type: section
-```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/module.jpg")
 ```
 

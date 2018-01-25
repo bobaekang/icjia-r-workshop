@@ -21,8 +21,8 @@ ICJIA R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789; font-size:1.5em; font-weight:300;">Preface</h3>
-2018-02-13
-Bobae Kang
+2018-02-13  
+Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>
 
 
@@ -53,7 +53,6 @@ What is R?
 
 * *Built for* data analysis and visualization
 * One of the the most popular choices of programming language among academic researchers and data scientists
-
 
 
 ========================================================
@@ -91,16 +90,17 @@ head(ispcrime_tbl)
 
 ```
 # A tibble: 6 x 12
-   year county viol~ murd~  rape robb~ aggA~ prop~ burg~ larc~ MVTft arson
-  <int> <fctr> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-1  2011 Adams    218     0    37    15   166  1555   272  1241    36     6
-2  2011 Alexa~   119     0    14     4   101   290    92   183    11     4
-3  2011 Bond       6     1     0     0     5   211    58   147     5     1
-4  2011 Boone     59     0    24     8    27   733   152   563    14     4
-5  2011 Brown      7     0     1     0     6    38    14    22     1     1
-6  2011 Bureau    42     0     4     3    35   505    90   405     8     2
+   year county  violentCrime murder  rape robbery aggAssault propertyCrime
+  <int> <fct>          <int>  <int> <int>   <int>      <int>         <int>
+1  2011 Adams            218      0    37      15        166          1555
+2  2011 Alexan~          119      0    14       4        101           290
+3  2011 Bond               6      1     0       0          5           211
+4  2011 Boone             59      0    24       8         27           733
+5  2011 Brown              7      0     1       0          6            38
+6  2011 Bureau            42      0     4       3         35           505
+# ... with 4 more variables: burglary <int>, larcenyTft <int>,
+#   MVTft <int>, arson <int>
 ```
-
 
 
 ========================================================
@@ -152,7 +152,7 @@ ispcrime_tbl %>%
 ```
 # A tibble: 12 x 3
     year county     totalCrime
-   <int> <fctr>          <int>
+   <int> <fct>           <int>
  1  2015 Calhoun            NA
  2  2015 Carroll           176
  3  2015 Cass              154
@@ -180,7 +180,7 @@ ispcrime_tbl %>%
 ```
 # A tibble: 102 x 2
    county    annualAvgCrime
-   <fctr>             <dbl>
+   <fct>              <dbl>
  1 Adams             1724  
  2 Alexander          385  
  3 Bond               190  
@@ -207,15 +207,14 @@ ispcrime_tbl %>%
 
 ```
 # A tibble: 4 x 2
-# Groups: region [4]
+# Groups:   region [4]
   region       n
-  <fctr>   <int>
+  <fct>    <int>
 1 Central    230
 2 Cook         5
 3 Northern    85
 4 Southern   190
 ```
-
 
 
 Data visualization
@@ -234,24 +233,26 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 ```r
 # line plot of violent crime trend by region
 ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom="line", fun.y="sum") +
+  stat_summary(geom = "line", fun.y = "sum") +
   labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
   theme_classic(base_size = 15)
 ```
 
 ![plot of chunk unnamed-chunk-14](preface_slides-figure/unnamed-chunk-14-1.png)
 
+
 ========================================================
 
 ```r
 # bar plot of violent crime mean count by region
 ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
-  stat_summary(geom="bar", fun.y="mean") +
+  stat_summary(geom = "bar", fun.y = "mean") +
   labs(title = "Violent crime count by region", x = "Region", y = "Count") +
   theme_classic(base_size = 15)
 ```
 
 ![plot of chunk unnamed-chunk-15](preface_slides-figure/unnamed-chunk-15-1.png)
+
 
 ========================================================
 
@@ -285,30 +286,42 @@ type: section
 
 Reports
 ========================================================
+* HTML documents for web publishing
+    * create interactive workflow using R Notebook
+    * add interactive elements using `htmlwidgets` and/or `shiny`
+* PDF documents for printing
+* MS Word documents
+
+
+========================================================
+Example - R Notebook
+
+<img src="../images/report.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Slideshow
 ========================================================
-<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Dashboard
 ========================================================
 <a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
-<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
+
 
 Website
 ========================================================
 <a href="https://bobaekang.github.io/icjia-r-workshop/">
-<img src="../images/website.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/website.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Objectives
 ========================================================
 type: section
-<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Technical objectives
@@ -329,7 +342,7 @@ Fundamental objectives
 Structure
 ========================================================
 type: section
-<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Overall setup
@@ -355,7 +368,7 @@ Modules
 Questions?
 ========================================================
 type: section
-<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 </div>
