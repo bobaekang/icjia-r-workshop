@@ -278,10 +278,81 @@ Source: <a href="https://pixabay.com/en/white-background-design-game-icon-239891
 </div>
 
 
+========================================================
+Example - simple linear model
+
+```r
+# simple linear regression with lm()
+fit1 <- lm(violentCrime ~ propertyCrime, ispcrime)
+summary(fit1)
+```
+
+```
+
+Call:
+lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2239.5    -2.2    57.0    78.3  3992.9 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   -79.768287  16.496961  -4.835 1.77e-06 ***
+propertyCrime   0.199367   0.001059 188.303  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 363.5 on 501 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.9861,	Adjusted R-squared:  0.986 
+F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: < 2.2e-16
+```
+
+
+========================================================
+
+```r
+# plot the model fit
+plot(violentCrime ~ propertyCrime, ispcrime)
+abline(fit1)
+```
+
+![plot of chunk unnamed-chunk-19](preface_slides-figure/unnamed-chunk-19-1.png)
+
+
+========================================================
+
+```r
+# show diagnostic plots
+par(mfrow=c(2, 2))
+plot(fit1)
+```
+
+![plot of chunk unnamed-chunk-20](preface_slides-figure/unnamed-chunk-20-1.png)
+
+
+========================================================
+Generalized linear models
+
+```r
+# examples of generalized linear models with glm()
+logistic_reg <- glm(binary ~ x1 + x2, data = mydata, family = binomial())
+poisson_reg <- glm(count ~ x1 + x2, data = mydata, family = poisson())
+gamma_reg <- glm(y ~ x1 + x2, data = mydata, family = Gamma())
+```
+
+
+Other advanced models
+* time series models (e.g. `stats` and `forecast` packages)
+* survival models (e.g. `survival` package)
+* machine learning (e.g. `caret` and `mlr` packages)
+
+
 And more!
 ========================================================
 type: section
-<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Reports
@@ -296,32 +367,32 @@ Reports
 ========================================================
 Example - R Notebook
 
-<img src="../images/report.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/report.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Slideshow
 ========================================================
-<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Dashboard
 ========================================================
 <a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
-<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Website
 ========================================================
 <a href="https://bobaekang.github.io/icjia-r-workshop/">
-<img src="../images/website.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/website.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Objectives
 ========================================================
 type: section
-<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="55%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Technical objectives
@@ -342,7 +413,7 @@ Fundamental objectives
 Structure
 ========================================================
 type: section
-<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Overall setup
@@ -368,7 +439,7 @@ Modules
 Questions?
 ========================================================
 type: section
-<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 </div>

@@ -200,6 +200,47 @@ Source: <a href="https://pixabay.com/en/white-background-design-game-icon-239891
 </div>
 
 
+========================================================
+Example - simple linear model
+```{r}
+# simple linear regression with lm()
+fit1 <- lm(violentCrime ~ propertyCrime, ispcrime)
+summary(fit1)
+```
+
+
+========================================================
+```{r}
+# plot the model fit
+plot(violentCrime ~ propertyCrime, ispcrime)
+abline(fit1)
+```
+
+
+========================================================
+```{r}
+# show diagnostic plots
+par(mfrow=c(2, 2))
+plot(fit1)
+```
+
+
+========================================================
+Generalized linear models
+```{r eval=FALSE}
+# examples of generalized linear models with glm()
+logistic_reg <- glm(binary ~ x1 + x2, data = mydata, family = binomial())
+poisson_reg <- glm(count ~ x1 + x2, data = mydata, family = poisson())
+gamma_reg <- glm(y ~ x1 + x2, data = mydata, family = Gamma())
+```
+
+
+Other advanced models
+* time series models (e.g. `stats` and `forecast` packages)
+* survival models (e.g. `survival` package)
+* machine learning (e.g. `caret` and `mlr` packages)
+
+
 And more!
 ========================================================
 type: section
