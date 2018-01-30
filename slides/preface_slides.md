@@ -106,35 +106,21 @@ head(ispcrime_tbl)
 ========================================================
 
 ```r
-# get a quick summary of each column
-summary(ispcrime_tbl)
+# get a quick summary of violent crime and property crime
+ispcrime_tbl %>%
+  select(violentCrime, propertyCrime) %>%
+  summary()
 ```
 
 ```
-      year            county     violentCrime       murder       
- Min.   :2011   Adams    :  5   Min.   :    0   Min.   :  0.000  
- 1st Qu.:2012   Alexander:  5   1st Qu.:   19   1st Qu.:  0.000  
- Median :2013   Bond     :  5   Median :   42   Median :  0.000  
- Mean   :2013   Boone    :  5   Mean   :  501   Mean   :  7.026  
- 3rd Qu.:2014   Brown    :  5   3rd Qu.:  133   3rd Qu.:  1.000  
- Max.   :2015   Bureau   :  5   Max.   :33348   Max.   :566.000  
-                (Other)  :480   NA's   :7       NA's   :7        
-      rape            robbery          aggAssault      propertyCrime   
- Min.   :   0.00   Min.   :    0.0   Min.   :    0.0   Min.   :     0  
- 1st Qu.:   1.00   1st Qu.:    0.0   1st Qu.:   15.0   1st Qu.:   133  
- Median :   6.00   Median :    2.0   Median :   33.0   Median :   349  
- Mean   :  41.29   Mean   :  172.3   Mean   :  280.4   Mean   :  2913  
- 3rd Qu.:  22.00   3rd Qu.:   13.0   3rd Qu.:  102.0   3rd Qu.:  1190  
- Max.   :1986.00   Max.   :16095.0   Max.   :15129.0   Max.   :178902  
- NA's   :7         NA's   :7         NA's   :7         NA's   :7       
-    burglary         larcenyTft           MVTft             arson        
- Min.   :    0.0   Min.   :     0.0   Min.   :    0.0   Min.   :   0.00  
- 1st Qu.:   35.5   1st Qu.:    85.5   1st Qu.:    3.0   1st Qu.:   1.00  
- Median :   79.0   Median :   258.0   Median :   10.0   Median :   2.00  
- Mean   :  589.3   Mean   :  2084.9   Mean   :  215.2   Mean   :  23.45  
- 3rd Qu.:  268.0   3rd Qu.:   852.0   3rd Qu.:   30.0   3rd Qu.:   8.50  
- Max.   :38485.0   Max.   :116145.0   Max.   :22879.0   Max.   :1418.00  
- NA's   :7         NA's   :7          NA's   :7         NA's   :7        
+  violentCrime   propertyCrime   
+ Min.   :    0   Min.   :     0  
+ 1st Qu.:   19   1st Qu.:   133  
+ Median :   42   Median :   349  
+ Mean   :  501   Mean   :  2913  
+ 3rd Qu.:  133   3rd Qu.:  1190  
+ Max.   :33348   Max.   :178902  
+ NA's   :7       NA's   :7       
 ```
 
 
@@ -231,10 +217,10 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 
 
 ```r
-# line plot of violent crime trend by region
-ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom = "line", fun.y = "sum") +
-  labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
+# bar plot of violent crime mean count by region
+ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
+  stat_summary(geom = "bar", fun.y = "mean") +
+  labs(title = "Violent crime count by region", x = "Region", y = "Count") +
   theme_classic(base_size = 15)
 ```
 
@@ -244,11 +230,12 @@ ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
 ========================================================
 
 ```r
-# bar plot of violent crime mean count by region
-ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
-  stat_summary(geom = "bar", fun.y = "mean") +
-  labs(title = "Violent crime count by region", x = "Region", y = "Count") +
-  theme_classic(base_size = 15)
+# line plot of violent crime trend by region
+ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
+  stat_summary(geom = "line", fun.y = "sum", size = 1) +
+  labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
+  theme_classic(base_size = 15) +
+  scale_color_brewer(palette = "Dark2")
 ```
 
 ![plot of chunk unnamed-chunk-15](preface_slides-figure/unnamed-chunk-15-1.png)
@@ -261,18 +248,55 @@ ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
 ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime)) +
   geom_histogram(binwidth = 100) +
   facet_wrap(~ year) +
-  labs(title = "Histogram of violent crime count by county per year",
-       x = "Violent crime count", y = "Count") +
+  labs(x = "Violent crime count", y = "Count") +
   theme_classic(base_size = 15)
 ```
 
 ![plot of chunk unnamed-chunk-16](preface_slides-figure/unnamed-chunk-16-1.png)
 
 
+========================================================
+
+```r
+# choropleth map of violent crime in 2015
+qtm(counties,
+  fill = "violentCrime",
+  format = "World",
+  frame = FALSE)
+```
+
+![plot of chunk unnamed-chunk-17](preface_slides-figure/unnamed-chunk-17-1.png)
+
+
+
+========================================================
+Other examples (1): Word cloud
+<img src="../images/dataviz_example1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a>
+</div>
+
+
+========================================================
+Other examples (2): Parallel plot
+<img src="../images/dataviz_example2.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="">The R Graph Gallery</a>
+</div>
+
+
+========================================================
+Other examples (3): Network graph
+<img src="../images/dataviz_example3.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a>
+</div>
+
+
 Statistical modeling
 ========================================================
 type: section
-<img src="../images/dice.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/dice.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://pixabay.com/en/white-background-design-game-icon-2398914/">pixabay</a>
 </div>
@@ -282,7 +306,6 @@ Source: <a href="https://pixabay.com/en/white-background-design-game-icon-239891
 Example - simple linear model
 
 ```r
-# simple linear regression with lm()
 fit1 <- lm(violentCrime ~ propertyCrime, ispcrime)
 summary(fit1)
 ```
@@ -318,7 +341,7 @@ plot(violentCrime ~ propertyCrime, ispcrime)
 abline(fit1)
 ```
 
-![plot of chunk unnamed-chunk-19](preface_slides-figure/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-23](preface_slides-figure/unnamed-chunk-23-1.png)
 
 
 ========================================================
@@ -329,7 +352,7 @@ par(mfrow=c(2, 2))
 plot(fit1)
 ```
 
-![plot of chunk unnamed-chunk-20](preface_slides-figure/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-24](preface_slides-figure/unnamed-chunk-24-1.png)
 
 
 ========================================================
@@ -344,15 +367,19 @@ gamma_reg <- glm(y ~ x1 + x2, data = mydata, family = Gamma())
 
 
 Other advanced models
+<small>
 * time series models (e.g. `stats` and `forecast` packages)
-* survival models (e.g. `survival` package)
+* spatial regression models (e.g. `spdep` and `spgwr` packages)
+* survival analysis (e.g. `survival` package)
+* network analysis (e.g. `network` and `igraph` packages)
+* text analysis (e.g. `tm` and `tidytext` packages)
 * machine learning (e.g. `caret` and `mlr` packages)
-
+</small>
 
 And more!
 ========================================================
 type: section
-<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Reports
@@ -367,32 +394,32 @@ Reports
 ========================================================
 Example - R Notebook
 
-<img src="../images/report.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/report.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Slideshow
 ========================================================
-<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Dashboard
 ========================================================
 <a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
-<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Website
 ========================================================
 <a href="https://bobaekang.github.io/icjia-r-workshop/">
-<img src="../images/website.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/website.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Objectives
 ========================================================
 type: section
-<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="55%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="55%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Technical objectives
@@ -413,7 +440,7 @@ Fundamental objectives
 Structure
 ========================================================
 type: section
-<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Overall setup
@@ -439,7 +466,7 @@ Modules
 Questions?
 ========================================================
 type: section
-<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 </div>

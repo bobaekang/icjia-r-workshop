@@ -106,8 +106,10 @@ head(ispcrime_tbl)
 
 ========================================================
 ```{r}
-# get a quick summary of each column
-summary(ispcrime_tbl)
+# get a quick summary of violent crime and property crime
+ispcrime_tbl %>%
+  select(violentCrime, propertyCrime) %>%
+  summary()
 ```
 
 
@@ -155,19 +157,27 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 ========================================================
 ```{r echo=FALSE}
 library(ggplot2)
+library(RColorBrewer)
+library(tmap)
+
+ispcrime$county <- recode(
+  ispcrime$county,
+  "De Kalb" = "DeKalb",
+  "De Witt" = "DeWitt",
+  "Du Page" = "DuPage",
+  "La Salle" = "LaSalle",
+  .default = levels(ispcrime$county)
+)
+
 ispcrime_tbl2 <- left_join(ispcrime_tbl, regions) %>% na.omit()
+counties@data <- counties@data %>%
+  left_join(
+    ispcrime %>%
+      filter(year == 2015) %>%
+      select(name = county, violentCrime)
+  )
 ```
 
-```{r fig.height = 6}
-# line plot of violent crime trend by region
-ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom = "line", fun.y = "sum") +
-  labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
-  theme_classic(base_size = 15)
-```
-
-
-========================================================
 ```{r fig.height = 6}
 # bar plot of violent crime mean count by region
 ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
@@ -178,15 +188,66 @@ ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
 
 
 ========================================================
+```{r fig.height = 6}
+# line plot of violent crime trend by region
+ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
+  stat_summary(geom = "line", fun.y = "sum", size = 1) +
+  labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
+  theme_classic(base_size = 15) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+
+========================================================
 ```{r fig.width = 10, fig.height = 6}
 # histogram of violent crime count by county (excluding Cook)
 ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime)) +
   geom_histogram(binwidth = 100) +
   facet_wrap(~ year) +
-  labs(title = "Histogram of violent crime count by county per year",
-       x = "Violent crime count", y = "Count") +
+  labs(x = "Violent crime count", y = "Count") +
   theme_classic(base_size = 15)
 ```
+
+
+========================================================
+```{r fig.height = 6}
+# choropleth map of violent crime in 2015
+qtm(counties,
+  fill = "violentCrime",
+  format = "World",
+  frame = FALSE)
+```
+
+
+
+========================================================
+Other examples (1): Word cloud
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example1.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a>
+</div>
+
+
+========================================================
+Other examples (2): Parallel plot
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example2.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="">The R Graph Gallery</a>
+</div>
+
+
+========================================================
+Other examples (3): Network graph
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example3.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a>
+</div>
 
 
 Statistical modeling
@@ -203,7 +264,6 @@ Source: <a href="https://pixabay.com/en/white-background-design-game-icon-239891
 ========================================================
 Example - simple linear model
 ```{r}
-# simple linear regression with lm()
 fit1 <- lm(violentCrime ~ propertyCrime, ispcrime)
 summary(fit1)
 ```
@@ -236,10 +296,14 @@ gamma_reg <- glm(y ~ x1 + x2, data = mydata, family = Gamma())
 
 
 Other advanced models
+<small>
 * time series models (e.g. `stats` and `forecast` packages)
-* survival models (e.g. `survival` package)
+* spatial regression models (e.g. `spdep` and `spgwr` packages)
+* survival analysis (e.g. `survival` package)
+* network analysis (e.g. `network` and `igraph` packages)
+* text analysis (e.g. `tm` and `tidytext` packages)
 * machine learning (e.g. `caret` and `mlr` packages)
-
+</small>
 
 And more!
 ========================================================
