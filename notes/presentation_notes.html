@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Bobae Kang" />
+
+<meta name="date" content="2018-02-13" />
+
+<title>R Workshop R&amp;A Meeting Presentation</title>
+
+<script src="presentation_notes_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="presentation_notes_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="presentation_notes_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="presentation_notes_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="presentation_notes_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="presentation_notes_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="presentation_notes_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="presentation_notes_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="presentation_notes_files/navigation-1.1/tabsets.js"></script>
+<link href="presentation_notes_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="presentation_notes_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Workshop R&amp;A Meeting Presentation</h1>
+<h4 class="author"><em>Bobae Kang</em></h4>
+<h4 class="date"><em>February 13, 2018</em></h4>
+
+</div>
+
+
+<!-- fontawesome CDN -->
+<p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
+<!-- logo -->
+<div class="logo">
+<p><a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
+</div>
+<p>This page contains the script for <strong>R Workshop R&amp;A Meeting Presentation</strong>, prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> for a Research and Analysis Unit monthly meeting on Feburary 13, 2018. The presentation is meant to announce and advertise the workshop series to the Unit as well as to provide a brief introduction to the workshop is about. The presentation slides are available <a href="../slides/presentation_slides.html"><strong>here</strong></a>.</p>
+<hr />
+<div id="welcome_" class="section level1">
+<h1>Welcome_</h1>
+<p><img src="../images/icjia-x-r.png" width="50%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>Welcome to this presentation. Today I would like to share with you a workshop series on R, which I have developed specifically to encourage and enable ICIJA researchers to incorporate R into their research and data analysis workflow.</p>
+<p>This presentation can be roughly divided into two parts. For the first half, I will talk about what R is and offer a quick overview of its functionalities. Then, I will discuss the workshop objectives and structure.</p>
+<div id="quick-survey" class="section level2">
+<h2>Quick survey</h2>
+<p>Before we move on, let us take a quick survey:</p>
+<ul>
+<li>How many of you have heard of R before?</li>
+<li>How many of you have tried R before?</li>
+<li>How many of you use R regularly?
+<ul>
+<li>Can you briefly tell us what you use R for?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="a-brief-intro-to-r" class="section level1">
+<h1>A brief intro to R</h1>
+<p>Now let me give you a very brief introduction to R.</p>
+<div id="what-is-r" class="section level2">
+<h2>What is R?</h2>
+<blockquote>
+<p>“R is a language and environment for statistical computing and graphics.” - The R Foundation</p>
+</blockquote>
+<p>So, R is a programming language that is specifically <em>built for</em> data analysis and visualization. It is also one of the the most popular choices of programming language among academic researchers and data scientists.</p>
+<p>Let’s dig a little further and talk about the benefits of using R in more details.</p>
+<ul>
+<li><p>First, R is open-source, which means free. This also means that, if you are interested, you can look at the source code and find out exactly what each function is doing under the hood. Also, not only R is free, but also its supporting softwares are free. No strings attached.</p></li>
+<li><p>R is built for statistical analysis, which means that it already comes with a breadth of functionalities for data analysis and statistics. This sets R apart from other programming languages in general.</p></li>
+<li><p>R allows researchers to conduct research in a reproducible and transparent fashion. A research done programmatically means every step taken for data manipulation and statistical modeling is in plain sight, making it easily to replicate the results or collaborate with others. This also gives researchers a jump-start when starting a new, but similar project.</p></li>
+<li><p>R can be greatly extended with powerful third-party packages. This, in fact, is one of the greatest blessings of using R that no proprietary sofewares, like SPSS, STATA, or SAS, can imitate.</p></li>
+<li><p>With these packages, researchers can tackle a variety of tasks using a <em>single</em> platform, from collecting data to cleaning data to creating plots to fitting statistical models to generating a report, and even more.</p></li>
+</ul>
+</div>
+<div id="r-is-versatile" class="section level2">
+<h2>R is versatile</h2>
+<p>That said, one of the greatest benefits of using R is its versatility. Many who have not used R think that it is just another statistical software. That is not true at all. R is a programming language with a fast-growing ecosystem of diverse packages and applications, which enables its users to do wonders–literally.</p>
+<p>For the next few minutes, I would like to quickly showcase what R is capable of.</p>
+<hr />
+</div>
+</div>
+<div id="data-manipulation" class="section level1">
+<h1>Data manipulation</h1>
+<p>First, let’s see how some basic data manipulation and analysis can be done using R.</p>
+<div id="code-1" class="section level3">
+<h3>Code 1</h3>
+<pre class="r"><code># peak at the first rows of the data
+head(ispcrime_tbl)</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##    year county  violentCrime murder  rape robbery aggAssault propertyCrime
+##   &lt;int&gt; &lt;fct&gt;          &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;int&gt;         &lt;int&gt;
+## 1  2011 Adams            218      0    37      15        166          1555
+## 2  2011 Alexan~          119      0    14       4        101           290
+## 3  2011 Bond               6      1     0       0          5           211
+## 4  2011 Boone             59      0    24       8         27           733
+## 5  2011 Brown              7      0     1       0          6            38
+## 6  2011 Bureau            42      0     4       3         35           505
+## # ... with 4 more variables: burglary &lt;int&gt;, larcenyTft &lt;int&gt;,
+## #   MVTft &lt;int&gt;, arson &lt;int&gt;</code></pre>
+<p>Here, with a single command, we can take a quick peak at the data to get some basic understanding of the data table.</p>
+</div>
+<div id="code-2" class="section level3">
+<h3>Code 2</h3>
+<pre class="r"><code># get a quick summary of violent crime and property crime
+ispcrime_tbl %&gt;%
+  select(violentCrime, propertyCrime) %&gt;%
+  summary()</code></pre>
+<pre><code>##   violentCrime   propertyCrime   
+##  Min.   :    0   Min.   :     0  
+##  1st Qu.:   19   1st Qu.:   133  
+##  Median :   42   Median :   349  
+##  Mean   :  501   Mean   :  2913  
+##  3rd Qu.:  133   3rd Qu.:  1190  
+##  Max.   :33348   Max.   :178902  
+##  NA&#39;s   :7       NA&#39;s   :7</code></pre>
+<p>Now, if we want to get some quick summary of a selected set of columns, this can be done easily. You don’t need to understand what each line of the code is doing at this point–we will go through them in the workshop.</p>
+</div>
+<div id="code-3" class="section level3">
+<h3>Code 3</h3>
+<pre class="r"><code># filter to keep only counties starting with C for 2015
+#   while creating and showing a new variable for total crime count
+ispcrime_tbl %&gt;%
+  filter(substr(county, 1, 1) == &quot;C&quot;, year == 2015) %&gt;%
+  mutate(totalCrime = violentCrime + propertyCrime) %&gt;%
+  select(year, county, totalCrime)</code></pre>
+<pre><code>## # A tibble: 12 x 3
+##     year county     totalCrime
+##    &lt;int&gt; &lt;fct&gt;           &lt;int&gt;
+##  1  2015 Calhoun            NA
+##  2  2015 Carroll           176
+##  3  2015 Cass              154
+##  4  2015 Champaign        6486
+##  5  2015 Christian         292
+##  6  2015 Clark             103
+##  7  2015 Clay              191
+##  8  2015 Clinton           423
+##  9  2015 Coles             805
+## 10  2015 Cook           153575
+## 11  2015 Crawford          282
+## 12  2015 Cumberland         42</code></pre>
+<p>Here is an example of somewhat more complicated data manipulation task. Here we filter the data using two different columns and add a new computed variable. Then we take a look at a select set of columns. I think the syntax is intuitive enough to be informative even to non-R-users.</p>
+</div>
+<div id="code-4" class="section level3">
+<h3>Code 4</h3>
+<pre class="r"><code># get annual average count of violent crime by county
+ispcrime_tbl %&gt;%
+  group_by(county) %&gt;%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5)</code></pre>
+<pre><code>## # A tibble: 102 x 2
+##    county    annualAvgCrime
+##    &lt;fct&gt;              &lt;dbl&gt;
+##  1 Adams             1724  
+##  2 Alexander          385  
+##  3 Bond               190  
+##  4 Boone              426  
+##  5 Brown               39.0
+##  6 Bureau             480  
+##  7 Calhoun             13.8
+##  8 Carroll            196  
+##  9 Cass               109  
+## 10 Champaign         6567  
+## # ... with 92 more rows</code></pre>
+<p>This is an example of aggregating data. Here, we “group” the data by the county column to get the average count of violent crime from 2011 to 2015. In the process, we can ignore the missing values, treating them as zero in effect. That choice might not make sense in this particular case, but being able to ignore missing value easily can come handy.</p>
+</div>
+<div id="code-5" class="section level3">
+<h3>Code 5</h3>
+<pre class="r"><code># merging regions data and count the number of rows by region
+ispcrime_tbl %&gt;%
+  left_join(regions) %&gt;%
+  group_by(region) %&gt;%
+  count()</code></pre>
+<pre><code>## # A tibble: 4 x 2
+## # Groups:   region [4]
+##   region       n
+##   &lt;fct&gt;    &lt;int&gt;
+## 1 Central    230
+## 2 Cook         5
+## 3 Northern    85
+## 4 Southern   190</code></pre>
+<p>Finally, let’s take a look at an example of merging tables and aggregating. This code merges, or joins, the ISP crime table with regions table, which connects each county to the corresponding region. Then we aggregate and get a frequency table on the regional level.</p>
+<hr />
+</div>
+</div>
+<div id="data-visualization" class="section level1">
+<h1>Data visualization</h1>
+<p>Now, let us take a look at some plots geenrated in R. R ecosystem provides great data visualization packages that we can benefit from, and with such tools we can create publication-ready plots with a few lines of code.</p>
+<div id="plot-1" class="section level3">
+<h3>Plot 1</h3>
+<pre class="r"><code># bar plot of violent crime mean count by region
+ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
+  stat_summary(geom = &quot;bar&quot;, fun.y = &quot;mean&quot;) +
+  labs(title = &quot;Violent crime count by region&quot;, x = &quot;Region&quot;, y = &quot;Count&quot;) +
+  theme_classic()</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-9-1.png" width="480" /></p>
+<p>This is a simple bar plot of violent crime average count by region, using <code>ggplot2</code> package. This is using the default color palette but it is also possible to customize colors, or, for that matter, almost any element of the plot.</p>
+</div>
+<div id="plot-2" class="section level3">
+<h3>Plot 2</h3>
+<pre class="r"><code># line plot of violent crime trend by region
+ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
+  stat_summary(geom = &quot;line&quot;, fun.y = &quot;sum&quot;, size = 1) +
+  labs(title = &quot;Violent crime trend by region&quot;, x = &quot;Year&quot;, y = &quot;Count&quot;) +
+  theme_minimal() +
+  scale_color_brewer(palette = &quot;Dark2&quot;)</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
+<p>This is a line plot of violent crime trend by region. One benefit of using programmatic tools for plotting lies in its reproducibility. If you need more plots like this, with small tweaks or with another data, you already have the template and there is no need to start from scratch. Also, notice that the color palatte and plot style has changed in this plot.</p>
+</div>
+<div id="plot-3" class="section level3">
+<h3>Plot 3</h3>
+<pre class="r"><code># histogram of violent crime count by county (excluding Cook)
+ggplot(filter(ispcrime_tbl2, county != &quot;Cook&quot;), aes(x = violentCrime)) +
+  geom_histogram(binwidth = 100) +
+  facet_wrap(~ year) +
+  labs(x = &quot;Violent crime count&quot;, y = &quot;Count&quot;) +
+  theme_classic()</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-11-1.png" width="480" /></p>
+<p>We can also easily create a series of plots by a variable for comparison, with one extra line of code. Admittedly, it is not the most aesthetic graph, but as we have seen, most elements are customaizable and with some extra effort the graph can look much nicer.</p>
+</div>
+<div id="plot-4" class="section level3">
+<h3>Plot 4</h3>
+<pre class="r"><code># choropleth map of violent crime in 2015
+qtm(counties,
+  fill = &quot;violentCrime&quot;,
+  format = &quot;World&quot;,
+  frame = FALSE)</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-12-1.png" width="480" /></p>
+<p>Here is a simple example of generating a map in R with a different package. R is capable of dealing with spatial data in shapefiles format and can generate decent-looking maps. Again, with extra efforts, the map can look much nicer.</p>
+</div>
+<div id="other-examples-1-word-cloud" class="section level3">
+<h3>Other examples 1: Word cloud</h3>
+<img src="../images/dataviz_example1.png" width="50%" />
+<div style="font-size:0.5em; margin-left:10px; color: #777;">
+<p>Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a></p>
+</div>
+<p>Now I would like to share plots I found elsewhere, which show the great flexiability of R. This is a wordcloud plot generated using <code>wordcloud</code> package. Although we don’t always need to generate a wordcloud plot, simply knowing that it is possible allows us to explore creative ways to visualize and extract insights from our data.</p>
+</div>
+<div id="other-examples-2-parallel-plot" class="section level3">
+<h3>Other examples 2: Parallel plot</h3>
+<img src="../images/dataviz_example2.png" width="50%" />
+<div style="font-size:0.5em; margin-left:10px; color: #777;">
+<p>Source: <a href="http://www.r-graph-gallery.com/93-parrallel-plot/">The R Graph Gallery</a></p>
+</div>
+<p>Second external example is a parallel plot, using <code>MASS</code> pacakge, which has functions and datasets to support a book called “Modern Applied Statistics with S”. This is actually reletively easy to make this kind of plot since <code>MASS</code> package provides a function for this called <code>parcoord()</code>.</p>
+</div>
+<div id="other-examples-3-network-graph" class="section level3">
+<h3>Other examples 3: Network graph</h3>
+<img src="../images/dataviz_example3.png" width="50%" />
+<div style="font-size:0.5em; margin-left:10px; color: #777;">
+<p>Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a></p>
+</div>
+<p>The last example is a work of network visualization using <code>ggnet2</code> package. This plot, once the data is ready, takes less than 10 lines of code to create. Again, these plots show just how versatile R can be.</p>
+<hr />
+</div>
+</div>
+<div id="statistical-modeling" class="section level1">
+<h1>Statistical modeling</h1>
+<p>Now I will offer a simplified example of fitting statistical model to data.</p>
+<div id="linear-model-1" class="section level3">
+<h3>Linear model 1</h3>
+<pre class="r"><code>lm_fit &lt;- lm(violentCrime ~ propertyCrime, ispcrime)
+summary(lm_fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2239.5    -2.2    57.0    78.3  3992.9 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -79.768287  16.496961  -4.835 1.77e-06 ***
+## propertyCrime   0.199367   0.001059 188.303  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 363.5 on 501 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.9861, Adjusted R-squared:  0.986 
+## F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This is a result of fitting a simple linear regression model to the ISP crime data we have seen earlier. It takes a single line of code to fit a model and another line to print the result.</p>
+</div>
+<div id="linear-model-2" class="section level3">
+<h3>Linear model 2</h3>
+<pre class="r"><code># put model fit results in a data frame format
+tidy(lm_fit)</code></pre>
+<pre><code>##            term    estimate   std.error  statistic      p.value
+## 1   (Intercept) -79.7682868 16.49696109  -4.835332 1.771126e-06
+## 2 propertyCrime   0.1993675  0.00105876 188.302852 0.000000e+00</code></pre>
+<p>It is also possible to put the model fit results into a tabular data object, which can be easily manipulated or visualized as needed.</p>
+</div>
+<div id="linear-model-3" class="section level3">
+<h3>Linear model 3</h3>
+<pre class="r"><code># get predictions and residuals for each data point
+ispcrime %&gt;%
+  select(year, county, propertyCrime, violentCrime) %&gt;%
+  add_predictions(lm_fit) %&gt;%
+  add_residuals(lm_fit) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county propertyCrime violentCrime      pred      resid
+## 1 2011     Adams          1555          218 230.24816 -12.248156
+## 2 2011 Alexander           290          119 -21.95172 140.951715
+## 3 2011      Bond           211            6 -37.70175  43.701747
+## 4 2011     Boone           733           59  66.36808  -7.368081
+## 5 2011     Brown            38            7 -72.19232  79.192322
+## 6 2011    Bureau           505           42  20.91229  21.087706</code></pre>
+<p>Here we see that the predicted values and residuals can be readily added to the original table.</p>
+</div>
+<div id="linear-model-4" class="section level3">
+<h3>Linear model 4</h3>
+<pre class="r"><code># plot the model fit
+plot(violentCrime ~ propertyCrime, ispcrime)
+abline(lm_fit)</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-20-1.png" width="480" /> We can visualize the model fit with simple code.</p>
+</div>
+<div id="linear-model-5" class="section level3">
+<h3>Linear model 5</h3>
+<pre class="r"><code># show diagnostic plots
+par(mfrow=c(2, 2))
+plot(lm_fit)</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-21-1.png" width="480" /> And take a look at the diagnostic plots. This command generates a Residuals versus fitted values plot, a Q-Q plot, a scale-location plot, and a plot of residuals versus leverage plot with Cook’s distance lines.</p>
+<p>Of course, using thrid-party packages, it is also possible to generate a more aesthetically pleasing plots for model fits.</p>
+</div>
+<div id="generalized-linear-model" class="section level3">
+<h3>Generalized linear model</h3>
+<pre class="r"><code># examples of generalized linear models with glm()
+logistic_reg &lt;- glm(binary_y ~ x1 + x2, data = mydata, family = binomial())
+poisson_reg &lt;- glm(count_y ~ x1 + x2, data = mydata, family = poisson())
+gamma_reg &lt;- glm(y ~ x1 + x2, data = mydata, family = Gamma())</code></pre>
+<p>As a default, R offers generalized linear models as well, including logistic regression for binary response variable, poisson model for count data, and gamma regression to fit a wide range of shapes.</p>
+</div>
+<div id="other-advanced-models" class="section level3">
+<h3>Other advanced models</h3>
+<p>And, with extra packages, R can fit a variety of other advanced models. Here are some examples:</p>
+<ul>
+<li>time series models (e.g. <code>stats</code> and <code>forecast</code> packages)</li>
+<li>spatial regression models (e.g. <code>spdep</code> and <code>spgwr</code> packages)</li>
+<li>survival analysis (e.g. <code>survival</code> package)</li>
+<li>network analysis (e.g. <code>network</code> and <code>igraph</code> packages)</li>
+<li>text analysis (e.g. <code>tm</code> and <code>tidytext</code> packages)</li>
+<li>machine learning (e.g. <code>caret</code> and <code>mlr</code> packages)</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="and-more" class="section level1">
+<h1>And more!</h1>
+<p>One of the great attractions of R is that a researcher can do much than just data work with R. It can serve a research platform that provides a smooth workflow, from collecting data to publishing the analysis in various formats.</p>
+<div id="reports" class="section level2">
+<h2>Reports</h2>
+<p>First of all, R offers its own markdown format, called RMarkdown, which can be used to generate documents in HTML, PDF and Microsoft Word formats. If the output is an HTML page, we can add some interactive elements using <code>htmlwidgets</code> and <code>shiny</code> packages. RMarkdown allows us not only to nice formatting of the document, but also to incorporate R code as well as its outputs into the document.</p>
+<div id="example---r-notebook" class="section level3">
+<h3>Example - R Notebook</h3>
+<p><img src="../images/report.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>This is actually from my own work. I use RNotebook, a variation of RMarkdown document that allows for more interactive workflow, to create quick reports to Chris for research projects. This one is me examining the original arrests in 2003 for the firearm study. As you see, the report can incorporate R code and its inputs, making each step in the process highly transparent.</p>
+</div>
+</div>
+<div id="slideshow" class="section level2">
+<h2>Slideshow</h2>
+<p><img src="../images/slideshow.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>R also offers functionalities to create a good-looking slideshow. The slides for this very presentation are generated using what is called RPresentation.</p>
+</div>
+<div id="dashboard" class="section level2">
+<h2>Dashboard</h2>
+<p><a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/"> <img src="../images/dashboard_demo.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>Using <code>shiny</code>, we can also create a web application that can serve as an interactive dashboard. In fact, let me take you to the dashboard for a minute. To be brutally honest, Tableau may offer a more user-friendly interface for creating a highly functional dashboard. However, it can also be done using R, and since R and Shiny are all open source, it costs nothing. In addition, if the dashboard requires complex computations or algorithms to do more than simply exploring an existing dataset, R may be better suited for such a project.</p>
+</div>
+<div id="website" class="section level2">
+<h2>Website</h2>
+<p><a href="https://bobaekang.github.io/icjia-r-workshop/"> <img src="../images/website.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>Since we can generate HTML pages with R, it should be no surprise that we can create a website using R. In fact, I have created a website for this workshop series as well. The website will have all the workshop materials so that anyone can review or preview those materials at any time and place.</p>
+<hr />
+</div>
+</div>
+<div id="objectives" class="section level1">
+<h1>Objectives</h1>
+<p>Now we are in the second part of this presentation where we can talk about the objectives and structure of this workshop series.</p>
+<p>First, the objectives. This workshop series has <strong>technical objectives</strong> concerning developing practical skills and <strong>fundamantal objectives</strong> that are more about building the foundation for growing further.</p>
+<div id="technical-objectives" class="section level2">
+<h2>Technical objectives</h2>
+<p>On the techincal level, the workshop series seeks to equip ICJIA researchers with skills and knowledge to do the following tasks using R:</p>
+<ul>
+<li>Import and manipulate tabular data files;</li>
+<li>Create simple data visualizations to extract insight from data;</li>
+<li>Perform basic statistical analysis;</li>
+<li>Generate a report on a simple data analysis task</li>
+</ul>
+<p>These skills should allow anyone to get started with R for easy- to intermediate-level data analysis and reseasrch tasks.</p>
+</div>
+<div id="fundamental-objectives" class="section level2">
+<h2>Fundamental objectives</h2>
+<p>Now, on the more fundamantal level, I hope this workshop will help the participants to do the following:</p>
+<ul>
+<li>Understand the basic elements of the R programming language;
+<ul>
+<li>This, by the way, is a great introduction to programming in general since R shares with other programming languages some fundamental elements.</li>
+</ul></li>
+<li>Employ the programmatic approach to research and data analysis projects;
+<ul>
+<li>I will talk more about this in the first workshop session, but basically, I believe that the benefits of taking a programmtic approach to research outweighs the initial pain of learning and implementing it.</li>
+</ul></li>
+<li>Leverage online resources to find solutions to specific questions on using R for a given task.
+<ul>
+<li>This is a critical skill since, while we cannot learn answers to all questions, we can almost always find them out there. R ecosystem is still growing, but it has matured enough to provide most functionalities for common tasks.</li>
+</ul></li>
+</ul>
+<p>With such fundamentals, after going through the workshop series, a participant will be able to find right tools for the given task as well as ways to use them properly. This workshop is not pretending to teach its participants everything about R, but it will certainly teach them how to fish.</p>
+<hr />
+</div>
+</div>
+<div id="structure" class="section level1">
+<h1>Structure</h1>
+<p>Finally, let me give you an overview of how the workshop is structured.</p>
+<div id="overall-setup" class="section level2">
+<h2>Overall setup</h2>
+<p>The workshop series consists of six sessions, or modules, each of which focusing on a specific topic. I will explain what the modules are about in a minute.</p>
+<p>The workshop group can meet once a week for six weeks, each week working on one module. Each module has two parts, excpet, maybe, for the first module that serves as an introduction. All workshop materials, such as slides and notes, will be available on the webpage I showed earlier. Of course, I will be available, too, for answering questions if there are any.</p>
+</div>
+<div id="modules" class="section level2">
+<h2>Modules</h2>
+<p>Now let me quickly walk you thorugh the modules.</p>
+<div id="introduction-to-r" class="section level3">
+<h3>1. Introduction to R</h3>
+<p>Here, I will introduce the R language as well as the programmatic approach to research. I will make a case for the programmatic approach and using R to support that. I will also talk about installing R and RStudio.</p>
+</div>
+<div id="r-basics" class="section level3">
+<h3>2. R basics</h3>
+<p>Here, I will discuss the basic building blocks of R language. I will also introduce the popular tidyverse framework and offer some recommendations as to a “good” style for coding in R.</p>
+</div>
+<div id="data-analysis-in-r" class="section level3">
+<h3>3. Data analysis in R</h3>
+<p>I believe this is one of the most helpful modules, focusing on manimuplating and transforming tabular data using R. We will learn how to import data into R environment and use common tidyverse syntax to clean and analyze data.</p>
+</div>
+<div id="data-visualization-in-r" class="section level3">
+<h3>4. Data visualization in R</h3>
+<p>Here, we will get started with generating plots to visually present and communicate insights from data.</p>
+</div>
+<div id="statistical-modeling-in-r" class="section level3">
+<h3>5. Statistical modeling in R</h3>
+<p>This module focuses on how to conduct basic statistical analysis with R.</p>
+</div>
+<div id="sharing-your-analysis-and-more" class="section level3">
+<h3>6. Sharing your analysis and more</h3>
+<p>Here I will discuss various ways to share research and data analysis results via nice-looking reports, slideshows, dashboard and more.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="questions" class="section level1">
+<h1>Questions?</h1>
+<p>That was the end of the presentation. Do you have any questions?</p>
+<p>Thank you so much for paying attention to my presentation!</p>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
+  <a href="https://github.com/bobaekang/" class="icon-footer">
+    <i class="fa fa-github fa-2x"></i>
+  </a>
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+    <i class="fa fa-linkedin-square fa-2x"></i>
+  </a>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
