@@ -84,15 +84,29 @@ In this module, participants will get started with generating plots to visually 
 ## Module 5: Statistical modeling with R
 In this module, participants will learn how to conduct basic statistical analysis with R. 
 
-* [**Slides**](slides/module5_slides.html) (currently unavailable)
-* [**Notes**](notes/module5_notes.html) (currently unavailable)
+### Part 1: 
+
+* [**Slides**](slides/module5_slides1.html) (currently unavailable)
+* [**Notes**](notes/module5_notes1.html) (currently unavailable)
+
+### Part 2: 
+
+* [**Slides**](slides/module5_slides2.html) (currently unavailable)
+* [**Notes**](notes/module5_notes2.html) (currently unavailable)
 
 ***
 
 ## Module 6: Sharing your analysis and more
 This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. 
 
-* [**Slides**](slides/module6_slides.html) (currently unavailable)
-* [**Notes**](notes/module6_notes.html) (currently unavailable)
+### Part 1: 
+
+* [**Slides**](slides/module6_slides1.html) (currently unavailable)
+* [**Notes**](notes/module6_notes1.html) (currently unavailable)
+
+### Part 2: 
+
+* [**Slides**](slides/module6_slides2.html) (currently unavailable)
+* [**Notes**](notes/module6_notes2.html) (currently unavailable)
 
 ***
