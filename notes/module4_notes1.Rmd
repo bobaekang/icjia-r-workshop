@@ -52,7 +52,7 @@ Navigate to the other workshop materials:
     * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
 * **Module 6: Sharing your analysis and more**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
-    * Part 1 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
+    * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
 
 ***
