@@ -372,7 +372,7 @@ include_graphics("../images/dashboard_demo.png")
 
 Website
 ========================================================
-<a href="https://bobaekang.github.io/icjia-r-workshop/">
+<a href="../index.html">
 ```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/website.png")
 ```

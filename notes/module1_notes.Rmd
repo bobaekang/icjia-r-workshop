@@ -44,10 +44,14 @@ Navigate to the other workshop materials:
     * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
     * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
 * **Module 4: Data visualization with R**
-    * Part 1 ([**slides**](../slides/module4_slides.html), [**note**](module4_notes.html))
+    * Part 1 ([**slides**](../slides/module4_slides1.html), [**note**](module4_notes1.html))
     * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
-* **Module 5: Statistical modeling with R** ([**slides**](../slides/module5_slides.html), [**note**](module5_notes.html))
-* **Module 6: Sharing your analysis and more** ([**slides**](../slides/module6_slides.html), [**note**](module6_notes.html))
+* **Module 5: Statistical modeling with R**
+    * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
+    * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
+* **Module 6: Sharing your analysis and more**
+    * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
+    * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
 
 ***

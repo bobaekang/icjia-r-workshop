@@ -450,7 +450,7 @@ Dashboard
 
 Website
 ========================================================
-<a href="https://bobaekang.github.io/icjia-r-workshop/">
+<a href="../index.html">
 <img src="../images/website.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
