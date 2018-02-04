@@ -74,40 +74,52 @@ What is a data frame?
 Example: Iris data 
 ========================================================
 R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
+```{r echo=FALSE}
+library(icjiar)
+```
+
 ```{r}
-class(iris)  # the class of iris object is "data.frame"
-is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
+class(ispcrime)  # the class of iris object is "data.frame"
+is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected
 ```
 
 
 ========================================================
 ```{r}
-str(iris)  # reports the "structure" of the data frame 
-head(iris, 5)  # returns the first n rows of the data frame (default 6)
+str(ispcrime)  # reports the "structure" of the data frame 
 ```
 
 
 ========================================================
 ```{r}
-dim(iris)  # returns the dimension of the data frame (row  column)
-nrow(iris)  # returns the number of rows in the data frame
-ncol(iris)  # returns the number of columns in the data frame
-colnames(iris)  # returns a vector containing the column names 
+head(ispcrime, 5)  # returns the first n rows of the data frame (default 6)
+```
+
+
+========================================================
+```{r}
+dim(ispcrime)  # returns the dimension of the data frame (row  column)
+nrow(ispcrime)  # returns the number of rows in the data frame
+ncol(ispcrime)  # returns the number of columns in the data frame
+colnames(ispcrime)  # returns a vector containing the column names 
 ```
 
 
 ========================================================
 ```{r eval=FALSE}
-iris$Sepal.Length  # access a column by name
-iris[[1]]          # access the first column by index
-iris[, 1]          # yet another way to access the first column!
+ispcrime$year  # access a column by name
+ispcrime[[1]]  # access the first column by index
+ispcrime[, 1]  # yet another way to access the first column!
 ```
 ```{r echo=FALSE}
-iris$Sepal.Length
+ispcrime$year[1:150]
 ```
+
+
+========================================================
 ```{r}
-iris[1, ]  # access the first row by index
-iris[1, 1]  # access a specific cell (first row of the first column)
+ispcrime[1, ]  # access the first row by index
+ispcrime[1, 1] # access a specific cell (first row of the first column)
 ```
 
 
@@ -171,7 +183,7 @@ Transforming a data frame
 
 
 ========================================================
-Change column names
+**Change column names**
 ```{r}
 colnames(df1) <- c("my_fruits", "my_animals", "my_flavors")
 
@@ -179,7 +191,7 @@ print(df1)
 ```
 
 ========================================================
-Add columns
+**Add columns**
 ```{r}
 # using $ index
 df1$my_colors <- c("red", "green", "orange")
@@ -193,7 +205,7 @@ print(df1)
 
 
 ========================================================
-Modify columns
+**Modify columns**
 ```{r}
 df1[["my_colors"]] <- c("maroon", "blue", "purple")
 df1$my_cities <- c("Chicago", "London", "Paris")
@@ -203,7 +215,7 @@ df1
 
 
 ========================================================
-Remove columns
+**Remove columns**
 ```{r}
 # assinging NULL
 df1$my_colors <- NULL
@@ -218,7 +230,7 @@ df1
 
 
 ========================================================
-Add rows
+**Add rows**
 ```{r}
 new_row <- data.frame(
   my_fruits = "strawberry",
@@ -232,7 +244,7 @@ df1
 
 
 ========================================================
-Remove rows
+**Remove rows**
 ```{r}
 # subsetting
 df1 <- df1[1:3, ]
@@ -242,7 +254,7 @@ df1
 
 
 ========================================================
-Modify cells
+**Modify cells**
 ```{r}
 # this doesn't work ... why?
 df1$my_flavors[1] <- "mint chocolate chip"
@@ -329,7 +341,7 @@ Source: <a href="https://www.datacamp.com/">DataCamp</a>
 
 What are add-on packages?
 ========================================================
-> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc. - "R (programming language)", Wikipedia
+> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc.<br><br>- "R (programming language)", Wikipedia
 
 
 Using packages
@@ -395,29 +407,28 @@ Anything that is not tidy!
 * Multiple cells for a single value
 
 ========================================================
-Untidy example 1
+**Untidy example 1**
 ```{r echo=FALSE}
 library(dplyr)
-iris %>%
+ispcrime %>%
   mutate(
-    `Sepal.Length/Width` = paste(Sepal.Length, "/", Sepal.Width, sep = ""),
-    `Petal.Length/Width` = paste(Petal.Length, "/", Petal.Width, sep = "")
+    `year/county` = paste(year, "/", county, sep = ""),
+    `violentCrime/propertyCrime` = paste(violentCrime, "/", propertyCrime, sep = "")
   ) %>%
-  select(`Sepal.Length/Width`, `Petal.Length/Width`, Species) %>%
+  select(`year/county`, `violentCrime/propertyCrime`) %>%
   head()
 ```
 
-Untidy example 2
+**Untidy example 2**
 ```{r echo=FALSE}
 library(tidyr)
-iris2 <- iris
-iris$index <- as.numeric(row.names(iris))
-iris %>%
-  gather(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, key = "type", value = "value") %>%
-  select(index, type, value, Species) %>%
+ispcrime2 <- ispcrime
+ispcrime$index <- as.numeric(row.names(ispcrime))
+ispcrime %>%
+  gather(murder, rape, robbery, aggAssault, key = "typeViolent", value = "valueViolent") %>%
+  select(index, year, county, typeViolent, valueViolent) %>%
   arrange(index) %>%
   head(10)
-  
 ```
 
 
@@ -476,10 +487,10 @@ Object naming
 
 
 ========================================================
-Naming a variable (e.g. for firearm arrests)
+**Naming a variable (e.g. for firearm arrests)**
 ```{r eval=FALSE}
 # Good
-firearm_arr
+firearm_arrests
 fa_arr
 
 # Bad
@@ -490,7 +501,7 @@ farr                          # not descriptive enough
 x                             # not descriptive at all
 ```
 
-Naming a function (e.g. for counting arrests)
+**Naming a function (e.g. for counting arrests)**
 ```{r eval=FALSE}
 # Good
 count_arr <- function(x) { ... }
@@ -502,7 +513,7 @@ count   <- function(x) { ... }  # too generic (common name)
 ```
 
 ========================================================
-Reserved words in R
+**Reserved words in R**
 ```{r eval=FALSE}
 if else repeat while function for  
 in next break  # used in loops, conditions, functions
@@ -535,7 +546,7 @@ Whitespaces for readable code
 
 
 ========================================================
-Adding spaces
+**Adding spaces**
 ```{r eval=FALSE}
 # Good
 greetings <- paste("Hello", "World!", sep = " ")
@@ -552,7 +563,7 @@ base :: Random ()
 
 
 ========================================================
-Extra spacing
+**Extra spacing**
 ```{r eval=FALSE}
 # for aligning function arguments
 some_function (
@@ -569,7 +580,7 @@ letters        <- c("a", "b", "c")
 
 
 ========================================================
-Indentation
+**Indentation**
 ```{r eval=FALSE}
 # Good
 if (x > 0) {
