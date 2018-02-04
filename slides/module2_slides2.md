@@ -72,14 +72,15 @@ What is a data frame?
     * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
 
 
-Example: Iris data 
+Example: ISP crime data 
 ========================================================
-R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
-
+I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
 
 
 ```r
-class(ispcrime)  # the class of iris object is "data.frame"
+library(icjiar)
+
+class(ispcrime)         # the class of ispcrime object is "data.frame"
 ```
 
 ```
@@ -87,7 +88,7 @@ class(ispcrime)  # the class of iris object is "data.frame"
 ```
 
 ```r
-is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected
+is.data.frame(ispcrime) # check if iris is a data.frame; TRUE, as expected
 ```
 
 ```
@@ -98,7 +99,7 @@ is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected
 ========================================================
 
 ```r
-str(ispcrime)  # reports the "structure" of the data frame 
+str(ispcrime) # reports the "structure" of the data frame 
 ```
 
 ```
@@ -121,7 +122,7 @@ str(ispcrime)  # reports the "structure" of the data frame
 ========================================================
 
 ```r
-head(ispcrime, 5)  # returns the first n rows of the data frame (default 6)
+head(ispcrime, 5) # returns the first n rows of the data frame (default 6)
 ```
 
 ```
@@ -180,9 +181,9 @@ colnames(ispcrime)  # returns a vector containing the column names
 ========================================================
 
 ```r
-ispcrime$year  # access a column by name
-ispcrime[[1]]  # access the first column by index
-ispcrime[, 1]  # yet another way to access the first column!
+ispcrime$year # access a column by name
+ispcrime[[1]] # access the first column by index
+ispcrime[, 1] # yet another way to access the first column!
 ```
 
 ```
@@ -536,7 +537,7 @@ data.table
 R Add-On Packages
 ========================================================
 type:section
-<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.datacamp.com/">DataCamp</a>
 </div>
@@ -573,7 +574,7 @@ Two ways of installing packages
 Tidyverse Framework
 ========================================================
 type:section
-<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -588,7 +589,7 @@ Tidy data is data where:
 
 
 ========================================================
-<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
+<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
 </div>
@@ -649,7 +650,7 @@ Tidyverse core packages
 Good Code, Bad Code
 ========================================================
 type:section
-<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.nytimes.com/">The New York Times</a>
 </div>
@@ -840,7 +841,7 @@ Most importantly...
 Questions?
 ========================================================
 type: section
-<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
 </div>

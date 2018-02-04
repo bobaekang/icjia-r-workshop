@@ -82,40 +82,42 @@ data.frame(
     * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
 
 
-## Example: Iris data 
+## Example: ISP crime data 
 
-R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
+I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data. Let's take a look:
 
 ```{r}
-class(iris)  # the class of iris object is "data.frame"
-is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
+library(icjiar)
+
+class(ispcrime)  # the class of ispcrime object is "data.frame"
+is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected
 ```
 
 ```{r}
-str(iris)  # reports the "structure" of the data frame 
-head(iris, 5)  # returns the first n rows of the data frame (default 6)
+str(ispcrime)  # reports the "structure" of the data frame 
+head(ispcrime, 5)  # returns the first n rows of the data frame (default 6)
 ```
 
 
 ```{r}
-dim(iris)  # returns the dimension of the data frame (row  column)
-nrow(iris)  # returns the number of rows in the data frame
-ncol(iris)  # returns the number of columns in the data frame
-colnames(iris)  # returns a vector containing the column names 
+dim(ispcrime)  # returns the dimension of the data frame (row  column)
+nrow(ispcrime)  # returns the number of rows in the data frame
+ncol(ispcrime)  # returns the number of columns in the data frame
+colnames(ispcrime)  # returns a vector containing the column names 
 ```
 
 
 ```{r eval=FALSE}
-iris$Sepal.Length  # access a column by name
-iris[[1]]          # access the first column by index
-iris[, 1]          # yet another way to access the first column!
+ispcrime$year # access a column by name
+ispcrime[[1]] # access the first column by index
+ispcrime[, 1] # yet another way to access the first column!
 ```
 ```{r echo=FALSE}
-iris$Sepal.Length
+ispcrime$year
 ```
 ```{r}
-iris[1, ]  # access the first row by index
-iris[1, 1]  # access a specific cell (first row of the first column)
+ispcrime[1, ]  # access the first row by index
+ispcrime[1, 1] # access a specific cell (first row of the first column)
 ```
 
 ## Creating a data frame
@@ -383,12 +385,12 @@ Anything that is not tidy!
 
 ```{r echo=FALSE}
 library(dplyr)
-iris %>%
+ispcrime %>%
   mutate(
-    `Sepal.Length/Width` = paste(Sepal.Length, "/", Sepal.Width, sep = ""),
-    `Petal.Length/Width` = paste(Petal.Length, "/", Petal.Width, sep = "")
+    `year/county` = paste(year, "/", county, sep = ""),
+    `violentCrime/propertyCrime` = paste(violentCrime, "/", propertyCrime, sep = "")
   ) %>%
-  select(`Sepal.Length/Width`, `Petal.Length/Width`, Species) %>%
+  select(`year/county`, `violentCrime/propertyCrime`) %>%
   head()
 ```
 
@@ -396,14 +398,13 @@ iris %>%
 
 ```{r echo=FALSE}
 library(tidyr)
-iris2 <- iris
-iris$index <- as.numeric(row.names(iris))
-iris %>%
-  gather(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, key = "type", value = "value") %>%
-  select(index, type, value, Species) %>%
+ispcrime2 <- ispcrime
+ispcrime$index <- as.numeric(row.names(ispcrime))
+ispcrime %>%
+  gather(murder, rape, robbery, aggAssault, key = "typeViolent", value = "valueViolent") %>%
+  select(index, year, county, typeViolent, valueViolent) %>%
   arrange(index) %>%
   head(10)
-  
 ```
 
 ## Tidyverse core packages
