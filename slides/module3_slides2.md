@@ -30,25 +30,46 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: Getting started with tidyverse</p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: More on data analysis</p>
+<ul style="list-style: none">
+<li>Part 1: Getting started with tidyverse</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: More on data analysis</li>
 </div>
 
 
 More on Data Analysis
 ========================================================
 type:section
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" />
+<img src="../images/more_data_analysis.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a>
 </div>
 
+
+More on Data Analysis
+========================================================
+type:section
+<div style="text-align: center;">
+<ol>
+<li>Working with strings</li>
+<li>Working with date/datetimes</li>
+<li>Importing/exporting data</li>
+<ol>
+</div>
 
 Working with Strings
 ========================================================
 type:section
-<img src="https://www.rstudio.com/wp-content/uploads/2014/04/stringr.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/font_case.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="33%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://cdn3.iconfinder.com/data/icons/metro-design/512/font_case-512.png">Iconfinder.com</a>
+</div>
+
+
+stringr from tidyverse
+========================================================
+type:section
+<img src="../images/stringr.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
@@ -56,7 +77,89 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 Key stringr functions
 ========================================================
-* `arange()`
+* `function1()`
+* `function2()`
+* `function3()`
+* `function4()`
+
+
+function1
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function2
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function3
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function4
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
 
 
 More on stringr
@@ -66,18 +169,244 @@ More on stringr
 * `stringr` [Github repository](https://github.com/tidyverse/stringr)
 
 
-Working with Datetimes
+Regular expression (regex)
+========================================================
+* What it is
+* When to use/why useful
+
+
+Regular expression in R
+========================================================
+* Finding regex matches
+* Replacing regex matches
+
+
+Finding regex matches
+========================================================
+* `grep()`
+* `grepl()`
+* `regexpr()`
+* `gregexpr()`
+* `regmatches()`
+
+
+grep()
+========================================================
+
+```r
+grep()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+grepl()
+========================================================
+
+```r
+grepl()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+regexpr()
+========================================================
+
+```r
+regexpr()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+gregexpr()
+========================================================
+
+```r
+gregexpr()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+regmatches()
+========================================================
+
+```r
+regmatches()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+Replacing regex matches
+========================================================
+* `sub()`
+* `gsub()`
+
+
+sub()
+========================================================
+
+```r
+sub()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+gsub()
+========================================================
+
+```r
+gsub()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+More on regular expression
+========================================================
+* resources
+
+
+Working with Dates/Datetimes
 ========================================================
 type:section
-<img src="https://www.rstudio.com/wp-content/uploads/2014/04/lubridate.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/calendar.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="33%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
+</div>
+
+
+Dates/Datetimes basics
+========================================================
+* basics
+
+
+lubridate from tidyverse
+========================================================
+type:section
+<img src="../images/lubridate.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
 
 
-Key lubricate functions
+Key lubridate functions
 ========================================================
-* `arange()`
+* `function1()`
+* `year()`, `month()`, `day()`, `hour()`, ...
+* `function2()`
+* `function3()`
+
+
+function1
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function2
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function3
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
+
+
+function4
+========================================================
+
+```r
+function()
+```
+* as the first argument
+
+
+========================================================
+**Example**
+
+
+
+
+========================================================
+**Base R alternative**
+
 
 
 More on lubridate
@@ -90,7 +419,7 @@ More on lubridate
 Importing/Exporting Data
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Data-transfer.svg/2000px-Data-transfer.svg.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="30%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/data_transfer.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="33%" style="box-shadow: none; display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>
@@ -106,6 +435,31 @@ Comma-separated values (.csv)
     * `fwrite()`
 
 
+read_csv() and write_csv()
+========================================================
+
+```r
+read_csv()
+write_csv()
+```
+* `read_csv()`: output is a `tibble` object
+* `write_csv()`: output is a .csv file
+
+
+fread() and fwite()
+========================================================
+
+```r
+fread()
+fwrite()
+```
+* `fread` : output is a `data.table` object
+* `fwrite`: output is a .csv file
+
+
+========================================================
+**Base R alternative**
+
 Excel spreadsheets (.xlsx/.xls)
 ========================================================
 * `readxl` package (tidyverse)
@@ -113,6 +467,18 @@ Excel spreadsheets (.xlsx/.xls)
     * `write_excel()`
 
 
+read_excel() write_excel()
+========================================================
+
+```r
+read_excel()
+write_excel()
+```
+* `read_excel()`: output is a `tibble` object
+* `write_excel()`: output is an excel file
+
+
+More on readxl
 ========================================================
 * `readxl` on [tidyverse.org](http://readxl.tidyverse.org/)
 * `readxl` [CRAN documentation](https://cran.r-project.org/web/packages/readxl/readxl.pdf)
@@ -129,6 +495,18 @@ SPSS data files (.sav)
     * SAS
 
 
+read_sav() write_sav()
+========================================================
+
+```r
+read_sav()
+write_sav()
+```
+* `read_sav()`: output is a `tibble` object
+* `write_sav()`: output is an SPSS data file
+
+
+More on haven
 ========================================================
 * `haven` on [tidyverse.org](http://haven.tidyverse.org/)
 * `haven` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
@@ -143,6 +521,18 @@ A "fast-on-disk" data frame storage (.feather)
 * The .feather format is also supported in Python!
 
 
+read_sav() write_sav()
+========================================================
+
+```r
+read_feather()
+write_feather()
+```
+* `read_feather()`: output is a `tibble` object
+* `write_feather()`: output is a feather file
+
+
+More on feather
 ========================================================
 * `feather` on [tidyverse.org](http://haven.tidyverse.org/)
 * `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
@@ -151,7 +541,7 @@ A "fast-on-disk" data frame storage (.feather)
 Questions?
 ========================================================
 type: section
-<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://dribbble.com/shots/1627606-question-mark">Joel Ploz</a>
 </p>
