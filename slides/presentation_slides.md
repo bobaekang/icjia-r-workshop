@@ -42,9 +42,9 @@ Agenda
 
 
 ========================================================
-<img src="../images/feedback.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="80%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/survey.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://pixabay.com/en/feedback-star-rating-user-rating-2800867/">Pixarbay.com</a>
+Source: <a href="https://cdn0.iconfinder.com/data/icons/education-school-science/100/26-512.png">Iconfinder.com</a>
 </p>
 
 

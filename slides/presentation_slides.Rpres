@@ -44,11 +44,11 @@ Agenda
 
 
 ========================================================
-```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/feedback.png")
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/survey.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://pixabay.com/en/feedback-star-rating-user-rating-2800867/">Pixarbay.com</a>
+Source: <a href="https://cdn0.iconfinder.com/data/icons/education-school-science/100/26-512.png">Iconfinder.com</a>
 </p>
 
 
