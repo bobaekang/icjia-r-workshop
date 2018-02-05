@@ -30,16 +30,18 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Getting started with tidyverse</p>
-  <p>Session 2: More on data analysis</p>
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Getting started with tidyverse</li>
+<li>
+  Part 2: More on data analysis</li>
 </div>
 
 
 Getting Started with tidyverse
 ========================================================
 type:section
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" />
+<img src="../images/dplyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="20%" style="box-shadow: none; margin-left: 20%" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -101,7 +103,7 @@ library(tidyr)
 Manipulating Your Data
 ========================================================
 type:section
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/dplyr.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -315,7 +317,7 @@ More on dplyr
 Tidying Up Your Data
 ========================================================
 type:section
-<img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>

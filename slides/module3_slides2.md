@@ -31,7 +31,8 @@ Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
 <ul style="list-style: none">
-<li>Part 1: Getting started with tidyverse</li>
+<li>
+  Part 1: Getting started with tidyverse</li>
 <li style="color: #00061a; font-size: 1.1em; font-weight:700">
   Part 2: More on data analysis</li>
 </div>

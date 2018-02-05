@@ -30,16 +30,18 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: Fundamental building blocks of R programming</p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: Gearing up for data analysis in R</p>
+<ul style="list-style: none">
+<li>
+  Part 1: Fundamental building blocks of R programming</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: Gearing up for data analysis in R</li>
 </div>
 
 
 Gearing Up for Data Analysis in R
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Symbole_travaux_marteau_et_clef.svg/1080px-Symbole_travaux_marteau_et_clef.svg.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/tools.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 </div>
@@ -537,7 +539,7 @@ data.table
 R Add-On Packages
 ========================================================
 type:section
-<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/r-packages.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.datacamp.com/">DataCamp</a>
 </div>
@@ -589,7 +591,7 @@ Tidy data is data where:
 
 
 ========================================================
-<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
+<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
 </div>
@@ -606,6 +608,7 @@ Anything that is not tidy!
 * Multiple rows for a single observation
 * Multiple values in a single cell
 * Multiple cells for a single value
+
 
 ========================================================
 **Untidy example 1**
@@ -650,7 +653,7 @@ Tidyverse core packages
 Good Code, Bad Code
 ========================================================
 type:section
-<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/good-bad.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.nytimes.com/">The New York Times</a>
 </div>

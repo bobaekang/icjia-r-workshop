@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Getting started with tidyverse</p>
-  <p>Session 2: More on data analysis</p>
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Getting started with tidyverse</li>
+<li>
+  Part 2: More on data analysis</li>
 </div>
 
 
@@ -40,7 +42,7 @@ Getting Started with tidyverse
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
-images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+images <- c("../images/dplyr.png", "../images/tidyr.png")
 include_graphics(images)
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
