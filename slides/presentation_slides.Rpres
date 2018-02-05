@@ -15,6 +15,7 @@
 </a>
 </div>
 
+
 # presentation
 ICJIA R Workshop
 ========================================================
@@ -31,6 +32,15 @@ type:section
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/icjia-x-r.png")
 ```
+
+
+Agenda
+========================================================
+<div style="text-align:left; margin-top:10%;">
+<ul style="list-style: none">
+<li>1. What is R and what can it do?</li>
+<li>2. Workshop objectives and structure</li>
+</div>
 
 
 ========================================================

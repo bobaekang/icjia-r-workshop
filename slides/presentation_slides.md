@@ -15,6 +15,7 @@
 </a>
 </div>
 
+
 # presentation
 ICJIA R Workshop
 ========================================================
@@ -29,6 +30,15 @@ Bobae Kang
 ========================================================
 type:section
 <img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="80%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+Agenda
+========================================================
+<div style="text-align:left; margin-top:10%;">
+<ul style="list-style: none">
+<li>1. What is R and what can it do?</li>
+<li>2. Workshop objectives and structure</li>
+</div>
 
 
 ========================================================
