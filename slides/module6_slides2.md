@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: </p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: </p>
+<ul style="list-style: none">
+<li>
+  Part 1: </li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: </li>
 </div>
 
 

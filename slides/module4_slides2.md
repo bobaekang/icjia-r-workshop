@@ -30,11 +30,12 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: The Grammar of Graphics</p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: Advanced visualization</p>
+<ul style="list-style: none">
+<li>
+  Part 1: The Grammar of Graphics</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: Advanced visualization</li>
 </div>
-
 
 (slides in development)
 ========================================================
