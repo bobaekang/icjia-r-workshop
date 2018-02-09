@@ -29,7 +29,7 @@ Bobae Kang
 
 ========================================================
 type:section
-```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="70%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/icjia-x-r.png")
 ```
 
@@ -45,10 +45,10 @@ Agenda
 
 ========================================================
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/survey.png")
+include_graphics("../images/survey.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://cdn0.iconfinder.com/data/icons/education-school-science/100/26-512.png">Iconfinder.com</a>
+Source: <a href="https://pixabay.com/en/george-etienne-cartier-montreal-1720651/">pixabay.com</a>
 </p>
 
 
@@ -81,6 +81,20 @@ What is R?
 
 
 ========================================================
+With some practice ...
+
+```{r echo=FALSE, out.width="33%", out.extra='style="margin: auto; box-shadow: none;"'}
+include_graphics(c(
+  "../images/dataviz_example1.png", 
+  "../images/dataviz_example2.png",
+  "../images/dataviz_example3.png"
+))
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a>, <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a>
+</div>
+
+========================================================
 ```{r echo=FALSE, out.width="55%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/jean_cocteau.jpg")
 ```
@@ -101,6 +115,7 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 
 
 ========================================================
+**ISP UCR data (2011-2015)**
 ```{r echo=FALSE}
 library(icjiar)
 library(dplyr)
@@ -126,10 +141,20 @@ ispcrime_tbl %>%
 
 ========================================================
 ```{r}
-# filter to keep only counties starting with C for 2015
+# filter to keep only counties starting with C for 2013
 #   while creating and showing a new variable for total crime count
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "C", year == 2015) %>%
+  filter(substr(county, 1, 1) == "C", year == 2013) %>%
+  mutate(totalCrime = violentCrime + propertyCrime) %>%
+  select(year, county, totalCrime)
+```
+
+
+========================================================
+```{r}
+# how about "D" counties in 2014 and 2015?
+ispcrime_tbl %>%
+  filter(substr(county, 1, 1) == "D", year %in% c(2014:2015)) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
@@ -146,8 +171,29 @@ ispcrime_tbl %>%
 
 ========================================================
 ```{r}
-# merging regions data and count the number of rows by region
+# sort by average crime count? 
 ispcrime_tbl %>%
+  group_by(county) %>%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5) %>%
+  arrange(desc(annualAvgCrime))
+```
+
+========================================================
+```{r}
+# merging regions data and count the number of counties by region
+ispcrime_tbl %>%
+  left_join(regions) %>%
+  group_by(region) %>%
+  count()
+```
+
+
+========================================================
+```{r}
+# no duplicates!
+ispcrime_tbl %>%
+  select(county) %>%
+  unique() %>%
   left_join(regions) %>%
   group_by(region) %>%
   count()
@@ -166,73 +212,7 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 
 
 ========================================================
-```{r echo=FALSE}
-library(ggplot2)
-library(RColorBrewer)
-library(tmap)
-
-ispcrime$county <- recode(
-  ispcrime$county,
-  "De Kalb" = "DeKalb",
-  "De Witt" = "DeWitt",
-  "Du Page" = "DuPage",
-  "La Salle" = "LaSalle",
-  .default = levels(ispcrime$county)
-)
-
-ispcrime_tbl2 <- left_join(ispcrime_tbl, regions) %>% na.omit()
-counties@data <- counties@data %>%
-  left_join(
-    ispcrime %>%
-      filter(year == 2015) %>%
-      select(name = county, violentCrime)
-  )
-```
-
-```{r fig.height = 6}
-# bar plot of violent crime mean count by region
-ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
-  stat_summary(geom = "bar", fun.y = "mean") +
-  labs(title = "Violent crime count by region", x = "Region", y = "Count") +
-  theme_classic(base_size = 15)
-```
-
-
-========================================================
-```{r fig.height = 6}
-# line plot of violent crime trend by region
-ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom = "line", fun.y = "sum", size = 1) +
-  labs(title = "Violent crime trend by region", x = "Year", y = "Count") +
-  theme_minimal(base_size = 15) +
-  scale_color_brewer(palette = "Dark2")
-```
-
-
-========================================================
-```{r fig.width = 10, fig.height = 6}
-# histogram of violent crime count by county (excluding Cook)
-ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime)) +
-  geom_histogram(binwidth = 100) +
-  facet_wrap(~ year) +
-  labs(x = "Violent crime count", y = "Count") +
-  theme_classic(base_size = 15)
-```
-
-
-========================================================
-```{r fig.height = 6}
-# choropleth map of violent crime in 2015
-qtm(counties,
-  fill = "violentCrime",
-  format = "World",
-  frame = FALSE)
-```
-
-
-
-========================================================
-**Other examples (1): Word cloud**
+**Example (1): Word cloud**
 ```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/dataviz_example1.png")
 ```
@@ -242,23 +222,100 @@ Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">
 
 
 ========================================================
-**Other examples (2): Parallel plot**
+**Example (2): Dendrogram**
 ```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/dataviz_example2.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="">The R Graph Gallery</a>
+Source: <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/FAQ.html">The Comprehensive R Archive Network</a>
 </div>
 
 
 ========================================================
-**Other examples (3): Network graph**
+**Example (3): Network graph**
 ```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/dataviz_example3.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a>
 </div>
+
+
+========================================================
+**Example (4): Line graph**
+```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example4.png")
+```
+
+
+========================================================
+**Example (5): Choropleth map**
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example5.png")
+```
+
+
+Quick demonstration
+========================================================
+* Bar plot
+* Histogram
+
+```{r echo=FALSE}
+library(ggplot2)
+
+ispcrime_tbl2 <- left_join(ispcrime_tbl, regions) %>% na.omit() %>% mutate(Year = as.factor(year))
+```
+
+
+========================================================
+```{r fig.height = 5.5}
+# bar plot of crime count in 2015 by region
+barplot <- ggplot(filter(ispcrime_tbl2, year == 2015), aes(x = region, y = violentCrime, fill = region, group = region)) +
+  stat_summary(geom = "bar", fun.y = "sum")
+
+barplot
+```
+
+
+========================================================
+```{r fig.height = 6}
+# change labels and appearance
+barplot2 <- barplot +
+  labs(title = "Violent crime count in 2015 by region", x = "", y = "") +
+  theme_classic(base_size = 15)
+
+barplot2
+```
+
+
+========================================================
+```{r fig.height = 6}
+# remove the legends and change colors
+barplot2 +
+  theme(legend.position = "None") +
+  scale_fill_brewer(palette="Spectral")
+```
+
+
+========================================================
+```{r fig.width = 10, fig.height = 6}
+# histogram of violent crime count by county
+ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
+  geom_histogram(binwidth = 100) +
+  facet_wrap(~ year) +
+  labs(x = "Violent crime count", y = "Count") +
+  theme_minimal(base_size = 15)
+```
+
+
+========================================================
+```{r fig.width = 10, fig.height = 6}
+# exclude Cook county data from the histogram and add colors
+ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime, fill = Year)) +
+  geom_histogram(binwidth = 100) + facet_wrap(~ Year) +
+  labs(x = "Violent crime count", y = "Count") +
+  theme_minimal(base_size = 15)
+```
 
 
 Statistical modeling
@@ -449,3 +506,11 @@ include_graphics("../images/psyduck_question.gif")
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 </div>
+
+
+========================================================
+type:section
+```{r echo=FALSE, out.width="70%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
