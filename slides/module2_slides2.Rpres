@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: Fundamental building blocks of R programming</p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: Gearing up for data analysis in R</p>
+<ul style="list-style: none">
+<li>
+  Part 1: Fundamental building blocks of R programming</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: Gearing up for data analysis in R</li>
 </div>
 
 
@@ -40,7 +42,7 @@ Gearing Up for Data Analysis in R
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Symbole_travaux_marteau_et_clef.svg/1080px-Symbole_travaux_marteau_et_clef.svg.png")
+include_graphics("../images/tools.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
@@ -71,43 +73,54 @@ What is a data frame?
     * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
 
 
-Example: Iris data 
+Example: ISP crime data 
 ========================================================
-R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
+I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
+
 ```{r}
-class(iris)  # the class of iris object is "data.frame"
-is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
+library(icjiar)
+
+class(ispcrime)         # the class of ispcrime object is "data.frame"
+is.data.frame(ispcrime) # check if iris is a data.frame; TRUE, as expected
 ```
 
 
 ========================================================
 ```{r}
-str(iris)  # reports the "structure" of the data frame 
-head(iris, 5)  # returns the first n rows of the data frame (default 6)
+str(ispcrime) # reports the "structure" of the data frame 
 ```
 
 
 ========================================================
 ```{r}
-dim(iris)  # returns the dimension of the data frame (row  column)
-nrow(iris)  # returns the number of rows in the data frame
-ncol(iris)  # returns the number of columns in the data frame
-colnames(iris)  # returns a vector containing the column names 
+head(ispcrime, 5) # returns the first n rows of the data frame (default 6)
+```
+
+
+========================================================
+```{r}
+dim(ispcrime)  # returns the dimension of the data frame (row  column)
+nrow(ispcrime)  # returns the number of rows in the data frame
+ncol(ispcrime)  # returns the number of columns in the data frame
+colnames(ispcrime)  # returns a vector containing the column names 
 ```
 
 
 ========================================================
 ```{r eval=FALSE}
-iris$Sepal.Length  # access a column by name
-iris[[1]]          # access the first column by index
-iris[, 1]          # yet another way to access the first column!
+ispcrime$year # access a column by name
+ispcrime[[1]] # access the first column by index
+ispcrime[, 1] # yet another way to access the first column!
 ```
 ```{r echo=FALSE}
-iris$Sepal.Length
+ispcrime$year[1:150]
 ```
+
+
+========================================================
 ```{r}
-iris[1, ]  # access the first row by index
-iris[1, 1]  # access a specific cell (first row of the first column)
+ispcrime[1, ]  # access the first row by index
+ispcrime[1, 1] # access a specific cell (first row of the first column)
 ```
 
 
@@ -171,7 +184,7 @@ Transforming a data frame
 
 
 ========================================================
-Change column names
+**Change column names**
 ```{r}
 colnames(df1) <- c("my_fruits", "my_animals", "my_flavors")
 
@@ -179,7 +192,7 @@ print(df1)
 ```
 
 ========================================================
-Add columns
+**Add columns**
 ```{r}
 # using $ index
 df1$my_colors <- c("red", "green", "orange")
@@ -193,7 +206,7 @@ print(df1)
 
 
 ========================================================
-Modify columns
+**Modify columns**
 ```{r}
 df1[["my_colors"]] <- c("maroon", "blue", "purple")
 df1$my_cities <- c("Chicago", "London", "Paris")
@@ -203,7 +216,7 @@ df1
 
 
 ========================================================
-Remove columns
+**Remove columns**
 ```{r}
 # assinging NULL
 df1$my_colors <- NULL
@@ -218,7 +231,7 @@ df1
 
 
 ========================================================
-Add rows
+**Add rows**
 ```{r}
 new_row <- data.frame(
   my_fruits = "strawberry",
@@ -232,7 +245,7 @@ df1
 
 
 ========================================================
-Remove rows
+**Remove rows**
 ```{r}
 # subsetting
 df1 <- df1[1:3, ]
@@ -242,7 +255,7 @@ df1
 
 
 ========================================================
-Modify cells
+**Modify cells**
 ```{r}
 # this doesn't work ... why?
 df1$my_flavors[1] <- "mint chocolate chip"
@@ -320,7 +333,7 @@ R Add-On Packages
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png")
+include_graphics("../images/r-packages.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.datacamp.com/">DataCamp</a>
@@ -329,7 +342,7 @@ Source: <a href="https://www.datacamp.com/">DataCamp</a>
 
 What are add-on packages?
 ========================================================
-> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc. - "R (programming language)", Wikipedia
+> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc.<br><br>- "R (programming language)", Wikipedia
 
 
 Using packages
@@ -375,7 +388,7 @@ Tidy data is data where:
 
 ========================================================
 ```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin-top:10%; box-shadow: none;"'}
-include_graphics("http://r4ds.had.co.nz/images/tidy-1.png")
+include_graphics("../images/tidy-1.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
@@ -394,30 +407,30 @@ Anything that is not tidy!
 * Multiple values in a single cell
 * Multiple cells for a single value
 
+
 ========================================================
-Untidy example 1
+**Untidy example 1**
 ```{r echo=FALSE}
 library(dplyr)
-iris %>%
+ispcrime %>%
   mutate(
-    `Sepal.Length/Width` = paste(Sepal.Length, "/", Sepal.Width, sep = ""),
-    `Petal.Length/Width` = paste(Petal.Length, "/", Petal.Width, sep = "")
+    `year/county` = paste(year, "/", county, sep = ""),
+    `violentCrime/propertyCrime` = paste(violentCrime, "/", propertyCrime, sep = "")
   ) %>%
-  select(`Sepal.Length/Width`, `Petal.Length/Width`, Species) %>%
+  select(`year/county`, `violentCrime/propertyCrime`) %>%
   head()
 ```
 
-Untidy example 2
+**Untidy example 2**
 ```{r echo=FALSE}
 library(tidyr)
-iris2 <- iris
-iris$index <- as.numeric(row.names(iris))
-iris %>%
-  gather(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, key = "type", value = "value") %>%
-  select(index, type, value, Species) %>%
+ispcrime2 <- ispcrime
+ispcrime$index <- as.numeric(row.names(ispcrime))
+ispcrime %>%
+  gather(murder, rape, robbery, aggAssault, key = "typeViolent", value = "valueViolent") %>%
+  select(index, year, county, typeViolent, valueViolent) %>%
   arrange(index) %>%
   head(10)
-  
 ```
 
 
@@ -435,7 +448,7 @@ Good Code, Bad Code
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg")
+include_graphics("../images/good-bad.jpg")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.nytimes.com/">The New York Times</a>
@@ -476,10 +489,10 @@ Object naming
 
 
 ========================================================
-Naming a variable (e.g. for firearm arrests)
+**Naming a variable (e.g. for firearm arrests)**
 ```{r eval=FALSE}
 # Good
-firearm_arr
+firearm_arrests
 fa_arr
 
 # Bad
@@ -490,7 +503,7 @@ farr                          # not descriptive enough
 x                             # not descriptive at all
 ```
 
-Naming a function (e.g. for counting arrests)
+**Naming a function (e.g. for counting arrests)**
 ```{r eval=FALSE}
 # Good
 count_arr <- function(x) { ... }
@@ -502,7 +515,7 @@ count   <- function(x) { ... }  # too generic (common name)
 ```
 
 ========================================================
-Reserved words in R
+**Reserved words in R**
 ```{r eval=FALSE}
 if else repeat while function for  
 in next break  # used in loops, conditions, functions
@@ -535,7 +548,7 @@ Whitespaces for readable code
 
 
 ========================================================
-Adding spaces
+**Adding spaces**
 ```{r eval=FALSE}
 # Good
 greetings <- paste("Hello", "World!", sep = " ")
@@ -552,7 +565,7 @@ base :: Random ()
 
 
 ========================================================
-Extra spacing
+**Extra spacing**
 ```{r eval=FALSE}
 # for aligning function arguments
 some_function (
@@ -569,7 +582,7 @@ letters        <- c("a", "b", "c")
 
 
 ========================================================
-Indentation
+**Indentation**
 ```{r eval=FALSE}
 # Good
 if (x > 0) {

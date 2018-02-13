@@ -45,6 +45,12 @@ knitr::include_graphics("./images/icjia-x-r.png")
 
 ***
 
+## Workshop news
+* **ICJIA R&A Unit Meeting Presentation,** February 13th, 2018
+    * I gave a brief presentation where I introduced the R&A Unit to R and discussd the Workshop objectives and structure. Check out the [**slides**](./slides/presentation_slides.html) as well as the [**script**](./notes/presentation_notes.html) for the presentation!
+
+***
+
 ## Workshop insturctor
 My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that **R is one of the most powerful modern computational tools for research and data analysis**. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [**About Me**](about.html#about-me) to read more about me.
 

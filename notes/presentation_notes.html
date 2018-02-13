@@ -236,8 +236,8 @@ div.tocify {
 <div id="welcome_" class="section level1">
 <h1>Welcome_</h1>
 <p><img src="../images/icjia-x-r.png" width="50%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p>Welcome to this presentation. Today I would like to share with you a workshop series on R, which I have developed specifically to encourage and enable ICIJA researchers to incorporate R into their research and data analysis workflow.</p>
-<p>This presentation can be roughly divided into two parts. For the first half, I will talk about what R is and offer a quick overview of its functionalities. Then, I will discuss the workshop objectives and structure.</p>
+<p>Welcome to this presentation. Today I would like to share with you a workshop series on R, which I have been developing to encourage and enable ICIJA researchers to incorporate R into their research and data analysis workflow.</p>
+<p>This presentation can be roughly divided into two parts. In the first part, I will talk about what R is and demonstrate what it can do. This is the longer part of the talk. Then, I will briefly discuss the workshop objectives and structure.</p>
 <div id="quick-survey" class="section level2">
 <h2>Quick survey</h2>
 <p>Before we move on, let us take a quick survey:</p>
@@ -246,9 +246,10 @@ div.tocify {
 <li>How many of you have tried R before?</li>
 <li>How many of you use R regularly?
 <ul>
-<li>Can you briefly tell us what you use R for?</li>
+<li>(Can you briefly tell us what you use R for?)</li>
 </ul></li>
 </ul>
+<hr />
 </div>
 </div>
 <div id="a-brief-intro-to-r" class="section level1">
@@ -259,42 +260,47 @@ div.tocify {
 <blockquote>
 <p>“R is a language and environment for statistical computing and graphics.” - The R Foundation</p>
 </blockquote>
-<p>So, R is a programming language that is specifically <em>built for</em> data analysis and visualization. It is also one of the the most popular choices of programming language among academic researchers and data scientists.</p>
-<p>Let’s dig a little further and talk about the benefits of using R in more details.</p>
+<p>Accoring to the official documentation, R is a programming language that is specifically <em>built for</em> data analysis and visualization. In fact, it is one of the the most popular choices of programming language among academic researchers and data scientists.</p>
+<p>Let’s take a closer look and talk about the benefits of using R in more details.</p>
 <ul>
-<li><p>First, R is open-source, which means free. This also means that, if you are interested, you can look at the source code and find out exactly what each function is doing under the hood. Also, not only R is free, but also its supporting softwares are free. No strings attached.</p></li>
+<li><p>First, R is open-source, which means free. Not only R is free, but also its supporting softwares are free. No strings attached. Being open-source also means that, if you are interested, you can look at the source code and find out exactly what each function is doing under the hood.</p></li>
 <li><p>R is built for statistical analysis, which means that it already comes with a breadth of functionalities for data analysis and statistics. This sets R apart from other programming languages in general.</p></li>
-<li><p>R allows researchers to conduct research in a reproducible and transparent fashion. A research done programmatically means every step taken for data manipulation and statistical modeling is in plain sight, making it easily to replicate the results or collaborate with others. This also gives researchers a jump-start when starting a new, but similar project.</p></li>
-<li><p>R can be greatly extended with powerful third-party packages. This, in fact, is one of the greatest blessings of using R that no proprietary sofewares, like SPSS, STATA, or SAS, can imitate.</p></li>
-<li><p>With these packages, researchers can tackle a variety of tasks using a <em>single</em> platform, from collecting data to cleaning data to creating plots to fitting statistical models to generating a report, and even more.</p></li>
+<li><p>Using a programming language such as R allows researchers to conduct research in a reproducible and transparent fashion. Every step taken for data manipulation and statistical modeling is in plain sight, in the form of code, making it easy to replicate the results or collaborate with others. This also gives researchers a jump-start when starting a new, but similar project.</p></li>
+<li><p>R can be greatly extended with powerful third-party packages, which are, or course, free of charge. The existence of numerous third-party packages is in fact one of the greatest advantages of using R that no proprietary sofewares, like SPSS, STATA, or SAS, can imitate.</p></li>
+<li><p>With these packages, researchers can tackle a variety of tasks using a <em>single</em> platform, from collecting data to cleaning data to creating visualizations to fitting statistical models to generating a report, and even more.</p></li>
 </ul>
+<p>And, perhaps most importantly, with some practice, you can create amazing stuff with R!</p>
 </div>
 <div id="r-is-versatile" class="section level2">
 <h2>R is versatile</h2>
-<p>That said, one of the greatest benefits of using R is its versatility. Many who have not used R think that it is just another statistical software. That is not true at all. R is a programming language with a fast-growing ecosystem of diverse packages and applications, which enables its users to do wonders–literally.</p>
+<p>In other words, R is a powerfully versatile tool. Many who have not used R think that it is just another statistical software. That is not true at all. R is a programming language with a fast-growing ecosystem of diverse packages and applications, which enables its users to do wonders–literally.</p>
 <p>For the next few minutes, I would like to quickly showcase what R is capable of.</p>
 <hr />
 </div>
 </div>
 <div id="data-manipulation" class="section level1">
 <h1>Data manipulation</h1>
-<p>First, let’s see how some basic data manipulation and analysis can be done using R.</p>
+<p>Here, we will see how some basic data manipulation and analysis can be done using R.</p>
 <div id="code-1" class="section level3">
 <h3>Code 1</h3>
 <pre class="r"><code># peak at the first rows of the data
-head(ispcrime_tbl)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##    year county  violentCrime murder  rape robbery aggAssault propertyCrime
-##   &lt;int&gt; &lt;fct&gt;          &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;int&gt;         &lt;int&gt;
-## 1  2011 Adams            218      0    37      15        166          1555
-## 2  2011 Alexan~          119      0    14       4        101           290
-## 3  2011 Bond               6      1     0       0          5           211
-## 4  2011 Boone             59      0    24       8         27           733
-## 5  2011 Brown              7      0     1       0          6            38
-## 6  2011 Bureau            42      0     4       3         35           505
-## # ... with 4 more variables: burglary &lt;int&gt;, larcenyTft &lt;int&gt;,
-## #   MVTft &lt;int&gt;, arson &lt;int&gt;</code></pre>
-<p>Here, with a single command, we can take a quick peak at the data to get some basic understanding of the data table.</p>
+ispcrime_tbl</code></pre>
+<pre><code>## # A tibble: 510 x 12
+##     year county violentCrime murder  rape robbery aggAssault propertyCrime
+##    &lt;int&gt; &lt;fct&gt;         &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;int&gt;         &lt;int&gt;
+##  1  2011 Adams           218      0    37      15        166          1555
+##  2  2011 Alexa~          119      0    14       4        101           290
+##  3  2011 Bond              6      1     0       0          5           211
+##  4  2011 Boone            59      0    24       8         27           733
+##  5  2011 Brown             7      0     1       0          6            38
+##  6  2011 Bureau           42      0     4       3         35           505
+##  7  2011 Calho~           13      0     0       0         13            56
+##  8  2011 Carro~            8      0     1       0          7           206
+##  9  2011 Cass             12      0     1       0         11           119
+## 10  2011 Champ~         1210      5   127     208        870          5332
+## # ... with 500 more rows, and 4 more variables: burglary &lt;int&gt;,
+## #   larcenyTft &lt;int&gt;, MVTft &lt;int&gt;, arson &lt;int&gt;</code></pre>
+<p>First, let us take a quick glance at our data. It is the State Police’s annual report of crime data for Illinois counties, from 2011 to 2015. It has total 510 rows and 12 columns. The columns include: year, county, violent crime total, four violent crime categories, property crime total, and four property crime categories. I will now show you how some questions can be answered using R code. Do not worry about understanding the code–we will learn all about it in the actual workshop.</p>
 </div>
 <div id="code-2" class="section level3">
 <h3>Code 2</h3>
@@ -310,7 +316,7 @@ ispcrime_tbl %&gt;%
 ##  3rd Qu.:  133   3rd Qu.:  1190  
 ##  Max.   :33348   Max.   :178902  
 ##  NA&#39;s   :7       NA&#39;s   :7</code></pre>
-<p>Now, if we want to get some quick summary of a selected set of columns, this can be done easily. You don’t need to understand what each line of the code is doing at this point–we will go through them in the workshop.</p>
+<p>Let’s say that we want to get some quick summary of violent crime and propety crime counts. As you can see here, getting some basic summary statistics of a selected set of columns can be done easily.</p>
 </div>
 <div id="code-3" class="section level3">
 <h3>Code 3</h3>
@@ -335,14 +341,32 @@ ispcrime_tbl %&gt;%
 ## 10  2015 Cook           153575
 ## 11  2015 Crawford          282
 ## 12  2015 Cumberland         42</code></pre>
-<p>Here is an example of somewhat more complicated data manipulation task. Here we filter the data using two different columns and add a new computed variable. Then we take a look at a select set of columns. I think the syntax is intuitive enough to be informative even to non-R-users.</p>
+<p>Now we want to ask a more complicated question: What are the total crime count in 2015 for counties where the name starts with letter C? This involves getting a desired subset of our data and creating a new computed column for the total crime count. No problem. By the way, notice that the code itself is intuitive enough to be informative even to non-R-users.</p>
+<p>Now, let’s ask a slightly different question: What about counties starting with “D” for not just in 2015 but also in 2014?</p>
+<pre class="r"><code># how about &quot;D&quot; counties in 2014 and 2015?
+ispcrime_tbl %&gt;%
+  filter(substr(county, 1, 1) == &quot;D&quot;, year %in% c(2014, 2015)) %&gt;%
+  mutate(totalCrime = violentCrime + propertyCrime) %&gt;%
+  select(year, county, totalCrime)</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##    year county  totalCrime
+##   &lt;int&gt; &lt;fct&gt;        &lt;int&gt;
+## 1  2014 De Kalb       2218
+## 2  2014 De Witt        182
+## 3  2014 Douglas        116
+## 4  2014 Du Page      12576
+## 5  2015 De Kalb       2173
+## 6  2015 De Witt        140
+## 7  2015 Douglas        173
+## 8  2015 Du Page      12538</code></pre>
+<p>Well, here is the answer. Notice how similar the code looks to the previous case with only two minor changes. This shows the power of writing code for data analysis. You can take your earlier work and tweak it just a little to answer a new question.</p>
 </div>
 <div id="code-4" class="section level3">
 <h3>Code 4</h3>
-<pre class="r"><code># get annual average count of violent crime by county
+<pre class="r"><code># get annual average crime count by county
 ispcrime_tbl %&gt;%
   group_by(county) %&gt;%
-  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5)</code></pre>
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n())</code></pre>
 <pre><code>## # A tibble: 102 x 2
 ##    county    annualAvgCrime
 ##    &lt;fct&gt;              &lt;dbl&gt;
@@ -357,7 +381,28 @@ ispcrime_tbl %&gt;%
 ##  9 Cass               109  
 ## 10 Champaign         6567  
 ## # ... with 92 more rows</code></pre>
-<p>This is an example of aggregating data. Here, we “group” the data by the county column to get the average count of violent crime from 2011 to 2015. In the process, we can ignore the missing values, treating them as zero in effect. That choice might not make sense in this particular case, but being able to ignore missing value easily can come handy.</p>
+<p>Let’s now try aggregating data. Our new question is: what is the annual average of the crime count per county? With only a few line of code, we get the answer.</p>
+<p>Now, suppose we want to sort the result by the average count?</p>
+<pre class="r"><code># sort by average crime count? 
+ispcrime_tbl %&gt;%
+  group_by(county) %&gt;%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %&gt;%
+  arrange(desc(annualAvgCrime))</code></pre>
+<pre><code>## # A tibble: 102 x 2
+##    county    annualAvgCrime
+##    &lt;fct&gt;              &lt;dbl&gt;
+##  1 Cook              182818
+##  2 Du Page            14316
+##  3 Lake               12779
+##  4 Winnebago          12275
+##  5 Will               11078
+##  6 St. Clair           9262
+##  7 Sangamon            8876
+##  8 Kane                8332
+##  9 Peoria              7229
+## 10 Champaign           6567
+## # ... with 92 more rows</code></pre>
+<p>One extra line of code can give us the answer!</p>
 </div>
 <div id="code-5" class="section level3">
 <h3>Code 5</h3>
@@ -374,86 +419,130 @@ ispcrime_tbl %&gt;%
 ## 2 Cook         5
 ## 3 Northern    85
 ## 4 Southern   190</code></pre>
-<p>Finally, let’s take a look at an example of merging tables and aggregating. This code merges, or joins, the ISP crime table with regions table, which connects each county to the corresponding region. Then we aggregate and get a frequency table on the regional level.</p>
+<p>We often have to merge two separate tables into one to get the answer we want. This code block merges the State Police crime table with another table named regions, which connects each county to the corresponding region. Then we aggregate and get a frequency table on the regional level.</p>
+<p>Here, however, we see that numbers don’t make sense. This is because there are five observations for each county in our data.</p>
+<pre class="r"><code># no duplicates!
+ispcrime_tbl %&gt;%
+  select(county) %&gt;%
+  unique() %&gt;%
+  left_join(regions) %&gt;%
+  group_by(region) %&gt;%
+  count()</code></pre>
+<pre><code>## Joining, by = &quot;county&quot;</code></pre>
+<pre><code>## # A tibble: 4 x 2
+## # Groups:   region [4]
+##   region       n
+##   &lt;fct&gt;    &lt;int&gt;
+## 1 Central     46
+## 2 Cook         1
+## 3 Northern    17
+## 4 Southern    38</code></pre>
+<p>Simply by adding couple extra commands to our original code, we get the answer we want.</p>
+<p>As we have seen, R provides a simple yet powerful grammer for data analysis with an added benefit of reuseable code. We can do all these data manipulation for very large data sets with little delay.</p>
+<p>This is only a tip of an iceberg, and we will learn more in the workshop about using our data to answer more complicated questions.</p>
 <hr />
 </div>
 </div>
 <div id="data-visualization" class="section level1">
 <h1>Data visualization</h1>
-<p>Now, let us take a look at some plots geenrated in R. R ecosystem provides great data visualization packages that we can benefit from, and with such tools we can create publication-ready plots with a few lines of code.</p>
-<div id="plot-1" class="section level3">
-<h3>Plot 1</h3>
-<pre class="r"><code># bar plot of violent crime mean count by region
-ggplot(ispcrime_tbl2, aes(x = region, y = violentCrime, fill = region)) +
-  stat_summary(geom = &quot;bar&quot;, fun.y = &quot;mean&quot;) +
-  labs(title = &quot;Violent crime count by region&quot;, x = &quot;Region&quot;, y = &quot;Count&quot;) +
-  theme_classic()</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-9-1.png" width="480" /></p>
-<p>This is a simple bar plot of violent crime average count by region, using <code>ggplot2</code> package. This is using the default color palette but it is also possible to customize colors, or, for that matter, almost any element of the plot.</p>
-</div>
-<div id="plot-2" class="section level3">
-<h3>Plot 2</h3>
-<pre class="r"><code># line plot of violent crime trend by region
-ggplot(ispcrime_tbl2, aes(x = year, y = violentCrime, color = region)) +
-  stat_summary(geom = &quot;line&quot;, fun.y = &quot;sum&quot;, size = 1) +
-  labs(title = &quot;Violent crime trend by region&quot;, x = &quot;Year&quot;, y = &quot;Count&quot;) +
-  theme_minimal() +
-  scale_color_brewer(palette = &quot;Dark2&quot;)</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
-<p>This is a line plot of violent crime trend by region. One benefit of using programmatic tools for plotting lies in its reproducibility. If you need more plots like this, with small tweaks or with another data, you already have the template and there is no need to start from scratch. Also, notice that the color palatte and plot style has changed in this plot.</p>
-</div>
-<div id="plot-3" class="section level3">
-<h3>Plot 3</h3>
-<pre class="r"><code># histogram of violent crime count by county (excluding Cook)
-ggplot(filter(ispcrime_tbl2, county != &quot;Cook&quot;), aes(x = violentCrime)) +
-  geom_histogram(binwidth = 100) +
-  facet_wrap(~ year) +
-  labs(x = &quot;Violent crime count&quot;, y = &quot;Count&quot;) +
-  theme_classic()</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-11-1.png" width="480" /></p>
-<p>We can also easily create a series of plots by a variable for comparison, with one extra line of code. Admittedly, it is not the most aesthetic graph, but as we have seen, most elements are customaizable and with some extra effort the graph can look much nicer.</p>
-</div>
-<div id="plot-4" class="section level3">
-<h3>Plot 4</h3>
-<pre class="r"><code># choropleth map of violent crime in 2015
-qtm(counties,
-  fill = &quot;violentCrime&quot;,
-  format = &quot;World&quot;,
-  frame = FALSE)</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-12-1.png" width="480" /></p>
-<p>Here is a simple example of generating a map in R with a different package. R is capable of dealing with spatial data in shapefiles format and can generate decent-looking maps. Again, with extra efforts, the map can look much nicer.</p>
-</div>
-<div id="other-examples-1-word-cloud" class="section level3">
-<h3>Other examples 1: Word cloud</h3>
+<p>Moving on to the world of data visualization. R ecosystem provides great data visualization packages that allow us to create publication-ready plots with a few lines of code.</p>
+<div id="examples-1-word-cloud" class="section level3">
+<h3>Examples 1: Word cloud</h3>
 <img src="../images/dataviz_example1.png" width="50%" />
 <div style="font-size:0.5em; margin-left:10px; color: #777;">
 <p>Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a></p>
 </div>
-<p>Now I would like to share plots I found elsewhere, which show the great flexiability of R. This is a wordcloud plot generated using <code>wordcloud</code> package. Although we don’t always need to generate a wordcloud plot, simply knowing that it is possible allows us to explore creative ways to visualize and extract insights from our data.</p>
+<p>First, here is a wordcloud plot generated using <code>wordcloud</code> package. We don’t always need to generate a wordcloud plot, but simply knowing that it is possible allows us to explore creative ways to visualize and extract insights from our data.</p>
 </div>
-<div id="other-examples-2-parallel-plot" class="section level3">
-<h3>Other examples 2: Parallel plot</h3>
+<div id="example-2-dendrogram" class="section level3">
+<h3>Example 2: Dendrogram</h3>
 <img src="../images/dataviz_example2.png" width="50%" />
 <div style="font-size:0.5em; margin-left:10px; color: #777;">
 <p>Source: <a href="http://www.r-graph-gallery.com/93-parrallel-plot/">The R Graph Gallery</a></p>
 </div>
-<p>Second external example is a parallel plot, using <code>MASS</code> pacakge, which has functions and datasets to support a book called “Modern Applied Statistics with S”. This is actually reletively easy to make this kind of plot since <code>MASS</code> package provides a function for this called <code>parcoord()</code>.</p>
+<p>Second example is a dendrogram, or a tree plot, created with <code>dendextend</code> package. This allows us to create a visual representation of a decision tree. Creating this takes less than 10 lines of R code.</p>
 </div>
-<div id="other-examples-3-network-graph" class="section level3">
-<h3>Other examples 3: Network graph</h3>
+<div id="example-3-network-graph" class="section level3">
+<h3>Example 3: Network graph</h3>
 <img src="../images/dataviz_example3.png" width="50%" />
 <div style="font-size:0.5em; margin-left:10px; color: #777;">
 <p>Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/examples-from-paper.html">The Comprehensive R Archive Network</a></p>
 </div>
-<p>The last example is a work of network visualization using <code>ggnet2</code> package. This plot, once the data is ready, takes less than 10 lines of code to create. Again, these plots show just how versatile R can be.</p>
+<p>This is a work of network visualization using <code>ggnet2</code> package. This plot, again, takes less than 10 lines of code to create.</p>
+</div>
+<div id="example-4-line-graph" class="section level3">
+<h3>Example 4: Line graph</h3>
+<p><img src="../images/dataviz_example4.png" width="50%" /></p>
+<p>Now let me share with you a couple of my own work. This is a line plot I made a few months ago, to compare the State Police data and FBI data. This is not two different plots manually put together, but a single plot with two sets of line graphs generated at the same time with the same R code.</p>
+</div>
+<div id="example-5-choropleth-map" class="section level3">
+<h3>Example 5: Choropleth map</h3>
+<p><img src="../images/dataviz_example5.png" width="50%" /></p>
+<p>And here is a map I created as a practice. This was in fact my attempt to reproduce another map created in ArcGIS.</p>
+<p><img src="../images/dataviz_example5-1.png" width="50%" /></p>
+<p>Do they it look similar to each other?</p>
+</div>
+<div id="quick-demonstration" class="section level2">
+<h2>Quick demonstration</h2>
+<ul>
+<li>Bar plot</li>
+<li>Histogram</li>
+</ul>
+<p>To help you to see how generating a plot looks like in R, I prepared a couple of demonstrations, one using a bar plot and another using a histogram.</p>
+<div id="bar-plot" class="section level3">
+<h3>Bar plot</h3>
+<pre class="r"><code># bar plot of crime count in 2015 by region
+barplot &lt;- ggplot(filter(ispcrime_tbl2, year == 2015), aes(x = region, y = violentCrime, fill = region, group = region)) +
+  stat_summary(geom = &quot;bar&quot;, fun.y = &quot;sum&quot;)
+
+barplot</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-18-1.png" width="480" /></p>
+<p>This is a simple bar plot of total violent crime count by region, using <code>ggplot2</code> package. Each region is represented by each bar and a color. A legend for color coding is generated on the side as a default. Looks okay, but we can improve it a little more. How about we make the words easier to read by increasing the font size? Also, let’s give it a descriptive title. Lastly, we don’t like that grey background, so let’s give it a different look.</p>
+<pre class="r"><code># add title and change appearance
+barplot2 &lt;- barplot +
+  labs(title = &quot;Violent crime count in 2015 by region&quot;) +
+  theme_classic(base_size = 15)
+
+barplot2</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-19-1.png" width="480" /></p>
+<p>And viola! The plot now has a title that tells us what it is about and the font size is easiler to read. Also, the plot has a new theme and the grey background is gone. Notice that, in the code block, the previous plot, stored in an object called <code>barplot</code> is used to make the code more succinct and less repetitive. I think this looks fine, but let’s improve it a little more by removing redundant information. Also, let’s try different colors.</p>
+<pre class="r"><code># remove the axes names and legends, and change colors
+barplot2 +
+  labs(x = &quot;&quot;, y = &quot;&quot;) +
+  theme(legend.position = &quot;None&quot;) +
+  scale_fill_brewer(palette=&quot;Spectral&quot;)</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-20-1.png" width="480" /></p>
+<p>And here is the result. The names for x- and y- axes, as well as the legend, are all gone since the title is enough to convey all the information needed to understand the plot. Also, we changed the color using a predefined palette. I don’t know if this looks better, but for demonstration purposes, it’s alright.</p>
+</div>
+<div id="histogram" class="section level3">
+<h3>Histogram</h3>
+<pre class="r"><code># histogram of burglary count by county
+ggplot(ispcrime_tbl2, aes(x = burglary)) +
+  geom_histogram() +
+  facet_wrap(~ year) +
+  labs(x = &quot;Burglary count&quot;, y = &quot;# counties&quot;) +
+  theme_minimal()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
+<p>Now let’s take a look at some histograms. Earlier we saw a plot with multiple graphes. This, too, is a series of graphes, each showing the histogram of burglary count for each year. But, wait, the picture seems overly skewed. After some investigation, we learn that Cook county is an outlier that distorts our picture. How can we fix this?</p>
+<pre class="r"><code># exclude Cook county data from the histogram and add colors
+ggplot(filter(ispcrime_tbl2, county != &quot;Cook&quot;), aes(x = burglary, fill = Year)) +
+  geom_histogram() + facet_wrap(~ Year) +
+  labs(x = &quot;Burglary count&quot;, y = &quot;# counties&quot;) +
+  theme_minimal()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-22-1.png" width="480" /></p>
+<p>One way to do this is simply to remove the Cook county from the data, which can be done quite easily. Since we are determined to make it look better, we also throw some colors in it. Is this better? I think so.</p>
+<p>As we have seen in this demonstrations, R offers powerful and flexible plotting functionalities that allow us to create amazing visualizations.</p>
 <hr />
+</div>
 </div>
 </div>
 <div id="statistical-modeling" class="section level1">
 <h1>Statistical modeling</h1>
-<p>Now I will offer a simplified example of fitting statistical model to data.</p>
-<div id="linear-model-1" class="section level3">
-<h3>Linear model 1</h3>
+<p>As I mentioned earlier, R is a programming language for statistical analysis. As such, it offers powerful statistical modeling functionalities, which are also made easy to implement. Here I will offer a simplified example of fitting a linear regression model to data. We will delve deeper into the subject in the workshop.</p>
+<div id="simple-linear-model-1" class="section level3">
+<h3>Simple linear model 1</h3>
 <pre class="r"><code>lm_fit &lt;- lm(violentCrime ~ propertyCrime, ispcrime)
 summary(lm_fit)</code></pre>
 <pre><code>## 
@@ -475,10 +564,10 @@ summary(lm_fit)</code></pre>
 ##   (7 observations deleted due to missingness)
 ## Multiple R-squared:  0.9861, Adjusted R-squared:  0.986 
 ## F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>This is a result of fitting a simple linear regression model to the ISP crime data we have seen earlier. It takes a single line of code to fit a model and another line to print the result.</p>
+<p>We use the State Police crime data we have seen earlier. In this simple example, we fit a simple linear regression, using the property crime count as the explanatory variable and the violent crime count as the response variable. It takes a single line of code to fit a model and another line to print the result, which gives us useful information about the fitted coefficients and goodness-of-fit measures.</p>
 </div>
-<div id="linear-model-2" class="section level3">
-<h3>Linear model 2</h3>
+<div id="simple-linear-model-2" class="section level3">
+<h3>Simple linear model 2</h3>
 <pre class="r"><code># put model fit results in a data frame format
 tidy(lm_fit)</code></pre>
 <pre><code>##            term    estimate   std.error  statistic      p.value
@@ -486,8 +575,8 @@ tidy(lm_fit)</code></pre>
 ## 2 propertyCrime   0.1993675  0.00105876 188.302852 0.000000e+00</code></pre>
 <p>It is also possible to put the model fit results into a tabular data object, which can be easily manipulated or visualized as needed.</p>
 </div>
-<div id="linear-model-3" class="section level3">
-<h3>Linear model 3</h3>
+<div id="simple-linear-model-3" class="section level3">
+<h3>Simple linear model 3</h3>
 <pre class="r"><code># get predictions and residuals for each data point
 ispcrime %&gt;%
   select(year, county, propertyCrime, violentCrime) %&gt;%
@@ -503,19 +592,21 @@ ispcrime %&gt;%
 ## 6 2011    Bureau           505           42  20.91229  21.087706</code></pre>
 <p>Here we see that the predicted values and residuals can be readily added to the original table.</p>
 </div>
-<div id="linear-model-4" class="section level3">
-<h3>Linear model 4</h3>
+<div id="simple-linear-model-4" class="section level3">
+<h3>Simple linear model 4</h3>
 <pre class="r"><code># plot the model fit
 plot(violentCrime ~ propertyCrime, ispcrime)
 abline(lm_fit)</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-20-1.png" width="480" /> We can visualize the model fit with simple code.</p>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-27-1.png" width="480" /></p>
+<p>We can visualize the model fit with simple code.</p>
 </div>
-<div id="linear-model-5" class="section level3">
-<h3>Linear model 5</h3>
+<div id="simple-linear-model-5" class="section level3">
+<h3>Simple linear model 5</h3>
 <pre class="r"><code># show diagnostic plots
 par(mfrow=c(2, 2))
 plot(lm_fit)</code></pre>
-<p><img src="presentation_notes_files/figure-html/unnamed-chunk-21-1.png" width="480" /> And take a look at the diagnostic plots. This command generates a Residuals versus fitted values plot, a Q-Q plot, a scale-location plot, and a plot of residuals versus leverage plot with Cook’s distance lines.</p>
+<p><img src="presentation_notes_files/figure-html/unnamed-chunk-28-1.png" width="480" /></p>
+<p>And take a look at the diagnostic plots. (This command generates a Residuals versus fitted values plot, a Q-Q plot, a scale-location plot, and a plot of residuals versus leverage plot with Cook’s distance lines.)</p>
 <p>Of course, using thrid-party packages, it is also possible to generate a more aesthetically pleasing plots for model fits.</p>
 </div>
 <div id="generalized-linear-model" class="section level3">
@@ -537,30 +628,32 @@ gamma_reg &lt;- glm(y ~ x1 + x2, data = mydata, family = Gamma())</code></pre>
 <li>text analysis (e.g. <code>tm</code> and <code>tidytext</code> packages)</li>
 <li>machine learning (e.g. <code>caret</code> and <code>mlr</code> packages)</li>
 </ul>
+<p>We see that advanced modeling involves many different packages. This may look daunting at first, but this actually offers us some freedom of choice in terms of which package to use to tackle the problem at hand. If there is no tool suited for our problem, we can even create a function or package. In fact, this is how R grows in its versatility, i.e., through packages developed by its users for specific tasks.</p>
 <hr />
 </div>
 </div>
 <div id="and-more" class="section level1">
 <h1>And more!</h1>
-<p>One of the great attractions of R is that a researcher can do much than just data work with R. It can serve a research platform that provides a smooth workflow, from collecting data to publishing the analysis in various formats.</p>
+<p>Researchers can do much more than just data work with R. In fact, R can serve as a research platform that provides a smooth workflow, from collecting data to publishing the analysis in various formats.</p>
 <div id="reports" class="section level2">
 <h2>Reports</h2>
-<p>First of all, R offers its own markdown format, called RMarkdown, which can be used to generate documents in HTML, PDF and Microsoft Word formats. If the output is an HTML page, we can add some interactive elements using <code>htmlwidgets</code> and <code>shiny</code> packages. RMarkdown allows us not only to nice formatting of the document, but also to incorporate R code as well as its outputs into the document.</p>
+<p>First of all, R offers its own markdown format, called RMarkdown, which can be used to generate documents in HTML, PDF and Microsoft Word formats. If the output is an HTML page, we can add some interactive elements using <code>htmlwidgets</code> and <code>shiny</code> packages. RMarkdown allows us not only to add some nice formatting to our document, but also to incorporate R code as well as its outputs into the document.</p>
 <div id="example---r-notebook" class="section level3">
 <h3>Example - R Notebook</h3>
 <p><img src="../images/report.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p>This is actually from my own work. I use RNotebook, a variation of RMarkdown document that allows for more interactive workflow, to create quick reports to Chris for research projects. This one is me examining the original arrests in 2003 for the firearm study. As you see, the report can incorporate R code and its inputs, making each step in the process highly transparent.</p>
+<p>This example is actually from my own work for the Firearm Recidivism Study. I created it as a quick report to share my analysis with Chris. This one is me examining the original arrests in 2003 for the firearm study. As you see, the report includes R code and its inputs, making each step in the process highly transparent while incorporting them into a larger narrative.</p>
 </div>
 </div>
 <div id="slideshow" class="section level2">
 <h2>Slideshow</h2>
 <p><img src="../images/slideshow.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p>R also offers functionalities to create a good-looking slideshow. The slides for this very presentation are generated using what is called RPresentation.</p>
+<p>R offers tools to create a nice-looking slideshow. The slides for this very presentation are generated using what is called RPresentation.</p>
 </div>
 <div id="dashboard" class="section level2">
 <h2>Dashboard</h2>
 <p><a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/"> <img src="../images/dashboard_demo.png" width="66%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
-<p>Using <code>shiny</code>, we can also create a web application that can serve as an interactive dashboard. In fact, let me take you to the dashboard for a minute. To be brutally honest, Tableau may offer a more user-friendly interface for creating a highly functional dashboard. However, it can also be done using R, and since R and Shiny are all open source, it costs nothing. In addition, if the dashboard requires complex computations or algorithms to do more than simply exploring an existing dataset, R may be better suited for such a project.</p>
+<p>With <code>shiny</code> package, we can also create a web application that can serve as an interactive dashboard.</p>
+<p>In fact, let me take you to the dashboard for a minute. While Tableau offers a more user-friendly interface for creating a highly functional dashboard, it can also be done using R, and since R and Shiny are all open source, it costs nothing. In addition, if we need our dashboard to run complex computations or model-fitting and do more than a simple slicing-and-dicing of our data, R may be better suited for such a project.</p>
 </div>
 <div id="website" class="section level2">
 <h2>Website</h2>
@@ -571,8 +664,8 @@ gamma_reg &lt;- glm(y ~ x1 + x2, data = mydata, family = Gamma())</code></pre>
 </div>
 <div id="objectives" class="section level1">
 <h1>Objectives</h1>
-<p>Now we are in the second part of this presentation where we can talk about the objectives and structure of this workshop series.</p>
-<p>First, the objectives. This workshop series has <strong>technical objectives</strong> concerning developing practical skills and <strong>fundamantal objectives</strong> that are more about building the foundation for growing further.</p>
+<p>We are finally in the second part of this presentation where we can talk about the objectives and structure of this workshop series–very briefly.</p>
+<p>This workshop series has <strong>technical objectives</strong> concerning developing practical skills and <strong>fundamantal objectives</strong> that are more about building the foundation for incorporating R programming into research.</p>
 <div id="technical-objectives" class="section level2">
 <h2>Technical objectives</h2>
 <p>On the techincal level, the workshop series seeks to equip ICJIA researchers with skills and knowledge to do the following tasks using R:</p>

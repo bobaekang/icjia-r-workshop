@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Getting started with tidyverse</p>
-  <p>Session 2: More on data analysis</p>
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Getting started with tidyverse</li>
+<li>
+  Part 2: More on data analysis</li>
 </div>
 
 
@@ -40,7 +42,7 @@ Getting Started with tidyverse
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
-images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+images <- c("../images/dplyr.png", "../images/tidyr.png")
 include_graphics(images)
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
@@ -109,39 +111,187 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
 
-
 Key dplyr functions
 ========================================================
 * `arange()`
 * `select()`
 * `filter()`
 * `mutate()`
-* `group_by()` and `summarise()`
+* `left_join()`
+* `summarise()`
+* `group_by()`
 * `%>%`, the pipe operator
 
 
 Sorting with arrange()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+arrange(data, column1, desc(column2), ...)
+```
+* A data object as the first argument
+* Columns by which to sort the data as the following arguments
+    * Multiple columns can be used to sort the data
+    * When multiple columns are given, sorting is done hierarchically
+    * Sorting in a descending order with `desc()`
+
+
+========================================================
+**Example**
+```{r echo=FALSE}
+library(dplyr)
+library(icjiar)
+```
+
+```{r eval=FALSE}
+# sort by county
+arrange(ispcrime, county)
+```
+
+```{r echo=FALSE}
+ispcrime %>%
+  arrange(county) %>%
+  head() 
+```
+
+
+========================================================
+```{r eval=FALSE}
+# sort by county and year, in a DESCENDING order
+arrange(ispcrime, desc(county), desc(year))
+```
+
+```{r echo=FALSE}
+ispcrime %>%
+  arrange(desc(county)) %>%
+  head() 
+```
 
 
 Filtering with filter()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+filter(data, condition1, condition2, ...)
+```
+* A data object (table) as the first argument
+* Conditions by which to filter the data as the following arguments
+
+========================================================
+**Example**
+```{r}
+
+```
 
 
 Selecting with select()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+select(data, column1, variable2 = column2, ...)
+```
+* A data object (table) as the first argument
+* Columns to select as the following arguments
+    * Renaming each selected column is possible
+
+========================================================
+**Example**
+```{r}
+
+```
 
 
 Transforming with mutate()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+mutate(data, column1 = some_compuation, new_column1 = some_computation, ...)
+```
+* A data object (table) as the first argument
+* Expressions to "mutate" columns as the following arguments
+    * An exisiting column is modified with an expression with the same column name
+    * A new column is created with an expression having a new column name
 
-
-Aggregating with group_by() and summarise()
 ========================================================
+**Example**
+```{r}
+
+```
+
+Merging with left_join()
+========================================================
+**Basic format**
+```{r eval=FALSE}
+left_join(data1, data2, by = c("variables to join by"), ...)
+```
+* Data objects (tables) to join as the first two arguments
+* A character vector of variable to join by as the third argument
+* Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
+
+
+========================================================
+**Example**
+```{r}
+
+```
+
+
+Aggregating with summarise()
+========================================================
+**Basic format**
+```{r eval=FALSE}
+arrange(data, summary1 = some_computation, summary2 = some_computation, ...)
+```
+* A data object (table) as the first argument
+* Expressions to summarise data as the following arguments
+
+
+========================================================
+**Example**
+```{r}
+
+```
+
+
+Grouping with group_by()
+========================================================
+**Basic format**
+```{r eval=FALSE}
+group_by(data, column1, column2, ...)
+```
+* A data object as the first argument
+* Columns by which to group the data as the following arguments
+
+========================================================
+**Example**
+```{r}
+
+```
 
 
 Chaining operations with %>%
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+data %>% some_function(argument2, argument3, ...) %>% ...
+```
+* A data object to be manipulated comes before `%>%`
+* Some function that *takes the data as the first argument* comes after `%>%`
+    * The object before `%>%` is provided to the function as its first argument
+* Multiple functions can be chained, or "piped"
+
+========================================================
+**Example**
+```{r}
+
+```
+
+
+dplyr in action
+========================================================
+```{r}
+
+```
 
 
 More on dplyr
@@ -173,22 +323,85 @@ Key tidyr functions
 
 Fixing "wide" data with gather()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+gather(data, ...)
+```
+* A data object as the first argument
+
+
+========================================================
+**Example**
+```{r}
+
+```
 
 
 Fixing "long" data with spread()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+spread(data, ...)
+```
+* A data object as the first argument
+
+
+========================================================
+**Example**
+```{r}
+
+```
+
 
 
 Splitting columns with separate()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+separate(data, ...)
+```
+* A data object as the first argument
+
+
+========================================================
+**Example**
+```{r}
+
+```
+
 
 
 Combining columns with unite()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+unite(data, ...)
+```
+* A data object as the first argument
+
+
+========================================================
+**Example**
+```{r}
+
+```
+
 
 
 Captuaring groups with extract()
 ========================================================
+**Basic format**
+```{r eval=FALSE}
+extract(data, ...)
+```
+* A data object as the first argument
+
+
+========================================================
+**Example**
+```{r}
+
+```
 
 
 More on tidyr
@@ -196,6 +409,14 @@ More on tidyr
 * `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
 * `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
 * `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
+
+
+Data manipulation with dplyr and tidyr
+========================================================
+**Example 1**
+```{r}
+
+```
 
 
 Questions?

@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Fundamental building blocks of R programming</p>
-  <p>Session 2: Gearing up for data analysis in R</p>
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Fundamental building blocks of R programming</li>
+<li>
+  Part 2: Gearing up for data analysis in R</li>
 </div>
 
 
@@ -373,7 +375,7 @@ for (element in iterable_object) {
 while loop
 ========================================================
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://www.tutorialspoint.com/r/images/swift_while_loop.jpg")
+include_graphics("../images/while_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
@@ -406,7 +408,7 @@ while (count < 5) {
 for loop
 ========================================================
 ```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://www.tutorialspoint.com/r/images/r_for_loop.jpg")
+include_graphics("../images/for_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
@@ -483,6 +485,12 @@ if (a > b) {
 R Functions
 ========================================================
 type: section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/function-machine.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+</p>
 
 
 Functions
@@ -543,7 +551,7 @@ R Environments
 ========================================================
 type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/bindings.png")
+include_graphics("../images/environments_bindings.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
@@ -565,7 +573,7 @@ Nesting of environments
 * Variables in a child environment are *NOT* accessible in a parent environment
 
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/parents.png")
+include_graphics("../images/environments_parents.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
@@ -601,7 +609,7 @@ Searching for an object in R follows the lexical scoping rules.
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
 
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/search-path.png")
+include_graphics("../images/environments_search-path.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
@@ -621,7 +629,7 @@ Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-773
 ========================================================
 type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png")
+include_graphics("../images/pause.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>

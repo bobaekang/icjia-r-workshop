@@ -30,9 +30,11 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 1: Fundamental building blocks of R programming</p>
-  <p>Session 2: Gearing up for data analysis in R</p>
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Fundamental building blocks of R programming</li>
+<li>
+  Part 2: Gearing up for data analysis in R</li>
 </div>
 
 
@@ -548,7 +550,7 @@ for (element in iterable_object) {
 
 while loop
 ========================================================
-<img src="https://www.tutorialspoint.com/r/images/swift_while_loop.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/while_loop.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
 </p>
@@ -589,7 +591,7 @@ while (count < 5) {
 
 for loop
 ========================================================
-<img src="https://www.tutorialspoint.com/r/images/r_for_loop.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/for_loop.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
 </p>
@@ -690,6 +692,10 @@ if (a > b) {
 R Functions
 ========================================================
 type: section
+<img src="../images/function-machine.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+</p>
 
 
 Functions
@@ -760,7 +766,7 @@ Why use functions
 R Environments
 ========================================================
 type: section
-<img src="http://adv-r.had.co.nz/diagrams/environments.png/bindings.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_bindings.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -780,7 +786,7 @@ Nesting of environments
 * Variables in a parent environment are accessible in a child environment
 * Variables in a child environment are *NOT* accessible in a parent environment
 
-<img src="http://adv-r.had.co.nz/diagrams/environments.png/parents.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_parents.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -819,7 +825,7 @@ Searching for an object in R follows the lexical scoping rules.
 * If the object is not found in the current environment, R moves up to its parent environment.  
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
 
-<img src="http://adv-r.had.co.nz/diagrams/environments.png/search-path.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_search-path.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -828,14 +834,14 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 Questions?
 ========================================================
 type: section
-<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
 </p>
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/pause.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

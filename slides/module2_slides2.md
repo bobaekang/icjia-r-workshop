@@ -30,16 +30,18 @@ Bobae Kang
 Agenda
 ========================================================
 <div style="text-align:center; margin-top:10%;">
-  <p>Session 1: Fundamental building blocks of R programming</p>
-  <p style="color: #00061a; font-size: 1.1em; font-weight:700">
-    Session 2: Gearing up for data analysis in R</p>
+<ul style="list-style: none">
+<li>
+  Part 1: Fundamental building blocks of R programming</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: Gearing up for data analysis in R</li>
 </div>
 
 
 Gearing Up for Data Analysis in R
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Symbole_travaux_marteau_et_clef.svg/1080px-Symbole_travaux_marteau_et_clef.svg.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/tools.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 </div>
@@ -72,12 +74,15 @@ What is a data frame?
     * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
 
 
-Example: Iris data 
+Example: ISP crime data 
 ========================================================
-R comes with a data frame of [the (famous) Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set). Let's take a look:
+I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
+
 
 ```r
-class(iris)  # the class of iris object is "data.frame"
+library(icjiar)
+
+class(ispcrime)         # the class of ispcrime object is "data.frame"
 ```
 
 ```
@@ -85,7 +90,7 @@ class(iris)  # the class of iris object is "data.frame"
 ```
 
 ```r
-is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
+is.data.frame(ispcrime) # check if iris is a data.frame; TRUE, as expected
 ```
 
 ```
@@ -96,103 +101,127 @@ is.data.frame(iris)  # check if iris is a data.frame; TRUE, as expected
 ========================================================
 
 ```r
-str(iris)  # reports the "structure" of the data frame 
+str(ispcrime) # reports the "structure" of the data frame 
 ```
 
 ```
-'data.frame':	150 obs. of  5 variables:
- $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
- $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
- $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
- $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
- $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
-```
-
-```r
-head(iris, 5)  # returns the first n rows of the data frame (default 6)
-```
-
-```
-  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1          5.1         3.5          1.4         0.2  setosa
-2          4.9         3.0          1.4         0.2  setosa
-3          4.7         3.2          1.3         0.2  setosa
-4          4.6         3.1          1.5         0.2  setosa
-5          5.0         3.6          1.4         0.2  setosa
+'data.frame':	510 obs. of  12 variables:
+ $ year         : int  2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 ...
+ $ county       : Factor w/ 102 levels "Adams","Alexander",..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ violentCrime : int  218 119 6 59 7 42 13 8 12 1210 ...
+ $ murder       : int  0 0 1 0 0 0 0 0 0 5 ...
+ $ rape         : int  37 14 0 24 1 4 0 1 1 127 ...
+ $ robbery      : int  15 4 0 8 0 3 0 0 0 208 ...
+ $ aggAssault   : int  166 101 5 27 6 35 13 7 11 870 ...
+ $ propertyCrime: int  1555 290 211 733 38 505 56 206 119 5332 ...
+ $ burglary     : int  272 92 58 152 14 90 14 38 41 1384 ...
+ $ larcenyTft   : int  1241 183 147 563 22 405 41 165 71 3756 ...
+ $ MVTft        : int  36 11 5 14 1 8 1 2 3 164 ...
+ $ arson        : int  6 4 1 4 1 2 0 1 4 28 ...
 ```
 
 
 ========================================================
 
 ```r
-dim(iris)  # returns the dimension of the data frame (row  column)
+head(ispcrime, 5) # returns the first n rows of the data frame (default 6)
 ```
 
 ```
-[1] 150   5
-```
-
-```r
-nrow(iris)  # returns the number of rows in the data frame
-```
-
-```
-[1] 150
-```
-
-```r
-ncol(iris)  # returns the number of columns in the data frame
-```
-
-```
-[1] 5
-```
-
-```r
-colnames(iris)  # returns a vector containing the column names 
-```
-
-```
-[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width" 
-[5] "Species"     
+  year    county violentCrime murder rape robbery aggAssault propertyCrime
+1 2011     Adams          218      0   37      15        166          1555
+2 2011 Alexander          119      0   14       4        101           290
+3 2011      Bond            6      1    0       0          5           211
+4 2011     Boone           59      0   24       8         27           733
+5 2011     Brown            7      0    1       0          6            38
+  burglary larcenyTft MVTft arson
+1      272       1241    36     6
+2       92        183    11     4
+3       58        147     5     1
+4      152        563    14     4
+5       14         22     1     1
 ```
 
 
 ========================================================
 
 ```r
-iris$Sepal.Length  # access a column by name
-iris[[1]]          # access the first column by index
-iris[, 1]          # yet another way to access the first column!
+dim(ispcrime)  # returns the dimension of the data frame (row  column)
 ```
 
 ```
-  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4
- [18] 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5
- [35] 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0
- [52] 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8
- [69] 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7 5.5 5.5 5.8 6.0 5.4
- [86] 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8
-[103] 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7
-[120] 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
-[137] 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8 6.7 6.7 6.3 6.5 6.2 5.9
+[1] 510  12
 ```
 
 ```r
-iris[1, ]  # access the first row by index
+nrow(ispcrime)  # returns the number of rows in the data frame
 ```
 
 ```
-  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1          5.1         3.5          1.4         0.2  setosa
+[1] 510
 ```
 
 ```r
-iris[1, 1]  # access a specific cell (first row of the first column)
+ncol(ispcrime)  # returns the number of columns in the data frame
 ```
 
 ```
-[1] 5.1
+[1] 12
+```
+
+```r
+colnames(ispcrime)  # returns a vector containing the column names 
+```
+
+```
+ [1] "year"          "county"        "violentCrime"  "murder"       
+ [5] "rape"          "robbery"       "aggAssault"    "propertyCrime"
+ [9] "burglary"      "larcenyTft"    "MVTft"         "arson"        
+```
+
+
+========================================================
+
+```r
+ispcrime$year # access a column by name
+ispcrime[[1]] # access the first column by index
+ispcrime[, 1] # yet another way to access the first column!
+```
+
+```
+  [1] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [15] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [29] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [43] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [57] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [71] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [85] 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 2011
+ [99] 2011 2011 2011 2011 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012
+[113] 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012
+[127] 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012
+[141] 2012 2012 2012 2012 2012 2012 2012 2012 2012 2012
+```
+
+
+========================================================
+
+```r
+ispcrime[1, ]  # access the first row by index
+```
+
+```
+  year county violentCrime murder rape robbery aggAssault propertyCrime
+1 2011  Adams          218      0   37      15        166          1555
+  burglary larcenyTft MVTft arson
+1      272       1241    36     6
+```
+
+```r
+ispcrime[1, 1] # access a specific cell (first row of the first column)
+```
+
+```
+[1] 2011
 ```
 
 
@@ -280,7 +309,7 @@ Transforming a data frame
 
 
 ========================================================
-Change column names
+**Change column names**
 
 ```r
 colnames(df1) <- c("my_fruits", "my_animals", "my_flavors")
@@ -296,7 +325,7 @@ print(df1)
 ```
 
 ========================================================
-Add columns
+**Add columns**
 
 ```r
 # using $ index
@@ -318,7 +347,7 @@ print(df1)
 
 
 ========================================================
-Modify columns
+**Modify columns**
 
 ```r
 df1[["my_colors"]] <- c("maroon", "blue", "purple")
@@ -336,7 +365,7 @@ df1
 
 
 ========================================================
-Remove columns
+**Remove columns**
 
 ```r
 # assinging NULL
@@ -368,7 +397,7 @@ df1
 
 
 ========================================================
-Add rows
+**Add rows**
 
 ```r
 new_row <- data.frame(
@@ -391,7 +420,7 @@ df1
 
 
 ========================================================
-Remove rows
+**Remove rows**
 
 ```r
 # subsetting
@@ -409,7 +438,7 @@ df1
 
 
 ========================================================
-Modify cells
+**Modify cells**
 
 ```r
 # this doesn't work ... why?
@@ -510,7 +539,7 @@ data.table
 R Add-On Packages
 ========================================================
 type:section
-<img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/r-packages.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.datacamp.com/">DataCamp</a>
 </div>
@@ -518,7 +547,7 @@ Source: <a href="https://www.datacamp.com/">DataCamp</a>
 
 What are add-on packages?
 ========================================================
-> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc. - "R (programming language)", Wikipedia
+> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc.<br><br>- "R (programming language)", Wikipedia
 
 
 Using packages
@@ -547,7 +576,7 @@ Two ways of installing packages
 Tidyverse Framework
 ========================================================
 type:section
-<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -562,7 +591,7 @@ Tidy data is data where:
 
 
 ========================================================
-<img src="http://r4ds.had.co.nz/images/tidy-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
+<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
 </div>
@@ -580,33 +609,34 @@ Anything that is not tidy!
 * Multiple values in a single cell
 * Multiple cells for a single value
 
+
 ========================================================
-Untidy example 1
+**Untidy example 1**
 
 ```
-  Sepal.Length/Width Petal.Length/Width Species
-1            5.1/3.5            1.4/0.2  setosa
-2              4.9/3            1.4/0.2  setosa
-3            4.7/3.2            1.3/0.2  setosa
-4            4.6/3.1            1.5/0.2  setosa
-5              5/3.6            1.4/0.2  setosa
-6            5.4/3.9            1.7/0.4  setosa
+     year/county violentCrime/propertyCrime
+1     2011/Adams                   218/1555
+2 2011/Alexander                    119/290
+3      2011/Bond                      6/211
+4     2011/Boone                     59/733
+5     2011/Brown                       7/38
+6    2011/Bureau                     42/505
 ```
 
-Untidy example 2
+**Untidy example 2**
 
 ```
-   index         type value Species
-1      1 Sepal.Length   5.1  setosa
-2      1  Sepal.Width   3.5  setosa
-3      1 Petal.Length   1.4  setosa
-4      1  Petal.Width   0.2  setosa
-5      2 Sepal.Length   4.9  setosa
-6      2  Sepal.Width   3.0  setosa
-7      2 Petal.Length   1.4  setosa
-8      2  Petal.Width   0.2  setosa
-9      3 Sepal.Length   4.7  setosa
-10     3  Sepal.Width   3.2  setosa
+   index year    county typeViolent valueViolent
+1      1 2011     Adams      murder            0
+2      1 2011     Adams        rape           37
+3      1 2011     Adams     robbery           15
+4      1 2011     Adams  aggAssault          166
+5      2 2011 Alexander      murder            0
+6      2 2011 Alexander        rape           14
+7      2 2011 Alexander     robbery            4
+8      2 2011 Alexander  aggAssault          101
+9      3 2011      Bond      murder            1
+10     3 2011      Bond        rape            0
 ```
 
 
@@ -623,7 +653,7 @@ Tidyverse core packages
 Good Code, Bad Code
 ========================================================
 type:section
-<img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/good-bad.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.nytimes.com/">The New York Times</a>
 </div>
@@ -663,11 +693,11 @@ Object naming
 
 
 ========================================================
-Naming a variable (e.g. for firearm arrests)
+**Naming a variable (e.g. for firearm arrests)**
 
 ```r
 # Good
-firearm_arr
+firearm_arrests
 fa_arr
 
 # Bad
@@ -678,7 +708,7 @@ farr                          # not descriptive enough
 x                             # not descriptive at all
 ```
 
-Naming a function (e.g. for counting arrests)
+**Naming a function (e.g. for counting arrests)**
 
 ```r
 # Good
@@ -691,7 +721,7 @@ count   <- function(x) { ... }  # too generic (common name)
 ```
 
 ========================================================
-Reserved words in R
+**Reserved words in R**
 
 ```r
 if else repeat while function for  
@@ -725,7 +755,7 @@ Whitespaces for readable code
 
 
 ========================================================
-Adding spaces
+**Adding spaces**
 
 ```r
 # Good
@@ -743,7 +773,7 @@ base :: Random ()
 
 
 ========================================================
-Extra spacing
+**Extra spacing**
 
 ```r
 # for aligning function arguments
@@ -761,7 +791,7 @@ letters        <- c("a", "b", "c")
 
 
 ========================================================
-Indentation
+**Indentation**
 
 ```r
 # Good
@@ -814,7 +844,7 @@ Most importantly...
 Questions?
 ========================================================
 type: section
-<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
 </div>
