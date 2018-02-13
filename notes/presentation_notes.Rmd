@@ -35,9 +35,9 @@ This page contains the script for **R Workshop R&A Meeting Presentation**, prepa
 knitr::include_graphics("../images/icjia-x-r.png")
 ```
 
-Welcome to this presentation. Today I would like to share with you a workshop series on R, which I have developed specifically to encourage and enable ICIJA researchers to incorporate R into their research and data analysis workflow.
+Welcome to this presentation. Today I would like to share with you a workshop series on R, which I have been developing to encourage and enable ICIJA researchers to incorporate R into their research and data analysis workflow.
 
-This presentation can be roughly divided into two parts. For the first half, I will talk about what R is and offer a quick overview of its functionalities. Then, I will discuss the workshop objectives and structure.
+This presentation can be roughly divided into two parts. In the first part, I will talk about what R is and demonstrate what it can do. This is the longer part of the talk. Then, I will briefly discuss the workshop objectives and structure.
 
 ## Quick survey
 Before we move on, let us take a quick survey:
@@ -45,7 +45,7 @@ Before we move on, let us take a quick survey:
 * How many of you have heard of R before?
 * How many of you have tried R before?
 * How many of you use R regularly?
-    * Can you briefly tell us what you use R for?
+    * (Can you briefly tell us what you use R for?)
 
 
 ***
@@ -58,24 +58,24 @@ Now let me give you a very brief introduction to R.
 
 > "R is a language and environment for statistical computing and graphics." - The R Foundation
 
-So, R is a programming language that is specifically *built for* data analysis and visualization. It is also one of the the most popular choices of programming language among academic researchers and data scientists.
+Accoring to the official documentation, R is a programming language that is specifically *built for* data analysis and visualization. In fact, it is one of the the most popular choices of programming language among academic researchers and data scientists.
 
-Let's dig a little further and talk about the benefits of using R in more details.
+Let's take a closer look and talk about the benefits of using R in more details.
 
 * First, R is open-source, which means free. Not only R is free, but also its supporting softwares are free. No strings attached. Being open-source also means that, if you are interested, you can look at the source code and find out exactly what each function is doing under the hood. 
 
 * R is built for statistical analysis, which means that it already comes with a breadth of functionalities for data analysis and statistics. This sets R apart from other programming languages in general.
 
-* R allows researchers to conduct research in a reproducible and transparent fashion. A research done programmatically means every step taken for data manipulation and statistical modeling is in plain sight, making it easy to replicate the results or collaborate with others. This also gives researchers a jump-start when starting a new, but similar project.
+* Using a programming language such as R allows researchers to conduct research in a reproducible and transparent fashion. Every step taken for data manipulation and statistical modeling is in plain sight, in the form of code, making it easy to replicate the results or collaborate with others. This also gives researchers a jump-start when starting a new, but similar project.
 
 * R can be greatly extended with powerful third-party packages, which are, or course, free of charge. The existence of numerous third-party packages is in fact one of the greatest advantages of using R that no proprietary sofewares, like SPSS, STATA, or SAS, can imitate. 
 
-* With these packages, researchers can tackle a variety of tasks using a *single* platform, from collecting data to cleaning data to creating plots to fitting statistical models to generating a report, and even more.
+* With these packages, researchers can tackle a variety of tasks using a *single* platform, from collecting data to cleaning data to creating visualizations to fitting statistical models to generating a report, and even more.
 
 And, perhaps most importantly, with some practice, you can create amazing stuff with R!
 
 ## R is versatile
-In summary, one of the greatest benefits of using R is its versatility. Many who have not used R think that it is just another statistical software. That is not true at all. R is a programming language with a fast-growing ecosystem of diverse packages and applications, which enables its users to do wonders--literally.
+In other words, R is a powerfully versatile tool. Many who have not used R think that it is just another statistical software. That is not true at all. R is a programming language with a fast-growing ecosystem of diverse packages and applications, which enables its users to do wonders--literally.
 
 For the next few minutes, I would like to quickly showcase what R is capable of.
 
@@ -100,7 +100,7 @@ regions_tbl <- tibble::as.tibble(regions)
 ispcrime_tbl
 ```
 
-First, let us take a quick glance at our data. It is the annual report of crime for Illinois counties, from 2011 to 2015, which I collected from the State Police's UCR tables. It has total 510 rows and 12 columns. The columns include: year, county, violent crime total, four violent crime categories, property crime total, and four property crime categories. I will now show you how some questions can be answered using R code. Do not worry about understanding the code--we will learn all about it in the actual workshop. 
+First, let us take a quick glance at our data. It is the State Police's annual report of crime data for Illinois counties, from 2011 to 2015. It has total 510 rows and 12 columns. The columns include: year, county, violent crime total, four violent crime categories, property crime total, and four property crime categories. I will now show you how some questions can be answered using R code. Do not worry about understanding the code--we will learn all about it in the actual workshop. 
 
 ### Code 2
 ```{r}
@@ -122,24 +122,24 @@ ispcrime_tbl %>%
   select(year, county, totalCrime)
 ```
 
-Now we want to ask a little more complicated question: What are the total crime count in 2015 for counties where the name starts with letter C? This involves getting a desired subset of our data and creating a new computed column for the total crime count. No problem. By the way, notice that the code itself is intuitive enough to be informative even to non-R-users.
+Now we want to ask a more complicated question: What are the total crime count in 2015 for counties where the name starts with letter C? This involves getting a desired subset of our data and creating a new computed column for the total crime count. No problem. By the way, notice that the code itself is intuitive enough to be informative even to non-R-users.
 
-Now, let's ask another question that is similar to the one we just asked. What about counties starting with "D" for not just in 2015 but also in 2014?
+Now, let's ask a slightly different question: What about counties starting with "D" for not just in 2015 but also in 2014?
 
 ```{r}
 # how about "D" counties in 2014 and 2015?
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "D", year %in% c(2014:2015)) %>%
+  filter(substr(county, 1, 1) == "D", year %in% c(2014, 2015)) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
 
-Well, here is the answer. Notice how similar the code looks to the previous case with only two minor changes. This is the power of writing code for data analysis. You can take your earlier work and tweak it just a little to answer a new question.
+Well, here is the answer. Notice how similar the code looks to the previous case with only two minor changes. This shows the power of writing code for data analysis. You can take your earlier work and tweak it just a little to answer a new question.
 
 
 ### Code 4
 ```{r}
-# get annual average count of violent crime by county
+# get annual average crime count by county
 ispcrime_tbl %>%
   group_by(county) %>%
   summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n())
@@ -168,9 +168,9 @@ ispcrime_tbl %>%
   count()
 ```
 
-Sometimes, we have to merge two separate tables into one to get the asnwer we want. This simple code block merges the crime table with another table named regions, which connects each county to the corresponding region. Then we aggregate and get a frequency table on the regional level.
+We often have to merge two separate tables into one to get the answer we want. This code block merges the State Police crime table with another table named regions, which connects each county to the corresponding region. Then we aggregate and get a frequency table on the regional level.
 
-Here, however, we see that numbers don't make sense. This is because there are five observations for each county in our data. Can we fix this? 
+Here, however, we see that numbers don't make sense. This is because there are five observations for each county in our data.
 
 ```{r}
 # no duplicates!
@@ -182,16 +182,18 @@ ispcrime_tbl %>%
   count()
 ```
 
-No problem. By adding couple extra commands to our original code, we get the answer we want.
+Simply by adding couple extra commands to our original code, we get the answer we want.
 
-As we have seen, R provides a simple yet powerful grammer for data analysis with an added benefit of reuseable code. This is only a tip of an iceberg, and we will learn more in the workshop about using our data to answer more complicated questions.
+As we have seen, R provides a simple yet powerful grammer for data analysis with an added benefit of reuseable code. We can do all these data manipulation for very large data sets with little delay.
+
+This is only a tip of an iceberg, and we will learn more in the workshop about using our data to answer more complicated questions.
 
 
 ***
 
 
 # Data visualization
-Now, let us take a look at some plots geenrated in R. R ecosystem provides great data visualization packages that we can benefit from, and with such tools we can create publication-ready plots with a few lines of code.
+Moving on to the world of data visualization. R ecosystem provides great data visualization packages that allow us to create publication-ready plots with a few lines of code.
 
 ### Examples 1: Word cloud
 ```{r echo=FALSE, out.width="50%"}
@@ -201,9 +203,9 @@ include_graphics("../images/dataviz_example1.png")
 Source: <a href="http://www.r-graph-gallery.com/102-text-mining-and-wordcloud/">The R Graph Gallery</a>
 </div>
 
-First, here is a wordcloud plot generated using `wordcloud` package. Although we don't always need to generate a wordcloud plot, simply knowing that it is possible allows us to explore creative ways to visualize and extract insights from our data.
+First, here is a wordcloud plot generated using `wordcloud` package. We don't always need to generate a wordcloud plot, but simply knowing that it is possible allows us to explore creative ways to visualize and extract insights from our data.
 
-### Example 2: Parallel plot
+### Example 2: Dendrogram
 ```{r echo=FALSE, out.width="50%"}
 include_graphics("../images/dataviz_example2.png")
 ```
@@ -235,13 +237,19 @@ Now let me share with you a couple of my own work. This is a line plot I made a 
 include_graphics("../images/dataviz_example5.png")
 ```
 
-And here is a map I created as a practice. This was in fact my attempt to reproduce another map created in ArcGIS. Do they it look similar to each other?
+And here is a map I created as a practice. This was in fact my attempt to reproduce another map created in ArcGIS.
+
+```{r echo=FALSE, out.width="50%"}
+include_graphics("../images/dataviz_example5-1.png")
+```
+
+Do they it look similar to each other?
 
 ## Quick demonstration
 * Bar plot
 * Histogram
 
-Now, to help you to see how generating a plot looks like in R, I prepared a couple of demonstrations, one using a bar plot and another using a histogram. 
+To help you to see how generating a plot looks like in R, I prepared a couple of demonstrations, one using a bar plot and another using a histogram. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -249,7 +257,7 @@ library(ggplot2)
 ispcrime_tbl2 <- left_join(ispcrime_tbl, regions) %>% na.omit() %>% mutate(Year = as.factor(year))
 ```
 
-### Bar plot 1
+### Bar plot
 ```{r fig.height = 4, fig.width=5}
 # bar plot of crime count in 2015 by region
 barplot <- ggplot(filter(ispcrime_tbl2, year == 2015), aes(x = region, y = violentCrime, fill = region, group = region)) +
@@ -261,7 +269,7 @@ barplot
 This is a simple bar plot of total violent crime count by region, using `ggplot2` package. Each region is represented by each bar and a color. A legend for color coding is generated on the side as a default. Looks okay, but we can improve it a little more. How about we make the words easier to read by increasing the font size? Also, let's give it a descriptive title. Lastly, we don't like that grey background, so let's give it a different look. 
 
 ```{r fig.height = 4, fig.width=5}
-# change labels and appearance
+# add title and change appearance
 barplot2 <- barplot +
   labs(title = "Violent crime count in 2015 by region") +
   theme_classic(base_size = 15)
@@ -273,7 +281,7 @@ And viola! The plot now has a title that tells us what it is about and the font 
 
 
 ```{r fig.height = 4, fig.width=5}
-# remove the legends and change colors
+# remove the axes names and legends, and change colors
 barplot2 +
   labs(x = "", y = "") +
   theme(legend.position = "None") +
@@ -284,21 +292,21 @@ And here is the result. The names for x- and y- axes, as well as the legend, are
 
 ### Histogram
 ```{r fig.height = 4, fig.width=5}
-# histogram of violent crime count by county
-ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
-  geom_histogram(binwidth = 200) +
-  facet_wrap(~ Year) +
-  labs(x = "Violent crime count", y = "Count") +
+# histogram of burglary count by county
+ggplot(ispcrime_tbl2, aes(x = burglary)) +
+  geom_histogram() +
+  facet_wrap(~ year) +
+  labs(x = "Burglary count", y = "# counties") +
   theme_minimal()
 ```
 
-Now let's take a look at some histograms. Earlier we saw a plot with multiple graphes. This, too, is a series of graphes, each showing the histogram of violent crime count for particular year. But, wait, the picture seems wrong. After some investigation, we learn that Cook county is an outlier that distorts our picture. How can we fix this?  
+Now let's take a look at some histograms. Earlier we saw a plot with multiple graphes. This, too, is a series of graphes, each showing the histogram of burglary count for each year. But, wait, the picture seems overly skewed. After some investigation, we learn that Cook county is an outlier that distorts our picture. How can we fix this?
 
 ```{r fig.height = 4, fig.width=5}
 # exclude Cook county data from the histogram and add colors
-ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime, fill = Year)) +
-  geom_histogram(binwidth = 200) + facet_wrap(~ Year) +
-  labs(x = "Violent crime count", y = "Count") +
+ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = burglary, fill = Year)) +
+  geom_histogram() + facet_wrap(~ Year) +
+  labs(x = "Burglary count", y = "# counties") +
   theme_minimal()
 ```
 
@@ -311,14 +319,14 @@ As we have seen in this demonstrations, R offers powerful and flexible plotting 
 
 
 # Statistical modeling
-As I mentioned earlier, R is a programming language for statistical analysis. As such it offers powerful statistical modeling functionalities, which are also made easy to implement. Here I will offer a simplified example of fitting statistical model to data. We will delve deeper into the subject in the workshop.
+As I mentioned earlier, R is a programming language for statistical analysis. As such, it offers powerful statistical modeling functionalities, which are also made easy to implement. Here I will offer a simplified example of fitting a linear regression model to data. We will delve deeper into the subject in the workshop.
 
 ### Simple linear model 1
 ```{r}
 lm_fit <- lm(violentCrime ~ propertyCrime, ispcrime)
 summary(lm_fit)
 ```
-This is a result of fitting a simple linear regression model to the ISP crime data we have seen earlier. In this simple example, we use the property crime count as the explanatory variable and the violent crime count as the response variable. It takes a single line of code to fit a model and another line to print the result.
+We use the State Police crime data we have seen earlier. In this simple example, we fit a simple linear regression, using the property crime count as the explanatory variable and the violent crime count as the response variable. It takes a single line of code to fit a model and another line to print the result, which gives us useful information about the fitted coefficients and goodness-of-fit measures.
 
 ### Simple linear model 2
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -361,7 +369,7 @@ par(mfrow=c(2, 2))
 plot(lm_fit)
 ```
 
-And take a look at the diagnostic plots. This command generates a Residuals versus fitted values plot, a Q-Q plot, a scale-location plot, and a plot of residuals versus leverage plot with Cook's distance lines.
+And take a look at the diagnostic plots. (This command generates a Residuals versus fitted values plot, a Q-Q plot, a scale-location plot, and a plot of residuals versus leverage plot with Cook's distance lines.)
 
 Of course, using thrid-party packages, it is also possible to generate a more aesthetically pleasing plots for model fits. 
 
@@ -384,14 +392,14 @@ And, with extra packages, R can fit a variety of other advanced models. Here are
 * text analysis (e.g. `tm` and `tidytext` packages)
 * machine learning (e.g. `caret` and `mlr` packages)
 
-We see that advanced modeling involves many different packages. This may look daunting at first, but this actually offers us some freedom of choice in terms of which package to use to tackle the problem at hand. Also, this is how R grows in its versatility, i.e., through packages developed by its users for specific tasks.
+We see that advanced modeling involves many different packages. This may look daunting at first, but this actually offers us some freedom of choice in terms of which package to use to tackle the problem at hand. If there is no tool suited for our problem, we can even create a function or package. In fact, this is how R grows in its versatility, i.e., through packages developed by its users for specific tasks.
 
 
 ***
 
 
 # And more!
-One of the great attractions of R is that a researcher can do much more than just data work with R. It can serve as a research platform that provides a smooth workflow, from collecting data to publishing the analysis in various formats.
+Researchers can do much more than just data work with R. In fact, R can serve as a research platform that provides a smooth workflow, from collecting data to publishing the analysis in various formats.
 
 
 ## Reports
@@ -403,15 +411,14 @@ First of all, R offers its own markdown format, called RMarkdown, which can be u
 include_graphics("../images/report.png")
 ```
 
-This is actually from my own work. I use RNotebook, a variation of RMarkdown document that allows for more interactive workflow, to create quick reports to Chris for research projects. This one is me examining the original arrests in 2003 for the firearm study. As you see, the report can incorporate R code and its inputs, making each step in the process highly transparent.
-
+This example is actually from my own work for the Firearm Recidivism Study. I created it as a quick report to share my analysis with Chris. This one is me examining the original arrests in 2003 for the firearm study. As you see, the report includes R code and its inputs, making each step in the process highly transparent while incorporting them into a larger narrative.
 
 ## Slideshow
 ```{r echo=FALSE, out.width="66%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/slideshow.png")
 ```
 
-R also offers functionalities to create a good-looking slideshow. The slides for this very presentation are generated using what is called RPresentation.
+R offers tools to create a nice-looking slideshow. The slides for this very presentation are generated using what is called RPresentation.
 
 
 ## Dashboard
@@ -421,7 +428,9 @@ include_graphics("../images/dashboard_demo.png")
 ```
 </a>
 
-Using `shiny`, we can also create a web application that can serve as an interactive dashboard. In fact, let me take you to the dashboard for a minute. To be brutally honest, Tableau may offer a more user-friendly interface for creating a highly functional dashboard. However, it can also be done using R, and since R and Shiny are all open source, it costs nothing. In addition, if the dashboard requires complex computations or algorithms to do more than simply exploring an existing dataset, R may be better suited for such a project.
+With `shiny` package, we can also create a web application that can serve as an interactive dashboard.
+
+In fact, let me take you to the dashboard for a minute. While Tableau offers a more user-friendly interface for creating a highly functional dashboard, it can also be done using R, and since R and Shiny are all open source, it costs nothing. In addition, if we need our dashboard to run complex computations or model-fitting and do more than a simple slicing-and-dicing of our data, R may be better suited for such a project.
 
 ## Website
 <a href="https://bobaekang.github.io/icjia-r-workshop/">
@@ -437,9 +446,9 @@ Since we can generate HTML pages with R, it should be no surprise that we can cr
 
 
 # Objectives
-Now we are in the second part of this presentation where we can talk about the objectives and structure of this workshop series.
+We are finally in the second part of this presentation where we can talk about the objectives and structure of this workshop series--very briefly.
 
-First, the objectives. This workshop series has **technical objectives** concerning developing practical skills and **fundamantal objectives** that are more about building the foundation for growing further.
+This workshop series has **technical objectives** concerning developing practical skills and **fundamantal objectives** that are more about building the foundation for incorporating R programming into research.
 
 ## Technical objectives
 On the techincal level, the workshop series seeks to equip ICJIA researchers with skills and knowledge to do the following tasks using R:
@@ -473,7 +482,7 @@ Finally, let me give you an overview of how the workshop is structured.
 ## Overall setup
 The workshop series consists of six sessions, or modules, each of which focusing on a specific topic. I will explain what the modules are about in a minute.
 
-The workshop group can meet once a week for six weeks, each week working on one module. Each module has two parts, excpet, maybe, for the first module that serves as an introduction. All workshop materials, such as slides and notes, will be available on the webpage I showed earlier. Of course, I will be available, too, for answering questions if there are any. 
+The workshop group can meet once a week for six weeks, each week working on one module. Each module has two parts, excpet, maybe, for the first module that serves as an introduction. All workshop materials, such as slides and notes, will be available on the webpage I showed earlier. Of course, I will be available, too, for answering questions if there are any.
 
 ## Modules
 Now let me quickly walk you thorugh the modules.

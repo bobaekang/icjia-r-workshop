@@ -104,22 +104,26 @@ Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
 
 
 ```r
-# peak at the first rows of the data
-head(ispcrime_tbl)
+# print the state police's crime data
+ispcrime_tbl
 ```
 
 ```
-# A tibble: 6 x 12
-   year county  violentCrime murder  rape robbery aggAssault propertyCrime
-  <int> <fct>          <int>  <int> <int>   <int>      <int>         <int>
-1  2011 Adams            218      0    37      15        166          1555
-2  2011 Alexan~          119      0    14       4        101           290
-3  2011 Bond               6      1     0       0          5           211
-4  2011 Boone             59      0    24       8         27           733
-5  2011 Brown              7      0     1       0          6            38
-6  2011 Bureau            42      0     4       3         35           505
-# ... with 4 more variables: burglary <int>, larcenyTft <int>,
-#   MVTft <int>, arson <int>
+# A tibble: 510 x 12
+    year county violentCrime murder  rape robbery aggAssault propertyCrime
+   <int> <fct>         <int>  <int> <int>   <int>      <int>         <int>
+ 1  2011 Adams           218      0    37      15        166          1555
+ 2  2011 Alexa~          119      0    14       4        101           290
+ 3  2011 Bond              6      1     0       0          5           211
+ 4  2011 Boone            59      0    24       8         27           733
+ 5  2011 Brown             7      0     1       0          6            38
+ 6  2011 Bureau           42      0     4       3         35           505
+ 7  2011 Calho~           13      0     0       0         13            56
+ 8  2011 Carro~            8      0     1       0          7           206
+ 9  2011 Cass             12      0     1       0         11           119
+10  2011 Champ~         1210      5   127     208        870          5332
+# ... with 500 more rows, and 4 more variables: burglary <int>,
+#   larcenyTft <int>, MVTft <int>, arson <int>
 ```
 
 
@@ -147,10 +151,10 @@ ispcrime_tbl %>%
 ========================================================
 
 ```r
-# filter to keep only counties starting with C for 2013
+# filter to keep only counties starting with C for 2015
 #   while creating and showing a new variable for total crime count
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "C", year == 2013) %>%
+  filter(substr(county, 1, 1) == "C", year == 2015) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
@@ -159,18 +163,18 @@ ispcrime_tbl %>%
 # A tibble: 12 x 3
     year county     totalCrime
    <int> <fct>           <int>
- 1  2013 Calhoun            NA
- 2  2013 Carroll           231
- 3  2013 Cass               63
- 4  2013 Champaign        6567
- 5  2013 Christian         428
- 6  2013 Clark             131
- 7  2013 Clay              226
- 8  2013 Clinton           475
- 9  2013 Coles             761
-10  2013 Cook           181917
-11  2013 Crawford          234
-12  2013 Cumberland        115
+ 1  2015 Calhoun            NA
+ 2  2015 Carroll           176
+ 3  2015 Cass              154
+ 4  2015 Champaign        6486
+ 5  2015 Christian         292
+ 6  2015 Clark             103
+ 7  2015 Clay              191
+ 8  2015 Clinton           423
+ 9  2015 Coles             805
+10  2015 Cook           153575
+11  2015 Crawford          282
+12  2015 Cumberland         42
 ```
 
 
@@ -179,7 +183,7 @@ ispcrime_tbl %>%
 ```r
 # how about "D" counties in 2014 and 2015?
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "D", year %in% c(2014:2015)) %>%
+  filter(substr(county, 1, 1) == "D", year %in% c(2014, 2015)) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
@@ -202,10 +206,10 @@ ispcrime_tbl %>%
 ========================================================
 
 ```r
-# get annual average count of violent crime by county
+# get annual average crime count by county
 ispcrime_tbl %>%
   group_by(county) %>%
-  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5)
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n())
 ```
 
 ```
@@ -232,7 +236,7 @@ ispcrime_tbl %>%
 # sort by average crime count? 
 ispcrime_tbl %>%
   group_by(county) %>%
-  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5) %>%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %>%
   arrange(desc(annualAvgCrime))
 ```
 
@@ -342,6 +346,10 @@ Source: <a href="https://cran.r-project.org/web/packages/ggCompNet/vignettes/exa
 <img src="../images/dataviz_example5.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
+========================================================
+<img src="../images/dataviz_example5-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+
+
 Quick demonstration
 ========================================================
 * Bar plot
@@ -360,30 +368,18 @@ barplot <- ggplot(filter(ispcrime_tbl2, year == 2015), aes(x = region, y = viole
 barplot
 ```
 
-![plot of chunk unnamed-chunk-23](presentation_slides-figure/unnamed-chunk-23-1.png)
-
-
-========================================================
-
-```r
-# change labels and appearance
-barplot2 <- barplot +
-  labs(title = "Violent crime count in 2015 by region", x = "", y = "") +
-  theme_classic(base_size = 15)
-
-barplot2
-```
-
 ![plot of chunk unnamed-chunk-24](presentation_slides-figure/unnamed-chunk-24-1.png)
 
 
 ========================================================
 
 ```r
-# remove the legends and change colors
-barplot2 +
-  theme(legend.position = "None") +
-  scale_fill_brewer(palette="Spectral")
+# add title and change appearance
+barplot2 <- barplot +
+  labs(title = "Violent crime count in 2015 by region") +
+  theme_classic(base_size = 15)
+
+barplot2
 ```
 
 ![plot of chunk unnamed-chunk-25](presentation_slides-figure/unnamed-chunk-25-1.png)
@@ -392,12 +388,11 @@ barplot2 +
 ========================================================
 
 ```r
-# histogram of violent crime count by county
-ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
-  geom_histogram(binwidth = 100) +
-  facet_wrap(~ year) +
-  labs(x = "Violent crime count", y = "Count") +
-  theme_minimal(base_size = 15)
+# remove the axes names and legends, and change colors
+barplot2 +
+  labs(x = "", y = "") +
+  theme(legend.position = "None") +
+  scale_fill_brewer(palette="Spectral")
 ```
 
 ![plot of chunk unnamed-chunk-26](presentation_slides-figure/unnamed-chunk-26-1.png)
@@ -406,20 +401,34 @@ ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
 ========================================================
 
 ```r
-# exclude Cook county data from the histogram and add colors
-ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime, fill = Year)) +
-  geom_histogram(binwidth = 100) + facet_wrap(~ Year) +
-  labs(x = "Violent crime count", y = "Count") +
+# histogram of burglary count by county
+ggplot(ispcrime_tbl2, aes(x = burglary)) +
+  geom_histogram() +
+  facet_wrap(~ year) +
+  labs(x = "Burglary count", y = "# counties") +
   theme_minimal(base_size = 15)
 ```
 
 ![plot of chunk unnamed-chunk-27](presentation_slides-figure/unnamed-chunk-27-1.png)
 
 
+========================================================
+
+```r
+# exclude Cook county data from the histogram and add colors
+ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = burglary, fill = Year)) +
+  geom_histogram() + facet_wrap(~ Year) +
+  labs(x = "Burglary count", y = "# counties") +
+  theme_minimal(base_size = 15)
+```
+
+![plot of chunk unnamed-chunk-28](presentation_slides-figure/unnamed-chunk-28-1.png)
+
+
 Statistical modeling
 ========================================================
 type: section
-<img src="../images/dice.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/dice.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://pixabay.com/en/white-background-design-game-icon-2398914/">pixabay</a>
 </div>
@@ -502,7 +511,7 @@ plot(violentCrime ~ propertyCrime, ispcrime)
 abline(lm_fit)
 ```
 
-![plot of chunk unnamed-chunk-33](presentation_slides-figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-34](presentation_slides-figure/unnamed-chunk-34-1.png)
 
 
 ========================================================
@@ -513,7 +522,7 @@ par(mfrow=c(2, 2))
 plot(lm_fit)
 ```
 
-![plot of chunk unnamed-chunk-34](presentation_slides-figure/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-35](presentation_slides-figure/unnamed-chunk-35-1.png)
 
 
 ========================================================
@@ -540,7 +549,7 @@ gamma_reg <- glm(y ~ x1 + x2, data = mydata, family = Gamma())
 And more!
 ========================================================
 type: section
-<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/cat_meme.gif" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Reports
@@ -555,53 +564,53 @@ Reports
 ========================================================
 **Example - R Notebook**
 
-<img src="../images/report.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/report.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Slideshow
 ========================================================
-<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/slideshow.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Dashboard
 ========================================================
-<a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
-<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<a target="_blank" href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
+<img src="../images/dashboard_demo.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Website
 ========================================================
-<a href="../index.html">
-<img src="../images/website.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="75%" style="display: block; margin: auto; box-shadow: none;" />
+<a target="_blank" href="../index.html">
+<img src="../images/website.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="75%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Objectives
 ========================================================
 type: section
-<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="55%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/wanderer_above_the_sea_of_fog.jpg" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="55%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Technical objectives
 ========================================================
-* Import and manipulate tabular data files using R;
-* Create simple data visualizations to extract insight from data using R;
-* Perform basic statistical analysis using R;
+* Import and manipulate tabular data files using R
+* Create simple data visualizations to extract insight from data using R
+* Perform basic statistical analysis using R
 * Generate a report on a simple data analysis task using R
 
 
 Fundamental objectives
 ========================================================
-* Understand the basic elements of the R programming language;
-* Employ the programmatic approach to research and data analysis projects; and
-* Leverage online resources to find solutions to specific questions on using R for a given task.
+* Understand the basic elements of the R programming language
+* Employ the programmatic approach to research and data analysis projects
+* Leverage online resources to find solutions to specific questions on using R for a given task
 
 
 Structure
 ========================================================
 type: section
-<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/module.jpg" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Overall setup
@@ -627,7 +636,7 @@ Modules
 Questions?
 ========================================================
 type: section
-<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/psyduck_question.gif" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 </div>
@@ -635,5 +644,5 @@ Source: <a href="http://gph.is/1Q50iOW">Giphy.com</a>
 
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="70%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="70%" style="display: block; margin: auto; box-shadow: none;" />
 

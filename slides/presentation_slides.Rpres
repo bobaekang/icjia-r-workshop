@@ -125,8 +125,8 @@ regions_tbl <- tibble::as.tibble(regions)
 ```
 
 ```{r}
-# peak at the first rows of the data
-head(ispcrime_tbl)
+# print the state police's crime data
+ispcrime_tbl
 ```
 
 
@@ -141,10 +141,10 @@ ispcrime_tbl %>%
 
 ========================================================
 ```{r}
-# filter to keep only counties starting with C for 2013
+# filter to keep only counties starting with C for 2015
 #   while creating and showing a new variable for total crime count
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "C", year == 2013) %>%
+  filter(substr(county, 1, 1) == "C", year == 2015) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
@@ -154,7 +154,7 @@ ispcrime_tbl %>%
 ```{r}
 # how about "D" counties in 2014 and 2015?
 ispcrime_tbl %>%
-  filter(substr(county, 1, 1) == "D", year %in% c(2014:2015)) %>%
+  filter(substr(county, 1, 1) == "D", year %in% c(2014, 2015)) %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   select(year, county, totalCrime)
 ```
@@ -162,10 +162,10 @@ ispcrime_tbl %>%
 
 ========================================================
 ```{r}
-# get annual average count of violent crime by county
+# get annual average crime count by county
 ispcrime_tbl %>%
   group_by(county) %>%
-  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5)
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n())
 ```
 
 
@@ -174,7 +174,7 @@ ispcrime_tbl %>%
 # sort by average crime count? 
 ispcrime_tbl %>%
   group_by(county) %>%
-  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / 5) %>%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %>%
   arrange(desc(annualAvgCrime))
 ```
 
@@ -255,6 +255,12 @@ include_graphics("../images/dataviz_example5.png")
 ```
 
 
+========================================================
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/dataviz_example5-1.png")
+```
+
+
 Quick demonstration
 ========================================================
 * Bar plot
@@ -279,9 +285,9 @@ barplot
 
 ========================================================
 ```{r fig.height = 6}
-# change labels and appearance
+# add title and change appearance
 barplot2 <- barplot +
-  labs(title = "Violent crime count in 2015 by region", x = "", y = "") +
+  labs(title = "Violent crime count in 2015 by region") +
   theme_classic(base_size = 15)
 
 barplot2
@@ -290,8 +296,9 @@ barplot2
 
 ========================================================
 ```{r fig.height = 6}
-# remove the legends and change colors
+# remove the axes names and legends, and change colors
 barplot2 +
+  labs(x = "", y = "") +
   theme(legend.position = "None") +
   scale_fill_brewer(palette="Spectral")
 ```
@@ -299,11 +306,11 @@ barplot2 +
 
 ========================================================
 ```{r fig.width = 10, fig.height = 6}
-# histogram of violent crime count by county
-ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
-  geom_histogram(binwidth = 100) +
+# histogram of burglary count by county
+ggplot(ispcrime_tbl2, aes(x = burglary)) +
+  geom_histogram() +
   facet_wrap(~ year) +
-  labs(x = "Violent crime count", y = "Count") +
+  labs(x = "Burglary count", y = "# counties") +
   theme_minimal(base_size = 15)
 ```
 
@@ -311,9 +318,9 @@ ggplot(ispcrime_tbl2, aes(x = violentCrime)) +
 ========================================================
 ```{r fig.width = 10, fig.height = 6}
 # exclude Cook county data from the histogram and add colors
-ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = violentCrime, fill = Year)) +
-  geom_histogram(binwidth = 100) + facet_wrap(~ Year) +
-  labs(x = "Violent crime count", y = "Count") +
+ggplot(filter(ispcrime_tbl2, county != "Cook"), aes(x = burglary, fill = Year)) +
+  geom_histogram() + facet_wrap(~ Year) +
+  labs(x = "Burglary count", y = "# counties") +
   theme_minimal(base_size = 15)
 ```
 
@@ -430,7 +437,7 @@ include_graphics("../images/slideshow.png")
 
 Dashboard
 ========================================================
-<a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
+<a target="_blank" href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">
 ```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/dashboard_demo.png")
 ```
@@ -439,7 +446,7 @@ include_graphics("../images/dashboard_demo.png")
 
 Website
 ========================================================
-<a href="../index.html">
+<a target="_blank" href="../index.html">
 ```{r echo=FALSE, out.width="75%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/website.png")
 ```
@@ -456,17 +463,17 @@ include_graphics("../images/wanderer_above_the_sea_of_fog.jpg")
 
 Technical objectives
 ========================================================
-* Import and manipulate tabular data files using R;
-* Create simple data visualizations to extract insight from data using R;
-* Perform basic statistical analysis using R;
+* Import and manipulate tabular data files using R
+* Create simple data visualizations to extract insight from data using R
+* Perform basic statistical analysis using R
 * Generate a report on a simple data analysis task using R
 
 
 Fundamental objectives
 ========================================================
-* Understand the basic elements of the R programming language;
-* Employ the programmatic approach to research and data analysis projects; and
-* Leverage online resources to find solutions to specific questions on using R for a given task.
+* Understand the basic elements of the R programming language
+* Employ the programmatic approach to research and data analysis projects
+* Leverage online resources to find solutions to specific questions on using R for a given task
 
 
 Structure
