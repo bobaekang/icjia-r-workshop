@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <div class="fade-in" id="welcome">
 <p style="padding: 40px;">Welcome to ICJIA R Workshop Homepage!<p>
 <a href="modules.html">
-<button type="button" id="welcome-button" class="fade-in fade-delay">Get Started</button>
+<button type="button" id="welcome-button" class="fade-in fade-delay">GET STARTED</button>
 </a>
 </div>
 

@@ -24,14 +24,17 @@ knitr::include_graphics("images/module.jpg")
 
 The workshop consists of six separate modules which are meant to be followed in order. Each module has a specific focus. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
-Read the below to get an overview of each module and follow the links to relevant workshop materials by clicking "See more" and following the provided links. Enjoy!  
+Read the below to get an overview of each module. Also, click the "SEE MORE" button and follow the links to check out the relevant workshop materials. Enjoy!
+
 
 ***
 
 
 ## Module 1: Introduction to R
 <div>
-In this module, participants will be introduced to the R language and the benefits of using R for their research projects. They will also get familiar with the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module. <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-module-1" aria-expanded="false" aria-controls="collapse-module-1">**See more**.</button>
+In this module, workshop participants will be introduced to the R language and the benefits of using R for their research projects. They will also get familiar with the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
+
+<button class="btn" type="button" data-toggle="collapse" data-target="#collapse-module-1" aria-expanded="false" aria-controls="collapse-module-1">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module-1">
 <div style="padding:20px;">
@@ -45,7 +48,9 @@ In this module, participants will be introduced to the R language and the benefi
 
 ## Module 2: R basics
 <div>
-Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R. <button class="btn" data-toggle="collapse" data-target="#collapse-module-2" aria-expanded="false" aria-controls="collapse-module-2">**See more**.</button>
+Workshop participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.
+
+<button class="btn" data-toggle="collapse" data-target="#collapse-module-2" aria-expanded="false" aria-controls="collapse-module-2">**SEE MORE**</button>
 
 <div class="collapse mt-1" id="collapse-module-2">
 <div style="padding:20px;">
@@ -66,7 +71,9 @@ Here, participants will learn the basic building blocks of R language. Once part
 
 ## Module 3: Data analysis with R
 <div>
-This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common "tidyverse" syntax to clean and analyze data. Specifically, core functions from `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered. <button class="btn" data-toggle="collapse" data-target="#collapse-module-3" aria-expanded="false" aria-controls="collapse-module-3">**See more**.</button>
+This module focuses on manimuplating and transforming tabular data using R. Workshop participants will learn how to import data into R environment and use the popular "tidyverse" syntax to clean and analyze data. Specifically, key functions in `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered.
+
+<button class="btn" data-toggle="collapse" data-target="#collapse-module-3" aria-expanded="false" aria-controls="collapse-module-3">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module-3">
 <div style="padding:20px;">
@@ -87,7 +94,9 @@ This module focuses on manimuplating and transforming tabular data using R. Part
 
 ## Module 4: Data visualiation with R
 <div>
-In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package. Participants will also be introduced to some options for generating maps and interactive plots. <button class="btn" data-toggle="collapse" data-target="#collapse-module-4" aria-expanded="false" aria-controls="collapse-module-4">**See more**.</button>
+In this module, workshop participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package for data visualization. Participants will also be introduced to some options for generating maps and interactive plots.
+
+<button class="btn" data-toggle="collapse" data-target="#collapse-module-4" aria-expanded="false" aria-controls="collapse-module-4">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module-4">
 <div style="padding:20px;">
@@ -108,7 +117,9 @@ In this module, participants will get started with generating plots to visually 
 
 ## Module 5: Statistical modeling with R
 <div>
-In this module, participants will learn how to conduct basic statistical analysis with R. <button class="btn" data-toggle="collapse" data-target="#collapse-module-5" aria-expanded="false" aria-controls="collapse-module-5">**See more**.</button>
+In this module, workshop participants will learn how to conduct basic statistical analysis with R, including Student's t-test, analysis of variance (ANOVA), basic linear regression model, and generalized linear models. Participants will also be provided with resources for more advanced statistical modeling.
+
+<button class="btn" data-toggle="collapse" data-target="#collapse-module-5" aria-expanded="false" aria-controls="collapse-module-5">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module-5">
 <div style="padding:20px;">
@@ -129,7 +140,9 @@ In this module, participants will learn how to conduct basic statistical analysi
 
 ## Module 6: Sharing your analysis and more
 <div>
-This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. <button class="btn" data-toggle="collapse" data-target="#collapse-module6" aria-expanded="false" aria-controls="collapse-module6">**See more**.</button>
+This module will introduce workshop participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. Participants will also learn how to leverage the power of the Internet to facilitate search for answers to specific questions.
+
+<button class="btn" data-toggle="collapse" data-target="#collapse-module6" aria-expanded="false" aria-controls="collapse-module6">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module6">
 <div style="padding:20px;">
