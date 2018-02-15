@@ -1,10 +1,11 @@
 ---
 title: "R Workshop: Module 1"
 author: "Bobae Kang"
-date: "December 31, 2017"
+date: "March 1, 2018"
 output:
   html_document:
-    self_contained: no
+    self_contained: false
+    lib_dir: ./notes_files
     toc: TRUE
     toc_float	:	TRUE
     toc_depth: 2
@@ -37,6 +38,11 @@ Click [**here**](../slides/module1_slides.html) to view the accompanying **slide
 
 Navigate to the other workshop materials:
 
+<button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">**SEE MORE**</button>
+
+<div class="collapse mt-1" id="collapse-navigate">
+<div style="padding:20px;">
+
 * **Module 2: R basics**
     * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
     * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
@@ -53,6 +59,8 @@ Navigate to the other workshop materials:
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
+</div>
+</div>
 
 ***
 
