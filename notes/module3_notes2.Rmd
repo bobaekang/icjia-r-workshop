@@ -1,10 +1,11 @@
 ---
 title: "R Workshop: Module 3 (2)"
 author: "Bobae Kang"
-date: "January 31, 2018"
+date: "March 1, 2018"
 output:
   html_document:
-    self_contained: no
+    self_contained: false
+    lib_dir: ./notes_files
     toc: TRUE
     toc_float	:	TRUE
     toc_depth: 2
@@ -36,6 +37,11 @@ Click [**here**](../slides/module3_slides2.html) to view the accompanying **slid
 
 Navigate to the other workshop materials:
 
+<button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">**SEE MORE**</button>
+
+<div class="collapse mt-1" id="collapse-navigate">
+<div style="padding:20px;">
+
 * **Module 1: Introduction to R** ([**slides**](../slides/module1_slides.html),
 [**note**](module1_notes.html))
 * **Module 2: R basics**
@@ -52,6 +58,9 @@ Navigate to the other workshop materials:
 * **Module 6: Sharing your analysis and more**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
+
+</div>
+</div>
 
 ***
 
