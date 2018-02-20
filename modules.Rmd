@@ -102,12 +102,12 @@ In this module, workshop participants will get started with generating plots to 
 <div style="padding:20px;">
 ### Part 1: The Grammar of Graphics
 
-* [**Slides**](./slides/module4_slides1.html) (currently unavailable)
+* [**Slides**](./slides/module4_slides1.html) (in development)
 * [**Notes**](./notes/module4_notes1.html) (currently unavailable)
 
-### Part 2: Advanced visualization
+### Part 2: Maps and Interactive Plots
 
-* [**Slides**](./slides/module4_slides2.html) (currently unavailable)
+* [**Slides**](./slides/module4_slides2.html) (in development)
 * [**Notes**](./notes/module4_notes2.html) (currently unavailable)
 </div>
 </div>
