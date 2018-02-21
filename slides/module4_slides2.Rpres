@@ -66,28 +66,133 @@ Packages for maps
 * And more
 
 
-ggmap package
+ggmap: Plotting maps with ggplot2
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+type: section
+
+
+ggmap
+========================================================
+* what
+* is
+* ggmap
+
+
+The get_map() function
+========================================================
+```{r eval=FALSE}
+get_map(location, zoom, scale, maptype, source, ...)
+```
+* Quickly graps a map from various sources:
+    * Google Maps, OpenStreetMap, Staman Map, or Naver Map
+* Returns a `ggmap` object, which can be plotted with the `ggmap()` function
+
+
+========================================================
+**`ggmap` example**
+
+
+tmap: Thematic maps in R
+========================================================
+type: section
+
+
+tmap
+========================================================
+* what
+* is
+* tmap
+
+
+The qtm() function
+========================================================
+```{r eval=FALSE}
+qtm(shape_object, ...)
+```
+* Generates a "quicke thematic map"
+    * comparable to `qplot()` in `ggplot2`
+* Offers the same level of flexibility as the main plotting interface
+    * The main interface is stil recommended for complex plots 
+
+
+========================================================
+**`qtm` example**
+
+
+The tm_*() interface
+========================================================
+```{r eval=FALSE}
+tm_shape(shape_object) +
+  tm_*() # add tmap elements as layers
+```
+* `tm_shape` takes a spatial "shape object"
+* Add layers using tmap elements
+    * two types of "drawing" layers: base and derived
+    * "attribute" layers
+
+
+tmap drawing layers 1
+========================================================
+```{r echo=FALSE}
+knitr::kable(head(iris))
 ```
 
 
-tmap package
+tmap drawing layers 2
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE}
+
 ```
 
 
-leaftlet package
+tmap attribute layers
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE}
+
 ```
 
 
-More on maps
+
+========================================================
+**`tm_` example**
+
+
+Static vs interactive modes
+========================================================
+```{r eval=FALSE}
+tmap_mode("plot") # set to static "plot" mode
+tmap_mode("view") # set to interactive "view" mode
+
+ttmp() # toggle between modes
+```
+
+
+========================================================
+**`view` example**
+
+
+========================================================
+type: section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; margin-top: 15%; box-shadow: none;"'}
+include_graphics("../images/leaflet.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://leafletjs.com/">leafletjs.com</a>
+</p>
+
+
+leaflet
+========================================================
+* what
+* is
+* leaflet
+
+
+========================================================
+**`leaflet` example**
+
+
+Resources
 ========================================================
 * `ggmap` [github repository](https://github.com/dkahle/ggmap)
 * Kahle and Wickham. 2013. "ggmap: Spatial Visualization with ggplot2" [article](https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
@@ -115,11 +220,21 @@ Packages for interactive plots
 * And more
 
 
-ggiraph package
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+type: section
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/ggiraph.gif")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
+</p>
+
+
+ggiraph
+========================================================
+* what
+* is
+* ggiraph
 
 
 Interactive geom layers
@@ -145,11 +260,21 @@ aes(tooltip, onclick, data_id)
 **`ggiraph` example**
 
 
-plotly package
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+type: section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/plotly.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
+</p>
+
+
+plotly
+========================================================
+* what
+* is
+* plotly
 
 
 The ggplotly() function
@@ -173,61 +298,78 @@ plot_ly(data, x, y, color, alpha, symbol, size, ...) %>%
 ```
 * `plot_ly` takes a data frame and defines
 * a "trace", the "geom" equivalent in `plot_ly` interface adds a layer to the plot output
-    * `plotly` supports about 20 traces, including:
-        * markers, text, lines, polygons, area, pie, bars, histogram, heatmap, and more
+    * `plotly` supports about 20 traces
     * By default, each trace inherits the x and y (or even z) mappings from the preceding `plot_ly` object
+
+
+plotly traces
+========================================================
+```{r echo=FALSE}
+
+```
 
 
 ========================================================
 **`plot_ly` example**
 
 
-highcharter package
 ========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+type: section
+```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin: auto; margin-top: 15%; box-shadow: none;"'}
+include_graphics("../images/highcharter.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
+</p>
+
+
+highcharter
+========================================================
+* what
+* is
+* highcharter
 
 
 The hchart() function
 ========================================================
 ```{r eval=FALSE}
-
+hchart(data, type, hcaes(x, y, ...))
 ```
-
+* Quickly generates a hichchart plot
+    * Comparable to `qplot()` in `ggplot2`
+* `hcaes()` works like `aes()` in `ggplot2`
 
 
 ========================================================
 **`hchart` example**
 
 
-
 The highchart() interface
 ========================================================
 ```{r eval=FALSE}
-
+highchart() %>%
+  hc_xAxis(...) %>% # define x-axis
+  hc_yAxis(...) %>% # define y-axis
+  hc_add_series(...) %>% # add a "series"
+  hc_chart(...) %>% # modify general plot options
+  hc_color(...) %>% # control colors
+  hc_title(...) %>% # add the main title
+  hc_*(...) # and more...
 ```
-
+* Closely follows the original Javascript API
 
 ========================================================
 **`highcharter` example**
 
 
-googleVis package
-========================================================
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
-```
-
-
-========================================================
-ddd
-
-
-More on interactive plots
+Resources
 ========================================================
 * `ggiraph` [official documentation page](https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html)
 * `plotly` [official documentation page](https://plot.ly/r/)
 * Sievert. *`plotly` for R* [book](https://plotly-book.cpsievert.me/)
 * `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html)
 * `googleVis` [examples](https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html) by CRAN
+
+
+Other packages
+========================================================
