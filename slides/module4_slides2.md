@@ -38,27 +38,84 @@ Agenda
 </div>
 
 
-Maps and Interactive Plots
+
+
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/caution.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg">Wikimedia Commons</a>
+</p>
 
 
 Maps
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="module4_slides2-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto; box-shadow: none;" />
 
 
-Basics of spatial objects in R
+Prerequisites
 ========================================================
+* Shapefile
+* `rgdal` pacakge
+* Spatial objects in R
+
+
+Shapefile
+========================================================
+* what
+* is
+* shapefile
+
+
+Importing a shapefile
+========================================================
+
+```r
+library(rgdal)
+spatial_object <- readORG(dsn, layer)
+
+# example:
+# il_counties <- read(dsn = "shapefiles", layer = "il_counties")
+```
+* the `readORG` function imports a shapefile into R environment
+    * `dsn` is the path to the directory with a shapefile to import
+    * `layer` is the name of a shapefile to import 
+* the output is a spatial vector object
+
+
+Spatial (vector) objects in R
+========================================================
+* There are multiple spatial vector object types:
+  * Without attributes: `Spatial*` classes
+      * <small>`Points`, `MultiPoints`, `Pixels`, `Grid`, ``Lines`, `Polygons`</small>
+  * With attributes: `Spatial*DataFrame` classes
+      * The attributes `data.frame` table can be accessed using standard methods.
+
+
+Example
+========================================================
+
+
+
+```r
+class(counties)
+```
+
+```
+[1] "SpatialPolygonsDataFrame"
+attr(,"package")
+[1] "sp"
+```
+* `icjiar` package provides a spatial object `counties` for countes in Illinois
+    * it is of the `SpatialPolygonsDataFrame` class
 
 
 Packages for maps
 ========================================================
-* `ggmap` for plotting maps using the `ggplot2` framework
-* `tmap`
-* `leaftlet` for interactive maps
+* `ggmap` package for plotting maps using the `ggplot2` framework
+* `tmap` package for thematic maps
+* `leaftlet` package for interactive maps
 * And more
 
 
@@ -175,7 +232,7 @@ ttmp() # toggle between modes
 
 ========================================================
 type: section
-<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 </p>
@@ -206,7 +263,7 @@ Resources
 Interactive Plots
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Packages for interactive plots
@@ -220,7 +277,7 @@ Packages for interactive plots
 
 ========================================================
 type: section
-<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
 </p>
@@ -260,7 +317,7 @@ aes(tooltip, onclick, data_id)
 
 ========================================================
 type: section
-<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
 </p>
@@ -311,7 +368,7 @@ plotly traces
 
 ========================================================
 type: section
-<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
 </p>

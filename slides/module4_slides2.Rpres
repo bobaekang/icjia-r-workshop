@@ -37,32 +37,100 @@ Agenda
   Part 2: Maps and Interactive Plots</li>
 </div>
 
+```{r echo=FALSE}
+# setup
+library(ggplot2)
+library(dplyr)
+library(icjiar)
+library(knitr)
+library(kableExtra)
+```
 
-Maps and Interactive Plots
+
 ========================================================
 type:section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/caution.png")
 ```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg">Wikimedia Commons</a>
+</p>
 
 
 Maps
 ========================================================
 type:section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE, fig.width=9, fig.height=6, out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+usmap <- map_data("state")
+arr <- USArrests %>%
+  add_rownames("region") %>%
+  mutate(region = tolower(region))
+
+ggplot() +
+  geom_map(data = usmap, map = usmap, aes(x=long, y=lat, map_id=region)) +
+  geom_map(data = arr, map = usmap, aes(map_id=region, fill=Assault), color = "white") +
+  scale_fill_continuous(low='thistle2', high='darkred', guide='colourbar') +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
+  theme_void()
 ```
 
 
-Basics of spatial objects in R
+Prerequisites
 ========================================================
+* Shapefile
+* `rgdal` pacakge
+* Spatial objects in R
+
+
+Shapefile
+========================================================
+* what
+* is
+* shapefile
+
+
+Importing a shapefile
+========================================================
+```{r eval=FALSE}
+library(rgdal)
+spatial_object <- readORG(dsn, layer)
+
+# example:
+# il_counties <- read(dsn = "shapefiles", layer = "il_counties")
+```
+* the `readORG` function imports a shapefile into R environment
+    * `dsn` is the path to the directory with a shapefile to import
+    * `layer` is the name of a shapefile to import 
+* the output is a spatial vector object
+
+
+Spatial (vector) objects in R
+========================================================
+* There are multiple spatial vector object types:
+  * Without attributes: `Spatial*` classes
+      * <small>`Points`, `MultiPoints`, `Pixels`, `Grid`, ``Lines`, `Polygons`</small>
+  * With attributes: `Spatial*DataFrame` classes
+      * The attributes `data.frame` table can be accessed using standard methods.
+
+
+Example
+========================================================
+```{r echo=FALSE}
+library(icjiar)
+```
+
+```{r}
+class(counties)
+```
+* `icjiar` package provides a spatial object `counties` for countes in Illinois
+    * it is of the `SpatialPolygonsDataFrame` class
 
 
 Packages for maps
 ========================================================
-* `ggmap` for plotting maps using the `ggplot2` framework
-* `tmap`
-* `leaftlet` for interactive maps
+* `ggmap` package for plotting maps using the `ggplot2` framework
+* `tmap` package for thematic maps
+* `leaftlet` package for interactive maps
 * And more
 
 
@@ -134,7 +202,7 @@ tm_shape(shape_object) +
 tmap drawing layers 1
 ========================================================
 ```{r echo=FALSE}
-knitr::kable(head(iris))
+kable(head(iris))
 ```
 
 
