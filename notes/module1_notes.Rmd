@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 1"
 author: "Bobae Kang"
-date: "March 1, 2018"
+date: "March 14, 2018"
 output:
   html_document:
     self_contained: false
@@ -55,7 +55,7 @@ Navigate to the other workshop materials:
 * **Module 5: Statistical modeling with R**
     * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
     * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
-* **Module 6: Sharing your analysis and more**
+* **Module 6: "To Infinity and Beyond"**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
@@ -422,20 +422,20 @@ Here, participants will learn the basic building blocks of R language. Once part
 
 This module consists of the following two parts:
 
-#### Part 1: Fundamental building blocks of R programming
-#### Part 2: Gearing up for data analysis in R
+#### Part 1: Fundamentals of R programming
+#### Part 2: Gearing up for data analysis
 
 ## Module 3
-### Data analysis in R
+### Data analysis with R
 This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common `tidyverse` syntax to clean and analyze data. Specifically, core functions from dplyr, tidyr, stringr, and lubridate packages will be covered.
 
 This module consists of the following two parts:
 
-#### Part 1: Getting started with tidyverse
-#### Part 2: More on data manipulation
+#### Part 1: Getting started with `tidyverse`
+#### Part 2: More on data analysis
 
 ## Module 4
-### Data visualization in R
+### Data visualization with R
 In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular ggplot2 package. Participants will also be introduced to some options for generating maps and interactive plots.
 
 This module consists of the following two parts:
@@ -444,11 +444,19 @@ This module consists of the following two parts:
 #### Part 2: Advanced visualiation
 
 ## Module 5
-### Statistical modeling in R
-In this module, participants will learn how to conduct basic statistical analysis with R. 
+### Statistical modeling with R
+In this module, workshop participants will learn how to conduct basic statistical analysis with R, including Student's t-test, analysis of variance (ANOVA), basic linear regression model, and generalized linear models. Participants will also be provided with resources for more advanced statistical modeling.
+
+This module consists of the following two parts:
+
+#### Part 1: Basics of statistical modeling
+#### Part 2: Options for advanced modeling
 
 ## Module 6
-### Sharing your analysis and more
-This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. 
+### "To Infinity and Beyond"
+This module will introduce workshop participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. Participants will also learn how to leverage the power of the Internet to facilitate search for answers to specific questions.
 
+This module consists of the following two parts:
 
+#### Part 1: Sharing your work
+#### Part 2: Leveraging online resources

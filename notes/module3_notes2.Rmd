@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 3 (2)"
 author: "Bobae Kang"
-date: "March 1, 2018"
+date: "March 28, 2018"
 output:
   html_document:
     self_contained: false
@@ -55,7 +55,7 @@ Navigate to the other workshop materials:
 * **Module 5: Statistical modeling with R**
     * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
     * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
-* **Module 6: Sharing your analysis and more**
+* **Module 6: "To Infinity and Beyond"**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
@@ -64,7 +64,7 @@ Navigate to the other workshop materials:
 
 ***
 
-# Data Analysis with R (2): More on data manipulation
+# Data Analysis with R (2): More on data analysis
 
 ```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
 images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")

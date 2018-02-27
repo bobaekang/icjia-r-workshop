@@ -22,7 +22,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 1: Introduction to R</h3>  
-2018-01-01  
+2018-03-14  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
@@ -40,9 +40,9 @@ Instructor (me!)
 
 Workshop objectives
 ========================================================
-> This workshop will help YOU **to get started** and provide them with the basic skills and techniques in using R for research and data analysis. 
+> This workshop will help you **to get started** and provide you with the basic skills and techniques in using R for research and data analysis. 
 
-> Ultimately, this workshop seeks to help YOU **to gain the knowledge and confidence necesary to learn** what they need to know for their own research projects.
+> Ultimately, this workshop seeks to help you **to gain the knowledge and confidence necesary to learn** what they need to know for you own research projects.
 
 
 ========================================================
@@ -288,7 +288,7 @@ Module 2
 
 Module 3
 ========================================================
-<h2>Data manipulation</h2>
+<h2>Data analysis with R</h2>
 * Importing/exporting data
 * Essential `dpylr` and `tidyr` commends
 * Working with character strings
@@ -297,8 +297,7 @@ Module 3
 
 Module 4
 ========================================================
-<h2>Data visualization</h2>
-* Base R plots
+<h2>Data visualization with R</h2>
 * `ggplot2` package
 * Plotting maps
 * Interactive plots
@@ -306,15 +305,18 @@ Module 4
 
 Module 5
 ========================================================
-<h2>Statistical analysis</h2>
+<h2>Statistical modeling with R</h2>
+* Basic statistical modeling
+* Advanced modeling options
 
 
 Module 6
 ========================================================
-<h2>Presentations and beyond</h2>
+<h2>"To Infinity and Beyond"</h2>
 * R Markdown and R Notebook
 * R Presentation and `ioslides`
 * Shiny applications
+* Leveraging online resources
 * ... and more!
 
 

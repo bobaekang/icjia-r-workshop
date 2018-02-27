@@ -22,7 +22,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 3: Data analysis with R (2)</h3>  
-2018-01-01  
+2018-03-28  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>
 

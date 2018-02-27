@@ -22,7 +22,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 4: Data visualization with R (2)</h3>  
-2018-01-01  
+2018-04-04  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
@@ -38,46 +38,218 @@ Agenda
 </div>
 
 
-Maps and Interactive Plots
+
+
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/caution.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg">Wikimedia Commons</a>
+</p>
 
 
 Maps
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="module4_slides2-figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto; box-shadow: none;" />
 
 
-Basics of spatial objects in R
+Prerequisites
 ========================================================
+* Shapefile
+* `rgdal` pacakge
+* Spatial objects in R
+
+
+Shapefile
+========================================================
+* what
+* is
+* shapefile
+
+
+Importing a shapefile
+========================================================
+
+```r
+library(rgdal)
+spatial_object <- readORG(dsn, layer)
+
+# example:
+# il_counties <- read(dsn = "shapefiles", layer = "il_counties")
+```
+* the `readORG` function imports a shapefile into R environment
+    * `dsn` is the path to the directory with a shapefile to import
+    * `layer` is the name of a shapefile to import 
+* the output is a spatial vector object
+
+
+Spatial (vector) objects in R
+========================================================
+* There are multiple spatial vector object types:
+  * Without attributes: `Spatial*` classes
+      * <small>`Points`, `MultiPoints`, `Pixels`, `Grid`, ``Lines`, `Polygons`</small>
+  * With attributes: `Spatial*DataFrame` classes
+      * The attributes `data.frame` table can be accessed using standard methods.
+
+
+Example
+========================================================
+
+
+
+```r
+class(counties)
+```
+
+```
+[1] "SpatialPolygonsDataFrame"
+attr(,"package")
+[1] "sp"
+```
+* `icjiar` package provides a spatial object `counties` for countes in Illinois
+    * it is of the `SpatialPolygonsDataFrame` class
 
 
 Packages for maps
 ========================================================
-* `ggmap` for plotting maps using the `ggplot2` framework
-* `tmap`
-* `leaftlet` for interactive maps
+* `ggmap` package for plotting maps using the `ggplot2` framework
+* `tmap` package for thematic maps
+* `leaftlet` package for interactive maps
 * And more
 
 
-ggmap package
+ggmap: Plotting maps with ggplot2
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+type: section
 
 
-tmap package
+ggmap
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+* what
+* is
+* ggmap
 
 
-leaftlet package
+The get_map() function
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+```r
+get_map(location, zoom, scale, maptype, source, ...)
+```
+* Quickly graps a map from various sources:
+    * Google Maps, OpenStreetMap, Staman Map, or Naver Map
+* Returns a `ggmap` object, which can be plotted with the `ggmap()` function
 
 
-More on maps
+========================================================
+**`ggmap` example**
+
+
+tmap: Thematic maps in R
+========================================================
+type: section
+
+
+tmap
+========================================================
+* what
+* is
+* tmap
+
+
+The qtm() function
+========================================================
+
+```r
+qtm(shape_object, ...)
+```
+* Generates a "quicke thematic map"
+    * comparable to `qplot()` in `ggplot2`
+* Offers the same level of flexibility as the main plotting interface
+    * The main interface is stil recommended for complex plots 
+
+
+========================================================
+**`qtm` example**
+
+
+The tm_*() interface
+========================================================
+
+```r
+tm_shape(shape_object) +
+  tm_*() # add tmap elements as layers
+```
+* `tm_shape` takes a spatial "shape object"
+* Add layers using tmap elements
+    * two types of "drawing" layers: base and derived
+    * "attribute" layers
+
+
+tmap drawing layers 1
+========================================================
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
+
+
+tmap drawing layers 2
+========================================================
+
+
+
+tmap attribute layers
+========================================================
+
+
+
+
+========================================================
+**`tm_` example**
+
+
+Static vs interactive modes
+========================================================
+
+```r
+tmap_mode("plot") # set to static "plot" mode
+tmap_mode("view") # set to interactive "view" mode
+
+ttmp() # toggle between modes
+```
+
+
+========================================================
+**`view` example**
+
+
+========================================================
+type: section
+<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://leafletjs.com/">leafletjs.com</a>
+</p>
+
+
+leaflet
+========================================================
+* what
+* is
+* leaflet
+
+
+========================================================
+**`leaflet` example**
+
+
+Resources
 ========================================================
 * `ggmap` [github repository](https://github.com/dkahle/ggmap)
 * Kahle and Wickham. 2013. "ggmap: Spatial Visualization with ggplot2" [article](https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
@@ -91,7 +263,7 @@ More on maps
 Interactive Plots
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Packages for interactive plots
@@ -103,9 +275,19 @@ Packages for interactive plots
 * And more
 
 
-ggiraph package
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+type: section
+<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
+</p>
+
+
+ggiraph
+========================================================
+* what
+* is
+* ggiraph
 
 
 Interactive geom layers
@@ -133,9 +315,19 @@ aes(tooltip, onclick, data_id)
 **`ggiraph` example**
 
 
-plotly package
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+type: section
+<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
+</p>
+
+
+plotly
+========================================================
+* what
+* is
+* plotly
 
 
 The ggplotly() function
@@ -161,53 +353,76 @@ plot_ly(data, x, y, color, alpha, symbol, size, ...) %>%
 ```
 * `plot_ly` takes a data frame and defines
 * a "trace", the "geom" equivalent in `plot_ly` interface adds a layer to the plot output
-    * `plotly` supports about 20 traces, including:
-        * markers, text, lines, polygons, area, pie, bars, histogram, heatmap, and more
+    * `plotly` supports about 20 traces
     * By default, each trace inherits the x and y (or even z) mappings from the preceding `plot_ly` object
+
+
+plotly traces
+========================================================
+
 
 
 ========================================================
 **`plot_ly` example**
 
 
-highcharter package
 ========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+type: section
+<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
+</p>
+
+
+highcharter
+========================================================
+* what
+* is
+* highcharter
 
 
 The hchart() function
 ========================================================
 
-
+```r
+hchart(data, type, hcaes(x, y, ...))
+```
+* Quickly generates a hichchart plot
+    * Comparable to `qplot()` in `ggplot2`
+* `hcaes()` works like `aes()` in `ggplot2`
 
 
 ========================================================
 **`hchart` example**
 
 
-
 The highchart() interface
 ========================================================
 
-
+```r
+highchart() %>%
+  hc_xAxis(...) %>% # define x-axis
+  hc_yAxis(...) %>% # define y-axis
+  hc_add_series(...) %>% # add a "series"
+  hc_chart(...) %>% # modify general plot options
+  hc_color(...) %>% # control colors
+  hc_title(...) %>% # add the main title
+  hc_*(...) # and more...
+```
+* Closely follows the original Javascript API
 
 ========================================================
 **`highcharter` example**
 
 
-googleVis package
-========================================================
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-
-
-========================================================
-ddd
-
-
-More on interactive plots
+Resources
 ========================================================
 * `ggiraph` [official documentation page](https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html)
 * `plotly` [official documentation page](https://plot.ly/r/)
 * Sievert. *`plotly` for R* [book](https://plotly-book.cpsievert.me/)
 * `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html)
 * `googleVis` [examples](https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html) by CRAN
+
+
+Other packages
+========================================================

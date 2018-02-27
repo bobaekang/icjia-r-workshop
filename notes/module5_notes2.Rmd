@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 5 (1)"
 author: "Bobae Kang"
-date: "March 1, 2018"
+date: "April 11, 2018"
 output:
   html_document:
     self_contained: false
@@ -56,7 +56,7 @@ Navigate to the other workshop materials:
     * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
 * **Module 5: Statistical modeling with R**
     * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
-* **Module 6: Sharing your analysis and more**
+* **Module 6: "To Infinity and Beyond"**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
@@ -65,7 +65,7 @@ Navigate to the other workshop materials:
 
 ***
 
-# Statistical modleing with R (2):
+# Statistical modleing with R (2): Options for advanced modeling
 
 # slides in development
 

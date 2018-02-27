@@ -22,7 +22,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 5: Statistical modeling with R (2)</h3>  
-2018-01-01  
+2018-04-11  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
@@ -32,9 +32,9 @@ Agenda
 <div style="text-align:center; margin-top:10%;">
 <ul style="list-style: none">
 <li>
-  Part 1: </li>
+  Part 1: Basics of statistical modeling</li>
 <li style="color: #00061a; font-size: 1.1em; font-weight:700">
-  Part 2: </li>
+  Part 2: Options for advanced modeling</li>
 </div>
 
 

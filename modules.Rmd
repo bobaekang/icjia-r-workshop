@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = FALSE, fig.align="center")
 ```
 
 <div class="fade-in">
-```{r image, out.width=800, include=TRUE}
-knitr::include_graphics("images/module.jpg")
+```{r image, out.width="60%", include=TRUE}
+knitr::include_graphics("images/module.png")
 ```
 </div>
 
@@ -59,7 +59,7 @@ Workshop participants will learn the basic building blocks of R language. Once p
 * [**Slides**](./slides/module2_slides1.html)
 * [**Notes**](./notes/module2_notes1.html) (in development)
 
-### Part 2: Gearing up for data analysis in R
+### Part 2: Gearing up for data analysis
 
 * [**Slides**](./slides/module2_slides2.html)
 * [**Notes**](./notes/module2_notes2.html) (in development)
@@ -77,12 +77,12 @@ This module focuses on manimuplating and transforming tabular data using R. Work
 
 <div class="collapse" id="collapse-module-3">
 <div style="padding:20px;">
-### Part 1: Getting started with tidyverse
+### Part 1: Getting started with `tidyverse`
 
 * [**Slides**](./slides/module3_slides1.html) (in development)
 * [**Notes**](./notes/module3_notes1.html) (currently unavailable)
 
-### Part 2: More on data manipulation
+### Part 2: More on data analysis
 
 * [**Slides**](./slides/module3_slides2.html) (in development)
 * [**Notes**](./notes/module3_notes2.html) (currently unavailable)
@@ -105,7 +105,7 @@ In this module, workshop participants will get started with generating plots to 
 * [**Slides**](./slides/module4_slides1.html) (in development)
 * [**Notes**](./notes/module4_notes1.html) (currently unavailable)
 
-### Part 2: Maps and Interactive Plots
+### Part 2: Maps and interactive plots
 
 * [**Slides**](./slides/module4_slides2.html) (in development)
 * [**Notes**](./notes/module4_notes2.html) (currently unavailable)
@@ -123,12 +123,12 @@ In this module, workshop participants will learn how to conduct basic statistica
 
 <div class="collapse" id="collapse-module-5">
 <div style="padding:20px;">
-### Part 1: 
+### Part 1: Basics of statistical modeling
 
 * [**Slides**](./slides/module5_slides1.html) (currently unavailable)
 * [**Notes**](./notes/module5_notes1.html) (currently unavailable)
 
-### Part 2: 
+### Part 2: Options for advanced modeling
 
 * [**Slides**](./slides/module5_slides2.html) (currently unavailable)
 * [**Notes**](./notes/module5_notes2.html) (currently unavailable)
@@ -138,7 +138,7 @@ In this module, workshop participants will learn how to conduct basic statistica
 
 ***
 
-## Module 6: Sharing your analysis and more
+## Module 6: "To Infinity and Beyond"
 <div>
 This module will introduce workshop participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. Participants will also learn how to leverage the power of the Internet to facilitate search for answers to specific questions.
 
@@ -146,12 +146,12 @@ This module will introduce workshop participants to various ways to share their 
 
 <div class="collapse" id="collapse-module6">
 <div style="padding:20px;">
-### Part 1: 
+### Part 1: Sharing your work
 
 * [**Slides**](./slides/module6_slides1.html) (currently unavailable)
 * [**Notes**](./notes/module6_notes1.html) (currently unavailable)
 
-### Part 2: 
+### Part 2: Leveraging online resources
 
 * [**Slides**](./slides/module6_slides2.html) (currently unavailable)
 * [**Notes**](./notes/module6_notes2.html) (currently unavailable)
