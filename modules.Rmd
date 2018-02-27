@@ -21,6 +21,9 @@ knitr::opts_chunk$set(echo = FALSE, fig.align="center")
 knitr::include_graphics("images/module.png")
 ```
 </div>
+<p style="font-size:0.6em; text-align:center; color: #777;">
+Source: <a href="https://www.shareicon.net/cubes-squares-geometrical-shapes-and-symbols-3d-interface-shapes-cube-823602">Flaticon via shareicon.net</a>
+</p>
 
 The workshop consists of six separate modules which are meant to be followed in order. Each module has a specific focus. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
