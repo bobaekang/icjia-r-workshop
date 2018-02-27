@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 4 (1)"
 author: "Bobae Kang"
-date: "March 1, 2018"
+date: "April 4, 2018"
 output:
   html_document:
     self_contained: false
@@ -56,12 +56,16 @@ Navigate to the other workshop materials:
 * **Module 5: Statistical modeling with R**
     * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
     * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
-* **Module 6: Sharing your analysis and more**
+* **Module 6: "To Infinity and Beyond"**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 
 </div>
 </div>
+
+***
+
+# Data visualization with R (1): The Grammar of Graphics
 
 ***
 

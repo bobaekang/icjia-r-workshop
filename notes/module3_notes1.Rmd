@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 3 (1)"
 author: "Bobae Kang"
-date: "March 1, 2018"
+date: "March 28, 2018"
 output:
   html_document:
     self_contained: false
@@ -37,7 +37,6 @@ Click [**here**](../slides/module3_slides1.html) to view the accompanying **slid
 
 Navigate to the other workshop materials:
 
-
 <button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">**SEE MORE**</button>
 
 <div class="collapse mt-1" id="collapse-navigate">
@@ -56,7 +55,7 @@ Navigate to the other workshop materials:
 * **Module 5: Statistical modeling with R**
     * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
     * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
-* **Module 6: Sharing your analysis and more**
+* **Module 6: "To Infinity and Beyond"**
     * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
     * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
 

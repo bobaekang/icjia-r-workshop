@@ -22,7 +22,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 4: Data visualization with R (2)</h3>  
-2018-01-01  
+2018-04-04  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
