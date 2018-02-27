@@ -4,6 +4,9 @@
 
 This workshop is planned to offer a gentle introduction to the R programming language for ICJIA researchers who want to leverage the power and flexibility of R to improve their technical prowess as researcher.
 
+Visit the official website for the workshop for more information, including the workshop schedule and course materials: https://bobaekang.github.io/icjia-r-workshop/
+
+
 # Workshop curriculum (*in development*)
 The workshop consists of six separate modules which are meant to be followed in order. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
@@ -14,30 +17,30 @@ In this module, participants will be introduced to the R language and the benefi
 Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.
 
 * Part 1: Fundamental building blocks of R programming
-* Part 2: Gearing up for data analysis in R
+* Part 2: Gearing up for data analysis
 
-### Module 3: Data analysis in R
+### Module 3: Data analysis with R
 This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common `tidyverse` syntax to clean and analyze data. Specifically, core functions from dplyr, tidyr, stringr, and lubridate packages will be covered.
 
 * Part 1: Getting started with tidyverse
-* Part 2: More on data manipulation
+* Part 2: More on data analysis
 
-### Module 4: Data visualization in R
+### Module 4: Data visualization with R
 In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular `ggplot2` package. Participants will also be introduced to some options for generating maps and interactive plots.
 
 * Part 1: The Grammar of Graphics
 * Part 2: Maps and interactive plots
 
-### Module 5: Statistical analysis in R
+### Module 5: Statistical modeling with R
 In this module, workshop participants will learn how to conduct basic statistical analysis with R, including Student’s t-test, analysis of variance (ANOVA), basic linear regression model, and generalized linear models. Participants will also be provided with resources for more advanced statistical modeling.
 
-* Part 1: Basics of statistical analysis
+* Part 1: Basics of statistical modeling
 * Part 2: Options for advanced modeling
 
 ### Module 6: "To Infinity and Beyond"
 This module will invite workshop participants to explore the power of R programming beyond basic data analysis, visualization, and statistical modeling. Topics explored here include sharing the results of research and analysis in the form of documents, slideshows, interactive application/dashboards, and more. Participants will also practice leveraging the power of the Internet to facilitate their search for answers to specific questions.
 
-* Part 1: Sharing your work in R
+* Part 1: Sharing your work
 * Part 2: Leveraging online resources
 
 # Resources
