@@ -38,10 +38,264 @@ Agenda
 </div>
 
 
-(slides in development)
+Basic Descriptive Statistics
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/icjia-x-r.png")
 ```
+
+
+Quick summary stats
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Numerical variables
+========================================================
+* Central tendency
+* Variability
+* Shape
+* Outliers
+
+
+Central tendency
+========================================================
+* `mean()`
+* `median()`
+* `mode()`
+
+
+Variability
+========================================================
+* range:
+    * `min()`, `max()`, `range()`
+* percentiles:
+    * `fivenum()`, `IQR()`, `quantile()`
+* variance: `var()`
+
+
+Shape
+========================================================
+* `moments` package
+    * `skewness()`
+    * `kurtosis()`
+
+
+Outliers
+========================================================
+* `outliers` package
+
+
+Categorical variables
+========================================================
+* Frequency table
+    * In fractions
+    * With margins
+
+
+A dplyr way
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Basic Inferential Statistics
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+
+Comparing means
+========================================================
+* t-test: t.test()
+* anova: aov()
+  * Tukey's range test: TukeyHSD()
+
+t-test
+========================================================
+
+ANOVA
+========================================================
+
+
+Comparing proportions
+========================================================
+* two sample Z-test: prop.test()
+* chi-square test: chisq.test()
+
+Two sample Z-test
+========================================================
+
+
+Chi-square test
+========================================================
+
+
+Better ways?
+========================================================
+* `psych` package
+    * See [this introduction material](https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf) by the package author
+* `jmv` package
+    * See [this package documentation webpate](https://www.jamovi.org/jmv/)
+
+
+Linear models
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+The lm() function
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+R formula
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Model summary
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+broom package
+========================================================
+* `glance()`
+* `tidy()`
+
+
+The glance() function
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+The tidy() function
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+modelr package
+========================================================
+* partitioning and sampling
+    * `resample()`, `resample_partition()`
+* model quality metrics
+    * `rmse()`, `mae()`, `qae()`
+* interacting with models
+    * `add_predictions()`, `add_residuals()`
+
+
+Partitioning and sampling
+========================================================
+* `resample()`
+* `resample_partition()`
+
+
+Model quality metrics
+========================================================
+* `rmse()`
+* `mae()`
+* `qae()`
+
+
+Interacting with models
+========================================================
+* `add_predictions()`
+* `add_residuals()`
+
+
+Transformations
+========================================================
+
+
+Polynomials
+========================================================
+
+
+Interactions
+========================================================
+
+
+Generalized linear models
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+
+The glm() function
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Families
+========================================================
+
+
+Logit model
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Poisson model
+========================================================
+```{r eval=FALSE}
+
+```
+
+
+Questions?
+========================================================
+type: section
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href=""></a>
+</p>
+
+
+References
+========================================================
+<ul style="font-size: 0.5em">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+</ul>
+
+
+========================================================
+type: section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+</p>
 
