@@ -426,3 +426,22 @@ Resources
 
 Other packages
 ========================================================
+
+
+Questions?
+========================================================
+type: section
+<img src="" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href=""></a>
+</p>
+
+
+========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

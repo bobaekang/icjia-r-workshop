@@ -278,15 +278,13 @@ Source: <a href=""></a>
 </p>
 
 
-References
 ========================================================
-<ul style="font-size: 0.5em">
-  <li>1</li>
-  <li>2</li>
-  <li>3</li>
-  <li>4</li>
-  <li>5</li>
-  <li>6</li>
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><i><a href="http://uc-r.github.io/">UC Business Analytics R Programming Guide</a></i>, University of Cincinnati</li>
+  <li><a href="https://github.com/tidyverse/broom">tidyverse/broom Github repository</a></li>
+  <li><a href="https://github.com/tidyverse/modelr">tidyverse/modelr Github repository</a></li>
+  <li><a href="#"></a></li>
 </ul>
 
 
@@ -298,4 +296,3 @@ include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_p
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>
-

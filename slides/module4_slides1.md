@@ -548,6 +548,16 @@ Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-773
 
 
 ========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>
+
+
+========================================================
 type: section
 <img src="../images/pause.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">

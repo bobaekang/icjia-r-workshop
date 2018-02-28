@@ -433,6 +433,16 @@ Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.c
 
 
 ========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>
+
+
+========================================================
 type: section
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
