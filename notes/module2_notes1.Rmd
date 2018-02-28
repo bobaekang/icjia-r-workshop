@@ -62,7 +62,9 @@ Navigate to the other workshop materials:
 </div>
 </div>
 
+
 ***
+
 
 # R Basics (1): Fundamentals of R Programming
 
@@ -73,7 +75,9 @@ Navigate to the other workshop materials:
 * Functions
 * Environments
 
+
 ***
+
 
 # R Objects
 
@@ -268,6 +272,7 @@ print(to_vector)
 
 ***
 
+
 # R Expressions
 
 ## What are expressions
@@ -449,7 +454,9 @@ if (a) {
 * `if`-`else` statement
 * allows for multiple conditions
 
+
 ***
+
 
 # R Functions
 
@@ -502,7 +509,9 @@ print_hello_world()
     * Avoid unintended bugs/errors
     * Enhance reproducibility
 
+
 ***
+
 
 # R Environments
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -566,3 +575,14 @@ knitr::include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/search
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
+
+***
+
+
+# References
+<ul style="list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

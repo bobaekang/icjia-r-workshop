@@ -62,7 +62,9 @@ Navigate to the other workshop materials:
 </div>
 </div>
 
+
 ***
+
 
 # Data Analysis with R (2): More on data analysis
 
@@ -74,7 +76,9 @@ knitr::include_graphics(images)
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
+
 ***
+
 
 # Working with Strings
 
@@ -95,7 +99,9 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 * `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf)
 * `stringr` [Github repository](https://github.com/tidyverse/stringr)
 
+
 ***
+
 
 # Working with Datetimes
 
@@ -116,7 +122,9 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 * `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf)
 * `lubridate` [Github repository](https://github.com/tidyverse/lubridate)
 
+
 ***
+
 
 # Importing/Exporting Data
 
@@ -165,3 +173,15 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 * The .feather format is also supported in Python!
 * `feather` on [tidyverse.org](http://haven.tidyverse.org/)
 * `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
+
+
+***
+
+
+# References
+<ul style="list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

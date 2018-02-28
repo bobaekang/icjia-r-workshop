@@ -62,7 +62,9 @@ Navigate to the other workshop materials:
 </div>
 </div>
 
+
 ***
+
 
 # Data Analysis with R (1): Getting started with `tidyverse`
 
@@ -74,7 +76,9 @@ knitr::include_graphics(images)
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
+
 ***
+
 
 # Getting Ready
 
@@ -126,7 +130,9 @@ library(dplyr)
 library(tidyr)
 ```
 
+
 ***
+
 
 # Manipulating Your Data
 
@@ -171,7 +177,9 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 * `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
 * `dplyr` [Github repository](https://github.com/tidyverse/dplyr)
 
+
 ***
+
 
 # Tidying Up Your Data
 
@@ -210,3 +218,15 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 * `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
 * `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
 * `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
+
+
+***
+
+
+# References
+<ul style="list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

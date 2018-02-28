@@ -63,11 +63,15 @@ Navigate to the other workshop materials:
 </div>
 </div>
 
+
 ***
+
 
 # R Basics (2): Gearing up for data analysis
 
+
 ***
+
 
 # R Data Frame
 
@@ -316,7 +320,9 @@ data.table::data.table(
 * Coercing a data frame into a data table can be done with `as.data.table()` 
 * See [here](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) for more on data.table
 
+
 ***
+
 
 # R Add-On Packages
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -352,7 +358,9 @@ library(some_package)
 
 * Also, check out "Install Packages" [tutorial video](https://vimeo.com/203516241) by RStudio, Inc.
 
+
 ***
+
 
 # Tidyverse Framework
 
@@ -429,7 +437,9 @@ ispcrime %>%
 
 * RStudio, Inc., "tidy tutorial" [video](https://vimeo.com/211352331)
 
+
 ***
+
 
 # Good Code, Bad Code
 
@@ -609,3 +619,14 @@ average <- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by
 * Be concise!
 * Be clear!
 
+
+***
+
+
+# References
+<ul style="list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>
