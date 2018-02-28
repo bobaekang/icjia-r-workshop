@@ -57,7 +57,7 @@ Workshop participants will learn the basic building blocks of R language. Once p
 
 <div class="collapse mt-1" id="collapse-module-2">
 <div style="padding:20px;">
-### Part 1: Fundamental building blocks of R programming
+### Part 1: Fundamentals of R programming
 
 * [**Slides**](./slides/module2_slides1.html)
 * [**Notes**](./notes/module2_notes1.html) (in development)
