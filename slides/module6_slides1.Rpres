@@ -38,12 +38,211 @@ Agenda
 </div>
 
 
-(slides in development)
+R Markdown
 ========================================================
 type:section
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/icjia-x-r.png")
 ```
+
+What is R Markdown?
+========================================================
+
+
+Why use R Markdown?
+========================================================
+
+
+Getting started
+========================================================
+* installing `rmarkdown`
+* creating a R markdown document
+
+
+Basics
+========================================================
+* yaml header
+    * output type
+    * theme
+* knitting outputs
+    * preview
+
+
+Markdown syntax
+========================================================
+
+
+Code chunks
+========================================================
+
+
+knitr options
+========================================================
+* global options
+* local options
+
+
+Images
+========================================================
+* image insert options
+* image size
+* image alignment
+
+
+Tables
+========================================================
+* without code
+* with code
+
+
+kable
+========================================================
+* `knitr::kable`
+* `kableExtra` package
+
+
+Documents
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+HTML documents
+========================================================
+
+
+R Notebooks
+========================================================
+
+
+htmlwidgets for R
+========================================================
+
+
+PDF documents
+========================================================
+
+
+tufte and tint
+========================================================
+
+
+Word documents
+========================================================
+
+
+Other formats
+========================================================
+
+
+RPubs
+========================================================
+
+
+Presentations
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+ioslides
+========================================================
+* example
+
+
+revealjs
+========================================================
+* example
+
+
+R Presentation
+========================================================
+* Not R Markdown
+
+
+Other formats
+========================================================
+* slidy (`output: slidy_presentation`)
+* beamer (`output: beamer_presentation`)
+* [xaringan](https://github.com/yihui/xaringan) (`output: xaringan::moom_reader`)
+
+Shiny
+========================================================
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+What is Shiny?
+========================================================
+
+
+Dashboards
+========================================================
+
+
+Interactive documents
+========================================================
+
+
+Getting started
+========================================================
+
+
+Shiny application
+========================================================
+
+
+Components
+========================================================
+
+
+Deployment
+========================================================
+
+
+Deploying via shinyapps.io
+========================================================
+
+
+Deploying via ShinyProxy
+========================================================
+
+
+shinydashboard
+========================================================
+
+
+shinyjs
+========================================================
+
+
+Websites
+========================================================
+type: section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+Static websites
+========================================================
+
+
+Hosting on Github Pages
+========================================================
+
+
+Books
+========================================================
+* `bookdown` package
+
+
+Blogs
+========================================================
+* `blogdown` package
+
 
 
 Questions?
