@@ -521,6 +521,16 @@ Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-773
 
 
 ========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>
+
+
+========================================================
 type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/pause.png")

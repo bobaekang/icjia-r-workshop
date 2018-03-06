@@ -189,6 +189,7 @@ Although the topic of version control is beyond the scope of this workshop, suff
 
 ***
 
+
 # Introducing R
 
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -198,7 +199,6 @@ include_graphics("https://www.r-project.org/logo/Rlogo.png")
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 </p>
-
 
 ## What is R?
 
@@ -242,7 +242,6 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * Slideshows, websites, interactive dashboards, etc.
 
 [^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
-
 
 ## Comparisons
 
@@ -323,7 +322,9 @@ This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferi
 
 Nonetheless, R is a highly performant, versatile, and flexible tool for research and data analysis that is also largely compatible with any of the tools above. That said, R is a great addition to any researcher's toolbox, and it can easily be the most preferred choice of tool.
 
+
 ***
+
 
 # RStudio
 
@@ -387,7 +388,9 @@ The size and position of panes can be customized. On the top right of each pane,
 
 The overall appearance can be customized as well. Go to **Tools > Global options > Appearnce** on the menu bar to change themes, fonts, and more. 
 
+
 ***
+
 
 # Basic Setup
 ## Installing R
@@ -406,7 +409,10 @@ The overall appearance can be customized as well. Go to **Tools > Global options
 
 * Also, check out "Install RStudio" [**tutorial video**](https://vimeo.com/203516968) by RStudio, Inc.
 
+
 ***
+
+
 # Workshop Overview
 
 ```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -460,3 +466,15 @@ This module consists of the following two parts:
 
 #### Part 1: Sharing your work
 #### Part 2: Leveraging online resources
+
+
+***
+
+
+# References
+<ul style="list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

@@ -546,3 +546,13 @@ type: section
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://dribbble.com/shots/1627606-question-mark">Joel Ploz</a>
 </p>
+
+
+References
+========================================================
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>

@@ -626,6 +626,17 @@ include_graphics("https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34f
 Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
 </p>
 
+
+========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#"></a></li>
+</ul>
+
+
 ========================================================
 type: section
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
