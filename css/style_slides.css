@@ -1,7 +1,14 @@
+:root {
+    --header-footer-color: #0D4474;
+    --button-color: #25679E;
+    --button-hover-color: #ddd
+}
+
+
 /* base elements */
 .header,
 .footer {
-    background: #0D4474;
+    background: var(--header-footer-color);
     position: fixed;
     width:100%;
 }
@@ -47,14 +54,14 @@
   width: 100px;
   height: 35px;
   background: 0;
-  color: #25679E;
-  border: 2px solid #25679E;
+  color: var(--button-color);
+  border: 2px solid var(--button-color);
 }
 
 .buttons button:hover {
   cursor: pointer;
-  color: #ddd;
-  border: 2px solid #ddd;
+  color: var(--button-hover-color);
+  border: 2px solid var(--button-hover-color);
 }
 
 /* general */
@@ -72,8 +79,12 @@
 
 .section .reveal h1,
 .section .reveal h2,
-.section .reveal h3 {
+.section .reveal h3,
+.reveal h1,
+.reveal h2,
+.reveal h3 {
   color: #00061a;
+  font-family: 'Oswald', sans-serif;
 }
 
 .section .reveal h1 {
@@ -106,4 +117,13 @@
 /* code block */
 .reveal pre code {
   font-size: 1.1em;
+}
+
+/* blockquote */
+.reveal blockquote > p {
+  margin: 0;
+  padding: 15px 30px 15px 30px;
+  font-size: 0.9em;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
 }
