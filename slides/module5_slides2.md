@@ -14,7 +14,7 @@
   <button type="button">Notes</button>
 </a>
 </div>
-
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 # presentation
 R Workshop
@@ -38,26 +38,211 @@ Agenda
 </div>
 
 
-(slides in development)
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/caution.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:DIN_4844-2_Warnung_vor_einer_Gefahrenstelle_D-W000.svg">Wikimedia Commons</a>
+</p>
+
+
+Survival analysis
+========================================================
+type:section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+What is Survival analysis?
+========================================================
+
+
+
+Packages on survival analysis
+========================================================
+* `survival` package
+* `survminer` package for visualization
+    * Resources:
+
+
+Basic survival models
+========================================================
+* Kaplan-Meier estimator
+* Cox proportioanl hazards regression
+
+
+Surv function and Surv class
+========================================================
+
+
+
+
+survfit function
+========================================================
+
+
+
+
+coxph function
+========================================================
+
+
+
+
+ggsurvplot function
+========================================================
+
+
+
+Other resources
+========================================================
+* Diez, D. M. 2013. ["Survival Analysis in R"](https://www.openintro.org/download.php?file=survival_analysis_in_R)
+* Econometrics Academy's ["Survival Analysis" page](https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis)
+* Rickert, J. 2017. ["Survival Analysis with R"](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/) on *R Views*
+
+
+Time series analysis
+========================================================
+type:section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+What is time series analysis?
+========================================================
+
+
+Packages on time series analysis
+========================================================
+* `forcast` package
+    * [Package website](http://pkg.robjhyndman.com/forecast/index.html)
+    * [Online textbook](https://otexts.org/fpp2/)
+* `` package
+
+
+Basic time series models
+========================================================
+* Autoregressive (AR) model
+* Moving average (MA) model
+* ARIMA model
+
+
+Other resources
+========================================================
+* Econometrics Academy's ["Time Series ARIMA Models" page](https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models)
+* Prabhakaran, S. ["Time Series Analysis"](http://r-statistics.co/Time-Series-Analysis-With-R.html) on [r-statistics.co](http://r-statistics.co/)
+
+Spatial regression analysis
+========================================================
+type:section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+What is spatial regression analysis?
+========================================================
+
+
+Packages on spatial regression analysis
+========================================================
+* `sp` package
+* `` package
+
+
+Basic spatial models
+========================================================
+* Spatial autorgressive lag model
+* Spatial autoregressive error model
+
+
+Other resources
+========================================================
+* Anselin, L. 2007. [*Spatial Regression Analysis in R: A Workbook*](http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf) (free textbook)
+* Econometrics Academy's ["Spatial Econometrics" page](https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics)
+* Sarmiento-Barbieri, I. ["An Introduction to Spatial Econometrics in R"](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html) (tutorial)
+
+
+Machine learning
+========================================================
+type:section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+What is machine learning?
+========================================================
+> "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experience E."<br>-Tom M. Matchell 
+
+
+When to use ML?
+========================================================
+
+
+
+Basic ML workflow
+========================================================
+
+
+
+Common ML algorithms
+========================================================
+<br>
+* Linear regression
+* Logistic regression
+* Decision tree
+    * Random forest
+* Support vector machine (SVM)
+
+***
+
+<br>
+* Naive Bayes
+* K-Nearest Neighbors
+* K-Means Clustering
+* Artificial neural network
+    * "Deep learning"
+
+
+Packages on ML
+========================================================
+<br>
+* `caret` pacakage
+    * Classification And REgression Training
+    * Resources:
+      * [Package vignette PDF](https://cran.r-project.org/web/packages/caret/vignettes/caret.pdf)
+      * [Online textbook](http://topepo.github.io/caret/index.html)
+      * [GitHub repo](https://github.com/topepo/caret)
+
+***
+
+<br>
+* `mlr` pacakge
+    * Machine Learning in R
+    * Resources:
+      * [Package vignette HTML](https://cran.r-project.org/web/packages/mlr/vignettes/mlr.html)
+      * [Tutorial website](https://mlr-org.github.io/mlr-tutorial/devel/html/)
+      * [GitHub repo](https://github.com/mlr-org/mlr/)
+
+
+Other resources
+========================================================
+* Andrew Ng's ["Machine Learning" course](https://www.coursera.org/learn/machine-learning) on Coursera
+* James, G. et al. 2013. *An Introduction to Statistical Learning*
+    * [Website with a link to free textbook](http://www-bcf.usc.edu/~gareth/ISL/)
+    * Examples in R code
+* Google's [*Machine Learning Crash Course*](https://developers.google.com/machine-learning/crash-course/)
 
 
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>
 
 
-========================================================
 References
+========================================================
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+  <li>Allignol A. and Latouche, A. 2018. <a href="https://cran.r-project.org/web/views/Survival.html">"CRAN Task View: Survival Analysis"</a></li>
+  <li>Bivand, Roger. 2018. <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data</a></li>
+  <li>Hyndman, R. J. 2018. <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a></li>
+  <li>Fox, J. 2016. <a href="https://cran.r-project.org/web/views/SocialSciences.html">"Cran Task View: Statistics for the Social Sciences</a></li>
 </ul>
