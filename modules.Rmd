@@ -135,12 +135,12 @@ In this module, workshop participants will learn how to conduct basic statistica
 <div style="padding:20px;">
 ### Part 1: Basics of statistical modeling
 
-* [**Slides**](./slides/module5_slides1.html) (currently unavailable)
+* [**Slides**](./slides/module5_slides1.html) (in development)
 * [**Notes**](./notes/module5_notes1.html) (currently unavailable)
 
 ### Part 2: Options for advanced modeling
 
-* [**Slides**](./slides/module5_slides2.html) (currently unavailable)
+* [**Slides**](./slides/module5_slides2.html) (in development)
 * [**Notes**](./notes/module5_notes2.html) (currently unavailable)
 </div>
 </div>
@@ -157,12 +157,12 @@ This module will introduce workshop participants to various ways to share their 
 <div style="padding:20px;">
 ### Part 1: Sharing your work
 
-* [**Slides**](./slides/module6_slides1.html) (currently unavailable)
+* [**Slides**](./slides/module6_slides1.html) (in development)
 * [**Notes**](./notes/module6_notes1.html) (currently unavailable)
 
 ### Part 2: Leveraging online resources
 
-* [**Slides**](./slides/module6_slides2.html) (currently unavailable)
+* [**Slides**](./slides/module6_slides2.html) (in development)
 * [**Notes**](./notes/module6_notes2.html) (currently unavailable)
 </div>
 </div>
