@@ -49,7 +49,10 @@ Why online resources?
 Before going online
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/wireless_icon.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg">Wikimedia Commons</a>
+</p>
 
 
 "The 15 minute rule"
@@ -76,8 +79,10 @@ Help function
 Google
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-
+<img src="../images/google_help.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.google.com/about/products/">Google.com</a>
+</p>
 
 How to ask questions
 ========================================================
@@ -87,8 +92,10 @@ How to ask questions
 "Official" resources
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-
+<img src="../images/Rlogo.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">R Project</a>
+</p>
 
 CRAN
 ========================================================
@@ -179,7 +186,10 @@ Online "books"
 
 R for Data Science
 ========================================================
-
+<img src="../images/r4ds_cover.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+</p>
 
 UC R Programming Guide
 ========================================================
@@ -212,17 +222,27 @@ Quick-R
 GitHub repositories
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/octacat_github.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://github.com/logos">GitHub</a>
+</p>
+
 
 What is GitHub?
 ========================================================
+> "GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside millions of other developers." - GitHub.com
+
+* Most R packages are available as GitHub repositories, which can be "cloned" and downloaded if wanted.
+* Many R package authors offer brief explanations and even quick tutorials for their packages on the GitHub repositories.
 
 
 Online courses
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto; box-shadow: none;" />
-
+<img src="../images/mooc.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanford.edu</a>
+</p>
 
 Venues
 ========================================================
@@ -261,7 +281,7 @@ Udacity
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>
