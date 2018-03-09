@@ -16,6 +16,7 @@
 </div>
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
+
 # presentation
 R Workshop
 ========================================================
@@ -49,12 +50,38 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:DIN_4844-2_Warnung_vor_
 Survival analysis
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/survival_analysis.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_aml_with_confidence_bounds.svg">Wikimedia Commons</a>
+</p>
 
 
 What is Survival analysis?
 ========================================================
 
+
+Survival analysis basics
+========================================================
+* failure/event
+* hazard
+* failure rate
+* survival rate
+
+
+Failure/event
+========================================================
+
+
+Hazard
+========================================================
+
+
+Failure rate
+========================================================
+
+
+Survival rate
+========================================================
 
 
 Packages on survival analysis
@@ -62,7 +89,8 @@ Packages on survival analysis
 * `survival` package
 * `survminer` package for visualization
     * Resources:
-
+        * [Package website](http://www.sthda.com/english/rpkgs/survminer/)
+        * [GiHub repo](https://github.com/kassambara/survminer)
 
 Basic survival models
 ========================================================
@@ -70,52 +98,98 @@ Basic survival models
 * Cox proportioanl hazards regression
 
 
-Surv function and Surv class
+Kaplan-Meier estimator
 ========================================================
 
 
+Surv function and Surv class
+========================================================
+
+```r
+survival::Surv()
+```
 
 
 survfit function
 ========================================================
 
+```r
+survival::survfit()
+```
 
+
+Cox regression
+========================================================
 
 
 coxph function
 ========================================================
 
-
+```r
+survival::coxph()
+```
 
 
 ggsurvplot function
 ========================================================
 
+```r
+survminer::ggsurvplot()
+```
 
 
 Other resources
 ========================================================
-* Diez, D. M. 2013. ["Survival Analysis in R"](https://www.openintro.org/download.php?file=survival_analysis_in_R)
-* Econometrics Academy's ["Survival Analysis" page](https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis)
-* Rickert, J. 2017. ["Survival Analysis with R"](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/) on *R Views*
+* Diez, D. M. (2013). ["Survival Analysis in R"](https://www.openintro.org/download.php?file=survival_analysis_in_R)
+* Econometrics Academy. (2013). ["Survival Analysis"](https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis) (video lectures)
+* Rickert, J. (2017). ["Survival Analysis with R"](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/) on *R Views*
+* Moore, D. R. (2016). *Applied Survival Analysis Using R* (textbook)
 
 
 Time series analysis
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/time_series.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Stationarycomparison.png">Wikimedia Commons</a>
+</p>
 
 
 What is time series analysis?
 ========================================================
 
 
+Time series basics
+========================================================
+* time series
+* seasonality
+* stationarity
+* differencing
+
+
+Time series
+========================================================
+
+
+Seasonality
+========================================================
+
+
+Stationarity
+========================================================
+
+
+Differencing
+========================================================
+
+
 Packages on time series analysis
 ========================================================
+* `stats` package (default installation)
+* `tseries` pacakge
 * `forcast` package
     * [Package website](http://pkg.robjhyndman.com/forecast/index.html)
     * [Online textbook](https://otexts.org/fpp2/)
-* `` package
 
 
 Basic time series models
@@ -125,25 +199,93 @@ Basic time series models
 * ARIMA model
 
 
+AR model
+========================================================
+
+
+MA model
+========================================================
+
+
+ARIMA model
+========================================================
+
+
+arima function
+========================================================
+
+```r
+stats::arima()
+```
+
+
 Other resources
 ========================================================
-* Econometrics Academy's ["Time Series ARIMA Models" page](https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models)
-* Prabhakaran, S. ["Time Series Analysis"](http://r-statistics.co/Time-Series-Analysis-With-R.html) on [r-statistics.co](http://r-statistics.co/)
+* Coghlan, A. (2017). ["A Little Book of R for Time Series"](http://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/index.html) (website)
+* Econometrics Academy. (2013). ["Time Series ARIMA Models"](https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models) (video lectures)
+    * Using `stats` and `tseries` packages
+* Prabhakaran, S. ["Time Series Analysis"](http://r-statistics.co/Time-Series-Analysis-With-R.html) on [r-statistics.co](http://r-statistics.co/) (website)
+* Shumway, R. & Stoffer, D. (2017). *Time Series Analysis and Its Applications: With R Examples*. (4th ed.). (textbook)
+
 
 Spatial regression analysis
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/spatial_regression.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-error-model">R Spatial</a>
+</p>
+
+Spatial regression basics
+========================================================
+* neighbours
+* spatial weights
+* 
 
 
-What is spatial regression analysis?
+Neighbors and spatial weights
 ========================================================
 
 
 Packages on spatial regression analysis
 ========================================================
-* `sp` package
-* `` package
+* `spdep` package
+    * Resources:
+        * [Reference manual](https://cran.r-project.org/web/packages/spdep/spdep.pdf)
+        * Bivand R. (2017). ["Creating Neighbours."](https://cran.r-project.org/web/packages/spdep/vignettes/nb.pdf)
+        * Bivand R. (2017). ["The Problem of Spatial Autocorrelation: forty years on."](https://cran.r-project.org/web/packages/spdep/vignettes/CO69.pdf)
+
+
+
+Creating neighbors
+========================================================
+
+
+*2nb functions
+========================================================
+* `poly2nb` for continuity-based neighbors
+* `knn2nb` for distance-based neighbors
+* Others: `tri2nb` for grid-based neighbors and `cell2nb` for grid neighbors
+
+
+poly2nb function
+========================================================
+
+```r
+spdep::ploy2nb()
+```
+
+
+Creating spatial weights
+========================================================
+
+
+nb2listw function
+========================================================
+
+```r
+spdep::nb2listw()
+```
 
 
 Basic spatial models
@@ -152,32 +294,68 @@ Basic spatial models
 * Spatial autoregressive error model
 
 
+Spatial lag model
+========================================================
+
+
+lagsarlm function
+========================================================
+
+```r
+spdep::lagsarlm()
+```
+
+Spatial error model
+========================================================
+
+
+errorsarlm function
+========================================================
+
+
+
 Other resources
 ========================================================
-* Anselin, L. 2007. [*Spatial Regression Analysis in R: A Workbook*](http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf) (free textbook)
-* Econometrics Academy's ["Spatial Econometrics" page](https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics)
-* Sarmiento-Barbieri, I. ["An Introduction to Spatial Econometrics in R"](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html) (tutorial)
-
+* Anselin, L. (2007). [*Spatial Regression Analysis in R: A Workbook*](http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf). (free textbook)
+* Bivand, R, Pebesma, E. & Gomez-Rubio, V. (2013). *Applied Spatial Data Analysis with R*. (2nd ed.). (textbook)
+* Econometrics Academy. (2013). ["Spatial Econometrics"](https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics). (video lectures)
+* Sarmiento-Barbieri, I. ["An Introduction to Spatial Econometrics in R"](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html). (tutorial)
+* Hijmans, R. (2016). [*R Spatial*](http://rspatial.org/intr/index.html). (website)
 
 Machine learning
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/machine_learning.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png">Wikimedia Commons</a>
+</p>
 
 
 What is machine learning?
 ========================================================
 > "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experience E."<br>-Tom M. Matchell 
 
+* Machine learning (ML) is a key factor of the recent success of artificial intelligence (AI) algorithms and applications
+* ML can be thought as the automated optimization of model parameters through iteratively reducing the difference between the model outputs and the input data
 
-When to use ML?
+
+Types of ML
 ========================================================
-
+* Supervised learning
+    * Classification (categorical target variable)
+    * Regression (numerical target variable)
+* Unsupervised learning
+    * Clustering
+* Reinforcement learning
 
 
 Basic ML workflow
 ========================================================
-
+* Collect data
+* Prepare data (normalization, handling missing values, etc.)
+* Divide data into training and test sets
+* Train a learner (model) using the training set
+* Evaluate the learner using the test set
 
 
 Common ML algorithms
@@ -223,16 +401,17 @@ Packages on ML
 Other resources
 ========================================================
 * Andrew Ng's ["Machine Learning" course](https://www.coursera.org/learn/machine-learning) on Coursera
-* James, G. et al. 2013. *An Introduction to Statistical Learning*
+* James, G. et al. (2013). *An Introduction to Statistical Learning*. (textbook)
     * [Website with a link to free textbook](http://www-bcf.usc.edu/~gareth/ISL/)
     * Examples in R code
 * Google's [*Machine Learning Crash Course*](https://developers.google.com/machine-learning/crash-course/)
+    * Examples in Python code
 
 
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>
@@ -241,8 +420,11 @@ Source: <a href=""></a>
 References
 ========================================================
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li>Allignol A. and Latouche, A. 2018. <a href="https://cran.r-project.org/web/views/Survival.html">"CRAN Task View: Survival Analysis"</a></li>
-  <li>Bivand, Roger. 2018. <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data</a></li>
-  <li>Hyndman, R. J. 2018. <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a></li>
-  <li>Fox, J. 2016. <a href="https://cran.r-project.org/web/views/SocialSciences.html">"Cran Task View: Statistics for the Social Sciences</a></li>
+  <li>Allignol A. & Latouche, A. (2018). <a href="https://cran.r-project.org/web/views/Survival.html">"CRAN Task View: Survival Analysis"</a>.</li>
+  <li>Bivand, Roger. (2018). <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data"</a>.</li>
+  <li>NIST/SEMATECH. (2013). <a href="http://www.itl.nist.gov/div898/handbook/"><span style="font-style:italic">e-Handbook of Statistical Methods</span></a>.</li>
+  <li>Hyndman, R. J. (2018). <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a>.</li>
+  <li>Fox, J. (2016). <a href="https://cran.r-project.org/web/views/SocialSciences.html">"CRAN Task View: Statistics for the Social Sciences"</a>.</li>
+  <li>Reference manuals for the aforementioned R packages.</li>
+  <li>Wikipedia articles on relevant topics.</li>
 </ul>
