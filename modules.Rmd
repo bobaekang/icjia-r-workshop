@@ -40,14 +40,14 @@ Read the below to get an overview of each module. Also, click the "SEE MORE" but
 <div class="card col-sm-6">
 ## Module 1: Introduction to R
 <div>
-In this module, workshop participants will be introduced to the R language and the benefits of using R for their research projects. They will also get familiar with the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
+In this module, workshop participants will be introduced to the programmatic approach to research. Then they will learn what the R language is as well as the benefits of using R for their research projects. They will also be introduced to the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
 
 <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-module-1" aria-expanded="false" aria-controls="collapse-module-1">**SEE MORE**</button>
 
 <div class="collapse" id="collapse-module-1">
 <div style="padding:20px;">
 * [**Slides**](./slides/module1_slides.html)
-* [**Notes**](./notes/module1_notes.html) (in development)
+* [**Notes**](./notes/module1_notes.html)
 </div>
 </div>
 </div>
