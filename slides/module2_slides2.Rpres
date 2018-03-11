@@ -382,9 +382,10 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 Tidy approach to data science
 ========================================================
 Tidy data is data where:
-> 1. Each variable is in a column
-> 2. Each observation is a row
-> 3. Each value is a cell.
+
+> (1) Each variable is in a column<br>
+(2) Each observation is a row<br>
+(3) Each value is a cell.
 
 
 ========================================================
@@ -458,7 +459,7 @@ Source: <a href="https://www.nytimes.com/">The New York Times</a>
 
 Why style guide?
 ========================================================
-> The goal [of the style guide] is to make our R code easier to read, share, and verify.  - Google's R Style guide
+> The goal [of the style guide] is to make our R code easier to read, share, and verify.<br>- Google's R Style guide
 
 * Readability
 * Productivity
@@ -644,9 +645,8 @@ Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
 
 ========================================================
 References
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul style="font-size: 0.6em">
+  <li>Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml">"Google's R Style Guide"</a>.</li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>Wickham, H. (n.d.). <a href="http://style.tidyverse.org/">"The tidyverse style guide"</a>.</li>
 </ul>

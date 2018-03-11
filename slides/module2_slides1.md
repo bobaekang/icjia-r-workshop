@@ -63,6 +63,10 @@ Key concepts
 R Objects
 ========================================================
 type: section
+<img src="../images/object.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+</p>
 
 
 Key object types
@@ -192,7 +196,7 @@ is.vector(y)
 
 Accessing vector elements
 ========================================================
-Use index with `[]` to access an element in a vector:
+* Use index with `[]` to access an element in a vector:
 
 
 ```r
@@ -218,7 +222,7 @@ print(second_fruit)
 
 
 ========================================================
-We can also assign a new value to the accessed vector element:
+* We can also assign a new value to the accessed vector element
 
 
 ```r
@@ -232,7 +236,7 @@ print(fruits)
 [1] "apricot"    "banana"     "clementine"
 ```
 
-Or create a new element:
+* Or create a new element
 
 
 ```r
@@ -248,8 +252,7 @@ fruits
 
 
 ========================================================
-Multiple elements can be accessed
-* Using a vector of indices:
+* Multiple elements can be accessed, using *a vector of indices*
 
 
 ```r
@@ -262,7 +265,7 @@ print(first_and_third_fruits)
 [1] "apricot"    "clementine"
 ```
 
-* Using the colon operator for a sequence:
+* Or using *the colon operator* for a sequence
 
 
 ```r
@@ -277,7 +280,7 @@ print(first_thru_third_fruits)
 
 
 ========================================================
-Vector elements can be accessed conditionally as well
+* Vector elements can be accessed *conditionally* as well
 
 
 ```r
@@ -354,7 +357,7 @@ $`character vector`
 
 Accessing list elements
 ========================================================
-Elements in a list can be accessed using their indices or names:
+* Elements in a list can be accessed using their indices or names
 
 ```r
 # using index (this returns a list element, NOT the actual content)
@@ -378,7 +381,7 @@ my_list$`character vector`
 
 
 ========================================================
-In order to access the content of a list element using the index approach, we must use `[[]]` instead:
+* In order to access the content of a list element using the index approach, we must use `[[]]` instead
 
 ```r
 my_list[[1]]
@@ -411,7 +414,7 @@ identical(my_list[1], my_list$character)
 
 Lists to vector
 ========================================================
-A list can be "unlisted", i.e., converted into a vector
+* A list can be "unlisted", i.e., converted into a vector
 
 ```r
 new_list <- list(1:5)
@@ -440,12 +443,20 @@ print(to_vector)
 R Expressions
 ========================================================
 type: section
+<img src="../images/expression.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+</p>
 
 
 Expressions
 ========================================================
 * Executable pieces of code
-* Consisting of objects, operators, control structures and functions
+* Consisting of:
+    * objects
+    * operators
+    * control structures
+    * functions
 
 
 Operators
@@ -462,57 +473,64 @@ Operators
 
 Arithmetic operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`+`|Addition|`1 + 1    # returns 2`|
-|`-`|Subtraction|`3 - 2  # returns 1`|
-|`*`|Multiplication|`3 * 4  # returns 12`|
-|`/`|Division|`5 / 2 # returns 2.5`|
-|`^` or `**`|Exponentiation|`2**4  # returns 16`|
-|`%%`|Modulus|`5 %% 2  # returns 1`|
-|`%/%`|Integer division|`5 %% 2  # returns 2`|
+
+|Operator    |Description      |Example                |
+|:-----------|:----------------|:----------------------|
+|`+`         |Addition         |`1 + 1`    (returns 2) |
+|`-`         |Substraction     |`3 - 2`  (returns 1)   |
+|`*`         |Multiplication   |`3 * 4`  (returns 12)  |
+|`/`         |Division         |`5 / 2`  (returns 2.5) |
+|`^` or `**` |Exponentiation   |`2**4`  (returns 16)   |
+|`%%`        |Modulus          |`5 %% 2`  (returns 1)  |
+|`%/%`       |Integer division |`5 %/% 2`  (returns 2) |
+
 
 
 Logical operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`&`|Element-wise logical AND|`c(TRUE, TRUE) & c(TRUE, FALSE)  # returns TRUE FALSE`|
-|&#124;|Element-wise logical OR|`c(TRUE, FALSE) ` &#124; ` c(FALSE, FALSE)  # returns TRUE FALSE`|
-|`!`|Logical NOT|`!c(TRUE, FALSE)  # retruns FALSE TRUE`|
-|`&&`|Logical AND (considers the first element only)|`c(TRUE, TRUE) && c(FALSE, TRUE)  # returns FALSE`|
-|&#124;&#124;|Logical OR (considers the first element only)|`c(TRUE, TRUE) ` &#124;&#124; `c(FALSE, TRUE)  # returns TRUE`|
+
+|Operator     |Description                                       |Example                                                             |
+|:------------|:-------------------------------------------------|:-------------------------------------------------------------------|
+|`&`          |Element-wise logical AND                          |`c(TRUE, TRUE) & c(TRUE, FALSE)`<br>returns `TRUE` `FALSE`          |
+|&#124;       |Element-wise logical OR                           |`c(TRUE, FALSE)` &#124; `c(FALSE, FALSE)`<br>returns `TRUE` `FALSE` |
+|`!`          |Logical NOT                                       |`!c(TRUE, FALSE)`<br>returns `TRUE`                                 |
+|`&&`         |Logical AND<br>(considers the first element only) |`c(TRUE, TRUE) && c(FALSE, TRUE)`<br>returns `FALSE`                |
+|&#124;&#124; |Logical OR<br>(considers the first element only)  |`c(TRUE, TRUE)` &#124;&#124; `c(FALSE, TRUE)`<br>returns `TRUE`     |
+
 
 Relational operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`>`|Greater than|`3 > 1  # returns TRUE`|
-|`<`|Less than|`3 < 1  # returns FALSE`|
-|`==`|Equal to|`2 == 2  # returns TRUE`|
-|`<=`|Less than or equal to|`4 <= 4 # returns TRUE`|
-|`>=`|Greater than or equal to|`3 >= 4  # returns FALSE`|
-|`!=`|Not equal to|`2 != 3  # returns TRUE`|
+
+|Operator |Description              |Example                  |
+|:--------|:------------------------|:------------------------|
+|`>`      |Greater than             |`3 > 1` returns `TRUE`   |
+|`<`      |Less than                |`3 < 1` returns `FALSE`  |
+|`==`     |Equal to                 |`2 == 2` returns `TRUE`  |
+|`>=`     |Greater than or equal to |`3 >= 4` returns `FALSE` |
+|`<=`     |Less than or equal to    |`4 <= 4` returns `TRUE`  |
+|`!=`     |Not equal to             |`2 != 3` returns `TRUE`  |
 
 
 Assignment operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`<-` or `=`|Left assignment|`a <- "Hello" # print(a) returns "Hello"`|
-|`->`|Right assignment|The use of `->` is mostly discouraged|
-|`<<-`|Left scoping assignment|Search for the variable in the parent environments takes place before assignment|
-|`->>`|Right scoping assignment|Ditto|
+
+|Operator    |Description              |Example                                                                             |
+|:-----------|:------------------------|:-----------------------------------------------------------------------------------|
+|`<-` or `=` |Left assignment          |`a <- "Hello"` assigns `"Hello"` to the object `a`                                  |
+|`->`        |Right assignment         |The use of `->` is mostly discouraged                                               |
+|`<<-`       |Left scoping assignment  |Search for the variable in the parent<br>environments takes place before assignment |
+|`->>`       |Right scoping assignment |Ditto                                                                               |
 
 
 Miscellaneous operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`:`|Colon operator to generate sequences|`a <- "Hello" # print(a) returns "Hello"`|
-|`?`|Help function to see documentation|`?some_function # equivalent to help(some_function)`|
-|`%in%`|In operator|`1 %in% c(1, 2, 3)  # returns TRUE`|
-|`%*%`|Matrix multiplication||
+
+|Operator |Description                          |Example                                                    |
+|:--------|:------------------------------------|:----------------------------------------------------------|
+|`:`      |Colon operator to generate sequences |`1:10` generates a vector of integer sequence from 1 to 10 |
+|`?`      |Help function to see documentation   |`?some_function` is equivalent to `help(some_function)`    |
+|`%in%`   |"In" operator                        |`1 %in% c(1,2,3)` returns `TRUE`                           |
+|`%*%`    |Matrix multiplication                |                                                           |
 
 
 Other operators
@@ -524,8 +542,74 @@ Other operators
 
 Flow Control
 ========================================================
-* Loops
 * Conditionals
+* Loops
+
+
+Conditionals
+========================================================
+* `if` statement
+* Basic structure
+    * if ( condition ) { expression }
+
+
+```r
+a <- TRUE
+
+if (a) {
+  print("Hello World!")
+}
+```
+
+```
+[1] "Hello World!"
+```
+
+
+Multiple conditions
+========================================================
+* `if`-`else` statement
+* allows for multiple conditions
+
+
+```r
+a <- 1
+b <- 2
+
+if (a > b) {
+  print("a is larger than b.")
+} else if (a < b) {
+  print("a is smaller than b.")
+} else {
+  print("a and b are equal!")
+}
+```
+
+```
+[1] "a is smaller than b."
+```
+
+
+ifelse function
+========================================================
+
+```r
+ifelse(test_expression, true_value, false_value)
+```
+* Element-wise if-else condition
+* Condition is tested for each and every element of a vector 
+* Example:
+
+
+```r
+a <- c(1,2,3,4)
+ifelse(a < 3, "Less than 3", "Not less than 3")
+```
+
+```
+[1] "Less than 3"     "Less than 3"     "Not less than 3" "Not less than 3"
+```
+
 
 
 Loops
@@ -551,9 +635,9 @@ for (element in iterable_object) {
 
 while loop
 ========================================================
-<img src="../images/while_loop.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/while_loop.jpg" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
 </p>
 
 ========================================================
@@ -592,9 +676,9 @@ while (count < 5) {
 
 for loop
 ========================================================
-<img src="../images/for_loop.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/for_loop.jpg" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
 </p>
 
 
@@ -646,56 +730,72 @@ for (i in 1:length(flavors)) {
 ```
 
 
-Conditionals
+break statement
 ========================================================
-* `if` statement
-* Basic structure
-    * if ( condition ) { expression }
+<img src="../images/break_loop.jpg" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
 
+
+========================================================
 
 ```r
-a <- TRUE
+# with for loop
+for (element in iterable_object) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
 
-if (a) {
-  print("Hello World!")
+# with while loop
+while (loop_condition) {
+  if (break_condition) {
+    break
+  }
+  expression
 }
 ```
-
-```
-[1] "Hello World!"
-```
+* `break` can be used to "break out" of a loop based on a break condition
 
 
-Multiple conditions
+next statement
 ========================================================
-* `if`-`else` statement
-* allows for multiple conditions
+<img src="../images/next_loop.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
 
+
+========================================================
 
 ```r
-a <- 1
-b <- 2
+# with for loop
+for (element in iterable_object) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
 
-if (a > b) {
-  print("a is larger than b.")
-} else if (a < b) {
-  print("a is smaller than b.")
-} else {
-  print("a and b are equal!")
+# with while loop
+while (loop_condition) {
+  if (next_condition) {
+    next
+  }
+  expression
 }
 ```
-
-```
-[1] "a is smaller than b."
-```
+* `next` can be used to skip a step in a loop based on a next condition
 
 
 R Functions
 ========================================================
 type: section
-<img src="../images/function-machine.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/function-machine.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 
 
@@ -708,13 +808,21 @@ Functions
     1. an argument list (a.k.a. parameters; optional)
     2. body
     3. function environment
-
     
+    
+Why use functions
 ========================================================
+* Encapsulate repeated operations
+    * Simplify code (clearner and more concise)
+    * Avoid unintended bugs/errors
+    * Enhance reproducibility
+
+
+========================================================
+**Define a function**
 
 ```r
-# creating a new function
-name <- function(arg1, arg2) {
+my_function <- function(arg1, arg2) {
   
   # body exist in a local environment
   body expression1
@@ -724,15 +832,23 @@ name <- function(arg1, arg2) {
 }
 ```
 
-========================================================
+**Call a function**
 
 ```r
-# example: a custom function for adding two numbers
-add <- function(num1, num2) {
+my_function(arg1 = input1, arg2 = input2)
+```
+
+
+========================================================
+**Examples**
+
+```r
+# a custom function for adding two numbers
+add_nums <- function(num1, num2) {
   num1 + num2
 }
 
-add_output <- add(3, 5) # assign the function output to a variable
+add_output <- add_nums(3, 5) # assign the function output to a variable
 
 print(add_output)
 ```
@@ -743,7 +859,7 @@ print(add_output)
 
 
 ```r
-# example: a custom function without arguments
+# a custom function without arguments
 print_hello_world <- function() {
   print("Hello world")
 }
@@ -756,18 +872,28 @@ print_hello_world()
 ```
 
 
-Why use functions
 ========================================================
-* Encapsulate repeated operations
-    * Simplify code (clearner and more concise)
-    * Avoid unintended bugs/errors
-    * Enhance reproducibility
+**Function with a default argument value**
+
+```r
+add_nums_2 <- function(num1, num2 = 5) {
+  num1 + num2
+}
+
+add_nums_2(3) # call a function using the default value for num2
+```
+
+```
+[1] 8
+```
+* A function can be given default values to its arguments
+* Default values can be something that are expected to be used most often when calling the function
 
 
 R Environments
 ========================================================
 type: section
-<img src="../images/environments_bindings.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_bindings.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -787,7 +913,7 @@ Nesting of environments
 * Variables in a parent environment are accessible in a child environment
 * Variables in a child environment are *NOT* accessible in a parent environment
 
-<img src="../images/environments_parents.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_parents.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -826,7 +952,7 @@ Searching for an object in R follows the lexical scoping rules.
 * If the object is not found in the current environment, R moves up to its parent environment.  
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
 
-<img src="../images/environments_search-path.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_search-path.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
@@ -835,7 +961,7 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 Questions?
 ========================================================
 type: section
-<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
 </p>
@@ -843,17 +969,17 @@ Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-773
 
 ========================================================
 References
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul style="font-size: 0.6em">
+  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a></li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">"An Introduction to R"</a>.</li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">"R Language Definition"</a>.</li>
+  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.</li>
 </ul>
 
 
 ========================================================
 type: section
-<img src="../images/pause.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/pause.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
