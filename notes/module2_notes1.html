@@ -291,17 +291,21 @@ div.tocify {
 <h1>R Objects</h1>
 <div id="key-object-types" class="section level2">
 <h2>Key object types</h2>
+<p>R has various object “types”. Some of the key object types include:</p>
 <ul>
 <li>Vectors (<code>c()</code>)</li>
 <li>Lists (<code>list()</code>)</li>
 <li>Factors (<code>factor()</code>)</li>
 <li>Data frame (<code>data.frame()</code>)</li>
 </ul>
+<p>In the following, we will take a deeper look at vectors (a.k.a. atomic vectors) and lists.</p>
 </div>
 <div id="atomic-vectors" class="section level2">
 <h2>“Atomic” vectors</h2>
+<p>Vector is the most fundamental data type in R, which roughly corresponds to array in other programming languages. Almost everything else in R is built on top of vectors with few exceptions like <code>NULL</code>. In fact, technically, even a single value is a vector of length 1 (this can be verified using the <code>is.vector()</code> function with a single character or number as its input). In that sense, vectors in R are also known as “atomic” vectors.</p>
 <div id="basic-vector-types" class="section level3">
 <h3>Basic vector types</h3>
+<p>Vectors come in different types. Here are the basic vector types:</p>
 <ul>
 <li><code>logical</code>: Boolean values of <code>TRUE</code> and <code>FALSE</code></li>
 <li><code>double</code>: floating-point numbers representing real numbers</li>
@@ -309,6 +313,7 @@ div.tocify {
 <li><code>complex</code>: complex numbers</li>
 <li><code>character</code>: string of alphanumeric letters</li>
 </ul>
+<p>Let’s take a look at some examples of these vector types. A vector is created using the <code>c()</code> function. We may think that the “c” means “concatenate”. Note that the <code>class()</code> function returns the vector type for the given object, instead of simply returning <code>vector</code>.</p>
 <pre class="r"><code># this is a logical vector
 logical_vector &lt;- c(TRUE, FALSE, T, F)
 
@@ -348,7 +353,8 @@ is.vector(x)</code></pre>
 </div>
 <div id="accessing-vector-elements" class="section level3">
 <h3>Accessing vector elements</h3>
-<p>Use index with <code>[]</code> to access an element in a vector:</p>
+<p>A vector often comes as a series of multiple values or elements–this is probably why it is called a “vector”, like a mathematical vector.</p>
+<p>To access a particular element in a vecgtor, we can use the index of an element with <code>[]</code>:</p>
 <pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
 first_fruit &lt;- fruits[1]
 
@@ -370,22 +376,17 @@ fruits[4] &lt;- &quot;dried mango&quot;
 
 fruits</code></pre>
 <pre><code>## [1] &quot;apricot&quot;     &quot;banana&quot;      &quot;clementine&quot;  &quot;dried mango&quot;</code></pre>
-<p>Multiple elements can be accessed:</p>
-<ul>
-<li>Using a vector of indices:</li>
-</ul>
+<p>Multiple elements can be accessed in two ways. First, we can use a vector of indices:</p>
 <pre class="r"><code>first_and_third_fruits &lt;- fruits[c(1, 3)]
 
 print(first_and_third_fruits)</code></pre>
 <pre><code>## [1] &quot;apricot&quot;    &quot;clementine&quot;</code></pre>
-<ul>
-<li>Using the colon operator for a sequence:</li>
-</ul>
+<p>Second, we can use the colon operator for a sequence (we will come back to the colon operator):</p>
 <pre class="r"><code>first_thru_third_fruits &lt;- fruits[1:3]
 
 print(first_thru_third_fruits)</code></pre>
 <pre><code>## [1] &quot;apricot&quot;    &quot;banana&quot;     &quot;clementine&quot;</code></pre>
-<p>Vector elements can be accessed conditionally as well</p>
+<p>Vector elements can be accessed conditionally as well:</p>
 <pre class="r"><code>my_vector &lt;- c(1, 2, 3, 4, 5)
 
 # print only elements less than 3 
@@ -400,9 +401,8 @@ print(my_vector)</code></pre>
 </div>
 <div id="lists" class="section level2">
 <h2>Lists</h2>
-<ul>
-<li>An R list, created by <code>list()</code> function, can contain elements of different types</li>
-</ul>
+<p>An R vector cannot consist of elements of different vector types. Considering that a single element is in fact a vector of length 1, we can see how such an idea is a simple impossibility.</p>
+<p>In contrast, an R list, created by <code>list()</code> function, can contain elements of different types. A list is, in fact, a list of vectors:</p>
 <pre class="r"><code>my_list &lt;- list(&quot;abc&quot;, 125, FALSE, c(&quot;Hello&quot;, &quot;World&quot;))
 
 print(my_list)</code></pre>
@@ -417,6 +417,7 @@ print(my_list)</code></pre>
 ## 
 ## [[4]]
 ## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<p>Note that an element of a list can be a vector of length greater than 1. In fact, a list can have a nested structure, where an element of a list is also a list itself.</p>
 <div id="naming-list-elements" class="section level3">
 <h3>Naming list elements</h3>
 <pre class="r"><code>names(my_list) &lt;- c(&quot;character&quot;, &quot;numeric&quot;, &quot;logical&quot;, &quot;character vector&quot;)
@@ -456,7 +457,7 @@ identical(my_list[1], my_list$character)</code></pre>
 </div>
 <div id="lists-to-vector" class="section level3">
 <h3>Lists to vector</h3>
-<p>A list can be “unlisted”, i.e., converted into a vector</p>
+<p>A list can be “unlisted”, i.e., converted into a vector. This is achieved by the <code>unlist()</code> function:</p>
 <pre class="r"><code>new_list &lt;- list(1:5)
 to_vector &lt;- unlist(new_list)
 
@@ -475,16 +476,14 @@ print(to_vector)</code></pre>
 <h1>R Expressions</h1>
 <div id="what-are-expressions" class="section level2">
 <h2>What are expressions</h2>
-<ul>
-<li>Executable pieces of code</li>
-<li>Consisting of
+<p>A program can be seen as a collection of expressions, which are executable pieces of code. In R, an expression consists of the following:</p>
 <ul>
 <li>objects</li>
 <li>operators</li>
 <li>control structures, and</li>
 <li>functions</li>
-</ul></li>
 </ul>
+<p>We have already seen objects. We will now take a closer look at the rest of them.</p>
 </div>
 <div id="operators" class="section level2">
 <h2>Operators</h2>

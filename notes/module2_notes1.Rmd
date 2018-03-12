@@ -84,20 +84,30 @@ Navigate to the other workshop materials:
 
 ## Key object types
 
+R has various object "types". Some of the key object types include:
+
 * Vectors (`c()`)
 * Lists (`list()`)
 * Factors (`factor()`)
 * Data frame (`data.frame()`)
 
+In the following, we will take a deeper look at vectors (a.k.a. atomic vectors) and lists.
+
 ## "Atomic" vectors
 
+Vector is the most fundamental data type in R, which roughly corresponds to array in other programming languages. Almost everything else in R is built on top of vectors with few exceptions like `NULL`. In fact, technically, even a single value is a vector of length 1 (this can be verified using the `is.vector()` function with a single character or number as its input). In that sense, vectors in R are also known as "atomic" vectors.
+
 ### Basic vector types
+
+Vectors come in different types. Here are the basic vector types:
 
 * `logical`: Boolean values of `TRUE` and `FALSE`
 * `double`: floating-point numbers representing real numbers
 * `integer`: integers
 * `complex`: complex numbers
 * `character`: string of alphanumeric letters
+
+Let's take a look at some examples of these vector types. A vector is created using the `c()` function. We may think that the "c" means "concatenate". Note that the `class()` function returns the vector type for the given object, instead of simply returning `vector`.
 
 ```{r}
 # this is a logical vector
@@ -141,7 +151,9 @@ is.vector(y)
 
 ### Accessing vector elements
 
-Use index with `[]` to access an element in a vector:
+A vector often comes as a series of multiple values or elements--this is probably why it is called a "vector", like a mathematical vector.
+
+To access a particular element in a vecgtor, we can use the index of an element with `[]`:
 
 ```{r}
 fruits <- c("apple", "banana", "clementine")
@@ -173,9 +185,7 @@ fruits[4] <- "dried mango"
 fruits
 ```
 
-Multiple elements can be accessed:
-
-* Using a vector of indices:
+Multiple elements can be accessed in two ways. First, we can use a vector of indices:
 
 ```{r}
 first_and_third_fruits <- fruits[c(1, 3)]
@@ -183,7 +193,7 @@ first_and_third_fruits <- fruits[c(1, 3)]
 print(first_and_third_fruits)
 ```
 
-* Using the colon operator for a sequence:
+Second, we can use the colon operator for a sequence (we will come back to the colon operator):
 
 ```{r}
 first_thru_third_fruits <- fruits[1:3]
@@ -191,7 +201,7 @@ first_thru_third_fruits <- fruits[1:3]
 print(first_thru_third_fruits)
 ```
 
-Vector elements can be accessed conditionally as well
+Vector elements can be accessed conditionally as well:
 
 ```{r}
 my_vector <- c(1, 2, 3, 4, 5)
@@ -207,13 +217,17 @@ print(my_vector)
 
 ## Lists
 
-* An R list, created by `list()` function, can contain elements of different types
+An R vector cannot consist of elements of different vector types. Considering that a single element is in fact a vector of length 1, we can see how such an idea is a simple impossibility. 
+
+In contrast, an R list, created by `list()` function, can contain elements of different types. A list is, in fact, a list of vectors:
+
 ```{r}
 my_list <- list("abc", 125, FALSE, c("Hello", "World"))
 
 print(my_list)
 ```
 
+Note that an element of a list can be a vector of length greater than 1. In fact, a list can have a nested structure, where an element of a list is also a list itself.
 
 ### Naming list elements
 
@@ -258,7 +272,8 @@ identical(my_list[1], my_list$character)
 
 ### Lists to vector
 
-A list can be "unlisted", i.e., converted into a vector
+A list can be "unlisted", i.e., converted into a vector. This is achieved by the `unlist()` function:
+
 ```{r}
 new_list <- list(1:5)
 to_vector <- unlist(new_list)
@@ -278,12 +293,14 @@ print(to_vector)
 
 ## What are expressions
 
-* Executable pieces of code
-* Consisting of
-    * objects
-    * operators
-    * control structures, and
-    * functions
+A program can be seen as a collection of expressions, which are executable pieces of code. In R, an expression consists of the following:
+
+  * objects
+  * operators
+  * control structures, and
+  * functions
+
+We have already seen objects. We will now take a closer look at the rest of them.
     
 ## Operators
 
