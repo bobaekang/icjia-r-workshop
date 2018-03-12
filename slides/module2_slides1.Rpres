@@ -58,6 +58,12 @@ Key concepts
 R Objects
 ========================================================
 type: section
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/object.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+</p>
 
 
 Key object types
@@ -127,7 +133,7 @@ is.vector(y)
 
 Accessing vector elements
 ========================================================
-Use index with `[]` to access an element in a vector:
+* Use index with `[]` to access an element in a vector:
 
 ```{r}
 fruits <- c("apple", "banana", "clementine")
@@ -143,7 +149,7 @@ print(second_fruit)
 
 
 ========================================================
-We can also assign a new value to the accessed vector element:
+* We can also assign a new value to the accessed vector element
 
 ```{r}
 # giving a new value to an existing element
@@ -152,7 +158,7 @@ fruits[1] <- "apricot"
 print(fruits)
 ```
 
-Or create a new element:
+* Or create a new element
 
 ```{r}
 # creating a new element
@@ -163,8 +169,7 @@ fruits
 
 
 ========================================================
-Multiple elements can be accessed
-* Using a vector of indices:
+* Multiple elements can be accessed, using *a vector of indices*
 
 ```{r}
 first_and_third_fruits <- fruits[c(1, 3)]
@@ -172,7 +177,7 @@ first_and_third_fruits <- fruits[c(1, 3)]
 print(first_and_third_fruits)
 ```
 
-* Using the colon operator for a sequence:
+* Or using *the colon operator* for a sequence
 
 ```{r}
 first_thru_third_fruits <- fruits[1:3]
@@ -182,7 +187,7 @@ print(first_thru_third_fruits)
 
 
 ========================================================
-Vector elements can be accessed conditionally as well
+* Vector elements can be accessed *conditionally* as well
 
 ```{r}
 my_vector <- c(1, 2, 3, 4, 5)
@@ -218,7 +223,7 @@ my_list
 
 Accessing list elements
 ========================================================
-Elements in a list can be accessed using their indices or names:
+* Elements in a list can be accessed using their indices or names
 ```{r}
 # using index (this returns a list element, NOT the actual content)
 my_list[4]
@@ -231,7 +236,7 @@ my_list$`character vector`
 
 
 ========================================================
-In order to access the content of a list element using the index approach, we must use `[[]]` instead:
+* In order to access the content of a list element using the index approach, we must use `[[]]` instead
 ```{r}
 my_list[[1]]
 ```
@@ -249,7 +254,7 @@ identical(my_list[1], my_list$character)
 
 Lists to vector
 ========================================================
-A list can be "unlisted", i.e., converted into a vector
+* A list can be "unlisted", i.e., converted into a vector
 ```{r}
 new_list <- list(1:5)
 to_vector <- unlist(new_list)
@@ -266,12 +271,22 @@ print(to_vector)
 R Expressions
 ========================================================
 type: section
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/expression.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+</p>
 
 
 Expressions
 ========================================================
 * Executable pieces of code
-* Consisting of objects, operators, control structures and functions
+* Consisting of:
+    * objects
+    * operators
+    * control structures
+    * functions
 
 
 Operators
@@ -288,165 +303,146 @@ Operators
 
 Arithmetic operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`+`|Addition|`1 + 1    # returns 2`|
-|`-`|Subtraction|`3 - 2  # returns 1`|
-|`*`|Multiplication|`3 * 4  # returns 12`|
-|`/`|Division|`5 / 2 # returns 2.5`|
-|`^` or `**`|Exponentiation|`2**4  # returns 16`|
-|`%%`|Modulus|`5 %% 2  # returns 1`|
-|`%/%`|Integer division|`5 %% 2  # returns 2`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`+`', '`-`', '`*`', '`/`', '`^` or `**`', '`%%`', '`%/%`'),
+    Description = c(
+      'Addition',
+      'Substraction',
+      'Multiplication',
+      'Division',
+      'Exponentiation',
+      'Modulus',
+      'Integer division'
+    ),
+    Example = c(
+      '`1 + 1`    (returns 2)',
+      '`3 - 2`  (returns 1)',
+      '`3 * 4`  (returns 12)',
+      '`5 / 2`  (returns 2.5)',
+      '`2**4`  (returns 16)',
+      '`5 %% 2`  (returns 1)',
+      '`5 %/% 2`  (returns 2)'
+    )
+  )
+)
+```
+
 
 
 Logical operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`&`|Element-wise logical AND|`c(TRUE, TRUE) & c(TRUE, FALSE)  # returns TRUE FALSE`|
-|&#124;|Element-wise logical OR|`c(TRUE, FALSE) ` &#124; ` c(FALSE, FALSE)  # returns TRUE FALSE`|
-|`!`|Logical NOT|`!c(TRUE, FALSE)  # retruns FALSE TRUE`|
-|`&&`|Logical AND (considers the first element only)|`c(TRUE, TRUE) && c(FALSE, TRUE)  # returns FALSE`|
-|&#124;&#124;|Logical OR (considers the first element only)|`c(TRUE, TRUE) ` &#124;&#124; `c(FALSE, TRUE)  # returns TRUE`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`&`', '|', '`!`', '`&&`', '||'),
+    Description = c(
+      'Element-wise logical AND',
+      'Element-wise logical OR',
+      'Logical NOT',
+      'Logical AND<br>(considers the first element only)',
+      'Logical OR<br>(considers the first element only)'
+    ),
+    Example = c(
+      '`c(TRUE, TRUE) & c(TRUE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`c(TRUE, FALSE)` | `c(FALSE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`!c(TRUE, FALSE)`<br>returns `TRUE`',
+      '`c(TRUE, TRUE) && c(FALSE, TRUE)`<br>returns `FALSE`',
+      '`c(TRUE, TRUE)` || `c(FALSE, TRUE)`<br>returns `TRUE`'
+    )
+  )
+)
+```
+
 
 Relational operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`>`|Greater than|`3 > 1  # returns TRUE`|
-|`<`|Less than|`3 < 1  # returns FALSE`|
-|`==`|Equal to|`2 == 2  # returns TRUE`|
-|`<=`|Less than or equal to|`4 <= 4 # returns TRUE`|
-|`>=`|Greater than or equal to|`3 >= 4  # returns FALSE`|
-|`!=`|Not equal to|`2 != 3  # returns TRUE`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`>`', '`<`', '`==`', '`>=`', '`<=`', '`!=`'),
+    Description = c(
+      'Greater than',
+      'Less than',
+      'Equal to',
+      'Greater than or equal to',
+      'Less than or equal to',
+      'Not equal to'
+    ),
+    Example = c(
+      '`3 > 1` returns `TRUE`',
+      '`3 < 1` returns `FALSE`',
+      '`2 == 2` returns `TRUE`',
+      '`3 >= 4` returns `FALSE`',
+      '`4 <= 4` returns `TRUE`',
+      '`2 != 3` returns `TRUE`'
+    )
+  )
+)
+```
 
 
 Assignment operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`<-` or `=`|Left assignment|`a <- "Hello" # print(a) returns "Hello"`|
-|`->`|Right assignment|The use of `->` is mostly discouraged|
-|`<<-`|Left scoping assignment|Search for the variable in the parent environments takes place before assignment|
-|`->>`|Right scoping assignment|Ditto|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`<-` or `=`', '`->`', '`<<-`', '`->>`'),
+    Description = c(
+      'Left assignment',
+      'Right assignment',
+      'Left scoping assignment',
+      'Right scoping assignment'
+    ),
+    Example = c(
+      '`a <- "Hello"` assigns `"Hello"` to the object `a`',
+      'The use of `->` is mostly discouraged',
+      'Search for the variable in the parent<br>environments takes place before assignment',
+      'Ditto'
+    )
+  )
+)
+```
 
 
 Miscellaneous operators
 ========================================================
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`:`|Colon operator to generate sequences|`a <- "Hello" # print(a) returns "Hello"`|
-|`?`|Help function to see documentation|`?some_function # equivalent to help(some_function)`|
-|`%in%`|In operator|`1 %in% c(1, 2, 3)  # returns TRUE`|
-|`%*%`|Matrix multiplication||
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`:`', '`?`', '`$`', '`%in%`', '`%*%`'),
+    Description = c(
+      'Colon operator to generate sequences',
+      'Help function to see documentation',
+      'List subset',
+      '"In" operator',
+      'Matrix multiplication'
+    ),
+    Example = c(
+      '`1:10` generates a vector of integer sequence from 1 to 10',
+      '`?my_function` is equivalent to `help(my_function)`',
+      '`my_list$a` will access the subset `a` in the list',
+      '`1 %in% c(1,2,3)` returns `TRUE`',
+      ''
+    )
+  )
+)
+```
 
 
 Other operators
 ========================================================
-* Operators can be defined by users
+
+* New operators can be defined by users
 * Some third party packages offer custom operators
     * e.g. the "pipe" operator (`%>%`) from `magrittr` package (also available through `dplyr` pacakge)
 
 
 Flow Control
 ========================================================
-* Loops
 * Conditionals
-
-
-Loops
-========================================================
-* `while` loops
-
-```{r eval=FALSE}
-while ( condition ) {
-  expression
-}
-```
-
-* `for` loops
-
-```{r eval=FALSE}
-for (element in iterable_object) {
-  expression
-}
-```
-
-
-while loop
-========================================================
-```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/while_loop.jpg")
-```
-<p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
-</p>
-
-========================================================
-```{r eval=FALSE}
-while (condition) {
-  expression
-}
-```
-
-* If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
-* Onces the `expression` is executed, the `condition` is re-evaluated.
-* The `expression` is repetitively executed as long as the `condition` is satisfied.
-    * beware of infinite loop!
-
-
-========================================================
-```{r}
-count <- 0
-
-while (count < 5) {
-  print(count)
-  count = count + 1  # increase count by 1 at each iteration
-}
-```
-
-
-for loop
-========================================================
-```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/for_loop.jpg")
-```
-<p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
-</p>
-
-
-========================================================
-```{r eval=FALSE}
-for (element in iterable_object) {
-  expression
-}
-```
-
-* Requires an iterable object (e.g. vector or list).
-* Iterates over all elements of the given object in order.
-* At each step of iteration, can use the given element for the `expression` if appropriate.
-
-
-========================================================
-```{r}
-fruits <- c("apple", "banana", "clementine")
-
-# iterate over elements directly
-for (fruit in fruits) {
-  print(paste("I love ", fruit, "!", sep=""))
-}
-```
-
-```{r}
-flavors <- c("chocolate", "vanilla", "cookie dough")
-
-# iterate over elements indirectly
-for (i in 1:length(flavors)) {
-  flavor <- flavors[i]
-  print(paste("Do you want some", flavor, "ice cream?"))
-}
-```
+* Loops
 
 
 Conditionals
@@ -483,6 +479,178 @@ if (a > b) {
 ```
 
 
+ifelse function
+========================================================
+```{r eval=FALSE}
+ifelse(test_expression, true_value, false_value)
+```
+* Element-wise if-else condition
+* Condition is tested for each and every element of a vector 
+* Example:
+
+```{r}
+a <- c(1,2,3,4)
+ifelse(a < 3, "Less than 3", "Not less than 3")
+```
+
+
+Loops
+========================================================
+* `while` loops
+
+```{r eval=FALSE}
+while ( condition ) {
+  expression
+}
+```
+
+* `for` loops
+
+```{r eval=FALSE}
+for (element in iterable_object) {
+  expression
+}
+```
+
+
+while loop
+========================================================
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/while_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
+</p>
+
+========================================================
+```{r eval=FALSE}
+while (condition) {
+  expression
+}
+```
+
+* If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
+* Onces the `expression` is executed, the `condition` is re-evaluated.
+* The `expression` is repetitively executed as long as the `condition` is satisfied.
+    * beware of infinite loop!
+
+
+========================================================
+```{r}
+count <- 0
+
+while (count < 5) {
+  print(count)
+  count = count + 1  # increase count by 1 at each iteration
+}
+```
+
+
+for loop
+========================================================
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/for_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
+</p>
+
+
+========================================================
+```{r eval=FALSE}
+for (element in iterable_object) {
+  expression
+}
+```
+
+* Requires an iterable object (e.g. vector or list).
+* Iterates over all elements of the given object in order.
+* At each step of iteration, can use the given element for the `expression` if appropriate.
+
+
+========================================================
+```{r}
+fruits <- c("apple", "banana", "clementine")
+
+# iterate over elements directly
+for (fruit in fruits) {
+  print(paste("I love ", fruit, "!", sep=""))
+}
+```
+
+```{r}
+flavors <- c("chocolate", "vanilla", "cookie dough")
+
+# iterate over elements indirectly
+for (i in 1:length(flavors)) {
+  flavor <- flavors[i]
+  print(paste("Do you want some", flavor, "ice cream?"))
+}
+```
+
+
+break statement
+========================================================
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/break_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+
+
+========================================================
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
+```
+* `break` can be used to "break out" of a loop based on a break condition
+
+
+next statement
+========================================================
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/next_loop.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+
+
+========================================================
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+```
+* `next` can be used to skip a step in a loop based on a next condition
+
+
 R Functions
 ========================================================
 type: section
@@ -490,7 +658,7 @@ type: section
 include_graphics("../images/function-machine.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 
 
@@ -503,12 +671,20 @@ Functions
     1. an argument list (a.k.a. parameters; optional)
     2. body
     3. function environment
-
     
+    
+Why use functions
 ========================================================
+* Encapsulate repeated operations
+    * Simplify code (clearner and more concise)
+    * Avoid unintended bugs/errors
+    * Enhance reproducibility
+
+
+========================================================
+**Define a function**
 ```{r eval=FALSE}
-# creating a new function
-name <- function(arg1, arg2) {
+my_function <- function(arg1, arg2) {
   
   # body exist in a local environment
   body expression1
@@ -518,20 +694,27 @@ name <- function(arg1, arg2) {
 }
 ```
 
+**Call a function**
+```{r eval=FALSE}
+my_function(arg1 = input1, arg2 = input2)
+```
+
+
 ========================================================
+**Examples**
 ```{r}
-# example: a custom function for adding two numbers
-add <- function(num1, num2) {
+# a custom function for adding two numbers
+add_nums <- function(num1, num2) {
   num1 + num2
 }
 
-add_output <- add(3, 5) # assign the function output to a variable
+add_output <- add_nums(3, 5) # assign the function output to a variable
 
 print(add_output)
 ```
 
 ```{r}
-# example: a custom function without arguments
+# a custom function without arguments
 print_hello_world <- function() {
   print("Hello world")
 }
@@ -540,12 +723,17 @@ print_hello_world()
 ```
 
 
-Why use functions
 ========================================================
-* Encapsulate repeated operations
-    * Simplify code (clearner and more concise)
-    * Avoid unintended bugs/errors
-    * Enhance reproducibility
+**Function with a default argument value**
+```{r}
+add_nums_2 <- function(num1, num2 = 5) {
+  num1 + num2
+}
+
+add_nums_2(3) # call a function using the default value for num2
+```
+* A function can be given default values to its arguments
+* Default values can be something that are expected to be used most often when calling the function
 
 
 R Environments
@@ -630,11 +818,11 @@ Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-773
 
 ========================================================
 References
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul style="font-size: 0.6em">
+  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a></li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">"An Introduction to R"</a>.</li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">"R Language Definition"</a>.</li>
+  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.</li>
 </ul>
 
 
@@ -644,5 +832,5 @@ type: section
 include_graphics("../images/pause.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>

@@ -41,18 +41,24 @@ Instructor (me!)
 
 Workshop objectives
 ========================================================
-> This workshop will help you **to get started** and provide you with the basic skills and techniques in using R for research and data analysis. 
+This workshop will help you **to get started** and provide you with the basic skills and techniques in using R for research and data analysis. 
 
-> Ultimately, this workshop seeks to help you **to gain the knowledge and confidence necesary to learn** what they need to know for you own research projects.
+Ultimately, this workshop seeks to help you **to gain the knowledge and confidence necesary to learn** what they need to know for you own research projects.
 
 
 ========================================================
-* Import and manipulate tabular data files using R;
-* Create simple data visualizations (scatterplot, histogram, bar chart, line chart, etc.) to extract insight from data using R;
-* Perform basic statistical analysis using R;
-* Generate a report on a simple data analysis task using R;
-* Understand the basic elements of the R programming language;
-* Employ the programmatic approach to research and data analysis projects; and
+<br>
+
+* Import and manipulate tabular data files using R
+* Create simple data visualizations (scatterplot, histogram, bar chart, line chart, etc.) to extract insight from data using R
+* Perform basic statistical analysis using R
+* Generate a report on a simple data analysis task using R
+
+***
+
+<br>
+* Understand the basic elements of the R programming language
+* Employ the programmatic approach to research and data analysis projects
 * Leverage online resources to find solutions to specific questions on using R for a given task.
 
 
@@ -77,13 +83,33 @@ GUI workflow vs. programmatic workflow
 </div>
 
 
+GUI workflow
+========================================================
+* Download datasets (to the Download folder)
+* Examine each dataset in MS Excel
+* Copy + paste data into a single spreadsheet
+* Open the combined dataset in SPSS
+* Run a regression analysis in SPSS
+* Write a report in MS Word
+* Submit the report
+
+
+Programmatic workflow
+========================================================
+* Set up a directory
+* Write an R program to download datasets
+* Write an R program to combine and clean datasets
+* Write an R program to run regression analysis and draw plots
+* Write an R program to generate a report
+* Submit the report
+
+
 Benefits of a programming approach
 ========================================================
 * Automation
 * Modularity
 * Reproducibility
 * Version control
-
 
 Automation
 ========================================================
@@ -112,12 +138,12 @@ Version control
 * An example of version control system: Git
 
 
-Introducing ... R!
+Introducing ...
 ========================================================
 type:section
 
 ```
-[1] "Hellow World!"
+[1] "Hello World!"
 ```
 
 <img src="../images/Rlogo.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="35%" style="display: block; margin: auto; box-shadow: none;" />
@@ -126,10 +152,9 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 </p>
 
 
-
 What is R?
 ========================================================
-> "R is a language and environment for statistical computing and graphics." - The R Foundation
+> "R is a language and environment for statistical computing and graphics."<br>- The R Foundation
 
 * *Built for* data analysis and visualization
 * One of the the most popular choices of programming language among academic researchers and data scientists
@@ -156,6 +181,7 @@ Source: <a href="https://www.flickr.com/">flickr.com</a>
 Source: <a href="https://www.reactiongifs.com/">Reaction GIFs</a>
 </p>
 
+
 And more reasons
 ========================================================
 * Open source (free!)
@@ -168,35 +194,47 @@ And more reasons
 Comparisons
 ========================================================
 type:section
+<img src="../images/comparison.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Icon_Hinweis_Rechtsthemen.svg">Wikimedia Commons</a>
+</p>
 
 
-R vs Excel
+R vs MS Excel
 ========================================================
 * License cost
-* Speed
-* Scalability
-* Complex and advanced analysis
+* Speed and scalability
 * Visualization
+* Complex and advanced analysis
+* Reproducibility
 
 
-R vs SPSS
+R vs IBM SPSS
 ========================================================
 * License cost (again)
 * Syntax
 * Visualization
-* Presentation
+* Reporting
 
 
 R vs Tableau
 ========================================================
 * License cost (DUH!)
-* Cleaning data
+* Reproducibility
+* Data manipulation
 * Complex and advanced analysis
 
 
+Conclusion
+========================================================
+* No intention to degrade other tools
+    * Ease of use for intended tasks
+* R as a great addition to any researcher's toolbox
+    * Highly performant, versatile, and flexible
+
 ========================================================
 type:section
-<img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.rstudio.com//">RStudio</a>
 </p>
@@ -207,21 +245,21 @@ What is RStudio? Why use it?
 * Best Integrated Development Environment (IDE) for R
 * Powerful and convenient features
 * Interactive workflow
-* Open source (again!)
+* Open source (free again!)
 * ... and many more!
 
 
 ========================================================
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" />
+<img src="../images/rstudio_structure.jpeg" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="100%" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Structure_of_Rstudio.jpeg">Wikimedia Commons</a>
 </p>
 
 
 Basic Setup
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Simpleicons_Interface_gears-couple.svg/2000px-Simpleicons_Interface_gears-couple.svg.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 </p>
@@ -230,101 +268,119 @@ Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
 Installing R
 ========================================================
 * Visit https://cran.r-project.org/
-* Or simply google "download R" to find the link to download page.
-* *Installation requires the Administrator account*; talk to DoIT!
+* Or simply google "download R" to find the link to download page
+
+* *Installation requires the Administrator account*
+    * Talk to DoIT!
 
 
 ========================================================
-<img src="../images/installing_r1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r2.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r2.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r3.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r3.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/installing_r4.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/installing_r4.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Installing RStudio
 ========================================================
 * Visit https://www.rstudio.com/products/rstudio/download/
-* Or simply google "download Rstudio" to find the link to download page.
-* Agin, *installation requires the Administrator account*; talk to DoIT!
+* Or simply google "download Rstudio" to find the link to download page
+
+* Again, *installation requires the Administrator account*
+    * Talk to DoIT!
 
 
 ========================================================
-<img src="../images/install_rstudio1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/install_rstudio2.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio2.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-<img src="../images/install_rstudio3.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="85%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/install_rstudio3.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="85%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Workshop Overview
 ========================================================
 type:section
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org//">Wikimedia Commons</a>
 </p>
 
 
 Module 2
 ========================================================
 <h2>R basics</h2>
-* Fundamental building blocks of R programming.
-* Libraries and packages
-* `tidyverse` framework
-* Recommended R style guide
-
+* Part 1. Fundamentals of R programming.
+    * R objects, expressions, functions, environments
+* Part 2: Gearing up for data analysis
+    * `tidyverse` framework
+    * Recommended R style guide
 
 Module 3
 ========================================================
 <h2>Data analysis with R</h2>
-* Importing/exporting data
-* Essential `dpylr` and `tidyr` commends
-* Working with character strings
-* Working with `Date` objects
+* Part 1. Getting started with `tidyverse`
+    * Manipulating data with `dplyr`
+    * Tidying up data with `tidyr` 
+* Part 2. More on data analysis
+    * character strings
+    * date/datetimes
+    * Importing/exporting data
 
 
 Module 4
 ========================================================
 <h2>Data visualization with R</h2>
-* `ggplot2` package
-* Plotting maps
-* Interactive plots
+* Part 1. The Grammar of Graphics
+    * `ggplot2` package
+* Part 2. Maps and interactive plots
+    * Pacakges for maps
+    * Pacakges for interactive plots
 
 
 Module 5
 ========================================================
 <h2>Statistical modeling with R</h2>
-* Basic statistical modeling
-* Advanced modeling options
+* Part 1. Basics of statistical modeling
+    * Descriptive statistics
+    * Linear modelss and generalized linear models
+* Part 2. Options for advanced modeling
+    * Survival analysis
+    * Time series analysis
+    * Spatial regression analysis
+    * Machine learning
 
 
 Module 6
 ========================================================
 <h2>"To Infinity and Beyond"</h2>
-* R Markdown and R Notebook
-* R Presentation and `ioslides`
-* Shiny applications
-* Leveraging online resources
-* ... and more!
+* Part 1. Sharing your work
+    * R Markdown documents
+    * Presentation slides
+    * Shiny applications
+    * Websites
+* Part 2. Leveraging online resources
+    * Various online resources
+
 
 
 Questions?
 ========================================================
 type: section
-<img src="https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media1.tenor.com/images/cfd1535c06cfdd626472663659f84e22/tenor.gif" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://tenor.com/view/beyonce-question-gif-5966034">tenor.com</a>
 </p>
@@ -332,10 +388,11 @@ Source: <a href="https://tenor.com/view/beyonce-question-gif-5966034">tenor.com<
 
 References
 ========================================================
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul style="font-size: 0.6em">
+  <li>Bollen, K., Cacioppo, J., Kaplan, R., Krosnick, J. & Olds, J. (2015). <a href="https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf">"Social, Behaviroal, and Economic Sciences Perspectives on Robust and Reliable Science"</a>.</li>
+  <li>Gentzkow, M. & Shapiro, J. M. (2014). <a href="https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf">"Code and Data for the Social Sciences: A Practitioner's Guide"</a>.</li>
+  <li>Robinson, D. (2017). <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impressive Growth of R"</a>. <span style="font-style:italic">Stack Overflow Blog</span>.</li>
+  <li>Soltoff, B. (2018). <a href="http://cfss.uchicago.edu/block001_intro.html">"Introduction to computing for the social sciences"</a>. <span style="font-style:italic">Computing for the Social Sciences</span>.</li>
+  <li>Wikipedia articles on relevant topics.</li>
 </ul>
 

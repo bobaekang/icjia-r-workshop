@@ -114,24 +114,28 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 
 Key dplyr functions
 ========================================================
+<br>
 * `arange()`
-* `select()`
+* `select()` `rename()`
 * `filter()`
-* `mutate()`
+* `mutate()` `trasmute()`
+
+***
+<br>
 * `left_join()`
 * `summarise()`
-* `group_by()`
+* `group_by()` `ungroup()`
 * `%>%`, the pipe operator
 
 
-Sorting with arrange()
+Sort rows by variables
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-arrange(data, column1, desc(column2), ...)
+arrange(tbl, col1, desc(col2), ...)
 ```
-* A data object as the first argument
-* Columns by which to sort the data as the following arguments
+* A tabular data object (e.g. `data.frame` or `tibble`) as the first argument
+* Columns by which to sort the data as other arguments
     * Multiple columns can be used to sort the data
     * When multiple columns are given, sorting is done hierarchically
     * Sorting in a descending order with `desc()`
@@ -152,7 +156,7 @@ arrange(ispcrime, county)
 ```{r echo=FALSE}
 ispcrime %>%
   arrange(county) %>%
-  head() 
+  head()
 ```
 
 
@@ -169,46 +173,53 @@ ispcrime %>%
 ```
 
 
-Filtering with filter()
+Filter rows with conditions
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-filter(data, condition1, condition2, ...)
+filter(tbl, condition1, condition2, ...)
 ```
-* A data object (table) as the first argument
+* A tabular data object as the first argument
 * Conditions by which to filter the data as the following arguments
 
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  filter(
+    year == 2015,
+    murder > 0
+  ) %>%
+  head()
 ```
 
 
-Selecting with select()
+Select and/or rename variables
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-select(data, column1, variable2 = column2, ...)
+select(tbl, col1, var2 = col2, ...)
 ```
-* A data object (table) as the first argument
+* A tabular data object as the first argument
 * Columns to select as the following arguments
     * Renaming each selected column is possible
 
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  select(year:violentCrime, propertyCrime) %>%
+  head()
 ```
 
 
-Transforming with mutate()
+Transform and add variables
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-mutate(data, column1 = some_compuation, new_column1 = some_computation, ...)
+mutate(tbl, col1 = expression, new_col1 = expression, ...)
 ```
-* A data object (table) as the first argument
+* A tabular data object as the first argument
 * Expressions to "mutate" columns as the following arguments
     * An exisiting column is modified with an expression with the same column name
     * A new column is created with an expression having a new column name
@@ -216,16 +227,18 @@ mutate(data, column1 = some_compuation, new_column1 = some_computation, ...)
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  mutate(totalCrime = violentCrime + propertyCrime) %>%
+  head()
 ```
 
-Merging with left_join()
+Merge tables
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-left_join(data1, data2, by = c("variables to join by"), ...)
+left_join(tbl1, tbl2, by = c("variables to join by"), ...)
 ```
-* Data objects (tables) to join as the first two arguments
+* Tabular data objects to join as the first two arguments
 * A character vector of variable to join by as the third argument
 * Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
 
@@ -233,15 +246,17 @@ left_join(data1, data2, by = c("variables to join by"), ...)
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  left_join(regions, by = "county") %>%
+  head()
 ```
 
 
-Aggregating with summarise()
+Aggregate and summarise rows
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-arrange(data, summary1 = some_computation, summary2 = some_computation, ...)
+summarise(tbl, summary1 = expression, summary2 = expression, ...)
 ```
 * A data object (table) as the first argument
 * Expressions to summarise data as the following arguments
@@ -250,48 +265,104 @@ arrange(data, summary1 = some_computation, summary2 = some_computation, ...)
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  summarise(
+    violentCrimeAverage = mean(violentCrime, na.rm = TRUE),
+    propertyCrimeAverage = mean(propertyCrime, na.rm = TRUE)
+  )
 ```
 
 
-Grouping with group_by()
+Group by variables
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-group_by(data, column1, column2, ...)
+group_by(tbl, col1, col2, ...)
 ```
 * A data object as the first argument
 * Columns by which to group the data as the following arguments
 
+* Can be used in combination with other function to allow for group-specific data manipulations
+
+
 ========================================================
 **Example**
 ```{r}
-
+ispcrime %>%
+  group_by(year)
 ```
 
 
-Chaining operations with %>%
+========================================================
+```{r}
+ispcrime %>%
+  group_by(year) %>%
+  summarise(
+    violentCrimeAverage = mean(violentCrime, na.rm = TRUE),
+    propertyCrimeAverage = mean(propertyCrime, na.rm = TRUE)
+  )
+```
+
+
+Chain operations
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-data %>% some_function(argument2, argument3, ...) %>% ...
+data %>% some_function(arg2, arg3, ...) %>% ...
 ```
 * A data object to be manipulated comes before `%>%`
 * Some function that *takes the data as the first argument* comes after `%>%`
     * The object before `%>%` is provided to the function as its first argument
 * Multiple functions can be chained, or "piped"
 
+
 ========================================================
-**Example**
-```{r}
+**Comparison**
+```{r eval=FALSE}
+# piping style
+object %>%
+  function1(arguments1) %>%
+  function2(arguments2) %>%
+  function3(arguments3)
+
+
+# traditional style
+function3(
+  function2(
+    function1(
+      object,
+      arguments1
+    ),
+    arguments2
+  ),
+  arguments3  
+  
+)
+
+# or
+function3(function2(function1(object, arguments1), arguments2), arguments3)
 
 ```
 
 
 dplyr in action
 ========================================================
+**Example 1**
 ```{r}
+ispcrime %>%
+  filter(substr(county, 1, 1) == "D", year %in% c(2014, 2015)) %>%
+  mutate(totalCrime = violentCrime + propertyCrime) %>%
+  select(year, county, totalCrime)
+```
 
+
+========================================================
+**Example 2**
+```{r}
+ispcrime %>%
+  group_by(county) %>%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %>%
+  arrange(desc(annualAvgCrime))
 ```
 
 
@@ -322,13 +393,13 @@ Key tidyr functions
 * `unite()`
 
 
-Fixing "wide" data with gather()
+Fix "wide" data
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-gather(data, ...)
+gather(tbl, key = "key", value = "value", ...)
 ```
-* A data object as the first argument
+* A tabular data object (e.g. `data.frame` or `tibble`) as the first argument
 
 
 ========================================================
@@ -338,13 +409,13 @@ gather(data, ...)
 ```
 
 
-Fixing "long" data with spread()
+Fix "long" data
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-spread(data, ...)
+spread(tbl, key, value, fill = NA, ...)
 ```
-* A data object as the first argument
+* A tabular data object as the first argument
 
 
 ========================================================
@@ -354,14 +425,13 @@ spread(data, ...)
 ```
 
 
-
-Splitting columns with separate()
+Split a column into many
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-separate(data, ...)
+separate(tbl, col, into, sep = "", remove = TRUE, ...)
 ```
-* A data object as the first argument
+* A tabular data object as the first argument
 
 
 ========================================================
@@ -371,14 +441,13 @@ separate(data, ...)
 ```
 
 
-
-Combining columns with unite()
+Unite multiple columns into one
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-unite(data, ...)
+unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
-* A data object as the first argument
+* A tabular data object as the first argument
 
 
 ========================================================
@@ -388,14 +457,13 @@ unite(data, ...)
 ```
 
 
-
-Captuaring groups with extract()
+Extract a column into many
 ========================================================
 **Basic format**
 ```{r eval=FALSE}
-extract(data, ...)
+extract(tbl, col, into, regex, remove = TRUE, ...)
 ```
-* A data object as the first argument
+* A tabular data object as the first argument
 
 
 ========================================================
@@ -433,11 +501,12 @@ Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.c
 
 ========================================================
 References
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul style="font-size: 0.6em">
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Import Cheat Sheet"</a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Transformation Cheat Sheet"</a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://tidyr.tidyverse.org/"><span style="font-style:italic">tidyr.tidyverse.org</span></a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://www.tidyverse.org/"><span style="font-style:italic">tidyverse.org</span></a>.</li>
 </ul>
 
 

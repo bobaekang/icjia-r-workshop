@@ -289,19 +289,27 @@ div.tocify {
 </div>
 <div id="r-objects" class="section level1">
 <h1>R Objects</h1>
+<img src="../images/object.png" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+</p>
 <div id="key-object-types" class="section level2">
 <h2>Key object types</h2>
+<p>R has various object “types”. Some of the key object types include:</p>
 <ul>
 <li>Vectors (<code>c()</code>)</li>
 <li>Lists (<code>list()</code>)</li>
 <li>Factors (<code>factor()</code>)</li>
 <li>Data frame (<code>data.frame()</code>)</li>
 </ul>
+<p>In the following, we will take a deeper look at vectors (a.k.a. atomic vectors) and lists.</p>
 </div>
 <div id="atomic-vectors" class="section level2">
 <h2>“Atomic” vectors</h2>
+<p>Vector is the most fundamental data type in R, which roughly corresponds to array in other programming languages. Almost everything else in R is built on top of vectors with few exceptions like <code>NULL</code>. In fact, technically, even a single value is a vector of length 1 (this can be verified using the <code>is.vector()</code> function with a single character or number as its input). In that sense, vectors in R are also known as “atomic” vectors.</p>
 <div id="basic-vector-types" class="section level3">
 <h3>Basic vector types</h3>
+<p>Vectors come in different types. Here are the basic vector types:</p>
 <ul>
 <li><code>logical</code>: Boolean values of <code>TRUE</code> and <code>FALSE</code></li>
 <li><code>double</code>: floating-point numbers representing real numbers</li>
@@ -309,6 +317,7 @@ div.tocify {
 <li><code>complex</code>: complex numbers</li>
 <li><code>character</code>: string of alphanumeric letters</li>
 </ul>
+<p>Let’s take a look at some examples of these vector types. A vector is created using the <code>c()</code> function. We may think that the “c” means “concatenate”. Note that the <code>class()</code> function returns the vector type for the given object, instead of simply returning <code>vector</code>.</p>
 <pre class="r"><code># this is a logical vector
 logical_vector &lt;- c(TRUE, FALSE, T, F)
 
@@ -348,7 +357,8 @@ is.vector(x)</code></pre>
 </div>
 <div id="accessing-vector-elements" class="section level3">
 <h3>Accessing vector elements</h3>
-<p>Use index with <code>[]</code> to access an element in a vector:</p>
+<p>A vector often comes as a series of multiple values or elements–this is probably why it is called a “vector”, like a mathematical vector.</p>
+<p>To access a particular element in a vecgtor, we can use the index of an element with <code>[]</code>:</p>
 <pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
 first_fruit &lt;- fruits[1]
 
@@ -370,22 +380,17 @@ fruits[4] &lt;- &quot;dried mango&quot;
 
 fruits</code></pre>
 <pre><code>## [1] &quot;apricot&quot;     &quot;banana&quot;      &quot;clementine&quot;  &quot;dried mango&quot;</code></pre>
-<p>Multiple elements can be accessed:</p>
-<ul>
-<li>Using a vector of indices:</li>
-</ul>
+<p>Multiple elements can be accessed in two ways. First, we can use a vector of indices:</p>
 <pre class="r"><code>first_and_third_fruits &lt;- fruits[c(1, 3)]
 
 print(first_and_third_fruits)</code></pre>
 <pre><code>## [1] &quot;apricot&quot;    &quot;clementine&quot;</code></pre>
-<ul>
-<li>Using the colon operator for a sequence:</li>
-</ul>
+<p>Second, we can use the colon operator for a sequence (we will come back to the colon operator):</p>
 <pre class="r"><code>first_thru_third_fruits &lt;- fruits[1:3]
 
 print(first_thru_third_fruits)</code></pre>
 <pre><code>## [1] &quot;apricot&quot;    &quot;banana&quot;     &quot;clementine&quot;</code></pre>
-<p>Vector elements can be accessed conditionally as well</p>
+<p>Vector elements can be accessed conditionally as well:</p>
 <pre class="r"><code>my_vector &lt;- c(1, 2, 3, 4, 5)
 
 # print only elements less than 3 
@@ -400,9 +405,8 @@ print(my_vector)</code></pre>
 </div>
 <div id="lists" class="section level2">
 <h2>Lists</h2>
-<ul>
-<li>An R list, created by <code>list()</code> function, can contain elements of different types</li>
-</ul>
+<p>An R vector cannot consist of elements of different vector types. Considering that a single element is in fact a vector of length 1, we can see how such an idea is a simple impossibility.</p>
+<p>In contrast, an R list, created by <code>list()</code> function, can contain elements of different types. A list is, in fact, a list of vectors:</p>
 <pre class="r"><code>my_list &lt;- list(&quot;abc&quot;, 125, FALSE, c(&quot;Hello&quot;, &quot;World&quot;))
 
 print(my_list)</code></pre>
@@ -417,6 +421,7 @@ print(my_list)</code></pre>
 ## 
 ## [[4]]
 ## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<p>Note that an element of a list can be a vector of length greater than 1. In fact, a list can have a nested structure, where an element of a list is also a list itself.</p>
 <div id="naming-list-elements" class="section level3">
 <h3>Naming list elements</h3>
 <pre class="r"><code>names(my_list) &lt;- c(&quot;character&quot;, &quot;numeric&quot;, &quot;logical&quot;, &quot;character vector&quot;)
@@ -456,7 +461,7 @@ identical(my_list[1], my_list$character)</code></pre>
 </div>
 <div id="lists-to-vector" class="section level3">
 <h3>Lists to vector</h3>
-<p>A list can be “unlisted”, i.e., converted into a vector</p>
+<p>A list can be “unlisted”, i.e., converted into a vector. This is achieved by the <code>unlist()</code> function:</p>
 <pre class="r"><code>new_list &lt;- list(1:5)
 to_vector &lt;- unlist(new_list)
 
@@ -473,18 +478,20 @@ print(to_vector)</code></pre>
 </div>
 <div id="r-expressions" class="section level1">
 <h1>R Expressions</h1>
+<img src="../images/expression.png" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+</p>
 <div id="what-are-expressions" class="section level2">
 <h2>What are expressions</h2>
-<ul>
-<li>Executable pieces of code</li>
-<li>Consisting of
+<p>A program can be seen as a collection of expressions, which are executable pieces of code. In R, an expression consists of the following:</p>
 <ul>
 <li>objects</li>
 <li>operators</li>
 <li>control structures, and</li>
 <li>functions</li>
-</ul></li>
 </ul>
+<p>We have already seen objects. We will now take a closer look at the rest of them.</p>
 </div>
 <div id="operators" class="section level2">
 <h2>Operators</h2>
@@ -505,46 +512,46 @@ print(to_vector)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th>Operator</th>
-<th>Description</th>
-<th>Example</th>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>+</code></td>
-<td>Addition</td>
-<td><code>1 + 1    # returns 2</code></td>
+<td align="left"><code>+</code></td>
+<td align="left">Addition</td>
+<td align="left"><code>1 + 1</code> (returns 2)</td>
 </tr>
 <tr class="even">
-<td><code>-</code></td>
-<td>Subtraction</td>
-<td><code>3 - 2  # returns 1</code></td>
+<td align="left"><code>-</code></td>
+<td align="left">Substraction</td>
+<td align="left"><code>3 - 2</code> (returns 1)</td>
 </tr>
 <tr class="odd">
-<td><code>*</code></td>
-<td>Multiplication</td>
-<td><code>3 * 4  # returns 12</code></td>
+<td align="left"><code>*</code></td>
+<td align="left">Multiplication</td>
+<td align="left"><code>3 * 4</code> (returns 12)</td>
 </tr>
 <tr class="even">
-<td><code>/</code></td>
-<td>Division</td>
-<td><code>5 / 2 # returns 2.5</code></td>
+<td align="left"><code>/</code></td>
+<td align="left">Division</td>
+<td align="left"><code>5 / 2</code> (returns 2.5)</td>
 </tr>
 <tr class="odd">
-<td><code>^</code> or <code>**</code></td>
-<td>Exponentiation</td>
-<td><code>2**4  # returns 16</code></td>
+<td align="left"><code>^</code> or <code>**</code></td>
+<td align="left">Exponentiation</td>
+<td align="left"><code>2**4</code> (returns 16)</td>
 </tr>
 <tr class="even">
-<td><code>%%</code></td>
-<td>Modulus</td>
-<td><code>5 %% 2  # returns 1</code></td>
+<td align="left"><code>%%</code></td>
+<td align="left">Modulus</td>
+<td align="left"><code>5 %% 2</code> (returns 1)</td>
 </tr>
 <tr class="odd">
-<td><code>%/%</code></td>
-<td>Integer division</td>
-<td><code>5 %% 2  # returns 2</code></td>
+<td align="left"><code>%/%</code></td>
+<td align="left">Integer division</td>
+<td align="left"><code>5 %/% 2</code> (returns 2)</td>
 </tr>
 </tbody>
 </table>
@@ -552,43 +559,38 @@ print(to_vector)</code></pre>
 <div id="logical-operators" class="section level3">
 <h3>Logical operators</h3>
 <table>
-<colgroup>
-<col width="12%" />
-<col width="44%" />
-<col width="44%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Operator</th>
-<th>Description</th>
-<th>Example</th>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>&amp;</code></td>
-<td>Element-wise logical AND</td>
-<td><code>c(TRUE, TRUE) &amp; c(TRUE, FALSE)  # returns TRUE FALSE</code></td>
+<td align="left"><code>&amp;</code></td>
+<td align="left">Element-wise logical AND</td>
+<td align="left"><code>c(TRUE, TRUE) &amp; c(TRUE, FALSE)</code><br>returns <code>TRUE</code> <code>FALSE</code></td>
 </tr>
 <tr class="even">
-<td>|</td>
-<td>Element-wise logical OR</td>
-<td><code>c(TRUE, FALSE)</code> | <code>c(FALSE, FALSE)  # returns TRUE FALSE</code></td>
+<td align="left">|</td>
+<td align="left">Element-wise logical OR</td>
+<td align="left"><code>c(TRUE, FALSE)</code> | <code>c(FALSE, FALSE)</code><br>returns <code>TRUE</code> <code>FALSE</code></td>
 </tr>
 <tr class="odd">
-<td><code>!</code></td>
-<td>Logical NOT</td>
-<td><code>!c(TRUE, FALSE)  # retruns FALSE TRUE</code></td>
+<td align="left"><code>!</code></td>
+<td align="left">Logical NOT</td>
+<td align="left"><code>!c(TRUE, FALSE)</code><br>returns <code>TRUE</code></td>
 </tr>
 <tr class="even">
-<td><code>&amp;&amp;</code></td>
-<td>Logical AND (considers the first element only)</td>
-<td><code>c(TRUE, TRUE) &amp;&amp; c(FALSE, TRUE)  # returns FALSE</code></td>
+<td align="left"><code>&amp;&amp;</code></td>
+<td align="left">Logical AND<br>(considers the first element only)</td>
+<td align="left"><code>c(TRUE, TRUE) &amp;&amp; c(FALSE, TRUE)</code><br>returns <code>FALSE</code></td>
 </tr>
 <tr class="odd">
-<td>||</td>
-<td>Logical OR (considers the first element only)</td>
-<td><code>c(TRUE, TRUE)</code> || <code>c(FALSE, TRUE)  # returns TRUE</code></td>
+<td align="left">||</td>
+<td align="left">Logical OR<br>(considers the first element only)</td>
+<td align="left"><code>c(TRUE, TRUE)</code> || <code>c(FALSE, TRUE)</code><br>returns <code>TRUE</code></td>
 </tr>
 </tbody>
 </table>
@@ -598,41 +600,41 @@ print(to_vector)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th>Operator</th>
-<th>Description</th>
-<th>Example</th>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>&gt;</code></td>
-<td>Greater than</td>
-<td><code>3 &gt; 1  # returns TRUE</code></td>
+<td align="left"><code>&gt;</code></td>
+<td align="left">Greater than</td>
+<td align="left"><code>3 &gt; 1</code> returns <code>TRUE</code></td>
 </tr>
 <tr class="even">
-<td><code>&lt;</code></td>
-<td>Less than</td>
-<td><code>3 &lt; 1  # returns FALSE</code></td>
+<td align="left"><code>&lt;</code></td>
+<td align="left">Less than</td>
+<td align="left"><code>3 &lt; 1</code> returns <code>FALSE</code></td>
 </tr>
 <tr class="odd">
-<td><code>==</code></td>
-<td>Equal to</td>
-<td><code>2 == 2  # returns TRUE</code></td>
+<td align="left"><code>==</code></td>
+<td align="left">Equal to</td>
+<td align="left"><code>2 == 2</code> returns <code>TRUE</code></td>
 </tr>
 <tr class="even">
-<td><code>&lt;=</code></td>
-<td>Less than or equal to</td>
-<td><code>4 &lt;= 4 # returns TRUE</code></td>
+<td align="left"><code>&gt;=</code></td>
+<td align="left">Greater than or equal to</td>
+<td align="left"><code>3 &gt;= 4</code> returns <code>FALSE</code></td>
 </tr>
 <tr class="odd">
-<td><code>&gt;=</code></td>
-<td>Greater than or equal to</td>
-<td><code>3 &gt;= 4  # returns FALSE</code></td>
+<td align="left"><code>&lt;=</code></td>
+<td align="left">Less than or equal to</td>
+<td align="left"><code>4 &lt;= 4</code> returns <code>TRUE</code></td>
 </tr>
 <tr class="even">
-<td><code>!=</code></td>
-<td>Not equal to</td>
-<td><code>2 != 3  # returns TRUE</code></td>
+<td align="left"><code>!=</code></td>
+<td align="left">Not equal to</td>
+<td align="left"><code>2 != 3</code> returns <code>TRUE</code></td>
 </tr>
 </tbody>
 </table>
@@ -640,38 +642,33 @@ print(to_vector)</code></pre>
 <div id="assignment-operators" class="section level3">
 <h3>Assignment operators</h3>
 <table>
-<colgroup>
-<col width="12%" />
-<col width="44%" />
-<col width="44%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Operator</th>
-<th>Description</th>
-<th>Example</th>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>&lt;-</code> or <code>=</code></td>
-<td>Left assignment</td>
-<td><code>a &lt;- &quot;Hello&quot; # print(a) returns &quot;Hello&quot;</code></td>
+<td align="left"><code>&lt;-</code> or <code>=</code></td>
+<td align="left">Left assignment</td>
+<td align="left"><code>a &lt;- &quot;Hello&quot;</code> assigns <code>&quot;Hello&quot;</code> to the object <code>a</code></td>
 </tr>
 <tr class="even">
-<td><code>-&gt;</code></td>
-<td>Right assignment</td>
-<td>The use of <code>-&gt;</code> is mostly discouraged</td>
+<td align="left"><code>-&gt;</code></td>
+<td align="left">Right assignment</td>
+<td align="left">The use of <code>-&gt;</code> is mostly discouraged</td>
 </tr>
 <tr class="odd">
-<td><code>&lt;&lt;-</code></td>
-<td>Left scoping assignment</td>
-<td>Search for the variable in the parent environments takes place before assignment</td>
+<td align="left"><code>&lt;&lt;-</code></td>
+<td align="left">Left scoping assignment</td>
+<td align="left">Search for the variable in the parent<br>environments takes place before assignment</td>
 </tr>
 <tr class="even">
-<td><code>-&gt;&gt;</code></td>
-<td>Right scoping assignment</td>
-<td>Ditto</td>
+<td align="left"><code>-&gt;&gt;</code></td>
+<td align="left">Right scoping assignment</td>
+<td align="left">Ditto</td>
 </tr>
 </tbody>
 </table>
@@ -679,61 +676,95 @@ print(to_vector)</code></pre>
 <div id="miscellaneous-operators" class="section level3">
 <h3>Miscellaneous operators</h3>
 <table>
-<colgroup>
-<col width="12%" />
-<col width="44%" />
-<col width="44%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Operator</th>
-<th>Description</th>
-<th>Example</th>
+<th align="left">Operator</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>:</code></td>
-<td>Colon operator to generate sequences</td>
-<td><code>a &lt;- &quot;Hello&quot; # print(a) returns &quot;Hello&quot;</code></td>
+<td align="left"><code>:</code></td>
+<td align="left">Colon operator to generate sequences</td>
+<td align="left"><code>1:10</code> generates a vector of integer sequence from 1 to 10</td>
 </tr>
 <tr class="even">
-<td><code>?</code></td>
-<td>Help function to see documentation</td>
-<td><code>?some_function # equivalent to help(some_function)</code></td>
+<td align="left"><code>?</code></td>
+<td align="left">Help function to see documentation</td>
+<td align="left"><code>?my_function</code> is equivalent to <code>help(my_function)</code></td>
 </tr>
 <tr class="odd">
-<td><code>%in%</code></td>
-<td>In operator</td>
-<td><code>1 %in% c(1, 2, 3)  # returns TRUE</code></td>
+<td align="left"><code>$</code></td>
+<td align="left">List subset</td>
+<td align="left"><code>my_list$a</code> will access the subset <code>a</code> in the list</td>
 </tr>
 <tr class="even">
-<td><code>%*%</code></td>
-<td>Matrix multiplication</td>
-<td></td>
+<td align="left"><code>%in%</code></td>
+<td align="left">“In” operator</td>
+<td align="left"><code>1 %in% c(1,2,3)</code> returns <code>TRUE</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%*%</code></td>
+<td align="left">Matrix multiplication</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="other-operators" class="section level3">
 <h3>Other operators</h3>
-<ul>
-<li>Operators can be defined by users</li>
-<li>Some third party packages offer custom operators
-<ul>
-<li>e.g. the “pipe” operator (<code>%&gt;%</code>) from <code>magrittr</code> package (also available through <code>dplyr</code> pacakge)</li>
-</ul></li>
-</ul>
+<p>In practice, using R operators is no different from a function call. Accordingly, it is also possible to define new operators. In fact, some third party packages offer custom operators. One such example is the “pipe” operator (<code>%&gt;%</code>) from <code>magrittr</code> package, which is also available through <code>dplyr</code> pacakge.</p>
 </div>
 </div>
 <div id="flow-control" class="section level2">
 <h2>Flow control</h2>
+<p>By default, R runs statements in a sequential manner, from top to bottom. There are however ways to break from this using contronl structures. Here we call it “flow control”.</p>
+<p>In the following, we will take a look at two basic flow control methods: conditionals and loops.</p>
+<div id="conditionals" class="section level3">
+<h3>Conditionals</h3>
+<p>Using conditionals means creating a desired “flow” of evaluating statements based on certain conditions: i.e. if A, then B.</p>
+<p>R offers <code>if</code> statement to acheieve this. The basic <code>if</code> statement structure is given as follows:</p>
 <ul>
-<li>Loops</li>
-<li>Conditionals</li>
+<li><code>if ( condition ) { expression }</code></li>
 </ul>
+<p>Let’s try an example:</p>
+<pre class="r"><code>a &lt;- TRUE
+
+if (a) {
+  print(&quot;Hello World!&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+<p>Here, the variable a is a condition to be tested. If the value of the condition is boolean <code>TRUE</code>, than the statements between curly braces <code>{}</code> are executed. If the condition value is <code>FALSE</code>, R jumps ahead the statemetns between <code>{}</code>.</p>
+</div>
+<div id="multiple-conditions" class="section level3">
+<h3>Multiple conditions</h3>
+<p>It is possible to create more elaborate flow control structures. R provides <code>else</code> statement for the statements to run only if the preceding <code>if</code> condition is <code>FALSE</code>. Then, we can chain multiple <code>if</code>-<code>else</code>s to incorporate multiple conditions.</p>
+<p>The following code block presents an example of chained <code>if</code>-<code>else</code> statement with three conditions: (1) <code>a</code> is greater than <code>b</code>, (2) <code>a</code> is not greater but is less than <code>b</code>, (3) <code>a</code> is neither greater or less than <code>b</code>. R evaluates these conditions in a sequential manner, and when the condition evaluates as <code>TRUE</code>, executes the relevant statements.</p>
+<pre class="r"><code>a &lt;- 1
+b &lt;- 2
+
+if (a &gt; b) {
+  print(&quot;a is larger than b.&quot;)
+} else if (a &lt; b) {
+  print(&quot;a is smaller than b.&quot;)
+} else {
+  print(&quot;a and b are equal!&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;a is smaller than b.&quot;</code></pre>
+</div>
+<div id="ifelse-function" class="section level3">
+<h3><code>ifelse</code> function</h3>
+<pre class="r"><code>ifelse(test_expression, true_value, false_value)</code></pre>
+<p>R also offers <code>ifelse</code> function, which is to try the condition for each element of a multi-element object. That is, <code>ifelse()</code> is an element-wise if-else conditional. Here, the given condition (<code>test_expression</code>) is tested for each and every element of a vector and the output is a vector of the same length with relevant values.</p>
+<p>In the following example, <code>ifelse</code> will return a vector of 4, which equals to the length of input vector <code>a</code>, and the each element of the output vector is the result of testing whether the input element is less than 3.</p>
+<pre class="r"><code>a &lt;- c(1,2,3,4)
+ifelse(a &lt; 3, &quot;Less than 3&quot;, &quot;Not less than 3&quot;)</code></pre>
+<pre><code>## [1] &quot;Less than 3&quot;     &quot;Less than 3&quot;     &quot;Not less than 3&quot; &quot;Not less than 3&quot;</code></pre>
+</div>
 <div id="loops" class="section level3">
 <h3>Loops</h3>
+<p>R offers looping statements for tasks that involve some repetitions. Here we will take a look at two commonly used looping methods: <code>while</code> and <code>for</code>.</p>
 <ul>
 <li><code>while</code> loops</li>
 </ul>
@@ -746,38 +777,50 @@ print(to_vector)</code></pre>
 <pre class="r"><code>for (element in iterable_object) {
   expression
 }</code></pre>
-<div id="while-loop" class="section level4">
-<h4><code>while</code> loop</h4>
-<img src="https://www.tutorialspoint.com/r/images/swift_while_loop.jpg" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+</div>
+<div id="while-loop" class="section level3">
+<h3><code>while</code> loop</h3>
+<img src="../images/while_loop.jpg" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">“R - While Loop”, tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
 </p>
+<p>A <code>while</code> loop consists of a condition and a group of statments (expression) to be executed.</p>
 <pre class="r"><code>while (condition) {
   expression
 }</code></pre>
-<ul>
+<p><code>while</code> statement goes through the following steps:</p>
+<ol style="list-style-type: decimal">
 <li>If the given <code>condition</code> is satisfied (i.e. evaluates as <code>TRUE</code>), then the following <code>expression</code> is executed.</li>
-<li>Onces the <code>expression</code> is executed, the <code>condition</code> is re-evaluated.</li>
-<li>The <code>expression</code> is repetitively executed as long as the <code>condition</code> is satisfied.
-<ul>
-<li>beware of infinite loop!</li>
-</ul></li>
-</ul>
+<li>Once the <code>expression</code> is executed, the <code>condition</code> is re-evaluated.</li>
+<li>The <code>expression</code> is repetitively executed as long as the <code>condition</code> is satisfied.</li>
+</ol>
+<p>This means that, if the condition is always <code>TRUE</code>, we will be stuck in an infinite loop!</p>
+<p>The folloing example uses <code>while</code> statement to print a number from 0 to 4. Because we add 1 to count at each loop, we can be rest assured that the condition will return <code>FALSE</code> at one point, and the loop will terminate.</p>
+<pre class="r"><code>count &lt;- 0
+
+while (count &lt; 5) {
+  print(count)
+  count = count + 1  # increase count by 1 at each iteration
+}</code></pre>
+<pre><code>## [1] 0
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4</code></pre>
 </div>
-<div id="for-loop" class="section level4">
-<h4><code>for</code> loop</h4>
-<img src="https://www.tutorialspoint.com/r/images/r_for_loop.jpg" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<div id="for-loop" class="section level3">
+<h3><code>for</code> loop</h3>
+<img src="../images/for_loop.jpg" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">“R - For Loop”, tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
 </p>
+<p>A <code>for</code> loop is similar to <code>while</code> loop, except that it takes an iterable object (vector or list) rather than a condition.</p>
 <pre class="r"><code>for (element in iterable_object) {
   expression
 }</code></pre>
-<ul>
-<li>Requires an iterable object (e.g. vector or list).</li>
-<li>Iterates over all elements of the given object in order.</li>
-<li>At each step of iteration, can use the given element for the <code>expression</code> if appropriate.</li>
-</ul>
+<p>Intead of checking for a condition, <code>for</code> loop iterates over all elements of the given object in order. The loop terminates when we reach the final element of the iterable object. At each step of iteration, we can use the given element for the <code>expression</code> if appropriate.</p>
+<p>Let’s try couple examples.</p>
+<p>In the first example, we directly iterate over the elements of <code>fruits</code> vector. At each step, the value of <code>fruit</code> changes and made available between the curly braces as a variable.</p>
 <pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
 
 # iterate over elements directly
@@ -787,6 +830,7 @@ for (fruit in fruits) {
 <pre><code>## [1] &quot;I love apple!&quot;
 ## [1] &quot;I love banana!&quot;
 ## [1] &quot;I love clementine!&quot;</code></pre>
+<p>In the second example, we indirectly iterate over the <code>flavors</code> vector using indices.</p>
 <pre class="r"><code>flavors &lt;- c(&quot;chocolate&quot;, &quot;vanilla&quot;, &quot;cookie dough&quot;)
 
 # iterate over elements indirectly
@@ -798,50 +842,83 @@ for (i in 1:length(flavors)) {
 ## [1] &quot;Do you want some vanilla ice cream?&quot;
 ## [1] &quot;Do you want some cookie dough ice cream?&quot;</code></pre>
 </div>
-</div>
-<div id="conditionals" class="section level3">
-<h3>Conditionals</h3>
-<ul>
-<li><code>if</code> statement</li>
-<li>Basic structure
-<ul>
-<li>if ( condition ) { expression }</li>
-</ul></li>
-</ul>
-<pre class="r"><code>a &lt;- TRUE
+<div id="break-statement" class="section level3">
+<h3><code>break</code> statement</h3>
+<img src="../images/break_loop.jpg" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+<p>By combining conditionals and loops, we can generate a more complex flow control structure. Here we introduce two additional statements, <code>break</code> and <code>next</code>, which support creating advanced control structure.</p>
+<pre class="r"><code># with for loop
+for (element in iterable_object) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
 
-if (a) {
-  print(&quot;Hello World!&quot;)
+# with while loop
+while (loop_condition) {
+  if (break_condition) {
+    break
+  }
+  expression
 }</code></pre>
-<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+<p><code>break</code> statment is used to “break out”of the loop when certain condition is met.</p>
 </div>
-<div id="multiple-conditions" class="section level3">
-<h3>Multiple conditions</h3>
-<ul>
-<li><code>if</code>-<code>else</code> statement</li>
-<li>allows for multiple conditions</li>
-</ul>
+<div id="next-statement" class="section level3">
+<h3><code>next</code> statement</h3>
+<img src="../images/next_loop.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+<pre class="r"><code># with for loop
+for (element in iterable_object) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (next_condition) {
+    next
+  }
+  expression
+}</code></pre>
+<p><code>next</code> statement can be used to skip a step in a loop when a certain condition is met.</p>
 <hr />
 </div>
 </div>
 </div>
 <div id="r-functions" class="section level1">
 <h1>R Functions</h1>
+<img src="../images/function-machine.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+</p>
 <div id="what-are-functions" class="section level2">
 <h2>What are functions</h2>
-<ul>
-<li>Functions are “call-able” objects
-<ul>
-<li>can be called or invoked by following <code>()</code></li>
-<li>can be manipulated in the same way as any other object</li>
-</ul></li>
-<li>Three elements of a function (or function closure)
+<p>In R, functions are special objects that are “call-able”. In other words, a function can be called or invoked by following <code>()</code>. Meanwhile, a function can be manipulated just in the same way as any other object.</p>
+<p>There are three elements of a function (or function closure):</p>
 <ol style="list-style-type: decimal">
 <li>an argument list (a.k.a. parameters; optional)</li>
 <li>body</li>
 <li>function environment</li>
-</ol></li>
+</ol>
+</div>
+<div id="why-use-functions" class="section level2">
+<h2>Why use functions</h2>
+<p>A key function of a function (pun intended :)) is to encapsulate repeated operations so that we can:</p>
+<ul>
+<li>Simplify code (clearner and more concise)</li>
+<li>Avoid unintended bugs/errors</li>
+<li>Enhance reproducibility</li>
 </ul>
+<p>In other words, if you find yourself copying and pasting the same code chunk over and over, you should wrap it into a function.</p>
+<div id="creating-a-new-function" class="section level3">
+<h3>Creating a new function</h3>
 <pre class="r"><code># creating a new function
 name &lt;- function(arg1, arg2) {
   
@@ -851,15 +928,30 @@ name &lt;- function(arg1, arg2) {
   body expression3
 
 }</code></pre>
+<p>Just as we assign some values to a symbol (or a variable) to create an object, we assign a <code>function() {}</code> to a symbol to create a function. We put a number of arguments, or parameters, into the <code>()</code>, and a set of operations in <code>{}</code>, where the parameters can be used to represent actual inputs.</p>
+<p>It must be noted that the expressions inside <code>{}</code> are living in a “function environment” that is “closed” off of the global environment. We will talk more about environments later. For now, we should only remember the following key points:</p>
+<ul>
+<li>Objects created in a function environment are <em>not accessible</em> from its parent environment</li>
+<li>Objects existing in the parent environment are <em>accessible</em> from the the function environment</li>
+<li>Each function call creates a <em>separate</em> environment (or an instance of the function environment)</li>
+</ul>
+<p>Now, let’s take a look at some examples to explore how we can create a function.</p>
+</div>
+<div id="a-custom-function-for-adding-two-numbers" class="section level3">
+<h3>A custom function for adding two numbers</h3>
 <pre class="r"><code># example: a custom function for adding two numbers
-add &lt;- function(num1, num2) {
-  num1 + num2
+add_nums &lt;- function(num1, num2) {
+  return(num1 + num2)
 }
 
-add_output &lt;- add(3, 5) # assign the function output to a variable
+add_output &lt;- add_nums(3, 5) # assign the function output to a variable
 
 print(add_output)</code></pre>
 <pre><code>## [1] 8</code></pre>
+<p>In this example, we create a function <code>add_nums</code>, which takes two numbers as arguments and returns the sum of the two numbers. The output value that the function returns can be assigned to create an object.</p>
+</div>
+<div id="a-function-without-arguments" class="section level3">
+<h3>A function without arguments</h3>
 <pre class="r"><code># example: a custom function without arguments
 print_hello_world &lt;- function() {
   print(&quot;Hello world&quot;)
@@ -867,40 +959,35 @@ print_hello_world &lt;- function() {
 
 print_hello_world()</code></pre>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
+<p>Here, we create a function <code>print_hello_world</code>, which has no argument input. That is, we are not required to have arguments to create a function. In fact, the function also has no real output–it just prints a phrase. Calling the function will print the phrase.</p>
 </div>
-<div id="why-use-functions" class="section level2">
-<h2>Why use functions</h2>
-<ul>
-<li>Encapsulate repeated operations
-<ul>
-<li>Simplify code (clearner and more concise)</li>
-<li>Avoid unintended bugs/errors</li>
-<li>Enhance reproducibility</li>
-</ul></li>
-</ul>
+<div id="a-function-with-arguments-having-default-values" class="section level3">
+<h3>A function with arguments having default values</h3>
+<pre class="r"><code>add_nums_2 &lt;- function(num1, num2 = 5) {
+  num1 + num2
+}
+
+add_nums_2(3) # call a function using the default value for num2</code></pre>
+<pre><code>## [1] 8</code></pre>
+<p>A function can be given default values to its arguments. If the argument value is not given when the function is called, the default value is used for that argument. It is a good practice to make default values something that are expected to be used most often when calling the function.</p>
 <hr />
+</div>
 </div>
 </div>
 <div id="r-environments" class="section level1">
 <h1>R Environments</h1>
-<img src="http://adv-r.had.co.nz/diagrams/environments.png/bindings.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/environments_bindings.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 <div id="what-are-environments" class="section level2">
 <h2>What are environments</h2>
-<ul>
-<li>Simply put, an environment is a place to store variables.</li>
-<li>All variables (as bindings of symbols and objects) exist in a specific environment.
-<ul>
-<li>More precisely, <em>objects</em> live in memory outside all environment;</li>
-<li>It is the <em>symbols</em> and the <em>associations</em> of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.</li>
-</ul></li>
-<li>Environments can have nested structure.</li>
-</ul>
+<p>Environment is a tricky concept to grasp. Simply put, an environment is a place to store variables. That is, all variables (as bindings of symbols and objects) exist in a specific environment. More precisely, <em>objects</em> live in memory outside all environment; it is the <em>symbols</em> and the <em>associations</em> of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.</p>
+<p>As we will see shortly, environments can have nested structure.</p>
 </div>
 <div id="nesting-of-environments" class="section level2">
 <h2>Nesting of environments</h2>
+<p>There are two simple rules to know about the nesting of environments:</p>
 <ul>
 <li>Variables in a parent environment are accessible in a child environment</li>
 <li>Variables in a child environment are <em>NOT</em> accessible in a parent environment</li>
@@ -909,14 +996,13 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
+<p>In this picture, the box on the left represents a parent environment and the box on the right is a child environment. Variables <code>a</code>, <code>b</code>, and <code>c</code> are stored in the parent environment while <code>d</code> and <code>e</code> are in the child environment. According to the two basic rules about environments, accessing variables <code>d</code> and <code>e</code> from the parent environment is not possible but, <code>a</code>, <code>b</code>, and <code>c</code> are still accessible from the child environment.</p>
 </div>
 <div id="the-global-environment" class="section level2">
 <h2>The global environment</h2>
-<ul>
-<li>The interactive workspace for the given R session.</li>
-<li>Its immediate parent is the environment of the package that is imported last.</li>
-<li>Can be accessed using <code>globalenv()</code>, which works like a named list</li>
-</ul>
+<p>There is something called the “global environment” in R which deserved our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.</p>
+<p>The immediate parent of the global environment is the environment of the package that is imported last. This is how all the datasets and functions from the package, as well as other pacakges imported prior to it, are made available in the global environment.</p>
+<p>In R, an environment is like a function, and the global environment can be accessed using <code>globalenv()</code>, which works like a named list as shown in the folloing code chunk:</p>
 <pre class="r"><code>some_variable &lt;- 1 # a variable in the global environment
 global_env &lt;-globalenv() # the environment itself can be assigned to a variable
 
@@ -926,21 +1012,21 @@ identical(some_variable, global_env$some_variable)</code></pre>
 </div>
 <div id="local-environments" class="section level2">
 <h2>Local environments</h2>
-<ul>
-<li>Local environments are created by
-<ul>
-<li>any function calls</li>
-<li><code>new.env()</code></li>
-</ul></li>
-<li>Can be used to protect the global environment from arbitrarily created variables</li>
-</ul>
+<p>If there is the global environment, there local environments as well. Local environments are created in two ways:</p>
+<pre><code>* any function calls
+* `new.env()`</code></pre>
+<p>A local environment can be used to protect the global environment from arbitrarily created variables.</p>
 </div>
 <div id="lexical-scoping" class="section level2">
 <h2>Lexical scoping</h2>
-<p>Searching for an object in R follows the lexical scoping rules.<br />
-* First, R looks for the object in the current environment<br />
-* If the object is not found in the current environment, R moves up to its parent environment.<br />
-* The process is repeated until the object is found or the outermost environment (<code>emptyenv()</code>) is reached.</p>
+<p>Searching for an object in R follows the lexical scoping rules.</p>
+<ul>
+<li>First, R looks for the object in the current environment<br />
+</li>
+<li>If the object is not found in the current environment, R moves up to its parent environment.<br />
+</li>
+<li>The process is repeated until the object is found or the outermost environment (<code>emptyenv()</code>) is reached.</li>
+</ul>
 <img src="http://adv-r.had.co.nz/diagrams/environments.png/search-path.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
@@ -950,18 +1036,18 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
+DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a>
 </li>
 <li>
-<a href="#">2</a>
+R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">“An Introduction to R”</a>.
 </li>
 <li>
-<a href="#">3</a>
+R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">“R Language Definition”</a>.
 </li>
 <li>
-<a href="#"></a>
+Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.
 </li>
 </ul>
 </div>

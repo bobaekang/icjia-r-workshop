@@ -88,37 +88,62 @@ data.frame(
 
 ## What is a data frame?
 
-* A tabular representation of data where each column is a vector of some type.
-    * think of Excel spreadsheets, SPSS tables, etc.!
-* Can be seen as a *list of vectors* of *the same length*, but with additional functionalities for data analysis!
-    * accessing data in a data frame works similarly
-    * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
+A data frame is a tabular representation of data where each column is a vector of some type. You can think of Excel spreadsheets, SPSS tables, etc.!
+
+In R, a data frame exists as a `data.frame` object, which can be seen as a *list of vectors* of *the same length*, but with additional functionalities for data analysis! 
+
+Accessing data in a data frame works similarly as in accessing data in a list. In fact, a list can be easily converted into a data frame using `as.data.frame()` (and vice versa, with `as.list()`).
 
 
 ## Example: ISP crime data 
 
-I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data. Let's take a look:
+I have created an R package called `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data. Let's take a look.
+
+### Inspecting a `data.frame` obejct
+
+First we import `icjiar` package to make `ispcrime` dataset available in the global environment.
 
 ```{r}
 library(icjiar)
 
 class(ispcrime)  # the class of ispcrime object is "data.frame"
-is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected
 ```
+
+Using the `class()` function, we find that `ispcrime` is a `data.frame` object. Alternatively, using the `is.data.frame()` function, we can check that `ispcrime` is indeed a `data.frame` object.
+
+```{r}
+is.data.frame(ispcrime)  # check if ispcrime is a data.frame; TRUE, as expected
+```
+
+Now, we take a look at the "structure" of `ispcrime`. `str()` is a function we use to bring out the sturcutre of an R object. In this case, `str()` prints that our object is a data frame with 12 variables and shows each variable with its data type as well as first few elements.
 
 ```{r}
 str(ispcrime)  # reports the "structure" of the data frame 
+```
+
+Another way of understanding a data frmae is to print the first few rows. This can be achieved using `head()`, which prints out the first `n` rows of the data frame. The default is `n = 6`.
+
+```{r}
 head(ispcrime, 5)  # returns the first n rows of the data frame (default 6)
 ```
 
+There are a few functions to inspect the shape of a `data.frame` object. First, we can try `dim()` to get the dimension (number of rows by number of columns) of a `data.frame` object. `nrow()` and `ncol()` return the number of rows and the number of columns of a `data.frame` object, respectively.
 
 ```{r}
 dim(ispcrime)  # returns the dimension of the data frame (row  column)
 nrow(ispcrime)  # returns the number of rows in the data frame
 ncol(ispcrime)  # returns the number of columns in the data frame
+```
+
+Finally, we can use `colnames()` to obtain a vector of a `data.frame` object's column names.
+
+```{r}
 colnames(ispcrime)  # returns a vector containing the column names 
 ```
 
+### Accessing desired subsets
+
+Now we explore accessing desired subsets of a `data.frame` object. We start with columns. The following are three different ways to get the first column of `ispcrime`, which has the name `year`:
 
 ```{r eval=FALSE}
 ispcrime$year # access a column by name
@@ -128,18 +153,31 @@ ispcrime[, 1] # yet another way to access the first column!
 ```{r echo=FALSE}
 ispcrime$year
 ```
+
+Accessing select rows of a `data.frame` is somewhat simpler: 
+
 ```{r}
 ispcrime[1, ]  # access the first row by index
-ispcrime[1, 1] # access a specific cell (first row of the first column)
 ```
 
-## Creating a data frame
+Combining these two, we can get to a particular cell in a `data.frame` object.
 
-* Using `data.frame()`
-    * Using existing vectors as arguments
-    * Simultanesouly creating vectors and assigning column names to them  
-* Coercing a list using `as.data.frame()`
+```{r eval=FALSE}
+# access a specific cell (first row of the first column)
+ispcrime$year[1]
+ispcrime[[1]][1]
+ispcrime[1, 1]
+```
+```{r echo=FALSE}
+ispcrime[1, 1]
+```
 
+## Creating a data.frame object
+
+Most often, we will be working with `data.frame` objects that result from importing external datasets or come as part of imported packages. Sometimes, however, we need to create a `data.frame` object. There are two main ways to do so:
+
+* Using `data.frame()`: Here, we either use vector objects as argument inputs or simultanesouly create vectors and assign column names to them.  
+* Coercing a list using `as.data.frame()`: We can also convert an existing `list` object into a `data.frame` object.
 
 ### Using data.frame()
 
@@ -181,7 +219,9 @@ df3 <- as.data.frame(lt)
 print(df3)
 ```
 
-## Transforming a data frame
+## Transforming a `data.frame` object
+
+It is common to find that the given `data.frame` object is not exactly in the desired shape or form. Here we will take a quick look at the following four basic operations for transforming a `data.frame` object:
 
 * change column names
 * add / modify / remove columns
@@ -198,6 +238,8 @@ print(df1)
 
 ### Add columns
 
+Adding new columns can be done in two ways. First, we can use one of the methods to access a column but with a slight twist: this time, we point to a non-existing column and assign a vector to it. Second, we can use the `cbind()` function, which takes an existing `data.frame` object and a vector as its arguments and returns a new `data.frame` object now with an additional column.
+
 ```{r}
 # using $ index
 df1$my_colors <- c("red", "green", "orange")
@@ -209,16 +251,24 @@ df1 <- cbind(df1, my_cities)
 print(df1)
 ```
 
+It must be noted that, in the example above, the length of both vectors for `my_colors` and `my_cities` had to match the number of columns in the existing `data.frame` obejct, `df1`. Otherwise, R will throw an error.
+
+Also, when adding columns in the first way, we must be careful not to leave "holes" after existing columns. For example, if we try `df1[, 10] <- c(1,2,3)`, R will throw an error because the `df1` cannot have the tenth column without already having the ninth column. 
+
 ### Modify columns
+
+Modifying existing columns is very similar to adding ones, except that we assign a new vector to overwrite an existing column. Also, note that we can use `NA` to give a missing value to certian cells.
 
 ```{r}
 df1[["my_colors"]] <- c("maroon", "blue", "purple")
-df1$my_cities <- c("Chicago", "London", "Paris")
+df1$my_cities <- c("Chicago", NA, "Paris")
 
 df1
 ```
 
 ### Remove columns
+
+There are two major ways to remove columns. First, we can point to a specific column and assign `NULL` to it. Alternatively, we can take a subset of the columns and reassign it to the object. 
 
 ```{r}
 # assinging NULL
@@ -234,6 +284,10 @@ df1
 
 ### Add rows
 
+Compared to columns, working with rows of a `data.frame` object is more limited.
+
+Adding rows can be done by the `rbind()` function, which works similarly to how the aforementioned `cbind()` does.
+
 ```{r}
 new_row <- data.frame(
   my_fruits = "strawberry",
@@ -247,6 +301,8 @@ df1
 
 ### Remove rows
 
+An easy way to remove rows from a `data.frame` object is taking a subset and reassigning that to the object.
+
 ```{r}
 # subsetting
 df1 <- df1[1:3, ]
@@ -255,6 +311,9 @@ df1
 ```
 
 ### Modify cells
+
+Modifying individual sells is not much different. However, we must make sure that the new element we would like to give to a cell is of the same type as the existing column. It is noteworthy that, when we create a `data.frame`, a character vector becomes a `factor` type by default (this default behavior can be changed with the `stringsAsFactors` argument of `data,frame()`). Therefore, the following will fail. 
+
 ```{r}
 # this doesn't work ... why?
 df1$my_flavors[1] <- "mint chocolate chip"
@@ -266,6 +325,8 @@ df1
 df1$my_flavors
 ```
 
+In such a case, we can first coerce the target column into a desired data type and then modify the cell.
+
 ```{r}
 # first we coerce the column into character class
 df1$my_flavors <- as.character(df1$my_flavors)
@@ -274,19 +335,22 @@ df1$my_flavors <- as.character(df1$my_flavors)
 df1$my_flavors[1] <- "mint chocolate chip"
 
 df1
-
 ```
+
+You may encounter a similar issue when trying to give a `numeric` type value to an `integer` column. Make sure the data types match!
 
 ## Extending data frame
 
-* In practice, R's original `data.frame` is rarely used since better alternatives are available.
+In practice, R's original `data.frame` is rarely used since better alternatives are available. There are two prominant alternatives:
+
     * `tibble`
     * `data.table`
-* Both alternatives are extension of the original `data.frame`
-    * either can be manipulated just like a data frame
+
+It is noteworthy that both alternatives are in fact extensions of the original `data.frame`. Consequently, either can be manipulated using methods for a data.frame objects.
 
 
 ### `tibble`
+
 ```{r echo=FALSE}
 tibble::tibble(
   column1 = seq(1,5)*10 + 1,
@@ -297,11 +361,9 @@ tibble::tibble(
 )
 ```
 
-* Part of the `tidyverse` framework (we'll come back to this)
-* More easily understood `tidyverse` syntax
-* Refined print method
-* Coercing a data frame into a tibble can be done with `as_tibble()` from `tibble` package 
-* See [here](http://r4ds.had.co.nz/tibbles.html) for more on tibble
+`tibble` is a part of the `tidyverse` framework (we'll come back to this). A `tibble` object follows easily understood `tidyverse` syntax and has a refined print method, which can be seen as more informative and convenient. Coercing a data.frame object into a `tibble` can be done with `as_tibble()` from the `tibble` package.
+
+Please see [here](http://r4ds.had.co.nz/tibbles.html) for more on `tibble`.
 
 ### `data.table`
 
@@ -314,11 +376,10 @@ data.table::data.table(
   column5 = seq(1,5)*10 + 5
 )
 ```
-* Made available via `data.frame` package.
-* Highly optimized for larger tables (e.g. >100K rows).
-* Compact syntax for advanced slicing and dicing of tablular data.
-* Coercing a data frame into a data table can be done with `as.data.table()` 
-* See [here](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) for more on data.table
+
+`data.frame` objects are made available via the `data.table` package. It is highly optimized for larger tables (e.g. >100K rows) and provides compact syntax for advanced slicing and dicing of tablular data. Coercing a `data.frame` object into a `data.table` can be done with `as.data.table()`.
+
+See [here](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) for more on `data.table`.
 
 
 ***
@@ -338,6 +399,8 @@ Source: <a href="https://www.datacamp.com/">DataCamp</a>
 
 ## Using packages
 
+To use an add-on package, we first have to install it using, for example, the `install.packages()` function. Onces the package is installed, it can be imported to the global environment using `library()`.
+
 ```{r eval=FALSE}
 # first we should install the desired package
 install.packages("some_package")
@@ -348,15 +411,15 @@ library(some_package)
 
 ## Two ways of installing packages
 
-* From CRAN (Comprehensive R Archive Network)
-    * tested and trusted
-    * using `install.packages("package")`
-* From specific Github repositories (i.e., development versions)
-    * latest versions with cutting-edge features 
-    * using `install_github("author/package")`
-        * `install_github()` is available via `devtools` package.
+There are in fact two ways to install new packages.
 
-* Also, check out "Install Packages" [tutorial video](https://vimeo.com/203516241) by RStudio, Inc.
+1. From CRAN (Comprehensive R Archive Network):
+    * Packages that are listed on CRAN are tested and can be trusted. In other words, they are generally more robust towards bugs. We can install a pacakge from CRAN using `install.packages("package")`.
+
+2. From specific Github repositories (i.e., development versions):
+    * If we want the latest version of a package with cutting-edge features, we may choose to install the package using the `install_github("author/package")` method, which will pull the most up-to-date version of the package as shown in its GitHub repository. The `install_github()` function is available via the `devtools` package.
+
+Also, check out "Install Packages" [tutorial video](https://vimeo.com/203516241) by RStudio, Inc.
 
 
 ***
@@ -371,13 +434,15 @@ knitr::include_graphics("../images/tidyverse.png")
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
+`tidyverse` is a set of packages that are based on a particular perspective on working with data in R. It is also one of the most popular styles of doing data analysis.
+
 ## Tidy approach to data science
 
-Tidy data is data where:
+"The tidyverse framework" introduces the notion of tidy data. A dataset is tidy if:
 
-> 1. Each variable is in a column
-> 2. Each observation is a row
-> 3. Each value is a cell.
+> (1) Each variable is in a column
+> (2) Each observation is a row
+> (3) Each value is a cell.
 
 ```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 knitr::include_graphics("http://r4ds.had.co.nz/images/tidy-1.png")
@@ -390,7 +455,7 @@ Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font
 
 ## Untidy data?
 
-Anything that is not tidy!
+Anything that does not follow the aforementioned principles of a tidy dataset can be thought untidy:
 
 * Multiple variables in a single column
 * Multiple observations in a single row
@@ -452,25 +517,28 @@ Source: <a href="https://www.nytimes.com/">The New York Times</a>
 
 ## Why style guide?
 
-> The goal [of the style guide] is to make our R code easier to read, share, and verify.  - Google's R Style guide
+> The goal [of the style guide] is to make our R code easier to read, share, and verify.<br>- Google's R Style guide
+
+The key benefits of following a style guide include:
 
 * Readability
 * Productivity
 * Reproducibility
 
-
 ## Which style guide?
 
-* Currently, there is no single style guide adopted by the R community as *the* standard.
+Currently, there is no single style guide adopted by the R community as *the* standard. However, there are two style guides that are considered authoritative:
+
     * [Google's R Style guide](https://google.github.io/styleguide/Rguide.xml)
     * [Tidyverse style guide](http://style.tidyverse.org/)
     
 ## Personal recommendations
 
-* Start with the tidyverse style guide
-* Consider adding extra rules *only if* they will help your team to better collaborate and maintain code
-* Keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!
+I recommand anyone who are picking up R to start with the tidyverse style guide, which is suggested by one of the most influential personalities in R community, Hadley Wickham, and most widely adopted.
 
+You may consider adding extra rules *only if* they will help your team to better collaborate and maintain code. Even then, you should keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!
+
+In the following, I will offer some key elements of the tidyvese style guide:
 
 ## Object naming
 
@@ -619,14 +687,14 @@ average <- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by
 * Be concise!
 * Be clear!
 
+Finally, remember that the ultimate goal of adopting a particular coding style to facilitate your work.
 
 ***
 
 
 # References
-<ul style="list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul>
+  <li>Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml">"Google's R Style Guide"</a>.</li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>Wickham, H. (n.d.). <a href="http://style.tidyverse.org/">"The tidyverse style guide"</a>.</li>
 </ul>

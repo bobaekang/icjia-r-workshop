@@ -73,7 +73,7 @@ include_graphics("../images/icjia-x-r.png")
 
 ## Instructor (Bobae Kang)
 
-My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html) to read more about me.
+My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for approximately one year and a half at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html) to read more about me.
 
 ## Workshop objectives
 
@@ -87,19 +87,18 @@ This workshop is developed to offer a gentle introduction to the R programming l
 * Employ the programmatic approach to research and data analysis projects; and
 * Leverage online resources to find solutions to specific questions on using R for a given task.
 
-Of course, mastering any of the listed skills requires more than this workshop. *This workshop alone will not make any of its participants an expert R programmer.* However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.
-
+Of course, mastering any of the listed skills requires more than this workshop. *This workshop alone will not make any of its participants an expert R programmer.* However, it will help the participants *to get started* and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants *to gain the knowledge and confidence necesary to learn* what they need to know for their own research projects.
 
 ## A programming approach to research[^1]
 
-[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu), and much of this section's contents is drawn from his work albeit with modifications. 
+[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu), and much of this section's contents is drawn from his work albeit with modifications.
 
 Among the core objectives of this workshop is to convince its participants to try a different approach to research: **a programming (or programmatic) approach**.
 
-Many researchers and analysts rely on "graphical user interface" (GUI) tools where a lot of point-and-clicks and drag-and-drops happens. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it--which, by the way, can be fun as well!
+Many researchers and analysts rely on "graphical user interface" (GUI) tools; a lot of point-and-clicks and drag-and-drops happens with such tools. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many with little to no prior experience in programming. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it--which, by the way, can be fun as well!
 
 ### GUI workflow vs. programmatic workflow
-Before discussing specific advantages of the programmatic approach to research, let compare two different workflows--one using GUI, and the other programmatic--with examples.
+Before discussing specific advantages of the programmatic approach to research, let us compare two different workflows--one dependent on GUI tools, and the other programmatic--with examples.
 
 Here we introduce two reserchers:
 
@@ -110,7 +109,7 @@ include_graphics("../images/archer.png")
 ```
 </div>
 <div class="col-xs-6" style="margin: 0; padding: 0">
-* **Sterling Malory Archer** is an ICJIA research analyst relying almost explicitly on the GUI tools for his research projects.
+* **Sterling Malory Archer** is an ICJIA research analyst who relies almost explicitly on the GUI tools for his research projects.
 </div>
 </div>
 <div class="row">
@@ -245,7 +244,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
 
 ## Comparisons
 
-### R vs Excel
+### R vs MS Excel
 <div class="row">
 <div class="col-xs-2">
 ```{r echo=FALSE, out.width="100%"}
@@ -268,7 +267,7 @@ include_graphics("../images/excel-logo.png")
 </div>
 </div>
 
-### R vs SPSS
+### R vs IBM SPSS
 
 <div class="row">
 <div class="col-xs-2">
@@ -472,9 +471,10 @@ This module consists of the following two parts:
 
 
 # References
-<ul style="list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul>
+  <li>Bollen, K., Cacioppo, J., Kaplan, R., Krosnick, J. & Olds, J. (2015). <a href="https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf">"Social, Behaviroal, and Economic Sciences Perspectives on Robust and Reliable Science"</a>.</li>
+  <li>Gentzkow, M. & Shapiro, J. M. (2014). <a href="https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf">"Code and Data for the Social Sciences: A Practitioner's Guide"</a>.</li>
+  <li>Robinson, D. (2017). <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impressive Growth of R"</a>. <span style="font-style:italic">Stack Overflow Blog</span>.</li>
+  <li>Soltoff, B. (2018). <a href="http://cfss.uchicago.edu/block001_intro.html">"Introduction to computing for the social sciences"</a>. <span style="font-style:italic">Computing for the Social Sciences</span>.</li>
+  <li>Wikipedia articles on relevant topics.</li>
 </ul>

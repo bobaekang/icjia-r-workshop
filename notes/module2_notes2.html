@@ -289,27 +289,24 @@ div.tocify {
 ## 5      51      52      53      54      55</code></pre>
 <div id="what-is-a-data-frame" class="section level2">
 <h2>What is a data frame?</h2>
-<ul>
-<li>A tabular representation of data where each column is a vector of some type.
-<ul>
-<li>think of Excel spreadsheets, SPSS tables, etc.!</li>
-</ul></li>
-<li>Can be seen as a <em>list of vectors</em> of <em>the same length</em>, but with additional functionalities for data analysis!
-<ul>
-<li>accessing data in a data frame works similarly</li>
-<li>a list can be easily converted into a data frame using <code>as.data.frame()</code> (… and vice versa, with <code>as.list()</code>)</li>
-</ul></li>
-</ul>
+<p>A data frame is a tabular representation of data where each column is a vector of some type. You can think of Excel spreadsheets, SPSS tables, etc.!</p>
+<p>In R, a data frame exists as a <code>data.frame</code> object, which can be seen as a <em>list of vectors</em> of <em>the same length</em>, but with additional functionalities for data analysis!</p>
+<p>Accessing data in a data frame works similarly as in accessing data in a list. In fact, a list can be easily converted into a data frame using <code>as.data.frame()</code> (and vice versa, with <code>as.list()</code>).</p>
 </div>
 <div id="example-isp-crime-data" class="section level2">
 <h2>Example: ISP crime data</h2>
-<p>I have created an R package <code>icjiar</code>, which comes with some sample datasets, including a data frame of ISP UCR data. Let’s take a look:</p>
+<p>I have created an R package called <code>icjiar</code>, which comes with some sample datasets, including a data frame of ISP UCR data. Let’s take a look.</p>
+<div id="inspecting-a-data.frame-obejct" class="section level3">
+<h3>Inspecting a <code>data.frame</code> obejct</h3>
+<p>First we import <code>icjiar</code> package to make <code>ispcrime</code> dataset available in the global environment.</p>
 <pre class="r"><code>library(icjiar)
 
 class(ispcrime)  # the class of ispcrime object is &quot;data.frame&quot;</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<pre class="r"><code>is.data.frame(ispcrime)  # check if iris is a data.frame; TRUE, as expected</code></pre>
+<p>Using the <code>class()</code> function, we find that <code>ispcrime</code> is a <code>data.frame</code> object. Alternatively, using the <code>is.data.frame()</code> function, we can check that <code>ispcrime</code> is indeed a <code>data.frame</code> object.</p>
+<pre class="r"><code>is.data.frame(ispcrime)  # check if ispcrime is a data.frame; TRUE, as expected</code></pre>
 <pre><code>## [1] TRUE</code></pre>
+<p>Now, we take a look at the “structure” of <code>ispcrime</code>. <code>str()</code> is a function we use to bring out the sturcutre of an R object. In this case, <code>str()</code> prints that our object is a data frame with 12 variables and shows each variable with its data type as well as first few elements.</p>
 <pre class="r"><code>str(ispcrime)  # reports the &quot;structure&quot; of the data frame </code></pre>
 <pre><code>## &#39;data.frame&#39;:    510 obs. of  12 variables:
 ##  $ year         : int  2011 2011 2011 2011 2011 2011 2011 2011 2011 2011 ...
@@ -324,6 +321,7 @@ class(ispcrime)  # the class of ispcrime object is &quot;data.frame&quot;</code>
 ##  $ larcenyTft   : int  1241 183 147 563 22 405 41 165 71 3756 ...
 ##  $ MVTft        : int  36 11 5 14 1 8 1 2 3 164 ...
 ##  $ arson        : int  6 4 1 4 1 2 0 1 4 28 ...</code></pre>
+<p>Another way of understanding a data frmae is to print the first few rows. This can be achieved using <code>head()</code>, which prints out the first <code>n</code> rows of the data frame. The default is <code>n = 6</code>.</p>
 <pre class="r"><code>head(ispcrime, 5)  # returns the first n rows of the data frame (default 6)</code></pre>
 <pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
 ## 1 2011     Adams          218      0   37      15        166          1555
@@ -337,16 +335,22 @@ class(ispcrime)  # the class of ispcrime object is &quot;data.frame&quot;</code>
 ## 3       58        147     5     1
 ## 4      152        563    14     4
 ## 5       14         22     1     1</code></pre>
+<p>There are a few functions to inspect the shape of a <code>data.frame</code> object. First, we can try <code>dim()</code> to get the dimension (number of rows by number of columns) of a <code>data.frame</code> object. <code>nrow()</code> and <code>ncol()</code> return the number of rows and the number of columns of a <code>data.frame</code> object, respectively.</p>
 <pre class="r"><code>dim(ispcrime)  # returns the dimension of the data frame (row  column)</code></pre>
 <pre><code>## [1] 510  12</code></pre>
 <pre class="r"><code>nrow(ispcrime)  # returns the number of rows in the data frame</code></pre>
 <pre><code>## [1] 510</code></pre>
 <pre class="r"><code>ncol(ispcrime)  # returns the number of columns in the data frame</code></pre>
 <pre><code>## [1] 12</code></pre>
+<p>Finally, we can use <code>colnames()</code> to obtain a vector of a <code>data.frame</code> object’s column names.</p>
 <pre class="r"><code>colnames(ispcrime)  # returns a vector containing the column names </code></pre>
 <pre><code>##  [1] &quot;year&quot;          &quot;county&quot;        &quot;violentCrime&quot;  &quot;murder&quot;       
 ##  [5] &quot;rape&quot;          &quot;robbery&quot;       &quot;aggAssault&quot;    &quot;propertyCrime&quot;
 ##  [9] &quot;burglary&quot;      &quot;larcenyTft&quot;    &quot;MVTft&quot;         &quot;arson&quot;</code></pre>
+</div>
+<div id="accessing-desired-subsets" class="section level3">
+<h3>Accessing desired subsets</h3>
+<p>Now we explore accessing desired subsets of a <code>data.frame</code> object. We start with columns. The following are three different ways to get the first column of <code>ispcrime</code>, which has the name <code>year</code>:</p>
 <pre class="r"><code>ispcrime$year # access a column by name
 ispcrime[[1]] # access the first column by index
 ispcrime[, 1] # yet another way to access the first column!</code></pre>
@@ -387,24 +391,27 @@ ispcrime[, 1] # yet another way to access the first column!</code></pre>
 ## [477] 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015
 ## [491] 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015 2015
 ## [505] 2015 2015 2015 2015 2015 2015</code></pre>
+<p>Accessing select rows of a <code>data.frame</code> is somewhat simpler:</p>
 <pre class="r"><code>ispcrime[1, ]  # access the first row by index</code></pre>
 <pre><code>##   year county violentCrime murder rape robbery aggAssault propertyCrime
 ## 1 2011  Adams          218      0   37      15        166          1555
 ##   burglary larcenyTft MVTft arson
 ## 1      272       1241    36     6</code></pre>
-<pre class="r"><code>ispcrime[1, 1] # access a specific cell (first row of the first column)</code></pre>
+<p>Combining these two, we can get to a particular cell in a <code>data.frame</code> object.</p>
+<pre class="r"><code># access a specific cell (first row of the first column)
+ispcrime$year[1]
+ispcrime[[1]][1]
+ispcrime[1, 1]</code></pre>
 <pre><code>## [1] 2011</code></pre>
 </div>
-<div id="creating-a-data-frame" class="section level2">
-<h2>Creating a data frame</h2>
+</div>
+<div id="creating-a-data.frame-object" class="section level2">
+<h2>Creating a data.frame object</h2>
+<p>Most often, we will be working with <code>data.frame</code> objects that result from importing external datasets or come as part of imported packages. Sometimes, however, we need to create a <code>data.frame</code> object. There are two main ways to do so:</p>
 <ul>
-<li>Using <code>data.frame()</code>
-<ul>
-<li>Using existing vectors as arguments</li>
-<li>Simultanesouly creating vectors and assigning column names to them<br />
+<li>Using <code>data.frame()</code>: Here, we either use vector objects as argument inputs or simultanesouly create vectors and assign column names to them.<br />
 </li>
-</ul></li>
-<li>Coercing a list using <code>as.data.frame()</code></li>
+<li>Coercing a list using <code>as.data.frame()</code>: We can also convert an existing <code>list</code> object into a <code>data.frame</code> object.</li>
 </ul>
 <div id="using-data.frame" class="section level3">
 <h3>Using data.frame()</h3>
@@ -454,8 +461,9 @@ print(df3)</code></pre>
 ## 3 clementine  llamas     cookie dough</code></pre>
 </div>
 </div>
-<div id="transforming-a-data-frame" class="section level2">
-<h2>Transforming a data frame</h2>
+<div id="transforming-a-data.frame-object" class="section level2">
+<h2>Transforming a <code>data.frame</code> object</h2>
+<p>It is common to find that the given <code>data.frame</code> object is not exactly in the desired shape or form. Here we will take a quick look at the following four basic operations for transforming a <code>data.frame</code> object:</p>
 <ul>
 <li>change column names</li>
 <li>add / modify / remove columns</li>
@@ -474,6 +482,7 @@ print(df1)</code></pre>
 </div>
 <div id="add-columns" class="section level3">
 <h3>Add columns</h3>
+<p>Adding new columns can be done in two ways. First, we can use one of the methods to access a column but with a slight twist: this time, we point to a non-existing column and assign a vector to it. Second, we can use the <code>cbind()</code> function, which takes an existing <code>data.frame</code> object and a vector as its arguments and returns a new <code>data.frame</code> object now with an additional column.</p>
 <pre class="r"><code># using $ index
 df1$my_colors &lt;- c(&quot;red&quot;, &quot;green&quot;, &quot;orange&quot;)
 
@@ -486,27 +495,31 @@ print(df1)</code></pre>
 ## 1      apple       dogs    chocolate       red     Chicago
 ## 2     banana       cats       vanila     green    New Work
 ## 3 clementine     llamas cookie dough    orange Los Angeles</code></pre>
+<p>It must be noted that, in the example above, the length of both vectors for <code>my_colors</code> and <code>my_cities</code> had to match the number of columns in the existing <code>data.frame</code> obejct, <code>df1</code>. Otherwise, R will throw an error.</p>
+<p>Also, when adding columns in the first way, we must be careful not to leave “holes” after existing columns. For example, if we try <code>df1[, 10] &lt;- c(1,2,3)</code>, R will throw an error because the <code>df1</code> cannot have the tenth column without already having the ninth column.</p>
 </div>
 <div id="modify-columns" class="section level3">
 <h3>Modify columns</h3>
+<p>Modifying existing columns is very similar to adding ones, except that we assign a new vector to overwrite an existing column. Also, note that we can use <code>NA</code> to give a missing value to certian cells.</p>
 <pre class="r"><code>df1[[&quot;my_colors&quot;]] &lt;- c(&quot;maroon&quot;, &quot;blue&quot;, &quot;purple&quot;)
-df1$my_cities &lt;- c(&quot;Chicago&quot;, &quot;London&quot;, &quot;Paris&quot;)
+df1$my_cities &lt;- c(&quot;Chicago&quot;, NA, &quot;Paris&quot;)
 
 df1</code></pre>
 <pre><code>##    my_fruits my_animals   my_flavors my_colors my_cities
 ## 1      apple       dogs    chocolate    maroon   Chicago
-## 2     banana       cats       vanila      blue    London
+## 2     banana       cats       vanila      blue      &lt;NA&gt;
 ## 3 clementine     llamas cookie dough    purple     Paris</code></pre>
 </div>
 <div id="remove-columns" class="section level3">
 <h3>Remove columns</h3>
+<p>There are two major ways to remove columns. First, we can point to a specific column and assign <code>NULL</code> to it. Alternatively, we can take a subset of the columns and reassign it to the object.</p>
 <pre class="r"><code># assinging NULL
 df1$my_colors &lt;- NULL
 
 df1</code></pre>
 <pre><code>##    my_fruits my_animals   my_flavors my_cities
 ## 1      apple       dogs    chocolate   Chicago
-## 2     banana       cats       vanila    London
+## 2     banana       cats       vanila      &lt;NA&gt;
 ## 3 clementine     llamas cookie dough     Paris</code></pre>
 <pre class="r"><code># subsetting
 df1 &lt;- df1[, 1:3]  # or c(&quot;my_fruits&quot;, &quot;my_animals&quot;, &quot;my_flavors&quot;)
@@ -519,6 +532,8 @@ df1</code></pre>
 </div>
 <div id="add-rows" class="section level3">
 <h3>Add rows</h3>
+<p>Compared to columns, working with rows of a <code>data.frame</code> object is more limited.</p>
+<p>Adding rows can be done by the <code>rbind()</code> function, which works similarly to how the aforementioned <code>cbind()</code> does.</p>
 <pre class="r"><code>new_row &lt;- data.frame(
   my_fruits = &quot;strawberry&quot;,
   my_animals = &quot;monkeys&quot;,
@@ -535,6 +550,7 @@ df1</code></pre>
 </div>
 <div id="remove-rows" class="section level3">
 <h3>Remove rows</h3>
+<p>An easy way to remove rows from a <code>data.frame</code> object is taking a subset and reassigning that to the object.</p>
 <pre class="r"><code># subsetting
 df1 &lt;- df1[1:3, ]
 
@@ -546,6 +562,7 @@ df1</code></pre>
 </div>
 <div id="modify-cells" class="section level3">
 <h3>Modify cells</h3>
+<p>Modifying individual sells is not much different. However, we must make sure that the new element we would like to give to a cell is of the same type as the existing column. It is noteworthy that, when we create a <code>data.frame</code>, a character vector becomes a <code>factor</code> type by default (this default behavior can be changed with the <code>stringsAsFactors</code> argument of <code>data,frame()</code>). Therefore, the following will fail.</p>
 <pre class="r"><code># this doesn&#39;t work ... why?
 df1$my_flavors[1] &lt;- &quot;mint chocolate chip&quot;</code></pre>
 <pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 1, value = structure(c(NA, 3L, 2L), .Label
@@ -560,6 +577,7 @@ df1$my_flavors[1] &lt;- &quot;mint chocolate chip&quot;</code></pre>
 df1$my_flavors</code></pre>
 <pre><code>## [1] &lt;NA&gt;         vanila       cookie dough
 ## Levels: chocolate cookie dough vanila butter pecan</code></pre>
+<p>In such a case, we can first coerce the target column into a desired data type and then modify the cell.</p>
 <pre class="r"><code># first we coerce the column into character class
 df1$my_flavors &lt;- as.character(df1$my_flavors)
 
@@ -571,21 +589,15 @@ df1</code></pre>
 ## 1      apple       dogs mint chocolate chip
 ## 2     banana       cats              vanila
 ## 3 clementine     llamas        cookie dough</code></pre>
+<p>You may encounter a similar issue when trying to give a <code>numeric</code> type value to an <code>integer</code> column. Make sure the data types match!</p>
 </div>
 </div>
 <div id="extending-data-frame" class="section level2">
 <h2>Extending data frame</h2>
-<ul>
-<li>In practice, R’s original <code>data.frame</code> is rarely used since better alternatives are available.
-<ul>
-<li><code>tibble</code></li>
-<li><code>data.table</code></li>
-</ul></li>
-<li>Both alternatives are extension of the original <code>data.frame</code>
-<ul>
-<li>either can be manipulated just like a data frame</li>
-</ul></li>
-</ul>
+<p>In practice, R’s original <code>data.frame</code> is rarely used since better alternatives are available. There are two prominant alternatives:</p>
+<pre><code>* `tibble`
+* `data.table`</code></pre>
+<p>It is noteworthy that both alternatives are in fact extensions of the original <code>data.frame</code>. Consequently, either can be manipulated using methods for a data.frame objects.</p>
 <div id="tibble" class="section level3">
 <h3><code>tibble</code></h3>
 <pre><code>## # A tibble: 5 x 5
@@ -596,13 +608,8 @@ df1</code></pre>
 ## 3    31.0    32.0    33.0    34.0    35.0
 ## 4    41.0    42.0    43.0    44.0    45.0
 ## 5    51.0    52.0    53.0    54.0    55.0</code></pre>
-<ul>
-<li>Part of the <code>tidyverse</code> framework (we’ll come back to this)</li>
-<li>More easily understood <code>tidyverse</code> syntax</li>
-<li>Refined print method</li>
-<li>Coercing a data frame into a tibble can be done with <code>as_tibble()</code> from <code>tibble</code> package</li>
-<li>See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</li>
-</ul>
+<p><code>tibble</code> is a part of the <code>tidyverse</code> framework (we’ll come back to this). A <code>tibble</code> object follows easily understood <code>tidyverse</code> syntax and has a refined print method, which can be seen as more informative and convenient. Coercing a data.frame object into a <code>tibble</code> can be done with <code>as_tibble()</code> from the <code>tibble</code> package.</p>
+<p>Please see <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on <code>tibble</code>.</p>
 </div>
 <div id="data.table" class="section level3">
 <h3><code>data.table</code></h3>
@@ -612,13 +619,8 @@ df1</code></pre>
 ## 3:      31      32      33      34      35
 ## 4:      41      42      43      44      45
 ## 5:      51      52      53      54      55</code></pre>
-<ul>
-<li>Made available via <code>data.frame</code> package.</li>
-<li>Highly optimized for larger tables (e.g. &gt;100K rows).</li>
-<li>Compact syntax for advanced slicing and dicing of tablular data.</li>
-<li>Coercing a data frame into a data table can be done with <code>as.data.table()</code></li>
-<li>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on data.table</li>
-</ul>
+<p><code>data.frame</code> objects are made available via the <code>data.table</code> package. It is highly optimized for larger tables (e.g. &gt;100K rows) and provides compact syntax for advanced slicing and dicing of tablular data. Coercing a <code>data.frame</code> object into a <code>data.table</code> can be done with <code>as.data.table()</code>.</p>
+<p>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on <code>data.table</code>.</p>
 <hr />
 </div>
 </div>
@@ -637,6 +639,7 @@ df1</code></pre>
 </div>
 <div id="using-packages" class="section level2">
 <h2>Using packages</h2>
+<p>To use an add-on package, we first have to install it using, for example, the <code>install.packages()</code> function. Onces the package is installed, it can be imported to the global environment using <code>library()</code>.</p>
 <pre class="r"><code># first we should install the desired package
 install.packages(&quot;some_package&quot;)
 
@@ -645,22 +648,18 @@ library(some_package)</code></pre>
 </div>
 <div id="two-ways-of-installing-packages" class="section level2">
 <h2>Two ways of installing packages</h2>
+<p>There are in fact two ways to install new packages.</p>
+<ol style="list-style-type: decimal">
+<li>From CRAN (Comprehensive R Archive Network):
 <ul>
-<li>From CRAN (Comprehensive R Archive Network)
-<ul>
-<li>tested and trusted</li>
-<li>using <code>install.packages(&quot;package&quot;)</code></li>
+<li>Packages that are listed on CRAN are tested and can be trusted. In other words, they are generally more robust towards bugs. We can install a pacakge from CRAN using <code>install.packages(&quot;package&quot;)</code>.</li>
 </ul></li>
-<li>From specific Github repositories (i.e., development versions)
+<li>From specific Github repositories (i.e., development versions):
 <ul>
-<li>latest versions with cutting-edge features</li>
-<li>using <code>install_github(&quot;author/package&quot;)</code>
-<ul>
-<li><code>install_github()</code> is available via <code>devtools</code> package.</li>
+<li>If we want the latest version of a package with cutting-edge features, we may choose to install the package using the <code>install_github(&quot;author/package&quot;)</code> method, which will pull the most up-to-date version of the package as shown in its GitHub repository. The <code>install_github()</code> function is available via the <code>devtools</code> package.</li>
 </ul></li>
-</ul></li>
-<li>Also, check out “Install Packages” <a href="https://vimeo.com/203516241">tutorial video</a> by RStudio, Inc.</li>
-</ul>
+</ol>
+<p>Also, check out “Install Packages” <a href="https://vimeo.com/203516241">tutorial video</a> by RStudio, Inc.</p>
 <hr />
 </div>
 </div>
@@ -670,9 +669,10 @@ library(some_package)</code></pre>
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
 </div>
+<p><code>tidyverse</code> is a set of packages that are based on a particular perspective on working with data in R. It is also one of the most popular styles of doing data analysis.</p>
 <div id="tidy-approach-to-data-science" class="section level2">
 <h2>Tidy approach to data science</h2>
-<p>Tidy data is data where:</p>
+<p>“The tidyverse framework” introduces the notion of tidy data. A dataset is tidy if:</p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li>Each variable is in a column</li>
@@ -690,7 +690,7 @@ library(some_package)</code></pre>
 </div>
 <div id="untidy-data" class="section level2">
 <h2>Untidy data?</h2>
-<p>Anything that is not tidy!</p>
+<p>Anything that does not follow the aforementioned principles of a tidy dataset can be thought untidy:</p>
 <ul>
 <li>Multiple variables in a single column</li>
 <li>Multiple observations in a single row</li>
@@ -759,8 +759,9 @@ library(some_package)</code></pre>
 <div id="why-style-guide" class="section level2">
 <h2>Why style guide?</h2>
 <blockquote>
-<p>The goal [of the style guide] is to make our R code easier to read, share, and verify. - Google’s R Style guide</p>
+<p>The goal [of the style guide] is to make our R code easier to read, share, and verify.<br>- Google’s R Style guide</p>
 </blockquote>
+<p>The key benefits of following a style guide include:</p>
 <ul>
 <li>Readability</li>
 <li>Productivity</li>
@@ -769,21 +770,15 @@ library(some_package)</code></pre>
 </div>
 <div id="which-style-guide" class="section level2">
 <h2>Which style guide?</h2>
-<ul>
-<li>Currently, there is no single style guide adopted by the R community as <em>the</em> standard.
-<ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style guide</a></li>
-<li><a href="http://style.tidyverse.org/">Tidyverse style guide</a></li>
-</ul></li>
-</ul>
+<p>Currently, there is no single style guide adopted by the R community as <em>the</em> standard. However, there are two style guides that are considered authoritative:</p>
+<pre><code>* [Google&#39;s R Style guide](https://google.github.io/styleguide/Rguide.xml)
+* [Tidyverse style guide](http://style.tidyverse.org/)</code></pre>
 </div>
 <div id="personal-recommendations" class="section level2">
 <h2>Personal recommendations</h2>
-<ul>
-<li>Start with the tidyverse style guide</li>
-<li>Consider adding extra rules <em>only if</em> they will help your team to better collaborate and maintain code</li>
-<li>Keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!</li>
-</ul>
+<p>I recommand anyone who are picking up R to start with the tidyverse style guide, which is suggested by one of the most influential personalities in R community, Hadley Wickham, and most widely adopted.</p>
+<p>You may consider adding extra rules <em>only if</em> they will help your team to better collaborate and maintain code. Even then, you should keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!</p>
+<p>In the following, I will offer some key elements of the tidyvese style guide:</p>
 </div>
 <div id="object-naming" class="section level2">
 <h2>Object naming</h2>
@@ -935,23 +930,21 @@ average &lt;- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr
 <li>Be concise!</li>
 <li>Be clear!</li>
 </ul>
+<p>Finally, remember that the ultimate goal of adopting a particular coding style to facilitate your work.</p>
 <hr />
 </div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
+Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml">“Google’s R Style Guide”</a>.
 </li>
 <li>
-<a href="#">2</a>
+Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.
 </li>
 <li>
-<a href="#">3</a>
-</li>
-<li>
-<a href="#"></a>
+Wickham, H. (n.d.). <a href="http://style.tidyverse.org/">“The tidyverse style guide”</a>.
 </li>
 </ul>
 </div>
