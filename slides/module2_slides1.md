@@ -528,14 +528,16 @@ Miscellaneous operators
 |Operator |Description                          |Example                                                    |
 |:--------|:------------------------------------|:----------------------------------------------------------|
 |`:`      |Colon operator to generate sequences |`1:10` generates a vector of integer sequence from 1 to 10 |
-|`?`      |Help function to see documentation   |`?some_function` is equivalent to `help(some_function)`    |
+|`?`      |Help function to see documentation   |`?my_function` is equivalent to `help(my_function)`        |
+|`$`      |List subset                          |`my_list$a` will access the subset `a` in the list         |
 |`%in%`   |"In" operator                        |`1 %in% c(1,2,3)` returns `TRUE`                           |
 |`%*%`    |Matrix multiplication                |                                                           |
 
 
 Other operators
 ========================================================
-* Operators can be defined by users
+
+* New operators can be defined by users
 * Some third party packages offer custom operators
     * e.g. the "pipe" operator (`%>%`) from `magrittr` package (also available through `dplyr` pacakge)
 
@@ -609,7 +611,6 @@ ifelse(a < 3, "Less than 3", "Not less than 3")
 ```
 [1] "Less than 3"     "Less than 3"     "Not less than 3" "Not less than 3"
 ```
-
 
 
 Loops

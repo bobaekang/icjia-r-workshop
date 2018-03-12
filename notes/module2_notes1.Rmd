@@ -81,6 +81,12 @@ Navigate to the other workshop materials:
 
 
 # R Objects
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/object.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+</p>
 
 ## Key object types
 
@@ -290,6 +296,12 @@ print(to_vector)
 
 
 # R Expressions
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/expression.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+</p>
 
 ## What are expressions
 
@@ -413,16 +425,18 @@ kable(
 ```{r echo=FALSE}
 kable(
   data.frame(
-    Operator = c('`:`', '`?`', '`%in%`', '`%*%`'),
+    Operator = c('`:`', '`?`', '`$`', '`%in%`', '`%*%`'),
     Description = c(
       'Colon operator to generate sequences',
       'Help function to see documentation',
+      'List subset',
       '"In" operator',
       'Matrix multiplication'
     ),
     Example = c(
       '`1:10` generates a vector of integer sequence from 1 to 10',
-      '`?some_function` is equivalent to `help(some_function)`',
+      '`?my_function` is equivalent to `help(my_function)`',
+      '`my_list$a` will access the subset `a` in the list',
       '`1 %in% c(1,2,3)` returns `TRUE`',
       ''
     )
@@ -432,22 +446,24 @@ kable(
 
 ### Other operators
 
-* Operators can be defined by users
-* Some third party packages offer custom operators
-    * e.g. the "pipe" operator (`%>%`) from `magrittr` package (also available through `dplyr` pacakge)
+In practice, using R operators is no different from a function call. Accordingly, it is also possible to define new operators. In fact, some third party packages offer custom operators. One such example is the "pipe" operator (`%>%`) from `magrittr` package, which is also available through `dplyr` pacakge.
     
 
 ## Flow control
 
-* Conditionals
-* Loops
+By default, R runs statements in a sequential manner, from top to bottom. There are however ways to break from this using contronl structures. Here we call it "flow control".
 
+In the following, we will take a look at two basic flow control methods: conditionals and loops.
 
 ### Conditionals
 
-* `if` statement
-* Basic structure
-    * if ( condition ) { expression }
+Using conditionals means creating a desired "flow" of evaluating statements based on certain conditions: i.e. if A, then B.
+
+R offers `if` statement to acheieve this. The basic `if` statement structure is given as follows:
+
+* `if ( condition ) { expression }`
+
+Let's try an example:
 
 ```{r}
 a <- TRUE
@@ -457,10 +473,13 @@ if (a) {
 }
 ```
 
-#### Multiple conditions
+Here, the variable a is a condition to be tested. If the value of the condition is boolean `TRUE`, than the statements between curly braces `{}` are executed. If the condition value is `FALSE`, R jumps ahead the statemetns between `{}`.
 
-* `if`-`else` statement
-* allows for multiple conditions
+### Multiple conditions
+
+It is possible to create more elaborate flow control structures. R provides `else` statement for the statements to run only if the preceding `if` condition is `FALSE`. Then, we can chain multiple `if`-`else`s to incorporate multiple conditions.
+
+The following code block presents an example of chained `if`-`else` statement with three conditions: (1) `a` is greater than `b`, (2) `a` is not greater but is less than `b`, (3) `a` is neither greater or less than `b`. R evaluates these conditions in a sequential manner, and when the condition evaluates as `TRUE`, executes the relevant statements.
 
 ```{r}
 a <- 1
@@ -475,13 +494,15 @@ if (a > b) {
 }
 ```
 
-#### `ifelse` function
+
+### `ifelse` function
 ```{r eval=FALSE}
 ifelse(test_expression, true_value, false_value)
 ```
-* Element-wise if-else condition
-* Condition is tested for each and every element of a vector 
-* Example:
+
+R also offers `ifelse` function, which is to try the condition for each element of a multi-element object. That is, `ifelse()` is an element-wise if-else conditional. Here, the given condition (`test_expression`) is tested for each and every element of a vector and the output is a vector of the same length with relevant values. 
+
+In the following example, `ifelse` will return a vector of 4, which equals to the length of input vector `a`, and the each element of the output vector is the result of testing whether the input element is less than 3.
 
 ```{r}
 a <- c(1,2,3,4)
@@ -490,6 +511,8 @@ ifelse(a < 3, "Less than 3", "Not less than 3")
 
 
 ### Loops
+
+R offers looping statements for tasks that involve some repetitions. Here we will take a look at two commonly used looping methods: `while` and `for`. 
 
 * `while` loops
 
@@ -507,8 +530,7 @@ for (element in iterable_object) {
 }
 ```
 
-#### `while` loop
-
+### `while` loop
 ```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/while_loop.jpg")
 ```
@@ -516,6 +538,7 @@ include_graphics("../images/while_loop.jpg")
 Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
 </p>
 
+A `while` loop consists of a condition and a group of statments (expression) to be executed.
 
 ```{r eval=FALSE}
 while (condition) {
@@ -523,10 +546,15 @@ while (condition) {
 }
 ```
 
-* If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
-* Onces the `expression` is executed, the `condition` is re-evaluated.
-* The `expression` is repetitively executed as long as the `condition` is satisfied.
-    * beware of infinite loop!
+`while` statement goes through the following steps:
+
+1. If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
+2. Once the `expression` is executed, the `condition` is re-evaluated.
+3. The `expression` is repetitively executed as long as the `condition` is satisfied.
+
+This means that, if the condition is always `TRUE`, we will be stuck in an infinite loop!
+
+The folloing example uses `while` statement to print a number from 0 to 4. Because we add 1 to count at each loop, we can be rest assured that the condition will return `FALSE` at one point, and the loop will terminate.
 
 ```{r}
 count <- 0
@@ -537,7 +565,7 @@ while (count < 5) {
 }
 ```
 
-#### `for` loop
+### `for` loop
 
 ```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/for_loop.jpg")
@@ -546,15 +574,19 @@ include_graphics("../images/for_loop.jpg")
 Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
 </p>
 
+A `for` loop is similar to `while` loop, except that it takes an iterable object (vector or list) rather than a condition.
+
 ```{r eval=FALSE}
 for (element in iterable_object) {
   expression
 }
 ```
 
-* Requires an iterable object (e.g. vector or list).
-* Iterates over all elements of the given object in order.
-* At each step of iteration, can use the given element for the `expression` if appropriate.
+Intead of checking for a condition, `for` loop iterates over all elements of the given object in order. The loop terminates when we reach the final element of the iterable object. At each step of iteration, we can use the given element for the `expression` if appropriate.
+
+Let's try couple examples.
+
+In the first example, we directly iterate over the elements of `fruits` vector. At each step, the value of `fruit` changes and made available between the curly braces as a variable.
 
 ```{r}
 fruits <- c("apple", "banana", "clementine")
@@ -564,6 +596,8 @@ for (fruit in fruits) {
   print(paste("I love ", fruit, "!", sep=""))
 }
 ```
+
+In the second example, we indirectly iterate over the `flavors` vector using indices.
 
 ```{r}
 flavors <- c("chocolate", "vanilla", "cookie dough")
@@ -575,13 +609,15 @@ for (i in 1:length(flavors)) {
 }
 ```
 
-#### `break` statement
+### `break` statement
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/break_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
 </p>
+
+By combining conditionals and loops, we can generate a more complex flow control structure. Here we introduce two additional statements, `break` and `next`, which support creating advanced control structure.
 
 ```{r eval=FALSE}
 # with for loop
@@ -600,10 +636,11 @@ while (loop_condition) {
   expression
 }
 ```
-* `break` can be used to "break out" of a loop based on a break condition
+
+`break` statment is used to "break out "of the loop when certain condition is met.
 
 
-#### `next` statement
+### `next` statement
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/next_loop.png")
 ```
@@ -628,30 +665,40 @@ while (loop_condition) {
   expression
 }
 ```
-* `next` can be used to skip a step in a loop based on a next condition
+
+`next` statement can be used to skip a step in a loop when a certain condition is met. 
 
 
 ***
 
 
 # R Functions
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/function-machine.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+</p>
 
 ## What are functions
 
-* Functions are "call-able" objects
-    * can be called or invoked by following `()`
-    * can be manipulated in the same way as any other object
-* Three elements of a function (or function closure)
-    1. an argument list (a.k.a. parameters; optional)
-    2. body
-    3. function environment
+In R, functions are special objects that are "call-able". In other words, a function can be called or invoked by following `()`. Meanwhile, a function can be manipulated just in the same way as any other object.
+
+There are three elements of a function (or function closure):
+
+1. an argument list (a.k.a. parameters; optional)
+2. body
+3. function environment
 
 ## Why use functions
 
-* Encapsulate repeated operations
-    * Simplify code (clearner and more concise)
-    * Avoid unintended bugs/errors
-    * Enhance reproducibility
+A key function of a function (pun intended :)) is to encapsulate repeated operations so that we can:
+
+* Simplify code (clearner and more concise)
+* Avoid unintended bugs/errors
+* Enhance reproducibility
+    
+In other words, if you find yourself copying and pasting the same code chunk over and over, you should wrap it into a function.
 
 ### Creating a new function
 ```{r eval=FALSE}
@@ -666,20 +713,32 @@ name <- function(arg1, arg2) {
 }
 ```
 
-#### A custom function for adding two numbers
+Just as we assign some values to a symbol (or a variable) to create an object, we assign a `function() {}` to a symbol to create a function. We put a number of arguments, or parameters, into the `()`, and a set of operations in `{}`, where the parameters can be used to represent actual inputs.
+
+It must be noted that the expressions inside `{}` are living in a "function environment" that is "closed" off of the global environment. We will talk more about environments later. For now, we should only remember the following key points:
+
+* Objects created in a function environment are *not accessible* from its parent environment
+* Objects existing in the parent environment are *accessible* from the the function environment
+* Each function call creates a *separate* environment (or an instance of the function environment)
+
+Now, let's take a look at some examples to explore how we can create a function.
+
+### A custom function for adding two numbers
 
 ```{r}
 # example: a custom function for adding two numbers
-add <- function(num1, num2) {
-  num1 + num2
+add_nums <- function(num1, num2) {
+  return(num1 + num2)
 }
 
-add_output <- add(3, 5) # assign the function output to a variable
+add_output <- add_nums(3, 5) # assign the function output to a variable
 
 print(add_output)
 ```
 
-#### A function without arguments
+In this example, we create a function `add_nums`, which takes two numbers as arguments and returns the sum of the two numbers. The output value that the function returns can be assigned to create an object.
+
+### A function without arguments
 
 ```{r}
 # example: a custom function without arguments
@@ -690,8 +749,9 @@ print_hello_world <- function() {
 print_hello_world()
 ```
 
+Here, we create a function `print_hello_world`, which has no argument input. That is, we are not required to have arguments to create a function. In fact, the function also has no real output--it just prints a phrase. Calling the function will print the phrase.
 
-#### A function with arguments having default values
+### A function with arguments having default values
 
 ```{r}
 add_nums_2 <- function(num1, num2 = 5) {
@@ -700,15 +760,16 @@ add_nums_2 <- function(num1, num2 = 5) {
 
 add_nums_2(3) # call a function using the default value for num2
 ```
-* A function can be given default values to its arguments
-* Default values can be something that are expected to be used most often when calling the function
+
+A function can be given default values to its arguments. If the argument value is not given when the function is called, the default value is used for that argument. It is a good practice to make default values something that are expected to be used most often when calling the function. 
+
 
 ***
 
 
 # R Environments
 ```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-knitr::include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/bindings.png")
+knitr::include_graphics("../images/environments_bindings.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
@@ -716,13 +777,13 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 
 ## What are environments
 
-* Simply put, an environment is a place to store variables.
-* All variables (as bindings of symbols and objects) exist in a specific environment.
-    * More precisely, *objects* live in memory outside all environment;
-    * It is the *symbols* and the *associations* of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.
-* Environments can have nested structure.
+Environment is a tricky concept to grasp. Simply put, an environment is a place to store variables. That is, all variables (as bindings of symbols and objects) exist in a specific environment. More precisely, *objects* live in memory outside all environment; it is the *symbols* and the *associations* of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.
+
+As we will see shortly, environments can have nested structure.
 
 ## Nesting of environments
+
+There are two simple rules to know about the nesting of environments:
 
 * Variables in a parent environment are accessible in a child environment
 * Variables in a child environment are *NOT* accessible in a parent environment
@@ -734,11 +795,16 @@ knitr::include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/parent
 Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
+In this picture, the box on the left represents a parent environment and the box on the right is a child environment. Variables `a`, `b`, and `c` are stored in the parent environment while `d` and `e` are in the child environment. According to the two basic rules about environments, accessing variables `d` and `e` from the parent environment is not possible but, `a`, `b`, and `c` are still accessible from the child environment.
+
 ## The global environment
 
-* The interactive workspace for the given R session.
-* Its immediate parent is the environment of the package that is imported last.
-* Can be accessed using `globalenv()`, which works like a named list
+There is something called the "global environment" in R which deserved our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.
+
+The immediate parent of the global environment is the environment of the package that is imported last. This is how all the datasets and functions from the package, as well as other pacakges imported prior to it, are made available in the global environment.
+
+In R, an environment is like a function, and the global environment can be accessed using `globalenv()`, which works like a named list as shown in the folloing code chunk:
+
 ```{r}
 some_variable <- 1 # a variable in the global environment
 global_env <-globalenv() # the environment itself can be assigned to a variable
@@ -749,14 +815,17 @@ identical(some_variable, global_env$some_variable)
 
 ## Local environments
 
-* Local environments are created by
+If there is the global environment, there local environments as well. Local environments are created in two ways:
+
     * any function calls
     * `new.env()`
-* Can be used to protect the global environment from arbitrarily created variables
+
+A local environment can be used to protect the global environment from arbitrarily created variables.
 
 ## Lexical scoping
 
-Searching for an object in R follows the lexical scoping rules.  
+Searching for an object in R follows the lexical scoping rules.
+
 * First, R looks for the object in the current environment  
 * If the object is not found in the current environment, R moves up to its parent environment.  
 * The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.

@@ -64,7 +64,7 @@ Workshop participants will learn the basic building blocks of R language. Once p
 ### Part 1: Fundamentals of R programming
 
 * [**Slides**](./slides/module2_slides1.html)
-* [**Notes**](./notes/module2_notes1.html) (in development)
+* [**Notes**](./notes/module2_notes1.html)
 
 ### Part 2: Gearing up for data analysis
 
