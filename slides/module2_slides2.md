@@ -79,6 +79,8 @@ Example: ISP crime data
 ========================================================
 I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
 
+**Inspecting a `data.frame` object**
+
 
 ```r
 library(icjiar)
@@ -91,7 +93,7 @@ class(ispcrime)         # the class of ispcrime object is "data.frame"
 ```
 
 ```r
-is.data.frame(ispcrime) # check if iris is a data.frame; TRUE, as expected
+is.data.frame(ispcrime) # check if ispcrime is a data.frame; TRUE, as expected
 ```
 
 ```
@@ -182,6 +184,7 @@ colnames(ispcrime)  # returns a vector containing the column names
 
 
 ========================================================
+**Accessing desired subsets**
 
 ```r
 ispcrime$year # access a column by name
@@ -218,7 +221,10 @@ ispcrime[1, ]  # access the first row by index
 ```
 
 ```r
-ispcrime[1, 1] # access a specific cell (first row of the first column)
+# access a specific cell (first row of the first column)
+ispcrime$year[1]
+ispcrime[[1]][1]
+ispcrime[1, 1]
 ```
 
 ```
@@ -226,7 +232,7 @@ ispcrime[1, 1] # access a specific cell (first row of the first column)
 ```
 
 
-Creating a data frame
+Creating a data.frame object
 ========================================================
 * Using `data.frame()`
     * Using existing vectors as arguments
@@ -234,9 +240,10 @@ Creating a data frame
 * Coercing a list using `as.data.frame()`
 
 
-Using data.frame()
 ========================================================
-Using existing vectors
+**Using `data.frame()`**
+
+* Using existing vectors
 
 ```r
 fruits <- c("apple", "banana", "clementine")
@@ -256,9 +263,8 @@ print(df1)
 ```
 
 
-Using data.frame()
 ========================================================
-Simultaneously creating vectors and assigning names
+* Simultaneously creating vectors and assigning names
 
 ```r
 df2 <- data.frame(
@@ -278,8 +284,8 @@ print(df2)
 ```
 
 
-Converting a list using as.data.frame()
 ========================================================
+**Converting a list using `as.data.frame()`**
 
 ```r
 lt <- list(
@@ -301,7 +307,7 @@ print(df3)
 ```
 
 
-Transforming a data frame
+Transforming a dat.frame object
 ========================================================
 * change column names
 * add / modify / remove columns
@@ -487,7 +493,7 @@ df1
 ```
 
 
-Extending data frame
+Extending data.frame
 ========================================================
 * In practice, R's original `data.frame` is rarely used since better alternatives are available.
     * `tibble`
@@ -513,7 +519,7 @@ tibble
 * Part of the `tidyverse` framework (we'll come back to this)
 * More easily understood `tidyverse` syntax
 * Refined print method
-* Coercing a data frame into a tibble can be done with `as_tibble()` from `tibble` package 
+* Coercing a `data.frame` object into a `tibble` can be done with `as_tibble()` from the `tibble` package 
 
 <div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</div>
 
@@ -529,10 +535,10 @@ data.table
 4:      41      42      43      44      45
 5:      51      52      53      54      55
 ```
-* Made available via `data.frame` package.
+* Made available via `data.table` package.
 * Highly optimized for larger tables (e.g. >100K rows).
 * Compact syntax for advanced slicing and dicing of tablular data.
-* Coercing a data frame into a data table can be done with `as.data.table()` 
+* Coercing a `data.frame` object into a `data.table` can be done with `as.data.table()` 
 
 <div style="font-size:0.75em; text-align:center">See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on data.table</div>
 
@@ -540,7 +546,7 @@ data.table
 R Add-On Packages
 ========================================================
 type:section
-<img src="../images/r-packages.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/r-packages.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.datacamp.com/">DataCamp</a>
 </div>
@@ -577,7 +583,7 @@ Two ways of installing packages
 Tidyverse Framework
 ========================================================
 type:section
-<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/tidyverse.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="100%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -593,7 +599,7 @@ Tidy data is data where:
 
 
 ========================================================
-<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
+<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="100%" style="display: block; margin-top:10%; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
 </div>
@@ -655,7 +661,7 @@ Tidyverse core packages
 Good Code, Bad Code
 ========================================================
 type:section
-<img src="../images/good-bad.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/good-bad.jpg" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.nytimes.com/">The New York Times</a>
 </div>
@@ -846,7 +852,7 @@ Most importantly...
 Questions?
 ========================================================
 type: section
-<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
 </div>

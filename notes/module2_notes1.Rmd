@@ -23,7 +23,8 @@ css: ../css/style.css
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+opts_chunk$set(echo = TRUE)
 ```
 
 This page contains the notes for **the first part of R Workshop Module 2: R basics**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
@@ -296,55 +297,121 @@ print(to_vector)
     * From third-party pacakges
 
 ### Arithmetic operators
-
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`+`|Addition|`1 + 1    # returns 2`|
-|`-`|Subtraction|`3 - 2  # returns 1`|
-|`*`|Multiplication|`3 * 4  # returns 12`|
-|`/`|Division|`5 / 2 # returns 2.5`|
-|`^` or `**`|Exponentiation|`2**4  # returns 16`|
-|`%%`|Modulus|`5 %% 2  # returns 1`|
-|`%/%`|Integer division|`5 %% 2  # returns 2`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`+`', '`-`', '`*`', '`/`', '`^` or `**`', '`%%`', '`%/%`'),
+    Description = c(
+      'Addition',
+      'Substraction',
+      'Multiplication',
+      'Division',
+      'Exponentiation',
+      'Modulus',
+      'Integer division'
+    ),
+    Example = c(
+      '`1 + 1`    (returns 2)',
+      '`3 - 2`  (returns 1)',
+      '`3 * 4`  (returns 12)',
+      '`5 / 2`  (returns 2.5)',
+      '`2**4`  (returns 16)',
+      '`5 %% 2`  (returns 1)',
+      '`5 %/% 2`  (returns 2)'
+    )
+  )
+)
+```
 
 ### Logical operators
-
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`&`|Element-wise logical AND|`c(TRUE, TRUE) & c(TRUE, FALSE)  # returns TRUE FALSE`|
-|&#124;|Element-wise logical OR|`c(TRUE, FALSE) ` &#124; ` c(FALSE, FALSE)  # returns TRUE FALSE`|
-|`!`|Logical NOT|`!c(TRUE, FALSE)  # retruns FALSE TRUE`|
-|`&&`|Logical AND (considers the first element only)|`c(TRUE, TRUE) && c(FALSE, TRUE)  # returns FALSE`|
-|&#124;&#124;|Logical OR (considers the first element only)|`c(TRUE, TRUE) ` &#124;&#124; `c(FALSE, TRUE)  # returns TRUE`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`&`', '|', '`!`', '`&&`', '||'),
+    Description = c(
+      'Element-wise logical AND',
+      'Element-wise logical OR',
+      'Logical NOT',
+      'Logical AND<br>(considers the first element only)',
+      'Logical OR<br>(considers the first element only)'
+    ),
+    Example = c(
+      '`c(TRUE, TRUE) & c(TRUE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`c(TRUE, FALSE)` | `c(FALSE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`!c(TRUE, FALSE)`<br>returns `TRUE`',
+      '`c(TRUE, TRUE) && c(FALSE, TRUE)`<br>returns `FALSE`',
+      '`c(TRUE, TRUE)` || `c(FALSE, TRUE)`<br>returns `TRUE`'
+    )
+  )
+)
+```
 
 ### Relational operators
-
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`>`|Greater than|`3 > 1  # returns TRUE`|
-|`<`|Less than|`3 < 1  # returns FALSE`|
-|`==`|Equal to|`2 == 2  # returns TRUE`|
-|`<=`|Less than or equal to|`4 <= 4 # returns TRUE`|
-|`>=`|Greater than or equal to|`3 >= 4  # returns FALSE`|
-|`!=`|Not equal to|`2 != 3  # returns TRUE`|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`>`', '`<`', '`==`', '`>=`', '`<=`', '`!=`'),
+    Description = c(
+      'Greater than',
+      'Less than',
+      'Equal to',
+      'Greater than or equal to',
+      'Less than or equal to',
+      'Not equal to'
+    ),
+    Example = c(
+      '`3 > 1` returns `TRUE`',
+      '`3 < 1` returns `FALSE`',
+      '`2 == 2` returns `TRUE`',
+      '`3 >= 4` returns `FALSE`',
+      '`4 <= 4` returns `TRUE`',
+      '`2 != 3` returns `TRUE`'
+    )
+  )
+)
+```
 
 ### Assignment operators
-
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`<-` or `=`|Left assignment|`a <- "Hello" # print(a) returns "Hello"`|
-|`->`|Right assignment|The use of `->` is mostly discouraged|
-|`<<-`|Left scoping assignment|Search for the variable in the parent environments takes place before assignment|
-|`->>`|Right scoping assignment|Ditto|
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`<-` or `=`', '`->`', '`<<-`', '`->>`'),
+    Description = c(
+      'Left assignment',
+      'Right assignment',
+      'Left scoping assignment',
+      'Right scoping assignment'
+    ),
+    Example = c(
+      '`a <- "Hello"` assigns `"Hello"` to the object `a`',
+      'The use of `->` is mostly discouraged',
+      'Search for the variable in the parent<br>environments takes place before assignment',
+      'Ditto'
+    )
+  )
+)
+```
 
 ### Miscellaneous operators
-
-|Operator|Description|Example|
-|--------|--------------------------------|--------------------------------|
-|`:`|Colon operator to generate sequences|`a <- "Hello" # print(a) returns "Hello"`|
-|`?`|Help function to see documentation|`?some_function # equivalent to help(some_function)`|
-|`%in%`|In operator|`1 %in% c(1, 2, 3)  # returns TRUE`|
-|`%*%`|Matrix multiplication||
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`:`', '`?`', '`%in%`', '`%*%`'),
+    Description = c(
+      'Colon operator to generate sequences',
+      'Help function to see documentation',
+      '"In" operator',
+      'Matrix multiplication'
+    ),
+    Example = c(
+      '`1:10` generates a vector of integer sequence from 1 to 10',
+      '`?some_function` is equivalent to `help(some_function)`',
+      '`1 %in% c(1,2,3)` returns `TRUE`',
+      ''
+    )
+  )
+)
+```
 
 ### Other operators
 
@@ -355,8 +422,55 @@ print(to_vector)
 
 ## Flow control
 
-* Loops
 * Conditionals
+* Loops
+
+
+### Conditionals
+
+* `if` statement
+* Basic structure
+    * if ( condition ) { expression }
+
+```{r}
+a <- TRUE
+
+if (a) {
+  print("Hello World!")
+}
+```
+
+#### Multiple conditions
+
+* `if`-`else` statement
+* allows for multiple conditions
+
+```{r}
+a <- 1
+b <- 2
+
+if (a > b) {
+  print("a is larger than b.")
+} else if (a < b) {
+  print("a is smaller than b.")
+} else {
+  print("a and b are equal!")
+}
+```
+
+#### `ifelse` function
+```{r eval=FALSE}
+ifelse(test_expression, true_value, false_value)
+```
+* Element-wise if-else condition
+* Condition is tested for each and every element of a vector 
+* Example:
+
+```{r}
+a <- c(1,2,3,4)
+ifelse(a < 3, "Less than 3", "Not less than 3")
+```
+
 
 ### Loops
 
@@ -378,12 +492,13 @@ for (element in iterable_object) {
 
 #### `while` loop
 
-```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-knitr::include_graphics("https://www.tutorialspoint.com/r/images/swift_while_loop.jpg")
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/while_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_while_loop.htm">"R - While Loop", tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
 </p>
+
 
 ```{r eval=FALSE}
 while (condition) {
@@ -396,13 +511,22 @@ while (condition) {
 * The `expression` is repetitively executed as long as the `condition` is satisfied.
     * beware of infinite loop!
 
+```{r}
+count <- 0
+
+while (count < 5) {
+  print(count)
+  count = count + 1  # increase count by 1 at each iteration
+}
+```
+
 #### `for` loop
 
-```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-knitr::include_graphics("https://www.tutorialspoint.com/r/images/r_for_loop.jpg")
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/for_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.tutorialspoint.com/r/r_for_loop.htm">"R - For Loop", tutorialspoint.com</a>
+Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
 </p>
 
 ```{r eval=FALSE}
@@ -434,25 +558,60 @@ for (i in 1:length(flavors)) {
 }
 ```
 
+#### `break` statement
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/break_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
 
-### Conditionals
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
 
-* `if` statement
-* Basic structure
-    * if ( condition ) { expression }
-
-```{r}
-a <- TRUE
-
-if (a) {
-  print("Hello World!")
+# with while loop
+while (loop_condition) {
+  if (break_condition) {
+    break
+  }
+  expression
 }
 ```
+* `break` can be used to "break out" of a loop based on a break condition
 
-### Multiple conditions
 
-* `if`-`else` statement
-* allows for multiple conditions
+#### `next` statement
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/next_loop.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+```
+* `next` can be used to skip a step in a loop based on a next condition
 
 
 ***
@@ -469,7 +628,15 @@ if (a) {
     1. an argument list (a.k.a. parameters; optional)
     2. body
     3. function environment
-    
+
+## Why use functions
+
+* Encapsulate repeated operations
+    * Simplify code (clearner and more concise)
+    * Avoid unintended bugs/errors
+    * Enhance reproducibility
+
+### Creating a new function
 ```{r eval=FALSE}
 # creating a new function
 name <- function(arg1, arg2) {
@@ -482,6 +649,8 @@ name <- function(arg1, arg2) {
 }
 ```
 
+#### A custom function for adding two numbers
+
 ```{r}
 # example: a custom function for adding two numbers
 add <- function(num1, num2) {
@@ -493,6 +662,8 @@ add_output <- add(3, 5) # assign the function output to a variable
 print(add_output)
 ```
 
+#### A function without arguments
+
 ```{r}
 # example: a custom function without arguments
 print_hello_world <- function() {
@@ -502,13 +673,18 @@ print_hello_world <- function() {
 print_hello_world()
 ```
 
-## Why use functions
 
-* Encapsulate repeated operations
-    * Simplify code (clearner and more concise)
-    * Avoid unintended bugs/errors
-    * Enhance reproducibility
+#### A function with arguments having default values
 
+```{r}
+add_nums_2 <- function(num1, num2 = 5) {
+  num1 + num2
+}
+
+add_nums_2(3) # call a function using the default value for num2
+```
+* A function can be given default values to its arguments
+* Default values can be something that are expected to be used most often when calling the function
 
 ***
 
@@ -580,9 +756,9 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 
 
 # References
-<ul style="list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+<ul>
+  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a></li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">"An Introduction to R"</a>.</li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">"R Language Definition"</a>.</li>
+  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.</li>
 </ul>
