@@ -348,33 +348,362 @@ library(tidyr)</code></pre>
 <h2>Key dplyr functions</h2>
 <ul>
 <li><code>arange()</code></li>
-<li><code>select()</code></li>
+<li><code>select()</code> <code>rename()</code></li>
 <li><code>filter()</code></li>
-<li><code>mutate()</code></li>
-<li><code>group_by()</code> and <code>summarise()</code></li>
+<li><code>mutate()</code> <code>transmute()</code></li>
+<li><code>left_join()</code></li>
+<li><code>summarise()</code></li>
+<li><code>group_by()</code> <code>ungroup()</code></li>
 <li><code>%&gt;%</code>, the pipe operator</li>
 </ul>
 </div>
-<div id="sorting-with-arrange" class="section level2">
-<h2>Sorting with <code>arrange()</code></h2>
+<div id="sort-rows-by-variables" class="section level2">
+<h2>Sort rows by variables</h2>
+<pre class="r"><code>arrange(tbl, col1, desc(col2), ...)</code></pre>
+<ul>
+<li>A tabular data object (e.g. <code>data.frame</code> or <code>tibble</code>) as the first argument</li>
+<li>Columns by which to sort the data as the following arguments
+<ul>
+<li>Multiple columns can be used to sort the data</li>
+<li>When multiple columns are given, sorting is done hierarchically</li>
+<li>Sorting in a descending order with <code>desc()</code></li>
+</ul></li>
+</ul>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code># without using pipe
+head(arrange(ispcrime, county))
+
+# with using pipe
+ispcrime %&gt;%
+  arrange(county) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
+## 1 2011     Adams          218      0   37      15        166          1555
+## 2 2012     Adams          205      0   28      16        161          1587
+## 3 2013     Adams          222      1   33      21        167          1564
+## 4 2014     Adams          222      2   34      13        173          1550
+## 5 2015     Adams          227      5   39       9        174          1268
+## 6 2011 Alexander          119      0   14       4        101           290
+##   burglary larcenyTft MVTft arson
+## 1      272       1241    36     6
+## 2      287       1261    30     9
+## 3      297       1204    55     8
+## 4      305       1201    39     5
+## 5      274        944    43     7
+## 6       92        183    11     4</code></pre>
+<pre class="r"><code># sort by county and year, in a DESCENDING order
+ispcrime %&gt;%
+  arrange(desc(county)) %&gt;%
+  head() </code></pre>
+<pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
+## 1 2011  Woodford           15      1    4       0         10           350
+## 2 2012  Woodford           23      0    3       1         19           405
+## 3 2013  Woodford           17      0   10       2          5           349
+## 4 2014  Woodford           25      0    4       0         21           283
+## 5 2015  Woodford           29      0    5       0         24           227
+## 6 2011 Winnebago         2430     27  150     622       1631         10569
+##   burglary larcenyTft MVTft arson
+## 1       90        247    10     3
+## 2       65        329    10     1
+## 3       81        257    11     0
+## 4       50        218    13     2
+## 5       35        186     6     0
+## 6     2635       7239   598    97</code></pre>
 </div>
-<div id="filtering-with-filter" class="section level2">
-<h2>Filtering with <code>filter()</code></h2>
 </div>
-<div id="selecting-with-select" class="section level2">
-<h2>Selecting with <code>select()</code></h2>
+<div id="filter-rows-with-conditions" class="section level2">
+<h2>Filter rows with conditions</h2>
+<pre class="r"><code>filter(tbl, condition1, condition2, ...)</code></pre>
+<ul>
+<li>A tabular data object as the first argument</li>
+<li>Conditions by which to filter the data as the following arguments</li>
+</ul>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  filter(
+    year == 2015,
+    murder &gt; 0
+  ) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
+## 1 2015     Adams          227      5   39       9        174          1268
+## 2 2015      Bond            5      1    0       0          4           130
+## 3 2015    Bureau           53      1   17       4         31           360
+## 4 2015 Champaign          918      7  127     205        579          5568
+## 5 2015     Coles          173      1   33      14        125           632
+## 6 2015      Cook        28791    534 1911   11217      15129        124784
+##   burglary larcenyTft MVTft arson
+## 1      274        944    43     7
+## 2       39         84     7     0
+## 3      110        244     6     0
+## 4     1100       4235   196    37
+## 5      146        463    13    10
+## 6    20550      90675 12547  1012</code></pre>
 </div>
-<div id="transforming-with-mutate" class="section level2">
-<h2>Transforming with <code>mutate()</code></h2>
 </div>
-<div id="aggregating-with-group_by-and-summarise" class="section level2">
-<h2>Aggregating with <code>group_by()</code> and <code>summarise()</code></h2>
+<div id="select-andor-rename-variables" class="section level2">
+<h2>Select and/or rename variables</h2>
+<pre class="r"><code>select(tbl, col1, var2 = col2, ...)</code></pre>
+<ul>
+<li>A tabular data object as the first argument</li>
+<li>Columns to select as the following arguments
+<ul>
+<li>Renaming each selected column is possible</li>
+</ul></li>
+</ul>
+<div id="example-2" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  select(year:violentCrime, pcrime = propertyCrime) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county violentCrime pcrime
+## 1 2011     Adams          218   1555
+## 2 2011 Alexander          119    290
+## 3 2011      Bond            6    211
+## 4 2011     Boone           59    733
+## 5 2011     Brown            7     38
+## 6 2011    Bureau           42    505</code></pre>
 </div>
-<div id="chaining-operations-with" class="section level2">
-<h2>Chaining operations with <code>%&gt;%</code></h2>
+</div>
+<div id="transform-and-add-variables" class="section level2">
+<h2>Transform and add variables</h2>
+<pre class="r"><code>mutate(tbl, col1 = expression, new_col1 = expression, ...)
+transmute()</code></pre>
+<ul>
+<li>A tabular data object as the first argument</li>
+<li>Expressions to “mutate” columns as the following arguments
+<ul>
+<li>An exisiting column is modified with an expression with the same column name</li>
+<li>A new column is created with an expression having a new column name</li>
+</ul></li>
+</ul>
+<div id="example-3" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  mutate(totalCrime = violentCrime + propertyCrime) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
+## 1 2011     Adams          218      0   37      15        166          1555
+## 2 2011 Alexander          119      0   14       4        101           290
+## 3 2011      Bond            6      1    0       0          5           211
+## 4 2011     Boone           59      0   24       8         27           733
+## 5 2011     Brown            7      0    1       0          6            38
+## 6 2011    Bureau           42      0    4       3         35           505
+##   burglary larcenyTft MVTft arson totalCrime
+## 1      272       1241    36     6       1773
+## 2       92        183    11     4        409
+## 3       58        147     5     1        217
+## 4      152        563    14     4        792
+## 5       14         22     1     1         45
+## 6       90        405     8     2        547</code></pre>
+</div>
+</div>
+<div id="merge-tables" class="section level2">
+<h2>Merge tables</h2>
+<pre class="r"><code>left_join(tbl1, tbl2, by = c(&quot;variables to join by&quot;), ...)</code></pre>
+<ul>
+<li>Tabular data objects to join as the first two arguments</li>
+<li>A character vector of variable to join by as the third argument</li>
+<li>Other types of join: <code>inner_join()</code>, <code>right_join()</code>, <code>semi_join()</code>, <code>anti_join()</code>, <code>full_join()</code></li>
+</ul>
+<div id="example-4" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  left_join(regions, by = &quot;county&quot;) %&gt;%
+  head()</code></pre>
+<pre><code>##   year    county violentCrime murder rape robbery aggAssault propertyCrime
+## 1 2011     Adams          218      0   37      15        166          1555
+## 2 2011 Alexander          119      0   14       4        101           290
+## 3 2011      Bond            6      1    0       0          5           211
+## 4 2011     Boone           59      0   24       8         27           733
+## 5 2011     Brown            7      0    1       0          6            38
+## 6 2011    Bureau           42      0    4       3         35           505
+##   burglary larcenyTft MVTft arson   region
+## 1      272       1241    36     6  Central
+## 2       92        183    11     4 Southern
+## 3       58        147     5     1 Southern
+## 4      152        563    14     4 Northern
+## 5       14         22     1     1  Central
+## 6       90        405     8     2  Central</code></pre>
+</div>
+</div>
+<div id="aggregate-and-summarise-rows" class="section level2">
+<h2>Aggregate and summarise rows</h2>
+<pre class="r"><code>summarise(tbl, summary1 = expression, summary2 = expression, ...)</code></pre>
+<ul>
+<li>A data object (table) as the first argument</li>
+<li>Expressions to summarise data as the following arguments</li>
+</ul>
+<div id="example-5" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  summarise(
+    violentCrimeAverage = mean(violentCrime, na.rm = TRUE),
+    propertyCrimeAverage = mean(propertyCrime, na.rm = TRUE)
+  )</code></pre>
+<pre><code>##   violentCrimeAverage propertyCrimeAverage
+## 1            500.9702             2912.905</code></pre>
+</div>
+</div>
+<div id="group-by-variables" class="section level2">
+<h2>Group by variables</h2>
+<pre class="r"><code>group_by(tbl, col1, col2, ...)</code></pre>
+<ul>
+<li>A data object as the first argument</li>
+<li><p>Columns by which to group the data as the following arguments</p></li>
+<li><p>Can be used in combination with other function to allow for group-specific data manipulations</p></li>
+</ul>
+<div id="example-6" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  group_by(year)</code></pre>
+<pre><code>## # A tibble: 510 x 12
+## # Groups:   year [5]
+##     year county violentCrime murder  rape robbery aggAssault propertyCrime
+##    &lt;int&gt; &lt;fct&gt;         &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;int&gt;         &lt;int&gt;
+##  1  2011 Adams           218      0    37      15        166          1555
+##  2  2011 Alexa~          119      0    14       4        101           290
+##  3  2011 Bond              6      1     0       0          5           211
+##  4  2011 Boone            59      0    24       8         27           733
+##  5  2011 Brown             7      0     1       0          6            38
+##  6  2011 Bureau           42      0     4       3         35           505
+##  7  2011 Calho~           13      0     0       0         13            56
+##  8  2011 Carro~            8      0     1       0          7           206
+##  9  2011 Cass             12      0     1       0         11           119
+## 10  2011 Champ~         1210      5   127     208        870          5332
+## # ... with 500 more rows, and 4 more variables: burglary &lt;int&gt;,
+## #   larcenyTft &lt;int&gt;, MVTft &lt;int&gt;, arson &lt;int&gt;</code></pre>
+<pre class="r"><code>ispcrime %&gt;%
+  group_by(year) %&gt;%
+  summarise(
+    violentCrimeAverage = mean(violentCrime, na.rm = TRUE),
+    propertyCrimeAverage = mean(propertyCrime, na.rm = TRUE)
+  )</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##    year violentCrimeAverage propertyCrimeAverage
+##   &lt;int&gt;               &lt;dbl&gt;                &lt;dbl&gt;
+## 1  2011                 538                 3329
+## 2  2012                 520                 3192
+## 3  2013                 503                 2940
+## 4  2014                 464                 2609
+## 5  2015                 478                 2481</code></pre>
+</div>
+</div>
+<div id="chain-operations" class="section level2">
+<h2>Chain operations</h2>
+<p>We have been using the pipe operator, <code>%&gt;%</code>, in our code examples. Now is a good time to take a closer look at it.</p>
+<pre class="r"><code>data %&gt;% some_function(arg2, arg3, ...) %&gt;% ...</code></pre>
+<p><code>%&gt;%</code> is a binary operator that requires two objects for it to work on. Think of <code>+</code> as another example of a binary operator. In the case of <code>%&gt;%</code> the object preciding the operator has to be the first argument for the function that follows the oprator. In other words, the preceding object is injected into the following function as its first argument. The result of the <code>%&gt;%</code> operator is the output of the function.</p>
+<p>In fact, as we have already seen before, multiple functions can be chained, or “piped,” using <code>%&gt;%</code> as long as the output of the first “piping” generates a suitable object for the first argument of the next function to be chained.</p>
+<p>with piping, we can have a coding style that is cleaner and more intuitive–that reflects the way we think about how we apply the operations to the object, rather than the tranditional syntax where the function that acts on the last comes at the beginning of the statement:</p>
+<pre class="r"><code># piping style
+object %&gt;%
+  function1(arguments1) %&gt;%
+  function2(arguments2) %&gt;%
+  function3(arguments3)
+
+
+# traditional style
+function3(
+  function2(
+    function1(
+      object,
+      arguments1
+    ),
+    arguments2
+  ),
+  arguments3  
+  
+)
+
+# or
+function3(function2(function1(object, arguments1), arguments2), arguments3)</code></pre>
+</div>
+<div id="dplyr-in-action" class="section level2">
+<h2><code>dplyr</code> in action</h2>
+<p>Let’s take a look at more concrete examples of using <code>dplyr</code> functions to work on data manipulation and analysis. For those of you who were there at my presentation for the February R&amp;A meeting, these are the some of the examples used in that presentation–now we can understand them better!</p>
+<div id="example-1-1" class="section level3">
+<h3>Example 1</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  filter(substr(county, 1, 1) == &quot;D&quot;, year %in% c(2014, 2015)) %&gt;%
+  mutate(totalCrime = violentCrime + propertyCrime) %&gt;%
+  select(year, county, totalCrime)</code></pre>
+<pre><code>##   year  county totalCrime
+## 1 2014 De Kalb       2218
+## 2 2014 De Witt        182
+## 3 2014 Douglas        116
+## 4 2014 Du Page      12576
+## 5 2015 De Kalb       2173
+## 6 2015 De Witt        140
+## 7 2015 Douglas        173
+## 8 2015 Du Page      12538</code></pre>
+<p>In this example, we we want to answer the following question: What are the total crime count in 2014 and 2015 for counties whose name starts with letter D?</p>
+<ol style="list-style-type: decimal">
+<li>We start with <code>ispcrime</code> data</li>
+<li>We use the pipe operator to feed the <code>ispcrime</code> data into <code>filter()</code>
+<ul>
+<li>we have two filtering conditions. First condition is that the first letter of the <code>county</code> column value matches “D” (<code>substr(county, 1, 1) == &quot;D&quot;</code>)</li>
+<li>Second condition is that the <code>year</code> column value has to be either 2014 or 2015 (<code>year %in% c(2014, 2015)</code>)</li>
+</ul></li>
+<li>We use the pipe operator to feed the filtered data into <code>mutate()</code>
+<ul>
+<li>Here we create a new column named <code>totalCrime</code>, which is the sume of <code>violentCrime</code> and <code>propertyCrime</code> values</li>
+</ul></li>
+<li>Finally, we use the filtered <em>and</em> mutated data into <code>select()</code>
+<ul>
+<li>The final output will include <code>year</code>, <code>county</code>, and <code>totalCrime</code> columns only.</li>
+</ul></li>
+</ol>
+</div>
+<div id="example-2-1" class="section level3">
+<h3>Example 2</h3>
+<pre class="r"><code>ispcrime %&gt;%
+  left_join(regions) %&gt;%
+  group_by(region, county) %&gt;%
+  summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %&gt;%
+  arrange(desc(annualAvgCrime))</code></pre>
+<pre><code>## # A tibble: 102 x 3
+## # Groups:   region [4]
+##    region   county    annualAvgCrime
+##    &lt;fct&gt;    &lt;fct&gt;              &lt;dbl&gt;
+##  1 Cook     Cook              182818
+##  2 Northern Du Page            14316
+##  3 Northern Lake               12779
+##  4 Northern Winnebago          12275
+##  5 Northern Will               11078
+##  6 Southern St. Clair           9262
+##  7 Central  Sangamon            8876
+##  8 Northern Kane                8332
+##  9 Central  Peoria              7229
+## 10 Central  Champaign           6567
+## # ... with 92 more rows</code></pre>
+<p>In this example, we we want to answer the following question: what is the annual average of the crime count per county, shown with the region it belongs to and sorted by the average count?</p>
+<ol style="list-style-type: decimal">
+<li>We start with <code>ispcrime</code> data</li>
+<li>We use the pipe operator to feed the <code>ispcrime</code> data into <code>left_join()</code>
+<ul>
+<li>This is to add <code>region</code> column from <code>regions</code> table to our data</li>
+</ul></li>
+<li>We use the pipe operator to feed the joined data into <code>group_by()</code>
+<ul>
+<li>We group the data by values of the <code>region</code> and <code>county</code> column.</li>
+</ul></li>
+<li>We use the pipe operator to feed the grouped data into <code>summarise()</code>
+<ul>
+<li>We summarise data by group to get the annual average crime, a sum of <code>violentCrime</code> and <code>propertyCrime</code>, divided by total counts. Since the input is grouped, the summarising work is also done by group.</li>
+</ul></li>
+<li>We use the pipe operator to feed the grouped and summarised data into <code>arrange()</code>
+<ul>
+<li>Here we sort the data by the newly created column, <code>annualAvgCrime</code>, in a descending order</li>
+</ul></li>
+</ol>
+</div>
 </div>
 <div id="more-on-dplyr" class="section level2">
 <h2>More on <code>dplyr</code></h2>
+<p>What we have seen is only a tip of an iceberg that is <code>dplyr</code>. Although the aforementioned functions are among the most commonly used in usual data manipulation and analysis tasks, the description and examples here are by no means comprehensive. Also, <code>dplyr</code> offers many other functions to facilitate data manipulation work. I recommend you to check out the following resources to learn more about <code>dplyr</code>:</p>
 <ul>
 <li><code>dplyr</code> on <a href="http://dplyr.tidyverse.org/">tidyverse.org</a></li>
 <li><code>dplyr</code> <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf">CRAN documentation</a></li>
@@ -399,23 +728,44 @@ library(tidyr)</code></pre>
 <li><code>unite()</code></li>
 </ul>
 </div>
-<div id="fixing-wide-data-with-gather" class="section level2">
-<h2>Fixing “wide” data with <code>gather()</code></h2>
+<div id="fix-wide-data" class="section level2">
+<h2>Fix “wide” data</h2>
+<pre class="r"><code>gather()</code></pre>
+<div id="example-7" class="section level3">
+<h3>Example</h3>
 </div>
-<div id="fixing-long-data-with-spread" class="section level2">
-<h2>Fixing “long” data with <code>spread()</code></h2>
 </div>
-<div id="splitting-columns-with-separate" class="section level2">
-<h2>Splitting columns with <code>separate()</code></h2>
+<div id="fix-long-data" class="section level2">
+<h2>Fix “long” data</h2>
+<pre class="r"><code>spread()</code></pre>
+<div id="example-8" class="section level3">
+<h3>Example</h3>
 </div>
-<div id="combining-columns-with-unite" class="section level2">
-<h2>Combining columns with <code>unite()</code></h2>
 </div>
-<div id="captuaring-groups-with-extract" class="section level2">
-<h2>Captuaring groups with <code>extract()</code></h2>
+<div id="split-a-column-into-many" class="section level2">
+<h2>Split a column into many</h2>
+<pre class="r"><code>separate()</code></pre>
+<div id="example-9" class="section level3">
+<h3>Example</h3>
+</div>
+</div>
+<div id="unite-multiple-columns-into-one" class="section level2">
+<h2>Unite multiple columns into one</h2>
+<pre class="r"><code>unite()</code></pre>
+<div id="example-10" class="section level3">
+<h3>Example</h3>
+</div>
+</div>
+<div id="extract-a-column-into-many" class="section level2">
+<h2>Extract a column into many</h2>
+<pre class="r"><code>extract()</code></pre>
+<div id="example-11" class="section level3">
+<h3>Example</h3>
+</div>
 </div>
 <div id="more-on-tidyr" class="section level2">
 <h2>More on <code>tidyr</code></h2>
+<p>As in the earlier <code>dplyr</code> case, what we have seen is only part of what <code>tidyr</code> offers. I recommend you to check out the following resources to learn more about <code>tidyr</code></p>
 <ul>
 <li><code>tidyr</code> on <a href="http://tidyr.tidyverse.org/">tidyverse.org</a></li>
 <li><code>tidyr</code> <a href="https://cran.r-project.org/web/packages/tidyr/tidyr.pdf">CRAN documentation</a></li>
@@ -426,18 +776,21 @@ library(tidyr)</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Data Import Cheat Sheet”</a>.
 </li>
 <li>
-<a href="#">2</a>
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Data Transformation Cheat Sheet”</a>.
 </li>
 <li>
-<a href="#">3</a>
+Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.
 </li>
 <li>
-<a href="#"></a>
+Tidyverse. (n.d.). <a href="http://tidyr.tidyverse.org/"><span style="font-style:italic">tidyr.tidyverse.org</span></a>.
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://www.tidyverse.org/"><span style="font-style:italic">tidyverse.org</span></a>.
 </li>
 </ul>
 </div>
