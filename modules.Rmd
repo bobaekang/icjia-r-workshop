@@ -69,7 +69,7 @@ Workshop participants will learn the basic building blocks of R language. Once p
 ### Part 2: Gearing up for data analysis
 
 * [**Slides**](./slides/module2_slides2.html)
-* [**Notes**](./notes/module2_notes2.html) (in development)
+* [**Notes**](./notes/module2_notes2.html)
 </div>
 </div>
 </div>
