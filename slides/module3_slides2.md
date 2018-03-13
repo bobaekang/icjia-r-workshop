@@ -62,7 +62,7 @@ type:section
 Working with Strings
 ========================================================
 type:section
-<img src="../images/font_case.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="33%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/font_case.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://cdn3.iconfinder.com/data/icons/metro-design/512/font_case-512.png">Iconfinder.com</a>
 </div>
@@ -79,19 +79,28 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 Key stringr functions
 ========================================================
-* `function1()`
-* `function2()`
-* `function3()`
-* `function4()`
+* `str_to_upper()` `str_to_lower()` `str_to_title()`
+* `str_trim()` `str_squish()`
+* `str_c()`
+* `str_detect()`
+* `str_subset()`
+* `str_sub()`
+
+Note: Many `stringr` functions have base R alternatives
 
 
-function1
+Convert letter case
 ========================================================
 
 ```r
-function()
+str_to_upper(string, locale = "en")
+str_to_lower(string, locale = "en")
+str_to_title(string, locale = "en")
 ```
-* as the first argument
+* `string` input is a character vector
+    * Or something that can be coerced into a character vector
+* The default `locale` is "en", for English
+* `str_to_title()` capitalizes only the first letter of each word
 
 
 ========================================================
@@ -102,55 +111,24 @@ function()
 ========================================================
 **Base R alternative**
 
+```r
+toupper(string) # equivalent to str_to_upper()
+tolower(string) # equivalent to str_to_lower()
+```
 
 
-function2
+Trim whitespace
 ========================================================
 
 ```r
-function()
+str_trim(string, side = c("both", "left", "right"))
+str_squish(string)
 ```
-* as the first argument
-
-
-========================================================
-**Example**
-
-
-
-
-========================================================
-**Base R alternative**
-
-
-
-function3
-========================================================
-
-```r
-function()
-```
-* as the first argument
-
-
-========================================================
-**Example**
-
-
-
-
-========================================================
-**Base R alternative**
-
-
-
-function4
-========================================================
-
-```r
-function()
-```
-* as the first argument
+* `string` input is a character vector
+* `side` input determins which side of a string to trim
+    * "both" trims whitespaces on both the beginning and the end
+    * "left" trims whitespaces only on the beginning
+    * "right" trims whitespaces only on the end
 
 
 ========================================================
@@ -162,6 +140,102 @@ function()
 ========================================================
 **Base R alternative**
 
+```r
+trimws(x, which = c("both", "left", "right"))
+```
+
+
+Concatenate strings into one
+========================================================
+
+```r
+str_c(..., sep = "", collapse = NULL)
+```
+* The first argument (`...`) is one more more character vectors
+* 
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+```r
+paste (..., sep = " ", collapse = NULL) # equivalent to str_c()
+```
+
+
+Detect a pattern
+========================================================
+
+```r
+str_detect(string, pattern)
+```
+* `string` input is a character vector
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+```r
+grepl(pattern, x, ...) # equivalent to str_detect()
+```
+
+
+Get strings/positions matching a pattern
+========================================================
+
+```r
+str_subset(string, pattern)
+str_which(string, pattern)
+```
+* `string` input is a character vector
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+```r
+grep(pattern, x, value = TRUE, ...) # equivalent to str_subset()
+grep(pattern, x, value = FALSE, ...) # equivalent to str_which()
+```
+
+
+Extract and replace substrings
+========================================================
+
+```r
+str_sub(string, start = 1L, end = -1L)
+str_sub(string, start = 1L, end = -1L, omit_na = FALSE) <- value
+```
+* The first argument is a character vector
+
+
+========================================================
+**Example**
+
+
+
+========================================================
+**Base R alternative**
+
+```r
+substr(x, start, stop)
+substr(x, start, stop) <- value
+```
 
 
 More on stringr
@@ -179,121 +253,85 @@ Regular expression (regex)
 
 Regular expression in R
 ========================================================
-* Finding regex matches
-* Replacing regex matches
+* Character classes
+* Metacharacters
+* Groups
+* Anchors
+* Quantifiers
 
 
-Finding regex matches
-========================================================
-* `grep()`
-* `grepl()`
-* `regexpr()`
-* `gregexpr()`
-* `regmatches()`
-
-
-grep()
+Character classes
 ========================================================
 
-```r
-grep()
-```
-* as the first argument
+|Class                 |Description                                                   |
+|:---------------------|:-------------------------------------------------------------|
+|`[[:digit:]]` or `\d` |Any digits; i.e. `[0-9]`                                      |
+|`\\D`                 |Non-digits; i.e. `[^0-9]`                                     |
+|`[[:lower:]]`         |Lower-case letters; i.e. `[a-z]`                              |
+|`[[:upper:]]`         |Upper-case letters; i.e. `[A-Z]`                              |
+|`[[:alpha:]]`         |Alphabetic characters; `[A-z]`                                |
+|`[[:alnum:]]`         |Alphanumeric characters; i.e. `[A-z0-9]`                      |
+|`\\w`                 |Any Word characters; i.e. `[A-z0-9_]`                         |
+|`\\W`                 |Non-word characters                                           |
+|`[[:blank:]]`         |Space and tab                                                 |
+|`[[:space:]]` or `\s` |Space, tab, vertical tab, newline, form feed, carriage return |
+|`\\S`                 |Not space; i.e. `[^[:space:]]`                                |
 
 
-========================================================
-**Example**
-
-
-
-grepl()
-========================================================
-
-```r
-grepl()
-```
-* as the first argument
-
-
-========================================================
-**Example**
-
-
-
-regexpr()
+Metacharacters
 ========================================================
 
-```r
-regexpr()
-```
-* as the first argument
+|Metacharacter |Description     |
+|:-------------|:---------------|
+|`\n`          |New line        |
+|`\r`          |Carriage return |
+|`\t`          |Tab             |
+|`\v`          |Vertical tab    |
+|`\f`          |Form feed       |
 
 
-========================================================
-**Example**
-
-
-
-gregexpr()
+Groups
 ========================================================
 
-```r
-gregexpr()
-```
-* as the first argument
+|Group    |Description                                                         |
+|:--------|:-------------------------------------------------------------------|
+|`.`      |Any character except `\n`                                           |
+|&#124;   |Or, e.g. `(a`&#124;`b)`                                             |
+|`[...]`  |List permitted characters, e.g. `[abc]`                             |
+|`[a-z]`  |Specify character ranges                                            |
+|`[^...]` |List excluded characters                                            |
+|`(...)`  |Grouping, enables back referencing using `\\N` where `N` is integer |
 
 
-========================================================
-**Example**
-
-
-
-regmatches()
-========================================================
-
-```r
-regmatches()
-```
-* as the first argument
-
-
-========================================================
-**Example**
-
-
-
-Replacing regex matches
-========================================================
-* `sub()`
-* `gsub()`
-
-
-sub()
+Anchors
 ========================================================
 
-```r
-sub()
-```
-* as the first argument
+|Anchor |Description                           |
+|:------|:-------------------------------------|
+|`^`    |Start of the string                   |
+|`$`    |End of the string                     |
+|`\\b`  |Empty string at either edge of a word |
+|`\\B`  |NOT the edge of a word                |
+|`\\<`  |Beginning of a word                   |
+|`\\>`  |End of a word                         |
 
 
+Quantifiers
 ========================================================
-**Example**
+
+|Quantifier |Description                             |
+|:----------|:---------------------------------------|
+|`*`        |Matches at least 0 times                |
+|`+`        |Matches at least 1 time                 |
+|`?`        |Matches at most 1 time; optional string |
+|`{n}`      |Matches extactly `n` times              |
+|`{n, }`    |Matches at least `n` times              |
+|`{, n}`    |Matches at most `n` times               |
+|`{n, m}`   |Matches between `n` and `m` times       |
 
 
-
-gsub()
+Examples
 ========================================================
-
-```r
-gsub()
-```
-* as the first argument
-
-
-========================================================
-**Example**
-
 
 
 More on regular expression
@@ -304,7 +342,7 @@ More on regular expression
 Working with Dates/Datetimes
 ========================================================
 type:section
-<img src="../images/calendar.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="33%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/calendar.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
 </div>
@@ -318,7 +356,7 @@ Dates/Datetimes basics
 lubridate from tidyverse
 ========================================================
 type:section
-<img src="../images/lubridate.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/lubridate.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
@@ -326,20 +364,21 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 Key lubridate functions
 ========================================================
-* `function1()`
+* `as_date()` `as_datetime()`
 * `year()`, `month()`, `day()`, `hour()`, ...
-* `function2()`
-* `function3()`
+* `parse_date_time()` `fast_strptime()`
+* `ymd_hms()`, `ymd()`, ...
 
-
-function1
+Convert to a date or date-time
 ========================================================
 
 ```r
-function()
+as_date(x, tz = NULL, origin = lubridate::origin)
+as_datetime(x, tz = NULL, origin = lubridate::origin)
 ```
-* as the first argument
-
+* `x` is a vector of POSIXt, numeric or character objects
+* `tz` is a time zone name
+* `origin` is a Date object or something that can be coerced into a Date object
 
 ========================================================
 **Example**
@@ -351,13 +390,46 @@ function()
 
 
 
-function2
+Get/set time component
 ========================================================
 
 ```r
-function()
+year(x)
+year(x) <- value
 ```
-* as the first argument
+* `x` is a date-time object
+* `value` is a numeric object
+
+
+========================================================
+
+|Function   |Description                                |
+|:----------|:------------------------------------------|
+|`year()`   |Get/set year component of a date-time      |
+|`month()`  |Get/set months component of a date-time    |
+|`week()`   |Get/set weeks component of a date-time     |
+|`day()`    |Get/set days component of a date-time      |
+|`hour()`   |Get/set hours component of a date-time     |
+|`minute()` |Get/set minutes component of a date-time   |
+|`second()` |Get/set seconds component of a date-time   |
+|`tz()`     |Get/set time zone component of a date-time |
+* a
+* b
+
+
+========================================================
+**Example**
+
+
+
+Parse date-time
+========================================================
+
+```r
+parse_date_time(x, orders, tz = "UTC", truncated = 0, locale = Sys.getlocale("LC_TIME"), exact = FALSE, drop = FALSE, ...)
+fast_strptime(x, format, tz = "UTC", lt = TRUE, cutoff_2000 = 68L)
+```
+* `x` is a character or numeric vector of dates
 
 
 ========================================================
@@ -371,44 +443,39 @@ function()
 
 
 
-function3
+Quickly parse date-time
 ========================================================
 
 ```r
-function()
+ymd_hms(..., quiet = FALSE, tz = NULL, ...)
+ymd(..., quiet = FALSE, tz = "UTC", ...)
 ```
-* as the first argument
+* The first `...` argument is ...
 
 
 ========================================================
-**Example**
+<br>
 
+|Date-time   |Date only |Time only |
+|:-----------|:---------|:---------|
+|`ymd_hms()` |`ymd()`   |`hms()`   |
+|`ymd_hm()`  |`ydm()`   |`hm()`    |
+|`ymd_h()`   |`mdy()`   |`ms()`    |
+|`mdy_hms()` |`myd()`   |          |
+|`mdy_hm()`  |`dmy()`   |          |
+|`mdy_h()`   |`dym()`   |          |
+|`dmy_hms()` |          |          |
+|`dmy_hm()`  |          |          |
+|`dmy_h()`   |          |          |
 
-
-
-========================================================
-**Base R alternative**
-
-
-
-function4
-========================================================
-
-```r
-function()
-```
-* as the first argument
-
-
-========================================================
-**Example**
-
-
-
-
-========================================================
-**Base R alternative**
-
+***
+<br>
+* `y` is year
+* first `m` is month
+* `d` is date
+* `h` is hour
+* second `m` is minute
+* `s` is second
 
 
 More on lubridate
@@ -421,9 +488,9 @@ More on lubridate
 Importing/Exporting Data
 ========================================================
 type:section
-<img src="../images/data_transfer.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="33%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/data_transfer.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 
 
@@ -437,47 +504,56 @@ Comma-separated values (.csv)
     * `fwrite()`
 
 
-read_csv() and write_csv()
+Using readr
 ========================================================
 
 ```r
-read_csv()
-write_csv()
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
+write_csv(x, path, na = "NA", append = FALSE, col_names = !append)
 ```
-* `read_csv()`: output is a `tibble` object
-* `write_csv()`: output is a .csv file
+* `file` is a path to the excel file to import
+* `x` is a data object to export
+* `path` is a path to the directory where the exported data will be created 
+* The output of`read_csv()` is a `tibble` object
+* The output of `write_csv()` is a .csv file
 
 
-fread() and fwite()
+Using data.table
 ========================================================
 
 ```r
-fread()
-fwrite()
+fread(input, file, nrows=-1L, header="auto", na.strings="NA", stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
+strip.white=TRUE, fill=FALSE, ...)
+fwrite(x, file = "", append = FALSE, quote = "auto", sep = ",", na = "", row.names = FALSE, col.names = TRUE, ...)
 ```
-* `fread` : output is a `data.table` object
-* `fwrite`: output is a .csv file
+* The output of `fread` is a `data.table` object
+* The output of `fwrite` is a .csv file in a directory
 
 
 ========================================================
 **Base R alternative**
 
+```r
+read.csv(file,  header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, ...)
+write.csv(x, file = "", append = FALSE, quote = TRUE, sep = ",", row.names = TRUE, col.names = TRUE, ...)
+```
+
+
 Excel spreadsheets (.xlsx/.xls)
 ========================================================
 * `readxl` package (tidyverse)
     * `read_excel()`
-    * `write_excel()`
+    * `read_xls()` `read_xlsx()`
 
 
-read_excel() write_excel()
 ========================================================
 
 ```r
-read_excel()
-write_excel()
+read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max))
+read_xls(path, ...)
+read_xlsx(path, ...)
 ```
-* `read_excel()`: output is a `tibble` object
-* `write_excel()`: output is an excel file
+* The output is a `tibble` object
 
 
 More on readxl
@@ -490,22 +566,23 @@ More on readxl
 SPSS data files (.sav)
 ========================================================
 * `haven` package (tidyverse)
-    * `read_sav()`
+    * `read_sav()` `read_spss()`
     * `write_sav()`
 * `haven` also has functions to import/export the file formats of other statistical softwares
     * STATA
     * SAS
 
 
-read_sav() write_sav()
 ========================================================
 
 ```r
-read_sav()
-write_sav()
+read_sav(file, user_na = FALSE)
+read_spss(file, user_na = FALSE)
+write_sav(data, path)
 ```
-* `read_sav()`: output is a `tibble` object
-* `write_sav()`: output is an SPSS data file
+* The output of `read_sav()` is a `tibble` object
+    * `read_spss()` is a simple alias for `read_sav()`
+* The output of `write_sav()` is an SPSS data file
 
 
 More on haven
@@ -523,27 +600,26 @@ A "fast-on-disk" data frame storage (.feather)
 * The .feather format is also supported in Python!
 
 
-read_sav() write_sav()
 ========================================================
 
 ```r
-read_feather()
-write_feather()
+read_feather(path, columns = NULL)
+write_feather(x, path)
 ```
-* `read_feather()`: output is a `tibble` object
-* `write_feather()`: output is a feather file
+* The output of `read_feather()` is a `tibble` object
+* The output of `write_feather()` is a feather file
 
 
 More on feather
 ========================================================
-* `feather` on [tidyverse.org](http://haven.tidyverse.org/)
+* Wickham, H. (2016), ["Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow"](https://blog.rstudio.com/2016/03/29/feather/). *RStudio Blog*.
 * `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
 
 
 Questions?
 ========================================================
 type: section
-<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://dribbble.com/shots/1627606-question-mark">Joel Ploz</a>
 </p>
@@ -552,8 +628,13 @@ Source: <a href="https://dribbble.com/shots/1627606-question-mark">Joel Ploz</a>
 References
 ========================================================
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Dates and Times Cheat Shee"</a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Work with Strings Cheat Sheet"</a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a></li>
   <li><a href="#"></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a></li>
 </ul>
