@@ -159,16 +159,19 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 * `group_by()` `ungroup()`
 * `%>%`, the pipe operator
 
+
 ## Sort rows by variables
 
 ```{r eval=FALSE}
-arrange(tbl, col1, desc(col2), ...)
+arrange(tbl, ...)
 ```
-* A tabular data object (e.g. `data.frame` or `tibble`) as the first argument
-* Columns by which to sort the data as the following arguments
+* The first argument is a tabular data object
+    * e.g. `data.frame` or `tibble`
+* Columns by which to sort the data as other arguments
     * Multiple columns can be used to sort the data
     * When multiple columns are given, sorting is done hierarchically
     * Sorting in a descending order with `desc()`
+
     
 ### Example
 ```{r eval=FALSE}
@@ -197,10 +200,11 @@ ispcrime %>%
 ## Filter rows with conditions
 
 ```{r eval=FALSE}
-filter(tbl, condition1, condition2, ...)
+filter(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Conditions by which to filter the data as the following arguments
+* The first argument is a tabular data object
+* The following arguments are conditional expressions
+    * Only the rows satisfying the given conditions are kept
 
 
 ### Example
@@ -215,33 +219,43 @@ ispcrime %>%
 
 
 ## Select and/or rename variables
-
 ```{r eval=FALSE}
-select(tbl, col1, var2 = col2, ...)
+select(tbl, ...)
+rename(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Columns to select as the following arguments
-    * Renaming each selected column is possible
+* The first argument is a tabular data object 
+* The following argumetns are columns to select/rename
+    * `select()` returns the selected columns only while `rename()` keeps all columns
+    * Renaming each selected column is also possible with `select()`
+* `select()` can be also used to exclude a section of columns using a minus (`-`) sign while keeping the rest.
     
     
 ### Example
 ```{r}
+# select with renaming columns
 ispcrime %>%
-  select(year:violentCrime, pcrime = propertyCrime) %>%
+  select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %>%
+  head()
+```
+
+```{r}
+# excluding columns
+ispcrime %>%
+  select(-violentCrime, -propertyCrime) %>%
   head()
 ```
 
 
 ## Transform and add variables
-
 ```{r eval=FALSE}
-mutate(tbl, col1 = expression, new_col1 = expression, ...)
-transmute()
+transmute(tbl, ...)
+mutate(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Expressions to "mutate" columns as the following arguments
+* The first argument is a tabular data object 
+* The following arguments transform or add columns
     * An exisiting column is modified with an expression with the same column name
     * A new column is created with an expression having a new column name
+    * `transmute()` returns the transformed/added columns only while `mutate()` keeps all columns
     
     
 ### Example
@@ -254,11 +268,13 @@ ispcrime %>%
 
 ## Merge tables
 ```{r eval=FALSE}
-left_join(tbl1, tbl2, by = c("variables to join by"), ...)
+left_join(tbl1, tbl2, by = NULL, ...)
 ```
-* Tabular data objects to join as the first two arguments
-* A character vector of variable to join by as the third argument
+* The first two arguments are tabular data objects to join 
+* `by` takes a chracter vector containing a selection of variables to join tables by
+    * By default, all columns with common names are used
 * Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
+
 
 ### Example
 ```{r}
@@ -267,12 +283,17 @@ ispcrime %>%
   head()
 ```
 
+
 ## Aggregate and summarise rows
 ```{r eval=FALSE}
-summarise(tbl, summary1 = expression, summary2 = expression, ...)
+summarise(tbl, ...)
+summarize(tbl, ...)
 ```
-* A data object (table) as the first argument
-* Expressions to summarise data as the following arguments
+* The first argument is a tabular data object
+* The following arguments are expressions to summarise data
+    * `summarise()` and `summarize()` are identical
+    * each summary column resulting from each summarizing expression can be given a name
+
 
 
 ### Example
@@ -287,12 +308,13 @@ ispcrime %>%
 
 ## Group by variables
 ```{r eval=FALSE}
-group_by(tbl, col1, col2, ...)
+group_by(tbl, ...)
+ungroup(tbl, ...)
 ```
-* A data object as the first argument
-* Columns by which to group the data as the following arguments
-
-* Can be used in combination with other function to allow for group-specific data manipulations
+* The first argument is a tabular data object
+* The following arguments are columns by which to group the data
+  * `group_by()` and `ungroup()` are the opposite operations
+* `group_by()` can be used in combination with other function to allow for group-specific data manipulations
 
 
 ### Example
@@ -317,7 +339,7 @@ ispcrime %>%
 We have been using the pipe operator, `%>%`, in our code examples. Now is a good time to take a closer look at it.
 
 ```{r eval=FALSE}
-data %>% some_function(arg2, arg3, ...) %>% ...
+data %>% function1(arg2, ...) %>% ...
 ```
 
 `%>%` is a binary operator that requires two objects for it to work on. Think of `+` as another example of a binary operator. In the case of `%>%` the object preciding the operator has to be the first argument for the function that follows the oprator. In other words, the preceding object is injected into the following function as its first argument. The result of the `%>%` operator is the output of the function.
@@ -420,42 +442,36 @@ knitr::include_graphics(images[2])
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
+
+## Remember tidy data?
+```{r echo=FALSE, out.width="100%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+knitr::include_graphics("../images/tidy-1.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+</div>
+
+
 ## Key `tidyr` functions
 
 * `gather()`
 * `spread()`
-* `separate()`
-* `extract()`
 * `unite()`
+* `separate()`
+* `separate_rows()`
 
-## Fix "wide" data
+
+## Make "wide" data longer
 ```{r eval=FALSE}
-gather()
-```
-
-### Example 
-```{r}
-
+gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
 
 
-
-## Fix "long" data
+## Make "long" data wider
 ```{r eval=FALSE}
-spread()
+spread(tbl, key, value, fill = NA, ...)
 ```
 
-### Example 
-```{r}
-
-```
-
-
-
-## Split a column into many
-```{r eval=FALSE}
-separate()
-```
 
 ### Example 
 ```{r}
@@ -466,8 +482,15 @@ separate()
 
 ## Unite multiple columns into one
 ```{r eval=FALSE}
-unite()
+unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
+
+
+## Split a column into many
+```{r eval=FALSE}
+separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
+```
+
 
 ### Example 
 ```{r}
@@ -475,11 +498,11 @@ unite()
 ```
 
 
-
-## Extract a column into many
+## Split a row into many
 ```{r eval=FALSE}
-extract()
+separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
+
 
 ### Example 
 ```{r}
@@ -501,6 +524,7 @@ As in the earlier `dplyr` case, what we have seen is only part of what `tidyr` o
 
 # References
 <ul>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
   <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Import Cheat Sheet"</a>.</li>
   <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Transformation Cheat Sheet"</a>.</li>
   <li>Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.</li>
