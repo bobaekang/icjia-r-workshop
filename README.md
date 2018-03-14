@@ -10,7 +10,7 @@ Visit the official website for the workshop for more information, including the 
 # Workshop curriculum
 The workshop consists of six separate modules which are meant to be followed in order. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
-(Currently, slides and notes for only the first two modules are ready for use. Other workshop materials for later modules are in active development. Thank you for your understanding!)
+(Note: Currently, slides and notes for only the first two modules are ready for use. Other workshop materials for later modules are in active development. Thank you for your understanding!)
 
 ### Module 1: Introduction to R
 In this module, workshop participants will be introduced to the programmatic approach to research. Then they will learn what the R language is as well as the benefits of using R for their research projects. They will also be introduced to the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
@@ -46,15 +46,15 @@ This module will invite workshop participants to explore the power of R programm
 * Part 2: Leveraging online resources
 
 # Some great online resources
-Here is a running list of great onlnie resources on learning R:
+Here is a running list of great (free) onlnie resources on learning R:
 
-* CRAN, ["An Introduction to R"](https://cran.r-project.org/doc/manuals/R-intro.html).
-* Grolemund, G. & Wickham, H. [*R for Data Science*].(http://r4ds.had.co.nz/)
+* ["An Introduction to R"](https://cran.r-project.org/doc/manuals/R-intro.html) by CRAN
+* [*R for Data Science*](http://r4ds.had.co.nz/) by Grolemund, G. & Wickham, H.
 * [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) by RStudio
 * [*R-bloggers*](https://www.r-bloggers.com/)
-* Kabacoff, R. I. [*Quick-R*](https://www.statmethods.net/index.html).
-* Chi, Y. [*R Tutorial*](http://www.r-tutor.com/).
-* Black, K. [*R Tutorial*](http://www.cyclismo.org/tutorial/R/index.html).
-* University of Cincinnati. [*UC Business Analytics R Programming Guide*](http://uc-r.github.io/).
-* DataMentor. ["R Tutorials"](https://www.datamentor.io/r-programming).
+* [*Quick-R*](https://www.statmethods.net/index.html) by Kabacoff, R. I.
+* [*R Tutorial*](http://www.r-tutor.com/) by Yau, C.
+* [*R Tutorial*](http://www.cyclismo.org/tutorial/R/index.html) by Black, K.
+* [*UC Business Analytics R Programming Guide*](http://uc-r.github.io/) by University of Cincinnati
+* ["R Tutorials"](https://www.datamentor.io/r-programming) by DataMentor
 * And... Google!
