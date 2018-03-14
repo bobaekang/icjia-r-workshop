@@ -45,7 +45,7 @@ knitr::include_graphics("./images/icjia-x-r.png")
 <div class="row">
 <div class="col-sm-6">
 * **Time**: 1-3 PM
-    * Module 1: March 14, 2018 (Wed)
+    * ~~Module 1: March 14, 2018 (Wed)~~
     * Module 2: March 22, 2018 (Thur)
     * Module 3: March 28, 2018 (Wed)
     * Module 4: April 4, 2018 (Wed)
@@ -60,8 +60,11 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ***
 
 ## Workshop news
+* **First Workshop meeting,** March 14, 2018
+    * Total 14 workshop participants attended the first meeting on **Module 1. Introduction to R**! Check out the workshop materials on [**Modules page**](./modules.html).
 * **ICJIA R&A Unit Meeting Presentation,** February 13, 2018
     * I gave a brief presentation where I introduced the R&A Unit to R and discussd the Workshop objectives and structure. Check out the [**slides**](./slides/presentation_slides.html) as well as the [**script**](./notes/presentation_notes.html) for the presentation!
+
 
 ***
 

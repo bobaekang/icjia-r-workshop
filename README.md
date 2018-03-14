@@ -16,13 +16,13 @@ The workshop consists of six separate modules which are meant to be followed in 
 In this module, workshop participants will be introduced to the programmatic approach to research. Then they will learn what the R language is as well as the benefits of using R for their research projects. They will also be introduced to the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
 
 ### Module 2: R basics
-Workshop participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular tidyverse framework and provided with a recommendation as to a ìgoodî style for coding in R.
+Workshop participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular tidyverse framework and provided with a recommendation as to a ‚Äúgood‚Äù style for coding in R.
 
-* Part 1: Fundamental building blocks of R programming
+* Part 1: Fundamentals of R programming
 * Part 2: Gearing up for data analysis
 
 ### Module 3: Data analysis with R
-This module focuses on manimuplating and transforming tabular data using R. Workshop participants will learn how to import data into R environment and use the popular ìtidyverseî syntax to clean and analyze data. Specifically, key functions in `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered.
+This module focuses on manimuplating and transforming tabular data using R. Workshop participants will learn how to import data into R environment and use the popular ‚Äútidyverse‚Äù syntax to clean and analyze data. Specifically, key functions in `dplyr`, `tidyr`, `stringr`, and `lubridate` packages will be covered.
 
 * Part 1: Getting started with tidyverse
 * Part 2: More on data analysis
@@ -34,7 +34,7 @@ In this module, workshop participants will get started with generating plots to 
 * Part 2: Maps and interactive plots
 
 ### Module 5: Statistical modeling with R
-In this module, workshop participants will learn how to conduct basic statistical analysis with R, including Studentís t-test, analysis of variance (ANOVA), basic linear regression model, and generalized linear models. Participants will also be provided with resources for more advanced statistical modeling.
+In this module, workshop participants will learn how to conduct basic statistical analysis with R, including Student‚Äôs t-test, analysis of variance (ANOVA), basic linear regression model, and generalized linear models. Participants will also be provided with resources for more advanced statistical modeling.
 
 * Part 1: Basics of statistical modeling
 * Part 2: Options for advanced modeling
