@@ -17,6 +17,8 @@
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
+
+
 # presentation
 R Workshop
 ========================================================
@@ -255,18 +257,18 @@ rename(tbl, ...)
 ```r
 # select with renaming columns
 ispcrime %>%
-  select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %>%
+  select(year, county, violent = violentCrime, property = propertyCrime) %>%
   head()
 ```
 
 ```
-  year    county v_crime p_crime
-1 2011     Adams     218    1555
-2 2011 Alexander     119     290
-3 2011      Bond       6     211
-4 2011     Boone      59     733
-5 2011     Brown       7      38
-6 2011    Bureau      42     505
+  year    county violent property
+1 2011     Adams     218     1555
+2 2011 Alexander     119      290
+3 2011      Bond       6      211
+4 2011     Boone      59      733
+5 2011     Brown       7       38
+6 2011    Bureau      42      505
 ```
 
 
@@ -614,7 +616,8 @@ gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
 * The first argument is a tabular data object
     * e.g. `data.frame` or `tibble`
-* `key` is a column to be used as a key, and `value` is a selection of columns to be used as values to each key value.
+* `key` is the name of a new column for a "key", and `value` is the name of a new column for a "value" of the given key.
+* `...` is a selection of columns to be used whose name will be made into values for the `key` column and whose value will be made into the values of the `value` column.
 
 
 Make "long" data wider
@@ -624,16 +627,88 @@ Make "long" data wider
 spread(tbl, key, value, fill = NA, ...)
 ```
 * The first argument is a tabular data object
-* `gather()` and `spread()` complements
+* `key` is a column containing the names of new columns, and `value` is a column containing the values for the new columns.
+* `gather()` and `spread()` are complements
 
 
 ========================================================
 **Example**
 
+```r
+ispcrime_2 <- ispcrime %>%
+  select(-violentCrime, -propertyCrime) %>%
+  as_tibble()
+
+ispcrime_2
+```
+
+```
+# A tibble: 510 x 10
+    year county  murder  rape robbery aggAssault burglary larcenyTft MVTft
+   <int> <fct>    <int> <int>   <int>      <int>    <int>      <int> <int>
+ 1  2011 Adams        0    37      15        166      272       1241    36
+ 2  2011 Alexan~      0    14       4        101       92        183    11
+ 3  2011 Bond         1     0       0          5       58        147     5
+ 4  2011 Boone        0    24       8         27      152        563    14
+ 5  2011 Brown        0     1       0          6       14         22     1
+ 6  2011 Bureau       0     4       3         35       90        405     8
+ 7  2011 Calhoun      0     0       0         13       14         41     1
+ 8  2011 Carroll      0     1       0          7       38        165     2
+ 9  2011 Cass         0     1       0         11       41         71     3
+10  2011 Champa~      5   127     208        870     1384       3756   164
+# ... with 500 more rows, and 1 more variable: arson <int>
+```
 
 
 ========================================================
 
+```r
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson)
+```
+
+```
+# A tibble: 4,080 x 4
+    year county    type   count
+   <int> <fct>     <chr>  <int>
+ 1  2011 Adams     murder     0
+ 2  2011 Alexander murder     0
+ 3  2011 Bond      murder     1
+ 4  2011 Boone     murder     0
+ 5  2011 Brown     murder     0
+ 6  2011 Bureau    murder     0
+ 7  2011 Calhoun   murder     0
+ 8  2011 Carroll   murder     0
+ 9  2011 Cass      murder     0
+10  2011 Champaign murder     5
+# ... with 4,070 more rows
+```
+
+
+========================================================
+
+```r
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson) %>%
+  spread(key = type, value = count)
+```
+
+```
+# A tibble: 510 x 10
+    year county    aggAssault arson burglary larcenyTft murder MVTft  rape
+   <int> <fct>          <int> <int>    <int>      <int>  <int> <int> <int>
+ 1  2011 Adams            166     6      272       1241      0    36    37
+ 2  2011 Alexander        101     4       92        183      0    11    14
+ 3  2011 Bond               5     1       58        147      1     5     0
+ 4  2011 Boone             27     4      152        563      0    14    24
+ 5  2011 Brown              6     1       14         22      0     1     1
+ 6  2011 Bureau            35     2       90        405      0     8     4
+ 7  2011 Calhoun           13     0       14         41      0     1     0
+ 8  2011 Carroll            7     1       38        165      0     2     1
+ 9  2011 Cass              11     4       41         71      0     3     1
+10  2011 Champaign        870    28     1384       3756      5   164   127
+# ... with 500 more rows, and 1 more variable: robbery <int>
+```
 
 
 Unite multiple columns into one
@@ -643,7 +718,8 @@ Unite multiple columns into one
 unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
 * The first argument is a tabular data object
-* `separate()` and `unite()` are complements
+* `col` is a new column created by "uniting" the following column inputs (`...`)
+* `sep` input is a string to be inserted as a seperator between column values
 
 
 Split a column into many
@@ -653,14 +729,91 @@ Split a column into many
 separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
 ```
 * The first argument is a tabular data object
+* `col` is a column to be split
+* `into` is a character vector for separated column names
+* `sep` is a separator between values
+* `separate()` and `unite()` are complements
 
 
 ========================================================
 **Example**
 
+```r
+ispcrime_3 <- ispcrime %>%
+  left_join(regions) %>%
+  select(year, region, county, violentCrime, propertyCrime) %>%
+  as_tibble()
+
+ispcrime_3
+```
+
+```
+# A tibble: 510 x 5
+    year region   county    violentCrime propertyCrime
+   <int> <fct>    <fct>            <int>         <int>
+ 1  2011 Central  Adams              218          1555
+ 2  2011 Southern Alexander          119           290
+ 3  2011 Southern Bond                 6           211
+ 4  2011 Northern Boone               59           733
+ 5  2011 Central  Brown                7            38
+ 6  2011 Central  Bureau              42           505
+ 7  2011 Southern Calhoun             13            56
+ 8  2011 Northern Carroll              8           206
+ 9  2011 Central  Cass                12           119
+10  2011 Central  Champaign         1210          5332
+# ... with 500 more rows
+```
+
 
 ========================================================
 
+```r
+ispcrime_3 %>%
+  unite(col = region_county, region, county)
+```
+
+```
+# A tibble: 510 x 4
+    year region_county      violentCrime propertyCrime
+   <int> <chr>                     <int>         <int>
+ 1  2011 Central_Adams               218          1555
+ 2  2011 Southern_Alexander          119           290
+ 3  2011 Southern_Bond                 6           211
+ 4  2011 Northern_Boone               59           733
+ 5  2011 Central_Brown                 7            38
+ 6  2011 Central_Bureau               42           505
+ 7  2011 Southern_Calhoun             13            56
+ 8  2011 Northern_Carroll              8           206
+ 9  2011 Central_Cass                 12           119
+10  2011 Central_Champaign          1210          5332
+# ... with 500 more rows
+```
+
+
+========================================================
+
+```r
+ispcrime_3 %>%
+  unite(col = region_county, region, county) %>%
+  separate(col = region_county, into = c("region", "county"), sep = "_")
+```
+
+```
+# A tibble: 510 x 5
+    year region   county    violentCrime propertyCrime
+   <int> <chr>    <chr>            <int>         <int>
+ 1  2011 Central  Adams              218          1555
+ 2  2011 Southern Alexander          119           290
+ 3  2011 Southern Bond                 6           211
+ 4  2011 Northern Boone               59           733
+ 5  2011 Central  Brown                7            38
+ 6  2011 Central  Bureau              42           505
+ 7  2011 Southern Calhoun             13            56
+ 8  2011 Northern Carroll              8           206
+ 9  2011 Central  Cass                12           119
+10  2011 Central  Champaign         1210          5332
+# ... with 500 more rows
+```
 
 
 Split a row into many
@@ -671,10 +824,6 @@ separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
 * The first argument is a tabular data object
 * `separate_rows()` is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
-
-========================================================
-**Example**
-
 
 
 More on tidyr
@@ -687,7 +836,7 @@ More on tidyr
 Questions?
 ========================================================
 type: section
-<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.com</a>
 </p>
@@ -707,7 +856,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

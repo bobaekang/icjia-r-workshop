@@ -496,11 +496,15 @@ Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 
 ## Key `tidyr` functions
 
+In this section, we will learn the following `tidyr` functions:
+
 * `gather()`
 * `spread()`
 * `unite()`
 * `separate()`
 * `separate_rows()`
+
+Please note that, as before, this section is not intended to be an exhaustive documentation and description. For more information, please check out the reference materials listed [below](#tidyr_more).
 
 
 ## Make "wide" data longer
@@ -509,36 +513,80 @@ gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
 * The first argument is a tabular data object
     * e.g. `data.frame` or `tibble`
-* `key` is a column to be used as a key, and `value` is a selection of columns to be used as values to each key value.
+* `key` is the name of a new column for a "key", and `value` is the name of a new column for a "value" of the given key.
+* `...` is a selection of columns to be used whose name will be made into values for the `key` column and whose value will be made into the values of the `value` column.
 
 ## Make "long" data wider
 ```{r eval=FALSE}
 spread(tbl, key, value, fill = NA, ...)
 ```
-
+* The first argument is a tabular data object
+* `key` is an existing column containing the names of new columns, and `value` is another column containing the values for the new columns.
+* `gather()` and `spread()` are complements
 
 ### Example 
 ```{r}
+ispcrime_2 <- ispcrime %>%
+  select(-violentCrime, -propertyCrime) %>%
+  as_tibble()
 
+ispcrime_2
 ```
 
+```{r}
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson)
+```
+
+
+```{r}
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson) %>%
+  spread(key = type, value = count)
+```
 
 
 ## Unite multiple columns into one
 ```{r eval=FALSE}
 unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
-
+* The first argument is a tabular data object
+* `col` is a new column created by "uniting" the following column inputs (`...`)
+* `sep` input is a string to be inserted as a seperator between column values
 
 ## Split a column into many
 ```{r eval=FALSE}
 separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
 ```
+* The first argument is a tabular data object
+* `col` is a column to be split
+* `into` is a character vector for separated column names
+* `sep` is a separator between values
+* `separate()` and `unite()` are complements
 
+`unite()` and `sperate()` are great for cleaning up date or name variables.
 
 ### Example 
 ```{r}
+ispcrime_3 <- ispcrime %>%
+  left_join(regions) %>%
+  select(year, region, county, violentCrime, propertyCrime) %>%
+  as_tibble()
 
+ispcrime_3
+```
+
+
+```{r}
+ispcrime_3 %>%
+  unite(col = region_county, region, county)
+```
+
+
+```{r}
+ispcrime_3 %>%
+  unite(col = region_county, region, county) %>%
+  separate(col = region_county, into = c("region", "county"), sep = "_")
 ```
 
 
@@ -546,15 +594,11 @@ separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
 ```{r eval=FALSE}
 separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
+* The first argument is a tabular data object
+* `separate_rows()` is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
 
 
-### Example 
-```{r}
-
-```
-
-
-## More on `tidyr`
+## More on `tidyr` {#tidyr_more}
 
 As in the earlier `dplyr` case, what we have seen is only part of what `tidyr` offers. I recommend you to check out the following resources to learn more about `tidyr`
 

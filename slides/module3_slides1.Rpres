@@ -16,6 +16,13 @@
 </div>
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
+```{r setup, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(icjiar)
+```
+
 
 # presentation
 R Workshop
@@ -212,7 +219,7 @@ rename(tbl, ...)
 ```{r}
 # select with renaming columns
 ispcrime %>%
-  select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %>%
+  select(year, county, violent = violentCrime, property = propertyCrime) %>%
   head()
 ```
 
@@ -437,7 +444,8 @@ gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
 * The first argument is a tabular data object
     * e.g. `data.frame` or `tibble`
-* `key` is a column to be used as a key, and `value` is a selection of columns to be used as values to each key value.
+* `key` is the name of a new column for a "key", and `value` is the name of a new column for a "value" of the given key.
+* `...` is a selection of columns to be used whose name will be made into values for the `key` column and whose value will be made into the values of the `value` column.
 
 
 Make "long" data wider
@@ -446,19 +454,33 @@ Make "long" data wider
 spread(tbl, key, value, fill = NA, ...)
 ```
 * The first argument is a tabular data object
-* `gather()` and `spread()` complements
+* `key` is a column containing the names of new columns, and `value` is a column containing the values for the new columns.
+* `gather()` and `spread()` are complements
 
 
 ========================================================
 **Example**
 ```{r}
+ispcrime_2 <- ispcrime %>%
+  select(-violentCrime, -propertyCrime) %>%
+  as_tibble()
 
+ispcrime_2
 ```
 
 
 ========================================================
 ```{r}
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson)
+```
 
+
+========================================================
+```{r}
+ispcrime_2 %>%
+  gather(key = "type", value = "count", murder:arson) %>%
+  spread(key = type, value = count)
 ```
 
 
@@ -468,7 +490,8 @@ Unite multiple columns into one
 unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
 * The first argument is a tabular data object
-* `separate()` and `unite()` are complements
+* `col` is a new column created by "uniting" the following column inputs (`...`)
+* `sep` input is a string to be inserted as a seperator between column values
 
 
 Split a column into many
@@ -477,17 +500,36 @@ Split a column into many
 separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
 ```
 * The first argument is a tabular data object
+* `col` is a column to be split
+* `into` is a character vector for separated column names
+* `sep` is a separator between values
+* `separate()` and `unite()` are complements
 
 
 ========================================================
 **Example**
 ```{r}
+ispcrime_3 <- ispcrime %>%
+  left_join(regions) %>%
+  select(year, region, county, violentCrime, propertyCrime) %>%
+  as_tibble()
 
+ispcrime_3
 ```
+
 
 ========================================================
 ```{r}
+ispcrime_3 %>%
+  unite(col = region_county, region, county)
+```
 
+
+========================================================
+```{r}
+ispcrime_3 %>%
+  unite(col = region_county, region, county) %>%
+  separate(col = region_county, into = c("region", "county"), sep = "_")
 ```
 
 
@@ -498,12 +540,6 @@ separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
 * The first argument is a tabular data object
 * `separate_rows()` is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
-
-========================================================
-**Example**
-```{r}
-
-```
 
 
 More on tidyr
