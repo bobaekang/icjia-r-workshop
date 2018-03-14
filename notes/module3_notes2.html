@@ -276,44 +276,572 @@ div.tocify {
 </div>
 <div id="data-analysis-with-r-2-more-on-data-analysis" class="section level1">
 <h1>Data Analysis with R (2): More on data analysis</h1>
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="20%" style="box-shadow: none; margin-left: 20%" />
+<img src="../images/more_data_analysis.png" width="35%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a></p>
 </div>
 <hr />
 </div>
 <div id="working-with-strings" class="section level1">
 <h1>Working with Strings</h1>
-<img src="https://www.rstudio.com/wp-content/uploads/2014/04/stringr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/font_case.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
 </div>
+<div id="stringr-from-tidyverse" class="section level2">
+<h2><code>stringr</code> from tidyverse</h2>
+<img src="../images/stringr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
+</div>
+</div>
 <div id="key-stringr-functions" class="section level2">
-<h2>Key stringr functions</h2>
+<h2>Key <code>stringr</code> functions</h2>
 <ul>
-<li><code>arange()</code></li>
+<li><code>str_to_upper()</code> <code>str_to_lower()</code> <code>str_to_title()</code></li>
+<li><code>str_trim()</code> <code>str_squish()</code></li>
+<li><code>str_c()</code></li>
+<li><code>str_detect()</code></li>
+<li><code>str_subset()</code></li>
+<li><code>str_sub()</code></li>
 </ul>
+<p>Note: Many <code>stringr</code> functions have base R alternatives</p>
+</div>
+<div id="convert-letter-case" class="section level2">
+<h2>Convert letter case</h2>
+<pre class="r"><code>str_to_upper(string, locale = &quot;en&quot;)
+str_to_lower(string, locale = &quot;en&quot;)
+str_to_title(string, locale = &quot;en&quot;)</code></pre>
+<ul>
+<li><code>string</code> input is a character vector
+<ul>
+<li>Or something that can be coerced into a character vector</li>
+</ul></li>
+<li>The default <code>locale</code> is “en”, for English</li>
+<li><code>str_to_title()</code> capitalizes only the first letter of each word</li>
+</ul>
+<div id="example" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>toupper(string) # equivalent to str_to_upper()
+tolower(string) # equivalent to str_to_lower()</code></pre>
+</div>
+</div>
+<div id="trim-whitespace" class="section level2">
+<h2>Trim whitespace</h2>
+<pre class="r"><code>str_trim(string, side = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))
+str_squish(string)</code></pre>
+<ul>
+<li><code>string</code> input is a character vector</li>
+<li><code>side</code> input determins which side of a string to trim
+<ul>
+<li>“both” trims whitespaces on both the beginning and the end</li>
+<li>“left” trims whitespaces only on the beginning</li>
+<li>“right” trims whitespaces only on the end</li>
+</ul></li>
+</ul>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-1" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>trimws(x, which = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))</code></pre>
+</div>
+</div>
+<div id="concatenate-strings-into-one" class="section level2">
+<h2>Concatenate strings into one</h2>
+<pre class="r"><code>str_c(..., sep = &quot;&quot;, collapse = NULL)</code></pre>
+<ul>
+<li>The first argument (<code>...</code>) is one more more character vectors</li>
+<li></li>
+</ul>
+<div id="example-2" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-2" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>paste (..., sep = &quot; &quot;, collapse = NULL) # equivalent to str_c()</code></pre>
+</div>
+</div>
+<div id="detect-a-pattern" class="section level2">
+<h2>Detect a pattern</h2>
+<pre class="r"><code>str_detect(string, pattern)</code></pre>
+<ul>
+<li><code>string</code> input is a character vector</li>
+</ul>
+<div id="example-3" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-3" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>grepl(pattern, x, ...) # equivalent to str_detect()</code></pre>
+</div>
+</div>
+<div id="get-stringspositions-matching-a-pattern" class="section level2">
+<h2>Get strings/positions matching a pattern</h2>
+<pre class="r"><code>str_subset(string, pattern)
+str_which(string, pattern)</code></pre>
+<ul>
+<li><code>string</code> input is a character vector</li>
+</ul>
+<div id="example-4" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-4" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>grep(pattern, x, value = TRUE, ...) # equivalent to str_subset()
+grep(pattern, x, value = FALSE, ...) # equivalent to str_which()</code></pre>
+</div>
+</div>
+<div id="extract-and-replace-substrings" class="section level2">
+<h2>Extract and replace substrings</h2>
+<pre class="r"><code>str_sub(string, start = 1L, end = -1L)
+str_sub(string, start = 1L, end = -1L, omit_na = FALSE) &lt;- value</code></pre>
+<ul>
+<li>The first argument is a character vector</li>
+</ul>
+<div id="example-5" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-5" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>substr(x, start, stop)
+substr(x, start, stop) &lt;- value</code></pre>
+</div>
 </div>
 <div id="more-on-stringr" class="section level2">
-<h2>More on stringr</h2>
+<h2>More on <code>stringr</code></h2>
 <ul>
 <li><code>stringr</code> on <a href="http://stringr.tidyverse.org/">tidyverse.org</a></li>
 <li><code>stringr</code> <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">CRAN documentation</a></li>
 <li><code>stringr</code> <a href="https://github.com/tidyverse/stringr">Github repository</a></li>
+</ul>
+</div>
+<div id="regular-expression-regex" class="section level2">
+<h2>Regular expression (regex)</h2>
+<ul>
+<li>What it is</li>
+<li>When to use/why useful</li>
+</ul>
+</div>
+<div id="regular-expression-in-r" class="section level2">
+<h2>Regular expression in R</h2>
+<ul>
+<li>Character classes</li>
+<li>Metacharacters</li>
+<li>Groups</li>
+<li>Anchors</li>
+<li>Quantifiers</li>
+</ul>
+<div id="character-classes" class="section level3">
+<h3>Character classes</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Class</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>[[:digit:]]</code> or <code>\d</code></td>
+<td align="left">Any digits; i.e. <code>[0-9]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\D</code></td>
+<td align="left">Non-digits; i.e. <code>[^0-9]</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[[:lower:]]</code></td>
+<td align="left">Lower-case letters; i.e. <code>[a-z]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>[[:upper:]]</code></td>
+<td align="left">Upper-case letters; i.e. <code>[A-Z]</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[[:alpha:]]</code></td>
+<td align="left">Alphabetic characters; <code>[A-z]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>[[:alnum:]]</code></td>
+<td align="left">Alphanumeric characters; i.e. <code>[A-z0-9]</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\\w</code></td>
+<td align="left">Any Word characters; i.e. <code>[A-z0-9_]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\W</code></td>
+<td align="left">Non-word characters</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[[:blank:]]</code></td>
+<td align="left">Space and tab</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[[:space:]]</code> or <code>\s</code></td>
+<td align="left">Space, tab, vertical tab, newline, form feed, carriage return</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\\S</code></td>
+<td align="left">Not space; i.e. <code>[^[:space:]]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="metacharacters" class="section level3">
+<h3>Metacharacters</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Metacharacter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>\n</code></td>
+<td align="left">New line</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\r</code></td>
+<td align="left">Carriage return</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\t</code></td>
+<td align="left">Tab</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\v</code></td>
+<td align="left">Vertical tab</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\f</code></td>
+<td align="left">Form feed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="groups" class="section level3">
+<h3>Groups</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Group</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>.</code></td>
+<td align="left">Any character except <code>\n</code></td>
+</tr>
+<tr class="even">
+<td align="left">|</td>
+<td align="left">Or, e.g. <code>(a</code>|<code>b)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[...]</code></td>
+<td align="left">List permitted characters, e.g. <code>[abc]</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>[a-z]</code></td>
+<td align="left">Specify character ranges</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[^...]</code></td>
+<td align="left">List excluded characters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>(...)</code></td>
+<td align="left">Grouping, enables back referencing using <code>\\N</code> where <code>N</code> is integer</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="anchors" class="section level3">
+<h3>Anchors</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Anchor</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>^</code></td>
+<td align="left">Start of the string</td>
+</tr>
+<tr class="even">
+<td align="left"><code>$</code></td>
+<td align="left">End of the string</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\\b</code></td>
+<td align="left">Empty string at either edge of a word</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\B</code></td>
+<td align="left">NOT the edge of a word</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\\&lt;</code></td>
+<td align="left">Beginning of a word</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\&gt;</code></td>
+<td align="left">End of a word</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="quantifiers" class="section level3">
+<h3>Quantifiers</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Quantifier</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>*</code></td>
+<td align="left">Matches at least 0 times</td>
+</tr>
+<tr class="even">
+<td align="left"><code>+</code></td>
+<td align="left">Matches at least 1 time</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>?</code></td>
+<td align="left">Matches at most 1 time; optional string</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{n}</code></td>
+<td align="left">Matches extactly <code>n</code> times</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>{n, }</code></td>
+<td align="left">Matches at least <code>n</code> times</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{, n}</code></td>
+<td align="left">Matches at most <code>n</code> times</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>{n, m}</code></td>
+<td align="left">Matches between <code>n</code> and <code>m</code> times</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+</div>
+</div>
+<div id="more-on-regular-expression" class="section level2">
+<h2>More on regular expression</h2>
+<ul>
+<li>resources</li>
 </ul>
 <hr />
 </div>
 </div>
 <div id="working-with-datetimes" class="section level1">
 <h1>Working with Datetimes</h1>
-<img src="https://www.rstudio.com/wp-content/uploads/2014/04/lubridate.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/calendar.png" width="30%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a></p>
+</div>
+<div id="datesdatetimes-basics" class="section level2">
+<h2>Dates/Datetimes basics</h2>
+<ul>
+<li>basics</li>
+</ul>
+</div>
+<div id="lubridate-from-tidyverse" class="section level2">
+<h2><code>lubridate</code> from tidyverse</h2>
+type:section <img src="../images/lubridate.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
 </div>
-<div id="key-lubricate-functions" class="section level2">
-<h2>Key lubricate functions</h2>
+</div>
+<div id="key-lubridate-functions" class="section level2">
+<h2>Key <code>lubridate</code> functions</h2>
 <ul>
-<li><code>arange()</code></li>
+<li><code>as_date()</code> <code>as_datetime()</code></li>
+<li><code>year()</code>, <code>month()</code>, <code>day()</code>, <code>hour()</code>, …</li>
+<li><code>parse_date_time()</code> <code>fast_strptime()</code></li>
+<li><code>ymd_hms()</code>, <code>ymd()</code>, …</li>
+</ul>
+</div>
+<div id="convert-to-a-date-or-date-time" class="section level2">
+<h2>Convert to a date or date-time</h2>
+<pre class="r"><code>as_date(x, tz = NULL, origin = lubridate::origin)
+as_datetime(x, tz = NULL, origin = lubridate::origin)</code></pre>
+<ul>
+<li><code>x</code> is a vector of POSIXt, numeric or character objects</li>
+<li><code>tz</code> is a time zone name</li>
+<li><code>origin</code> is a Date object or something that can be coerced into a Date object</li>
+</ul>
+<div id="example-6" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-6" class="section level3">
+<h3>Base R alternative</h3>
+</div>
+</div>
+<div id="getset-time-component" class="section level2">
+<h2>Get/set time component</h2>
+<pre class="r"><code>year(x)
+year(x) &lt;- value</code></pre>
+<ul>
+<li><code>x</code> is a date-time object</li>
+<li><code>value</code> is a numeric object</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>year()</code></td>
+<td align="left">Get/set year component of a date-time</td>
+</tr>
+<tr class="even">
+<td align="left"><code>month()</code></td>
+<td align="left">Get/set months component of a date-time</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>week()</code></td>
+<td align="left">Get/set weeks component of a date-time</td>
+</tr>
+<tr class="even">
+<td align="left"><code>day()</code></td>
+<td align="left">Get/set days component of a date-time</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>hour()</code></td>
+<td align="left">Get/set hours component of a date-time</td>
+</tr>
+<tr class="even">
+<td align="left"><code>minute()</code></td>
+<td align="left">Get/set minutes component of a date-time</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>second()</code></td>
+<td align="left">Get/set seconds component of a date-time</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tz()</code></td>
+<td align="left">Get/set time zone component of a date-time</td>
+</tr>
+<tr class="odd">
+<td align="left">* a</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">* b</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div id="example-7" class="section level3">
+<h3>Example</h3>
+</div>
+</div>
+<div id="parse-date-time" class="section level2">
+<h2>Parse date-time</h2>
+<pre class="r"><code>parse_date_time(x, orders, tz = &quot;UTC&quot;, truncated = 0, locale = Sys.getlocale(&quot;LC_TIME&quot;), exact = FALSE, drop = FALSE, ...)
+fast_strptime(x, format, tz = &quot;UTC&quot;, lt = TRUE, cutoff_2000 = 68L)</code></pre>
+<ul>
+<li><code>x</code> is a character or numeric vector of dates</li>
+</ul>
+<div id="example-8" class="section level3">
+<h3>Example</h3>
+</div>
+<div id="base-r-alternative-7" class="section level3">
+<h3>Base R alternative</h3>
+</div>
+</div>
+<div id="quickly-parse-date-time" class="section level2">
+<h2>Quickly parse date-time</h2>
+<pre class="r"><code>ymd_hms(..., quiet = FALSE, tz = NULL, ...)
+ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
+<ul>
+<li>The first <code>...</code> argument is …</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Date-time</th>
+<th align="left">Date only</th>
+<th align="left">Time only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ymd_hms()</code></td>
+<td align="left"><code>ymd()</code></td>
+<td align="left"><code>hms()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>ymd_hm()</code></td>
+<td align="left"><code>ydm()</code></td>
+<td align="left"><code>hm()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ymd_h()</code></td>
+<td align="left"><code>mdy()</code></td>
+<td align="left"><code>ms()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>mdy_hms()</code></td>
+<td align="left"><code>myd()</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mdy_hm()</code></td>
+<td align="left"><code>dmy()</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>mdy_h()</code></td>
+<td align="left"><code>dym()</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>dmy_hms()</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>dmy_hm()</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>dmy_h()</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>y</code> is year</li>
+<li>first <code>m</code> is month</li>
+<li><code>d</code> is date</li>
+<li><code>h</code> is hour</li>
+<li>second <code>m</code> is minute</li>
+<li><code>s</code> is second</li>
 </ul>
 </div>
 <div id="more-on-lubridate" class="section level2">
@@ -328,9 +856,9 @@ div.tocify {
 </div>
 <div id="importingexporting-data" class="section level1">
 <h1>Importing/Exporting Data</h1>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Data-transfer.svg/2000px-Data-transfer.svg.png" width="30%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/data_transfer.png" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 <div id="comma-separated-values-.csv" class="section level2">
 <h2>Comma-separated values (.csv)</h2>
@@ -346,6 +874,33 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 <li><code>fwrite()</code></li>
 </ul></li>
 </ul>
+<div id="using-readr" class="section level3">
+<h3>Using <code>readr</code></h3>
+<pre class="r"><code>read_csv(file, col_names = TRUE, col_types = NULL, na = c(&quot;&quot;, &quot;NA&quot;), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
+write_csv(x, path, na = &quot;NA&quot;, append = FALSE, col_names = !append)</code></pre>
+<ul>
+<li><code>file</code> is a path to the excel file to import</li>
+<li><code>x</code> is a data object to export</li>
+<li><code>path</code> is a path to the directory where the exported data will be created</li>
+<li>The output of<code>read_csv()</code> is a <code>tibble</code> object</li>
+<li>The output of <code>write_csv()</code> is a .csv file</li>
+</ul>
+</div>
+<div id="using-data.table" class="section level3">
+<h3>Using <code>data.table</code></h3>
+<pre class="r"><code>fread(input, file, nrows=-1L, header=&quot;auto&quot;, na.strings=&quot;NA&quot;, stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
+strip.white=TRUE, fill=FALSE, ...)
+fwrite(x, file = &quot;&quot;, append = FALSE, quote = &quot;auto&quot;, sep = &quot;,&quot;, na = &quot;&quot;, row.names = FALSE, col.names = TRUE, ...)</code></pre>
+<ul>
+<li>The output of <code>fread</code> is a <code>data.table</code> object</li>
+<li>The output of <code>fwrite</code> is a .csv file in a directory</li>
+</ul>
+</div>
+<div id="base-r-alternative-8" class="section level3">
+<h3>Base R alternative</h3>
+<pre class="r"><code>read.csv(file,  header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;, dec = &quot;.&quot;, fill = TRUE, ...)
+write.csv(x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot;,&quot;, row.names = TRUE, col.names = TRUE, ...)</code></pre>
+</div>
 </div>
 <div id="excel-spreadsheets-.xlsx.xls" class="section level2">
 <h2>Excel spreadsheets (.xlsx/.xls)</h2>
@@ -355,10 +910,21 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 <li><code>read_excel()</code></li>
 <li><code>write_excel()</code></li>
 </ul></li>
+</ul>
+<pre class="r"><code>read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL, na = &quot;&quot;, trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max))
+read_xls(path, ...)
+read_xlsx(path, ...)</code></pre>
+<ul>
+<li>The output is a <code>tibble</code> object</li>
+</ul>
+<div id="more-on-readxl" class="section level3">
+<h3>More on <code>readxl</code></h3>
+<ul>
 <li><code>readxl</code> on <a href="http://readxl.tidyverse.org/">tidyverse.org</a></li>
 <li><code>readxl</code> <a href="https://cran.r-project.org/web/packages/readxl/readxl.pdf">CRAN documentation</a></li>
 <li><code>readxl</code> <a href="https://github.com/tidyverse/readxl">Github repository</a></li>
 </ul>
+</div>
 </div>
 <div id="spss-data-files-.sav" class="section level2">
 <h2>SPSS data files (.sav)</h2>
@@ -373,10 +939,25 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 <li>STATA</li>
 <li>SAS</li>
 </ul></li>
+</ul>
+<pre class="r"><code>read_sav(file, user_na = FALSE)
+read_spss(file, user_na = FALSE)
+write_sav(data, path)</code></pre>
+<ul>
+<li>The output of <code>read_sav()</code> is a <code>tibble</code> object
+<ul>
+<li><code>read_spss()</code> is a simple alias for <code>read_sav()</code></li>
+</ul></li>
+<li>The output of <code>write_sav()</code> is an SPSS data file</li>
+</ul>
+<div id="more-on-haven" class="section level3">
+<h3>More on <code>haven</code></h3>
+<ul>
 <li><code>haven</code> on <a href="http://haven.tidyverse.org/">tidyverse.org</a></li>
 <li><code>haven</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf">CRAN documentation</a></li>
 <li><code>haven</code> <a href="https://github.com/tidyverse/haven">Github repository</a></li>
 </ul>
+</div>
 </div>
 <div id="a-fast-on-disk-data-frame-storage-.feather" class="section level2">
 <h2>A “fast-on-disk” data frame storage (.feather)</h2>
@@ -387,26 +968,52 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 <li><code>write_feather()</code></li>
 </ul></li>
 <li>The .feather format is also supported in Python!</li>
-<li><code>feather</code> on <a href="http://haven.tidyverse.org/">tidyverse.org</a></li>
+</ul>
+<pre class="r"><code>read_feather(path, columns = NULL)
+write_feather(x, path)</code></pre>
+<ul>
+<li>The output of <code>read_feather()</code> is a <code>tibble</code> object</li>
+<li>The output of <code>write_feather()</code> is a feather file</li>
+</ul>
+<div id="more-on-feather" class="section level3">
+<h3>More on <code>feather</code></h3>
+<ul>
+<li>Wickham, H. (2016), <a href="https://blog.rstudio.com/2016/03/29/feather/">“Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow”</a>. <em>RStudio Blog</em>.</li>
 <li><code>feather</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf">CRAN documentation</a></li>
 </ul>
 <hr />
 </div>
 </div>
+</div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
+Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.
 </li>
 <li>
-<a href="#">2</a>
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Dates and Times Cheat Shee”</a>.
 </li>
 <li>
-<a href="#">3</a>
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Work with Strings Cheat Sheet”</a>.
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a>
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a>
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a>
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a>
 </li>
 <li>
 <a href="#"></a>
+</li>
+<li>
+Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a>
 </li>
 </ul>
 </div>

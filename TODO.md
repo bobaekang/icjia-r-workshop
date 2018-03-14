@@ -2,40 +2,24 @@
 
 The current document lists the to-do items.
 
-* Module 1
-    * Slides and Notes
-       * add citations
-       * review and finalize the slides
-* Module 2
-    * All Slides and Notes
-       * add citations
-       * review and finalize the slides
 * Module 3
-    * Part 1 Slides
-       * add examples for all functions introduced
-       * add examples of data manipulation: 1) `dplyr` 2) `dplyr` and `tidyr`
+    * Part 1 materials
+       * add examples for `tidyr` functions
+       * add final examples for data manipulation
        * add citations
-    * Part 1 Notes
-       * fill in contents
-       * add citations
-    * Part 2 Slides
-       * add citations
-    * Part 2 Notes
+    * Part 2 materials
        * fill in contents
        * add citations
 * Module 4
-    * Part 1 Slides
-       * add examples for all functions introduced
-    * Part 1 Notes
-       * fill in contents
-    * Part 2 Slides
-       * add examples for all functions introduced
-    * Part 2 Notes
-       * fill in contents
+     * add examples for all functions introduced
+     * fill in contents
+     * add citations
 * Module 5
-    * come up with a basic structure
+     * add examples for all functions introduced
+     * fill in contents
 * Module 6
-    * come up witha a basic structure
+     * add examples for all functions introduced
+     * fill in contents
 * Others
     * `icjiar` R package
         * add a dataset: population

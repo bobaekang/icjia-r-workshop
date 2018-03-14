@@ -467,6 +467,18 @@ This module consists of the following two parts:
 #### Part 2: Leveraging online resources
 
 
+## ICJIA Workshop on the web
+
+All the workshop materials are available as a website:
+
+* [bobaekang.github.io/icjia-r-workshop](https://bobaekang.github.io/icjia-r-workshop/)
+
+And all the materials that constitute this website, including the workshop materials, are available as a GitHub repository:
+
+* [github.com/bobaekang/icjia-r-workshop](https://github.com/bobaekang/icjia-r-workshop)
+
+I encourage you to check out these pages to find out more about this workshop and check out the workshop materials before or after each session.
+
 ***
 
 

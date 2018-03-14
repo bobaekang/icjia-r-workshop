@@ -68,12 +68,12 @@ Navigate to the other workshop materials:
 
 # Data Analysis with R (2): More on data analysis
 
-```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
-images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
-knitr::include_graphics(images)
+```{r echo=FALSE, out.width="35%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+library(knitr)
+include_graphics("../images/more_data_analysis.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a>
 </div>
 
 
@@ -83,41 +83,446 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 # Working with Strings
 
 ```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
-knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2014/04/stringr.png")
+include_graphics("../images/font_case.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
 
-## Key stringr functions
+## `stringr` from tidyverse
+```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+include_graphics("../images/stringr.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.rstudio.com/">RStudio</a>
+</div>
 
-* `arange()`
+## Key `stringr` functions
 
-## More on stringr
+* `str_to_upper()` `str_to_lower()` `str_to_title()`
+* `str_trim()` `str_squish()`
+* `str_c()`
+* `str_detect()`
+* `str_subset()`
+* `str_sub()`
 
+Note: Many `stringr` functions have base R alternatives
+
+## Convert letter case
+```{r eval=FALSE}
+str_to_upper(string, locale = "en")
+str_to_lower(string, locale = "en")
+str_to_title(string, locale = "en")
+```
+* `string` input is a character vector
+    * Or something that can be coerced into a character vector
+* The default `locale` is "en", for English
+* `str_to_title()` capitalizes only the first letter of each word
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+toupper(string) # equivalent to str_to_upper()
+tolower(string) # equivalent to str_to_lower()
+```
+
+
+## Trim whitespace
+```{r eval=FALSE}
+str_trim(string, side = c("both", "left", "right"))
+str_squish(string)
+```
+* `string` input is a character vector
+* `side` input determins which side of a string to trim
+    * "both" trims whitespaces on both the beginning and the end
+    * "left" trims whitespaces only on the beginning
+    * "right" trims whitespaces only on the end
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+trimws(x, which = c("both", "left", "right"))
+```
+
+
+## Concatenate strings into one
+```{r eval=FALSE}
+str_c(..., sep = "", collapse = NULL)
+```
+* The first argument (`...`) is one more more character vectors
+* 
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+paste (..., sep = " ", collapse = NULL) # equivalent to str_c()
+```
+
+
+## Detect a pattern
+```{r eval=FALSE}
+str_detect(string, pattern)
+```
+* `string` input is a character vector
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+grepl(pattern, x, ...) # equivalent to str_detect()
+```
+
+
+## Get strings/positions matching a pattern
+```{r eval=FALSE}
+str_subset(string, pattern)
+str_which(string, pattern)
+```
+* `string` input is a character vector
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+grep(pattern, x, value = TRUE, ...) # equivalent to str_subset()
+grep(pattern, x, value = FALSE, ...) # equivalent to str_which()
+```
+
+
+## Extract and replace substrings
+```{r eval=FALSE}
+str_sub(string, start = 1L, end = -1L)
+str_sub(string, start = 1L, end = -1L, omit_na = FALSE) <- value
+```
+* The first argument is a character vector
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+substr(x, start, stop)
+substr(x, start, stop) <- value
+```
+
+
+## More on `stringr`
 * `stringr` on [tidyverse.org](http://stringr.tidyverse.org/)
 * `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf)
 * `stringr` [Github repository](https://github.com/tidyverse/stringr)
+
+
+## Regular expression (regex)
+* What it is
+* When to use/why useful
+
+
+## Regular expression in R
+* Character classes
+* Metacharacters
+* Groups
+* Anchors
+* Quantifiers
+
+### Character classes
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Class = c(
+      "`[[:digit:]]` or `\\d`",
+      "`\\\\D`",
+      "`[[:lower:]]`",
+      "`[[:upper:]]`",
+      "`[[:alpha:]]`",
+      "`[[:alnum:]]`",
+      "`\\\\w`",
+      "`\\\\W`",
+      "`[[:blank:]]`",
+      "`[[:space:]]` or `\\s`",
+      "`\\\\S`"
+    ),
+    Description = c(
+      "Any digits; i.e. `[0-9]`",
+      "Non-digits; i.e. `[^0-9]`",
+      "Lower-case letters; i.e. `[a-z]`",
+      "Upper-case letters; i.e. `[A-Z]`",
+      "Alphabetic characters; `[A-z]`",
+      "Alphanumeric characters; i.e. `[A-z0-9]`",
+      "Any Word characters; i.e. `[A-z0-9_]`",
+      "Non-word characters",
+      "Space and tab",
+      "Space, tab, vertical tab, newline, form feed, carriage return",
+      "Not space; i.e. `[^[:space:]]`"
+    )
+  )
+)
+```
+
+### Metacharacters
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Metacharacter = c("`\\n`", "`\\r`", "`\\t`", "`\\v`", "`\\f`"),
+    Description = c(
+      "New line",
+      "Carriage return",
+      "Tab",
+      "Vertical tab",
+      "Form feed"
+    )
+  )
+)
+```
+
+### Groups
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Group = c("`.`", "|", "`[...]`", "`[a-z]`", "`[^...]`", "`(...)`"),
+    Description = c(
+      "Any character except `\\n`",
+      "Or, e.g. `(a`|`b)`",
+      "List permitted characters, e.g. `[abc]`",
+      "Specify character ranges",
+      "List excluded characters",
+      "Grouping, enables back referencing using `\\\\N` where `N` is integer"
+    )
+  )
+)
+```
+
+### Anchors
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Anchor = c("`^`", "`$`", "`\\\\b`", "`\\\\B`", "`\\\\<`", "`\\\\>`"),
+    Description = c(
+      "Start of the string",
+      "End of the string",
+      "Empty string at either edge of a word",
+      "NOT the edge of a word",
+      "Beginning of a word",
+      "End of a word"
+    )
+  )
+)
+```
+
+### Quantifiers
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Quantifier = c("`*`", "`+`", "`?`", "`{n}`", "`{n, }`", "`{, n}`", "`{n, m}`"),
+    Description = c(
+      "Matches at least 0 times",
+      "Matches at least 1 time",
+      "Matches at most 1 time; optional string",
+      "Matches extactly `n` times",
+      "Matches at least `n` times",
+      "Matches at most `n` times",
+      "Matches between `n` and `m` times"
+    )
+  )
+)
+```
+
+### Examples
+
+
+## More on regular expression
+* resources
 
 
 ***
 
 
 # Working with Datetimes
+```{r echo=FALSE, out.width="30%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+include_graphics("../images/calendar.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
+</div>
 
+
+## Dates/Datetimes basics
+* basics
+
+
+## `lubridate` from tidyverse
+type:section
 ```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
-knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2014/04/lubridate.png")
+include_graphics("../images/lubridate.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
 
-## Key lubricate functions
 
-* `arange()`
+## Key `lubridate` functions
+* `as_date()` `as_datetime()`
+* `year()`, `month()`, `day()`, `hour()`, ...
+* `parse_date_time()` `fast_strptime()`
+* `ymd_hms()`, `ymd()`, ...
+
+
+## Convert to a date or date-time
+```{r eval=FALSE}
+as_date(x, tz = NULL, origin = lubridate::origin)
+as_datetime(x, tz = NULL, origin = lubridate::origin)
+```
+* `x` is a vector of POSIXt, numeric or character objects
+* `tz` is a time zone name
+* `origin` is a Date object or something that can be coerced into a Date object
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+
+```
+
+
+## Get/set time component
+```{r eval=FALSE}
+year(x)
+year(x) <- value
+```
+* `x` is a date-time object
+* `value` is a numeric object
+
+```{r echo=FALSE}
+kable(
+  data.frame(
+    "Function" = c(
+      "`year()`",
+      "`month()`",
+      "`week()`",
+      "`day()`",
+      "`hour()`",
+      "`minute()`",
+      "`second()`",
+      "`tz()`"
+      ),
+    Description = c(
+      "Get/set year component of a date-time",
+      "Get/set months component of a date-time",
+      "Get/set weeks component of a date-time",
+      "Get/set days component of a date-time",
+      "Get/set hours component of a date-time",
+      "Get/set minutes component of a date-time",
+      "Get/set seconds component of a date-time",
+      "Get/set time zone component of a date-time"
+    )
+  )
+)
+```
+* a
+* b
+
+### Example
+```{r}
+
+```
+
+
+## Parse date-time
+```{r eval=FALSE}
+parse_date_time(x, orders, tz = "UTC", truncated = 0, locale = Sys.getlocale("LC_TIME"), exact = FALSE, drop = FALSE, ...)
+fast_strptime(x, format, tz = "UTC", lt = TRUE, cutoff_2000 = 68L)
+```
+* `x` is a character or numeric vector of dates
+
+### Example
+```{r}
+
+```
+
+### Base R alternative
+```{r eval=FALSE}
+
+```
+
+
+## Quickly parse date-time
+```{r eval=FALSE}
+ymd_hms(..., quiet = FALSE, tz = NULL, ...)
+ymd(..., quiet = FALSE, tz = "UTC", ...)
+```
+* The first `...` argument is ...
+
+```{r echo=FALSE}
+kable(
+  tibble::tibble(
+    `Date-time` = c(
+      "`ymd_hms()`",
+      "`ymd_hm()`",
+      "`ymd_h()`",
+      "`mdy_hms()`",
+      "`mdy_hm()`",
+      "`mdy_h()`",
+      "`dmy_hms()`",
+      "`dmy_hm()`",
+      "`dmy_h()`"
+      ),
+    `Date only` = c(
+      "`ymd()`",
+      "`ydm()`",
+      "`mdy()`",
+      "`myd()`",
+      "`dmy()`",
+      "`dym()`",
+      "",
+      "",
+      ""
+    ),
+    `Time only` = c(
+      "`hms()`",
+      "`hm()`",
+      "`ms()`",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    )
+  )
+)
+```
+
+* `y` is year
+* first `m` is month
+* `d` is date
+* `h` is hour
+* second `m` is minute
+* `s` is second
+
 
 ## More on lubridate
-
 * `lubridate` on [tidyverse.org](http://lubridate.tidyverse.org/)
 * `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf)
 * `lubridate` [Github repository](https://github.com/tidyverse/lubridate)
@@ -127,43 +532,89 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 
 # Importing/Exporting Data
-
 ```{r echo=FALSE, out.width="30%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Data-transfer.svg/2000px-Data-transfer.svg.png")
+include_graphics("../images/data_transfer.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 
-## Comma-separated values (.csv)
 
+## Comma-separated values (.csv)
 * `readr` package (tidyverse)
     * `read_csv()`
     * `write_csv()`
 * `data.table` package
     * `fread()`
     * `fwrite()`
+    
+### Using `readr`
+```{r eval=FALSE}
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
+write_csv(x, path, na = "NA", append = FALSE, col_names = !append)
+```
+* `file` is a path to the excel file to import
+* `x` is a data object to export
+* `path` is a path to the directory where the exported data will be created 
+* The output of`read_csv()` is a `tibble` object
+* The output of `write_csv()` is a .csv file
+
+### Using `data.table`
+```{r eval=FALSE}
+fread(input, file, nrows=-1L, header="auto", na.strings="NA", stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
+strip.white=TRUE, fill=FALSE, ...)
+fwrite(x, file = "", append = FALSE, quote = "auto", sep = ",", na = "", row.names = FALSE, col.names = TRUE, ...)
+```
+* The output of `fread` is a `data.table` object
+* The output of `fwrite` is a .csv file in a directory
+
+### Base R alternative
+```{r eval=FALSE}
+read.csv(file,  header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, ...)
+write.csv(x, file = "", append = FALSE, quote = TRUE, sep = ",", row.names = TRUE, col.names = TRUE, ...)
+```
+
 
 ## Excel spreadsheets (.xlsx/.xls)
-
 * `readxl` package (tidyverse)
     * `read_excel()`
     * `write_excel()`
+
+```{r eval=FALSE}
+read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max))
+read_xls(path, ...)
+read_xlsx(path, ...)
+```
+* The output is a `tibble` object
+
+### More on `readxl`
 * `readxl` on [tidyverse.org](http://readxl.tidyverse.org/)
 * `readxl` [CRAN documentation](https://cran.r-project.org/web/packages/readxl/readxl.pdf)
 * `readxl` [Github repository](https://github.com/tidyverse/readxl)
 
-## SPSS data files (.sav)
 
+## SPSS data files (.sav)
 * `haven` package (tidyverse)
     * `read_sav()`
     * `write_sav()`
 * `haven` also has functions to import/export the file formats of other statistical softwares
     * STATA
     * SAS
+
+```{r eval=FALSE}
+read_sav(file, user_na = FALSE)
+read_spss(file, user_na = FALSE)
+write_sav(data, path)
+```
+* The output of `read_sav()` is a `tibble` object
+    * `read_spss()` is a simple alias for `read_sav()`
+* The output of `write_sav()` is an SPSS data file
+
+### More on `haven`
 * `haven` on [tidyverse.org](http://haven.tidyverse.org/)
 * `haven` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
 * `haven` [Github repository](https://github.com/tidyverse/haven)
+
 
 ## A "fast-on-disk" data frame storage (.feather) 
 
@@ -171,7 +622,16 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
     * `read_feather()`
     * `write_feather()`
 * The .feather format is also supported in Python!
-* `feather` on [tidyverse.org](http://haven.tidyverse.org/)
+
+```{r eval=FALSE}
+read_feather(path, columns = NULL)
+write_feather(x, path)
+```
+* The output of `read_feather()` is a `tibble` object
+* The output of `write_feather()` is a feather file
+
+### More on `feather`
+* Wickham, H. (2016), ["Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow"](https://blog.rstudio.com/2016/03/29/feather/). *RStudio Blog*.
 * `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
 
 
@@ -179,9 +639,14 @@ Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 
 
 # References
-<ul style="list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
+<ul>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Dates and Times Cheat Shee"</a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Work with Strings Cheat Sheet"</a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a></li>
   <li><a href="#"></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a></li>
 </ul>

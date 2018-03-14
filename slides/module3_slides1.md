@@ -128,12 +128,12 @@ Key dplyr functions
 
 Sort rows by variables
 ========================================================
-**Basic format**
 
 ```r
-arrange(tbl, col1, desc(col2), ...)
+arrange(tbl, ...)
 ```
-* A tabular data object (e.g. `data.frame` or `tibble`) as the first argument
+* The first argument is a tabular data object
+    * e.g. `data.frame` or `tibble`
 * Columns by which to sort the data as other arguments
     * Multiple columns can be used to sort the data
     * When multiple columns are given, sorting is done hierarchically
@@ -197,13 +197,13 @@ arrange(ispcrime, desc(county), desc(year))
 
 Filter rows with conditions
 ========================================================
-**Basic format**
 
 ```r
-filter(tbl, condition1, condition2, ...)
+filter(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Conditions by which to filter the data as the following arguments
+* The first argument is a tabular data object
+* The following arguments are conditional expressions
+    * Only the rows satisfying the given conditions are kept  
 
 ========================================================
 **Example**
@@ -237,46 +237,78 @@ ispcrime %>%
 
 Select and/or rename variables
 ========================================================
-**Basic format**
 
 ```r
-select(tbl, col1, var2 = col2, ...)
+select(tbl, ...)
+rename(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Columns to select as the following arguments
-    * Renaming each selected column is possible
+* The first argument is a tabular data object 
+* The following arguments are columns to select/rename
+    * `select()` returns the selected columns only while `rename()` keeps all columns
+    * Renaming each selected column is also possible with `select()`
+* `select()` can be also used to exclude a section of columns using a minus (`-`) sign while keeping the rest.
+
 
 ========================================================
 **Example**
 
 ```r
+# select with renaming columns
 ispcrime %>%
-  select(year:violentCrime, propertyCrime) %>%
+  select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %>%
   head()
 ```
 
 ```
-  year    county violentCrime propertyCrime
-1 2011     Adams          218          1555
-2 2011 Alexander          119           290
-3 2011      Bond            6           211
-4 2011     Boone           59           733
-5 2011     Brown            7            38
-6 2011    Bureau           42           505
+  year    county v_crime p_crime
+1 2011     Adams     218    1555
+2 2011 Alexander     119     290
+3 2011      Bond       6     211
+4 2011     Boone      59     733
+5 2011     Brown       7      38
+6 2011    Bureau      42     505
+```
+
+
+========================================================
+
+```r
+# excluding columns
+ispcrime %>%
+  select(-violentCrime, -propertyCrime) %>%
+  head()
+```
+
+```
+  year    county murder rape robbery aggAssault burglary larcenyTft MVTft
+1 2011     Adams      0   37      15        166      272       1241    36
+2 2011 Alexander      0   14       4        101       92        183    11
+3 2011      Bond      1    0       0          5       58        147     5
+4 2011     Boone      0   24       8         27      152        563    14
+5 2011     Brown      0    1       0          6       14         22     1
+6 2011    Bureau      0    4       3         35       90        405     8
+  arson
+1     6
+2     4
+3     1
+4     4
+5     1
+6     2
 ```
 
 
 Transform and add variables
 ========================================================
-**Basic format**
 
 ```r
-mutate(tbl, col1 = expression, new_col1 = expression, ...)
+transmute(tbl, ...)
+mutate(tbl, ...)
 ```
-* A tabular data object as the first argument
-* Expressions to "mutate" columns as the following arguments
+* The first argument is a tabular data object 
+* The following arguments transform or add columns
     * An exisiting column is modified with an expression with the same column name
     * A new column is created with an expression having a new column name
+    * `transmute()` returns the transformed/added columns only while `mutate()` keeps all columns
 
 ========================================================
 **Example**
@@ -306,14 +338,23 @@ ispcrime %>%
 
 Merge tables
 ========================================================
-**Basic format**
 
 ```r
-left_join(tbl1, tbl2, by = c("variables to join by"), ...)
+left_join(tbl1, tbl2, by = NULL, ...)
 ```
-* Tabular data objects to join as the first two arguments
-* A character vector of variable to join by as the third argument
+* The first two arguments are tabular data objects to join 
+* `by` takes a chracter vector containing a selection of variables to join tables by
+    * By default, all columns with common names are used
 * Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
+
+
+========================================================
+**Venn diagrams for join types**
+
+<img src="../images/join-venn.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="100%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html"><span href="font-style:italic">R for Data Science</span></a>
+</div>
 
 
 ========================================================
@@ -345,13 +386,15 @@ ispcrime %>%
 
 Aggregate and summarise rows
 ========================================================
-**Basic format**
 
 ```r
-summarise(tbl, summary1 = expression, summary2 = expression, ...)
+summarise(tbl, ...)
+summarize(tbl, ...)
 ```
-* A data object (table) as the first argument
-* Expressions to summarise data as the following arguments
+* The first argument is a tabular data object
+* The following arguments are expressions to summarise data
+    * `summarise()` and `summarize()` are identical
+    * each summary column resulting from each summarizing expression can be given a name
 
 
 ========================================================
@@ -373,15 +416,15 @@ ispcrime %>%
 
 Group by variables
 ========================================================
-**Basic format**
 
 ```r
-group_by(tbl, col1, col2, ...)
+group_by(tbl, ...)
+ungroup(tbl, ...)
 ```
-* A data object as the first argument
-* Columns by which to group the data as the following arguments
-
-* Can be used in combination with other function to allow for group-specific data manipulations
+* The first argument is a tabular data object
+* The following arguments are columns by which to group the data
+  * `group_by()` and `ungroup()` are the opposite operations
+* `group_by()` can be used in combination with other function to allow for group-specific data manipulations
 
 
 ========================================================
@@ -437,10 +480,9 @@ ispcrime %>%
 
 Chain operations
 ========================================================
-**Basic format**
 
 ```r
-data %>% some_function(arg2, arg3, ...) %>% ...
+data %>% function1(arg2, ...) %>% ...
 ```
 * A data object to be manipulated comes before `%>%`
 * Some function that *takes the data as the first argument* comes after `%>%`
@@ -506,25 +548,27 @@ ispcrime %>%
 
 ```r
 ispcrime %>%
-  group_by(county) %>%
+  left_join(regions) %>%
+  group_by(region, county) %>%
   summarise(annualAvgCrime = sum(violentCrime, propertyCrime, na.rm = TRUE) / n()) %>%
   arrange(desc(annualAvgCrime))
 ```
 
 ```
-# A tibble: 102 x 2
-   county    annualAvgCrime
-   <fct>              <dbl>
- 1 Cook              182818
- 2 Du Page            14316
- 3 Lake               12779
- 4 Winnebago          12275
- 5 Will               11078
- 6 St. Clair           9262
- 7 Sangamon            8876
- 8 Kane                8332
- 9 Peoria              7229
-10 Champaign           6567
+# A tibble: 102 x 3
+# Groups:   region [4]
+   region   county    annualAvgCrime
+   <fct>    <fct>              <dbl>
+ 1 Cook     Cook              182818
+ 2 Northern Du Page            14316
+ 3 Northern Lake               12779
+ 4 Northern Winnebago          12275
+ 5 Northern Will               11078
+ 6 Southern St. Clair           9262
+ 7 Central  Sangamon            8876
+ 8 Northern Kane                8332
+ 9 Central  Peoria              7229
+10 Central  Champaign           6567
 # ... with 92 more rows
 ```
 
@@ -539,9 +583,17 @@ More on dplyr
 Tidying Up Your Data
 ========================================================
 type:section
-<img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+</div>
+
+
+Remember "tidy data"?
+========================================================
+<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 </div>
 
 
@@ -549,34 +601,30 @@ Key tidyr functions
 ========================================================
 * `gather()`
 * `spread()`
-* `separate()`
-* `extract()`
 * `unite()`
+* `separate()`
+* `separate_rows()`
 
 
-Fix "wide" data
+Make "wide" data longer
 ========================================================
-**Basic format**
 
 ```r
-gather(tbl, key = "key", value = "value", ...)
+gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
-* A tabular data object (e.g. `data.frame` or `tibble`) as the first argument
+* The first argument is a tabular data object
+    * e.g. `data.frame` or `tibble`
+* `key` is a column to be used as a key, and `value` is a selection of columns to be used as values to each key value.
 
 
+Make "long" data wider
 ========================================================
-**Example**
-
-
-
-Fix "long" data
-========================================================
-**Basic format**
 
 ```r
 spread(tbl, key, value, fill = NA, ...)
 ```
-* A tabular data object as the first argument
+* The first argument is a tabular data object
+* `gather()` and `spread()` complements
 
 
 ========================================================
@@ -584,45 +632,45 @@ spread(tbl, key, value, fill = NA, ...)
 
 
 
-Split a column into many
 ========================================================
-**Basic format**
-
-```r
-separate(tbl, col, into, sep = "", remove = TRUE, ...)
-```
-* A tabular data object as the first argument
-
-
-========================================================
-**Example**
 
 
 
 Unite multiple columns into one
 ========================================================
-**Basic format**
 
 ```r
 unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
-* A tabular data object as the first argument
+* The first argument is a tabular data object
+* `separate()` and `unite()` are complements
+
+
+Split a column into many
+========================================================
+
+```r
+separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
+```
+* The first argument is a tabular data object
 
 
 ========================================================
 **Example**
 
 
-
-Extract a column into many
 ========================================================
-**Basic format**
+
+
+
+Split a row into many
+========================================================
 
 ```r
-extract(tbl, col, into, regex, remove = TRUE, ...)
+separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
-* A tabular data object as the first argument
-
+* The first argument is a tabular data object
+* `separate_rows()` is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
 
 ========================================================
 **Example**
@@ -636,16 +684,10 @@ More on tidyr
 * `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
 
 
-Data manipulation with dplyr and tidyr
-========================================================
-**Example 1**
-
-
-
 Questions?
 ========================================================
 type: section
-<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.com</a>
 </p>
@@ -654,6 +696,7 @@ Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.c
 ========================================================
 References
 <ul style="font-size: 0.6em">
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
   <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Import Cheat Sheet"</a>.</li>
   <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Transformation Cheat Sheet"</a>.</li>
   <li>Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.</li>
@@ -664,7 +707,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>
