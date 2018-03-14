@@ -243,7 +243,7 @@ select(tbl, ...)
 rename(tbl, ...)
 ```
 * The first argument is a tabular data object 
-* The following argumetns are columns to select/rename
+* The following arguments are columns to select/rename
     * `select()` returns the selected columns only while `rename()` keeps all columns
     * Renaming each selected column is also possible with `select()`
 * `select()` can be also used to exclude a section of columns using a minus (`-`) sign while keeping the rest.
@@ -346,6 +346,15 @@ left_join(tbl1, tbl2, by = NULL, ...)
 * `by` takes a chracter vector containing a selection of variables to join tables by
     * By default, all columns with common names are used
 * Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
+
+
+========================================================
+**Venn diagrams for join types**
+
+<img src="../images/join-venn.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="100%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html"><span href="font-style:italic">R for Data Science</span></a>
+</div>
 
 
 ========================================================
@@ -574,7 +583,7 @@ More on dplyr
 Tidying Up Your Data
 ========================================================
 type:section
-<img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/tidyr.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
@@ -582,7 +591,7 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 
 Remember "tidy data"?
 ========================================================
-<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="100%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/tidy-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 </div>
@@ -678,7 +687,7 @@ More on tidyr
 Questions?
 ========================================================
 type: section
-<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://media.giphy.com/media/106cqwD4WrDjJm/giphy.gif">giphy.com</a>
 </p>
@@ -698,7 +707,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

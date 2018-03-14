@@ -276,47 +276,27 @@ div.tocify {
 </div>
 <div id="data-analysis-with-r-1-getting-started-with-tidyverse" class="section level1">
 <h1>Data Analysis with R (1): Getting started with <code>tidyverse</code></h1>
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="20%" style="box-shadow: none; margin-left: 20%" />
+<img src="../images/dplyr.png" width="20%" style="box-shadow: none; margin-left: 20%" /><img src="../images/tidyr.png" width="20%" style="box-shadow: none; margin-left: 20%" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
 </div>
+<p>In Module 3, we will be exploring several <code>tidyverse</code> packages that offer powerful functionalities for data analysis.</p>
 <hr />
 </div>
 <div id="getting-ready" class="section level1">
 <h1>Getting Ready</h1>
 <div id="installing-the-packages" class="section level2">
 <h2>Installing the packages</h2>
-<ul>
-<li>Installing all <code>tidyverse</code> packages can be easily done with the follwoing command:</li>
-</ul>
+<p><code>tidyverse</code> is a set of R packages as well as an opinionated philosophy underlying these packages on how the practice of working with data in R should be. Although it is not the only way of working with data in R, <code>tidyverse</code> packages have become highly popular among R users.</p>
+<p>Installing all <code>tidyverse</code> packages can be easily done with the follwoing command:</p>
 <pre class="r"><code># Install from CRAN
 install.packages(&quot;tidyverse&quot;)
 
 # Or the development version from GitHub
 # install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;hadley/tidyverse&quot;)</code></pre>
-<ul>
-<li>Installing <code>tidyverse</code> package installs the following:
-<ul>
-<li>core tidyverse packages
-<ul>
-<li><code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code></li>
-</ul></li>
-<li>packages to work with specific vector types
-<ul>
-<li><code>hms</code>, <code>stringr</code>, <code>lubridate</code>, <code>forcats</code></li>
-</ul></li>
-<li>packages to import data
-<ul>
-<li><code>feather</code>, <code>haven</code>, <code>httr</code>, <code>jsonlite</code>, <code>readxl</code>, <code>rvest</code>, <code>xml2</code></li>
-</ul></li>
-<li>packages to facilitate statistical modeling
-<ul>
-<li><code>modelr</code>, <code>broom</code></li>
-</ul></li>
-</ul></li>
-<li>Of course, each pacakge can be installed separately:</li>
-</ul>
+<p>Installing <code>tidyverse</code> package installs the following: * core tidyverse packages * <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code> * packages to work with specific vector types * <code>hms</code>, <code>stringr</code>, <code>lubridate</code>, <code>forcats</code> * packages to import data * <code>feather</code>, <code>haven</code>, <code>httr</code>, <code>jsonlite</code>, <code>readxl</code>, <code>rvest</code>, <code>xml2</code> * packages to facilitate statistical modeling * <code>modelr</code>, <code>broom</code></p>
+<p>Alternatively, each pacakge can be installed separately:</p>
 <pre class="r"><code># Install ggplot2
 install.packages(&quot;ggplot2&quot;)
 
@@ -326,26 +306,26 @@ install.packages(c(&quot;dplyr&quot;, &quot;tidyr&quot;))</code></pre>
 </div>
 <div id="importing-the-packages" class="section level2">
 <h2>Importing the packages</h2>
-<ul>
-<li>Once installed, we can now import the packages using <code>library()</code>:</li>
-</ul>
+<p>Once installed, we can now import the packages using <code>library()</code>:</p>
 <pre class="r"><code># This imports the core tidyverse packages
 library(tidyverse)
 
 # Or import packages separately
 library(dplyr)
 library(tidyr)</code></pre>
+<p>In the following, we will explore two powerful <code>tidyverse</code> packages for wrangling tabluar data, <code>dplyr</code> and <code>tidyr</code>.</p>
 <hr />
 </div>
 </div>
 <div id="manipulating-your-data" class="section level1">
 <h1>Manipulating Your Data</h1>
-<img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/dplyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
 </div>
 <div id="key-dplyr-functions" class="section level2">
 <h2>Key dplyr functions</h2>
+<p>In this section, we will learn the following <code>dplyr</code> functions:</p>
 <ul>
 <li><code>arange()</code></li>
 <li><code>select()</code> <code>rename()</code></li>
@@ -356,24 +336,16 @@ library(tidyr)</code></pre>
 <li><code>group_by()</code> <code>ungroup()</code></li>
 <li><code>%&gt;%</code>, the pipe operator</li>
 </ul>
+<p>Please note that this section is not intended to be an exhaustive documentation and description of the listed functions–or <code>dplyr</code> package for that matter. For more information, please check out the reference materials listed <a href="#dplyr_more">below</a>.</p>
 </div>
 <div id="sort-rows-by-variables" class="section level2">
 <h2>Sort rows by variables</h2>
 <pre class="r"><code>arrange(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object
-<ul>
-<li>e.g. <code>data.frame</code> or <code>tibble</code></li>
-</ul></li>
-<li>Columns by which to sort the data as other arguments
-<ul>
-<li>Multiple columns can be used to sort the data</li>
-<li>When multiple columns are given, sorting is done hierarchically</li>
-<li>Sorting in a descending order with <code>desc()</code></li>
-</ul></li>
-</ul>
+<p><code>arrange()</code> is used to sort the rows by a selection of column variables. The first argument of <code>arrange()</code> is a tabular data object. In fact, as we will see soon, almost all other functions of <code>tidyverse</code> packages take a data object as the first input. This tabular data can be of the <code>data.frame</code> class or any of its extensions, such as <code>tidyverse</code>’s very own <code>tibble</code> class.</p>
+<p><code>arrange()</code> takes columns by which to sort the data as additional arguments. If multiple columns are provided, the sorting taks place in a hierarchical manner: the data is first sorted by the first column, then by the second column, and so on. By default, sorting is in an ascending order (smaller to larger). Sorting in a descending order can be done by wrapping the column with <code>desc()</code>.</p>
 <div id="example" class="section level3">
 <h3>Example</h3>
+<p>The following example sorts, or arranges, the <code>ispcrime</code> data by the <code>county</code> column. To make it manageable, we also use the <code>head()</code> to print only the first few rows:</p>
 <pre class="r"><code># without using pipe
 head(arrange(ispcrime, county))
 
@@ -395,7 +367,14 @@ ispcrime %&gt;%
 ## 4      305       1201    39     5
 ## 5      274        944    43     7
 ## 6       92        183    11     4</code></pre>
-<pre class="r"><code># sort by county and year, in a DESCENDING order
+<p>As shown above, there are two ways to work with <code>dplyr</code> functions:</p>
+<ol style="list-style-type: decimal">
+<li>Traditional syntax for using R functions</li>
+<li>Using pipe operators, <code>%&gt;%</code></li>
+</ol>
+<p>We will take a closer look at <code>%&gt;%</code> <a href="#pipe">below</a>. In the meantime, it is sufficient to note that the object before <code>%&gt;%</code> is fed, or “piped,” into the following function as the input for its first argument.</p>
+<p>The folloiwng code illustrates using <code>desc()</code> to sort in a descending order:</p>
+<pre class="r"><code># sort by county, in a DESCENDING order
 ispcrime %&gt;%
   arrange(desc(county)) %&gt;%
   head() </code></pre>
@@ -418,15 +397,10 @@ ispcrime %&gt;%
 <div id="filter-rows-with-conditions" class="section level2">
 <h2>Filter rows with conditions</h2>
 <pre class="r"><code>filter(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li>The following arguments are conditional expressions
-<ul>
-<li>Only the rows satisfying the given conditions are kept</li>
-</ul></li>
-</ul>
+<p><code>filter()</code> is used to filter data to keep rows that match given conditions. As in <code>arrange()</code>, the first argument is a tabular data object. Conditional expressions to filter data, which should evaluate as <code>TRUE</code> or <code>FALSE</code> for each row, are given as additional arguments.</p>
 <div id="example-1" class="section level3">
 <h3>Example</h3>
+<p>The following code filters <code>ispcrime</code> to return a subset of data where <code>year</code> value matches 2015 <em>AND</em> <code>murder</code> value is greater than 0. As before, we use <code>head()</code> to show only the first few rows.</p>
 <pre class="r"><code>ispcrime %&gt;%
   filter(
     year == 2015,
@@ -453,17 +427,11 @@ ispcrime %&gt;%
 <h2>Select and/or rename variables</h2>
 <pre class="r"><code>select(tbl, ...)
 rename(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li>The following argumetns are columns to select/rename
-<ul>
-<li><code>select()</code> returns the selected columns only while <code>rename()</code> keeps all columns</li>
-<li>Renaming each selected column is also possible with <code>select()</code></li>
-</ul></li>
-<li><code>select()</code> can be also used to exclude a section of columns using a minus (<code>-</code>) sign while keeping the rest.</li>
-</ul>
+<p><code>select()</code> and <code>rename()</code> both take a tabular data object as the first argument input. The following arguments are columns to select or rename. These two functions are quite similar to each other, except that <code>select()</code> returns the selected columns only while <code>rename()</code> keeps all columns.</p>
+<p>It is actually possible to renaming each selected column with <code>select()</code> as well. <code>select()</code> can be also used to exclude a section of columns using a minus (<code>-</code>) sign while keeping the rest.</p>
 <div id="example-2" class="section level3">
 <h3>Example</h3>
+<p>Let’s take a look at an example on how to use <code>select()</code> to select columns, with changing their names in certain cases. The following code select four columns of <code>ispcrime</code> while changing the names of <code>violentCrime</code> and <code>propertyCrime</code> columns.</p>
 <pre class="r"><code># select with renaming columns
 ispcrime %&gt;%
   select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %&gt;%
@@ -475,6 +443,7 @@ ispcrime %&gt;%
 ## 4 2011     Boone      59     733
 ## 5 2011     Brown       7      38
 ## 6 2011    Bureau      42     505</code></pre>
+<p>As noted earlier, <code>select()</code> can be used to exclude certain columns. The following code selects all columns of <code>ispcrime</code> <em>except</em> <code>violentCrime</code> and <code>propertyCrime</code>:</p>
 <pre class="r"><code># excluding columns
 ispcrime %&gt;%
   select(-violentCrime, -propertyCrime) %&gt;%
@@ -499,17 +468,11 @@ ispcrime %&gt;%
 <h2>Transform and add variables</h2>
 <pre class="r"><code>transmute(tbl, ...)
 mutate(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li>The following arguments transform or add columns
-<ul>
-<li>An exisiting column is modified with an expression with the same column name</li>
-<li>A new column is created with an expression having a new column name</li>
-<li><code>transmute()</code> returns the transformed/added columns only while <code>mutate()</code> keeps all columns</li>
-</ul></li>
-</ul>
+<p><code>transmute()</code> and <code>mutate()</code> both take a tabular data object as the first argument input. The following arguments are expressions to transform existing columns or add new ones. An exisiting column is modified with an expression with the same column name. On the other hand, a new column is created with an expression having a new column name.</p>
+<p>As with <code>select()</code> and <code>rename()</code>, the two functions here are quite similar to each other, except that <code>transmute()</code> returns the trasnformed/aded columns only while <code>mutate()</code> keeps all columns.</p>
 <div id="example-3" class="section level3">
 <h3>Example</h3>
+<p>The following code adds a new column named <code>totalCrime</code>, whose value equals the sum of <code>violentCrime</code> and <code>propertyCrime</code> values:</p>
 <pre class="r"><code>ispcrime %&gt;%
   mutate(totalCrime = violentCrime + propertyCrime) %&gt;%
   head()</code></pre>
@@ -527,21 +490,21 @@ mutate(tbl, ...)</code></pre>
 ## 4      152        563    14     4        792
 ## 5       14         22     1     1         45
 ## 6       90        405     8     2        547</code></pre>
+<p>If it were with <code>transmute()</code>, the result would include only the <code>totalCrime</code> column.</p>
 </div>
 </div>
 <div id="merge-tables" class="section level2">
 <h2>Merge tables</h2>
 <pre class="r"><code>left_join(tbl1, tbl2, by = NULL, ...)</code></pre>
-<ul>
-<li>The first two arguments are tabular data objects to join</li>
-<li><code>by</code> takes a chracter vector containing a selection of variables to join tables by
-<ul>
-<li>By default, all columns with common names are used</li>
-</ul></li>
-<li>Other types of join: <code>inner_join()</code>, <code>right_join()</code>, <code>semi_join()</code>, <code>anti_join()</code>, <code>full_join()</code></li>
-</ul>
+<p><code>left_join()</code> takes two tabular data objects to join as the first two arguments. <code>by</code> takes a chracter vector containing a selection of variables to join tables by. By default, all columns with common names are used. The ouput is a merged table where the columns in the second table is added to the first table as new columns where the values of <code>by</code> columns match.</p>
+<p><code>left_join()</code> is named so because it keeps all observations in the first (left) table. There, in fact, are other types of joins including: <code>inner_join()</code>, <code>right_join()</code>, <code>full_join()</code>, <code>semi_join()</code>, and <code>anti_join()</code>.</p>
+The following four Venn diagrams show how different types of join compare to one another in terms of the observations (rows): <br><br> <img src="../images/join-venn.png" width="80%" style="box-shadow: none; display: block; margin: auto;" />
+<div style="font-size:0.5em; text-align:center; color: #777;">
+<p>Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html"><span href="font-style:italic">R for Data Science</span></a></p>
+</div>
 <div id="example-4" class="section level3">
 <h3>Example</h3>
+<p>The following code left-joins <code>regions</code> table to <code>ispcrime</code> table on the <code>county</code> values. The <code>regions</code> table has two columns: <code>region</code> and <code>county</code>. Accordingly, the final output is basically the <code>ispcrime</code> table with one extra column, <code>region</code>, that corresponds to the <code>county</code> value:</p>
 <pre class="r"><code>ispcrime %&gt;%
   left_join(regions, by = &quot;county&quot;) %&gt;%
   head()</code></pre>
@@ -565,16 +528,11 @@ mutate(tbl, ...)</code></pre>
 <h2>Aggregate and summarise rows</h2>
 <pre class="r"><code>summarise(tbl, ...)
 summarize(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li>The following arguments are expressions to summarise data
-<ul>
-<li><code>summarise()</code> and <code>summarize()</code> are identical</li>
-<li>each summary column resulting from each summarizing expression can be given a name</li>
-</ul></li>
-</ul>
+<p><code>summarise()</code> and <code>summairze()</code> are identical except who they are spelled. This is because the original package author, Hadly Wickham, is an Australian and wrote the names accordingly. Later, due to the demand from American programmers, <code>summarize()</code> was added.</p>
+<p><code>summarise()</code> takes a tabular data object as its first argument, and the following arguments are expressions to “summarize” data. Each of these expressions creates a summary column, which can be given a name just as in the case of <code>transmute()</code> or <code>mutate()</code>.</p>
 <div id="example-5" class="section level3">
 <h3>Example</h3>
+<p>Here, we use <code>summarise()</code> to get the average count of <code>violentCrime</code> and <code>propertyCrime</code>, which are named <code>violentCrimeAverage</code> and <code>propertyCrimeAverage</code> respectively:</p>
 <pre class="r"><code>ispcrime %&gt;%
   summarise(
     violentCrimeAverage = mean(violentCrime, na.rm = TRUE),
@@ -588,14 +546,11 @@ summarize(tbl, ...)</code></pre>
 <h2>Group by variables</h2>
 <pre class="r"><code>group_by(tbl, ...)
 ungroup(tbl, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li>The following arguments are columns by which to group the data</li>
-<li><code>group_by()</code> and <code>ungroup()</code> are the opposite operations</li>
-<li><code>group_by()</code> can be used in combination with other function to allow for group-specific data manipulations</li>
-</ul>
+<p><code>group_by</code> is a powerful function that allows us to manipulate a data object in “groups,” which is defined by the discrete values in a column, or a selection of columns. As in other <code>dplyr</code> functions, the first argument is a tabular object. The following arguments are columns by which to group the data.</p>
+<p><code>group_by()</code> and <code>ungroup()</code> are the opposite operations. <code>group_by()</code> creates a data object with groups. <code>ungroup()</code> removes the groups.</p>
 <div id="example-6" class="section level3">
 <h3>Example</h3>
+<p>The following example shows how a groupd data table looks like:</p>
 <pre class="r"><code>ispcrime %&gt;%
   group_by(year)</code></pre>
 <pre><code>## # A tibble: 510 x 12
@@ -614,6 +569,7 @@ ungroup(tbl, ...)</code></pre>
 ## 10  2011 Champ~         1210      5   127     208        870          5332
 ## # ... with 500 more rows, and 4 more variables: burglary &lt;int&gt;,
 ## #   larcenyTft &lt;int&gt;, MVTft &lt;int&gt;, arson &lt;int&gt;</code></pre>
+<p>Now, let’s see how <code>group_by()</code> can be used in combination with another <code>dplyr</code> function. In the following, we group our data by <code>year</code> values and get summaries (average crime counts) for each year:</p>
 <pre class="r"><code>ispcrime %&gt;%
   group_by(year) %&gt;%
   summarise(
@@ -630,7 +586,7 @@ ungroup(tbl, ...)</code></pre>
 ## 5  2015                 478                 2481</code></pre>
 </div>
 </div>
-<div id="chain-operations" class="section level2">
+<div id="pipe" class="section level2">
 <h2>Chain operations</h2>
 <p>We have been using the pipe operator, <code>%&gt;%</code>, in our code examples. Now is a good time to take a closer look at it.</p>
 <pre class="r"><code>data %&gt;% function1(arg2, ...) %&gt;% ...</code></pre>
@@ -740,7 +696,7 @@ function3(function2(function1(object, arguments1), arguments2), arguments3)</cod
 </ol>
 </div>
 </div>
-<div id="more-on-dplyr" class="section level2">
+<div id="dplyr_more" class="section level2">
 <h2>More on <code>dplyr</code></h2>
 <p>What we have seen is only a tip of an iceberg that is <code>dplyr</code>. Although the aforementioned functions are among the most commonly used in usual data manipulation and analysis tasks, the description and examples here are by no means comprehensive. Also, <code>dplyr</code> offers many other functions to facilitate data manipulation work. I recommend you to check out the following resources to learn more about <code>dplyr</code>:</p>
 <ul>
@@ -753,7 +709,7 @@ function3(function2(function1(object, arguments1), arguments2), arguments3)</cod
 </div>
 <div id="tidying-up-your-data" class="section level1">
 <h1>Tidying Up Your Data</h1>
-<img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/tidyr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
 </div>
@@ -777,6 +733,13 @@ function3(function2(function1(object, arguments1), arguments2), arguments3)</cod
 <div id="make-wide-data-longer" class="section level2">
 <h2>Make “wide” data longer</h2>
 <pre class="r"><code>gather(tbl, key = &quot;key&quot;, value = &quot;value&quot;, ..., na.rm = FALSE, ...)</code></pre>
+<ul>
+<li>The first argument is a tabular data object
+<ul>
+<li>e.g. <code>data.frame</code> or <code>tibble</code></li>
+</ul></li>
+<li><code>key</code> is a column to be used as a key, and <code>value</code> is a selection of columns to be used as values to each key value.</li>
+</ul>
 </div>
 <div id="make-long-data-wider" class="section level2">
 <h2>Make “long” data wider</h2>

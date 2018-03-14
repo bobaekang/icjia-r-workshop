@@ -23,11 +23,12 @@ css: ../css/style.css
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+library(knitr)
 library(dplyr)
 library(tidyr)
 library(icjiar)
+
+opts_chunk$set(echo = TRUE)
 ```
 
 This page contains the notes for **the first part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
@@ -73,13 +74,15 @@ Navigate to the other workshop materials:
 # Data Analysis with R (1): Getting started with `tidyverse`
 
 ```{r echo=FALSE, out.width="20%", out.extra='style="box-shadow: none; margin-left: 20%"'}
-images <- c("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png", "https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
-knitr::include_graphics(images)
+images <- c("../images/dplyr.png", "../images/tidyr.png")
+include_graphics(images)
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 </div>
 
+
+In Module 3, we will be exploring several `tidyverse` packages that offer powerful functionalities for data analysis.
 
 ***
 
@@ -88,7 +91,9 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 
 ## Installing the packages
 
-* Installing all `tidyverse` packages can be easily done with the follwoing command:
+`tidyverse` is a set of R packages as well as an opinionated philosophy underlying these packages on how the practice of working with data in R should be. Although it is not the only way of working with data in R, `tidyverse` packages have become highly popular among R users.   
+
+Installing all `tidyverse` packages can be easily done with the follwoing command:
 
 ```{r eval=FALSE}
 # Install from CRAN
@@ -99,17 +104,17 @@ install.packages("tidyverse")
 devtools::install_github("hadley/tidyverse")
 ```
 
-* Installing `tidyverse` package installs the following:
-    * core tidyverse packages
-        * `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`
-    * packages to work with specific vector types 
-        * `hms`, `stringr`, `lubridate`, `forcats`
-    * packages to import data
-        * `feather`, `haven`, `httr`, `jsonlite`, `readxl`, `rvest`, `xml2`
-    * packages to facilitate statistical modeling
-        * `modelr`, `broom`
+Installing `tidyverse` package installs the following:
+  * core tidyverse packages
+      * `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`
+  * packages to work with specific vector types 
+      * `hms`, `stringr`, `lubridate`, `forcats`
+  * packages to import data
+      * `feather`, `haven`, `httr`, `jsonlite`, `readxl`, `rvest`, `xml2`
+  * packages to facilitate statistical modeling
+      * `modelr`, `broom`
 
-* Of course, each pacakge can be installed separately:
+Alternatively, each pacakge can be installed separately:
 
 ```{r eval=FALSE}
 # Install ggplot2
@@ -123,7 +128,7 @@ install.packages(c("dplyr", "tidyr"))
 
 ## Importing the packages
 
-* Once installed, we can now import the packages using `library()`:
+Once installed, we can now import the packages using `library()`:
 
 ```{r eval=FALSE}
 # This imports the core tidyverse packages
@@ -133,6 +138,8 @@ library(tidyverse)
 library(dplyr)
 library(tidyr)
 ```
+
+In the following, we will explore two powerful `tidyverse` packages for wrangling tabluar data, `dplyr` and `tidyr`.
 
 
 ***
@@ -150,6 +157,8 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 
 ## Key dplyr functions
 
+In this section, we will learn the following `dplyr` functions:
+
 * `arange()`
 * `select()` `rename()`
 * `filter()`
@@ -159,21 +168,23 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 * `group_by()` `ungroup()`
 * `%>%`, the pipe operator
 
+Please note that this section is not intended to be an exhaustive documentation and description of the listed functions--or `dplyr` package for that matter. For more information, please check out the reference materials listed [below](#dplyr_more).
+
 
 ## Sort rows by variables
 
 ```{r eval=FALSE}
 arrange(tbl, ...)
 ```
-* The first argument is a tabular data object
-    * e.g. `data.frame` or `tibble`
-* Columns by which to sort the data as other arguments
-    * Multiple columns can be used to sort the data
-    * When multiple columns are given, sorting is done hierarchically
-    * Sorting in a descending order with `desc()`
 
-    
+`arrange()` is used to sort the rows by a selection of column variables. The first argument of `arrange()` is a tabular data object. In fact, as we will see soon, almost all other functions of `tidyverse` packages take a data object as the first input. This tabular data can be of the `data.frame` class or any of its extensions, such as `tidyverse`'s very own `tibble` class.
+
+`arrange()` takes columns by which to sort the data as additional arguments. If multiple columns are provided, the sorting taks place in a hierarchical manner: the data is first sorted by the first column, then by the second column, and so on. By default, sorting is in an ascending order (smaller to larger). Sorting in a descending order can be done by wrapping the column with `desc()`.
+
 ### Example
+
+The following example sorts, or arranges, the `ispcrime` data by the `county` column. To make it manageable, we also use the `head()` to print only the first few rows:
+
 ```{r eval=FALSE}
 # without using pipe
 head(arrange(ispcrime, county))
@@ -189,8 +200,17 @@ ispcrime %>%
   head()
 ```
 
+As shown above, there are two ways to work with `dplyr` functions:
+
+1. Traditional syntax for using R functions
+2. Using pipe operators, `%>%`
+
+We will take a closer look at `%>%` [below](#pipe). In the meantime, it is sufficient to note that the object before `%>%` is fed, or "piped," into the following function as the input for its first argument.
+
+The folloiwng code illustrates using `desc()` to sort in a descending order:
+
 ```{r}
-# sort by county and year, in a DESCENDING order
+# sort by county, in a DESCENDING order
 ispcrime %>%
   arrange(desc(county)) %>%
   head() 
@@ -202,12 +222,13 @@ ispcrime %>%
 ```{r eval=FALSE}
 filter(tbl, ...)
 ```
-* The first argument is a tabular data object
-* The following arguments are conditional expressions
-    * Only the rows satisfying the given conditions are kept
 
+`filter()` is used to filter data to keep rows that match given conditions. As in `arrange()`, the first argument is a tabular data object. Conditional expressions to filter data, which should evaluate as `TRUE` or `FALSE` for each row, are given as additional arguments.
 
 ### Example
+
+The following code filters `ispcrime` to return a subset of data where  `year` value matches 2015 *AND* `murder` value is greater than 0. As before, we use `head()` to show only the first few rows. 
+
 ```{r}
 ispcrime %>%
   filter(
@@ -223,20 +244,23 @@ ispcrime %>%
 select(tbl, ...)
 rename(tbl, ...)
 ```
-* The first argument is a tabular data object 
-* The following argumetns are columns to select/rename
-    * `select()` returns the selected columns only while `rename()` keeps all columns
-    * Renaming each selected column is also possible with `select()`
-* `select()` can be also used to exclude a section of columns using a minus (`-`) sign while keeping the rest.
-    
+
+`select()` and `rename()` both take a tabular data object as the first argument input. The following arguments are columns to select or rename. These two functions are quite similar to each other, except that `select()` returns the selected columns only while `rename()` keeps all columns.
+
+It is actually possible to renaming each selected column with `select()` as well. `select()` can be also used to exclude a section of columns using a minus (`-`) sign while keeping the rest.
     
 ### Example
+
+Let's take a look at an example on how to use `select()` to select columns, with changing their names in certain cases. The following code select four columns of `ispcrime` while changing the names of `violentCrime` and `propertyCrime` columns.
+
 ```{r}
 # select with renaming columns
 ispcrime %>%
   select(year, county, v_crime = violentCrime, p_crime = propertyCrime) %>%
   head()
 ```
+
+As noted earlier, `select()` can be used to exclude certain columns. The following code selects all columns of `ispcrime` *except* `violentCrime` and `propertyCrime`:
 
 ```{r}
 # excluding columns
@@ -251,32 +275,46 @@ ispcrime %>%
 transmute(tbl, ...)
 mutate(tbl, ...)
 ```
-* The first argument is a tabular data object 
-* The following arguments transform or add columns
-    * An exisiting column is modified with an expression with the same column name
-    * A new column is created with an expression having a new column name
-    * `transmute()` returns the transformed/added columns only while `mutate()` keeps all columns
-    
-    
+
+`transmute()` and `mutate()` both take a tabular data object as the first argument input. The following arguments are expressions to transform existing columns or add new ones. An exisiting column is modified with an expression with the same column name. On the other hand, a new column is created with an expression having a new column name.
+
+As with `select()` and `rename()`, the two functions here are quite similar to each other, except that `transmute()` returns the trasnformed/aded columns only while `mutate()` keeps all columns.
+
 ### Example
+
+The following code adds a new column named `totalCrime`, whose value equals the sum of `violentCrime` and `propertyCrime` values:
+
 ```{r}
 ispcrime %>%
   mutate(totalCrime = violentCrime + propertyCrime) %>%
   head()
 ```
 
+If it were with `transmute()`, the result would include only the `totalCrime` column.
+
 
 ## Merge tables
 ```{r eval=FALSE}
 left_join(tbl1, tbl2, by = NULL, ...)
 ```
-* The first two arguments are tabular data objects to join 
-* `by` takes a chracter vector containing a selection of variables to join tables by
-    * By default, all columns with common names are used
-* Other types of join: `inner_join()`, `right_join()`, `semi_join()`, `anti_join()`, `full_join()`
 
+`left_join()` takes two tabular data objects to join as the first two arguments. `by` takes a chracter vector containing a selection of variables to join tables by. By default, all columns with common names are used. The ouput is a merged table where the columns in the second table is added to the first table as new columns where the values of `by` columns match.
+
+`left_join()` is named so because it keeps all observations in the first (left) table. There, in fact, are other types of joins including: `inner_join()`, `right_join()`, `full_join()`, `semi_join()`, and `anti_join()`.
+
+The following four Venn diagrams show how different types of join compare to one another in terms of the observations (rows):
+<br><br>
+```{r echo=FALSE, out.width="80%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
+include_graphics("../images/join-venn.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html"><span href="font-style:italic">R for Data Science</span></a>
+</div>
 
 ### Example
+
+The following code left-joins `regions` table to `ispcrime` table on the `county` values. The `regions` table has two columns: `region` and `county`. Accordingly, the final output is basically the `ispcrime` table with one extra column, `region`, that corresponds to the `county` value:
+
 ```{r}
 ispcrime %>%
   left_join(regions, by = "county") %>%
@@ -289,14 +327,15 @@ ispcrime %>%
 summarise(tbl, ...)
 summarize(tbl, ...)
 ```
-* The first argument is a tabular data object
-* The following arguments are expressions to summarise data
-    * `summarise()` and `summarize()` are identical
-    * each summary column resulting from each summarizing expression can be given a name
 
+`summarise()` and `summairze()` are identical except who they are spelled. This is because the original package author, Hadly Wickham, is an Australian and wrote the names accordingly. Later, due to the demand from American programmers, `summarize()` was added.
 
+`summarise()` takes a tabular data object as its first argument, and the following arguments are expressions to "summarize" data. Each of these expressions creates a summary column, which can be given a name just as in the case of `transmute()` or `mutate()`.
 
 ### Example
+
+Here, we use `summarise()` to get the average count of `violentCrime` and `propertyCrime`, which are named `violentCrimeAverage` and `propertyCrimeAverage` respectively:
+
 ```{r}
 ispcrime %>%
   summarise(
@@ -311,18 +350,21 @@ ispcrime %>%
 group_by(tbl, ...)
 ungroup(tbl, ...)
 ```
-* The first argument is a tabular data object
-* The following arguments are columns by which to group the data
-  * `group_by()` and `ungroup()` are the opposite operations
-* `group_by()` can be used in combination with other function to allow for group-specific data manipulations
 
+`group_by` is a powerful function that allows us to manipulate a data object in "groups," which is defined by the discrete values in a column, or a selection of columns. As in other `dplyr` functions, the first argument is a tabular object. The following arguments are columns by which to group the data.
+
+`group_by()` and `ungroup()` are the opposite operations. `group_by()` creates a data object with groups. `ungroup()` removes the groups.
 
 ### Example
+
+The following example shows how a groupd data table looks like: 
+
 ```{r}
 ispcrime %>%
   group_by(year)
 ```
 
+Now, let's see how `group_by()` can be used in combination with another `dplyr` function. In the following, we group our data by `year` values and get summaries (average crime counts) for each year:
 
 ```{r}
 ispcrime %>%
@@ -334,7 +376,7 @@ ispcrime %>%
 ```
 
 
-## Chain operations
+## Chain operations {#pipe}
 
 We have been using the pipe operator, `%>%`, in our code examples. Now is a good time to take a closer look at it.
 
@@ -421,7 +463,7 @@ In this example, we we want to answer the following question: what is the annual
     * Here we sort the data by the newly created column, `annualAvgCrime`, in a descending order
     
 
-## More on `dplyr`
+## More on `dplyr` {#dplyr_more}
 
 What we have seen is only a tip of an iceberg that is `dplyr`. Although the aforementioned functions are among the most commonly used in usual data manipulation and analysis tasks, the description and examples here are by no means comprehensive. Also, `dplyr` offers many other functions to facilitate data manipulation work. I recommend you to check out the following resources to learn more about `dplyr`:
 
@@ -465,7 +507,9 @@ Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 ```{r eval=FALSE}
 gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
-
+* The first argument is a tabular data object
+    * e.g. `data.frame` or `tibble`
+* `key` is a column to be used as a key, and `value` is a selection of columns to be used as values to each key value.
 
 ## Make "long" data wider
 ```{r eval=FALSE}
