@@ -204,13 +204,6 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 > "R is a language and environment for statistical computing and graphics." - The R Foundation
 
 * *Built for* data analysis and visualization
-
-### Example: Statistical modeling in R
-Import data and run a quick linear regression
-
-### Example: Data visualization in R
-Use ggplot to generate a quick bar plot
-
 * One of the the most popular choices of programming language among academic researchers and data scientists
     * The following figure captures the growth of R in the recent years, compared to other programming languages. Although the data used to generate this figure does not provide the whole picture, it certainly reflects the reality where R has established itself as one of the most popular tool for researchers and data analysts.
 
