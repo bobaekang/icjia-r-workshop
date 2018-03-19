@@ -51,7 +51,7 @@ Navigate to the other workshop materials:
     * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
     * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
 * **Module 3: Data analysis with R**
-    * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes2.html))
+    * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
 * **Module 4: Data visualization with R**
     * Part 1 ([**slides**](../slides/module4_slides1.html), [**note**](module4_notes1.html))
     * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
@@ -78,6 +78,8 @@ include_graphics("../images/more_data_analysis.png")
 Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a>
 </div>
 
+The second part of Module 3 introduces more `tidyverse` tools for working with data. Specifically, this part covers (1) working with string data using `stringr`, (2) working with date and date-time data using `lubridate`, and (3) importing and exporting data using various packages.
+
 
 ***
 
@@ -91,6 +93,8 @@ include_graphics("../images/font_case.png")
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
 
+In programming, "strings" most often refeers to character data. Manipulating strings is an important skill for data analysis. 
+
 ## `stringr` from tidyverse
 ```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
 include_graphics("../images/stringr.png")
@@ -101,6 +105,8 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 ## Key `stringr` functions
 
+In this section, we will learn the following `stringr` functions: 
+
 * `str_to_upper()` `str_to_lower()` `str_to_title()`
 * `str_trim()` `str_squish()`
 * `str_c()`
@@ -108,7 +114,10 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 * `str_subset()`
 * `str_sub()`
 
-Note: Many `stringr` functions have base R alternatives
+Many of these `stringr` functions also have base R alternatives. We will also see the base R functions that are roughly equivalent to `stringr`. Despite the equivalent base R functions, using `stringr` has an advantage of having a more organized API. All `stringr` functions begin with `str_` prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (`%>%`) operator. 
+
+Please note that this section is not intended to be an exhuastive documentation and description of the listed functions--or `stringr` package for that matter. For more information, please check out the reference materials listed below.
+
 
 ## Convert letter case
 ```{r eval=FALSE}
@@ -269,6 +278,8 @@ substr(x, start, stop) <- value
 
 
 ## More on `stringr`
+What we have touched upon so far is only a small (though highly useful) part of `stringr`. I recommend you to check out the following resources:
+
 * `stringr` on [tidyverse.org](http://stringr.tidyverse.org/)
 * `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf)
 * `stringr` [Github repository](https://github.com/tidyverse/stringr)
@@ -280,10 +291,12 @@ substr(x, start, stop) <- value
 # Regular expression (regex) {#regex}
 > "Regular expressions are a concise and flexible tool for describing patterns in strings." <br>-*stringr.tidyverse.org*
 
-* Regex allows us to use more complex and dynamic patterns for manipulating and working with strings
+Regular expression is a collection of special characters and syntax for character strings that allow us to use more complex and dynamic patterns for manipulating and working with strings. Regular expression can be a class of its own. In this section, we will briefly take a look at various elements of regular expression as used in R.
 
 
 ## Regular expression in R
+In the following, we will explore the following types of regular expression in R:
+
 * Character classes
 * Metacharacters
 * Groups
@@ -291,6 +304,9 @@ substr(x, start, stop) <- value
 * Quantifiers
 
 ## Character classes
+
+Character classes provide a consice way to refer to certain sets of characters, such as alphebetical letters, digits, and various types of whitespaces. The following table offers a quick summary of character classes in R:
+
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -325,6 +341,9 @@ kable(
 ```
 
 ### Example
+
+The following code shows how regular expression character classes work: 
+
 ```{r}
 str <- c("HELLO", "world", "123", "\n")
 str_detect(str, "\\d") # has any digit
@@ -335,6 +354,9 @@ str_detect(str, "\\s") # has any whitespate
 
 
 ## Metacharacters
+
+Metacharacters are characters with special meaning to the computer program. The following table lists a selection of metacharacters and their meanings:
+
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -352,6 +374,9 @@ kable(
 
 
 ## Groups
+
+Regular expression groups offer various ways to specify groups of characters. The following table provides a summary of groups in R:
+
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -369,6 +394,9 @@ kable(
 ```
 
 ### Example
+
+The following code example is to illustrate how regular expression groups work.
+
 ```{r}
 str <- c("HELLO", "world", "123", "\n")
 str_detect(str, ".") # has any character except \n
@@ -379,6 +407,9 @@ str_detect(str, "[^HELLO123]") # has characters other than...
 
 
 ## Anchors
+
+Regular expression anchors make it possible to add locational information to a particular character, e.g., the beginning or end of the whole string. The following table provides a summary of anchors in R:
+
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -396,6 +427,9 @@ kable(
 ```
 
 ### Example
+
+The following code shows how regular expression anchors can be used:
+
 ```{r}
 str <- c("apple", "apricot", "banana", "pineapple")
 str_detect(str, "^(a|ba)")
@@ -404,6 +438,9 @@ str_detect(str, "apple$")
 
 
 ## Quantifiers
+
+Quantifiers capture the pattenr of repetition for specified characters. The following table offers a summary of quantifiers in R:
+
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -422,6 +459,9 @@ kable(
 ```
 
 ### Example
+
+The example below illustrates the use of various quntifiers to specify repetition patterns:
+
 ```{r}
 str <- c("apple", "apricot", "banana", "pineapple")
 str_detect(str, "p*")
@@ -431,6 +471,9 @@ str_detect(str, "p{2,}")
 
 
 ## More on regular expression
+
+As mentioned earlier, regular expression is a broad topic. To get a better hold of regular expression, I recommend you to check out the following resources:
+
 * [Regular-Expressions.info](https://www.regular-expressions.info/rlanguage.html)
 * RStudio. (2016).["Basic Regular Expressions in R: Cheat Sheet".](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
 * Tidyverse. (n.d.). ["Regualr Expressions"](http://stringr.tidyverse.org/articles/regular-expressions.html). *stringr.tidyverse.org*.

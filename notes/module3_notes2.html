@@ -252,7 +252,7 @@ div.tocify {
 </ul></li>
 <li><strong>Module 3: Data analysis with R</strong>
 <ul>
-<li>Part 1 (<a href="../slides/module3_slides1.html"><strong>slides</strong></a>, <a href="module3_notes2.html"><strong>note</strong></a>)</li>
+<li>Part 1 (<a href="../slides/module3_slides1.html"><strong>slides</strong></a>, <a href="module3_notes1.html"><strong>note</strong></a>)</li>
 </ul></li>
 <li><strong>Module 4: Data visualization with R</strong>
 <ul>
@@ -280,6 +280,7 @@ div.tocify {
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a></p>
 </div>
+<p>The second part of Module 3 introduces more <code>tidyverse</code> tools for working with data. Specifically, this part covers (1) working with string data using <code>stringr</code>, (2) working with date and date-time data using <code>lubridate</code>, and (3) importing and exporting data using various packages.</p>
 <hr />
 </div>
 <div id="working-with-strings" class="section level1">
@@ -288,6 +289,7 @@ div.tocify {
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
 </div>
+<p>In programming, “strings” most often refeers to character data. Manipulating strings is an important skill for data analysis.</p>
 <div id="stringr-from-tidyverse" class="section level2">
 <h2><code>stringr</code> from tidyverse</h2>
 <img src="../images/stringr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
@@ -297,6 +299,7 @@ div.tocify {
 </div>
 <div id="key-stringr-functions" class="section level2">
 <h2>Key <code>stringr</code> functions</h2>
+<p>In this section, we will learn the following <code>stringr</code> functions:</p>
 <ul>
 <li><code>str_to_upper()</code> <code>str_to_lower()</code> <code>str_to_title()</code></li>
 <li><code>str_trim()</code> <code>str_squish()</code></li>
@@ -305,7 +308,8 @@ div.tocify {
 <li><code>str_subset()</code></li>
 <li><code>str_sub()</code></li>
 </ul>
-<p>Note: Many <code>stringr</code> functions have base R alternatives</p>
+<p>Many of these <code>stringr</code> functions also have base R alternatives. We will also see the base R functions that are roughly equivalent to <code>stringr</code>. Despite the equivalent base R functions, using <code>stringr</code> has an advantage of having a more organized API. All <code>stringr</code> functions begin with <code>str_</code> prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (<code>%&gt;%</code>) operator.</p>
+<p>Please note that this section is not intended to be an exhuastive documentation and description of the listed functions–or <code>stringr</code> package for that matter. For more information, please check out the reference materials listed below.</p>
 </div>
 <div id="convert-letter-case" class="section level2">
 <h2>Convert letter case</h2>
@@ -476,6 +480,7 @@ substr(x, start, stop) &lt;- value</code></pre>
 </div>
 <div id="more-on-stringr" class="section level2">
 <h2>More on <code>stringr</code></h2>
+<p>What we have touched upon so far is only a small (though highly useful) part of <code>stringr</code>. I recommend you to check out the following resources:</p>
 <ul>
 <li><code>stringr</code> on <a href="http://stringr.tidyverse.org/">tidyverse.org</a></li>
 <li><code>stringr</code> <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">CRAN documentation</a></li>
@@ -489,11 +494,10 @@ substr(x, start, stop) &lt;- value</code></pre>
 <blockquote>
 <p>“Regular expressions are a concise and flexible tool for describing patterns in strings.” <br>-<em>stringr.tidyverse.org</em></p>
 </blockquote>
-<ul>
-<li>Regex allows us to use more complex and dynamic patterns for manipulating and working with strings</li>
-</ul>
+<p>Regular expression is a collection of special characters and syntax for character strings that allow us to use more complex and dynamic patterns for manipulating and working with strings. Regular expression can be a class of its own. In this section, we will briefly take a look at various elements of regular expression as used in R.</p>
 <div id="regular-expression-in-r" class="section level2">
 <h2>Regular expression in R</h2>
+<p>In the following, we will explore the following types of regular expression in R:</p>
 <ul>
 <li>Character classes</li>
 <li>Metacharacters</li>
@@ -504,6 +508,7 @@ substr(x, start, stop) &lt;- value</code></pre>
 </div>
 <div id="character-classes" class="section level2">
 <h2>Character classes</h2>
+<p>Character classes provide a consice way to refer to certain sets of characters, such as alphebetical letters, digits, and various types of whitespaces. The following table offers a quick summary of character classes in R:</p>
 <table>
 <thead>
 <tr class="header">
@@ -560,6 +565,7 @@ substr(x, start, stop) &lt;- value</code></pre>
 </table>
 <div id="example-6" class="section level3">
 <h3>Example</h3>
+<p>The following code shows how regular expression character classes work:</p>
 <pre class="r"><code>str &lt;- c(&quot;HELLO&quot;, &quot;world&quot;, &quot;123&quot;, &quot;\n&quot;)
 str_detect(str, &quot;\\d&quot;) # has any digit</code></pre>
 <pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
@@ -573,6 +579,7 @@ str_detect(str, &quot;\\d&quot;) # has any digit</code></pre>
 </div>
 <div id="metacharacters" class="section level2">
 <h2>Metacharacters</h2>
+<p>Metacharacters are characters with special meaning to the computer program. The following table lists a selection of metacharacters and their meanings:</p>
 <table>
 <thead>
 <tr class="header">
@@ -606,6 +613,7 @@ str_detect(str, &quot;\\d&quot;) # has any digit</code></pre>
 </div>
 <div id="groups" class="section level2">
 <h2>Groups</h2>
+<p>Regular expression groups offer various ways to specify groups of characters. The following table provides a summary of groups in R:</p>
 <table>
 <thead>
 <tr class="header">
@@ -642,6 +650,7 @@ str_detect(str, &quot;\\d&quot;) # has any digit</code></pre>
 </table>
 <div id="example-7" class="section level3">
 <h3>Example</h3>
+<p>The following code example is to illustrate how regular expression groups work.</p>
 <pre class="r"><code>str &lt;- c(&quot;HELLO&quot;, &quot;world&quot;, &quot;123&quot;, &quot;\n&quot;)
 str_detect(str, &quot;.&quot;) # has any character except \n</code></pre>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
@@ -655,6 +664,7 @@ str_detect(str, &quot;.&quot;) # has any character except \n</code></pre>
 </div>
 <div id="anchors" class="section level2">
 <h2>Anchors</h2>
+<p>Regular expression anchors make it possible to add locational information to a particular character, e.g., the beginning or end of the whole string. The following table provides a summary of anchors in R:</p>
 <table>
 <thead>
 <tr class="header">
@@ -691,6 +701,7 @@ str_detect(str, &quot;.&quot;) # has any character except \n</code></pre>
 </table>
 <div id="example-8" class="section level3">
 <h3>Example</h3>
+<p>The following code shows how regular expression anchors can be used:</p>
 <pre class="r"><code>str &lt;- c(&quot;apple&quot;, &quot;apricot&quot;, &quot;banana&quot;, &quot;pineapple&quot;)
 str_detect(str, &quot;^(a|ba)&quot;)</code></pre>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
@@ -700,6 +711,7 @@ str_detect(str, &quot;^(a|ba)&quot;)</code></pre>
 </div>
 <div id="quantifiers" class="section level2">
 <h2>Quantifiers</h2>
+<p>Quantifiers capture the pattenr of repetition for specified characters. The following table offers a summary of quantifiers in R:</p>
 <table>
 <thead>
 <tr class="header">
@@ -740,6 +752,7 @@ str_detect(str, &quot;^(a|ba)&quot;)</code></pre>
 </table>
 <div id="example-9" class="section level3">
 <h3>Example</h3>
+<p>The example below illustrates the use of various quntifiers to specify repetition patterns:</p>
 <pre class="r"><code>str &lt;- c(&quot;apple&quot;, &quot;apricot&quot;, &quot;banana&quot;, &quot;pineapple&quot;)
 str_detect(str, &quot;p*&quot;)</code></pre>
 <pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
@@ -751,6 +764,7 @@ str_detect(str, &quot;p*&quot;)</code></pre>
 </div>
 <div id="more-on-regular-expression" class="section level2">
 <h2>More on regular expression</h2>
+<p>As mentioned earlier, regular expression is a broad topic. To get a better hold of regular expression, I recommend you to check out the following resources:</p>
 <ul>
 <li><a href="https://www.regular-expressions.info/rlanguage.html">Regular-Expressions.info</a></li>
 <li>RStudio. (2016).<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf">“Basic Regular Expressions in R: Cheat Sheet”.</a></li>
