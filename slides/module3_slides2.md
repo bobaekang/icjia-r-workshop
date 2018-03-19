@@ -17,6 +17,8 @@
 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
+
+
 # presentation
 R Workshop
 ========================================================
@@ -86,7 +88,7 @@ Key stringr functions
 * `str_subset()`
 * `str_sub()`
 
-Note: Many `stringr` functions have base R alternatives
+<small>Note: Many `stringr` functions have base R alternatives</small>
 
 
 Convert letter case
@@ -106,14 +108,40 @@ str_to_title(string, locale = "en")
 ========================================================
 **Example**
 
+```r
+str_to_upper("hello world")
+```
+
+```
+[1] "HELLO WORLD"
+```
+
+```r
+str_to_lower("HELLO WORLD")
+```
+
+```
+[1] "hello world"
+```
+
+```r
+str_to_title("hello WORLD")
+```
+
+```
+[1] "Hello World"
+```
 
 
 ========================================================
 **Base R alternative**
 
 ```r
-toupper(string) # equivalent to str_to_upper()
-tolower(string) # equivalent to str_to_lower()
+# equivalent to str_to_upper()
+toupper(string)
+
+# equivalent to str_to_lower()
+tolower(string)
 ```
 
 
@@ -134,13 +162,44 @@ str_squish(string)
 ========================================================
 **Example**
 
+```r
+str_trim("  trim both  ", side = "both")
+```
 
+```
+[1] "trim both"
+```
+
+```r
+str_trim("  trim left only  ", side = "left")
+```
+
+```
+[1] "trim left only  "
+```
+
+```r
+str_trim("  trim right only  ", side = "right")
+```
+
+```
+[1] "  trim right only"
+```
+
+```r
+str_squish("  whitespaces all    over the  place   ")
+```
+
+```
+[1] "whitespaces all over the place"
+```
 
 
 ========================================================
 **Base R alternative**
 
 ```r
+# equivalent to str_trim()
 trimws(x, which = c("both", "left", "right"))
 ```
 
@@ -152,19 +211,52 @@ Concatenate strings into one
 str_c(..., sep = "", collapse = NULL)
 ```
 * The first argument (`...`) is one more more character vectors
-* 
+* `sep` is a separator string between input vectors; default value is none (`""`).
+* `collapse` is an optional string used to combined input vectors into a single string
 
 
 ========================================================
 **Example**
 
+```r
+str_c(c("one", "two"), c("plus three", "minus four"), sep = " ")
+```
+
+```
+[1] "one plus three" "two minus four"
+```
+
+```r
+str_c(c("one", "two", "three"), "plus four", sep = " ")
+```
+
+```
+[1] "one plus four"   "two plus four"   "three plus four"
+```
+
+```r
+str_c(c("one", "two", "three"), collapse = " plus ")
+```
+
+```
+[1] "one plus two plus three"
+```
+
+```r
+str_c(c("one", "two", "three"), "plus four", sep = " ", collapse = " and ")
+```
+
+```
+[1] "one plus four and two plus four and three plus four"
+```
 
 
 ========================================================
 **Base R alternative**
 
 ```r
-paste (..., sep = " ", collapse = NULL) # equivalent to str_c()
+# equivalent to str_c()
+paste (..., sep = " ", collapse = NULL)
 ```
 
 
@@ -175,18 +267,29 @@ Detect a pattern
 str_detect(string, pattern)
 ```
 * `string` input is a character vector
+* `pattern` input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.
+* Output is a boolean vector of the same length (`TRUE` or `FALSE`)
 
+<small>Note: We will discuss regular expressions later.</small>
 
 ========================================================
 **Example**
 
+```r
+str = c("I like apple", "You like apple", "Apple, I like")
+pat = "I like"
+str_detect(str, pat)
+```
 
+```
+[1]  TRUE FALSE  TRUE
+```
 
-========================================================
 **Base R alternative**
 
 ```r
-grepl(pattern, x, ...) # equivalent to str_detect()
+# equivalent to str_detect()
+grepl(pattern, x, ...)
 ```
 
 
@@ -198,19 +301,41 @@ str_subset(string, pattern)
 str_which(string, pattern)
 ```
 * `string` input is a character vector
+* `pattern` input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.
+* `str_subset()` returns the matching strings while `str_which()` returns the index for the matches
 
 
 ========================================================
 **Example**
 
+```r
+str = c("I like apple", "You like apple", "Apple, I like")
+pat = "I like"
+str_subset(str, pat)
+```
+
+```
+[1] "I like apple"  "Apple, I like"
+```
+
+```r
+str_which(str, pat)
+```
+
+```
+[1] 1 3
+```
 
 
 ========================================================
 **Base R alternative**
 
 ```r
-grep(pattern, x, value = TRUE, ...) # equivalent to str_subset()
-grep(pattern, x, value = FALSE, ...) # equivalent to str_which()
+# equivalent to str_subset()
+grep(pattern, x, value = TRUE, ...)
+
+# equivalent to str_which()
+grep(pattern, x, value = FALSE, ...)
 ```
 
 
@@ -221,19 +346,44 @@ Extract and replace substrings
 str_sub(string, start = 1L, end = -1L)
 str_sub(string, start = 1L, end = -1L, omit_na = FALSE) <- value
 ```
-* The first argument is a character vector
+* `string` input is a character vector
+* `start` and `end` are integer vectors
+    * `start` is the position of the first substring character; default is the first character
+    * `end` is the position of the last substring character; default is the last character
+* Output is a character vector of substring from `start` to `end`.
+* `str_sub()` can be used to replace substrings when used with the assignment operator (`<-`)
 
 
 ========================================================
 **Example**
 
+```r
+str <- "Hello world"
+str_sub(str, start = 7)
+```
+
+```
+[1] "world"
+```
+
+```r
+str_sub(str, end = 5) <- "Hi"
+str
+```
+
+```
+[1] "Hi world"
+```
 
 
 ========================================================
 **Base R alternative**
 
 ```r
+# equivalent to str_sub()
 substr(x, start, stop)
+
+# equivalent to str_sub() <- value
 substr(x, start, stop) <- value
 ```
 
@@ -247,8 +397,9 @@ More on stringr
 
 Regular expression (regex)
 ========================================================
-* What it is
-* When to use/why useful
+> "Regular expressions are a concise and flexible tool for describing patterns in strings." <br>-*stringr.tidyverse.org*
+
+* Regex allows us to use more complex and dynamic patterns for manipulating and working with strings
 
 
 Regular expression in R
@@ -278,6 +429,43 @@ Character classes
 |`\\S`                 |Not space; i.e. `[^[:space:]]`                                |
 
 
+========================================================
+**Example**
+
+```r
+str <- c("HELLO", "world", "123", "\n")
+str_detect(str, "\\d") # has any digit
+```
+
+```
+[1] FALSE FALSE  TRUE FALSE
+```
+
+```r
+str_detect(str, "\\D") # has no digit
+```
+
+```
+[1]  TRUE  TRUE FALSE  TRUE
+```
+
+```r
+str_detect(str, "\\w") # has any alphanumetic character
+```
+
+```
+[1]  TRUE  TRUE  TRUE FALSE
+```
+
+```r
+str_detect(str, "\\s") # has any whitespate
+```
+
+```
+[1] FALSE FALSE FALSE  TRUE
+```
+
+
 Metacharacters
 ========================================================
 
@@ -303,6 +491,43 @@ Groups
 |`(...)`  |Grouping, enables back referencing using `\\N` where `N` is integer |
 
 
+========================================================
+**Example**
+
+```r
+str <- c("HELLO", "world", "123", "\n")
+str_detect(str, ".") # has any character except \n
+```
+
+```
+[1]  TRUE  TRUE  TRUE FALSE
+```
+
+```r
+str_detect(str, "(d|1)") # has d or 1
+```
+
+```
+[1] FALSE  TRUE  TRUE FALSE
+```
+
+```r
+str_detect(str, "[Oo]") # has O or o
+```
+
+```
+[1]  TRUE  TRUE FALSE FALSE
+```
+
+```r
+str_detect(str, "[^HELLO123]") # has characters other than...
+```
+
+```
+[1] FALSE  TRUE FALSE  TRUE
+```
+
+
 Anchors
 ========================================================
 
@@ -316,6 +541,27 @@ Anchors
 |`\\>`  |End of a word                         |
 
 
+========================================================
+**Example**
+
+```r
+str <- c("apple", "apricot", "banana", "pineapple")
+str_detect(str, "^(a|ba)")
+```
+
+```
+[1]  TRUE  TRUE  TRUE FALSE
+```
+
+```r
+str_detect(str, "apple$")
+```
+
+```
+[1]  TRUE FALSE FALSE  TRUE
+```
+
+
 Quantifiers
 ========================================================
 
@@ -325,24 +571,51 @@ Quantifiers
 |`+`        |Matches at least 1 time                 |
 |`?`        |Matches at most 1 time; optional string |
 |`{n}`      |Matches extactly `n` times              |
-|`{n, }`    |Matches at least `n` times              |
-|`{, n}`    |Matches at most `n` times               |
-|`{n, m}`   |Matches between `n` and `m` times       |
+|`{n,}`     |Matches at least `n` times              |
+|`{,n}`     |Matches at most `n` times               |
+|`{n,m}`    |Matches between `n` and `m` times       |
 
 
-Examples
 ========================================================
+**Example**
+
+```r
+str <- c("apple", "apricot", "banana", "pineapple")
+str_detect(str, "p*")
+```
+
+```
+[1] TRUE TRUE TRUE TRUE
+```
+
+```r
+str_detect(str, "p+")
+```
+
+```
+[1]  TRUE  TRUE FALSE  TRUE
+```
+
+```r
+str_detect(str, "p{2,}")
+```
+
+```
+[1]  TRUE FALSE FALSE  TRUE
+```
 
 
 More on regular expression
 ========================================================
-* resources
+* [Regular-Expressions.info](https://www.regular-expressions.info/rlanguage.html)
+* RStudio. (2016).["Basic Regular Expressions in R: Cheat Sheet".](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
+* Tidyverse. (n.d.). ["Regualr Expressions"](http://stringr.tidyverse.org/articles/regular-expressions.html). *stringr.tidyverse.org*.
 
 
 Working with Dates/Datetimes
 ========================================================
 type:section
-<img src="../images/calendar.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="30%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/calendar.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
 </div>
@@ -350,13 +623,14 @@ Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar
 
 Dates/Datetimes basics
 ========================================================
-* basics
+* `Date` class
+* `POSIXct` and `POSIXlt` classes
 
 
 lubridate from tidyverse
 ========================================================
 type:section
-<img src="../images/lubridate.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="25%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/lubridate.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
@@ -369,6 +643,7 @@ Key lubridate functions
 * `parse_date_time()` `fast_strptime()`
 * `ymd_hms()`, `ymd()`, ...
 
+
 Convert to a date or date-time
 ========================================================
 
@@ -379,15 +654,55 @@ as_datetime(x, tz = NULL, origin = lubridate::origin)
 * `x` is a vector of POSIXt, numeric or character objects
 * `tz` is a time zone name
 * `origin` is a Date object or something that can be coerced into a Date object
+    * Default value corresponds to `"1970-01-01"`
+
 
 ========================================================
 **Example**
 
+```r
+as_date(17618)
+```
+
+```
+[1] "2018-03-28"
+```
+
+```r
+class(as_date("20180328"))
+```
+
+```
+[1] "Date"
+```
+
+```r
+as_datetime("2018/03/28")
+```
+
+```
+[1] "2018-03-28 UTC"
+```
+
+```r
+class(as_datetime("2018-03-28"))
+```
+
+```
+[1] "POSIXct" "POSIXt" 
+```
 
 
 ========================================================
 **Base R alternative**
 
+```r
+# equivalent to as_date()
+as.Date(x, ...)
+
+# equivalent to as_datetime()
+as.POSIXct(x, tz = "", ...)
+```
 
 
 Get/set time component
@@ -399,7 +714,6 @@ year(x) <- value
 ```
 * `x` is a date-time object
 * `value` is a numeric object
-
 
 ========================================================
 
@@ -413,13 +727,29 @@ year(x) <- value
 |`minute()` |Get/set minutes component of a date-time   |
 |`second()` |Get/set seconds component of a date-time   |
 |`tz()`     |Get/set time zone component of a date-time |
-* a
-* b
+* Any of these can be used to *set* the corresponding time component when used with the assignment operator (`<-`).
 
 
 ========================================================
 **Example**
 
+```r
+today <- as_date("2018-03-28")
+year(today)
+```
+
+```
+[1] 2018
+```
+
+```r
+month(today) <- 4
+today
+```
+
+```
+[1] "2018-04-28"
+```
 
 
 Parse date-time
@@ -430,17 +760,71 @@ parse_date_time(x, orders, tz = "UTC", truncated = 0, locale = Sys.getlocale("LC
 fast_strptime(x, format, tz = "UTC", lt = TRUE, cutoff_2000 = 68L)
 ```
 * `x` is a character or numeric vector of dates
+* `orders` is a character vector of date-time order format
+    * e.g. `"ymd"` for year-month-date format
+* `exact` is a boolean value for using the "exact" match for the date-time format specificed by `orders`
+* `drop` is a boolean value for dropping, or removing the values not matching the format
+* `format` is a character string of formats
+
+========================================================
+**Date format symbols**
+
+|Symbol |Description                 |Example |
+|:------|:---------------------------|:-------|
+|%Y     |Year in 4 digits            |2018    |
+|%y     |Year in 2 digits            |18      |
+|%B     |Month in words              |March   |
+|%b     |Month in words, abbriviated |Mar     |
+|%m     |Month in 2 digits           |03      |
+|d      |Date in 2 digits            |28      |
 
 
 ========================================================
 **Example**
 
+```r
+dates = c("2018-03-28", "2018/03/28", "20180328")
+parse_date_time(dates, "ymd")
+```
 
+```
+[1] "2018-03-28 UTC" "2018-03-28 UTC" "2018-03-28 UTC"
+```
+
+```r
+fast_strptime(dates[1], "%Y-%m-%d")
+```
+
+```
+[1] "2018-03-28 UTC"
+```
+
+```r
+fast_strptime(dates[2], "%Y/%m/%d")
+```
+
+```
+[1] "2018-03-28 UTC"
+```
+
+```r
+fast_strptime(dates[3], "%Y%m%d")
+```
+
+```
+[1] "2018-03-28 UTC"
+```
 
 
 ========================================================
 **Base R alternative**
 
+```r
+# equivalent to fast_strptime()
+strptime(x, format = "", tz = "")
+```
+* No base R alternative for `parse_date_time()`
+    * In fact, being able to handle multiple dates formats with the same order is one of the advantages of using `parse_date_time()`
 
 
 Quickly parse date-time
@@ -450,7 +834,10 @@ Quickly parse date-time
 ymd_hms(..., quiet = FALSE, tz = NULL, ...)
 ymd(..., quiet = FALSE, tz = "UTC", ...)
 ```
-* The first `...` argument is ...
+* The first `...` argument is a character vector of dates in appropriate format
+* `quiet` is a boolean value for displaying messages
+* `tz` is a character string speficiying time zone
+* `ymd_hms` and other similar functions does the same work `parse_date_time()`, but with a predefined order.
 
 
 ========================================================
@@ -488,7 +875,7 @@ More on lubridate
 Importing/Exporting Data
 ========================================================
 type:section
-<img src="../images/data_transfer.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="30%" style="box-shadow: none; display: block; margin: auto;" />
+<img src="../images/data_transfer.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
@@ -511,9 +898,9 @@ Using readr
 read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
 write_csv(x, path, na = "NA", append = FALSE, col_names = !append)
 ```
-* `file` is a path to the excel file to import
+* `file` is a path to the .csv file to import
 * `x` is a data object to export
-* `path` is a path to the directory where the exported data will be created 
+* `path` is a path to the directory where the exported data will be created
 * The output of`read_csv()` is a `tibble` object
 * The output of `write_csv()` is a .csv file
 
@@ -522,10 +909,13 @@ Using data.table
 ========================================================
 
 ```r
-fread(input, file, nrows=-1L, header="auto", na.strings="NA", stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
+fread(input, sep="auto", sep2="auto", nrows=-1L, header="auto", na.strings="NA", stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
 strip.white=TRUE, fill=FALSE, ...)
 fwrite(x, file = "", append = FALSE, quote = "auto", sep = ",", na = "", row.names = FALSE, col.names = TRUE, ...)
 ```
+* `input` is a path to the .csv file to import
+* `x` is a data object to export
+* `file` is a path to the directory where the exported data will be created
 * The output of `fread` is a `data.table` object
 * The output of `fwrite` is a .csv file in a directory
 
@@ -553,6 +943,11 @@ read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL,
 read_xls(path, ...)
 read_xlsx(path, ...)
 ```
+* `path` is a path to the excel file (.xls or .xlsx) to import
+* `sheet` is the name of a sheet in the excel file to import
+* `col_names` is a boolean value for using the first row to import as column names 
+* `skip` is a number of rows to skip
+* `guess_max` is a number of rows to use to guess the class of each column
 * The output is a `tibble` object
 
 
@@ -580,6 +975,8 @@ read_sav(file, user_na = FALSE)
 read_spss(file, user_na = FALSE)
 write_sav(data, path)
 ```
+* `file` is a path to the SPSS file (.sav) to import in `read_sav()`, or a path to export the data in `write_sav()`
+* `data` is a data object to export
 * The output of `read_sav()` is a `tibble` object
     * `read_spss()` is a simple alias for `read_sav()`
 * The output of `write_sav()` is an SPSS data file
@@ -606,6 +1003,8 @@ A "fast-on-disk" data frame storage (.feather)
 read_feather(path, columns = NULL)
 write_feather(x, path)
 ```
+* `path` is a path to the .feather file to import in `read_feather()`, or a path to export the data in `write_feather()`
+* `x` is the data object to export
 * The output of `read_feather()` is a `tibble` object
 * The output of `write_feather()` is a feather file
 
@@ -619,7 +1018,7 @@ More on feather
 Questions?
 ========================================================
 type: section
-<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://cdn.dribbble.com/users/433975/screenshots/1627606/question-mark-dribbble.gif" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://dribbble.com/shots/1627606-question-mark">Joel Ploz</a>
 </p>
@@ -629,12 +1028,12 @@ References
 ========================================================
 <ul style="font-size: 0.6em; list-style-type:none">
   <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
-  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Dates and Times Cheat Shee"</a>.</li>
+  <li>Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html">"Date Values"</a>. <span style="font-syle:italic">Quick-R</span>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Dates and Times Cheat Sheet"</a>.</li>
   <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Work with Strings Cheat Sheet"</a>.</li>
   <li>Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a></li>
   <li>Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a></li>
   <li>Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a></li>
   <li>Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a></li>
-  <li><a href="#"></a></li>
   <li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a></li>
 </ul>

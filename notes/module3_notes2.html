@@ -322,11 +322,20 @@ str_to_title(string, locale = &quot;en&quot;)</code></pre>
 </ul>
 <div id="example" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str_to_upper(&quot;hello world&quot;)</code></pre>
+<pre><code>## [1] &quot;HELLO WORLD&quot;</code></pre>
+<pre class="r"><code>str_to_lower(&quot;HELLO WORLD&quot;)</code></pre>
+<pre><code>## [1] &quot;hello world&quot;</code></pre>
+<pre class="r"><code>str_to_title(&quot;hello WORLD&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
 </div>
 <div id="base-r-alternative" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>toupper(string) # equivalent to str_to_upper()
-tolower(string) # equivalent to str_to_lower()</code></pre>
+<pre class="r"><code># equivalent to str_to_upper()
+toupper(string)
+
+# equivalent to str_to_lower()
+tolower(string)</code></pre>
 </div>
 </div>
 <div id="trim-whitespace" class="section level2">
@@ -344,10 +353,19 @@ str_squish(string)</code></pre>
 </ul>
 <div id="example-1" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str_trim(&quot;  trim both  &quot;, side = &quot;both&quot;)</code></pre>
+<pre><code>## [1] &quot;trim both&quot;</code></pre>
+<pre class="r"><code>str_trim(&quot;  trim left only  &quot;, side = &quot;left&quot;)</code></pre>
+<pre><code>## [1] &quot;trim left only  &quot;</code></pre>
+<pre class="r"><code>str_trim(&quot;  trim right only  &quot;, side = &quot;right&quot;)</code></pre>
+<pre><code>## [1] &quot;  trim right only&quot;</code></pre>
+<pre class="r"><code>str_squish(&quot;  whitespaces all    over the  place   &quot;)</code></pre>
+<pre><code>## [1] &quot;whitespaces all over the place&quot;</code></pre>
 </div>
 <div id="base-r-alternative-1" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>trimws(x, which = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))</code></pre>
+<pre class="r"><code># equivalent to str_trim()
+trimws(x, which = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))</code></pre>
 </div>
 </div>
 <div id="concatenate-strings-into-one" class="section level2">
@@ -355,14 +373,24 @@ str_squish(string)</code></pre>
 <pre class="r"><code>str_c(..., sep = &quot;&quot;, collapse = NULL)</code></pre>
 <ul>
 <li>The first argument (<code>...</code>) is one more more character vectors</li>
-<li></li>
+<li><code>sep</code> is a separator string between input vectors; default value is none (<code>&quot;&quot;</code>).</li>
+<li><code>collapse</code> is an optional string used to combined input vectors into a single string</li>
 </ul>
 <div id="example-2" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;), c(&quot;plus three&quot;, &quot;minus four&quot;), sep = &quot; &quot;)</code></pre>
+<pre><code>## [1] &quot;one plus three&quot; &quot;two minus four&quot;</code></pre>
+<pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), &quot;plus four&quot;, sep = &quot; &quot;)</code></pre>
+<pre><code>## [1] &quot;one plus four&quot;   &quot;two plus four&quot;   &quot;three plus four&quot;</code></pre>
+<pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), collapse = &quot; plus &quot;)</code></pre>
+<pre><code>## [1] &quot;one plus two plus three&quot;</code></pre>
+<pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), &quot;plus four&quot;, sep = &quot; &quot;, collapse = &quot; and &quot;)</code></pre>
+<pre><code>## [1] &quot;one plus four and two plus four and three plus four&quot;</code></pre>
 </div>
 <div id="base-r-alternative-2" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>paste (..., sep = &quot; &quot;, collapse = NULL) # equivalent to str_c()</code></pre>
+<pre class="r"><code># equivalent to str_c()
+paste (..., sep = &quot; &quot;, collapse = NULL)</code></pre>
 </div>
 </div>
 <div id="detect-a-pattern" class="section level2">
@@ -370,13 +398,21 @@ str_squish(string)</code></pre>
 <pre class="r"><code>str_detect(string, pattern)</code></pre>
 <ul>
 <li><code>string</code> input is a character vector</li>
+<li><code>pattern</code> input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.</li>
+<li>Output is a boolean vector of the same length (<code>TRUE</code> or <code>FALSE</code>)</li>
 </ul>
+<p>Note: We will discuss regular expressions <a href="#regex">later</a>.</p>
 <div id="example-3" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str = c(&quot;I like apple&quot;, &quot;You like apple&quot;, &quot;Apple, I like&quot;)
+pat = &quot;I like&quot;
+str_detect(str, pat)</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
 </div>
 <div id="base-r-alternative-3" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>grepl(pattern, x, ...) # equivalent to str_detect()</code></pre>
+<pre class="r"><code># equivalent to str_detect()
+grepl(pattern, x, ...)</code></pre>
 </div>
 </div>
 <div id="get-stringspositions-matching-a-pattern" class="section level2">
@@ -385,14 +421,25 @@ str_squish(string)</code></pre>
 str_which(string, pattern)</code></pre>
 <ul>
 <li><code>string</code> input is a character vector</li>
+<li><code>pattern</code> input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.</li>
+<li><code>str_subset()</code> returns the matching strings while <code>str_which()</code> returns the index for the matches</li>
 </ul>
 <div id="example-4" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str = c(&quot;I like apple&quot;, &quot;You like apple&quot;, &quot;Apple, I like&quot;)
+pat = &quot;I like&quot;
+str_subset(str, pat)</code></pre>
+<pre><code>## [1] &quot;I like apple&quot;  &quot;Apple, I like&quot;</code></pre>
+<pre class="r"><code>str_which(str, pat)</code></pre>
+<pre><code>## [1] 1 3</code></pre>
 </div>
 <div id="base-r-alternative-4" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>grep(pattern, x, value = TRUE, ...) # equivalent to str_subset()
-grep(pattern, x, value = FALSE, ...) # equivalent to str_which()</code></pre>
+<pre class="r"><code># equivalent to str_subset()
+grep(pattern, x, value = TRUE, ...)
+
+# equivalent to str_which()
+grep(pattern, x, value = FALSE, ...)</code></pre>
 </div>
 </div>
 <div id="extract-and-replace-substrings" class="section level2">
@@ -400,14 +447,30 @@ grep(pattern, x, value = FALSE, ...) # equivalent to str_which()</code></pre>
 <pre class="r"><code>str_sub(string, start = 1L, end = -1L)
 str_sub(string, start = 1L, end = -1L, omit_na = FALSE) &lt;- value</code></pre>
 <ul>
-<li>The first argument is a character vector</li>
+<li><code>string</code> input is a character vector</li>
+<li><code>start</code> and <code>end</code> are integer vectors
+<ul>
+<li><code>start</code> is the position of the first substring character; default is the first character</li>
+<li><code>end</code> is the position of the last substring character; default is the last character</li>
+</ul></li>
+<li>Output is a character vector of substring from <code>start</code> to <code>end</code>.</li>
+<li><code>str_sub()</code> can be used to replace substrings when used with the assignment operator (<code>&lt;-</code>)</li>
 </ul>
 <div id="example-5" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>str &lt;- &quot;Hello world&quot;
+str_sub(str, start = 7)</code></pre>
+<pre><code>## [1] &quot;world&quot;</code></pre>
+<pre class="r"><code>str_sub(str, end = 5) &lt;- &quot;Hi&quot;
+str</code></pre>
+<pre><code>## [1] &quot;Hi world&quot;</code></pre>
 </div>
 <div id="base-r-alternative-5" class="section level3">
 <h3>Base R alternative</h3>
-<pre class="r"><code>substr(x, start, stop)
+<pre class="r"><code># equivalent to str_sub()
+substr(x, start, stop)
+
+# equivalent to str_sub() &lt;- value
 substr(x, start, stop) &lt;- value</code></pre>
 </div>
 </div>
@@ -418,14 +481,17 @@ substr(x, start, stop) &lt;- value</code></pre>
 <li><code>stringr</code> <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">CRAN documentation</a></li>
 <li><code>stringr</code> <a href="https://github.com/tidyverse/stringr">Github repository</a></li>
 </ul>
+<hr />
 </div>
-<div id="regular-expression-regex" class="section level2">
-<h2>Regular expression (regex)</h2>
+</div>
+<div id="regex" class="section level1">
+<h1>Regular expression (regex)</h1>
+<blockquote>
+<p>“Regular expressions are a concise and flexible tool for describing patterns in strings.” <br>-<em>stringr.tidyverse.org</em></p>
+</blockquote>
 <ul>
-<li>What it is</li>
-<li>When to use/why useful</li>
+<li>Regex allows us to use more complex and dynamic patterns for manipulating and working with strings</li>
 </ul>
-</div>
 <div id="regular-expression-in-r" class="section level2">
 <h2>Regular expression in R</h2>
 <ul>
@@ -435,8 +501,9 @@ substr(x, start, stop) &lt;- value</code></pre>
 <li>Anchors</li>
 <li>Quantifiers</li>
 </ul>
-<div id="character-classes" class="section level3">
-<h3>Character classes</h3>
+</div>
+<div id="character-classes" class="section level2">
+<h2>Character classes</h2>
 <table>
 <thead>
 <tr class="header">
@@ -491,9 +558,21 @@ substr(x, start, stop) &lt;- value</code></pre>
 </tr>
 </tbody>
 </table>
+<div id="example-6" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>str &lt;- c(&quot;HELLO&quot;, &quot;world&quot;, &quot;123&quot;, &quot;\n&quot;)
+str_detect(str, &quot;\\d&quot;) # has any digit</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;\\D&quot;) # has no digit</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE  TRUE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;\\w&quot;) # has any alphanumetic character</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;\\s&quot;) # has any whitespate</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
 </div>
-<div id="metacharacters" class="section level3">
-<h3>Metacharacters</h3>
+</div>
+<div id="metacharacters" class="section level2">
+<h2>Metacharacters</h2>
 <table>
 <thead>
 <tr class="header">
@@ -525,8 +604,8 @@ substr(x, start, stop) &lt;- value</code></pre>
 </tbody>
 </table>
 </div>
-<div id="groups" class="section level3">
-<h3>Groups</h3>
+<div id="groups" class="section level2">
+<h2>Groups</h2>
 <table>
 <thead>
 <tr class="header">
@@ -561,9 +640,21 @@ substr(x, start, stop) &lt;- value</code></pre>
 </tr>
 </tbody>
 </table>
+<div id="example-7" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>str &lt;- c(&quot;HELLO&quot;, &quot;world&quot;, &quot;123&quot;, &quot;\n&quot;)
+str_detect(str, &quot;.&quot;) # has any character except \n</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;(d|1)&quot;) # has d or 1</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;[Oo]&quot;) # has O or o</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;[^HELLO123]&quot;) # has characters other than...</code></pre>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE</code></pre>
 </div>
-<div id="anchors" class="section level3">
-<h3>Anchors</h3>
+</div>
+<div id="anchors" class="section level2">
+<h2>Anchors</h2>
 <table>
 <thead>
 <tr class="header">
@@ -598,9 +689,17 @@ substr(x, start, stop) &lt;- value</code></pre>
 </tr>
 </tbody>
 </table>
+<div id="example-8" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>str &lt;- c(&quot;apple&quot;, &quot;apricot&quot;, &quot;banana&quot;, &quot;pineapple&quot;)
+str_detect(str, &quot;^(a|ba)&quot;)</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;apple$&quot;)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE  TRUE</code></pre>
 </div>
-<div id="quantifiers" class="section level3">
-<h3>Quantifiers</h3>
+</div>
+<div id="quantifiers" class="section level2">
+<h2>Quantifiers</h2>
 <table>
 <thead>
 <tr class="header">
@@ -639,15 +738,23 @@ substr(x, start, stop) &lt;- value</code></pre>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="examples" class="section level3">
-<h3>Examples</h3>
+<div id="example-9" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>str &lt;- c(&quot;apple&quot;, &quot;apricot&quot;, &quot;banana&quot;, &quot;pineapple&quot;)
+str_detect(str, &quot;p*&quot;)</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;p+&quot;)</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE  TRUE</code></pre>
+<pre class="r"><code>str_detect(str, &quot;p{2,}&quot;)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE  TRUE</code></pre>
 </div>
 </div>
 <div id="more-on-regular-expression" class="section level2">
 <h2>More on regular expression</h2>
 <ul>
-<li>resources</li>
+<li><a href="https://www.regular-expressions.info/rlanguage.html">Regular-Expressions.info</a></li>
+<li>RStudio. (2016).<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf">“Basic Regular Expressions in R: Cheat Sheet”.</a></li>
+<li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/articles/regular-expressions.html">“Regualr Expressions”</a>. <em>stringr.tidyverse.org</em>.</li>
 </ul>
 <hr />
 </div>
@@ -661,7 +768,8 @@ substr(x, start, stop) &lt;- value</code></pre>
 <div id="datesdatetimes-basics" class="section level2">
 <h2>Dates/Datetimes basics</h2>
 <ul>
-<li>basics</li>
+<li><code>Date</code> class</li>
+<li><code>POSIXct</code> and <code>POSIXlt</code> classes</li>
 </ul>
 </div>
 <div id="lubridate-from-tidyverse" class="section level2">
@@ -687,13 +795,29 @@ as_datetime(x, tz = NULL, origin = lubridate::origin)</code></pre>
 <ul>
 <li><code>x</code> is a vector of POSIXt, numeric or character objects</li>
 <li><code>tz</code> is a time zone name</li>
-<li><code>origin</code> is a Date object or something that can be coerced into a Date object</li>
+<li><code>origin</code> is a Date object or something that can be coerced into a Date object
+<ul>
+<li>Default value corresponds to <code>&quot;1970-01-01&quot;</code></li>
+</ul></li>
 </ul>
-<div id="example-6" class="section level3">
+<div id="example-10" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>as_date(17618)</code></pre>
+<pre><code>## [1] &quot;2018-03-28&quot;</code></pre>
+<pre class="r"><code>class(as_date(&quot;20180328&quot;))</code></pre>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<pre class="r"><code>as_datetime(&quot;2018/03/28&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-03-28 UTC&quot;</code></pre>
+<pre class="r"><code>class(as_datetime(&quot;2018-03-28&quot;))</code></pre>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 </div>
 <div id="base-r-alternative-6" class="section level3">
 <h3>Base R alternative</h3>
+<pre class="r"><code># equivalent to as_date()
+as.Date(x, ...)
+
+# equivalent to as_datetime()
+as.POSIXct(x, tz = &quot;&quot;, ...)</code></pre>
 </div>
 </div>
 <div id="getset-time-component" class="section level2">
@@ -745,17 +869,19 @@ year(x) &lt;- value</code></pre>
 <td align="left">Get/set time zone component of a date-time</td>
 </tr>
 <tr class="odd">
-<td align="left">* a</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">* b</td>
-<td align="left"></td>
+<td align="left">* Any of thes</td>
+<td align="left">e can be used to <em>set</em> the corresponding time component when used with the assignment operator (<code>&lt;-</code>).</td>
 </tr>
 </tbody>
 </table>
-<div id="example-7" class="section level3">
+<div id="example-11" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>today &lt;- as_date(&quot;2018-03-28&quot;)
+year(today)</code></pre>
+<pre><code>## [1] 2018</code></pre>
+<pre class="r"><code>month(today) &lt;- 4
+today</code></pre>
+<pre><code>## [1] &quot;2018-04-28&quot;</code></pre>
 </div>
 </div>
 <div id="parse-date-time" class="section level2">
@@ -764,12 +890,80 @@ year(x) &lt;- value</code></pre>
 fast_strptime(x, format, tz = &quot;UTC&quot;, lt = TRUE, cutoff_2000 = 68L)</code></pre>
 <ul>
 <li><code>x</code> is a character or numeric vector of dates</li>
+<li><code>orders</code> is a character vector of date-time order format
+<ul>
+<li>e.g. <code>&quot;ymd&quot;</code> for year-month-date format</li>
+</ul></li>
+<li><code>exact</code> is a boolean value for using the “exact” match for the date-time format specificed by <code>orders</code></li>
+<li><code>drop</code> is a boolean value for dropping, or removing the values not matching the format</li>
+<li><code>format</code> is a character string of formats</li>
 </ul>
-<div id="example-8" class="section level3">
+<div id="date-format-symbols" class="section level3">
+<h3>Date format symbols</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">%Y</td>
+<td align="left">Year in 4 digits</td>
+<td align="left">2018</td>
+</tr>
+<tr class="even">
+<td align="left">%y</td>
+<td align="left">Year in 2 digits</td>
+<td align="left">18</td>
+</tr>
+<tr class="odd">
+<td align="left">%B</td>
+<td align="left">Month in words</td>
+<td align="left">March</td>
+</tr>
+<tr class="even">
+<td align="left">%b</td>
+<td align="left">Month in words, abbriviated</td>
+<td align="left">Mar</td>
+</tr>
+<tr class="odd">
+<td align="left">%m</td>
+<td align="left">Month in 2 digits</td>
+<td align="left">03</td>
+</tr>
+<tr class="even">
+<td align="left">d</td>
+<td align="left">Date in 2 digits</td>
+<td align="left">28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-12" class="section level3">
 <h3>Example</h3>
+<pre class="r"><code>dates = c(&quot;2018-03-28&quot;, &quot;2018/03/28&quot;, &quot;20180328&quot;)
+parse_date_time(dates, &quot;ymd&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-03-28 UTC&quot; &quot;2018-03-28 UTC&quot; &quot;2018-03-28 UTC&quot;</code></pre>
+<pre class="r"><code>fast_strptime(dates[1], &quot;%Y-%m-%d&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-03-28 UTC&quot;</code></pre>
+<pre class="r"><code>fast_strptime(dates[2], &quot;%Y/%m/%d&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-03-28 UTC&quot;</code></pre>
+<pre class="r"><code>fast_strptime(dates[3], &quot;%Y%m%d&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-03-28 UTC&quot;</code></pre>
 </div>
 <div id="base-r-alternative-7" class="section level3">
 <h3>Base R alternative</h3>
+<pre class="r"><code># equivalent to fast_strptime()
+strptime(x, format = &quot;&quot;, tz = &quot;&quot;)</code></pre>
+<ul>
+<li>No base R alternative for <code>parse_date_time()</code>
+<ul>
+<li>In fact, being able to handle multiple dates formats with the same order is one of the advantages of using <code>parse_date_time()</code></li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div id="quickly-parse-date-time" class="section level2">
@@ -777,7 +971,10 @@ fast_strptime(x, format, tz = &quot;UTC&quot;, lt = TRUE, cutoff_2000 = 68L)</co
 <pre class="r"><code>ymd_hms(..., quiet = FALSE, tz = NULL, ...)
 ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
 <ul>
-<li>The first <code>...</code> argument is …</li>
+<li>The first <code>...</code> argument is a character vector of dates in appropriate format</li>
+<li><code>quiet</code> is a boolean value for displaying messages</li>
+<li><code>tz</code> is a character string speficiying time zone</li>
+<li><code>ymd_hms</code> and other similar functions does the same work <code>parse_date_time()</code>, but with a predefined order.</li>
 </ul>
 <table>
 <thead>
@@ -888,10 +1085,13 @@ write_csv(x, path, na = &quot;NA&quot;, append = FALSE, col_names = !append)</co
 </div>
 <div id="using-data.table" class="section level3">
 <h3>Using <code>data.table</code></h3>
-<pre class="r"><code>fread(input, file, nrows=-1L, header=&quot;auto&quot;, na.strings=&quot;NA&quot;, stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
+<pre class="r"><code>fread(input, sep=&quot;auto&quot;, sep2=&quot;auto&quot;, nrows=-1L, header=&quot;auto&quot;, na.strings=&quot;NA&quot;, stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
 strip.white=TRUE, fill=FALSE, ...)
 fwrite(x, file = &quot;&quot;, append = FALSE, quote = &quot;auto&quot;, sep = &quot;,&quot;, na = &quot;&quot;, row.names = FALSE, col.names = TRUE, ...)</code></pre>
 <ul>
+<li><code>input</code> is a path to the .csv file to import</li>
+<li><code>x</code> is a data object to export</li>
+<li><code>file</code> is a path to the directory where the exported data will be created</li>
 <li>The output of <code>fread</code> is a <code>data.table</code> object</li>
 <li>The output of <code>fwrite</code> is a .csv file in a directory</li>
 </ul>
@@ -915,6 +1115,11 @@ write.csv(x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot;,&qu
 read_xls(path, ...)
 read_xlsx(path, ...)</code></pre>
 <ul>
+<li><code>path</code> is a path to the excel file (.xls or .xlsx) to import</li>
+<li><code>sheet</code> is the name of a sheet in the excel file to import</li>
+<li><code>col_names</code> is a boolean value for using the first row to import as column names</li>
+<li><code>skip</code> is a number of rows to skip</li>
+<li><code>guess_max</code> is a number of rows to use to guess the class of each column</li>
 <li>The output is a <code>tibble</code> object</li>
 </ul>
 <div id="more-on-readxl" class="section level3">
@@ -944,6 +1149,8 @@ read_xlsx(path, ...)</code></pre>
 read_spss(file, user_na = FALSE)
 write_sav(data, path)</code></pre>
 <ul>
+<li><code>file</code> is a path to the SPSS file (.sav) to import in <code>read_sav()</code>, or a path to export the data in <code>write_sav()</code></li>
+<li><code>data</code> is a data object to export</li>
 <li>The output of <code>read_sav()</code> is a <code>tibble</code> object
 <ul>
 <li><code>read_spss()</code> is a simple alias for <code>read_sav()</code></li>
@@ -972,6 +1179,8 @@ write_sav(data, path)</code></pre>
 <pre class="r"><code>read_feather(path, columns = NULL)
 write_feather(x, path)</code></pre>
 <ul>
+<li><code>path</code> is a path to the .feather file to import in <code>read_feather()</code>, or a path to export the data in <code>write_feather()</code></li>
+<li><code>x</code> is the data object to export</li>
 <li>The output of <code>read_feather()</code> is a <code>tibble</code> object</li>
 <li>The output of <code>write_feather()</code> is a feather file</li>
 </ul>
@@ -992,7 +1201,10 @@ write_feather(x, path)</code></pre>
 Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.
 </li>
 <li>
-RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Dates and Times Cheat Shee”</a>.
+Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html">“Date Values”</a>. <span style="font-syle:italic">Quick-R</span>.
+</li>
+<li>
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Dates and Times Cheat Sheet”</a>.
 </li>
 <li>
 RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Work with Strings Cheat Sheet”</a>.
@@ -1008,9 +1220,6 @@ Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="
 </li>
 <li>
 Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a>
-</li>
-<li>
-<a href="#"></a>
 </li>
 <li>
 Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a>
