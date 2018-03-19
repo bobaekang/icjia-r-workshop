@@ -493,6 +493,12 @@ knitr::include_graphics("../images/tidy-1.png")
 Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 </div>
 
+We have learned the notion of "tidy" data in the second part of the previous module. In short, a dataset is "tidy" when:
+
+1. Each column is a variable
+2. Each row is an observation
+3. Each cell is a value.
+
 
 ## Key `tidyr` functions
 
@@ -511,20 +517,21 @@ Please note that, as before, this section is not intended to be an exhaustive do
 ```{r eval=FALSE}
 gather(tbl, key = "key", value = "value", ..., na.rm = FALSE, ...)
 ```
-* The first argument is a tabular data object
-    * e.g. `data.frame` or `tibble`
-* `key` is the name of a new column for a "key", and `value` is the name of a new column for a "value" of the given key.
-* `...` is a selection of columns to be used whose name will be made into values for the `key` column and whose value will be made into the values of the `value` column.
+`gather()` is a function to make "wide" data longer, by "gathering" multiple columns into two columns of key-value pairs. The function takes a tabular data object, such as `data.frame` or `tibble`, as its first argument. The second argument, `key`, defines the name of a new column for key and the third argument, `value`, defines the name of a new column for value. These two arguments have default values that are, not surprisingly, `"key"` and `"value"`, respectively.
+
+The following arguments (`...`) are a selection of columns to be used whose name will be made into values for the `key` column and whose value will be made into the values of the `value` column.
+
 
 ## Make "long" data wider
 ```{r eval=FALSE}
 spread(tbl, key, value, fill = NA, ...)
 ```
-* The first argument is a tabular data object
-* `key` is an existing column containing the names of new columns, and `value` is another column containing the values for the new columns.
-* `gather()` and `spread()` are complements
+`spread()` is the opposite of `gather()`. As in `gather()`, the first argument is a tabular data object. Then, `key` is an existing column containing the names of new columns, and `value` is another column containing the values for the new columns.
 
-### Example 
+
+### Example
+Let's take a look at an example illustrating how `gather()` and `spread()` work. First, we prepare a data to be used, which is the familiar `ispcrime` dataset, except we exclude `violentCrime` and `propertyCrime` columns using `select()`. We assign this to `ispcrime_2`. 
+
 ```{r}
 ispcrime_2 <- ispcrime %>%
   select(-violentCrime, -propertyCrime) %>%
@@ -533,11 +540,14 @@ ispcrime_2 <- ispcrime %>%
 ispcrime_2
 ```
 
+Now, let's try `gather()`. We will name the key column `type` for the type of crime, and the value column `count`. Then we will "gather" all 8 crime type columns, from `murder` to `arson`. The output is a reshaepd dataset that is 8-times "longer" than the input (4,080 = 510 * 8). The name of each input column is now turned into a value for the `type` column, and the corresponding crime count is a value for the `count` column.
+
 ```{r}
 ispcrime_2 %>%
   gather(key = "type", value = "count", murder:arson)
 ```
 
+Now, to see that `spread()` is the opposite process, here we show the result of `gather()`-ing and than `spread()`-ing the `ispcrime_2` object. The final output is in the same shape as the input.
 
 ```{r}
 ispcrime_2 %>%
@@ -550,23 +560,21 @@ ispcrime_2 %>%
 ```{r eval=FALSE}
 unite(tbl, col, ..., sep = "_", remove = TRUE)
 ```
-* The first argument is a tabular data object
-* `col` is a new column created by "uniting" the following column inputs (`...`)
-* `sep` input is a string to be inserted as a seperator between column values
+`unite()` works to combine multiple columns into a single column by concatenating their values. Its first argument is a tabular data object. Then, `col` is a new column created by "uniting" the following column inputs (`...`). `sep` input is a string to be inserted as a seperator between column values when concatenation takes place. The default value for `sep` is the underscore symbol (`_`). Finally, `remove` takes a boolean value for whether removing the original columns or not.
+
 
 ## Split a column into many
 ```{r eval=FALSE}
 separate(tbl, col, into, sep = "[^[:alnum:]]+", remove = TRUE, ...)
 ```
-* The first argument is a tabular data object
-* `col` is a column to be split
-* `into` is a character vector for separated column names
-* `sep` is a separator between values
-* `separate()` and `unite()` are complements
+`separate()` is the opposite of `unite()`. As in `unite()`, the first argument is a tabular data object. Here, `col` is a column to be split into multiple columns. `into` is a character vector for separated column names, which may have two or more elements. `sep` is a separator between values, which could be `_`, or any other. Finally, `remove` is a boolean for whether removing the original columns or not.
 
-`unite()` and `sperate()` are great for cleaning up date or name variables.
+`unite()` and `sperate()` are great for cleaning up date or name variables. One common application is to convert two columns for "last name" and "first name" into a single column for "full name", or vice versa.
 
-### Example 
+
+### Example
+The following example illustrates the use of `unite()` and `separate()`. We first prepare a data object for this exercise: we `left_join()` `ispcrime` and `regions` and `select()` only six columns in the following order: `year`, `region`, `county`, `volentCrime`, and `propertyCrime`. This transformed data is assigned to `ispcrime_3`.
+
 ```{r}
 ispcrime_3 <- ispcrime %>%
   left_join(regions) %>%
@@ -576,12 +584,14 @@ ispcrime_3 <- ispcrime %>%
 ispcrime_3
 ```
 
+Now, we will try `unite()` on `region` and `county` columns to create a `region_county` column. Notice that we do not provide any input for `sep` argument and, accordingly, the default separator, `"_"`, is used to concatenate the two columns.
 
 ```{r}
 ispcrime_3 %>%
   unite(col = region_county, region, county)
 ```
 
+To see that `unite()` and `separate()` are the opposite procedures, we show the result of `unite()`-ing and `separate()`-ing the `ispcrime_3` data. Note that we have to provide `"_"` as the `sep` input to gain back the original input.
 
 ```{r}
 ispcrime_3 %>%
@@ -594,8 +604,7 @@ ispcrime_3 %>%
 ```{r eval=FALSE}
 separate_rows(tbl, ..., sep = "[^[:alnum:]]+", ...)
 ```
-* The first argument is a tabular data object
-* `separate_rows()` is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
+We also have `separate_rows()`, which is similar to `separate()`, except the former results in a longer table while the latter results in a wider table. 
 
 
 ## More on `tidyr` {#tidyr_more}

@@ -719,6 +719,12 @@ function3(function2(function1(object, arguments1), arguments2), arguments3)</cod
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a></p>
 </div>
+<p>We have learned the notion of “tidy” data in the second part of the previous module. In short, a dataset is “tidy” when:</p>
+<ol style="list-style-type: decimal">
+<li>Each column is a variable</li>
+<li>Each row is an observation</li>
+<li>Each cell is a value.</li>
+</ol>
 </div>
 <div id="key-tidyr-functions" class="section level2">
 <h2>Key <code>tidyr</code> functions</h2>
@@ -735,25 +741,16 @@ function3(function2(function1(object, arguments1), arguments2), arguments3)</cod
 <div id="make-wide-data-longer" class="section level2">
 <h2>Make “wide” data longer</h2>
 <pre class="r"><code>gather(tbl, key = &quot;key&quot;, value = &quot;value&quot;, ..., na.rm = FALSE, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object
-<ul>
-<li>e.g. <code>data.frame</code> or <code>tibble</code></li>
-</ul></li>
-<li><code>key</code> is the name of a new column for a “key”, and <code>value</code> is the name of a new column for a “value” of the given key.</li>
-<li><code>...</code> is a selection of columns to be used whose name will be made into values for the <code>key</code> column and whose value will be made into the values of the <code>value</code> column.</li>
-</ul>
+<p><code>gather()</code> is a function to make “wide” data longer, by “gathering” multiple columns into two columns of key-value pairs. The function takes a tabular data object, such as <code>data.frame</code> or <code>tibble</code>, as its first argument. The second argument, <code>key</code>, defines the name of a new column for key and the third argument, <code>value</code>, defines the name of a new column for value. These two arguments have default values that are, not surprisingly, <code>&quot;key&quot;</code> and <code>&quot;value&quot;</code>, respectively.</p>
+<p>The following arguments (<code>...</code>) are a selection of columns to be used whose name will be made into values for the <code>key</code> column and whose value will be made into the values of the <code>value</code> column.</p>
 </div>
 <div id="make-long-data-wider" class="section level2">
 <h2>Make “long” data wider</h2>
 <pre class="r"><code>spread(tbl, key, value, fill = NA, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li><code>key</code> is an existing column containing the names of new columns, and <code>value</code> is another column containing the values for the new columns.</li>
-<li><code>gather()</code> and <code>spread()</code> are complements</li>
-</ul>
+<p><code>spread()</code> is the opposite of <code>gather()</code>. As in <code>gather()</code>, the first argument is a tabular data object. Then, <code>key</code> is an existing column containing the names of new columns, and <code>value</code> is another column containing the values for the new columns.</p>
 <div id="example-7" class="section level3">
 <h3>Example</h3>
+<p>Let’s take a look at an example illustrating how <code>gather()</code> and <code>spread()</code> work. First, we prepare a data to be used, which is the familiar <code>ispcrime</code> dataset, except we exclude <code>violentCrime</code> and <code>propertyCrime</code> columns using <code>select()</code>. We assign this to <code>ispcrime_2</code>.</p>
 <pre class="r"><code>ispcrime_2 &lt;- ispcrime %&gt;%
   select(-violentCrime, -propertyCrime) %&gt;%
   as_tibble()
@@ -773,6 +770,7 @@ ispcrime_2</code></pre>
 ##  9  2011 Cass         0     1       0         11       41         71     3
 ## 10  2011 Champa~      5   127     208        870     1384       3756   164
 ## # ... with 500 more rows, and 1 more variable: arson &lt;int&gt;</code></pre>
+<p>Now, let’s try <code>gather()</code>. We will name the key column <code>type</code> for the type of crime, and the value column <code>count</code>. Then we will “gather” all 8 crime type columns, from <code>murder</code> to <code>arson</code>. The output is a reshaepd dataset that is 8-times “longer” than the input (4,080 = 510 * 8). The name of each input column is now turned into a value for the <code>type</code> column, and the corresponding crime count is a value for the <code>count</code> column.</p>
 <pre class="r"><code>ispcrime_2 %&gt;%
   gather(key = &quot;type&quot;, value = &quot;count&quot;, murder:arson)</code></pre>
 <pre><code>## # A tibble: 4,080 x 4
@@ -789,6 +787,7 @@ ispcrime_2</code></pre>
 ##  9  2011 Cass      murder     0
 ## 10  2011 Champaign murder     5
 ## # ... with 4,070 more rows</code></pre>
+<p>Now, to see that <code>spread()</code> is the opposite process, here we show the result of <code>gather()</code>-ing and than <code>spread()</code>-ing the <code>ispcrime_2</code> object. The final output is in the same shape as the input.</p>
 <pre class="r"><code>ispcrime_2 %&gt;%
   gather(key = &quot;type&quot;, value = &quot;count&quot;, murder:arson) %&gt;%
   spread(key = type, value = count)</code></pre>
@@ -811,25 +810,16 @@ ispcrime_2</code></pre>
 <div id="unite-multiple-columns-into-one" class="section level2">
 <h2>Unite multiple columns into one</h2>
 <pre class="r"><code>unite(tbl, col, ..., sep = &quot;_&quot;, remove = TRUE)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li><code>col</code> is a new column created by “uniting” the following column inputs (<code>...</code>)</li>
-<li><code>sep</code> input is a string to be inserted as a seperator between column values</li>
-</ul>
+<p><code>unite()</code> works to combine multiple columns into a single column by concatenating their values. Its first argument is a tabular data object. Then, <code>col</code> is a new column created by “uniting” the following column inputs (<code>...</code>). <code>sep</code> input is a string to be inserted as a seperator between column values when concatenation takes place. The default value for <code>sep</code> is the underscore symbol (<code>_</code>). Finally, <code>remove</code> takes a boolean value for whether removing the original columns or not.</p>
 </div>
 <div id="split-a-column-into-many" class="section level2">
 <h2>Split a column into many</h2>
 <pre class="r"><code>separate(tbl, col, into, sep = &quot;[^[:alnum:]]+&quot;, remove = TRUE, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li><code>col</code> is a column to be split</li>
-<li><code>into</code> is a character vector for separated column names</li>
-<li><code>sep</code> is a separator between values</li>
-<li><code>separate()</code> and <code>unite()</code> are complements</li>
-</ul>
-<p><code>unite()</code> and <code>sperate()</code> are great for cleaning up date or name variables.</p>
+<p><code>separate()</code> is the opposite of <code>unite()</code>. As in <code>unite()</code>, the first argument is a tabular data object. Here, <code>col</code> is a column to be split into multiple columns. <code>into</code> is a character vector for separated column names, which may have two or more elements. <code>sep</code> is a separator between values, which could be <code>_</code>, or any other. Finally, <code>remove</code> is a boolean for whether removing the original columns or not.</p>
+<p><code>unite()</code> and <code>sperate()</code> are great for cleaning up date or name variables. One common application is to convert two columns for “last name” and “first name” into a single column for “full name”, or vice versa.</p>
 <div id="example-8" class="section level3">
 <h3>Example</h3>
+<p>The following example illustrates the use of <code>unite()</code> and <code>separate()</code>. We first prepare a data object for this exercise: we <code>left_join()</code> <code>ispcrime</code> and <code>regions</code> and <code>select()</code> only six columns in the following order: <code>year</code>, <code>region</code>, <code>county</code>, <code>volentCrime</code>, and <code>propertyCrime</code>. This transformed data is assigned to <code>ispcrime_3</code>.</p>
 <pre class="r"><code>ispcrime_3 &lt;- ispcrime %&gt;%
   left_join(regions) %&gt;%
   select(year, region, county, violentCrime, propertyCrime) %&gt;%
@@ -850,6 +840,7 @@ ispcrime_2</code></pre>
 ##  9  2011 Central  Cass                12           119
 ## 10  2011 Central  Champaign         1210          5332
 ## # ... with 500 more rows</code></pre>
+<p>Now, we will try <code>unite()</code> on <code>region</code> and <code>county</code> columns to create a <code>region_county</code> column. Notice that we do not provide any input for <code>sep</code> argument and, accordingly, the default separator, <code>&quot;_&quot;</code>, is used to concatenate the two columns.</p>
 <pre class="r"><code>ispcrime_3 %&gt;%
   unite(col = region_county, region, county)</code></pre>
 <pre><code>## # A tibble: 510 x 4
@@ -866,6 +857,7 @@ ispcrime_2</code></pre>
 ##  9  2011 Central_Cass                 12           119
 ## 10  2011 Central_Champaign          1210          5332
 ## # ... with 500 more rows</code></pre>
+<p>To see that <code>unite()</code> and <code>separate()</code> are the opposite procedures, we show the result of <code>unite()</code>-ing and <code>separate()</code>-ing the <code>ispcrime_3</code> data. Note that we have to provide <code>&quot;_&quot;</code> as the <code>sep</code> input to gain back the original input.</p>
 <pre class="r"><code>ispcrime_3 %&gt;%
   unite(col = region_county, region, county) %&gt;%
   separate(col = region_county, into = c(&quot;region&quot;, &quot;county&quot;), sep = &quot;_&quot;)</code></pre>
@@ -888,10 +880,7 @@ ispcrime_2</code></pre>
 <div id="split-a-row-into-many" class="section level2">
 <h2>Split a row into many</h2>
 <pre class="r"><code>separate_rows(tbl, ..., sep = &quot;[^[:alnum:]]+&quot;, ...)</code></pre>
-<ul>
-<li>The first argument is a tabular data object</li>
-<li><code>separate_rows()</code> is similar to <code>separate()</code>, except the former results in a longer table while the latter results in a wider table.</li>
-</ul>
+<p>We also have <code>separate_rows()</code>, which is similar to <code>separate()</code>, except the former results in a longer table while the latter results in a wider table.</p>
 </div>
 <div id="tidyr_more" class="section level2">
 <h2>More on <code>tidyr</code></h2>
