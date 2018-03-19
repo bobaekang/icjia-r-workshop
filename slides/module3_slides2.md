@@ -153,7 +153,7 @@ str_trim(string, side = c("both", "left", "right"))
 str_squish(string)
 ```
 * `string` input is a character vector
-* `side` input determins which side of a string to trim
+* `side` input determines which side of a string to trim
     * "both" trims whitespaces on both the beginning and the end
     * "left" trims whitespaces only on the beginning
     * "right" trims whitespaces only on the end

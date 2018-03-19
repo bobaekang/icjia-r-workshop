@@ -93,7 +93,7 @@ include_graphics("../images/font_case.png")
 Source: <a href="https://www.rstudio.com/">RStudio</a>
 </div>
 
-In programming, "strings" most often refeers to character data. Manipulating strings is an important skill for data analysis. 
+In computer programming, a "string" often refers to a string of characters. Manipulating strings is an important skill for data analysis. 
 
 ## `stringr` from tidyverse
 ```{r echo=FALSE, out.width="25%", out.extra='style="box-shadow: none; display: block; margin: auto;"'}
@@ -114,7 +114,7 @@ In this section, we will learn the following `stringr` functions:
 * `str_subset()`
 * `str_sub()`
 
-Many of these `stringr` functions also have base R alternatives. We will also see the base R functions that are roughly equivalent to `stringr`. Despite the equivalent base R functions, using `stringr` has an advantage of having a more organized API. All `stringr` functions begin with `str_` prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (`%>%`) operator. 
+Many of these `stringr` functions also have base R alternatives. Accordingly, we will also see the base R functions that are roughly equivalent to each `stringr` function. Despite the equivalent base R functions, however, using `stringr` has an advantage of having a more organized API. That is, all `stringr` functions begin with `str_` prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (`%>%`) operator. 
 
 Please note that this section is not intended to be an exhuastive documentation and description of the listed functions--or `stringr` package for that matter. For more information, please check out the reference materials listed below.
 
@@ -125,12 +125,14 @@ str_to_upper(string, locale = "en")
 str_to_lower(string, locale = "en")
 str_to_title(string, locale = "en")
 ```
-* `string` input is a character vector
-    * Or something that can be coerced into a character vector
-* The default `locale` is "en", for English
-* `str_to_title()` capitalizes only the first letter of each word
+One of the most basic string operations is to change cases of the character. `stringr` offers three functions for that task: `str_to_upper()`, `str_to_lower()`, and `str_to_title()`.
+
+All three functions take a character vector as the first argument input, `string`. In fact, if it is not a character vector but can be coerced into one, `str_to_*()` will automatically coerce, or convert, the input into a character vector.
+
+`str_to_upper()` turns all characters into uppercase letters, and `str_to_lower()`, to lowercase letters. `str_to_title()` capitalizes only the first letter of each word, seperated by a whitespace.
 
 ### Example
+Using each of `stringr`'s case-changing functions is pretty straightforward:
 ```{r}
 str_to_upper("hello world")
 str_to_lower("HELLO WORLD")
@@ -145,6 +147,7 @@ toupper(string)
 # equivalent to str_to_lower()
 tolower(string)
 ```
+Base R offers functions equivalent to `str_to_upper()` and `str_to_lower()`.
 
 
 ## Trim whitespace
@@ -152,13 +155,11 @@ tolower(string)
 str_trim(string, side = c("both", "left", "right"))
 str_squish(string)
 ```
-* `string` input is a character vector
-* `side` input determins which side of a string to trim
-    * "both" trims whitespaces on both the beginning and the end
-    * "left" trims whitespaces only on the beginning
-    * "right" trims whitespaces only on the end
+`str_trim()` and `str_squish()` are functions to trim, or remove, unwanted whitespaces in a character string. As before, the first input `string` is a character vector. The `side` argument in `str_trim()` determines which side of a string to trim: "both" trims whitespaces on both the beginning and the end, "left" trims whitespaces only on the beginning, and "right" trims whitespaces only on the end. `str_squish()` detects any execssive whitespace and removes it rom the input.
 
 ### Example
+The following code example shows how trimming whitespaces work. Notice that `str_squish()` also takes care of whitespaces within the string in addition to the left and right ends.
+
 ```{r}
 str_trim("  trim both  ", side = "both")
 str_trim("  trim left only  ", side = "left")
@@ -171,42 +172,56 @@ str_squish("  whitespaces all    over the  place   ")
 # equivalent to str_trim()
 trimws(x, which = c("both", "left", "right"))
 ```
+Base R also offers a function to remove leading and/or trailing whitespaces.
 
 
 ## Concatenate strings into one
 ```{r eval=FALSE}
 str_c(..., sep = "", collapse = NULL)
 ```
-* The first argument (`...`) is one more more character vectors
-* `sep` is a separator string between input vectors; default value is none (`""`).
-* `collapse` is an optional string used to combined input vectors into a single string
+`str_c()` concatenates multiple strings into a single string. The first argument (`...`) is one more more character vectors for the concatenating operation. There are two ways to concatenate strings. First is an element-wise concatenation with `sep`, which a separator string between input vectors. The default value is none (`""`). Second way of concatenating strings use `collapse`, an optional string used to combined input vectors into a single string.
 
 ### Example
+The following examples illustrate how concatenating strings with `sep` and `collapse` works.
 ```{r}
 str_c(c("one", "two"), c("plus three", "minus four"), sep = " ")
+```
+In the first case, we are doing element-wise concatenation between two character vectors. Here we see ethat the first element of the first vector and the first element of the second vector is concatenated with a single whitespace in between. The same thing goes for the second element of both vectors. The output is a character vector of length 2, whose elements are concatenated strings that result from the elements of the input vectors. 
+
+```{r}
 str_c(c("one", "two", "three"), "plus four", sep = " ")
+```
+When the length of input vectors do not match, the shorter vector is recycled. Here, the first input vector has a length of 3 while the second input vector has a length of 1. Consequently, the second vector element, `"plus four"` is recycled and used for concatenation for all three elements of the first input vector. The output has a lenght of 3, which matches the lenght of the longest input vector.
+
+```{r}
 str_c(c("one", "two", "three"), collapse = " plus ")
+```
+Here we see how `collapse` works. Note that the final output is a vector of lenght 1, whose only element is a string with all elements of the input vector concatenated with the `collapse` input in between.    
+
+```{r}
 str_c(c("one", "two", "three"), "plus four", sep = " ", collapse = " and ")
 ```
+Of course, we can combine `sep` and `collapse` to try a more complicated concatenation task.
+
 
 ### Base R alternative
 ```{r eval=FALSE}
 # equivalent to str_c()
 paste (..., sep = " ", collapse = NULL)
 ```
+Base R alternative to `str_c()` is `paste()`, which works pretty much the same.
 
 
 ## Detect a pattern
 ```{r eval=FALSE}
 str_detect(string, pattern)
 ```
-* `string` input is a character vector
-* `pattern` input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.
-* Output is a boolean vector of the same length (`TRUE` or `FALSE`)
+`str_detect()` is used to detect the presence/absence of a speficied pattern in the input string. As before, `string` input is a character vector. `pattern` input is a character vector of length 1 that is a pattern to look for. Finally, output is a boolean (`TRUE` or `FALSE`) vector of the same length as the `string` input.
 
-Note: We will discuss regular expressions [later](#regex).
+Note that the `pattern` input can include regualr expressions, which will be discussed [later](#regex) in the current note.
 
 ### Example
+In this example, we have an input string of length 3. The pattern we want to detect is `"I like"`. As expected, the output is a boolean vecotr of length 3, whose element has a value of either `TRUE` or `FALSE` based on the presence of the pattern in the correspoding element in the input vector.
 ```{r}
 str = c("I like apple", "You like apple", "Apple, I like")
 pat = "I like"
@@ -218,6 +233,7 @@ str_detect(str, pat)
 # equivalent to str_detect()
 grepl(pattern, x, ...)
 ```
+The `grepl()` function of base R is equivalent to `str_detect()`, although the order of input argument is different: `pattern` input comes before the string input `x`.
 
 
 ## Get strings/positions matching a pattern
@@ -225,11 +241,13 @@ grepl(pattern, x, ...)
 str_subset(string, pattern)
 str_which(string, pattern)
 ```
-* `string` input is a character vector
-* `pattern` input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.
-* `str_subset()` returns the matching strings while `str_which()` returns the index for the matches
+`str_subset()` and `str_which()` are similar functions that take a character vector as the `string` input and a pattern to look for as the `pattern` input. As in `str_detect()`, the pattern can be speficied using regular expression.
+
+The key difference between `str_subset()` and `str_which()` is that the former returns the strings that match the pattern while the latter returns the index of the matching strings.
 
 ### Example
+The following example illustrates the different outputs of `str_subset()` and `str_which()`:
+
 ```{r}
 str = c("I like apple", "You like apple", "Apple, I like")
 pat = "I like"
@@ -245,6 +263,7 @@ grep(pattern, x, value = TRUE, ...)
 # equivalent to str_which()
 grep(pattern, x, value = FALSE, ...)
 ```
+Base R offers `grep()`, which can do the work of both `str_subset()` and `str_which()`, depending on the `value` argument input.
 
 
 ## Extract and replace substrings
@@ -260,6 +279,7 @@ str_sub(string, start = 1L, end = -1L, omit_na = FALSE) <- value
 * `str_sub()` can be used to replace substrings when used with the assignment operator (`<-`)
 
 ### Example
+The following example code illustate using `str_sub()` to both get and set substring value for the input:
 ```{r}
 str <- "Hello world"
 str_sub(str, start = 7)
@@ -275,6 +295,7 @@ substr(x, start, stop)
 # equivalent to str_sub() <- value
 substr(x, start, stop) <- value
 ```
+The base R alternative `str_sub()` is `substr()`, which can also be used to both get and set the substring value.
 
 
 ## More on `stringr`
@@ -490,10 +511,13 @@ include_graphics("../images/calendar.png")
 Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
 </div>
 
+The work of data analysis often deals with dates. R has data types for date and datetime, which come with useful properties for understanding and analyzing temporal characteristics of data.
+
 
 ## Dates/Datetimes basics
-* `Date` class
-* `POSIXct` and `POSIXlt` classes
+As just mentioned, R offers roughly two data types for date and datetime. First, `Date` is a class that represents calendar dates, which is represented as the number of days since 1970-01-01. Second, `POSIXct` and `POSIXlt` are two classes for representing calendar dates and times. Technically, the `POSIXct` class represents the specified datetime as a number of seconds since 1970-01-01, and `POSIXlt` represents it in a mixed text and character format. In practice, however, these two prints the identical value and can be used almost interchangeably.
+
+`Date` and `POSIX*` classes have useful properties for working with date and datetime, one of which is the possibility of breaking down the data into the time components. 
 
 
 ## `lubridate` from tidyverse
@@ -507,10 +531,13 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 
 ## Key `lubridate` functions
+In this section, we will learn the following `lubridate` functions:
 * `as_date()` `as_datetime()`
 * `year()`, `month()`, `day()`, `hour()`, ...
 * `parse_date_time()` `fast_strptime()`
 * `ymd_hms()`, `ymd()`, ...
+
+As in `stringr`, many of `lubridate` functions have base R alternatives, which we will see whenever relevant. Again, the benefit of using `lubridate` functions is the cleaner API in addition to some extra convenience.
 
 
 ## Convert to a date or date-time
@@ -518,12 +545,12 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 as_date(x, tz = NULL, origin = lubridate::origin)
 as_datetime(x, tz = NULL, origin = lubridate::origin)
 ```
-* `x` is a vector of POSIXt, numeric or character objects
-* `tz` is a time zone name
-* `origin` is a Date object or something that can be coerced into a Date object
-    * Default value corresponds to `"1970-01-01"`
+`as_date()` and `as_datetime()` take a vector of POSIXt, numeric or character objects as the input for the first argument, `x`, and returns a date/datetime object. `tz` input is a time zone name, such as `"CST"`. Finally, `origin` is a Date object or something that can be coerced into a Date object, with the default value of `"1970-01-01"`.
+
+The difference between `as_date()` and `as_datetime()` is that the former results in a `Date` objet while the latter returns a `POSIXct` object.
 
 ### Example
+Let's take a quick look at how `as_date()` and `as_datetime()` works. Note that the input for these functions can be in varying forms, including a numeric value.
 ```{r}
 as_date(17618)
 class(as_date("20180328"))
@@ -539,6 +566,7 @@ as.Date(x, ...)
 # equivalent to as_datetime()
 as.POSIXct(x, tz = "", ...)
 ```
+Base R offers `as.Date()`, which corresponds to `as_date()`, and `as.POSIXct()`, which is equivalent to `as_datetime()`.
 
 
 ## Get/set time component
@@ -546,8 +574,10 @@ as.POSIXct(x, tz = "", ...)
 year(x)
 year(x) <- value
 ```
-* `x` is a date-time object
-* `value` is a numeric object
+
+`lubridate` offers a set of functiosn to easily get and set time component of a date/datetime object. The first input, `x`, is a date/datetime object. When used with the assignment operator, `<-`, we can give a new value to the specified component of the input object.
+
+The following table provides a list of selected functions for getting/setting time component:
 
 ```{r echo=FALSE}
 kable(
@@ -575,9 +605,9 @@ kable(
   )
 )
 ```
-* Any of these can be used to *set* the corresponding time component when used with the assignment operator (`<-`).
 
 ### Example
+The following example illustrates how to get/set time components of a date object: 
 ```{r}
 today <- as_date("2018-03-28")
 year(today)
@@ -591,12 +621,13 @@ today
 parse_date_time(x, orders, tz = "UTC", truncated = 0, locale = Sys.getlocale("LC_TIME"), exact = FALSE, drop = FALSE, ...)
 fast_strptime(x, format, tz = "UTC", lt = TRUE, cutoff_2000 = 68L)
 ```
-* `x` is a character or numeric vector of dates
-* `orders` is a character vector of date-time order format
-    * e.g. `"ymd"` for year-month-date format
-* `exact` is a boolean value for using the "exact" match for the date-time format specificed by `orders`
-* `drop` is a boolean value for dropping, or removing the values not matching the format
-* `format` is a character string of formats
+In most cases, `as_date()` and `as_datetime()` may be sufficient to convert non-date/-datetime objects to date/datetime objects. However, sometimes a more flexible approach is needed to handle a variety of input formats. `parse_date_time()` and `fast_strptime()` are functions for just that.
+
+Both `parse_date_time()` and `fast_strptime()` take a character or numeric vector of dates as the input for the first argument.
+
+`parse_date_time()` then takes a character vector of datetime order format as `orders` input. For example, we can use `"ymd"` for various year-month-date formats. `exact` is a boolean value for using the "exact" match for the datetime format specificed by `orders`, and `drop` is a boolean value for dropping, or removing the values not matching the format. In
+
+On the other hand, `fast_strptime()` takes a character string of formats as `format` input. The datetime format uses special symbols such as those listed in the following table:
 
 ### Date format symbols
 ```{r echo=FALSE}
@@ -631,9 +662,16 @@ kable(
 ```
 
 ### Example
+Let us take a look at some examples of "parsing" datetimes using `parse_date_time()` and `fast_strptime()`. First we have a vector of three date strings as a sample input.
 ```{r}
 dates = c("2018-03-28", "2018/03/28", "20180328")
+```
+As shown below, `parse_date_time()` is capable of taking care of varying date formats as long as the order remains the same:
+```{r}
 parse_date_time(dates, "ymd")
+```
+In constrast, `fast_strptime()` has to specify the foramt for each input:
+```{r}
 fast_strptime(dates[1], "%Y-%m-%d")
 fast_strptime(dates[2], "%Y/%m/%d")
 fast_strptime(dates[3], "%Y%m%d")
@@ -644,8 +682,7 @@ fast_strptime(dates[3], "%Y%m%d")
 # equivalent to fast_strptime()
 strptime(x, format = "", tz = "")
 ```
-* No base R alternative for `parse_date_time()`
-    * In fact, being able to handle multiple dates formats with the same order is one of the advantages of using `parse_date_time()`
+Base R offers `strptime()`, which is equivalent to `fast_strptime()`. On the other hand, there is no base R alternative for `parse_date_time()`. That said, being able to handle multiple date/datetime formats with the same order is one of the advantages of using `parse_date_time()`.
 
 
 ## Quickly parse date-time
@@ -653,10 +690,11 @@ strptime(x, format = "", tz = "")
 ymd_hms(..., quiet = FALSE, tz = NULL, ...)
 ymd(..., quiet = FALSE, tz = "UTC", ...)
 ```
-* The first `...` argument is a character vector of dates in appropriate format
-* `quiet` is a boolean value for displaying messages
-* `tz` is a character string speficiying time zone
-* `ymd_hms` and other similar functions does the same work `parse_date_time()`, but with a predefined order.
+`lubridate` also offers functions for quickly parse datetimes with a predefined order; under the hood, all these functions do the same work as `parse_date_time()`.
+
+The first `...` argument is a character vector of dates in appropriate format. `quiet` is a boolean value for displaying messages, and `tz` is a character string speficiying time zone.
+
+The following table lists a selection of functions to quickly parse datetimes.
 
 ```{r echo=FALSE}
 kable(
@@ -707,6 +745,8 @@ kable(
 
 
 ## More on lubridate
+As in the case of `stringr`, what we have seen is only part of what `lubridate` offers. I recommend you to check out the following resources to learn more about `lubridate`.
+
 * `lubridate` on [tidyverse.org](http://lubridate.tidyverse.org/)
 * `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf)
 * `lubridate` [Github repository](https://github.com/tidyverse/lubridate)
@@ -723,25 +763,24 @@ include_graphics("../images/data_transfer.png")
 Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
 
+Importing and exporting datasets in different formats is one of the basic operations for any data analysis task. Here we will explore some options for this task with datasets in various file formats. 
+
 
 ## Comma-separated values (.csv)
-* `readr` package (tidyverse)
-    * `read_csv()`
-    * `write_csv()`
-* `data.table` package
-    * `fread()`
-    * `fwrite()`
-    
+Comma-separate values, with a .csv extension, is one of the most common format to store data. R ecosystem offers a few options to import/export .csv files. Here we will take a quick look at two pacakges as well as the base R solution for this task.
+
+As for third-party packages, `tidyverse` offers `readr` pacakge, which has `read_csv()` and `write_csv()` functions. `data.table` package also provides functions to import and export .csv files: `fread()` and `write()`.
+
 ### Using `readr`
 ```{r eval=FALSE}
 read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
 write_csv(x, path, na = "NA", append = FALSE, col_names = !append)
 ```
-* `file` is a path to the excel file to import
-* `x` is a data object to export
-* `path` is a path to the directory where the exported data will be created 
-* The output of`read_csv()` is a `tibble` object
-* The output of `write_csv()` is a .csv file
+In `read_csv()`, `file` is a path to a .csv file to import. `col_names` is a boolean value for using the first row values as column names. `na` input defines what values to consider missing values. `skip` input is a number of rows to skip before what is going to be the first row for the output data object. The output is a `tibble` object.
+
+In `write_csv()`, `x` is a data object to export as a .csv file, and `path` is a path to the directory where the exported data will be created. `append` is a boolean value for "appending" to the existing data with the same name (path).
+
+For more on the function arguments, refer to the relevant documentations.
 
 ### Using `data.table`
 ```{r eval=FALSE}
@@ -749,35 +788,36 @@ fread(input, sep="auto", sep2="auto", nrows=-1L, header="auto", na.strings="NA",
 strip.white=TRUE, fill=FALSE, ...)
 fwrite(x, file = "", append = FALSE, quote = "auto", sep = ",", na = "", row.names = FALSE, col.names = TRUE, ...)
 ```
-* `input` is a path to the .csv file to import
-* `x` is a data object to export
-* `file` is a path to the directory where the exported data will be created
-* The output of `fread` is a `data.table` object
-* The output of `fwrite` is a .csv file in a directory
+In `fread()`, `input` is a path to the .csv file to import. The output of is a `data.table` object. `sep` input specifies the inter-column separator while `sep2` input defines the intra-column separator. `nrows` is the number of rows to import, where the default value is all rows. `header` input determines whether to use the first row as the "header", i.e. column names. `stringAsFactors` value specifies whether to convert character columns into factor columns.
+
+In `fwrite()`, `x` is a data object to export, and `file` is a path to the directory where the exported data will be created. `sep` input is the inter-column separator, with "," as the default. With this default option, the output file is a .csv file in a directory.
+
+For more on the function arguments, refer to the relevant documentations.
+
+It is noteworthy that `fread` and `fwrite` among of the fastest options to import and export data files. Therefore, using the `data.table` functions may be a preferable solution when dealing with large datasets (e.g., hundreds of megabytes, or even gigabytes).
 
 ### Base R alternative
 ```{r eval=FALSE}
 read.csv(file,  header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, ...)
 write.csv(x, file = "", append = FALSE, quote = TRUE, sep = ",", row.names = TRUE, col.names = TRUE, ...)
 ```
+Base R offers functions to import and export .csv files. The arguments are similar to those used in `readr` and `data.table` functions.
 
 
 ## Excel spreadsheets (.xlsx/.xls)
-* `readxl` package (tidyverse)
-    * `read_excel()`
-    * `write_excel()`
+An Excel spreadsheet is another common way to store a tabular data. While base R offers no functiosn to import and export Excel files (.xlsx or .xls), `tidyverse` has `readxl` package for this functionality.
 
 ```{r eval=FALSE}
 read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max))
 read_xls(path, ...)
 read_xlsx(path, ...)
 ```
-* `path` is a path to the excel file (.xls or .xlsx) to import
-* `sheet` is the name of a sheet in the excel file to import
-* `col_names` is a boolean value for using the first row to import as column names 
-* `skip` is a number of rows to skip
-* `guess_max` is a number of rows to use to guess the class of each column
-* The output is a `tibble` object
+In `read_excel()`, `path` is a path to an Excel file (.xls or .xlsx) to import, and `sheet` is the name of a sheet in the excel file to import. If `sheet` is NULL, the default is the first sheet. `range` input can take a string of Excel ranges, such as "B3:D87", to import. This can be used with a specified sheet, such as in `"sheet2!B2:D78"`, in which case any `sheet` input will be ignored. 
+`col_names` is a boolean value for using the first row to import as column, and `skip` is a number of rows to skip. `guess_max` is a number of rows to use to guess the class of each column. Finally, the output is a `tibble` object.
+
+`read_xls` and `read_xlsx` is shortcuts for importing Excel files with the correponding extension. When using these functions, the `path` input can omit the extension.
+
+For more on the function arguments, refer to the relevant documentations.
 
 ### More on `readxl`
 * `readxl` on [tidyverse.org](http://readxl.tidyverse.org/)
@@ -786,23 +826,18 @@ read_xlsx(path, ...)
 
 
 ## SPSS data files (.sav)
-* `haven` package (tidyverse)
-    * `read_sav()`
-    * `write_sav()`
-* `haven` also has functions to import/export the file formats of other statistical softwares
-    * STATA
-    * SAS
+SPSS is a popular commercial software for statistical analysis, and has its own data format (.sav). `haven` package of `tidyverse` offers functiosn to import and export SPSS data files.
+
+Please note that `haven` also has functions to import/export the file formats of other statistical softwares, such as STATA and SAS.
 
 ```{r eval=FALSE}
 read_sav(file, user_na = FALSE)
 read_spss(file, user_na = FALSE)
 write_sav(data, path)
 ```
-* `file` is a path to the SPSS file (.sav) to import in `read_sav()`, or a path to export the data in `write_sav()`
-* `data` is a data object to export
-* The output of `read_sav()` is a `tibble` object
-    * `read_spss()` is a simple alias for `read_sav()`
-* The output of `write_sav()` is an SPSS data file
+In `read_sav()`, `file` is a path to the SPSS file (.sav) to import. `read_spss()` is a simple alias for `read_sav()`. In other case, the output is a `tibble` object.
+
+In `write_sav()`, `file` is a path to export the data in `write_sav()`, and `data` is a data object to export. The output of `write_sav()` is an SPSS data file.
 
 ### More on `haven`
 * `haven` on [tidyverse.org](http://haven.tidyverse.org/)
@@ -811,20 +846,15 @@ write_sav(data, path)
 
 
 ## A "fast-on-disk" data frame storage (.feather) 
-
-* `feather` package (tidyverse)
-    * `read_feather()`
-    * `write_feather()`
-* The .feather format is also supported in Python!
+`feather` package is developed by Hadley Wickham, one of the key contributors and authors of many `tidyverse` packages, and Wes McKinney, the author of *Python for Data Analysis* and a creator of the popular data-wrangling package for Python called `pandas`. The package offers a new file format (.feather) that can be used across R and Python, two most popular languages for data analysis and data science. `feather` is also known for fast importing and exporting of files.
 
 ```{r eval=FALSE}
 read_feather(path, columns = NULL)
 write_feather(x, path)
 ```
-* `path` is a path to the .feather file to import in `read_feather()`, or a path to export the data in `write_feather()`
-* `x` is the data object to export
-* The output of `read_feather()` is a `tibble` object
-* The output of `write_feather()` is a feather file
+In `read_feather()`, `path` is a path to the .feather file to import. The output of `read_feather()` is a `tibble` object.
+
+In `write_feather()`, `path` is a path to export the data in `write_feather()`, and `x` is the data object to export. The output of `write_feather()` is a .feather file.
 
 ### More on `feather`
 * Wickham, H. (2016), ["Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow"](https://blog.rstudio.com/2016/03/29/feather/). *RStudio Blog*.

@@ -289,7 +289,7 @@ div.tocify {
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
 </div>
-<p>In programming, “strings” most often refeers to character data. Manipulating strings is an important skill for data analysis.</p>
+<p>In computer programming, a “string” often refers to a string of characters. Manipulating strings is an important skill for data analysis.</p>
 <div id="stringr-from-tidyverse" class="section level2">
 <h2><code>stringr</code> from tidyverse</h2>
 <img src="../images/stringr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
@@ -308,7 +308,7 @@ div.tocify {
 <li><code>str_subset()</code></li>
 <li><code>str_sub()</code></li>
 </ul>
-<p>Many of these <code>stringr</code> functions also have base R alternatives. We will also see the base R functions that are roughly equivalent to <code>stringr</code>. Despite the equivalent base R functions, using <code>stringr</code> has an advantage of having a more organized API. All <code>stringr</code> functions begin with <code>str_</code> prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (<code>%&gt;%</code>) operator.</p>
+<p>Many of these <code>stringr</code> functions also have base R alternatives. Accordingly, we will also see the base R functions that are roughly equivalent to each <code>stringr</code> function. Despite the equivalent base R functions, however, using <code>stringr</code> has an advantage of having a more organized API. That is, all <code>stringr</code> functions begin with <code>str_</code> prefix. Also, their first input is almost always a string object, which facilitates the use of pipe (<code>%&gt;%</code>) operator.</p>
 <p>Please note that this section is not intended to be an exhuastive documentation and description of the listed functions–or <code>stringr</code> package for that matter. For more information, please check out the reference materials listed below.</p>
 </div>
 <div id="convert-letter-case" class="section level2">
@@ -316,16 +316,12 @@ div.tocify {
 <pre class="r"><code>str_to_upper(string, locale = &quot;en&quot;)
 str_to_lower(string, locale = &quot;en&quot;)
 str_to_title(string, locale = &quot;en&quot;)</code></pre>
-<ul>
-<li><code>string</code> input is a character vector
-<ul>
-<li>Or something that can be coerced into a character vector</li>
-</ul></li>
-<li>The default <code>locale</code> is “en”, for English</li>
-<li><code>str_to_title()</code> capitalizes only the first letter of each word</li>
-</ul>
+<p>One of the most basic string operations is to change cases of the character. <code>stringr</code> offers three functions for that task: <code>str_to_upper()</code>, <code>str_to_lower()</code>, and <code>str_to_title()</code>.</p>
+<p>All three functions take a character vector as the first argument input, <code>string</code>. In fact, if it is not a character vector but can be coerced into one, <code>str_to_*()</code> will automatically coerce, or convert, the input into a character vector.</p>
+<p><code>str_to_upper()</code> turns all characters into uppercase letters, and <code>str_to_lower()</code>, to lowercase letters. <code>str_to_title()</code> capitalizes only the first letter of each word, seperated by a whitespace.</p>
 <div id="example" class="section level3">
 <h3>Example</h3>
+<p>Using each of <code>stringr</code>’s case-changing functions is pretty straightforward:</p>
 <pre class="r"><code>str_to_upper(&quot;hello world&quot;)</code></pre>
 <pre><code>## [1] &quot;HELLO WORLD&quot;</code></pre>
 <pre class="r"><code>str_to_lower(&quot;HELLO WORLD&quot;)</code></pre>
@@ -340,23 +336,17 @@ toupper(string)
 
 # equivalent to str_to_lower()
 tolower(string)</code></pre>
+<p>Base R offers functions equivalent to <code>str_to_upper()</code> and <code>str_to_lower()</code>.</p>
 </div>
 </div>
 <div id="trim-whitespace" class="section level2">
 <h2>Trim whitespace</h2>
 <pre class="r"><code>str_trim(string, side = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))
 str_squish(string)</code></pre>
-<ul>
-<li><code>string</code> input is a character vector</li>
-<li><code>side</code> input determins which side of a string to trim
-<ul>
-<li>“both” trims whitespaces on both the beginning and the end</li>
-<li>“left” trims whitespaces only on the beginning</li>
-<li>“right” trims whitespaces only on the end</li>
-</ul></li>
-</ul>
+<p><code>str_trim()</code> and <code>str_squish()</code> are functions to trim, or remove, unwanted whitespaces in a character string. As before, the first input <code>string</code> is a character vector. The <code>side</code> argument in <code>str_trim()</code> determines which side of a string to trim: “both” trims whitespaces on both the beginning and the end, “left” trims whitespaces only on the beginning, and “right” trims whitespaces only on the end. <code>str_squish()</code> detects any execssive whitespace and removes it rom the input.</p>
 <div id="example-1" class="section level3">
 <h3>Example</h3>
+<p>The following code example shows how trimming whitespaces work. Notice that <code>str_squish()</code> also takes care of whitespaces within the string in addition to the left and right ends.</p>
 <pre class="r"><code>str_trim(&quot;  trim both  &quot;, side = &quot;both&quot;)</code></pre>
 <pre><code>## [1] &quot;trim both&quot;</code></pre>
 <pre class="r"><code>str_trim(&quot;  trim left only  &quot;, side = &quot;left&quot;)</code></pre>
@@ -370,44 +360,44 @@ str_squish(string)</code></pre>
 <h3>Base R alternative</h3>
 <pre class="r"><code># equivalent to str_trim()
 trimws(x, which = c(&quot;both&quot;, &quot;left&quot;, &quot;right&quot;))</code></pre>
+<p>Base R also offers a function to remove leading and/or trailing whitespaces.</p>
 </div>
 </div>
 <div id="concatenate-strings-into-one" class="section level2">
 <h2>Concatenate strings into one</h2>
 <pre class="r"><code>str_c(..., sep = &quot;&quot;, collapse = NULL)</code></pre>
-<ul>
-<li>The first argument (<code>...</code>) is one more more character vectors</li>
-<li><code>sep</code> is a separator string between input vectors; default value is none (<code>&quot;&quot;</code>).</li>
-<li><code>collapse</code> is an optional string used to combined input vectors into a single string</li>
-</ul>
+<p><code>str_c()</code> concatenates multiple strings into a single string. The first argument (<code>...</code>) is one more more character vectors for the concatenating operation. There are two ways to concatenate strings. First is an element-wise concatenation with <code>sep</code>, which a separator string between input vectors. The default value is none (<code>&quot;&quot;</code>). Second way of concatenating strings use <code>collapse</code>, an optional string used to combined input vectors into a single string.</p>
 <div id="example-2" class="section level3">
 <h3>Example</h3>
+<p>The following examples illustrate how concatenating strings with <code>sep</code> and <code>collapse</code> works.</p>
 <pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;), c(&quot;plus three&quot;, &quot;minus four&quot;), sep = &quot; &quot;)</code></pre>
 <pre><code>## [1] &quot;one plus three&quot; &quot;two minus four&quot;</code></pre>
+<p>In the first case, we are doing element-wise concatenation between two character vectors. Here we see ethat the first element of the first vector and the first element of the second vector is concatenated with a single whitespace in between. The same thing goes for the second element of both vectors. The output is a character vector of length 2, whose elements are concatenated strings that result from the elements of the input vectors.</p>
 <pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), &quot;plus four&quot;, sep = &quot; &quot;)</code></pre>
 <pre><code>## [1] &quot;one plus four&quot;   &quot;two plus four&quot;   &quot;three plus four&quot;</code></pre>
+<p>When the length of input vectors do not match, the shorter vector is recycled. Here, the first input vector has a length of 3 while the second input vector has a length of 1. Consequently, the second vector element, <code>&quot;plus four&quot;</code> is recycled and used for concatenation for all three elements of the first input vector. The output has a lenght of 3, which matches the lenght of the longest input vector.</p>
 <pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), collapse = &quot; plus &quot;)</code></pre>
 <pre><code>## [1] &quot;one plus two plus three&quot;</code></pre>
+<p>Here we see how <code>collapse</code> works. Note that the final output is a vector of lenght 1, whose only element is a string with all elements of the input vector concatenated with the <code>collapse</code> input in between.</p>
 <pre class="r"><code>str_c(c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;), &quot;plus four&quot;, sep = &quot; &quot;, collapse = &quot; and &quot;)</code></pre>
 <pre><code>## [1] &quot;one plus four and two plus four and three plus four&quot;</code></pre>
+<p>Of course, we can combine <code>sep</code> and <code>collapse</code> to try a more complicated concatenation task.</p>
 </div>
 <div id="base-r-alternative-2" class="section level3">
 <h3>Base R alternative</h3>
 <pre class="r"><code># equivalent to str_c()
 paste (..., sep = &quot; &quot;, collapse = NULL)</code></pre>
+<p>Base R alternative to <code>str_c()</code> is <code>paste()</code>, which works pretty much the same.</p>
 </div>
 </div>
 <div id="detect-a-pattern" class="section level2">
 <h2>Detect a pattern</h2>
 <pre class="r"><code>str_detect(string, pattern)</code></pre>
-<ul>
-<li><code>string</code> input is a character vector</li>
-<li><code>pattern</code> input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.</li>
-<li>Output is a boolean vector of the same length (<code>TRUE</code> or <code>FALSE</code>)</li>
-</ul>
-<p>Note: We will discuss regular expressions <a href="#regex">later</a>.</p>
+<p><code>str_detect()</code> is used to detect the presence/absence of a speficied pattern in the input string. As before, <code>string</code> input is a character vector. <code>pattern</code> input is a character vector of length 1 that is a pattern to look for. Finally, output is a boolean (<code>TRUE</code> or <code>FALSE</code>) vector of the same length as the <code>string</code> input.</p>
+<p>Note that the <code>pattern</code> input can include regualr expressions, which will be discussed <a href="#regex">later</a> in the current note.</p>
 <div id="example-3" class="section level3">
 <h3>Example</h3>
+<p>In this example, we have an input string of length 3. The pattern we want to detect is <code>&quot;I like&quot;</code>. As expected, the output is a boolean vecotr of length 3, whose element has a value of either <code>TRUE</code> or <code>FALSE</code> based on the presence of the pattern in the correspoding element in the input vector.</p>
 <pre class="r"><code>str = c(&quot;I like apple&quot;, &quot;You like apple&quot;, &quot;Apple, I like&quot;)
 pat = &quot;I like&quot;
 str_detect(str, pat)</code></pre>
@@ -417,19 +407,18 @@ str_detect(str, pat)</code></pre>
 <h3>Base R alternative</h3>
 <pre class="r"><code># equivalent to str_detect()
 grepl(pattern, x, ...)</code></pre>
+<p>The <code>grepl()</code> function of base R is equivalent to <code>str_detect()</code>, although the order of input argument is different: <code>pattern</code> input comes before the string input <code>x</code>.</p>
 </div>
 </div>
 <div id="get-stringspositions-matching-a-pattern" class="section level2">
 <h2>Get strings/positions matching a pattern</h2>
 <pre class="r"><code>str_subset(string, pattern)
 str_which(string, pattern)</code></pre>
-<ul>
-<li><code>string</code> input is a character vector</li>
-<li><code>pattern</code> input is a character vector of length 1 that is a pattern to look for. A pattern input can include regualr expressions.</li>
-<li><code>str_subset()</code> returns the matching strings while <code>str_which()</code> returns the index for the matches</li>
-</ul>
+<p><code>str_subset()</code> and <code>str_which()</code> are similar functions that take a character vector as the <code>string</code> input and a pattern to look for as the <code>pattern</code> input. As in <code>str_detect()</code>, the pattern can be speficied using regular expression.</p>
+<p>The key difference between <code>str_subset()</code> and <code>str_which()</code> is that the former returns the strings that match the pattern while the latter returns the index of the matching strings.</p>
 <div id="example-4" class="section level3">
 <h3>Example</h3>
+<p>The following example illustrates the different outputs of <code>str_subset()</code> and <code>str_which()</code>:</p>
 <pre class="r"><code>str = c(&quot;I like apple&quot;, &quot;You like apple&quot;, &quot;Apple, I like&quot;)
 pat = &quot;I like&quot;
 str_subset(str, pat)</code></pre>
@@ -444,6 +433,7 @@ grep(pattern, x, value = TRUE, ...)
 
 # equivalent to str_which()
 grep(pattern, x, value = FALSE, ...)</code></pre>
+<p>Base R offers <code>grep()</code>, which can do the work of both <code>str_subset()</code> and <code>str_which()</code>, depending on the <code>value</code> argument input.</p>
 </div>
 </div>
 <div id="extract-and-replace-substrings" class="section level2">
@@ -462,6 +452,7 @@ str_sub(string, start = 1L, end = -1L, omit_na = FALSE) &lt;- value</code></pre>
 </ul>
 <div id="example-5" class="section level3">
 <h3>Example</h3>
+<p>The following example code illustate using <code>str_sub()</code> to both get and set substring value for the input:</p>
 <pre class="r"><code>str &lt;- &quot;Hello world&quot;
 str_sub(str, start = 7)</code></pre>
 <pre><code>## [1] &quot;world&quot;</code></pre>
@@ -476,6 +467,7 @@ substr(x, start, stop)
 
 # equivalent to str_sub() &lt;- value
 substr(x, start, stop) &lt;- value</code></pre>
+<p>The base R alternative <code>str_sub()</code> is <code>substr()</code>, which can also be used to both get and set the substring value.</p>
 </div>
 </div>
 <div id="more-on-stringr" class="section level2">
@@ -779,12 +771,11 @@ str_detect(str, &quot;p*&quot;)</code></pre>
 <div style="font-size:0.5em; text-align:center; color: #777;">
 <p>Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a></p>
 </div>
+<p>The work of data analysis often deals with dates. R has data types for date and datetime, which come with useful properties for understanding and analyzing temporal characteristics of data.</p>
 <div id="datesdatetimes-basics" class="section level2">
 <h2>Dates/Datetimes basics</h2>
-<ul>
-<li><code>Date</code> class</li>
-<li><code>POSIXct</code> and <code>POSIXlt</code> classes</li>
-</ul>
+<p>As just mentioned, R offers roughly two data types for date and datetime. First, <code>Date</code> is a class that represents calendar dates, which is represented as the number of days since 1970-01-01. Second, <code>POSIXct</code> and <code>POSIXlt</code> are two classes for representing calendar dates and times. Technically, the <code>POSIXct</code> class represents the specified datetime as a number of seconds since 1970-01-01, and <code>POSIXlt</code> represents it in a mixed text and character format. In practice, however, these two prints the identical value and can be used almost interchangeably.</p>
+<p><code>Date</code> and <code>POSIX*</code> classes have useful properties for working with date and datetime, one of which is the possibility of breaking down the data into the time components.</p>
 </div>
 <div id="lubridate-from-tidyverse" class="section level2">
 <h2><code>lubridate</code> from tidyverse</h2>
@@ -795,27 +786,18 @@ type:section <img src="../images/lubridate.png" width="25%" style="box-shadow: n
 </div>
 <div id="key-lubridate-functions" class="section level2">
 <h2>Key <code>lubridate</code> functions</h2>
-<ul>
-<li><code>as_date()</code> <code>as_datetime()</code></li>
-<li><code>year()</code>, <code>month()</code>, <code>day()</code>, <code>hour()</code>, …</li>
-<li><code>parse_date_time()</code> <code>fast_strptime()</code></li>
-<li><code>ymd_hms()</code>, <code>ymd()</code>, …</li>
-</ul>
+<p>In this section, we will learn the following <code>lubridate</code> functions: * <code>as_date()</code> <code>as_datetime()</code> * <code>year()</code>, <code>month()</code>, <code>day()</code>, <code>hour()</code>, … * <code>parse_date_time()</code> <code>fast_strptime()</code> * <code>ymd_hms()</code>, <code>ymd()</code>, …</p>
+<p>As in <code>stringr</code>, many of <code>lubridate</code> functions have base R alternatives, which we will see whenever relevant. Again, the benefit of using <code>lubridate</code> functions is the cleaner API in addition to some extra convenience.</p>
 </div>
 <div id="convert-to-a-date-or-date-time" class="section level2">
 <h2>Convert to a date or date-time</h2>
 <pre class="r"><code>as_date(x, tz = NULL, origin = lubridate::origin)
 as_datetime(x, tz = NULL, origin = lubridate::origin)</code></pre>
-<ul>
-<li><code>x</code> is a vector of POSIXt, numeric or character objects</li>
-<li><code>tz</code> is a time zone name</li>
-<li><code>origin</code> is a Date object or something that can be coerced into a Date object
-<ul>
-<li>Default value corresponds to <code>&quot;1970-01-01&quot;</code></li>
-</ul></li>
-</ul>
+<p><code>as_date()</code> and <code>as_datetime()</code> take a vector of POSIXt, numeric or character objects as the input for the first argument, <code>x</code>, and returns a date/datetime object. <code>tz</code> input is a time zone name, such as <code>&quot;CST&quot;</code>. Finally, <code>origin</code> is a Date object or something that can be coerced into a Date object, with the default value of <code>&quot;1970-01-01&quot;</code>.</p>
+<p>The difference between <code>as_date()</code> and <code>as_datetime()</code> is that the former results in a <code>Date</code> objet while the latter returns a <code>POSIXct</code> object.</p>
 <div id="example-10" class="section level3">
 <h3>Example</h3>
+<p>Let’s take a quick look at how <code>as_date()</code> and <code>as_datetime()</code> works. Note that the input for these functions can be in varying forms, including a numeric value.</p>
 <pre class="r"><code>as_date(17618)</code></pre>
 <pre><code>## [1] &quot;2018-03-28&quot;</code></pre>
 <pre class="r"><code>class(as_date(&quot;20180328&quot;))</code></pre>
@@ -832,16 +814,15 @@ as.Date(x, ...)
 
 # equivalent to as_datetime()
 as.POSIXct(x, tz = &quot;&quot;, ...)</code></pre>
+<p>Base R offers <code>as.Date()</code>, which corresponds to <code>as_date()</code>, and <code>as.POSIXct()</code>, which is equivalent to <code>as_datetime()</code>.</p>
 </div>
 </div>
 <div id="getset-time-component" class="section level2">
 <h2>Get/set time component</h2>
 <pre class="r"><code>year(x)
 year(x) &lt;- value</code></pre>
-<ul>
-<li><code>x</code> is a date-time object</li>
-<li><code>value</code> is a numeric object</li>
-</ul>
+<p><code>lubridate</code> offers a set of functiosn to easily get and set time component of a date/datetime object. The first input, <code>x</code>, is a date/datetime object. When used with the assignment operator, <code>&lt;-</code>, we can give a new value to the specified component of the input object.</p>
+<p>The following table provides a list of selected functions for getting/setting time component:</p>
 <table>
 <thead>
 <tr class="header">
@@ -882,14 +863,11 @@ year(x) &lt;- value</code></pre>
 <td align="left"><code>tz()</code></td>
 <td align="left">Get/set time zone component of a date-time</td>
 </tr>
-<tr class="odd">
-<td align="left">* Any of thes</td>
-<td align="left">e can be used to <em>set</em> the corresponding time component when used with the assignment operator (<code>&lt;-</code>).</td>
-</tr>
 </tbody>
 </table>
 <div id="example-11" class="section level3">
 <h3>Example</h3>
+<p>The following example illustrates how to get/set time components of a date object:</p>
 <pre class="r"><code>today &lt;- as_date(&quot;2018-03-28&quot;)
 year(today)</code></pre>
 <pre><code>## [1] 2018</code></pre>
@@ -902,16 +880,10 @@ today</code></pre>
 <h2>Parse date-time</h2>
 <pre class="r"><code>parse_date_time(x, orders, tz = &quot;UTC&quot;, truncated = 0, locale = Sys.getlocale(&quot;LC_TIME&quot;), exact = FALSE, drop = FALSE, ...)
 fast_strptime(x, format, tz = &quot;UTC&quot;, lt = TRUE, cutoff_2000 = 68L)</code></pre>
-<ul>
-<li><code>x</code> is a character or numeric vector of dates</li>
-<li><code>orders</code> is a character vector of date-time order format
-<ul>
-<li>e.g. <code>&quot;ymd&quot;</code> for year-month-date format</li>
-</ul></li>
-<li><code>exact</code> is a boolean value for using the “exact” match for the date-time format specificed by <code>orders</code></li>
-<li><code>drop</code> is a boolean value for dropping, or removing the values not matching the format</li>
-<li><code>format</code> is a character string of formats</li>
-</ul>
+<p>In most cases, <code>as_date()</code> and <code>as_datetime()</code> may be sufficient to convert non-date/-datetime objects to date/datetime objects. However, sometimes a more flexible approach is needed to handle a variety of input formats. <code>parse_date_time()</code> and <code>fast_strptime()</code> are functions for just that.</p>
+<p>Both <code>parse_date_time()</code> and <code>fast_strptime()</code> take a character or numeric vector of dates as the input for the first argument.</p>
+<p><code>parse_date_time()</code> then takes a character vector of datetime order format as <code>orders</code> input. For example, we can use <code>&quot;ymd&quot;</code> for various year-month-date formats. <code>exact</code> is a boolean value for using the “exact” match for the datetime format specificed by <code>orders</code>, and <code>drop</code> is a boolean value for dropping, or removing the values not matching the format. In</p>
+<p>On the other hand, <code>fast_strptime()</code> takes a character string of formats as <code>format</code> input. The datetime format uses special symbols such as those listed in the following table:</p>
 <div id="date-format-symbols" class="section level3">
 <h3>Date format symbols</h3>
 <table>
@@ -958,9 +930,12 @@ fast_strptime(x, format, tz = &quot;UTC&quot;, lt = TRUE, cutoff_2000 = 68L)</co
 </div>
 <div id="example-12" class="section level3">
 <h3>Example</h3>
-<pre class="r"><code>dates = c(&quot;2018-03-28&quot;, &quot;2018/03/28&quot;, &quot;20180328&quot;)
-parse_date_time(dates, &quot;ymd&quot;)</code></pre>
+<p>Let us take a look at some examples of “parsing” datetimes using <code>parse_date_time()</code> and <code>fast_strptime()</code>. First we have a vector of three date strings as a sample input.</p>
+<pre class="r"><code>dates = c(&quot;2018-03-28&quot;, &quot;2018/03/28&quot;, &quot;20180328&quot;)</code></pre>
+<p>As shown below, <code>parse_date_time()</code> is capable of taking care of varying date formats as long as the order remains the same:</p>
+<pre class="r"><code>parse_date_time(dates, &quot;ymd&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-03-28 UTC&quot; &quot;2018-03-28 UTC&quot; &quot;2018-03-28 UTC&quot;</code></pre>
+<p>In constrast, <code>fast_strptime()</code> has to specify the foramt for each input:</p>
 <pre class="r"><code>fast_strptime(dates[1], &quot;%Y-%m-%d&quot;)</code></pre>
 <pre><code>## [1] &quot;2018-03-28 UTC&quot;</code></pre>
 <pre class="r"><code>fast_strptime(dates[2], &quot;%Y/%m/%d&quot;)</code></pre>
@@ -972,24 +947,16 @@ parse_date_time(dates, &quot;ymd&quot;)</code></pre>
 <h3>Base R alternative</h3>
 <pre class="r"><code># equivalent to fast_strptime()
 strptime(x, format = &quot;&quot;, tz = &quot;&quot;)</code></pre>
-<ul>
-<li>No base R alternative for <code>parse_date_time()</code>
-<ul>
-<li>In fact, being able to handle multiple dates formats with the same order is one of the advantages of using <code>parse_date_time()</code></li>
-</ul></li>
-</ul>
+<p>Base R offers <code>strptime()</code>, which is equivalent to <code>fast_strptime()</code>. On the other hand, there is no base R alternative for <code>parse_date_time()</code>. That said, being able to handle multiple date/datetime formats with the same order is one of the advantages of using <code>parse_date_time()</code>.</p>
 </div>
 </div>
 <div id="quickly-parse-date-time" class="section level2">
 <h2>Quickly parse date-time</h2>
 <pre class="r"><code>ymd_hms(..., quiet = FALSE, tz = NULL, ...)
 ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
-<ul>
-<li>The first <code>...</code> argument is a character vector of dates in appropriate format</li>
-<li><code>quiet</code> is a boolean value for displaying messages</li>
-<li><code>tz</code> is a character string speficiying time zone</li>
-<li><code>ymd_hms</code> and other similar functions does the same work <code>parse_date_time()</code>, but with a predefined order.</li>
-</ul>
+<p><code>lubridate</code> also offers functions for quickly parse datetimes with a predefined order; under the hood, all these functions do the same work as <code>parse_date_time()</code>.</p>
+<p>The first <code>...</code> argument is a character vector of dates in appropriate format. <code>quiet</code> is a boolean value for displaying messages, and <code>tz</code> is a character string speficiying time zone.</p>
+<p>The following table lists a selection of functions to quickly parse datetimes.</p>
 <table>
 <thead>
 <tr class="header">
@@ -1057,6 +1024,7 @@ ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
 </div>
 <div id="more-on-lubridate" class="section level2">
 <h2>More on lubridate</h2>
+<p>As in the case of <code>stringr</code>, what we have seen is only part of what <code>lubridate</code> offers. I recommend you to check out the following resources to learn more about <code>lubridate</code>.</p>
 <ul>
 <li><code>lubridate</code> on <a href="http://lubridate.tidyverse.org/">tidyverse.org</a></li>
 <li><code>lubridate</code> <a href="https://cran.r-project.org/web/packages/lubridate/lubridate.pdf">CRAN documentation</a></li>
@@ -1071,71 +1039,45 @@ ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </p>
+<p>Importing and exporting datasets in different formats is one of the basic operations for any data analysis task. Here we will explore some options for this task with datasets in various file formats.</p>
 <div id="comma-separated-values-.csv" class="section level2">
 <h2>Comma-separated values (.csv)</h2>
-<ul>
-<li><code>readr</code> package (tidyverse)
-<ul>
-<li><code>read_csv()</code></li>
-<li><code>write_csv()</code></li>
-</ul></li>
-<li><code>data.table</code> package
-<ul>
-<li><code>fread()</code></li>
-<li><code>fwrite()</code></li>
-</ul></li>
-</ul>
+<p>Comma-separate values, with a .csv extension, is one of the most common format to store data. R ecosystem offers a few options to import/export .csv files. Here we will take a quick look at two pacakges as well as the base R solution for this task.</p>
+<p>As for third-party packages, <code>tidyverse</code> offers <code>readr</code> pacakge, which has <code>read_csv()</code> and <code>write_csv()</code> functions. <code>data.table</code> package also provides functions to import and export .csv files: <code>fread()</code> and <code>write()</code>.</p>
 <div id="using-readr" class="section level3">
 <h3>Using <code>readr</code></h3>
 <pre class="r"><code>read_csv(file, col_names = TRUE, col_types = NULL, na = c(&quot;&quot;, &quot;NA&quot;), trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max), ...)
 write_csv(x, path, na = &quot;NA&quot;, append = FALSE, col_names = !append)</code></pre>
-<ul>
-<li><code>file</code> is a path to the excel file to import</li>
-<li><code>x</code> is a data object to export</li>
-<li><code>path</code> is a path to the directory where the exported data will be created</li>
-<li>The output of<code>read_csv()</code> is a <code>tibble</code> object</li>
-<li>The output of <code>write_csv()</code> is a .csv file</li>
-</ul>
+<p>In <code>read_csv()</code>, <code>file</code> is a path to a .csv file to import. <code>col_names</code> is a boolean value for using the first row values as column names. <code>na</code> input defines what values to consider missing values. <code>skip</code> input is a number of rows to skip before what is going to be the first row for the output data object. The output is a <code>tibble</code> object.</p>
+<p>In <code>write_csv()</code>, <code>x</code> is a data object to export as a .csv file, and <code>path</code> is a path to the directory where the exported data will be created. <code>append</code> is a boolean value for “appending” to the existing data with the same name (path).</p>
+<p>For more on the function arguments, refer to the relevant documentations.</p>
 </div>
 <div id="using-data.table" class="section level3">
 <h3>Using <code>data.table</code></h3>
 <pre class="r"><code>fread(input, sep=&quot;auto&quot;, sep2=&quot;auto&quot;, nrows=-1L, header=&quot;auto&quot;, na.strings=&quot;NA&quot;, stringsAsFactors=FALSE, skip=0L, colClasses=NULL, col.names,
 strip.white=TRUE, fill=FALSE, ...)
 fwrite(x, file = &quot;&quot;, append = FALSE, quote = &quot;auto&quot;, sep = &quot;,&quot;, na = &quot;&quot;, row.names = FALSE, col.names = TRUE, ...)</code></pre>
-<ul>
-<li><code>input</code> is a path to the .csv file to import</li>
-<li><code>x</code> is a data object to export</li>
-<li><code>file</code> is a path to the directory where the exported data will be created</li>
-<li>The output of <code>fread</code> is a <code>data.table</code> object</li>
-<li>The output of <code>fwrite</code> is a .csv file in a directory</li>
-</ul>
+<p>In <code>fread()</code>, <code>input</code> is a path to the .csv file to import. The output of is a <code>data.table</code> object. <code>sep</code> input specifies the inter-column separator while <code>sep2</code> input defines the intra-column separator. <code>nrows</code> is the number of rows to import, where the default value is all rows. <code>header</code> input determines whether to use the first row as the “header”, i.e. column names. <code>stringAsFactors</code> value specifies whether to convert character columns into factor columns.</p>
+<p>In <code>fwrite()</code>, <code>x</code> is a data object to export, and <code>file</code> is a path to the directory where the exported data will be created. <code>sep</code> input is the inter-column separator, with “,” as the default. With this default option, the output file is a .csv file in a directory.</p>
+<p>For more on the function arguments, refer to the relevant documentations.</p>
+<p>It is noteworthy that <code>fread</code> and <code>fwrite</code> among of the fastest options to import and export data files. Therefore, using the <code>data.table</code> functions may be a preferable solution when dealing with large datasets (e.g., hundreds of megabytes, or even gigabytes).</p>
 </div>
 <div id="base-r-alternative-8" class="section level3">
 <h3>Base R alternative</h3>
 <pre class="r"><code>read.csv(file,  header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;, dec = &quot;.&quot;, fill = TRUE, ...)
 write.csv(x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot;,&quot;, row.names = TRUE, col.names = TRUE, ...)</code></pre>
+<p>Base R offers functions to import and export .csv files. The arguments are similar to those used in <code>readr</code> and <code>data.table</code> functions.</p>
 </div>
 </div>
 <div id="excel-spreadsheets-.xlsx.xls" class="section level2">
 <h2>Excel spreadsheets (.xlsx/.xls)</h2>
-<ul>
-<li><code>readxl</code> package (tidyverse)
-<ul>
-<li><code>read_excel()</code></li>
-<li><code>write_excel()</code></li>
-</ul></li>
-</ul>
+<p>An Excel spreadsheet is another common way to store a tabular data. While base R offers no functiosn to import and export Excel files (.xlsx or .xls), <code>tidyverse</code> has <code>readxl</code> package for this functionality.</p>
 <pre class="r"><code>read_excel(path, sheet = NULL, range = NULL, col_names = TRUE, col_types = NULL, na = &quot;&quot;, trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000, n_max))
 read_xls(path, ...)
 read_xlsx(path, ...)</code></pre>
-<ul>
-<li><code>path</code> is a path to the excel file (.xls or .xlsx) to import</li>
-<li><code>sheet</code> is the name of a sheet in the excel file to import</li>
-<li><code>col_names</code> is a boolean value for using the first row to import as column names</li>
-<li><code>skip</code> is a number of rows to skip</li>
-<li><code>guess_max</code> is a number of rows to use to guess the class of each column</li>
-<li>The output is a <code>tibble</code> object</li>
-</ul>
+<p>In <code>read_excel()</code>, <code>path</code> is a path to an Excel file (.xls or .xlsx) to import, and <code>sheet</code> is the name of a sheet in the excel file to import. If <code>sheet</code> is NULL, the default is the first sheet. <code>range</code> input can take a string of Excel ranges, such as “B3:D87”, to import. This can be used with a specified sheet, such as in <code>&quot;sheet2!B2:D78&quot;</code>, in which case any <code>sheet</code> input will be ignored. <code>col_names</code> is a boolean value for using the first row to import as column, and <code>skip</code> is a number of rows to skip. <code>guess_max</code> is a number of rows to use to guess the class of each column. Finally, the output is a <code>tibble</code> object.</p>
+<p><code>read_xls</code> and <code>read_xlsx</code> is shortcuts for importing Excel files with the correponding extension. When using these functions, the <code>path</code> input can omit the extension.</p>
+<p>For more on the function arguments, refer to the relevant documentations.</p>
 <div id="more-on-readxl" class="section level3">
 <h3>More on <code>readxl</code></h3>
 <ul>
@@ -1147,30 +1089,13 @@ read_xlsx(path, ...)</code></pre>
 </div>
 <div id="spss-data-files-.sav" class="section level2">
 <h2>SPSS data files (.sav)</h2>
-<ul>
-<li><code>haven</code> package (tidyverse)
-<ul>
-<li><code>read_sav()</code></li>
-<li><code>write_sav()</code></li>
-</ul></li>
-<li><code>haven</code> also has functions to import/export the file formats of other statistical softwares
-<ul>
-<li>STATA</li>
-<li>SAS</li>
-</ul></li>
-</ul>
+<p>SPSS is a popular commercial software for statistical analysis, and has its own data format (.sav). <code>haven</code> package of <code>tidyverse</code> offers functiosn to import and export SPSS data files.</p>
+<p>Please note that <code>haven</code> also has functions to import/export the file formats of other statistical softwares, such as STATA and SAS.</p>
 <pre class="r"><code>read_sav(file, user_na = FALSE)
 read_spss(file, user_na = FALSE)
 write_sav(data, path)</code></pre>
-<ul>
-<li><code>file</code> is a path to the SPSS file (.sav) to import in <code>read_sav()</code>, or a path to export the data in <code>write_sav()</code></li>
-<li><code>data</code> is a data object to export</li>
-<li>The output of <code>read_sav()</code> is a <code>tibble</code> object
-<ul>
-<li><code>read_spss()</code> is a simple alias for <code>read_sav()</code></li>
-</ul></li>
-<li>The output of <code>write_sav()</code> is an SPSS data file</li>
-</ul>
+<p>In <code>read_sav()</code>, <code>file</code> is a path to the SPSS file (.sav) to import. <code>read_spss()</code> is a simple alias for <code>read_sav()</code>. In other case, the output is a <code>tibble</code> object.</p>
+<p>In <code>write_sav()</code>, <code>file</code> is a path to export the data in <code>write_sav()</code>, and <code>data</code> is a data object to export. The output of <code>write_sav()</code> is an SPSS data file.</p>
 <div id="more-on-haven" class="section level3">
 <h3>More on <code>haven</code></h3>
 <ul>
@@ -1182,22 +1107,11 @@ write_sav(data, path)</code></pre>
 </div>
 <div id="a-fast-on-disk-data-frame-storage-.feather" class="section level2">
 <h2>A “fast-on-disk” data frame storage (.feather)</h2>
-<ul>
-<li><code>feather</code> package (tidyverse)
-<ul>
-<li><code>read_feather()</code></li>
-<li><code>write_feather()</code></li>
-</ul></li>
-<li>The .feather format is also supported in Python!</li>
-</ul>
+<p><code>feather</code> package is developed by Hadley Wickham, one of the key contributors and authors of many <code>tidyverse</code> packages, and Wes McKinney, the author of <em>Python for Data Analysis</em> and a creator of the popular data-wrangling package for Python called <code>pandas</code>. The package offers a new file format (.feather) that can be used across R and Python, two most popular languages for data analysis and data science. <code>feather</code> is also known for fast importing and exporting of files.</p>
 <pre class="r"><code>read_feather(path, columns = NULL)
 write_feather(x, path)</code></pre>
-<ul>
-<li><code>path</code> is a path to the .feather file to import in <code>read_feather()</code>, or a path to export the data in <code>write_feather()</code></li>
-<li><code>x</code> is the data object to export</li>
-<li>The output of <code>read_feather()</code> is a <code>tibble</code> object</li>
-<li>The output of <code>write_feather()</code> is a feather file</li>
-</ul>
+<p>In <code>read_feather()</code>, <code>path</code> is a path to the .feather file to import. The output of <code>read_feather()</code> is a <code>tibble</code> object.</p>
+<p>In <code>write_feather()</code>, <code>path</code> is a path to export the data in <code>write_feather()</code>, and <code>x</code> is the data object to export. The output of <code>write_feather()</code> is a .feather file.</p>
 <div id="more-on-feather" class="section level3">
 <h3>More on <code>feather</code></h3>
 <ul>
