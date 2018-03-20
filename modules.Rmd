@@ -90,13 +90,13 @@ This module focuses on manimuplating and transforming tabular data using R. Work
 <div style="padding:20px;">
 ### Part 1: Getting started with `tidyverse`
 
-* [**Slides**](./slides/module3_slides1.html) (in development)
-* [**Notes**](./notes/module3_notes1.html) (in development)
+* [**Slides**](./slides/module3_slides1.html)
+* [**Notes**](./notes/module3_notes1.html)
 
 ### Part 2: More on data analysis
 
-* [**Slides**](./slides/module3_slides2.html) (in development)
-* [**Notes**](./notes/module3_notes2.html) (in development)
+* [**Slides**](./slides/module3_slides2.html)
+* [**Notes**](./notes/module3_notes2.html)
 </div>
 </div>
 </div>
