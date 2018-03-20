@@ -69,11 +69,346 @@ Navigate to the other workshop materials:
 
 # Data visualization with R (1): The Grammar of Graphics
 
+***
+
+# The Grammar of Graphics
+
+## Wilkinson's "grammar"
+> "The grammar of graphics takes us beyond a limited set of charts (words) to an almost unlimited world of graphical forms (statements). <br>-Wilkinson, L. (2005), p.1"
+
+Wilkinson's idea is implemented in the Graphics Production Language (GPL) and has the following components:
+
+* Data
+* Transformation
+* Element
+* Scale
+* Guide
+* Coordinate system
+
+
+## ggplot2 package
+```{r echo=FALSE, out.width="20%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/ggplot2.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png">tidyverse.com</a>
+</p>
+
+
+## Motivation
+> This article proposes an alternative parameterization of the [graphical] grammar, based around the idea of building up a graphic from multiple layers of data. The grammar differs from Wilkinson's in its arrangement of the components, the development of a hierarchy of defaults, and in that it is embedded inside another programming language.<br>-Wickham, H. (2010), p.4
+
+
+## Comparison
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/grammar-of-graphics2.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Wickham, H. (2010). "A Layered Grammar of Graphics."
+</p>
+
 
 ***
 
+# Basic components
 
-# slides in development
+* Data and aesthetic mappings
+* Geometic objects
+* Labels
+
+
+## Data and aesthetic mappings
+```{r eval=FALSE}
+# data and aesthetics
+ggplot(data, aes(x, y, ...))
+```
+* `data` is a data frame object (or its variant)
+* `aes()` defines aesthetic mappings
+    * `x` and `y` are columns in `data` input to be mapped to the x-axis and y-axis
+    
+    
+## Geometic objects
+```{r eval=FALSE}
+# adding one or more geometric objects
+ggplot(data, aes(x, y, ...)) +
+  geom_object()
+
+# with geom_specific `aes`
+ggplot(data) +
+  geom_object(aes(x, y, ...))
+```
+* There are many "geom" objects for different graph types:
+* A `geom` object can take its own `aes` input
+    * All `aes` specifications can be directly provided for each geometric object
+
+### Basic `geom` object
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~`geom`, ~Description, ~Input,
+    "`geom_histogram`", "Histograms", "Continous `x`",
+    "`geom_bar`", "Bar plot with frequncies", "Discrete `x`",
+    "`geom_col`", "Bar plot with values", "Discrete x and continuous `y`",
+    "`geom_point`", "Points/scattorplots", "Discrete/continuous `x` and `y`",
+    "`geom_jitter`", "Jittered points", "Discrete/continuous `x` and `y`",
+    "`geom_line`", "Line plots", "Discrete/continuous x and y",
+    "`geom_abline`", "Reference line", "`intercept` and `slope` value",
+    "`geom_hline`, `geom_vline`", "Reference lines", "`xintercept` or `yintercept`"
+  )
+)
+```
+
+## Example
+```{r fig.height = 6}
+# geom histogram example
+data <- ispcrime %>% filter(year == 2015, county != "Cook")
+ggplot(data, aes(violentCrime)) +
+  geom_histogram()
+```
+
+
+```{r fig.height = 6}
+# geom col example
+data <- ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:aggAssault)
+ggplot(data, aes(type, count, fill = type)) +
+  geom_col(width = 0.8)
+```
+
+
+```{r fig.height = 6}
+# geom point example
+data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
+ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
+  geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
+```
+
+
+```{r fig.height = 6}
+# geom line example
+data <- ispcrime %>% filter(county == "Cook")
+ggplot(data, aes(year, violentCrime)) +
+  geom_line(color = "maroon", size = 1.5) +
+  geom_hline(yintercept = mean(data$violentCrime), linetype = "longdash")
+```
+
+
+### Other `geom` objects
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~`geom`, ~Description, ~Input,
+    "`geom_density`", "Smoothed density estimates", "Continous `x`",
+    "`geom_density2d`", "Contours of a 2-d density estimates", "Continous `x`",
+    "`geom_boxplot`", "Box plots", "Disc. `x` and cont. `y`",
+    "`geom_smooth`", "Smoothed conditional means", "",
+    "`geom_text`, `geom_label`", "Text", "",
+    "`geom_polygon`", "Polygons", ""
+  )
+)
+```
+
+* See [the official reference page](http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms) for the full list of `geom`s.
+
+
+## Labels
+```{r eval=FALSE}
+# adding labels
+plot + labs(title, subtitle, caption, x, y, ...)
+```
+* Each argument of `labs()` take a character vector of length 1
+    * `title` and `subtitle` appear at the top-left.
+    * `caption` appears at the bottom-right
+    * `x` and `y` are for x-axis and y-axis names
+* Adjusting the position and style of labels is handled via `theme()`
+
+**alternatively ...**
+```{r eval=FALSE}
+plot +
+  xlab(label) +
+  ylab(label) +
+  ggtitle(label, subtitle = NULL)
+```
+* Each argument of the `labs()` can be added with a separate function.
+    * `xlab()` is for x-axis name
+    * `ylab()` is for y-axis name
+    * `ggtitle()` is for plot title and subtitle
+
+### Example
+
+```{r include=FALSE}
+# plot to use
+plot <- ggplot(
+  ispcrime %>% filter(county != "Cook") %>% left_join(regions),
+  aes(violentCrime, propertyCrime, color = region)
+  ) +
+  geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
+```
+
+```{r fig.height = 6}
+# a generic example with title, subtitle, and axes names
+plot +
+  labs(
+    title = "This is plot title", subtitle = "This is plot subtitle",
+    x = "x-axis here", y = "y-axis here",
+    caption = "(and caption...)"
+  )
+```
+
+
+```{r fig.height = 6}
+# a title with mathematical expressions
+plot +
+  ggtitle(label = expression(paste("Another plot title with math expressions like ", pi, " and ", sigma^{2})))
+```
+
+***
+
+# Additional components
+
+* Scales
+* Guides
+* Coordinate systems
+* Facets
+* Themes
+
+
+## Scales
+* Scales control "the details of how data values are translated to visual properties"
+* Scale limits
+* Position scales (discrete, continuous, datetime)
+* Others
+
+
+### Scale limits
+```{r eval=FALSE}
+plot +
+  xlim(...) +
+  ylim(...) +
+  lims(...)
+```
+* `xlim()` changes x-axis limits
+* `ylim()` changes y-axis limits
+* `lims()` is a general function to change limits
+* `...` in all three functions is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime 
+
+```{r}
+# limit x axis to 2000; this removes points with violentCrime > 2000
+plot + xlim(0, 2000)
+```
+
+### Position scales
+**Position scales (discrete)**
+```{r eval=FALSE}
+# replace * with x or y
+scale_*_discrete(name, breaks, labels, limits, ...)
+```
+
+**Common scale_* arguments**
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~Argument, ~Description,
+    "`name`", "a name of the scale, used as the axis label or the legend title",
+    "`breaks`", "controls the breaks in the guide, which can be a character vector",
+    "`labels`", "controls the lable for each break; its input must be the same length as `breaks` input",
+    "`limits`", "a character vector specifying the data range for the scale"
+  )
+)
+```
+
+**Position scales (continuous)**
+```{r eval=FALSE}
+# replace * with x or y
+scale_*_continuous(name, breaks, labels, limits, ...)
+
+scale_*_log10(...)
+
+scale_*_sqrt(...)
+
+scale_*_reverse(...)
+```
+
+**Position scales (datetime)**
+```{r eval=FALSE}
+# replace * with x or y
+scale_*_date(name, breaks, labels, limits, ...)
+
+scale_*_datetime(...)
+
+scale_*_time(...)
+```
+
+```{r}
+# apply the log 10 scale to the y-axis 
+plot + scale_y_log10()
+```
+
+### Custom scale "manuals"
+```{r eval=FALSE}
+scale_*_manual(name, breaks, labels, limits, ..., values)
+```
+* Scale manuals is used to create my own discrete scale
+* "Manual" is available for:
+    * `colour`
+    * `fill`
+    * `size`
+    * `shape`
+    * `linetype`
+    * `alpha`
+
+```{r fig.height = 6}
+plot + scale_color_manual(
+  name = "",
+  breaks = c("Central", "Northern", "Southern"),
+  labels = c("Central region", "Northern region", "Southern region"),
+  values = c("#00ffff", "#ffff00", "#ff00ff")
+)
+```
+
+
+### Other custom scales
+
+`ggplot2` offers many more functions to customize scales.
+
+See the full documentation on scales [here](http://ggplot2.tidyverse.org/reference/#section-scales).
+
+## Guides
+```{r eval=FALSE}
+guides(...)
+guide_legend(...)
+```
+* `guides` can be used to set (or remove) guides for each scale
+* `guide_legend()` can be used to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.)
+    * `guide_legned()` is used as an input for each scale argument in `guide()`
+
+
+### Example
+```{r fig.height = 6}
+plot + guides(
+  colour = guide_legend(title = "Region", title.position = "bottom"),
+  size = FALSE
+)
+```
+
+## Coordinate systems
+
+## Facets
+
+
+## Themes
+
+
+***
+
+# Resources
+
+* `ggplot2` official [reference](http://ggplot2.tidyverse.org/reference/index.html)
+* ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) by RStudio
+* [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/) by Winston Chang
+* [`ggplot2` tutorials in *r-statistics.co*](http://r-statistics.co/ggplot2-Tutorial-With-R.html) by Selva Prabhakaran
+* Extending `ggplot2`:
+    * [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html) website by Daniel Emaasit
+
 
 
 ***
@@ -81,8 +416,9 @@ Navigate to the other workshop materials:
 
 # References
 <ul style="list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+  <li>Grolemund, G. & Wickham, H. (2017).<a href="http://r4ds.had.co.nz/data-visualisation.html">"Data visualization"</a>. <span style="font-style:italic">R for Data Science</span></li>
+  <li>Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference">"References"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span></li>
+  <li>Wickham, H. (2010). "A Layered Grammar of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 19(1)</span>:3-28.</li>
+  <li>Wilkinson, L. (2005). <span style="font-style:italic">The Grammar of Graphics</span>.</li>
+  <li>Wilkinson, L., Rope, D., Carr, D. * Rubin, M. (2000). "The Language of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 9(3)</span>:530-543.</li>
 </ul>
