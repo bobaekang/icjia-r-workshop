@@ -115,10 +115,11 @@ Data and aesthetic mappings
 ========================================================
 ```{r eval=FALSE}
 # data and aesthetics
-ggplot(data, aes(x, y, ...))
+ggplot(data, mapping = aes(x, y, ...))
 ```
 * `data` is a data frame object (or its variant)
-* `aes()` defines aesthetic mappings
+* `mapping` defines aesthetic mappings of data
+    * input is an output of the `aes()` function 
     * `x` and `y` are columns in `data` input to be mapped to the x-axis and y-axis
     
     
@@ -131,7 +132,7 @@ kable(
     "`colour`", "Border color", "Name (`\"red\"`), rgb specification (`#FF0000`), or `NA`",
     "`fill`", "Fill color", "Name (`\"red\"`), rgb specification (`#FF0000`), or `NA`",
     "`shape`", "Shape of a point", "An integer value 0 to 24, or `NA`",
-    "`linetype`", "Linetype", "An integer value 0 to 6",
+    "`linetype`", "Linetype", "An integer value 0 to 6 or a string",
     "`size`", "Size of line/point", "A non-negative numeric value",
     "`alpha`", "Transparency", "A numeric value 0 to 1"
   )
@@ -168,19 +169,20 @@ Geometric objects
 ```{r eval=FALSE}
 # adding one or more geometric objects
 ggplot(data, aes(x, y, ...)) +
-  geom_object()
+  geom_*()
 
 # with geom_specific `aes`
 ggplot(data) +
-  geom_object(aes(x, y, ...))
+  geom_*(aes(x, y, ...))
 ```
-* There are many "geom" objects for different graph types:
-* A `geom` object can take its own `aes` input
-    * All `aes` specifications can be directly provided for each geometric object
+* There are many geometric objects, or `geom`s for different graph types:
+* Each `geom` can take its own `mapping` input
+    * Default is inheriting `mapping` input from `ggplot()`
+    * All `aes` specifications can be directly provided for each `geom`
 
 
 ========================================================
-**Basic `geom` objects**
+**Basic `geom`s**
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -236,7 +238,7 @@ ggplot(data, aes(year, violentCrime)) +
 
 
 ========================================================
-**Other `geom` objects**
+**Other `geom`s**
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -338,23 +340,37 @@ plot +
 * `xlim()` changes x-axis limits
 * `ylim()` changes y-axis limits
 * `lims()` is a general function to change limits
-* `...` in all three functions is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime 
+* `...` in `xlim()` and `ylim()` are numeric values to set lower and upper limit for the corresponding axis
+* `...` in `lims()` is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime 
 
 
 ========================================================
 ```{r}
-# limit x axis to 2000; this removes points with violentCrime > 2000
-plot + xlim(0, 2000)
+# limit x axis to 2000 at the top;
+# this removes points with violentCrime > 2000
+plot + xlim(NA, 2000)
 ```
 
 
 ========================================================
-**Position scales (discrete)**
+**Position scales (continuous)**
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_discrete(name, breaks, labels, limits, ...)
+scale_x_continuous(..., expand = waiver(), trans = "identity", position = "bottom")
+scale_y_continuous(..., expand = waiver(), trans = "identity", position = "left")
+
+# shortcuts for common transformations
+scale_x_log10(...)
+scale_y_log10(...)
+
+scale_x_sqrt(...)
+scale_y_sqrt(...)
+
+scale_x_reverse(...)
+scale_y_reverse(...)
 ```
 
+
+========================================================
 **Common scale_* arguments**
 ```{r echo=FALSE}
 kable(
@@ -368,30 +384,23 @@ kable(
 )
 ```
 
-
 ========================================================
-**Position scales (continuous)**
+**Position scales (discrete)**
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_continuous(name, breaks, labels, limits, ...)
-
-scale_*_log10(...)
-
-scale_*_sqrt(...)
-
-scale_*_reverse(...)
+scale_x_discrete(..., expand = waiver(), position = "bottom")
+scale_y_discrete(..., expand = waiver(), position = "left")
 ```
 
-
-========================================================
 **Position scales (datetime)**
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_date(name, breaks, labels, limits, ...)
+scale_x_date(...)
+scale_y_date(...)
 
-scale_*_datetime(...)
+scale_x_datetime(...)
+scale_y_datetime(...)
 
-scale_*_time(...)
+scale_x_time(...)
+scale_y_time(...)
 ```
 
 
@@ -512,7 +521,7 @@ plot + facet_wrap(facets, nrow, ncol, scales, ...)
 **facet_grid vs facet_wrap**
 
 * `facet_grid()` and `facet_wrap()` are mostly similar to each other
-* However, they differs where:
+* However, they differ where:
     * `facet_grid()` facets the plot with a variable in a single direction (horizontal or vertical)
     * `facet_wrap()` simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.
 
@@ -681,7 +690,7 @@ plot + ggthemes::theme_hc()
 
 ========================================================
 ```{r}
-plot + ggthemes::theme_wsj()
+plot + ggthemes::theme_solarized()
 ```
 
 

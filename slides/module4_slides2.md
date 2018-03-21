@@ -97,8 +97,6 @@ Spatial (vector) objects in R
 Example
 ========================================================
 
-
-
 ```r
 class(counties)
 ```
@@ -188,33 +186,52 @@ tm_shape(shape_object) +
     * "attribute" layers
 
 
-tmap drawing layers 1
 ========================================================
+**Base `tmap` drawing layers**
 
-| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
-|------------:|-----------:|------------:|-----------:|:-------|
-|          5.1|         3.5|          1.4|         0.2|setosa  |
-|          4.9|         3.0|          1.4|         0.2|setosa  |
-|          4.7|         3.2|          1.3|         0.2|setosa  |
-|          4.6|         3.1|          1.5|         0.2|setosa  |
-|          5.0|         3.6|          1.4|         0.2|setosa  |
-|          5.4|         3.9|          1.7|         0.4|setosa  |
+|Drawing layer |Description     |Aesthetics       |
+|:-------------|:---------------|:----------------|
+|`tm_polygons` |Draws polygons  |col              |
+|`tm_symbols`  |Draws symbols   |size, col, shape |
+|`tm_lines`    |Draws lines     |col, lwd         |
+|`tm_raster`   |Draws a raster  |col              |
+|`tm_text`     |Add text labels |text, size, col  |
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
 
 
-tmap drawing layers 2
 ========================================================
+**Derived `tmap` drawing layers**
+
+|Drawing layer |Description             |Aesthetics                     |
+|:-------------|:-----------------------|:------------------------------|
+|`tm_fill`     |Fills the polygons      |see `tm_polygons`              |
+|`tm_borders`  |Draws polygon borders   |none                           |
+|`tm_bubbles`  |Draws bubbles           |see `tm_symbols`               |
+|`tm_squares`  |Draws squares           |see `tm_symbols`               |
+|`tm_dots`     |Draws dots              |see `tm_symbols`               |
+|`tm_markders` |Draws markers           |see `tm_symbols` and `tm_text` |
+|`tm_iso`      |Draws iso/contour lines |see `tm_lines` and `tm_text`   |
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
 
 
-
-tmap attribute layers
 ========================================================
+**`tmap` attribute layers**
 
-
+|Attribute layer |Description               |
+|:---------------|:-------------------------|
+|`tm_grid`       |Add coordinate grid lines |
+|`tm_credits`    |Add credits text label    |
+|`tm_compass`    |Add map compass           |
+|`tm_scale_bar`  |Add scale bar             |
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
 
 
 ========================================================
 **`tm_` example**
 
+
+Styles
+========================================================
 
 Static vs interactive modes
 ========================================================
@@ -233,7 +250,7 @@ ttmp() # toggle between modes
 
 ========================================================
 type: section
-<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 </p>
@@ -264,7 +281,7 @@ Resources
 Interactive Plots
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Packages for interactive plots
@@ -278,7 +295,7 @@ Packages for interactive plots
 
 ========================================================
 type: section
-<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
 </p>
@@ -286,9 +303,7 @@ Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation pa
 
 ggiraph
 ========================================================
-* what
-* is
-* ggiraph
+> "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author)
 
 
 Interactive geom layers
@@ -318,7 +333,7 @@ aes(tooltip, onclick, data_id)
 
 ========================================================
 type: section
-<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
 </p>
@@ -342,25 +357,46 @@ ggplotly(p)
     
 
 ========================================================
-**`ggplotly` example**
+
+```r
+data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
+p <- ggplot(data, aes(violentCrime, propertyCrime, colour = region)) +
+  geom_point()
+ggplotly(p)
+```
+<iframe src="../interactive/ggplotly.html" style="display: block; margin: auto; min-height:500px; width:60%;"></iframe>
 
 
 The plot_ly() interface
 ========================================================
 
 ```r
-plot_ly(data, x, y, color, alpha, symbol, size, ...) %>%
-  add_*(...) # equivalently, add_trace(type = "*")
+plot_ly(data, x, y, color, alpha, symbol, size, ...)
+
+ # equivalent to add_type()
+add_trace(p, ..., type = "type", inheret = TRUE)
 ```
-* `plot_ly` takes a data frame and defines
-* a "trace", the "geom" equivalent in `plot_ly` interface adds a layer to the plot output
-    * `plotly` supports about 20 traces
-    * By default, each trace inherits the x and y (or even z) mappings from the preceding `plot_ly` object
+* `plot_ly` takes a data frame and defines the aesthetic mappings
+* "trace" is the "geom" equivalent in `plot_ly` interface, which adds a layer to the plot output
+    * While `plot_ly` can define traces, using `add_trace()` and its variants make it possible to use a `dplyr`-style workflow with pipe operators
+    * By default, each trace inherits the mappings from `p`
+    * `plotly` supports ~20 traces
 
 
-plotly traces
+plotly add functions
 ========================================================
 
+|Function          |Description             |Equivalent to `add_trace(...)`   |
+|:-----------------|:-----------------------|:--------------------------------|
+|`add_trace()`     |add traces with options |`NA`                             |
+|`add_markers()`   |adds a scattorplot      |`type="scatter", mode="markers"` |
+|`add_lines()`     |adds a line plot        |`type="", mode=""`               |
+|`add_bars()`      |adds a bar plot         |`type="", mode=""`               |
+|`add_histogram()` |adds a histogram        |`type="", mode=""`               |
+|`add_boxplot()`   |adds a box plot         |`type="", mode=""`               |
+|`add_pie()`       |adds a pie chart        |`type="", mode=""`               |
+|`add_text()`      |adds texts              |                                 |
+|`add_polygons()`  |adds polygons           |`type="", mode=""`               |
 
 
 ========================================================
@@ -377,9 +413,9 @@ Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo
 
 highcharter
 ========================================================
-* what
-* is
-* highcharter
+> "Highcharter is a R wrapper for Highcharts javascript libray and its modules. Highcharts is very mature and flexible javascript charting library and it has a great and powerful API."<br>-Kunst, J. (package author)
+
+* We have already seen `Highcharts` plots in ICJIA R&A Unit's online articles (e.g. Figure 1 and Figure 2 in [this article](http://www.icjia.state.il.us/articles/evaluation-of-illinois-multi-jurisdictional-drug-task-forces)).
 
 
 The hchart() function
@@ -394,7 +430,13 @@ hchart(data, type, hcaes(x, y, ...))
 
 
 ========================================================
-**`hchart` example**
+
+```r
+# using the same data
+hchart(data, type = "scatter", hcaes(x = violentCrime, y = propertyCrime, group = region))
+```
+
+<iframe src="../interactive/hchart.html" style="display: block; margin: auto; min-height:500px; width:60%;"></iframe>
 
 
 The highchart() interface
@@ -422,17 +464,26 @@ Resources
 * `plotly` [official documentation page](https://plot.ly/r/)
 * Sievert. *`plotly` for R* [book](https://plotly-book.cpsievert.me/)
 * `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html)
-* `googleVis` [examples](https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html) by CRAN
 
 
-Other packages
+More on interactive plotting
 ========================================================
+* `rAmCharts` is an R interface to the [`amCharts`](https://www.amcharts.com/products/) JavaScript library that offers interactive options for many common plot types and more. See `rAmCharts` [online documentation](https://datastorm-open.github.io/introduction_ramcharts/amBoxplot.html) for more.
+* `chartjs` is an R interface to the [`Chart.js`](http://www.chartjs.org/) JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots. See `chartjs` [website](http://tutuchan.github.io/chartjs/) for mare.
+* `dygraphs` is an R interface to the [dygraphs](http://rstudio.github.io/dygraphs/index.html) JavaScript library for interactive time-series plots. See `dygraph` [online documentation](http://rstudio.github.io/dygraphs/index.html) for more.
+
+
+Other visualizations
+========================================================
+* [`visNetwork`](http://datastorm-open.github.io/visNetwork/) (wrapper for `vis.js`) and [`networkD3`](http://visjs.org/) are two popular packages for interactive visualization of network/graph data in R. Start with [`igraph`](http://igraph.org/r/) or [`tidygraph`](https://github.com/thomasp85/tidygraph) package to learn how to work with network objects in R
+* [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html) (wrapper for `worldcloud2.js`) is a package for creating word clouds, a popular way to visualize text data.
+* [`data.tree`](https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html) is an R package for managing hierarchical data and tree structures. The pacakge also offers data visualization options for trees.
 
 
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>
@@ -441,8 +492,8 @@ Source: <a href=""></a>
 ========================================================
 References
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#"></a></li>
+  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a></li>
+  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a></li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a></li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a></li>
 </ul>

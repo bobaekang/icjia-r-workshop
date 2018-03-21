@@ -30,7 +30,7 @@ library(ggplot2)
 library(ggthemes)
 library(tibble)
 library(knitr)
-opts_chunk$set(echo = TRUE, warning = FALSE, fig.height = 5, fig.width = 6.5, message = FALSE)
+opts_chunk$set(echo = TRUE, warning = FALSE, fig.height = 4.5, fig.width = 6, message = FALSE)
 ```
 
 This page contains the notes for **the first part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
@@ -75,7 +75,7 @@ Navigate to the other workshop materials:
 
 # Data visualization with R (1): The Grammar of Graphics
 
-In Module 4, we will be exploring data visualization in R. Although base R offers some data visualiation capabilities, a visualization package of `tidyverse` called `ggplot2` has become the de facto standard for data visualization in R. Hence, we will begin with learning the basics of `ggplot2`.  
+In Module 4, we will be exploring data visualization in R. Although base R offers some data visualiation capabilities, a visualization package of `tidyverse` called `ggplot2` has become the *de facto* standard for data visualization in R. Hence, we will begin with learning the basics of `ggplot2`.  
 
 ***
 
@@ -102,10 +102,10 @@ A graphic object then consists of, or is parameterized by, these components. It 
 
 
 ## ggplot2 package
-```{r echo=FALSE, out.width="20%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="25%", out.extra='style="display:block; margin:auto; box-shadow:none;"'}
 include_graphics("../images/ggplot2.png")
 ```
-<p style="font-size:0.5em; text-align: center; color: #777;">
+<p style="font-size:0.5em; text-align:center; color:#777;">
 Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png">tidyverse.com</a>
 </p>
 
@@ -118,10 +118,10 @@ Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c25
 In his article, "A Layered Grammar of Graphics" (2010), Wickham explains his motivation for `ggplot2`. In short, `ggplot2` is an alternative to Wilkinson's grammar, replacing "element" in the latter with more modular layers.
 
 ## Comparison
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+```{r echo=FALSE, out.width="80%", out.extra='style="display:block; margin:auto; box-shadow:none;"'}
 include_graphics("../images/grammar-of-graphics2.png")
 ```
-<p style="font-size:0.5em; text-align: center; color: #777;">
+<p style="font-size:0.5em; text-align:center; color:#777;">
 Source: Wickham, H. (2010). "A Layered Grammar of Graphics."
 </p>
 
@@ -131,7 +131,7 @@ The figure above offers a quick summary of how `ggplot2` compares to Wilkinson's
 
 # Basic components
 
-Enough of backgrounds. Let us now really get started with `ggplot2`. First we explore three basic components of `ggplot2`:
+Enough of backgrounds. Let us now really get started with `ggplot2`. First we explore three of the basic `ggplot2` components:
 
 * Data and aesthetic mappings
 * Geometic objects
@@ -140,28 +140,66 @@ Enough of backgrounds. Let us now really get started with `ggplot2`. First we ex
 ## Data and aesthetic mappings
 ```{r eval=FALSE}
 # data and aesthetics
-ggplot(data, aes(x, y, ...))
+ggplot(data, mapping = aes(x, y, ...))
 ```
-* `data` is a data frame object (or its variant)
-* `aes()` defines aesthetic mappings
-    * `x` and `y` are columns in `data` input to be mapped to the x-axis and y-axis
-    
-    
-## Geometic objects
+Plotting in `ggplot2` starts with the `ggplot()` function, which initalizes a `ggplot` object. Among others, `data` and `mapping` are the most important arguments.
+
+`data` input is a `data.frame` object or any of its variants (e.g. `tibble` and `data.table`).
+
+`mapping` defines how to "map" the data into the plot: that is, which variable corresponds to `x` axis, `y` axis, `colour`, or `size`? The `mapping` input is the output of `aes()` function, which defines such aesthetic mappings. Each argument input should be a variable (or column) in the `data` input.
+
+### `aes` components
+The following table lists the `aes` components available for a `ggplot` object other than `x` and `y`:
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~"`aes` component", ~Description, ~Input,
+    "`colour`", "Border color", "Name (`\"red\"`), rgb specification (`#FF0000`), or `NA`",
+    "`fill`", "Fill color", "Name (`\"red\"`), rgb specification (`#FF0000`), or `NA`",
+    "`shape`", "Shape of a point", "An integer value 0 to 24, or `NA`",
+    "`linetype`", "Linetype", "An integer value 0 to 6 or a string",
+    "`size`", "Size of line/point", "A non-negative numeric value",
+    "`alpha`", "Transparency", "A numeric value 0 to 1"
+  )
+)
+```
+
+And the following two pictures illustrate `shape` and `linetype` values available in `ggplot2`: 
+
+### `shape` values
+```{r echo=FALSE}
+include_graphics("../images/ggplot2_shapes.png")
+```
+<p style="font-size:0.5em; color: #777;">
+Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
+</p>
+
+
+### `linetype` values
+```{r echo=FALSE}
+include_graphics("../images/ggplot2_linetypes.png")
+```
+<p style="font-size:0.5em; color: #777;">
+Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
+</p>
+
+
+## Geometric objects
 ```{r eval=FALSE}
 # adding one or more geometric objects
 ggplot(data, aes(x, y, ...)) +
-  geom_object()
+  geom_*()
 
 # with geom_specific `aes`
 ggplot(data) +
-  geom_object(aes(x, y, ...))
+  geom_*(aes(x, y, ...))
 ```
-* There are many "geom" objects for different graph types:
-* A `geom` object can take its own `aes` input
-    * All `aes` specifications can be directly provided for each geometric object
+Geometric objects, or `geom`s, "control the type of plot you create" (Wickham 2010). There are many `geom` available in `ggplot2` for different graph types, some of which are listed below. 
 
-### Basic `geom` object
+A `geom` object can take its own `aes` input instead of simply inheriting from the preceding `ggplot()` inputs, which is the default behavior. In other words, all `aes` specifications can be directly provided for each geometric object. 
+
+### Basic `geom`s
+Let us take some of the `geom` objects for basic plot types:
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -178,7 +216,13 @@ kable(
 )
 ```
 
-## Example
+### Examples {#basic_plot_example}
+Let's take a look at some examples. First we get a dataset to work with, which is a modified version of `ispcrime`.
+
+Then we pass the new data into `ggplot()` function as an input for `data`. Our input for `mapping` is `aes(violentCrime)`. We did not specify what the `violentCrime` should map to, the `aes()` interprets it as the input for its first argument, `x`.
+
+Then we adds a `geom` layer to `ggplot` with `+` operator. Our choice of `geom` is histogram. And viola! We get a histogram of `violentCrime` counts: 
+
 ```{r}
 # geom histogram example
 data <- ispcrime %>% filter(year == 2015, county != "Cook")
@@ -186,6 +230,10 @@ ggplot(data, aes(violentCrime)) +
   geom_histogram()
 ```
 
+
+The second example is a bar plot using another differently modified `ispcrime` data. This time, we have three variables to map to: `type`, `count`, and `fill`. Not that the first two inputs for `aes()` are automatically understood as inputs for `x` and `y`, in that order. Any additional mapping argument must be specified explicitly.
+
+The output is a bar chart where x-axis is `type` values and `y-axis` is correspoding `count` values. We also have the bars colored by their `type` value. Yes, this is somewhat redundant since each bar is already corresponding to a unique `type` value, but additional coloring helps viewers to easily distinguish these bars.
 
 ```{r}
 # geom col example
@@ -212,7 +260,8 @@ ggplot(data, aes(year, violentCrime)) +
 ```
 
 
-### Other `geom` objects
+### Other `geom`s
+There are more `geom`s 
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -253,7 +302,7 @@ plot +
     * `ylab()` is for y-axis name
     * `ggtitle()` is for plot title and subtitle
 
-### Example
+### Examples
 
 ```{r include=FALSE}
 # plot to use
@@ -293,11 +342,11 @@ plot +
 
 
 ## Scales
-* Scales control "the details of how data values are translated to visual properties"
+Scales are used to control "the details of how data values are translated to visual properties." `ggplot2` offers many options to get the scale right for our plots. Here we will explore the following: 
+
 * Scale limits
 * Position scales (discrete, continuous, datetime)
 * Others
-
 
 ### Scale limits
 ```{r eval=FALSE}
@@ -306,24 +355,35 @@ plot +
   ylim(...) +
   lims(...)
 ```
-* `xlim()` changes x-axis limits
-* `ylim()` changes y-axis limits
-* `lims()` is a general function to change limits
-* `...` in all three functions is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime 
+`ggplot2` offers three functions to impose limits to various aesthetic mappings in our visualization. `xlim()` changes x-axis limits and `ylim()` changes y-axis limits. `lims()` is a general function to change limits for any `aes()` component.
+
+`...` in `xlim()` and `ylim()` are two numeric values to specify lower and upper limits for the corresponding axis. `NA` can be used to set the automatic lower/upper limit. On the other hand, `...` in all `lim()` is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime.
 
 ```{r}
-# limit x axis to 2000; this removes points with violentCrime > 2000
-plot + xlim(0, 2000)
+# limit x axis to 2000 at the top;
+# this removes points with violentCrime > 2000
+plot + xlim(NA, 2000)
 ```
 
 ### Position scales
-#### Position scales (discrete)
+#### Position scales (continuous)
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_discrete(name, breaks, labels, limits, ...)
+scale_x_continuous(..., expand = waiver(), trans = "identity", position = "bottom")
+scale_y_continuous(..., expand = waiver(), trans = "identity", position = "left")
+
+# shortcuts for common transformations
+scale_x_log10(...)
+scale_y_log10(...)
+
+scale_x_sqrt(...)
+scale_y_sqrt(...)
+
+scale_x_reverse(...)
+scale_y_reverse(...)
 ```
 
-#### Common `scale_*` arguments
+#### Common `scale` arguments
+The following table lists some common arguments for `scale` functions and provide descriptions.
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -336,26 +396,26 @@ kable(
 )
 ```
 
-#### Position scales (continuous)
+Refer to the official documentation [here](http://ggplot2.tidyverse.org/reference/scale_continuous.html) for more on the `scale` arguments.
+
+#### Position scales (discrete)
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_continuous(name, breaks, labels, limits, ...)
-
-scale_*_log10(...)
-
-scale_*_sqrt(...)
-
-scale_*_reverse(...)
+scale_x_discrete(..., expand = waiver(), position = "bottom")
+scale_y_discrete(..., expand = waiver(), position = "left")
 ```
+
+`...` is common discrete scale parameters including `name`, `breaks`, `labels`, and `limits`. For `x` axis, the position input can be either "bottom" (default) or "top". For `y` axis, the position input can be either "left" (default) or "right".
 
 #### Position scales (datetime)
 ```{r eval=FALSE}
-# replace * with x or y
-scale_*_date(name, breaks, labels, limits, ...)
+scale_x_date(...)
+scale_y_date(...)
 
-scale_*_datetime(...)
+scale_x_datetime(...)
+scale_y_datetime(...)
 
-scale_*_time(...)
+scale_x_time(...)
+scale_y_time(...)
 ```
 
 ```{r}
@@ -385,12 +445,12 @@ plot + scale_color_manual(
 )
 ```
 
-
 ### Other custom scales
 
 `ggplot2` offers many more functions to customize scales.
 
 See the full documentation on scales [here](http://ggplot2.tidyverse.org/reference/#section-scales).
+
 
 ## Guides
 ```{r eval=FALSE}
@@ -401,7 +461,6 @@ guide_legend(...)
 * `guide_legend()` can be used to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.)
     * `guide_legned()` is used as an input for each scale argument in `guide()`
 
-
 ### Example
 ```{r}
 plot + guides(
@@ -410,35 +469,38 @@ plot + guides(
 )
 ```
 
+
 ## Coordinate systems
 ```{r eval=FALSE}
 plot + coord_cartesian()
 ```
+`ggplot2` offers multiple options for coordiante systems to plot data onto. The default option is `coord_cartesian()`, which gives us the familiar-looking two-dimensional plain. The default coordiante system can be tweaked using `coord_fixed()` (fixed aspect ratio of `x` and `y` axes), `coord_flip()` (swapping `x` and `y` axes), `coord_map()` (map projections) and `coord_trans()` (transforming `x` axis and/or `y` axis).
 
-* The default system is `coord_cartesian`
-  * Can be tweatked with: `coord_fixed`, `coord_flip`, `coord_map` and `coord_trans`
-* An alternative, polar coordiante system can be used with `coord_polar`
-  * Most commonly used for creating a pie chart
+In fact, some of the scale transformations (e.g. `scale_*_log10`) we have seen earlier can be seen as shortcut functions for `coord_trans()`.
 
+As an alternative, the polar coordiante system can be used with `coord_polar()`, which is most commonly used for creating a pie chart with `ggplot2`.
 
+### Examples
 ```{r echo=FALSE}
 plot <- ggplot(ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:aggAssault)
 , aes(type, count, fill = type)) +
   geom_col()
 ```
 
-### Example
+Let's quickly see how manipulating the coordinate system works. We have a bar plot that looks like the following:  
 ```{r}
 # default plot
 plot
 ```
 
+What if we want to have bar plots that go horizaontally? This may be a reasonable choice if the `x` axis values are two long and look bad on the plot. Applying `coord_flip()` will take us there:
 
 ```{r}
 # with coord_flip()
 plot + coord_flip()
 ```
 
+The following is an example of creating a pie chart using `coord_polar()`. Frankly, it is not the most intuitive way to create a pie chart, but it can be done:
 
 ```{r}
 # pie chart with coord_polar()
@@ -447,24 +509,22 @@ ggplot(ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:
   coord_polar("y")
 ```
 
+
 ## Facets
 ```{r eval=FALSE}
 plot + facet_grid(facets, scales, ...)
 plot + facet_wrap(facets, nrow, ncol, scales, ...)
 ```
-* A great way to visualize multi-dimensional data as a series of 2D graphes
-* `facets` input takes a "formula" according to which the faceting is applied
-
+`ggplot2` implements a notion of facetting with `facet_grid()` and `facet_wrap()`, which together offer a great way to visualize multi-dimensional data as a series of 2D graphes. In both functions, `facets` input takes a "formula" according to which the faceting is applied.
 
 ### `facet_grid` vs `facet_wrap`
-
-* `facet_grid()` and `facet_wrap()` are mostly similar to each other
-* However, they differs where:
+Let us quickly compare `facet_grid()` and `facet_wrap()`. Although `facet_grid()` and `facet_wrap()` are mostly similar to each other, they differ where:
     * `facet_grid()` facets the plot with a variable in a single direction (horizontal or vertical)
     * `facet_wrap()` simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.
 
-
 ### Facet formulas
+The following table describes how `facet` formulas work in `facet_grid()` and `facet_wrap()`:
+
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -479,7 +539,9 @@ kable(
 ```
 
 
-### Example
+### Examples
+Now we take a look at some examples to better understand how different facetting operations work. We uses a predefind plot that is a slightly modified version of the bubble plot we have seen [above](#basic_plot_example).
+
 ```{r echo=FALSE}
 # get some plot
 plot <- ggplot(ispcrime %>% filter(county != "Cook", year > 2011) %>% left_join(regions), aes(violentCrime, propertyCrime)) +
@@ -487,48 +549,49 @@ plot <- ggplot(ispcrime %>% filter(county != "Cook", year > 2011) %>% left_join(
   scale_size(guide = "none")
 ```
 
-
+#### `facet_grid()` examples
+The first example applies `facet_grid()` for facetting the data *horizontally* using `region` values.
 ```{r}
 # facet_grid horizontal
 plot + facet_grid(. ~ region)
 ```
 
-
+The second example is the same as the previous example, except that the scale is "freed up" so that each facet has its own scale for the `x` (hosizontal) axis. We can verify this by looking at the `x` axis of each facet.
 ```{r}
 # facet_grid horizontal with free scales
 plot + facet_grid(. ~ region, scales = "free")
 ```
 
-
+The next example applies `facet_grid()` for facetting the data *vertically* using `year` values.
 ```{r}
 # facet_grid vertical
 plot + facet_grid(year ~ .)
 ```
 
-
+We can get a two-dimensional facetting by combining horizonal and vertical facetting with `facet_grid()`, like the following: 
 ```{r}
 # facet_grid two-dimensional
 plot + facet_grid(year ~ region)
 ```
 
-
+#### `facet_wrap()` examples
+The first `facet_wrap()` example facets the plot based on `year` values. Note that the plots are rearranged automatically into 2 rows and 2 columns.
 ```{r}
 # facet wrap
 plot + facet_wrap(~ year)
 ```
 
-
+It is possible to explicitly specify the arrangement of facets. In the following example, we forec the `facet_wrap()` output to have 3 columns.
 ```{r}
 # facet wrap with specified nrow/ncol
 plot + facet_wrap(~ year, ncol = 3)
 ```
 
-
+We can combine multiple variables to create a more detailed facetting of plots, by adding more variables with `+` operator. Each facet corresponds to a combination of the two varialbe values. This is also available with `facet_grid()`. Remember that introducing more and more variables will lead to a uninformative plot.
 ```{r}
 # facet wrap with multiple variables
 plot + facet_wrap(~ year + region, ncol = 3)
 ```
-
 
 
 ## Themes
@@ -536,14 +599,19 @@ plot + facet_wrap(~ year + region, ncol = 3)
 # themes
 plot + theme_gray(base_size = 11, base_family = "")
 ```
-* `ggplot2` offers several predefined themes
-    * the default theme is `theme_gray()` (or `theme_grey()`)
-    * `base_size` controls the base font size
-    * `base_family` controls the base font family ("serif", "sans", "mono")
-* `ggthemes` pacakge offers additional predefined themes
+Theme is what controls the overall appearance of the `ggplot` visualiation. `ggplot2` offers several predefined themes that can be quickly applied to the `ggplot` object.
+
+The default theme is `theme_gray()` (or `theme_grey()`... Remember? Wickham is Australian). The predefined theme takes two arguments for the base font size (`base_size`) and font family (`base_family`). `base_size` input is a number, and `base_family` is a string (e.g. "serif", "sans", "mono").
+
+In addition, `ggthemes` pacakge offers additional predefined themes.
 
 
-### Example
+### Examples
+The following examples illustrate how each predefined theme looks like and how these themes differ from one another.
+
+#### `ggplot2` examples
+We will start with 8 predefined themes provided by `ggplot2`:
+
 ```{r echo=FALSE}
 # get some plot
 plot <- ggplot(
@@ -593,6 +661,8 @@ plot + theme_classic()
 plot + theme_void()
 ```
 
+#### `ggthemes` examples
+Now let's see some predefined themes provided by `ggthemes`. Please visit [this vignette page](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) to find out more `ggthemes` options. 
 
 ```{r}
 plot + ggthemes::theme_economist()
@@ -610,21 +680,23 @@ plot + ggthemes::theme_hc()
 
 
 ```{r}
-plot + ggthemes::theme_wsj()
+plot + ggthemes::theme_solarized()
 ```
 
 
+### General themeatic specifications
 ```{r eval=FALSE}
 plot + theme(...)
 ```
-* `theme` has arguments to control and motify individual components of a plot theme:
+`ggplot2` allows for a greater degree of flexibility on controlling thematic components via `theme()`. `theme()` ahs many arguments to control and motify individual components of a plot theme, including:
     * all line, rectangular, text and title elements
     * aspect ratio of the panel
     * axis title, text, ticks, and lines
     * legend background, margin, text, title, position, and more
     * panel aspect ratio, border, and grid lines
     * and more
-* Read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html)
+
+`theme()` is a powerful function, but its wide range of choices make it difficult to go over all. That said, I recommend you to read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html).
 
 
 ***
