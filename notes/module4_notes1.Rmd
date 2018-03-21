@@ -23,8 +23,14 @@ css: ../css/style.css
 
 
 ```{r setup, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(icjiar)
+library(ggplot2)
+library(ggthemes)
+library(tibble)
 library(knitr)
-opts_chunk$set(echo = TRUE)
+opts_chunk$set(echo = TRUE, warning = FALSE, fig.height = 5, fig.width = 6.5, message = FALSE)
 ```
 
 This page contains the notes for **the first part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
@@ -69,14 +75,21 @@ Navigate to the other workshop materials:
 
 # Data visualization with R (1): The Grammar of Graphics
 
+In Module 4, we will be exploring data visualization in R. Although base R offers some data visualiation capabilities, a visualization package of `tidyverse` called `ggplot2` has become the de facto standard for data visualization in R. Hence, we will begin with learning the basics of `ggplot2`.  
+
 ***
 
 # The Grammar of Graphics
 
+The name of the package `ggplot2` comes from the notion of the "grammar of graphics," proposed by statistician and computer scientist Leland Wilkinson. Let's take a quick look at this notion, its origin, and how the `ggplot2` package relates it.
+
 ## Wilkinson's "grammar"
+
 > "The grammar of graphics takes us beyond a limited set of charts (words) to an almost unlimited world of graphical forms (statements). <br>-Wilkinson, L. (2005), p.1"
 
-Wilkinson's idea is implemented in the Graphics Production Language (GPL) and has the following components:
+In his book, *The Grammar of Graphics* (2005), Wilkinson proposes a set of principles and terminology for defining and constructing statistical graphics. We may see this book as a theoretical elaboration of his preceding project called the Graphical Production Library (GPL), an implementation of "a language for quantitative graphics" (Wklinson et al., 2000). An underlying philosophy of GPL is that, "Instead of treating a graphics display as a viewer for underlying data, GPL treats data as an accesorry to viewing a graph."
+
+Wilkinson's "grammar" has the following components:
 
 * Data
 * Transformation
@@ -84,6 +97,8 @@ Wilkinson's idea is implemented in the Graphics Production Language (GPL) and ha
 * Scale
 * Guide
 * Coordinate system
+
+A graphic object then consists of, or is parameterized by, these components. It is a more modular apporach to visulizing data. We won't dig any further into each component as defined by Wilkinson and his colleagues. Suffice it to say, however, that Hadley Wickham's `ggplot2` is strongly influneced by Wilkinson's "grammar" with certain changes.
 
 
 ## ggplot2 package
@@ -94,10 +109,13 @@ include_graphics("../images/ggplot2.png")
 Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png">tidyverse.com</a>
 </p>
 
+`ggplot2` is R ecosystem's response to Wilkinson's grammar of graphics. It is an R package developed by Hadley Wickham, one of the main authors of many `tidyverse` packages.
+
 
 ## Motivation
 > This article proposes an alternative parameterization of the [graphical] grammar, based around the idea of building up a graphic from multiple layers of data. The grammar differs from Wilkinson's in its arrangement of the components, the development of a hierarchy of defaults, and in that it is embedded inside another programming language.<br>-Wickham, H. (2010), p.4
 
+In his article, "A Layered Grammar of Graphics" (2010), Wickham explains his motivation for `ggplot2`. In short, `ggplot2` is an alternative to Wilkinson's grammar, replacing "element" in the latter with more modular layers.
 
 ## Comparison
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -107,15 +125,17 @@ include_graphics("../images/grammar-of-graphics2.png")
 Source: Wickham, H. (2010). "A Layered Grammar of Graphics."
 </p>
 
+The figure above offers a quick summary of how `ggplot2` compares to Wilkinson's grammar. Refer to Wickham (2010) for a detailed explanation.
 
 ***
 
 # Basic components
 
+Enough of backgrounds. Let us now really get started with `ggplot2`. First we explore three basic components of `ggplot2`:
+
 * Data and aesthetic mappings
 * Geometic objects
 * Labels
-
 
 ## Data and aesthetic mappings
 ```{r eval=FALSE}
@@ -159,7 +179,7 @@ kable(
 ```
 
 ## Example
-```{r fig.height = 6}
+```{r}
 # geom histogram example
 data <- ispcrime %>% filter(year == 2015, county != "Cook")
 ggplot(data, aes(violentCrime)) +
@@ -167,7 +187,7 @@ ggplot(data, aes(violentCrime)) +
 ```
 
 
-```{r fig.height = 6}
+```{r}
 # geom col example
 data <- ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:aggAssault)
 ggplot(data, aes(type, count, fill = type)) +
@@ -175,7 +195,7 @@ ggplot(data, aes(type, count, fill = type)) +
 ```
 
 
-```{r fig.height = 6}
+```{r}
 # geom point example
 data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
 ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
@@ -183,7 +203,7 @@ ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
 ```
 
 
-```{r fig.height = 6}
+```{r}
 # geom line example
 data <- ispcrime %>% filter(county == "Cook")
 ggplot(data, aes(year, violentCrime)) +
@@ -244,7 +264,7 @@ plot <- ggplot(
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
 ```
 
-```{r fig.height = 6}
+```{r}
 # a generic example with title, subtitle, and axes names
 plot +
   labs(
@@ -255,7 +275,7 @@ plot +
 ```
 
 
-```{r fig.height = 6}
+```{r}
 # a title with mathematical expressions
 plot +
   ggtitle(label = expression(paste("Another plot title with math expressions like ", pi, " and ", sigma^{2})))
@@ -297,13 +317,13 @@ plot + xlim(0, 2000)
 ```
 
 ### Position scales
-**Position scales (discrete)**
+#### Position scales (discrete)
 ```{r eval=FALSE}
 # replace * with x or y
 scale_*_discrete(name, breaks, labels, limits, ...)
 ```
 
-**Common scale_* arguments**
+#### Common `scale_*` arguments
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -316,7 +336,7 @@ kable(
 )
 ```
 
-**Position scales (continuous)**
+#### Position scales (continuous)
 ```{r eval=FALSE}
 # replace * with x or y
 scale_*_continuous(name, breaks, labels, limits, ...)
@@ -328,7 +348,7 @@ scale_*_sqrt(...)
 scale_*_reverse(...)
 ```
 
-**Position scales (datetime)**
+#### Position scales (datetime)
 ```{r eval=FALSE}
 # replace * with x or y
 scale_*_date(name, breaks, labels, limits, ...)
@@ -356,7 +376,7 @@ scale_*_manual(name, breaks, labels, limits, ..., values)
     * `linetype`
     * `alpha`
 
-```{r fig.height = 6}
+```{r}
 plot + scale_color_manual(
   name = "",
   breaks = c("Central", "Northern", "Southern"),
@@ -383,7 +403,7 @@ guide_legend(...)
 
 
 ### Example
-```{r fig.height = 6}
+```{r}
 plot + guides(
   colour = guide_legend(title = "Region", title.position = "bottom"),
   size = FALSE
@@ -391,11 +411,220 @@ plot + guides(
 ```
 
 ## Coordinate systems
+```{r eval=FALSE}
+plot + coord_cartesian()
+```
+
+* The default system is `coord_cartesian`
+  * Can be tweatked with: `coord_fixed`, `coord_flip`, `coord_map` and `coord_trans`
+* An alternative, polar coordiante system can be used with `coord_polar`
+  * Most commonly used for creating a pie chart
+
+
+```{r echo=FALSE}
+plot <- ggplot(ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:aggAssault)
+, aes(type, count, fill = type)) +
+  geom_col()
+```
+
+### Example
+```{r}
+# default plot
+plot
+```
+
+
+```{r}
+# with coord_flip()
+plot + coord_flip()
+```
+
+
+```{r}
+# pie chart with coord_polar()
+ggplot(ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:aggAssault), aes("", count, fill = type)) +
+  geom_col(width = 1) +
+  coord_polar("y")
+```
 
 ## Facets
+```{r eval=FALSE}
+plot + facet_grid(facets, scales, ...)
+plot + facet_wrap(facets, nrow, ncol, scales, ...)
+```
+* A great way to visualize multi-dimensional data as a series of 2D graphes
+* `facets` input takes a "formula" according to which the faceting is applied
+
+
+### `facet_grid` vs `facet_wrap`
+
+* `facet_grid()` and `facet_wrap()` are mostly similar to each other
+* However, they differs where:
+    * `facet_grid()` facets the plot with a variable in a single direction (horizontal or vertical)
+    * `facet_wrap()` simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.
+
+
+### Facet formulas
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~Type, ~Formula, ~Description,
+    "Grid", "`facet_grid(. ~ x)`", "Facet horizontally across `x` values",
+    "Grid", "`facet_grid(y ~ .)`", "Facet vertically across `y` values",
+    "Grid", "`facet_grid(y ~ x)`", "Facet 2-dimensionally",
+    "Wrap", "`facet_wrap(~ x)`", "Facet across `x` values",
+    "Wrap", "`facet_wrap(~ x + y)`", "Facet across `x` and `y` values"
+  )
+)
+```
+
+
+### Example
+```{r echo=FALSE}
+# get some plot
+plot <- ggplot(ispcrime %>% filter(county != "Cook", year > 2011) %>% left_join(regions), aes(violentCrime, propertyCrime)) +
+  geom_point(aes(color = region, size = violentCrime + propertyCrime), alpha = .5) +
+  scale_size(guide = "none")
+```
+
+
+```{r}
+# facet_grid horizontal
+plot + facet_grid(. ~ region)
+```
+
+
+```{r}
+# facet_grid horizontal with free scales
+plot + facet_grid(. ~ region, scales = "free")
+```
+
+
+```{r}
+# facet_grid vertical
+plot + facet_grid(year ~ .)
+```
+
+
+```{r}
+# facet_grid two-dimensional
+plot + facet_grid(year ~ region)
+```
+
+
+```{r}
+# facet wrap
+plot + facet_wrap(~ year)
+```
+
+
+```{r}
+# facet wrap with specified nrow/ncol
+plot + facet_wrap(~ year, ncol = 3)
+```
+
+
+```{r}
+# facet wrap with multiple variables
+plot + facet_wrap(~ year + region, ncol = 3)
+```
+
 
 
 ## Themes
+```{r eval=FALSE}
+# themes
+plot + theme_gray(base_size = 11, base_family = "")
+```
+* `ggplot2` offers several predefined themes
+    * the default theme is `theme_gray()` (or `theme_grey()`)
+    * `base_size` controls the base font size
+    * `base_family` controls the base font family ("serif", "sans", "mono")
+* `ggthemes` pacakge offers additional predefined themes
+
+
+### Example
+```{r echo=FALSE}
+# get some plot
+plot <- ggplot(
+  ispcrime %>% filter(county != "Cook", year %in% c(2014, 2015)) %>% left_join(regions),
+  aes(violentCrime, propertyCrime)
+  ) +
+  geom_point(aes(color = region, size = violentCrime + propertyCrime), alpha = .5) +
+  facet_wrap(~year) +
+  scale_size(guide = "none")
+```
+```{r}
+plot + theme_gray() # this is the default
+```
+
+
+```{r}
+plot + theme_bw()
+```
+
+
+```{r}
+plot + theme_linedraw()
+```
+
+
+```{r}
+plot + theme_light()
+```
+
+
+```{r}
+plot + theme_dark()
+```
+
+
+```{r}
+plot + theme_minimal()
+```
+
+
+```{r}
+plot + theme_classic()
+```
+
+
+```{r}
+plot + theme_void()
+```
+
+
+```{r}
+plot + ggthemes::theme_economist()
+```
+
+
+```{r}
+plot + ggthemes::theme_fivethirtyeight()
+```
+
+
+```{r}
+plot + ggthemes::theme_hc()
+```
+
+
+```{r}
+plot + ggthemes::theme_wsj()
+```
+
+
+```{r eval=FALSE}
+plot + theme(...)
+```
+* `theme` has arguments to control and motify individual components of a plot theme:
+    * all line, rectangular, text and title elements
+    * aspect ratio of the panel
+    * axis title, text, ticks, and lines
+    * legend background, margin, text, title, position, and more
+    * panel aspect ratio, border, and grid lines
+    * and more
+* Read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html)
 
 
 ***
@@ -420,5 +649,5 @@ plot + guides(
   <li>Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference">"References"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span></li>
   <li>Wickham, H. (2010). "A Layered Grammar of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 19(1)</span>:3-28.</li>
   <li>Wilkinson, L. (2005). <span style="font-style:italic">The Grammar of Graphics</span>.</li>
-  <li>Wilkinson, L., Rope, D., Carr, D. * Rubin, M. (2000). "The Language of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 9(3)</span>:530-543.</li>
+  <li>Wilkinson, L., Rope, D., Carr, D. & Rubin, M. (2000). "The Language of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 9(3)</span>:530-543.</li>
 </ul>

@@ -275,26 +275,596 @@ div.tocify {
 </div>
 <div id="data-visualization-with-r-1-the-grammar-of-graphics" class="section level1">
 <h1>Data visualization with R (1): The Grammar of Graphics</h1>
+<p>In Module 4, we will be exploring data visualization in R. Although base R offers some data visualiation capabilities, a visualization package of <code>tidyverse</code> called <code>ggplot2</code> has become the de facto standard for data visualization in R. Hence, we will begin with learning the basics of <code>ggplot2</code>.</p>
 <hr />
 </div>
-<div id="slides-in-development" class="section level1">
-<h1>slides in development</h1>
+<div id="the-grammar-of-graphics" class="section level1">
+<h1>The Grammar of Graphics</h1>
+<p>The name of the package <code>ggplot2</code> comes from the notion of the “grammar of graphics,” proposed by statistician and computer scientist Leland Wilkinson. Let’s take a quick look at this notion, its origin, and how the <code>ggplot2</code> package relates it.</p>
+<div id="wilkinsons-grammar" class="section level2">
+<h2>Wilkinson’s “grammar”</h2>
+<blockquote>
+<p>“The grammar of graphics takes us beyond a limited set of charts (words) to an almost unlimited world of graphical forms (statements). <br>-Wilkinson, L. (2005), p.1”</p>
+</blockquote>
+<p>In his book, <em>The Grammar of Graphics</em> (2005), Wilkinson proposes a set of principles and terminology for defining and constructing statistical graphics. We may see this book as a theoretical elaboration of his preceding project called the Graphical Production Library (GPL), an implementation of “a language for quantitative graphics” (Wklinson et al., 2000). An underlying philosophy of GPL is that, “Instead of treating a graphics display as a viewer for underlying data, GPL treats data as an accesorry to viewing a graph.”</p>
+<p>Wilkinson’s “grammar” has the following components:</p>
+<ul>
+<li>Data</li>
+<li>Transformation</li>
+<li>Element</li>
+<li>Scale</li>
+<li>Guide</li>
+<li>Coordinate system</li>
+</ul>
+<p>A graphic object then consists of, or is parameterized by, these components. It is a more modular apporach to visulizing data. We won’t dig any further into each component as defined by Wilkinson and his colleagues. Suffice it to say, however, that Hadley Wickham’s <code>ggplot2</code> is strongly influneced by Wilkinson’s “grammar” with certain changes.</p>
+</div>
+<div id="ggplot2-package" class="section level2">
+<h2>ggplot2 package</h2>
+<img src="../images/ggplot2.png" width="20%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png">tidyverse.com</a>
+</p>
+<p><code>ggplot2</code> is R ecosystem’s response to Wilkinson’s grammar of graphics. It is an R package developed by Hadley Wickham, one of the main authors of many <code>tidyverse</code> packages.</p>
+</div>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<blockquote>
+<p>This article proposes an alternative parameterization of the [graphical] grammar, based around the idea of building up a graphic from multiple layers of data. The grammar differs from Wilkinson’s in its arrangement of the components, the development of a hierarchy of defaults, and in that it is embedded inside another programming language.<br>-Wickham, H. (2010), p.4</p>
+</blockquote>
+<p>In his article, “A Layered Grammar of Graphics” (2010), Wickham explains his motivation for <code>ggplot2</code>. In short, <code>ggplot2</code> is an alternative to Wilkinson’s grammar, replacing “element” in the latter with more modular layers.</p>
+</div>
+<div id="comparison" class="section level2">
+<h2>Comparison</h2>
+<img src="../images/grammar-of-graphics2.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Wickham, H. (2010). “A Layered Grammar of Graphics.”
+</p>
+<p>The figure above offers a quick summary of how <code>ggplot2</code> compares to Wilkinson’s grammar. Refer to Wickham (2010) for a detailed explanation.</p>
+<hr />
+</div>
+</div>
+<div id="basic-components" class="section level1">
+<h1>Basic components</h1>
+<p>Enough of backgrounds. Let us now really get started with <code>ggplot2</code>. First we explore three basic components of <code>ggplot2</code>:</p>
+<ul>
+<li>Data and aesthetic mappings</li>
+<li>Geometic objects</li>
+<li>Labels</li>
+</ul>
+<div id="data-and-aesthetic-mappings" class="section level2">
+<h2>Data and aesthetic mappings</h2>
+<pre class="r"><code># data and aesthetics
+ggplot(data, aes(x, y, ...))</code></pre>
+<ul>
+<li><code>data</code> is a data frame object (or its variant)</li>
+<li><code>aes()</code> defines aesthetic mappings
+<ul>
+<li><code>x</code> and <code>y</code> are columns in <code>data</code> input to be mapped to the x-axis and y-axis</li>
+</ul></li>
+</ul>
+</div>
+<div id="geometic-objects" class="section level2">
+<h2>Geometic objects</h2>
+<pre class="r"><code># adding one or more geometric objects
+ggplot(data, aes(x, y, ...)) +
+  geom_object()
+
+# with geom_specific `aes`
+ggplot(data) +
+  geom_object(aes(x, y, ...))</code></pre>
+<ul>
+<li>There are many “geom” objects for different graph types:</li>
+<li>A <code>geom</code> object can take its own <code>aes</code> input
+<ul>
+<li>All <code>aes</code> specifications can be directly provided for each geometric object</li>
+</ul></li>
+</ul>
+<div id="basic-geom-object" class="section level3">
+<h3>Basic <code>geom</code> object</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">geom</th>
+<th align="left">Description</th>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>geom_histogram</code></td>
+<td align="left">Histograms</td>
+<td align="left">Continous <code>x</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_bar</code></td>
+<td align="left">Bar plot with frequncies</td>
+<td align="left">Discrete <code>x</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>geom_col</code></td>
+<td align="left">Bar plot with values</td>
+<td align="left">Discrete x and continuous <code>y</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_point</code></td>
+<td align="left">Points/scattorplots</td>
+<td align="left">Discrete/continuous <code>x</code> and <code>y</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>geom_jitter</code></td>
+<td align="left">Jittered points</td>
+<td align="left">Discrete/continuous <code>x</code> and <code>y</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_line</code></td>
+<td align="left">Line plots</td>
+<td align="left">Discrete/continuous x and y</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>geom_abline</code></td>
+<td align="left">Reference line</td>
+<td align="left"><code>intercept</code> and <code>slope</code> value</td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_hline</code>, <code>geom_vline</code></td>
+<td align="left">Reference lines</td>
+<td align="left"><code>xintercept</code> or <code>yintercept</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<pre class="r"><code># geom histogram example
+data &lt;- ispcrime %&gt;% filter(year == 2015, county != &quot;Cook&quot;)
+ggplot(data, aes(violentCrime)) +
+  geom_histogram()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-6-1.png" width="624" /></p>
+<pre class="r"><code># geom col example
+data &lt;- ispcrime %&gt;% filter(county == &quot;Cook&quot;) %&gt;% gather(&quot;type&quot;, &quot;count&quot;, murder:aggAssault)
+ggplot(data, aes(type, count, fill = type)) +
+  geom_col(width = 0.8)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-7-1.png" width="624" /></p>
+<pre class="r"><code># geom point example
+data &lt;- ispcrime %&gt;% filter(county != &quot;Cook&quot;) %&gt;% left_join(regions)
+ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
+  geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-8-1.png" width="624" /></p>
+<pre class="r"><code># geom line example
+data &lt;- ispcrime %&gt;% filter(county == &quot;Cook&quot;)
+ggplot(data, aes(year, violentCrime)) +
+  geom_line(color = &quot;maroon&quot;, size = 1.5) +
+  geom_hline(yintercept = mean(data$violentCrime), linetype = &quot;longdash&quot;)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-9-1.png" width="624" /></p>
+<div id="other-geom-objects" class="section level3">
+<h3>Other <code>geom</code> objects</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">geom</th>
+<th align="left">Description</th>
+<th align="left">Input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>geom_density</code></td>
+<td align="left">Smoothed density estimates</td>
+<td align="left">Continous <code>x</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_density2d</code></td>
+<td align="left">Contours of a 2-d density estimates</td>
+<td align="left">Continous <code>x</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>geom_boxplot</code></td>
+<td align="left">Box plots</td>
+<td align="left">Disc. <code>x</code> and cont. <code>y</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_smooth</code></td>
+<td align="left">Smoothed conditional means</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>geom_text</code>, <code>geom_label</code></td>
+<td align="left">Text</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>geom_polygon</code></td>
+<td align="left">Polygons</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>See <a href="http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms">the official reference page</a> for the full list of <code>geom</code>s.</li>
+</ul>
+</div>
+</div>
+<div id="labels" class="section level2">
+<h2>Labels</h2>
+<pre class="r"><code># adding labels
+plot + labs(title, subtitle, caption, x, y, ...)</code></pre>
+<ul>
+<li>Each argument of <code>labs()</code> take a character vector of length 1
+<ul>
+<li><code>title</code> and <code>subtitle</code> appear at the top-left.</li>
+<li><code>caption</code> appears at the bottom-right</li>
+<li><code>x</code> and <code>y</code> are for x-axis and y-axis names</li>
+</ul></li>
+<li>Adjusting the position and style of labels is handled via <code>theme()</code></li>
+</ul>
+<p><strong>alternatively …</strong></p>
+<pre class="r"><code>plot +
+  xlab(label) +
+  ylab(label) +
+  ggtitle(label, subtitle = NULL)</code></pre>
+<ul>
+<li>Each argument of the <code>labs()</code> can be added with a separate function.
+<ul>
+<li><code>xlab()</code> is for x-axis name</li>
+<li><code>ylab()</code> is for y-axis name</li>
+<li><code>ggtitle()</code> is for plot title and subtitle</li>
+</ul></li>
+</ul>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code># a generic example with title, subtitle, and axes names
+plot +
+  labs(
+    title = &quot;This is plot title&quot;, subtitle = &quot;This is plot subtitle&quot;,
+    x = &quot;x-axis here&quot;, y = &quot;y-axis here&quot;,
+    caption = &quot;(and caption...)&quot;
+  )</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-14-1.png" width="624" /></p>
+<pre class="r"><code># a title with mathematical expressions
+plot +
+  ggtitle(label = expression(paste(&quot;Another plot title with math expressions like &quot;, pi, &quot; and &quot;, sigma^{2})))</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-15-1.png" width="624" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="additional-components" class="section level1">
+<h1>Additional components</h1>
+<ul>
+<li>Scales</li>
+<li>Guides</li>
+<li>Coordinate systems</li>
+<li>Facets</li>
+<li>Themes</li>
+</ul>
+<div id="scales" class="section level2">
+<h2>Scales</h2>
+<ul>
+<li>Scales control “the details of how data values are translated to visual properties”</li>
+<li>Scale limits</li>
+<li>Position scales (discrete, continuous, datetime)</li>
+<li>Others</li>
+</ul>
+<div id="scale-limits" class="section level3">
+<h3>Scale limits</h3>
+<pre class="r"><code>plot +
+  xlim(...) +
+  ylim(...) +
+  lims(...)</code></pre>
+<ul>
+<li><code>xlim()</code> changes x-axis limits</li>
+<li><code>ylim()</code> changes y-axis limits</li>
+<li><code>lims()</code> is a general function to change limits</li>
+<li><code>...</code> in all three functions is a name-value pair, where the name is an aesthetic and the value is either a length-2 numeric, a character, a factor, or a datetime</li>
+</ul>
+<pre class="r"><code># limit x axis to 2000; this removes points with violentCrime &gt; 2000
+plot + xlim(0, 2000)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<div id="position-scales" class="section level3">
+<h3>Position scales</h3>
+<div id="position-scales-discrete" class="section level4">
+<h4>Position scales (discrete)</h4>
+<pre class="r"><code># replace * with x or y
+scale_*_discrete(name, breaks, labels, limits, ...)</code></pre>
+</div>
+<div id="common-scale_-arguments" class="section level4">
+<h4>Common <code>scale_*</code> arguments</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>name</code></td>
+<td align="left">a name of the scale, used as the axis label or the legend title</td>
+</tr>
+<tr class="even">
+<td align="left"><code>breaks</code></td>
+<td align="left">controls the breaks in the guide, which can be a character vector</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labels</code></td>
+<td align="left">controls the lable for each break; its input must be the same length as <code>breaks</code> input</td>
+</tr>
+<tr class="even">
+<td align="left"><code>limits</code></td>
+<td align="left">a character vector specifying the data range for the scale</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="position-scales-continuous" class="section level4">
+<h4>Position scales (continuous)</h4>
+<pre class="r"><code># replace * with x or y
+scale_*_continuous(name, breaks, labels, limits, ...)
+
+scale_*_log10(...)
+
+scale_*_sqrt(...)
+
+scale_*_reverse(...)</code></pre>
+</div>
+<div id="position-scales-datetime" class="section level4">
+<h4>Position scales (datetime)</h4>
+<pre class="r"><code># replace * with x or y
+scale_*_date(name, breaks, labels, limits, ...)
+
+scale_*_datetime(...)
+
+scale_*_time(...)</code></pre>
+<pre class="r"><code># apply the log 10 scale to the y-axis 
+plot + scale_y_log10()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-22-1.png" width="624" /></p>
+</div>
+</div>
+<div id="custom-scale-manuals" class="section level3">
+<h3>Custom scale “manuals”</h3>
+<pre class="r"><code>scale_*_manual(name, breaks, labels, limits, ..., values)</code></pre>
+<ul>
+<li>Scale manuals is used to create my own discrete scale</li>
+<li>“Manual” is available for:
+<ul>
+<li><code>colour</code></li>
+<li><code>fill</code></li>
+<li><code>size</code></li>
+<li><code>shape</code></li>
+<li><code>linetype</code></li>
+<li><code>alpha</code></li>
+</ul></li>
+</ul>
+<pre class="r"><code>plot + scale_color_manual(
+  name = &quot;&quot;,
+  breaks = c(&quot;Central&quot;, &quot;Northern&quot;, &quot;Southern&quot;),
+  labels = c(&quot;Central region&quot;, &quot;Northern region&quot;, &quot;Southern region&quot;),
+  values = c(&quot;#00ffff&quot;, &quot;#ffff00&quot;, &quot;#ff00ff&quot;)
+)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-24-1.png" width="624" /></p>
+</div>
+<div id="other-custom-scales" class="section level3">
+<h3>Other custom scales</h3>
+<p><code>ggplot2</code> offers many more functions to customize scales.</p>
+<p>See the full documentation on scales <a href="http://ggplot2.tidyverse.org/reference/#section-scales">here</a>.</p>
+</div>
+</div>
+<div id="guides" class="section level2">
+<h2>Guides</h2>
+<pre class="r"><code>guides(...)
+guide_legend(...)</code></pre>
+<ul>
+<li><code>guides</code> can be used to set (or remove) guides for each scale</li>
+<li><code>guide_legend()</code> can be used to specify the legend components for each visual properties (e.g. <code>colour</code>, <code>size</code>, <code>alpha</code>, etc.)
+<ul>
+<li><code>guide_legned()</code> is used as an input for each scale argument in <code>guide()</code></li>
+</ul></li>
+</ul>
+<div id="example-2" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>plot + guides(
+  colour = guide_legend(title = &quot;Region&quot;, title.position = &quot;bottom&quot;),
+  size = FALSE
+)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-26-1.png" width="624" /></p>
+</div>
+</div>
+<div id="coordinate-systems" class="section level2">
+<h2>Coordinate systems</h2>
+<pre class="r"><code>plot + coord_cartesian()</code></pre>
+<ul>
+<li>The default system is <code>coord_cartesian</code></li>
+<li>Can be tweatked with: <code>coord_fixed</code>, <code>coord_flip</code>, <code>coord_map</code> and <code>coord_trans</code></li>
+<li>An alternative, polar coordiante system can be used with <code>coord_polar</code></li>
+<li>Most commonly used for creating a pie chart</li>
+</ul>
+<div id="example-3" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code># default plot
+plot</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-29-1.png" width="624" /></p>
+<pre class="r"><code># with coord_flip()
+plot + coord_flip()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-30-1.png" width="624" /></p>
+<pre class="r"><code># pie chart with coord_polar()
+ggplot(ispcrime %&gt;% filter(county == &quot;Cook&quot;) %&gt;% gather(&quot;type&quot;, &quot;count&quot;, murder:aggAssault), aes(&quot;&quot;, count, fill = type)) +
+  geom_col(width = 1) +
+  coord_polar(&quot;y&quot;)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-31-1.png" width="624" /></p>
+</div>
+</div>
+<div id="facets" class="section level2">
+<h2>Facets</h2>
+<pre class="r"><code>plot + facet_grid(facets, scales, ...)
+plot + facet_wrap(facets, nrow, ncol, scales, ...)</code></pre>
+<ul>
+<li>A great way to visualize multi-dimensional data as a series of 2D graphes</li>
+<li><code>facets</code> input takes a “formula” according to which the faceting is applied</li>
+</ul>
+<div id="facet_grid-vs-facet_wrap" class="section level3">
+<h3><code>facet_grid</code> vs <code>facet_wrap</code></h3>
+<ul>
+<li><code>facet_grid()</code> and <code>facet_wrap()</code> are mostly similar to each other</li>
+<li>However, they differs where:
+<ul>
+<li><code>facet_grid()</code> facets the plot with a variable in a single direction (horizontal or vertical)</li>
+<li><code>facet_wrap()</code> simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.</li>
+</ul></li>
+</ul>
+</div>
+<div id="facet-formulas" class="section level3">
+<h3>Facet formulas</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Type</th>
+<th align="left">Formula</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Grid</td>
+<td align="left"><code>facet_grid(. ~ x)</code></td>
+<td align="left">Facet horizontally across <code>x</code> values</td>
+</tr>
+<tr class="even">
+<td align="left">Grid</td>
+<td align="left"><code>facet_grid(y ~ .)</code></td>
+<td align="left">Facet vertically across <code>y</code> values</td>
+</tr>
+<tr class="odd">
+<td align="left">Grid</td>
+<td align="left"><code>facet_grid(y ~ x)</code></td>
+<td align="left">Facet 2-dimensionally</td>
+</tr>
+<tr class="even">
+<td align="left">Wrap</td>
+<td align="left"><code>facet_wrap(~ x)</code></td>
+<td align="left">Facet across <code>x</code> values</td>
+</tr>
+<tr class="odd">
+<td align="left">Wrap</td>
+<td align="left"><code>facet_wrap(~ x + y)</code></td>
+<td align="left">Facet across <code>x</code> and <code>y</code> values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-4" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code># facet_grid horizontal
+plot + facet_grid(. ~ region)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-35-1.png" width="624" /></p>
+<pre class="r"><code># facet_grid horizontal with free scales
+plot + facet_grid(. ~ region, scales = &quot;free&quot;)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-36-1.png" width="624" /></p>
+<pre class="r"><code># facet_grid vertical
+plot + facet_grid(year ~ .)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-37-1.png" width="624" /></p>
+<pre class="r"><code># facet_grid two-dimensional
+plot + facet_grid(year ~ region)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-38-1.png" width="624" /></p>
+<pre class="r"><code># facet wrap
+plot + facet_wrap(~ year)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-39-1.png" width="624" /></p>
+<pre class="r"><code># facet wrap with specified nrow/ncol
+plot + facet_wrap(~ year, ncol = 3)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-40-1.png" width="624" /></p>
+<pre class="r"><code># facet wrap with multiple variables
+plot + facet_wrap(~ year + region, ncol = 3)</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-41-1.png" width="624" /></p>
+</div>
+</div>
+<div id="themes" class="section level2">
+<h2>Themes</h2>
+<pre class="r"><code># themes
+plot + theme_gray(base_size = 11, base_family = &quot;&quot;)</code></pre>
+<ul>
+<li><code>ggplot2</code> offers several predefined themes
+<ul>
+<li>the default theme is <code>theme_gray()</code> (or <code>theme_grey()</code>)</li>
+<li><code>base_size</code> controls the base font size</li>
+<li><code>base_family</code> controls the base font family (“serif”, “sans”, “mono”)</li>
+</ul></li>
+<li><code>ggthemes</code> pacakge offers additional predefined themes</li>
+</ul>
+<div id="example-5" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>plot + theme_gray() # this is the default</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-44-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_bw()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-45-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_linedraw()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-46-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_light()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-47-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_dark()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-48-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_minimal()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-49-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_classic()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-50-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme_void()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-51-1.png" width="624" /></p>
+<pre class="r"><code>plot + ggthemes::theme_economist()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-52-1.png" width="624" /></p>
+<pre class="r"><code>plot + ggthemes::theme_fivethirtyeight()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-53-1.png" width="624" /></p>
+<pre class="r"><code>plot + ggthemes::theme_hc()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-54-1.png" width="624" /></p>
+<pre class="r"><code>plot + ggthemes::theme_wsj()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-55-1.png" width="624" /></p>
+<pre class="r"><code>plot + theme(...)</code></pre>
+<ul>
+<li><code>theme</code> has arguments to control and motify individual components of a plot theme:
+<ul>
+<li>all line, rectangular, text and title elements</li>
+<li>aspect ratio of the panel</li>
+<li>axis title, text, ticks, and lines</li>
+<li>legend background, margin, text, title, position, and more</li>
+<li>panel aspect ratio, border, and grid lines</li>
+<li>and more</li>
+</ul></li>
+<li>Read the full documentation <a href="http://ggplot2.tidyverse.org/reference/theme.html">here</a></li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<ul>
+<li><code>ggplot2</code> official <a href="http://ggplot2.tidyverse.org/reference/index.html">reference</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">“Data Visualization Cheat Sheet”</a> by RStudio</li>
+<li><a href="http://www.cookbook-r.com/Graphs/"><em>R Graphics Cookbook</em></a> by Winston Chang</li>
+<li><a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html"><code>ggplot2</code> tutorials in <em>r-statistics.co</em></a> by Selva Prabhakaran</li>
+<li>Extending <code>ggplot2</code>:
+<ul>
+<li><a href="http://www.ggplot2-exts.org/index.html"><em><code>ggplot2</code> extentions</em></a> website by Daniel Emaasit</li>
+</ul></li>
+</ul>
 <hr />
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <ul style="list-style-type:none">
 <li>
-<a href="#">1</a>
+Grolemund, G. &amp; Wickham, H. (2017).<a href="http://r4ds.had.co.nz/data-visualisation.html">“Data visualization”</a>. <span style="font-style:italic">R for Data Science</span>
 </li>
 <li>
-<a href="#">2</a>
+Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference">“References”</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>
 </li>
 <li>
-<a href="#">3</a>
+Wickham, H. (2010). “A Layered Grammar of Graphics”. <span style="font-style:italic">Journal of Computational and Graphical Statistics 19(1)</span>:3-28.
 </li>
 <li>
-<a href="#"></a>
+Wilkinson, L. (2005). <span style="font-style:italic">The Grammar of Graphics</span>.
+</li>
+<li>
+Wilkinson, L., Rope, D., Carr, D. &amp; Rubin, M. (2000). “The Language of Graphics”. <span style="font-style:italic">Journal of Computational and Graphical Statistics 9(3)</span>:530-543.
 </li>
 </ul>
 </div>
