@@ -69,6 +69,8 @@ Navigate to the other workshop materials:
 
 # R Basics (2): Gearing up for data analysis
 
+Now that we have an understanding of the basic building blocks of R programming, we can prepare for conducting data analysis in R. Here we will learn to work with R data frame, the essense of tabular data manipulation in R. We will than be introduced to the `tidyverse` framework and the idea of "tidy" data. Finally, we will discuss some recommended coding style for R.
+
 
 ***
 
@@ -343,8 +345,8 @@ You may encounter a similar issue when trying to give a `numeric` type value to 
 
 In practice, R's original `data.frame` is rarely used since better alternatives are available. There are two prominant alternatives:
 
-    * `tibble`
-    * `data.table`
+* `tibble`
+* `data.table`
 
 It is noteworthy that both alternatives are in fact extensions of the original `data.frame`. Consequently, either can be manipulated using methods for a data.frame objects.
 
@@ -529,8 +531,8 @@ The key benefits of following a style guide include:
 
 Currently, there is no single style guide adopted by the R community as *the* standard. However, there are two style guides that are considered authoritative:
 
-    * [Google's R Style guide](https://google.github.io/styleguide/Rguide.xml)
-    * [Tidyverse style guide](http://style.tidyverse.org/)
+* [Google's R Style guide](https://google.github.io/styleguide/Rguide.xml)
+* [Tidyverse style guide](http://style.tidyverse.org/)
     
 ## Personal recommendations
 
