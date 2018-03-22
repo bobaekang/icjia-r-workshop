@@ -47,6 +47,7 @@ library(tibble)
 library(knitr)
 library(kableExtra)
 library(plotly)
+library(highcharter)
 ```
 
 
@@ -334,12 +335,17 @@ ggiraph
 ========================================================
 > "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author)
 
+`ggiraph` offers interactive `geom`s to be used for a `ggplot2` plot and renders the plot with interactive `geom`s as an interactive visualization.
+
 
 Interactive geom layers
 ========================================================
 ```{r eval=FALSE}
-plot + geom_*_interactive(...)
+p <- plot + geom_*_interactive(...)
+ggiraph(code = print(p), ...)
 ```
+* `plot` is a `ggplot` object
+* `ggiraph()` takes a `ggplot2::ggplot` object with an interactive `geom` to generate an interactive plot
 * 12 interactive `geom` layers that can be integrated into a `ggplot` object:
     * bar, boxplot, histogram, line, map, path, point, polygon, rect, segment, text, tile
 
@@ -349,13 +355,22 @@ Interactive aesthetic mappings
 ```{r eval=FALSE}
 aes(tooltip, onclick, data_id)
 ```
-* `tooltip`
-* `onclick`
-* `data_id`
+* Each interactive `geom` has mapping for the following interactive elements: 
+  * `tooltip` is a column containing information to be displayed as tooltip
+  * `onclick` is a column containing JavaScript instructions to run for a "click" event
+  * `data_id` is a column containing id to be associated with elements.
+      * Must be specified to use a customized "hover" effect
 
 
 ========================================================
-**`ggiraph` example**
+```{r eval=FALSE}
+data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
+p <- ggplot(data, aes(x = violentCrime, propertyCrime, color = region)) +
+  geom_point_interactive(aes(tooltip = county, data_id = county))
+ggiraph(code = print(p), hover_css = "fill:orange;fill-opacity:.3;cursor:pointer;")
+```
+
+<iframe src="../interactive/ggiraph.html" style="display: block; margin: auto; min-height:500px; width:75%;"></iframe>
 
 
 ========================================================
@@ -370,28 +385,28 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital
 
 plotly
 ========================================================
-* what
-* is
-* plotly
+> "Plotly's R graphing library makes interactive, publication-quality graphs online. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, and 3D (WebGL based) charts."<br>- "Plotly R Library", *plotly*
 
 
 The ggplotly() function
 ========================================================
 ```{r eval=FALSE}
-ggplotly(p)
+ggplotly(p = ggplot2::last_plot(), ...)
 ```
-* Converts the `ggplot` object into an interactive plotly object
-    * `p` is a `ggplot2::ggplot()` object
+* `ggplotly()` provides a quick and easy way to convert a `ggplot` object into an interactive plotly object
+* `p` is a `ggplot2::ggplot` object to be made interactive
+    * if left empty, the most recently created `ggplot` object is retrieved and used
     
 
 ========================================================
 ```{r eval=FALSE}
 data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
 p <- ggplot(data, aes(violentCrime, propertyCrime, colour = region)) +
-  geom_point()
+  geom_point() + labs(title = "Using ggplotly()")
 ggplotly(p)
 ```
-<iframe src="../interactive/ggplotly.html" style="display: block; margin: auto; min-height:500px; width:60%;"></iframe>
+
+<iframe src="../interactive/ggplotly.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
 
 
 The plot_ly() interface
@@ -406,7 +421,6 @@ add_trace(p, ..., type = "type", inheret = TRUE)
 * "trace" is the "geom" equivalent in `plot_ly` interface, which adds a layer to the plot output
     * While `plot_ly` can define traces, using `add_trace()` and its variants make it possible to use a `dplyr`-style workflow with pipe operators
     * By default, each trace inherits the mappings from `p`
-    * `plotly` supports ~20 traces
 
 
 plotly add functions
@@ -417,10 +431,10 @@ kable(
     ~Function, ~Description, ~"Equivalent to `add_trace(...)`",
     "`add_trace()`", "add traces with options", "`NA`",
     "`add_markers()`", "adds a scattorplot", "`type=\"scatter\", mode=\"markers\"`",
-    "`add_lines()`", "adds a line plot", "`type=\"\", mode=\"\"`",
-    "`add_bars()`", "adds a bar plot", "`type=\"\", mode=\"\"`",
-    "`add_histogram()`", "adds a histogram", "`type=\"\", mode=\"\"`",
-    "`add_boxplot()`", "adds a box plot", "`type=\"\", mode=\"\"`",
+    "`add_lines()`", "adds a line plot", "`type=\"scatter\", mode=\"lines\"`",
+    "`add_bars()`", "adds a bar plot", "`type=\"bar\", mode=\"markers\"`",
+    "`add_histogram()`", "adds a histogram", "`type=\"histogram\"",
+    "`add_boxplot()`", "adds a box plot", "`type=\"box\"",
     "`add_pie()`", "adds a pie chart", "`type=\"\", mode=\"\"`",
     "`add_text()`", "adds texts", "",
     "`add_polygons()`", "adds polygons", "`type=\"\", mode=\"\"`"
@@ -430,7 +444,14 @@ kable(
 
 
 ========================================================
-**`plot_ly` example**
+```{r eval=FALSE}
+plot_ly(data, x = ~violentCrime, y = ~propertyCrime, color = ~region) %>%
+  add_markers() %>%
+  layout(title = "Using plot_ly() interface")
+```
+
+<iframe src="../interactive/plot_ly.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
+
 
 
 ========================================================
@@ -462,29 +483,37 @@ hchart(data, type, hcaes(x, y, ...))
 
 ========================================================
 ```{r eval=FALSE}
-# using the same data
-hchart(data, type = "scatter", hcaes(x = violentCrime, y = propertyCrime, group = region))
+hchart(data, type = "scatter", hcaes(x = violentCrime, y = propertyCrime, group = region)) %>%
+  hc_title(text = "Using hchart() interface")
 ```
 
-<iframe src="../interactive/hchart.html" style="display: block; margin: auto; min-height:500px; width:60%;"></iframe>
+<iframe src="../interactive/hchart.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
 
 
 The highchart() interface
 ========================================================
 ```{r eval=FALSE}
 highchart() %>%
+  hc_add_series(...) %>% # add a "series"
   hc_xAxis(...) %>% # define x-axis
   hc_yAxis(...) %>% # define y-axis
-  hc_add_series(...) %>% # add a "series"
+  hc_title(...) %>% # add the main title
   hc_chart(...) %>% # modify general plot options
   hc_color(...) %>% # control colors
-  hc_title(...) %>% # add the main title
   hc_*(...) # and more...
 ```
 * Closely follows the original Javascript API
 
+
 ========================================================
-**`highcharter` example**
+```{r eval=FALSE}
+highchart() %>%
+  hc_add_series(data, type = "scatter", hcaes(x = violentCrime, y = propertyCrime, group = region)) %>%
+  hc_title(text = "Using highchart() interface")
+```
+
+<iframe src="../interactive/highchart.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
+
 
 
 Resources
@@ -525,6 +554,7 @@ References
 <ul style="font-size: 0.6em; list-style-type:none">
   <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a></li>
   <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a></li>
+  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><span style="font-style:italic">plotly for R</span></a></li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a></li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a></li>
 </ul>
