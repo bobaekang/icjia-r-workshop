@@ -125,9 +125,21 @@ type: section
 
 ggmap
 ========================================================
-* what
-* is
-* ggmap
+> "`ggmap` makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the `ggplot2` framework." - Kahle, D. (package author/creator)
+
+
+The qmplot() function
+========================================================
+
+```r
+qmplot(x, y, ..., data, zoom, source = "stamen", maptype = "toner-lite", legend = "right", geom = "auto", xlim = c(NA, NA), ylim = c(NA, NA), xlab = "Longitude", ylab = "Latitude"), ...more)
+```
+* comparable to `qplot()` in `ggplot2`
+* `x` takes longitude values, `y` takes latitude values
+* `...` is other aesthetics
+* `zoom`, `source`, `maptype` are same as those in `get_map()` (see below)
+* `geom` is a character vector specifying geom to use.
+    * defaults to "point"
 
 
 The get_map() function
@@ -137,8 +149,11 @@ The get_map() function
 get_map(location, zoom, scale, maptype, source, ...)
 ```
 * Quickly graps a map from various sources:
-    * Google Maps, OpenStreetMap, Staman Map, or Naver Map
+    * e.g. Google Maps, OpenStreetMap, or Staman Map
 * Returns a `ggmap` object, which can be plotted with the `ggmap()` function
+* `zoom` takes an integer from 3 (continent) to 21 (building); default is 10 (city); the range differs based on source/type
+* `source`
+* `maptype`
 
 
 ========================================================
@@ -152,9 +167,7 @@ type: section
 
 tmap
 ========================================================
-* what
-* is
-* tmap
+> "With the tmap package, thematic maps can be generated with great flexibility. The syntax for creating plots is similar to that of ggplot2. The add-on package tmaptools contains tool functions for reading and processing shape files." - "tmap in a nutshell"
 
 
 The qtm() function
@@ -170,7 +183,8 @@ qtm(shape_object, ...)
 
 
 ========================================================
-**`qtm` example**
+
+
 
 
 The tm_*() interface
@@ -227,11 +241,13 @@ tm_shape(shape_object) +
 
 
 ========================================================
-**`tm_` example**
+
 
 
 Styles
 ========================================================
+
+
 
 Static vs interactive modes
 ========================================================
@@ -245,12 +261,12 @@ ttmp() # toggle between modes
 
 
 ========================================================
-**`view` example**
+
 
 
 ========================================================
 type: section
-<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 </p>
@@ -258,9 +274,7 @@ Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 
 leaflet
 ========================================================
-* what
-* is
-* leaflet
+> "Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It's used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB."<br>-"Leaflet for R", RStudio
 
 
 ========================================================
@@ -281,7 +295,7 @@ Resources
 Interactive Plots
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 Packages for interactive plots
@@ -295,7 +309,7 @@ Packages for interactive plots
 
 ========================================================
 type: section
-<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
 </p>
@@ -303,7 +317,7 @@ Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation pa
 
 ggiraph
 ========================================================
-> "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author)
+> "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author/creator)
 
 `ggiraph` offers interactive `geom`s to be used for a `ggplot2` plot and renders the plot with interactive `geom`s as an interactive visualization.
 
@@ -348,7 +362,7 @@ ggiraph(code = print(p), hover_css = "fill:orange;fill-opacity:.3;cursor:pointer
 
 ========================================================
 type: section
-<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
 </p>
@@ -427,7 +441,7 @@ plot_ly(data, x = ~violentCrime, y = ~propertyCrime, color = ~region) %>%
 
 ========================================================
 type: section
-<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
 </p>
@@ -514,7 +528,7 @@ Other visualizations
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>

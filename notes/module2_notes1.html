@@ -276,8 +276,10 @@ div.tocify {
 </div>
 <div id="r-basics-1-fundamentals-of-r-programming" class="section level1">
 <h1>R Basics (1): Fundamentals of R Programming</h1>
+<p>Now, let us get started with R for real. Module 2 is design to help you to grasp the fundamental concepts of the R language, which are basic building blocks for using R for data analysis and more!</p>
 <div id="key-concepts" class="section level2">
 <h2>Key concepts</h2>
+<p>Here are the key concepts we will be learning in this part:</p>
 <ul>
 <li>Obejcts</li>
 <li>Expressions</li>
@@ -295,7 +297,7 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calli
 </p>
 <div id="key-object-types" class="section level2">
 <h2>Key object types</h2>
-<p>R has various object “types”. Some of the key object types include:</p>
+<p>In R, anything and everything we use and create is an object. R has various object “types”. Some of the key object types include:</p>
 <ul>
 <li>Vectors (<code>c()</code>)</li>
 <li>Lists (<code>list()</code>)</li>
@@ -495,6 +497,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </div>
 <div id="operators" class="section level2">
 <h2>Operators</h2>
+<p>Operators are used to manipulate objects in R. They are like functions but used without the parentheses, <code>()</code>, required to invoke a function. Let use take a look at some of the operators in R:</p>
 <ul>
 <li>Arithmetic operators</li>
 <li>Logical operators</li>
@@ -509,6 +512,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </ul>
 <div id="arithmetic-operators" class="section level3">
 <h3>Arithmetic operators</h3>
+<p>The following table lists operators for basic arithmetics:</p>
 <table>
 <thead>
 <tr class="header">
@@ -558,6 +562,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </div>
 <div id="logical-operators" class="section level3">
 <h3>Logical operators</h3>
+<p>The following table lists logical operators for booelan values:</p>
 <table>
 <thead>
 <tr class="header">
@@ -597,6 +602,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </div>
 <div id="relational-operators" class="section level3">
 <h3>Relational operators</h3>
+<p>The following table lists relational operators used to compare the values of two objects:</p>
 <table>
 <thead>
 <tr class="header">
@@ -641,6 +647,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </div>
 <div id="assignment-operators" class="section level3">
 <h3>Assignment operators</h3>
+<p>The following table lists assignment operators used to create/modify variables:</p>
 <table>
 <thead>
 <tr class="header">
@@ -675,6 +682,7 @@ Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
 </div>
 <div id="miscellaneous-operators" class="section level3">
 <h3>Miscellaneous operators</h3>
+<p>The following table lists some miscellaneous operators:</p>
 <table>
 <thead>
 <tr class="header">
@@ -820,7 +828,7 @@ Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a
 }</code></pre>
 <p>Intead of checking for a condition, <code>for</code> loop iterates over all elements of the given object in order. The loop terminates when we reach the final element of the iterable object. At each step of iteration, we can use the given element for the <code>expression</code> if appropriate.</p>
 <p>Let’s try couple examples.</p>
-<p>In the first example, we directly iterate over the elements of <code>fruits</code> vector. At each step, the value of <code>fruit</code> changes and made available between the curly braces as a variable.</p>
+<p>In the first example, we directly iterate over the elements of <code>fruits</code> vector. At each step, the value of <code>fruit</code> changes and made available between the curly braces as a variable. In this example, the <code>paste()</code> function is used to concatenate multiple character strings into one.</p>
 <pre class="r"><code>fruits &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;)
 
 # iterate over elements directly
@@ -983,7 +991,7 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 <div id="what-are-environments" class="section level2">
 <h2>What are environments</h2>
 <p>Environment is a tricky concept to grasp. Simply put, an environment is a place to store variables. That is, all variables (as bindings of symbols and objects) exist in a specific environment. More precisely, <em>objects</em> live in memory outside all environment; it is the <em>symbols</em> and the <em>associations</em> of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.</p>
-<p>As we will see shortly, environments can have nested structure.</p>
+<p>As we will see shortly, environments can have a nested structure.</p>
 </div>
 <div id="nesting-of-environments" class="section level2">
 <h2>Nesting of environments</h2>
@@ -1000,7 +1008,7 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 </div>
 <div id="the-global-environment" class="section level2">
 <h2>The global environment</h2>
-<p>There is something called the “global environment” in R which deserved our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.</p>
+<p>There is something called “global environment” in R, which deserves our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.</p>
 <p>The immediate parent of the global environment is the environment of the package that is imported last. This is how all the datasets and functions from the package, as well as other pacakges imported prior to it, are made available in the global environment.</p>
 <p>In R, an environment is like a function, and the global environment can be accessed using <code>globalenv()</code>, which works like a named list as shown in the folloing code chunk:</p>
 <pre class="r"><code>some_variable &lt;- 1 # a variable in the global environment
@@ -1012,7 +1020,7 @@ identical(some_variable, global_env$some_variable)</code></pre>
 </div>
 <div id="local-environments" class="section level2">
 <h2>Local environments</h2>
-<p>If there is the global environment, there local environments as well. Local environments are created in two ways:</p>
+<p>If there is the global environment, there are local environments as well. Local environments are created in two ways:</p>
 <pre><code>* any function calls
 * `new.env()`</code></pre>
 <p>A local environment can be used to protect the global environment from arbitrarily created variables.</p>

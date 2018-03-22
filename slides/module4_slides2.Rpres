@@ -141,9 +141,20 @@ type: section
 
 ggmap
 ========================================================
-* what
-* is
-* ggmap
+> "`ggmap` makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the `ggplot2` framework." - Kahle, D. (package author/creator)
+
+
+The qmplot() function
+========================================================
+```{r eval=FALSE}
+qmplot(x, y, ..., data, zoom, source = "stamen", maptype = "toner-lite", legend = "right", geom = "auto", xlim = c(NA, NA), ylim = c(NA, NA), xlab = "Longitude", ylab = "Latitude"), ...more)
+```
+* comparable to `qplot()` in `ggplot2`
+* `x` takes longitude values, `y` takes latitude values
+* `...` is other aesthetics
+* `zoom`, `source`, `maptype` are same as those in `get_map()` (see below)
+* `geom` is a character vector specifying geom to use.
+    * defaults to "point"
 
 
 The get_map() function
@@ -152,8 +163,11 @@ The get_map() function
 get_map(location, zoom, scale, maptype, source, ...)
 ```
 * Quickly graps a map from various sources:
-    * Google Maps, OpenStreetMap, Staman Map, or Naver Map
+    * e.g. Google Maps, OpenStreetMap, or Staman Map
 * Returns a `ggmap` object, which can be plotted with the `ggmap()` function
+* `zoom` takes an integer from 3 (continent) to 21 (building); default is 10 (city); the range differs based on source/type
+* `source`
+* `maptype`
 
 
 ========================================================
@@ -167,9 +181,7 @@ type: section
 
 tmap
 ========================================================
-* what
-* is
-* tmap
+> "With the tmap package, thematic maps can be generated with great flexibility. The syntax for creating plots is similar to that of ggplot2. The add-on package tmaptools contains tool functions for reading and processing shape files." - "tmap in a nutshell"
 
 
 The qtm() function
@@ -184,7 +196,10 @@ qtm(shape_object, ...)
 
 
 ========================================================
-**`qtm` example**
+```{r eval=FALSE}
+
+```
+
 
 
 The tm_*() interface
@@ -252,11 +267,17 @@ kable(
 
 
 ========================================================
-**`tm_` example**
+```{r eval=FALSE}
+
+```
 
 
 Styles
 ========================================================
+```{r eval=FALSE}
+
+```
+
 
 Static vs interactive modes
 ========================================================
@@ -269,7 +290,9 @@ ttmp() # toggle between modes
 
 
 ========================================================
-**`view` example**
+```{r eval=FALSE}
+
+```
 
 
 ========================================================
@@ -284,9 +307,7 @@ Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 
 leaflet
 ========================================================
-* what
-* is
-* leaflet
+> "Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It's used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB."<br>-"Leaflet for R", RStudio
 
 
 ========================================================
@@ -333,7 +354,7 @@ Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation pa
 
 ggiraph
 ========================================================
-> "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author)
+> "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author/creator)
 
 `ggiraph` offers interactive `geom`s to be used for a `ggplot2` plot and renders the plot with interactive `geom`s as an interactive visualization.
 
