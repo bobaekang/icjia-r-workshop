@@ -69,7 +69,11 @@ Navigate to the other workshop materials:
 
 # R Basics (1): Fundamentals of R Programming
 
+Now, let us get started with R for real. Module 2 is design to help you to grasp the fundamental concepts of the R language, which are basic building blocks for using R for data analysis and more!
+
 ## Key concepts
+
+Here are the key concepts we will be learning in this part:
 
 * Obejcts
 * Expressions
@@ -90,7 +94,7 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calli
 
 ## Key object types
 
-R has various object "types". Some of the key object types include:
+In R, anything and everything we use and create is an object. R has various object "types". Some of the key object types include:
 
 * Vectors (`c()`)
 * Lists (`list()`)
@@ -316,6 +320,8 @@ We have already seen objects. We will now take a closer look at the rest of them
     
 ## Operators
 
+Operators are used to manipulate objects in R. They are like functions but used without the parentheses, `()`, required to invoke a function. Let use take a look at some of the operators in R: 
+
 * Arithmetic operators
 * Logical operators
 * Relational operators
@@ -326,6 +332,7 @@ We have already seen objects. We will now take a closer look at the rest of them
     * From third-party pacakges
 
 ### Arithmetic operators
+The following table lists operators for basic arithmetics:
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -353,6 +360,7 @@ kable(
 ```
 
 ### Logical operators
+The following table lists logical operators for booelan values:
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -376,6 +384,7 @@ kable(
 ```
 
 ### Relational operators
+The following table lists relational operators used to compare the values of two objects:
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -401,6 +410,7 @@ kable(
 ```
 
 ### Assignment operators
+The following table lists assignment operators used to create/modify variables:
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -422,6 +432,7 @@ kable(
 ```
 
 ### Miscellaneous operators
+The following table lists some miscellaneous operators:
 ```{r echo=FALSE}
 kable(
   data.frame(
@@ -586,7 +597,7 @@ Intead of checking for a condition, `for` loop iterates over all elements of the
 
 Let's try couple examples.
 
-In the first example, we directly iterate over the elements of `fruits` vector. At each step, the value of `fruit` changes and made available between the curly braces as a variable.
+In the first example, we directly iterate over the elements of `fruits` vector. At each step, the value of `fruit` changes and made available between the curly braces as a variable. In this example, the `paste()` function is used to concatenate multiple character strings into one.
 
 ```{r}
 fruits <- c("apple", "banana", "clementine")
@@ -779,7 +790,7 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 
 Environment is a tricky concept to grasp. Simply put, an environment is a place to store variables. That is, all variables (as bindings of symbols and objects) exist in a specific environment. More precisely, *objects* live in memory outside all environment; it is the *symbols* and the *associations* of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.
 
-As we will see shortly, environments can have nested structure.
+As we will see shortly, environments can have a nested structure.
 
 ## Nesting of environments
 
@@ -799,7 +810,7 @@ In this picture, the box on the left represents a parent environment and the box
 
 ## The global environment
 
-There is something called the "global environment" in R which deserved our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.
+There is something called "global environment" in R, which deserves our special attention. In short, the global environment serves as the interactive workspace for the given R session. When we create new variables using the console, they will live in the global environment.
 
 The immediate parent of the global environment is the environment of the package that is imported last. This is how all the datasets and functions from the package, as well as other pacakges imported prior to it, are made available in the global environment.
 
@@ -815,7 +826,7 @@ identical(some_variable, global_env$some_variable)
 
 ## Local environments
 
-If there is the global environment, there local environments as well. Local environments are created in two ways:
+If there is the global environment, there are local environments as well. Local environments are created in two ways:
 
     * any function calls
     * `new.env()`
