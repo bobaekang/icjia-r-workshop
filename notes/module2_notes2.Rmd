@@ -105,7 +105,11 @@ I have created an R package called `icjiar`, which comes with some sample datase
 
 First we import `icjiar` package to make `ispcrime` dataset available in the global environment.
 
+If you do not have `icjiar` package installed on your computer yet, remove the hash symbol (`#`) on the first two lines of the following code chunk and execute it to get the package installed. You will then be able to import the package using `library()` function. See [here](#package) for installing and loading packages. 
+
 ```{r}
+# install.packages("devtools")
+# devtools::install_github("bobaekang/icjiar")
 library(icjiar)
 
 class(ispcrime)  # the class of ispcrime object is "data.frame"
@@ -399,7 +403,7 @@ Source: <a href="https://www.datacamp.com/">DataCamp</a>
 
 > The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc. - "R (programming language)", Wikipedia
 
-## Using packages
+## Using packages {#package}
 
 To use an add-on package, we first have to install it using, for example, the `install.packages()` function. Onces the package is installed, it can be imported to the global environment using `library()`.
 
@@ -672,7 +676,7 @@ message("y is not positive")
 
 ## Comments for intelligible code 
 
-* Use comments (code after the `#` symbol) for clarification
+* Use comments (words after the `#` symbol) for clarification
     * add two spaces before starting a comment if the comment comes after an expression
 * However, whenever possible, use *descriptive names* to reduce the need for clarification and avoid verbosity!
 * Example of unnecesary comment:

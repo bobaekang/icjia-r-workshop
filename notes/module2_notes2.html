@@ -300,7 +300,10 @@ div.tocify {
 <div id="inspecting-a-data.frame-obejct" class="section level3">
 <h3>Inspecting a <code>data.frame</code> obejct</h3>
 <p>First we import <code>icjiar</code> package to make <code>ispcrime</code> dataset available in the global environment.</p>
-<pre class="r"><code>library(icjiar)
+<p>If you do not have <code>icjiar</code> package installed on your computer yet, remove the hash symbol (<code>#</code>) on the first two lines of the following code chunk and execute it to get the package installed. You will then be able to import the package using <code>library()</code> function. See <a href="#package">here</a> for installing and loading packages.</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+# devtools::install_github(&quot;bobaekang/icjiar&quot;)
+library(icjiar)
 
 class(ispcrime)  # the class of ispcrime object is &quot;data.frame&quot;</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
@@ -640,7 +643,7 @@ df1</code></pre>
 <p>The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools […], etc. - “R (programming language)”, Wikipedia</p>
 </blockquote>
 </div>
-<div id="using-packages" class="section level2">
+<div id="package" class="section level2">
 <h2>Using packages</h2>
 <p>To use an add-on package, we first have to install it using, for example, the <code>install.packages()</code> function. Onces the package is installed, it can be imported to the global environment using <code>library()</code>.</p>
 <pre class="r"><code># first we should install the desired package
@@ -917,7 +920,7 @@ message(&quot;y is not positive&quot;)
 <div id="comments-for-intelligible-code" class="section level2">
 <h2>Comments for intelligible code</h2>
 <ul>
-<li>Use comments (code after the <code>#</code> symbol) for clarification
+<li>Use comments (words after the <code>#</code> symbol) for clarification
 <ul>
 <li>add two spaces before starting a comment if the comment comes after an expression</li>
 </ul></li>

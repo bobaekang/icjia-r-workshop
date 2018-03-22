@@ -78,9 +78,9 @@ Example: ISP crime data
 ========================================================
 I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
 
-**Inspecting a `data.frame` object**
-
 ```{r}
+# install.packages("devtools")
+# devtools::install_github("bobaekang/icjiar")
 library(icjiar)
 
 class(ispcrime)         # the class of ispcrime object is "data.frame"
@@ -187,7 +187,7 @@ print(df3)
 ```
 
 
-Transforming a dat.frame object
+Transforming a data.frame object
 ========================================================
 * change column names
 * add / modify / remove columns
@@ -625,7 +625,7 @@ message("y is not positive")
 
 Comments for intelligible code 
 ========================================================
-* Use comments (code after the `#` symbol) for clarification
+* Use comments (words after the `#` symbol) for clarification
     * add two spaces before starting a comment if the comment comes after an expression
 * However, whenever possible, use *descriptive names* to reduce the need for clarification and avoid verbosity!
 * Example of unnecesary comment:

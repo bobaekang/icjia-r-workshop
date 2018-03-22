@@ -79,10 +79,10 @@ Example: ISP crime data
 ========================================================
 I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
 
-**Inspecting a `data.frame` object**
-
 
 ```r
+# install.packages("devtools")
+# devtools::install_github("bobaekang/icjiar")
 library(icjiar)
 
 class(ispcrime)         # the class of ispcrime object is "data.frame"
@@ -307,7 +307,7 @@ print(df3)
 ```
 
 
-Transforming a dat.frame object
+Transforming a data.frame object
 ========================================================
 * change column names
 * add / modify / remove columns
@@ -509,11 +509,11 @@ tibble
 # A tibble: 5 x 5
   column1 column2 column3 column4 column5
     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-1    11.0    12.0    13.0    14.0    15.0
-2    21.0    22.0    23.0    24.0    25.0
-3    31.0    32.0    33.0    34.0    35.0
-4    41.0    42.0    43.0    44.0    45.0
-5    51.0    52.0    53.0    54.0    55.0
+1     11.     12.     13.     14.     15.
+2     21.     22.     23.     24.     25.
+3     31.     32.     33.     34.     35.
+4     41.     42.     43.     44.     45.
+5     51.     52.     53.     54.     55.
 ```
 
 * Part of the `tidyverse` framework (we'll come back to this)
@@ -830,7 +830,7 @@ message("y is not positive")
 
 Comments for intelligible code 
 ========================================================
-* Use comments (code after the `#` symbol) for clarification
+* Use comments (words after the `#` symbol) for clarification
     * add two spaces before starting a comment if the comment comes after an expression
 * However, whenever possible, use *descriptive names* to reduce the need for clarification and avoid verbosity!
 * Example of unnecesary comment:
