@@ -2069,4 +2069,27 @@ function commandsForSlide(indexh) {
       }
    
       if (window.parent.presentationKeydown)
+         window.parent.presentationKeydown(e);   
+   }
    
+   window.onresize = function() { 
+     
+     // bail if autosize is disabled
+     if (!false)
+       return;
+      
+     if(window.activeTimer)
+       clearTimeout(window.activeTimer);
+       
+     window.activeTimer = setTimeout(function() { 
+       window.location.reload(true); 
+     }, 300);
+   }
+
+   
+   
+  </script>
+
+</body>
+
+</html>

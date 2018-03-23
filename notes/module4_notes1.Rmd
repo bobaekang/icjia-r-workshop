@@ -164,6 +164,14 @@ kable(
 )
 ```
 
+The following figure provides a visual illustration of these aesthetics:
+```{r echo=FALSE}
+include_graphics("../images/ggplot2_aesthetics.png")
+```
+<p style="font-size:0.5em; color: #777;">
+Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html">Figure 1.1</a> in Wilke, C. (n.d). <span style="font-style:italic">Data Visualiation</span>.
+</p>
+
 And the following two pictures illustrate `shape` and `linetype` values available in `ggplot2`: 
 
 ### `shape` values
@@ -230,7 +238,6 @@ ggplot(data, aes(violentCrime)) +
   geom_histogram()
 ```
 
-
 The second example is a bar plot using another differently modified `ispcrime` data. This time, we have three variables to map to: `type`, `count`, and `fill`. Not that the first two inputs for `aes()` are automatically understood as inputs for `x` and `y`, in that order. Any additional mapping argument must be specified explicitly.
 
 The output is a bar chart where x-axis is `type` values and `y-axis` is correspoding `count` values. We also have the bars colored by their `type` value. Yes, this is somewhat redundant since each bar is already corresponding to a unique `type` value, but additional coloring helps viewers to easily distinguish these bars.
@@ -242,6 +249,7 @@ ggplot(data, aes(type, count, fill = type)) +
   geom_col(width = 0.8)
 ```
 
+The third example is a bubble plot, or a modified scattorplot, using a subset of `ispcrime` table (excluding Cook county data) joined with `regions` table. Here, we use `violentCrime` as `x` value and `propertyCrime` as `y` value. Also, we use `region` values as color aesthetics and the sum of `violentCrime` and `propertyCrime` as size aesthetics. Lastly, we set the transparency value (`alpha`) to 0.5.
 
 ```{r}
 # geom point example
@@ -250,6 +258,7 @@ ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
 ```
 
+The last example is a line graph with one horizontal reference line. The line graph uses a subset of `ispcrime` data (excluding Cook data) as the data input and use `year` and `violentCrime` as `x` and `y` axes. In `geom_line()`,  the line color and size are specified. In `geom_hline()`, the y intercept for the reference line is given as the mean of `violentCrime` values and the linetype is specified to be the long-dash.
 
 ```{r}
 # geom line example
@@ -261,7 +270,7 @@ ggplot(data, aes(year, violentCrime)) +
 
 
 ### Other `geom`s
-There are more `geom`s 
+`ggplot2` offers more `geom`s, some of which are listed in the following table with their descriptions: 
 ```{r echo=FALSE}
 kable(
   tribble(
@@ -430,7 +439,7 @@ plot + scale_y_log10()
 scale_*_manual(name, breaks, labels, limits, ..., values)
 ```
 Scale manuals are used to create customized discrete scales. Such "manuals" are available for the following aesthetics:
-    * `colour`
+    * `colour` or `color`
     * `fill`
     * `size`
     * `shape`

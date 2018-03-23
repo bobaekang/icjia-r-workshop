@@ -142,8 +142,20 @@ kable(
 
 ========================================================
 <br>
-**`shape` values**
+**`ggplot2` aesthetics**
+<br><br>
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/ggplot2_aesthetics.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html">Figure 1.1</a> in Wilke, C. (n.d).<span style="font-style:italic">Data Visualiation</span>.
+</p>
+
+
+========================================================
 <br>
+**`shape` values**
+<br><br>
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/ggplot2_shapes.png")
 ```
@@ -155,7 +167,7 @@ Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot
 ========================================================
 <br>
 **`linetype` values**
-<br>
+<br><br>
 ```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/ggplot2_linetypes.png")
 ```
@@ -449,10 +461,12 @@ Guides
 ```{r eval=FALSE}
 guides(...)
 guide_legend(...)
+guide_colourbar() # equivalent to guide_colorbar()
 ```
 * `guides` can be used to set (or remove) guides for each scale
 * `guide_legend()` can be used to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.)
-    * `guide_legned()` is used as an input for each scale argument in `guide()`
+* `guide_colourbar()` or `guide_colorbar()` controls the continous color bar
+* `guide_legned()` and `guide_colourbar()` can be used as an input for each scale argument in `guide()`
 
 
 ========================================================
