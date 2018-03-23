@@ -277,24 +277,615 @@ div.tocify {
 <h1>Data visualization with R (2): Maps and interactive plots</h1>
 <hr />
 </div>
-<div id="slides-in-development" class="section level1">
-<h1>slides in development</h1>
+<div id="maps" class="section level1">
+<h1>Maps</h1>
+<pre><code>## Warning: Deprecated, use tibble::rownames_to_column() instead.</code></pre>
+<pre><code>## Warning: Ignoring unknown aesthetics: x, y</code></pre>
+<p><img src="module4_notes2_files/figure-html/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto; box-shadow: none;" /></p>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<ul>
+<li>Shapefile
+<ul>
+<li>a popular format for storing geospatial data</li>
+</ul></li>
+<li><code>rgdal</code> pacakge
+<ul>
+<li>an R interface to Geospatial Data Abstraction Library (GDAL) for reading and writing geospatial data formats</li>
+</ul></li>
+<li>Spatial objects in R</li>
+</ul>
+</div>
+<div id="shapefile" class="section level2">
+<h2>Shapefile</h2>
+<blockquote>
+<p>“A shapefile is a simple, nontopological format for storing the geometric location and attribute information of geographic features. Geographic features in a shapefile can be represented by points, lines, or polygons (areas).”<br> - “What is a shapefile?”, <em>Esri</em></p>
+</blockquote>
+<blockquote>
+<p>“The shapefile format is a popular geospatial vector data format for geographic information system (GIS) software […] developed and regulated by Esri […]. The shapefile format can spatially describe vector features: points, lines, and polygons […]. Each item usually has attributes that describe it, such as name or temperature.” - “Shapefile”, <em>Wikipedia</em></p>
+</blockquote>
+<div id="shapefile-components" class="section level3">
+<h3>Shapefile components</h3>
+<p>A shapefile format in fact consists of a collection of files. The following are commonly included when using shapefile data in R:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File extension</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>.shp</code></td>
+<td align="left">The main file that stores the feature geometry; <em>required</em>.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>.shx</code></td>
+<td align="left">The index file that stores the index of the feature geometry; <em>required</em>.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>.dbf</code></td>
+<td align="left">The dBASE table that stores the attribute information of features; <em>required</em>.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>.prj</code></td>
+<td align="left">The file that stores the coordinate system information; used by ArcGIS.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="importing-a-shapefile" class="section level3">
+<h3>Importing a shapefile</h3>
+<pre class="r"><code>library(rgdal)
+spatial_object &lt;- readORG(dsn, layer)
+
+# example:
+# il_counties &lt;- read(dsn = &quot;shapefiles&quot;, layer = &quot;il_counties&quot;)</code></pre>
+<ul>
+<li>the <code>readORG</code> function imports a shapefile into R environment
+<ul>
+<li><code>dsn</code> is the path to the directory with a shapefile to import</li>
+<li><code>layer</code> is the name of a shapefile to import</li>
+</ul></li>
+<li>the output is a spatial vector object</li>
+</ul>
+</div>
+<div id="spatial-vector-objects-in-r" class="section level3">
+<h3>Spatial (vector) objects in R</h3>
+<ul>
+<li>There are multiple spatial vector object types:</li>
+<li>Without attributes: <code>Spatial*</code> classes
+<ul>
+<li><small><code>Points</code>, <code>MultiPoints</code>, <code>Pixels</code>, <code>Grid</code>, `<code>Lines</code>, <code>Polygons</code></small></li>
+</ul></li>
+<li>With attributes: <code>Spatial*DataFrame</code> classes
+<ul>
+<li>The attributes <code>data.frame</code> table can be accessed using standard methods.</li>
+</ul></li>
+<li>See the <a href="http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html">“Spatial Cheatsheet”</a> for more one spatial objects in R</li>
+</ul>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>class(counties)</code></pre>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<ul>
+<li><code>icjiar</code> package provides a spatial object named <code>counties</code> for countes in Illinois
+<ul>
+<li>it is of the <code>SpatialPolygonsDataFrame</code> class</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="packages-for-maps" class="section level2">
+<h2>Packages for maps</h2>
+<ul>
+<li><code>tmap</code> package for thematic maps</li>
+<li><code>leaftlet</code> package for interactive maps</li>
+<li>And more</li>
+</ul>
+</div>
+<div id="tmap-thematic-maps-in-r" class="section level2">
+<h2>tmap: Thematic maps in R</h2>
+<img src="../images/tmap_worldmap.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://github.com/mtennekes/tmap">tmap GitHub repo</a>
+</p>
+<div id="what-is-tmap" class="section level3">
+<h3>What is <code>tmap</code>?</h3>
+<blockquote>
+<p>“With the tmap package, thematic maps can be generated with great flexibility. The syntax for creating plots is similar to that of ggplot2. The add-on package tmaptools contains tool functions for reading and processing shape files.” - “tmap in a nutshell”</p>
+</blockquote>
+<ul>
+<li>In my experience, <code>tmap</code> is the most accessible R package for generating maps, making it easy to get visually appealing maps using data in the shapefile format.</li>
+</ul>
+</div>
+<div id="the-qtm-function" class="section level3">
+<h3>The <code>qtm()</code> function</h3>
+<pre class="r"><code>qtm(shape_object, ...)</code></pre>
+<ul>
+<li>Generates a “quicke thematic map”
+<ul>
+<li>comparable to <code>qplot()</code> in <code>ggplot2</code></li>
+</ul></li>
+<li>Offers the same level of flexibility as the main plotting interface
+<ul>
+<li>The main interface is stil recommended for complex plots</li>
+</ul></li>
+</ul>
+<pre class="r"><code>qtm(counties, fill = &quot;circuit&quot;)</code></pre>
+<p><img src="module4_notes2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="the-tm_-interface" class="section level3">
+<h3>The <code>tm_*()</code> interface</h3>
+<pre class="r"><code>tm_shape(shape_object) +
+  tm_*() # add tmap elements as layers</code></pre>
+<ul>
+<li><code>tm_shape</code> takes a spatial “shape object”</li>
+<li>Add layers using tmap elements
+<ul>
+<li>two types of “drawing” layers: base and derived</li>
+<li>“attribute” layers</li>
+</ul></li>
+</ul>
+<p><strong>Base <code>tmap</code> drawing layers</strong></p>
+Drawing layer Description Aesthetics<br />
+————– —————- —————– <code>tm_polygons</code> Draws polygons col<br />
+<code>tm_symbols</code> Draws symbols size, col, shape <code>tm_lines</code> Draws lines col, lwd<br />
+<code>tm_raster</code> Draws a raster col<br />
+<code>tm_text</code> Add text labels text, size, col<br />
+
+<p style="font-size:0.5em">
+The table is duplicated from a <code>tmap</code> <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a>
+</p>
+<p><strong>Derived <code>tmap</code> drawing layers</strong></p>
+Drawing layer Description Aesthetics<br />
+————– ———————— ——————————- <code>tm_fill</code> Fills the polygons see <code>tm_polygons</code><br />
+<code>tm_borders</code> Draws polygon borders none<br />
+<code>tm_bubbles</code> Draws bubbles see <code>tm_symbols</code><br />
+<code>tm_squares</code> Draws squares see <code>tm_symbols</code><br />
+<code>tm_dots</code> Draws dots see <code>tm_symbols</code><br />
+<code>tm_markders</code> Draws markers see <code>tm_symbols</code> and <code>tm_text</code> <code>tm_iso</code> Draws iso/contour lines see <code>tm_lines</code> and <code>tm_text</code><br />
+
+<p style="font-size:0.5em">
+The table is duplicated from a <code>tmap</code> <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a>
+</p>
+<p><strong><code>tmap</code> attribute layers</strong></p>
+Attribute layer Description<br />
+—————- ————————– <code>tm_grid</code> Add coordinate grid lines <code>tm_credits</code> Add credits text label<br />
+<code>tm_compass</code> Add map compass<br />
+<code>tm_scale_bar</code> Add scale bar<br />
+
+<p style="font-size:0.5em">
+The table is duplicated from a <code>tmap</code> <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a>
+</p>
+<pre class="r"><code>tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = &quot;circuit&quot;)</code></pre>
+<p><img src="module4_notes2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="layouts-for-maps" class="section level3">
+<h3>Layouts for maps</h3>
+<pre class="r"><code>tm_layout(title = NA, scale = 1, title.size = 1.3, bg.color = &quot;white&quot;, aes.color = c(fill = &quot;grey85&quot;, borders = &quot;grey40&quot;, symbols = &quot;grey60&quot;, dots = &quot;black&quot;, lines = &quot;red&quot;, text = &quot;black&quot;, na = &quot;grey75&quot;), ...)</code></pre>
+<ul>
+<li><code>tm_layout</code> is the general function to control all things about layout settings.</li>
+<li><code>tm_style_*</code> functions which offer predefined sets of styling-related layout settings such as background colors, colors and font (similar to <code>ggplot2</code> themes).</li>
+<li><code>tm_format_*</code> functions which offer predefined sets of position-related layout settings such as margins.</li>
+</ul>
+<p><strong>Predefined styles</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Style</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tm_style_white</code></td>
+<td align="left">White background, commonly used colors (default)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_style_gray</code></td>
+<td align="left">Gray background, useful to highlight sequential palettes (e.g. in choropleths)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_style_natural</code></td>
+<td align="left">Emulation of natural view: blue waters and green land</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_style_bw</code></td>
+<td align="left">Greyscale</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_style_classic</code></td>
+<td align="left">Classic styled maps</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_style_col_blind</code></td>
+<td align="left">Style for colorblind viewers</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_style_cobalt</code></td>
+<td align="left">Inspired by latex beamer style cobalt</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_style_albatross</code></td>
+<td align="left">Inspired by latex beamer style albatross</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_style_beaver</code></td>
+<td align="left">Inspired by latex beamer style beaver</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = &quot;circuit&quot;) +
+  tm_style_classic()</code></pre>
+<p><img src="module4_notes2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><strong>Predefined formats</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Format</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tm_format_World</code></td>
+<td align="left">Format specified for world maps</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_format_World_wide</code></td>
+<td align="left">for world maps with more space for the legend</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_format_Europe</code></td>
+<td align="left">for maps of Europe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_format_Europe_wide</code></td>
+<td align="left">for maps of Europe with more space for the legend</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tm_format_NLD</code></td>
+<td align="left">for maps of the Netherlands</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tm_format_NLD_wide</code></td>
+<td align="left">for maps of the Netherlands with more space for the legend</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = &quot;circuit&quot;) +
+  tm_format_World_wide()</code></pre>
+<p><img src="module4_notes2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="static-vs-interactive-modes" class="section level3">
+<h3>Static vs interactive modes</h3>
+<pre class="r"><code>tmap_mode(&quot;plot&quot;) # set to static &quot;plot&quot; mode
+tmap_mode(&quot;view&quot;) # set to interactive &quot;view&quot; mode
+
+ttmp() # toggle between modes</code></pre>
+<ul>
+<li>“plot” mode generates a static map image</li>
+<li>“view” mode generates an interactive <code>leaflet</code> map
+<ul>
+<li><code>tm_view()</code> is a function to specify options for “view” mode</li>
+<li><code>tm_leaflet()</code> can directly generate an interactive <code>leaflet</code> map</li>
+</ul></li>
+</ul>
+<pre class="r"><code>tmap_mode(&quot;view&quot;)
+qtm(counties, fill = &quot;circuit&quot;)</code></pre>
+<iframe src="../interactive/tmap_view.html" style="display: block; margin: auto; min-height:500px; width:80%;">
+</iframe>
+</div>
+</div>
+<div id="leaflet" class="section level2">
+<h2><code>Leaflet</code></h2>
+<img src="../images/leaflet.png" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://leafletjs.com/">leafletjs.com</a>
+</p>
+<div id="what-is-leaflet" class="section level3">
+<h3>What is <code>leaflet</code>?</h3>
+<blockquote>
+<p>“Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.”<br>-“Leaflet for R”, RStudio</p>
+</blockquote>
+<ul>
+<li>While <code>leaflet</code> is a powerful library for generating interactive maps, it takes much time and practice to get familiar with its API.</li>
+<li>Using <code>tmap</code>’s interactive view could be an alterantive to using <code>leaflet</code>’s API directly.</li>
+</ul>
+<pre class="r"><code>pal &lt;- colorFactor(topo.colors(5), counties$circuit)
+leaflet(counties) %&gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&gt;%
+  addPolygons(fillColor = ~pal(circuit), color = &quot;darkgrey&quot;, weight = 2) %&gt;%
+  addLegend(pal = pal, values = ~circuit)</code></pre>
+<iframe src="../interactive/leaflet.html" style="display: block; margin: auto; min-height:450px; width:80%;">
+</iframe>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><code>ggmap</code> <a href="https://github.com/dkahle/ggmap">github repository</a></li>
+<li>Kahle and Wickham. 2013. “ggmap: Spatial Visualization with ggplot2” <a href="https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf">article</a></li>
+<li>Lovelace, et al. 2017. “Introduction to visualising spatial data in R” <a href="https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf">article</a></li>
+<li><code>tmap</code> <a href="https://github.com/mtennekes/tmap">github repository</a>
+<ul>
+<li><a href="https://github.com/mtennekes/tmap#vignettes-and-examples">Links to vignettes and examples</a></li>
+</ul></li>
+<li><code>leaftlet</code> <a href="https://rstudio.github.io/leaflet/">official documentation page</a></li>
+</ul>
 <hr />
+</div>
+</div>
+<div id="interactive-plots" class="section level1">
+<h1>Interactive Plots</h1>
+<img src="../images/interactive.png" width="25%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Interactive_icon.svg">Wikipedia Commons</a>
+</p>
+<div id="packages-for-interactive-plots" class="section level2">
+<h2>Packages for interactive plots</h2>
+<ul>
+<li><code>ggiraph</code>: an <code>htmlwidget</code> package for interactive <code>ggplot2</code> graphics</li>
+<li><code>plotly</code>: R API for the plotly.js library</li>
+<li><code>highcharter</code>: R API for the highchart.js library</li>
+<li><code>googleVis</code>: R API for Google Charts</li>
+<li>And more</li>
+</ul>
+<img src="../images/ggiraph.gif" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
+</p>
+</div>
+<div id="ggiraph" class="section level2">
+<h2>ggiraph</h2>
+<blockquote>
+<p>“ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated.”<br>- Gohel, D. (package author/creator)</p>
+</blockquote>
+<p><code>ggiraph</code> offers interactive <code>geom</code>s to be used for a <code>ggplot2</code> plot and renders the plot with interactive <code>geom</code>s as an interactive visualization.</p>
+<p>Interactive geom layers</p>
+<pre class="r"><code>p &lt;- plot + geom_*_interactive(...)
+ggiraph(code = print(p), ...)</code></pre>
+<ul>
+<li><code>plot</code> is a <code>ggplot</code> object</li>
+<li><code>ggiraph()</code> takes a <code>ggplot2::ggplot</code> object with an interactive <code>geom</code> to generate an interactive plot</li>
+<li>12 interactive <code>geom</code> layers that can be integrated into a <code>ggplot</code> object:
+<ul>
+<li>bar, boxplot, histogram, line, map, path, point, polygon, rect, segment, text, tile</li>
+</ul></li>
+</ul>
+<div id="interactive-aesthetic-mappings" class="section level3">
+<h3>Interactive aesthetic mappings</h3>
+<pre class="r"><code>aes(tooltip, onclick, data_id)</code></pre>
+<ul>
+<li>Each interactive <code>geom</code> has mapping for the following interactive elements:</li>
+<li><code>tooltip</code> is a column containing information to be displayed as tooltip</li>
+<li><code>onclick</code> is a column containing JavaScript instructions to run for a “click” event</li>
+<li><code>data_id</code> is a column containing id to be associated with elements.
+<ul>
+<li>Must be specified to use a customized “hover” effect</li>
+</ul></li>
+</ul>
+<pre class="r"><code>data &lt;- ispcrime %&gt;% filter(county != &quot;Cook&quot;) %&gt;% left_join(regions)
+p &lt;- ggplot(data, aes(x = violentCrime, propertyCrime, color = region)) +
+  geom_point_interactive(aes(tooltip = county, data_id = county))
+ggiraph(code = print(p), hover_css = &quot;fill:orange;fill-opacity:.3;cursor:pointer;&quot;)</code></pre>
+<iframe src="../interactive/ggiraph.html" style="display: block; margin: auto; min-height:500px; width:75%;">
+</iframe>
+</div>
+</div>
+<div id="plotly" class="section level2">
+<h2><code>plotly</code></h2>
+<img src="../images/plotly.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
+</p>
+<div id="what-is-plotly" class="section level3">
+<h3>What is <code>plotly</code>?</h3>
+<blockquote>
+<p>“Plotly’s R graphing library makes interactive, publication-quality graphs online. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, and 3D (WebGL based) charts.”<br>- “Plotly R Library”, <em>plotly</em></p>
+</blockquote>
+</div>
+<div id="the-ggplotly-function" class="section level3">
+<h3>The <code>ggplotly()</code> function</h3>
+<pre class="r"><code>ggplotly(p = ggplot2::last_plot(), ...)</code></pre>
+<ul>
+<li><code>ggplotly()</code> provides a quick and easy way to convert a <code>ggplot</code> object into an interactive plotly object</li>
+<li><code>p</code> is a <code>ggplot2::ggplot</code> object to be made interactive
+<ul>
+<li>if left empty, the most recently created <code>ggplot</code> object is retrieved and used</li>
+</ul></li>
+</ul>
+<pre class="r"><code>data &lt;- ispcrime %&gt;% filter(county != &quot;Cook&quot;) %&gt;% left_join(regions)
+p &lt;- ggplot(data, aes(violentCrime, propertyCrime, colour = region)) +
+  geom_point() + labs(title = &quot;Using ggplotly()&quot;)
+ggplotly(p)</code></pre>
+<iframe src="../interactive/ggplotly.html" style="display: block; margin: auto; min-height:500px; width:80%;">
+</iframe>
+</div>
+<div id="the-plot_ly-interface" class="section level3">
+<h3>The <code>plot_ly()</code> interface</h3>
+<pre class="r"><code>plot_ly(data, x, y, color, alpha, symbol, size, ...)
+
+ # equivalent to add_type()
+add_trace(p, ..., type = &quot;type&quot;, inheret = TRUE)</code></pre>
+<ul>
+<li><code>plot_ly</code> takes a data frame and defines the aesthetic mappings</li>
+<li>“trace” is the “geom” equivalent in <code>plot_ly</code> interface, which adds a layer to the plot output
+<ul>
+<li>While <code>plot_ly</code> can define traces, using <code>add_trace()</code> and its variants make it possible to use a <code>dplyr</code>-style workflow with pipe operators</li>
+<li>By default, each trace inherits the mappings from <code>p</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="plotly-add_-functions" class="section level3">
+<h3>plotly <code>add_</code> functions</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+<th align="left">Equivalent to <code>add_trace(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>add_trace()</code></td>
+<td align="left">add traces with options</td>
+<td align="left"><code>NA</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_markers()</code></td>
+<td align="left">adds a scattorplot</td>
+<td align="left"><code>type=&quot;scatter&quot;, mode=&quot;markers&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>add_lines()</code></td>
+<td align="left">adds a line plot</td>
+<td align="left"><code>type=&quot;scatter&quot;, mode=&quot;lines&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_bars()</code></td>
+<td align="left">adds a bar plot</td>
+<td align="left"><code>type=&quot;bar&quot;, mode=&quot;markers&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>add_histogram()</code></td>
+<td align="left">adds a histogram</td>
+<td align="left">`type=“histogram”</td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_boxplot()</code></td>
+<td align="left">adds a box plot</td>
+<td align="left">`type=“box”</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>add_pie()</code></td>
+<td align="left">adds a pie chart</td>
+<td align="left"><code>type=&quot;&quot;, mode=&quot;&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_text()</code></td>
+<td align="left">adds texts</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>add_polygons()</code></td>
+<td align="left">adds polygons</td>
+<td align="left"><code>type=&quot;&quot;, mode=&quot;&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot_ly(data, x = ~violentCrime, y = ~propertyCrime, color = ~region) %&gt;%
+  add_markers() %&gt;%
+  layout(title = &quot;Using plot_ly() interface&quot;)</code></pre>
+<iframe src="../interactive/plot_ly.html" style="display: block; margin: auto; min-height:500px; width:80%;">
+</iframe>
+</div>
+</div>
+<div id="highcharter" class="section level2">
+<h2><code>highcharter</code></h2>
+<img src="../images/highcharter.png" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
+</p>
+<div id="what-is-highcharter" class="section level3">
+<h3>What is <code>highcharter</code>?</h3>
+<blockquote>
+<p>“Highcharter is a R wrapper for Highcharts javascript libray and its modules. Highcharts is very mature and flexible javascript charting library and it has a great and powerful API.”<br>-Kunst, J. (package author)</p>
+</blockquote>
+<ul>
+<li>We have already seen <code>Highcharts</code> plots in ICJIA R&amp;A Unit’s online articles (e.g. Figure 1 and Figure 2 in <a href="http://www.icjia.state.il.us/articles/evaluation-of-illinois-multi-jurisdictional-drug-task-forces">this article</a>).</li>
+</ul>
+</div>
+<div id="the-hchart-function" class="section level3">
+<h3>The <code>hchart()</code> function</h3>
+<pre class="r"><code>hchart(data, type, hcaes(x, y, ...))</code></pre>
+<ul>
+<li>Quickly generates a hichchart plot
+<ul>
+<li>Comparable to <code>qplot()</code> in <code>ggplot2</code></li>
+</ul></li>
+<li><code>hcaes()</code> works like <code>aes()</code> in <code>ggplot2</code></li>
+</ul>
+<pre class="r"><code>hchart(data, type = &quot;scatter&quot;, hcaes(x = violentCrime, y = propertyCrime, group = region)) %&gt;%
+  hc_title(text = &quot;Using hchart() interface&quot;)</code></pre>
+<iframe src="../interactive/hchart.html" style="display: block; margin: auto; min-height:500px; width:80%;">
+</iframe>
+</div>
+<div id="the-highchart-interface" class="section level3">
+<h3>The <code>highchart()</code> interface</h3>
+<pre class="r"><code>highchart() %&gt;%
+  hc_add_series(...) %&gt;% # add a &quot;series&quot;
+  hc_xAxis(...) %&gt;% # define x-axis
+  hc_yAxis(...) %&gt;% # define y-axis
+  hc_title(...) %&gt;% # add the main title
+  hc_chart(...) %&gt;% # modify general plot options
+  hc_color(...) %&gt;% # control colors
+  hc_*(...) # and more...</code></pre>
+<ul>
+<li>Closely follows the original Javascript API</li>
+</ul>
+<pre class="r"><code>highchart() %&gt;%
+  hc_add_series(data, type = &quot;scatter&quot;, hcaes(x = violentCrime, y = propertyCrime, group = region)) %&gt;%
+  hc_title(text = &quot;Using highchart() interface&quot;)</code></pre>
+<iframe src="../interactive/highchart.html" style="display: block; margin: auto; min-height:500px; width:80%;">
+</iframe>
+</div>
+</div>
+<div id="resources-1" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><code>ggiraph</code> <a href="https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html">official documentation page</a></li>
+<li><code>plotly</code> <a href="https://plot.ly/r/">official documentation page</a></li>
+<li>Sievert. <em><code>plotly</code> for R</em> <a href="https://plotly-book.cpsievert.me/">book</a></li>
+<li><code>highcharter</code> <a href="http://jkunst.com/highcharter/index.html">official documentation page</a></li>
+</ul>
+</div>
+<div id="more-on-interactive-plotting" class="section level2">
+<h2>More on interactive plotting</h2>
+<ul>
+<li><code>rAmCharts</code> is an R interface to the <a href="https://www.amcharts.com/products/"><code>amCharts</code></a> JavaScript library that offers interactive options for many common plot types and more. See <code>rAmCharts</code> <a href="https://datastorm-open.github.io/introduction_ramcharts/amBoxplot.html">online documentation</a> for more.</li>
+<li><code>chartjs</code> is an R interface to the <a href="http://www.chartjs.org/"><code>Chart.js</code></a> JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots. See <code>chartjs</code> <a href="http://tutuchan.github.io/chartjs/">website</a> for mare.</li>
+<li><code>dygraphs</code> is an R interface to the <a href="http://rstudio.github.io/dygraphs/index.html">dygraphs</a> JavaScript library for interactive time-series plots. See <code>dygraph</code> <a href="http://rstudio.github.io/dygraphs/index.html">online documentation</a> for more.</li>
+</ul>
+</div>
+<div id="other-visualizations" class="section level2">
+<h2>Other visualizations</h2>
+<ul>
+<li><a href="http://datastorm-open.github.io/visNetwork/"><code>visNetwork</code></a> (wrapper for <code>vis.js</code>) and <a href="http://visjs.org/"><code>networkD3</code></a> are two popular packages for interactive visualization of network/graph data in R. Start with <a href="http://igraph.org/r/"><code>igraph</code></a> or <a href="https://github.com/thomasp85/tidygraph"><code>tidygraph</code></a> package to learn how to work with network objects in R</li>
+<li><a href="https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html"><code>wordcloud2</code></a> (wrapper for <code>worldcloud2.js</code>) is a package for creating word clouds, a popular way to visualize text data.</li>
+<li><a href="https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html"><code>data.tree</code></a> is an R package for managing hierarchical data and tree structures. The pacakge also offers data visualization options for trees.</li>
+</ul>
+<hr />
+</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <ul style="list-style-type:none">
 <li>
-<a href="#">1</a>
+Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a>
 </li>
 <li>
-<a href="#">2</a>
+Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a>
 </li>
 <li>
-<a href="#">3</a>
+Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><span style="font-style:italic">plotly for R</span></a>
 </li>
 <li>
-<a href="#"></a>
+Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">“tmap in a nutshell”</a>
+</li>
+<li>
+Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">“tmap modes: plot and interactive view”</a>
 </li>
 </ul>
 </div>

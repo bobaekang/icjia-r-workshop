@@ -58,15 +58,31 @@ type:section
 Prerequisites
 ========================================================
 * Shapefile
+    * a popular format for storing geospatial data
 * `rgdal` pacakge
+    * an R interface to Geospatial Data Abstraction Library (GDAL) for reading and writing geospatial data formats
 * Spatial objects in R
 
 
 Shapefile
 ========================================================
-* what
-* is
-* shapefile
+> "A shapefile is a simple, nontopological format for storing the geometric location and attribute information of geographic features. Geographic features in a shapefile can be represented by points, lines, or polygons (areas)."<br> - "What is a shapefile?", *Esri*
+
+
+> "The shapefile format is a popular geospatial vector data format for geographic information system (GIS) software [...] developed and regulated by Esri [...]. The shapefile format can spatially describe vector features: points, lines, and polygons [...]. Each item usually has attributes that describe it, such as name or temperature." - "Shapefile", *Wikipedia*
+
+
+Shapefile components
+========================================================
+A shapefile format in fact consists of a collection of files. The following are commonly included when using shapefile data in R:
+
+
+|File extension |Description                                                                    |
+|:--------------|:------------------------------------------------------------------------------|
+|`.shp`         |The main file that stores the feature geometry; *required*.                    |
+|`.shx`         |The index file that stores the index of the feature geometry; *required*.      |
+|`.dbf`         |The dBASE table that stores the attribute information of features; *required*. |
+|`.prj`         |The file that stores the coordinate system information; used by ArcGIS.        |
 
 
 Importing a shapefile
@@ -92,6 +108,7 @@ Spatial (vector) objects in R
       * <small>`Points`, `MultiPoints`, `Pixels`, `Grid`, ``Lines`, `Polygons`</small>
   * With attributes: `Spatial*DataFrame` classes
       * The attributes `data.frame` table can be accessed using standard methods.
+* See the ["Spatial Cheatsheet"](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html) for more one spatial objects in R
 
 
 Example
@@ -106,68 +123,31 @@ class(counties)
 attr(,"package")
 [1] "sp"
 ```
-* `icjiar` package provides a spatial object `counties` for countes in Illinois
+* `icjiar` package provides a spatial object named `counties` for countes in Illinois
     * it is of the `SpatialPolygonsDataFrame` class
 
 
 Packages for maps
 ========================================================
-* `ggmap` package for plotting maps using the `ggplot2` framework
 * `tmap` package for thematic maps
 * `leaftlet` package for interactive maps
 * And more
 
 
-ggmap: Plotting maps with ggplot2
-========================================================
-type: section
-
-
-ggmap
-========================================================
-> "`ggmap` makes it easy to retrieve raster map tiles from popular online mapping services like Google Maps, OpenStreetMap, Stamen Maps, and plot them using the `ggplot2` framework." - Kahle, D. (package author/creator)
-
-
-The qmplot() function
-========================================================
-
-```r
-qmplot(x, y, ..., data, zoom, source = "stamen", maptype = "toner-lite", legend = "right", geom = "auto", xlim = c(NA, NA), ylim = c(NA, NA), xlab = "Longitude", ylab = "Latitude"), ...more)
-```
-* comparable to `qplot()` in `ggplot2`
-* `x` takes longitude values, `y` takes latitude values
-* `...` is other aesthetics
-* `zoom`, `source`, `maptype` are same as those in `get_map()` (see below)
-* `geom` is a character vector specifying geom to use.
-    * defaults to "point"
-
-
-The get_map() function
-========================================================
-
-```r
-get_map(location, zoom, scale, maptype, source, ...)
-```
-* Quickly graps a map from various sources:
-    * e.g. Google Maps, OpenStreetMap, or Staman Map
-* Returns a `ggmap` object, which can be plotted with the `ggmap()` function
-* `zoom` takes an integer from 3 (continent) to 21 (building); default is 10 (city); the range differs based on source/type
-* `source`
-* `maptype`
-
-
-========================================================
-**`ggmap` example**
-
-
 tmap: Thematic maps in R
 ========================================================
 type: section
+<img src="../images/tmap_worldmap.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://github.com/mtennekes/tmap">tmap GitHub repo</a>
+</p>
 
 
 tmap
 ========================================================
 > "With the tmap package, thematic maps can be generated with great flexibility. The syntax for creating plots is similar to that of ggplot2. The add-on package tmaptools contains tool functions for reading and processing shape files." - "tmap in a nutshell"
+
+* In my experience, `tmap` is the most accessible R package for generating maps, making it easy to get visually appealing maps using data in the shapefile format.
 
 
 The qtm() function
@@ -184,7 +164,11 @@ qtm(shape_object, ...)
 
 ========================================================
 
+```r
+qtm(counties, fill = "circuit")
+```
 
+![plot of chunk unnamed-chunk-9](module4_slides2-figure/unnamed-chunk-9-1.png)
 
 
 The tm_*() interface
@@ -242,11 +226,77 @@ tm_shape(shape_object) +
 
 ========================================================
 
+```r
+tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = "circuit")
+```
+
+![plot of chunk unnamed-chunk-14](module4_slides2-figure/unnamed-chunk-14-1.png)
 
 
-Styles
+Layouts for maps
 ========================================================
 
+```r
+tm_layout(title = NA, scale = 1, title.size = 1.3, bg.color = "white", aes.color = c(fill = "grey85", borders = "grey40", symbols = "grey60", dots = "black", lines = "red", text = "black", na = "grey75"), ...)
+```
+* `tm_layout` is the general function to control all things about layout settings.
+* `tm_style_*` functions which offer predefined sets of styling-related layout settings such as background colors, colors and font (similar to `ggplot2` themes).
+* `tm_format_*` functions which offer predefined sets of position-related layout settings such as margins.
+
+
+========================================================
+**Predefined styles**
+
+|Style                |Description                                                                    |
+|:--------------------|:------------------------------------------------------------------------------|
+|`tm_style_white`     |White background, commonly used colors (default)                               |
+|`tm_style_gray`      |Gray background, useful to highlight sequential palettes (e.g. in choropleths) |
+|`tm_style_natural`   |Emulation of natural view: blue waters and green land                          |
+|`tm_style_bw`        |Greyscale                                                                      |
+|`tm_style_classic`   |Classic styled maps                                                            |
+|`tm_style_col_blind` |Style for colorblind viewers                                                   |
+|`tm_style_cobalt`    |Inspired by latex beamer style cobalt                                          |
+|`tm_style_albatross` |Inspired by latex beamer style albatross                                       |
+|`tm_style_beaver`    |Inspired by latex beamer style beaver                                          |
+
+
+========================================================
+
+```r
+tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = "circuit") +
+  tm_style_classic()
+```
+
+![plot of chunk unnamed-chunk-17](module4_slides2-figure/unnamed-chunk-17-1.png)
+
+
+========================================================
+**Predefined formats**
+
+|Format                  |Description                                                |
+|:-----------------------|:----------------------------------------------------------|
+|`tm_format_World`       |Format specified for world maps                            |
+|`tm_format_World_wide`  |for world maps with more space for the legend              |
+|`tm_format_Europe`      |for maps of Europe                                         |
+|`tm_format_Europe_wide` |for maps of Europe with more space for the legend          |
+|`tm_format_NLD`         |for maps of the Netherlands                                |
+|`tm_format_NLD_wide`    |for maps of the Netherlands with more space for the legend |
+
+
+========================================================
+
+```r
+tm_shape(counties) +
+  tm_borders() +
+  tm_fill(col = "circuit") +
+  tm_format_World_wide()
+```
+
+![plot of chunk unnamed-chunk-19](module4_slides2-figure/unnamed-chunk-19-1.png)
 
 
 Static vs interactive modes
@@ -259,14 +309,24 @@ tmap_mode("view") # set to interactive "view" mode
 ttmp() # toggle between modes
 ```
 
+* "plot" mode generates a static map image
+* "view" mode generates an interactive `leaflet` map
+    * `tm_view()` is a function to specify options for "view" mode
+    * `tm_leaflet()` can directly generate an interactive `leaflet` map 
 
 ========================================================
 
+```r
+tmap_mode("view")
+qtm(counties, fill = "circuit")
+```
+
+<iframe src="../interactive/tmap_view.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
 
 
 ========================================================
 type: section
-<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/leaflet.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="60%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="http://leafletjs.com/">leafletjs.com</a>
 </p>
@@ -276,9 +336,21 @@ leaflet
 ========================================================
 > "Leaflet is one of the most popular open-source JavaScript libraries for interactive maps. It's used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB."<br>-"Leaflet for R", RStudio
 
+* While `leaflet` is a powerful library for generating interactive maps, it takes much time and practice to get familiar with its API.
+* Using `tmap`'s interactive view could be an alterantive to using `leaflet`'s API directly.
+
 
 ========================================================
-**`leaflet` example**
+
+```r
+pal <- colorFactor(topo.colors(5), counties$circuit)
+leaflet(counties) %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  addPolygons(fillColor = ~pal(circuit), color = "darkgrey", weight = 2) %>%
+  addLegend(pal = pal, values = ~circuit)
+```
+
+<iframe src="../interactive/leaflet.html" style="display: block; margin: auto; min-height:450px; width:80%;"></iframe>
 
 
 Resources
@@ -295,7 +367,10 @@ Resources
 Interactive Plots
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/interactive.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="25%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Interactive_icon.svg">Wikipedia Commons</a>
+</p>
 
 
 Packages for interactive plots
@@ -309,7 +384,7 @@ Packages for interactive plots
 
 ========================================================
 type: section
-<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/ggiraph.gif" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
 </p>
@@ -362,7 +437,7 @@ ggiraph(code = print(p), hover_css = "fill:orange;fill-opacity:.3;cursor:pointer
 
 ========================================================
 type: section
-<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/plotly.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
 </p>
@@ -441,7 +516,7 @@ plot_ly(data, x = ~violentCrime, y = ~propertyCrime, color = ~region) %>%
 
 ========================================================
 type: section
-<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
+<img src="../images/highcharter.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="100%" style="display: block; margin: auto; margin-top: 15%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
 </p>
@@ -528,7 +603,7 @@ Other visualizations
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href=""></a>
 </p>
