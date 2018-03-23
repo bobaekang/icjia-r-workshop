@@ -108,7 +108,7 @@ Spatial (vector) objects in R
       * <small>`Points`, `MultiPoints`, `Pixels`, `Grid`, ``Lines`, `Polygons`</small>
   * With attributes: `Spatial*DataFrame` classes
       * The attributes `data.frame` table can be accessed using standard methods.
-* See the ["Spatial Cheatsheet"](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html) for more one spatial objects in R
+* See the ["Spatial Cheatsheet"](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html) for more on spatial objects in R
 
 
 Example
@@ -156,7 +156,7 @@ The qtm() function
 ```r
 qtm(shape_object, ...)
 ```
-* Generates a "quicke thematic map"
+* Generates a "quick thematic map"
     * comparable to `qplot()` in `ggplot2`
 * Offers the same level of flexibility as the main plotting interface
     * The main interface is stil recommended for complex plots 
@@ -312,7 +312,7 @@ ttmp() # toggle between modes
 * "plot" mode generates a static map image
 * "view" mode generates an interactive `leaflet` map
     * `tm_view()` is a function to specify options for "view" mode
-    * `tm_leaflet()` can directly generate an interactive `leaflet` map 
+    * `tmap_leaflet()` can directly generate an interactive `leaflet` map 
 
 ========================================================
 
@@ -353,15 +353,24 @@ leaflet(counties) %>%
 <iframe src="../interactive/leaflet.html" style="display: block; margin: auto; min-height:450px; width:80%;"></iframe>
 
 
+Other options
+========================================================
+* base R plot
+* `sp::spplot()`
+* `ggplot2::geom_map()`
+* `ggmap`
+
+
 Resources
 ========================================================
-* `ggmap` [github repository](https://github.com/dkahle/ggmap)
-* Kahle and Wickham. 2013. "ggmap: Spatial Visualization with ggplot2" [article](https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
-* Lovelace, et al. 2017. "Introduction to visualising spatial data in R
-" [article](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf)
-* `tmap` [github repository](https://github.com/mtennekes/tmap)
-    * [Links to vignettes and examples](https://github.com/mtennekes/tmap#vignettes-and-examples)
+* Eubank, N. (2015). ["Making maps in R"](http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS3_MakingMaps_part1_mappingVectorData.html).
+* Hijmans, R. (2016). ["Spatial Data Manipulation"](http://rspatial.org/spatial/index.html). *R Spatial*.
 * `leaftlet` [official documentation page](https://rstudio.github.io/leaflet/)
+* Lovelace, R. et al. (2017). ["Introduction to visualising spatial data in R
+"](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf).
+* Pebesma, E. (n.d.). [*Simple Features for R*](http://r-spatial.github.io/sf/).
+* `tmap` [github repository](https://github.com/mtennekes/tmap)
+    * [Links to package vignettes and examples](https://github.com/mtennekes/tmap#vignettes-and-examples)
 
 
 Interactive Plots
@@ -378,7 +387,6 @@ Packages for interactive plots
 * `ggiraph`: an `htmlwidget` package for interactive `ggplot2` graphics
 * `plotly`: R API for the plotly.js library
 * `highcharter`: R API for the highchart.js library
-* `googleVis`: R API for Google Charts
 * And more
 
 
@@ -394,7 +402,7 @@ ggiraph
 ========================================================
 > "ggiraph is an htmlwidget and a ggplot2 extension. It allows ggplot graphics to be animated."<br>- Gohel, D. (package author/creator)
 
-`ggiraph` offers interactive `geom`s to be used for a `ggplot2` plot and renders the plot with interactive `geom`s as an interactive visualization.
+`ggiraph` offers interactive "geoms" to be used for a `ggplot2` plot and renders the plot with interactive "geoms" as an interactive visualization.
 
 
 Interactive geom layers
@@ -405,8 +413,8 @@ p <- plot + geom_*_interactive(...)
 ggiraph(code = print(p), ...)
 ```
 * `plot` is a `ggplot` object
-* `ggiraph()` takes a `ggplot2::ggplot` object with an interactive `geom` to generate an interactive plot
-* 12 interactive `geom` layers that can be integrated into a `ggplot` object:
+* `ggiraph()` takes a `ggplot2::ggplot` object with an interactive "geom" to generate an interactive plot
+* 12 interactive "geom" layers that can be integrated into a `ggplot` object:
     * bar, boxplot, histogram, line, map, path, point, polygon, rect, segment, text, tile
 
 
@@ -416,7 +424,7 @@ Interactive aesthetic mappings
 ```r
 aes(tooltip, onclick, data_id)
 ```
-* Each interactive `geom` has mapping for the following interactive elements: 
+* Each interactive "geom" has mapping for the following interactive elements: 
   * `tooltip` is a column containing information to be displayed as tooltip
   * `onclick` is a column containing JavaScript instructions to run for a "click" event
   * `data_id` is a column containing id to be associated with elements.
@@ -456,13 +464,13 @@ ggplotly(p = ggplot2::last_plot(), ...)
 ```
 * `ggplotly()` provides a quick and easy way to convert a `ggplot` object into an interactive plotly object
 * `p` is a `ggplot2::ggplot` object to be made interactive
-    * if left empty, the most recently created `ggplot` object is retrieved and used
+    * The default value for `p` is the most recently created `ggplot` object if there is any
     
 
 ========================================================
 
 ```r
-data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
+# using the same data
 p <- ggplot(data, aes(violentCrime, propertyCrime, colour = region)) +
   geom_point() + labs(title = "Using ggplotly()")
 ggplotly(p)
@@ -495,8 +503,8 @@ plotly add functions
 |`add_markers()`   |adds a scattorplot      |`type="scatter", mode="markers"` |
 |`add_lines()`     |adds a line plot        |`type="scatter", mode="lines"`   |
 |`add_bars()`      |adds a bar plot         |`type="bar", mode="markers"`     |
-|`add_histogram()` |adds a histogram        |`type="histogram"                |
-|`add_boxplot()`   |adds a box plot         |`type="box"                      |
+|`add_histogram()` |adds a histogram        |`type="histogram"`               |
+|`add_boxplot()`   |adds a box plot         |`type="box"`                     |
 |`add_pie()`       |adds a pie chart        |`type="", mode=""`               |
 |`add_text()`      |adds texts              |                                 |
 |`add_polygons()`  |adds polygons           |`type="", mode=""`               |
@@ -537,12 +545,14 @@ hchart(data, type, hcaes(x, y, ...))
 ```
 * Quickly generates a hichchart plot
     * Comparable to `qplot()` in `ggplot2`
+* `type` specifies the type of plot (e.g. "scattor" for scattorplot)
 * `hcaes()` works like `aes()` in `ggplot2`
 
 
 ========================================================
 
 ```r
+# using the same data
 hchart(data, type = "scatter", hcaes(x = violentCrime, y = propertyCrime, group = region)) %>%
   hc_title(text = "Using hchart() interface")
 ```
@@ -577,44 +587,44 @@ highchart() %>%
 <iframe src="../interactive/highchart.html" style="display: block; margin: auto; min-height:500px; width:80%;"></iframe>
 
 
-
 Resources
 ========================================================
 * `ggiraph` [official documentation page](https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html)
-* `plotly` [official documentation page](https://plot.ly/r/)
-* Sievert. *`plotly` for R* [book](https://plotly-book.cpsievert.me/)
 * `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html)
+* `plotly` [official documentation page](https://plot.ly/r/)
+* Sievert, C. (n.d.) [*`plotly` for R*](https://plotly-book.cpsievert.me/).
 
 
 More on interactive plotting
 ========================================================
-* `rAmCharts` is an R interface to the [`amCharts`](https://www.amcharts.com/products/) JavaScript library that offers interactive options for many common plot types and more. See `rAmCharts` [online documentation](https://datastorm-open.github.io/introduction_ramcharts/amBoxplot.html) for more.
-* `chartjs` is an R interface to the [`Chart.js`](http://www.chartjs.org/) JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots. See `chartjs` [website](http://tutuchan.github.io/chartjs/) for mare.
-* `dygraphs` is an R interface to the [dygraphs](http://rstudio.github.io/dygraphs/index.html) JavaScript library for interactive time-series plots. See `dygraph` [online documentation](http://rstudio.github.io/dygraphs/index.html) for more.
+* `rAmCharts` is an R interface to the [`amCharts`](https://www.amcharts.com/products/) JavaScript library that offers interactive options for many common plot types and more.
+* `chartjs` is an R interface to the [`Chart.js`](http://www.chartjs.org/) JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots.
+* `googleVis` offers an R API to [Google Charts](https://developers.google.com/chart/), which offers rich set of interactive charts and data tools.
+* `dygraphs` is an R interface to the [dygraphs](http://rstudio.github.io/dygraphs/index.html) JavaScript library for interactive time-series plots.
 
 
 Other visualizations
 ========================================================
 * [`visNetwork`](http://datastorm-open.github.io/visNetwork/) (wrapper for `vis.js`) and [`networkD3`](http://visjs.org/) are two popular packages for interactive visualization of network/graph data in R. Start with [`igraph`](http://igraph.org/r/) or [`tidygraph`](https://github.com/thomasp85/tidygraph) package to learn how to work with network objects in R
 * [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html) (wrapper for `worldcloud2.js`) is a package for creating word clouds, a popular way to visualize text data.
-* [`data.tree`](https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html) is an R package for managing hierarchical data and tree structures. The pacakge also offers data visualization options for trees.
+* [`data.tree`](https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html) is an R package for managing as well as visualizing hierarchical data and tree structures.
 
 
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="http://gifimage.net/wp-content/uploads/2017/10/david-pumpkins-gif.gif" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href=""></a>
+Source: <a href="http://gifimage.net/david-pumpkins-gif/">Gifimage.net</a>
 </p>
 
 
 ========================================================
 References
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a></li>
-  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a></li>
-  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><span style="font-style:italic">plotly for R</span></a></li>
-  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a></li>
-  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a></li>
+  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a><./li>
+  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a>.</li>
+  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><span style="font-style:italic">plotly for R</span></a>.</li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a>.</li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a>.</li>
 </ul>

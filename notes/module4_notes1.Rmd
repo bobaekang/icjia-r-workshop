@@ -418,6 +418,8 @@ scale_x_time(...)
 scale_y_time(...)
 ```
 
+#### Example
+The following example applies the log 10 scale to the y-axis.
 ```{r}
 # apply the log 10 scale to the y-axis 
 plot + scale_y_log10()
@@ -427,8 +429,7 @@ plot + scale_y_log10()
 ```{r eval=FALSE}
 scale_*_manual(name, breaks, labels, limits, ..., values)
 ```
-* Scale manuals is used to create my own discrete scale
-* "Manual" is available for:
+Scale manuals are used to create customized discrete scales. Such "manuals" are available for the following aesthetics:
     * `colour`
     * `fill`
     * `size`
@@ -436,8 +437,10 @@ scale_*_manual(name, breaks, labels, limits, ..., values)
     * `linetype`
     * `alpha`
 
+#### Example
+The example below uses `scale_colour_manual()` to specify the scale of `colour` mapping.
 ```{r}
-plot + scale_color_manual(
+plot + scale_colour_manual(
   name = "",
   breaks = c("Central", "Northern", "Southern"),
   labels = c("Central region", "Northern region", "Southern region"),
@@ -456,12 +459,15 @@ See the full documentation on scales [here](http://ggplot2.tidyverse.org/referen
 ```{r eval=FALSE}
 guides(...)
 guide_legend(...)
+guide_colourbar() # equivalent to guide_colorbar()
 ```
-* `guides` can be used to set (or remove) guides for each scale
-* `guide_legend()` can be used to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.)
-    * `guide_legned()` is used as an input for each scale argument in `guide()`
+
+The guides refer to the axes and the legends that help viewers to interpret the plots. While most aspect of the guides can be controlled by scale functions, there are sometimes needs for additional fine-tuning.
+
+The `guides()` can be used to set (or remove) guides for each scale. The `guide_legend()` is used as an input for each scale argument in `guide()` (e.g., `fill`) to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.). Similarly, `guide_colourbar()` or `guide_colorbar()` is used as an input for a scale arguement in `guide()` to control the continous color bar.
 
 ### Example
+The following example uses `guides()` to control the legend title of `colour` mapping and remove the legend for `size` mapping.
 ```{r}
 plot + guides(
   colour = guide_legend(title = "Region", title.position = "bottom"),
