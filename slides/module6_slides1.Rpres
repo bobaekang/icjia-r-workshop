@@ -96,7 +96,7 @@ include_graphics("../images/rmarkdown4.png")
 
 Basics
 ========================================================
-* yaml header
+* YAML header
 * knit and preview outputs
 * markdown
 * code chucks
@@ -109,7 +109,7 @@ include_graphics("../images/rmarkdown5.png")
 ```
 
 
-yaml options
+YAML options
 ========================================================
 * Title, author, date
 * output
@@ -411,6 +411,7 @@ Other formats
 * beamer (`output: beamer_presentation`)
 * [xaringan](https://github.com/yihui/xaringan) (`output: xaringan::moom_reader`)
 
+
 Shiny
 ========================================================
 type:section
@@ -421,16 +422,27 @@ include_graphics("../images/shiny_logo.png")
 Source: <a href="https://www.rstudio.com/">R Studio</a>
 </p>
 
+
 What is Shiny?
 ========================================================
+> "Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge."<br>- RStudio.com
+
+* Check out my ICJIA UCR Data dashboard app [here](https://bobaekang.shinyapps.io/crime_data_profile_demo/)
+* Check out more examples on RStudio's ["Shiny User Showcase" page](https://www.rstudio.com/products/shiny/shiny-user-showcase/) 
 
 
 Dashboards
 ========================================================
+* A data dashboard is a visual interface to data to allow its viewers for gain key insights
+* It is often an interactive application that provides viewers with options to explore data from multiple angles interactively
+* Shiny application can make a great dashboard
 
 
 Interactive documents
 ========================================================
+* Shiny can be used to generate interactive documents with Shiny app widgets
+* An interactive document is an R Markdown file with the YAML head including `runtime: shiny` and `output: html_document` or `output: ioslids_presentation`
+* 
 
 
 Getting started
@@ -486,12 +498,14 @@ Hosting on Github Pages
 Books
 ========================================================
 * `bookdown` package
+* `bookdown` package [website](https://bookdown.org/)
+* Xie, Y. (2018). [*`bookdown`: Authoring Books and Technical Documents with R Markdown*](https://bookdown.org/yihui/bookdown/)
 
 
 Blogs
 ========================================================
 * `blogdown` package
-
+* Xie, Y. et al. (2018). [*`blogdown`: Creating Websites with R Markdown*](https://bookdown.org/yihui/blogdown/)
 
 
 Questions?
@@ -508,8 +522,8 @@ Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D
 ========================================================
 References
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
+  <li>Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html">"Introduction to interactive documents"</a>. <i>Shiny from RStudio</i>.</li>
+  <li>Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html">"Introduction to R Studio"</a>. <i>R Markdown from RStudio</i>.</li>
   <li><a href="#">3</a></li>
   <li><a href="#"></a></li>
 </ul>

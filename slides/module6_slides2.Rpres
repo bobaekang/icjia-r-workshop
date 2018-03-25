@@ -27,6 +27,12 @@ css: ../css/style_slides.css
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
+```{r setup, include=FALSE}
+library(dplyr)
+library(tibble)
+library(knitr)
+```
+
 
 Agenda
 ========================================================
@@ -113,9 +119,14 @@ Source: <a href="https://www.google.com/about/products/">Google.com</a>
 
 How to google for questions
 ========================================================
-* Be specific and succint
+* Be succinct and specific
     * The search term should be a set of keywords
+    * Package names and/or function names are good keywords
     * Using the relevant error message as a serach term can help
+* Look at questions/answers on platforms like:
+    * Stack Overflow
+    * Quora
+* Refer to "official" resources if available
 
 
 "Official" resources
@@ -128,12 +139,13 @@ include_graphics("../images/Rlogo.png")
 Source: <a href="https://www.r-project.org/logo/">R Project</a>
 </p>
 
+
 CRAN
 ========================================================
-* The Comprehensive R Archive Network (CRAN)
-    * Manuals page
-    * Task Views page
-    * Packages page
+* The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following 
+    * Manuals
+    * Task Views
+    * Package pages
 
 
 Manuals
@@ -171,7 +183,7 @@ include_graphics("../images/cran_taskviews_page.png")
 ```
 
 
-Packages
+Package pages
 ========================================================
 * Each contributed package that is listed on CRAN has a page
 * A reference manual and vignettes can be found on the CRAN package page
@@ -210,11 +222,11 @@ Pacakge vignettes
 * Unfortunately, not all packages have vignettes.
 
 
-R Studio website
+RStudio website
 ========================================================
-* https://www.rstudio.com/
-    * Cheet sheets [page](https://www.rstudio.com/resources/cheatsheets/)
-    * Webinar & videos [page](https://www.rstudio.com/resources/webinars/)
+* RStudio's [website](https://www.rstudio.com/) offer many useful resources under "Resources" menu, including the following:
+    * [Cheet sheets page](https://www.rstudio.com/resources/cheatsheets/) has download links to over 30 "cheat sheets" on R and R packages in the PDF format.
+    * [Webinar & videos page](https://www.rstudio.com/resources/webinars/)
 
 
 ========================================================
@@ -241,24 +253,45 @@ Cheet sheets
 ========================================================
 <a href="https://www.rstudio.com/resources/cheatsheets/">
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/cheatsheets.png")
+include_graphics("../images/rstudio_cheatsheets.png")
 ```
 </a>
 
 
 ========================================================
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/cheatsheet_example.png")
+include_graphics("../images/rstudio_cheatsheet_example.png")
 ```
 
 
-Webinar & vidoes
+Webinar & videos
 ========================================================
+* RStudio's webinars and videos offer materials covering a variety of subjects.
+* Some materials are organized by topics, including:
+    * "RStudio Essentials"
+    * "Shiny Essentials" and "Advanced Shiny"
+        * Some videos here are also available via Shiny website
+    * "The Essentials of Data Science"
+    * "Advanced Data Science"
+* Materials from RStudio's annual conference, `rstudio::conf`, are also made available.
+
+
+========================================================
+<a href="https://www.rstudio.com/resources/webinars/">
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/rstudio_webinars_videos.png")
+```
+</a>
 
 
 Tidyverse website
 ========================================================
-* https://www.tidyverse.org/
+* Tidyverse has its own [website](https://www.tidyverse.org/) to
+    * introduce tidyverse packages
+    * share updates and news on tidyverse, and
+    * offer guides to training matarials
+* There are also child websites for many of tidyverse packages
+    * URL: "[package-name].tidyverse.org"
 
 
 ========================================================
@@ -269,9 +302,33 @@ include_graphics("../images/tidyverse_page.png")
 </a>
 
 
+========================================================
+```{r echo=FALSE}
+kable(
+  tribble(
+    ~Pacakge, ~Description, ~URL,
+    "`ggplot2`", "For data visualization", "http://ggplot2.tidyverse.org/",
+    "`dplyr`", "For data manpulation", "http://dplyr.tidyverse.org/",
+    "`tidyr`", "For tidying up data", "http://tidyr.tidyverse.org/",
+    "`readr`", "For data implort/export", "http://readr.tidyverse.org/",
+    "`purrr`", "For better loops", "http://purrr.tidyverse.org/",
+    "`tibble`", "For extending `data.frame`", "http://tibble.tidyverse.org/",
+    "`stringr`", "For working with strings", "http://stringr.tidyverse.org/",
+    "`forcats`", "For working with factors", "http://forcats.tidyverse.org/",
+    "`readxl`", "For importing Excel files", "http://readxl.tidyverse.org/",
+    "`haven`", "For SPSS, SAS, and Stata data", "http://haven.tidyverse.org/",
+    "`lubridate`", "For working with datetimes", "http://lubridate.tidyverse.org/",
+    "`magrittr", "For specialized pipe oprators", "http://magrittr.tidyverse.org/"
+  )
+)
+```
+
+
 R Markdown website
 ========================================================
-* [Articles](https://rmarkdown.rstudio.com/articles.html)
+* RStudio has a separate [website](https://rmarkdown.rstudio.com/) focused on all things R Markdown. 
+    * [Articles page](https://rmarkdown.rstudio.com/articles.html) offers a number of tutorials on creating various sorts of R Markdown documents
+    * [Formats page](https://rmarkdown.rstudio.com/formats.html) provides links to reference matarials on various R Markdown formats and templates
 
 
 ========================================================
@@ -284,10 +341,10 @@ include_graphics("../images/rmarkdown_page.png")
 
 Shiny website
 ========================================================
-* https://shiny.rstudio.com/tutorial/
-  * Video & wrttien tutorial [page](https://shiny.rstudio.com/tutorial/)
-  * Articles [page](https://shiny.rstudio.com/articles/)
-  * Reference [page](https://shiny.rstudio.com/reference/shiny/)
+* RStudio also has a separate [website](https://shiny.rstudio.com/) on everything Shiny
+  * [Video & wrttien tutorial page](https://shiny.rstudio.com/tutorial/) has links to tutorial videos and articles on Shiny as well as recorded conference presentations and webinars   
+  * [Articles page](https://shiny.rstudio.com/articles/) offers a list of web articles on building Shiny applications
+  * [Reference page](https://shiny.rstudio.com/reference/shiny/) contains links to upgrade notes and function references for lastest as well as previous versions of the Shiny package
 
 
 ========================================================
@@ -300,8 +357,14 @@ include_graphics("../images/shiny_page.png")
 
 htmlwidgets website
 ========================================================
-* http://www.htmlwidgets.org/
-
+* *`htmlwidgets` for R* [website](http://www.htmlwidgets.org/) presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem
+    * Currently ~100 widgets are registered
+        * See its ["Gallery" page](http://gallery.htmlwidgets.org/)
+    * Popular `htmlwidgets` packagees include:
+        * `plotly` and `highcharter` for interactive visualizations
+        * `leaflet` for interactive maps
+        * `DT` for interactive data tables
+        
 
 ========================================================
 <a href="http://www.htmlwidgets.org/">
@@ -311,17 +374,30 @@ include_graphics("../images/htmlwidgets_page.png")
 </a>
 
 
-Community support
+========================================================
+<a href="http://gallery.htmlwidgets.org/">
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/htmlwidgets_gallery.png")
+```
+</a>
+
+
+R Community
 ========================================================
 type:section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE, out.width="70%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/community_title.jpg")
 ```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)">"Community (TV series)", Wikipedia</a>
+</p>
 
 
 R-bloggers
 ========================================================
-* https://www.r-bloggers.com/
+* [*R-bloggers*](https://www.r-bloggers.com/) is a blog that collects and features articles and blog posts on R and programming in R from a variety of sources.
+* The blog offers an excellent way to stay up-to-date on new packages and developments in the R community.
+* Its posts cover new updates in R and major R packages, tutorials, information on upcoming events and conferences, and much more.
 
 
 ========================================================
@@ -334,16 +410,19 @@ include_graphics("../images/rbloggers_page.png")
 
 Online "books"
 ========================================================
-* Wickham H. and Grolemund G., [*R for Data Science*](http://r4ds.had.co.nz/)
-* Wickham H., [*Advanced R*](http://adv-r.had.co.nz/)
-* Wickham H., [*R Packages*](http://r-pkgs.had.co.nz/)
-* U of Cincinnati, [*UC Business Analytics R Programming Guide*](http://uc-r.github.io/)
-* Wikibooks, [*R Programming*](https://en.wikibooks.org/wiki/R_Programming)
+* Healy, K. (2018). [*Data Visualization: A practical introduction*](http://socviz.co/index.html).
+* Grolemund, G. and Wickham, H. (2017). [*R for Data Science*](http://r4ds.had.co.nz/).
+* Lovelace, R. et al. (2018). [*Geocomputation in R*](https://bookdown.org/robinlovelace/geocompr/).
+* Wickham, H. (2017). [*Advanced R*](http://adv-r.had.co.nz/).
+* Wilke, C. (n.d.). [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/).
+
+Visit the `bookdown` package [website](https://bookdown.org/) to find many more free online books on R!
 
 
-R for Data Science
 ========================================================
-```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+**R for Data Science**
+<br><br>
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/r4ds_cover.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
@@ -351,14 +430,15 @@ Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 </p>
 
 
-UC R Programming Guide
+Helpful websites
 ========================================================
+* Kabacoff, R. [*Quick-R*](https://www.statmethods.net/index.html).
+* Prahbhakaran, S. [*r-statistics.co*](http://r-statistics.co/).
+* U of Cincinnati. [*UC Business Analytics R Programming Guide*](http://uc-r.github.io/).
+* Wollschlaeger, D. [*R Examples Repository*](http://dwoll.de/rexrepos/index.html).
+* Yau, C. [*R Tutorial*](http://www.r-tutor.com/).
 
-
-Notable websites
-========================================================
-* Yau, C. [*R Tutorial*](http://www.r-tutor.com/)
-* Kabacoff, R. [*Quick-R*](https://www.statmethods.net/index.html)
+And, of course, this workshop's [website](bobaekang.github.io/icjia-r-workshop) :)
 
 
 GitHub repositories
@@ -380,6 +460,20 @@ What is GitHub?
 * Many R package authors offer brief explanations and even quick tutorials for their packages on the GitHub repositories.
 
 
+========================================================
+**Github repository example (`dplyr`)**
+<br><br>
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/github_repo1.png")
+```
+
+
+========================================================
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/github_repo2.png")
+```
+
+
 Online courses
 ========================================================
 type:section
@@ -396,7 +490,6 @@ Popular sites
 * [DataCamp](https://www.datacamp.com/)
 * [Coursera](https://www.coursera.org/)
 * [edX](https://www.edx.org/)
-* [Udacity](https://www.udacity.com/)
 
 
 Datacamp
@@ -413,8 +506,10 @@ Datacamp
 Coursera
 ========================================================
 * Requires registration and log-in
-* You can "audit" the course for free
-    * Certification for course completion and online support become available onces you purchase the course 
+* Offers courses, specializations and online degrees
+    * Find out more about different options [here](https://about.coursera.org/)
+* You can "audit" a course for free
+    * Course Certificate and online support are available for a fee ($29-$99) 
 * Notable contents
   * Data Science Specialization (10 courses)
   * Statistics with R Specialization (5 courses)
@@ -422,20 +517,43 @@ Coursera
 
 edX
 ========================================================
-
-
-Udacity
-========================================================
+* Requires registration and log-in
+* Courses are free and mostly self-paced
+    * edX offer [verified certificate](https://www.edx.org/verified-certificate) for individual courses and [XSeries certificate](https://www.edx.org/xseries) for XSeries programs for a small fee
+* Courses are usually organized in a college-course like format
+* Perhaps better for learning basics on topics like:
+    * Computer science and programming
+    * Probability and statistics
 
 
 Questions?
 ========================================================
 type: section
-```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("")
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media0.giphy.com/media/12mPcp41D9a1i0/giphy.gif")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href=""></a>
+Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D9a1i0">Giphy</a>
+</p>
+
+
+Now let's get to it!
+========================================================
+type: section
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://giphy.com/gifs/JIX9t2j0ZTN9S">Giphy</a>
+</p>
+
+
+========================================================
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media.giphy.com/media/ehfWmij1MrqjS/giphy.gif")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://giphy.com/gifs/reaction-friends-ehfWmij1MrqjS">Giphy</a>
 </p>
 
 
@@ -443,5 +561,4 @@ Source: <a href=""></a>
 References
 <ul style="font-size: 0.6em; list-style-type:none">
   <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a></li>
-  <li><a href="#"></a></li>
 </ul>
