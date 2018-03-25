@@ -415,11 +415,11 @@ Other resources
 Questions?
 ========================================================
 type: section
-```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("")
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media1.giphy.com/media/3ELtfmA4Apkju/giphy.gif")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href=""></a>
+Source: <a href="https://giphy.com/gifs/just-blinking-3ELtfmA4Apkju">Giphy</a>
 </p>
 
 

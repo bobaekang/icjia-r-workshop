@@ -377,6 +377,7 @@ Other formats
 
 RPubs
 ========================================================
+> "RPubs is a quick and easy way to disseminate data analysis and R code and do ad-hoc collaboration with peers."<br>- RStudio Team
 
 
 Presentations
@@ -497,10 +498,10 @@ Questions?
 ========================================================
 type: section
 ```{r echo=FALSE, out.width="33%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("")
+include_graphics("https://media0.giphy.com/media/12mPcp41D9a1i0/giphy.gif")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href=""></a>
+Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D9a1i0">Giphy</a>
 </p>
 
 
