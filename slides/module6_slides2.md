@@ -480,24 +480,57 @@ Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D
 </p>
 
 
+========================================================
+References
+<ul style="font-size: 0.6em; list-style-type:none">
+  <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a></li>
+</ul>
+
+
+Wrapping up
+========================================================
+type: section
+<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+
+
+What's next (for you)?
+========================================================
+* Start using R for your work
+    * Use the available workshop materials as a guide
+* Try reading *R for Data Science* book
+* Learn HTML/CSS for fully customizing your R Markdown documents and more
+* Come talk to me if you need:
+    * Quick help on your R code
+        * Don't foget "The 15 minutes rule"!
+    * Recommendations for study materials
+
+
+What's next (for this workshop)?
+========================================================
+* Video lectures for workshop modules
+* A "Resources" page on the website
+* Update the `icjiar` package
+* Short articles on specific topics, such as:
+    * Connecting to SQL server on RStudio
+    * `apply` family functions
+    * Git and GitHub for version control and collaboration
+    * Using "Chrome DevTools" to inspect HTML documents
+    * ... any suggestions?
+
+
 Now let's get to it!
 ========================================================
 type: section
-<img src="https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/JIX9t2j0ZTN9S">Giphy</a>
 </p>
 
 
 ========================================================
-<img src="https://media.giphy.com/media/ehfWmij1MrqjS/giphy.gif" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="80%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.giphy.com/media/ehfWmij1MrqjS/giphy.gif" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/reaction-friends-ehfWmij1MrqjS">Giphy</a>
 </p>
 
 
-========================================================
-References
-<ul style="font-size: 0.6em; list-style-type:none">
-  <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a></li>
-</ul>
