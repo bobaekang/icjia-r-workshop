@@ -126,9 +126,19 @@ ggplot(data, mapping = aes(x, y, ...))
 
 ========================================================
 <br>
-**`shape` values**
+**`ggplot2` aesthetics**
+<br><br>
+<img src="../images/ggplot2_aesthetics.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="80%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html">Figure 1.1</a> in Wilke, C. (n.d).<span style="font-style:italic">Data Visualiation</span>.
+</p>
+
+
+========================================================
 <br>
-<img src="../images/ggplot2_shapes.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+**`shape` values**
+<br><br>
+<img src="../images/ggplot2_shapes.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
 </p>
@@ -137,8 +147,8 @@ Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot
 ========================================================
 <br>
 **`linetype` values**
-<br>
-<img src="../images/ggplot2_linetypes.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<br><br>
+<img src="../images/ggplot2_linetypes.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align: center; color: #777;">
 Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
 </p>
@@ -186,7 +196,7 @@ ggplot(data, aes(violentCrime)) +
   geom_histogram()
 ```
 
-![plot of chunk unnamed-chunk-10](module4_slides1-figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-11](module4_slides1-figure/unnamed-chunk-11-1.png)
 
 
 ========================================================
@@ -198,7 +208,7 @@ ggplot(data, aes(type, count, fill = type)) +
   geom_col(width = 0.8)
 ```
 
-![plot of chunk unnamed-chunk-11](module4_slides1-figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-12](module4_slides1-figure/unnamed-chunk-12-1.png)
 
 
 ========================================================
@@ -210,7 +220,7 @@ ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
 ```
 
-![plot of chunk unnamed-chunk-12](module4_slides1-figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-13](module4_slides1-figure/unnamed-chunk-13-1.png)
 
 
 ========================================================
@@ -223,7 +233,7 @@ ggplot(data, aes(year, violentCrime)) +
   geom_hline(yintercept = mean(data$violentCrime), linetype = "longdash")
 ```
 
-![plot of chunk unnamed-chunk-13](module4_slides1-figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-14](module4_slides1-figure/unnamed-chunk-14-1.png)
 
 
 ========================================================
@@ -284,7 +294,7 @@ plot +
   )
 ```
 
-![plot of chunk unnamed-chunk-18](module4_slides1-figure/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-19](module4_slides1-figure/unnamed-chunk-19-1.png)
 
 
 ========================================================
@@ -295,7 +305,7 @@ plot +
   ggtitle(label = expression(paste("Another plot title with math expressions like ", pi, " and ", sigma^{2})))
 ```
 
-![plot of chunk unnamed-chunk-19](module4_slides1-figure/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-20](module4_slides1-figure/unnamed-chunk-20-1.png)
 
 
 Additional components
@@ -339,7 +349,7 @@ plot +
 plot + xlim(NA, 2000)
 ```
 
-![plot of chunk unnamed-chunk-21](module4_slides1-figure/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-22](module4_slides1-figure/unnamed-chunk-22-1.png)
 
 
 ========================================================
@@ -400,7 +410,7 @@ scale_y_time(...)
 plot + scale_y_log10()
 ```
 
-![plot of chunk unnamed-chunk-26](module4_slides1-figure/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-27](module4_slides1-figure/unnamed-chunk-27-1.png)
 
 
 ========================================================
@@ -430,7 +440,7 @@ plot + scale_color_manual(
 )
 ```
 
-![plot of chunk unnamed-chunk-28](module4_slides1-figure/unnamed-chunk-28-1.png)
+![plot of chunk unnamed-chunk-29](module4_slides1-figure/unnamed-chunk-29-1.png)
 
 ========================================================
 **Other custom scales**
@@ -446,10 +456,12 @@ Guides
 ```r
 guides(...)
 guide_legend(...)
+guide_colourbar() # equivalent to guide_colorbar()
 ```
 * `guides` can be used to set (or remove) guides for each scale
 * `guide_legend()` can be used to specify the legend components for each visual properties (e.g. `colour`, `size`, `alpha`, etc.)
-    * `guide_legned()` is used as an input for each scale argument in `guide()`
+* `guide_colourbar()` or `guide_colorbar()` controls the continous color bar
+* `guide_legned()` and `guide_colourbar()` can be used as an input for each scale argument in `guide()`
 
 
 ========================================================
@@ -461,7 +473,7 @@ plot + guides(
 )
 ```
 
-![plot of chunk unnamed-chunk-30](module4_slides1-figure/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-31](module4_slides1-figure/unnamed-chunk-31-1.png)
 
 
 
@@ -488,7 +500,7 @@ plot + coord_cartesian()
 plot
 ```
 
-![plot of chunk unnamed-chunk-33](module4_slides1-figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-34](module4_slides1-figure/unnamed-chunk-34-1.png)
 
 
 ========================================================
@@ -498,7 +510,7 @@ plot
 plot + coord_flip()
 ```
 
-![plot of chunk unnamed-chunk-34](module4_slides1-figure/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-35](module4_slides1-figure/unnamed-chunk-35-1.png)
 
 
 ========================================================
@@ -510,7 +522,7 @@ ggplot(ispcrime %>% filter(county == "Cook") %>% gather("type", "count", murder:
   coord_polar("y")
 ```
 
-![plot of chunk unnamed-chunk-35](module4_slides1-figure/unnamed-chunk-35-1.png)
+![plot of chunk unnamed-chunk-36](module4_slides1-figure/unnamed-chunk-36-1.png)
 
 
 Facets
@@ -555,7 +567,7 @@ plot + facet_wrap(facets, nrow, ncol, scales, ...)
 plot + facet_grid(. ~ region)
 ```
 
-![plot of chunk unnamed-chunk-39](module4_slides1-figure/unnamed-chunk-39-1.png)
+![plot of chunk unnamed-chunk-40](module4_slides1-figure/unnamed-chunk-40-1.png)
 
 
 ========================================================
@@ -565,7 +577,7 @@ plot + facet_grid(. ~ region)
 plot + facet_grid(. ~ region, scales = "free")
 ```
 
-![plot of chunk unnamed-chunk-40](module4_slides1-figure/unnamed-chunk-40-1.png)
+![plot of chunk unnamed-chunk-41](module4_slides1-figure/unnamed-chunk-41-1.png)
 
 
 ========================================================
@@ -575,7 +587,7 @@ plot + facet_grid(. ~ region, scales = "free")
 plot + facet_grid(year ~ .)
 ```
 
-![plot of chunk unnamed-chunk-41](module4_slides1-figure/unnamed-chunk-41-1.png)
+![plot of chunk unnamed-chunk-42](module4_slides1-figure/unnamed-chunk-42-1.png)
 
 
 ========================================================
@@ -585,7 +597,7 @@ plot + facet_grid(year ~ .)
 plot + facet_grid(year ~ region)
 ```
 
-![plot of chunk unnamed-chunk-42](module4_slides1-figure/unnamed-chunk-42-1.png)
+![plot of chunk unnamed-chunk-43](module4_slides1-figure/unnamed-chunk-43-1.png)
 
 
 ========================================================
@@ -595,7 +607,7 @@ plot + facet_grid(year ~ region)
 plot + facet_wrap(~ year)
 ```
 
-![plot of chunk unnamed-chunk-43](module4_slides1-figure/unnamed-chunk-43-1.png)
+![plot of chunk unnamed-chunk-44](module4_slides1-figure/unnamed-chunk-44-1.png)
 
 
 ========================================================
@@ -605,7 +617,7 @@ plot + facet_wrap(~ year)
 plot + facet_wrap(~ year, ncol = 3)
 ```
 
-![plot of chunk unnamed-chunk-44](module4_slides1-figure/unnamed-chunk-44-1.png)
+![plot of chunk unnamed-chunk-45](module4_slides1-figure/unnamed-chunk-45-1.png)
 
 
 ========================================================
@@ -615,7 +627,7 @@ plot + facet_wrap(~ year, ncol = 3)
 plot + facet_wrap(~ year + region, ncol = 3)
 ```
 
-![plot of chunk unnamed-chunk-45](module4_slides1-figure/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-46](module4_slides1-figure/unnamed-chunk-46-1.png)
 
 
 Themes
@@ -639,7 +651,7 @@ plot + theme_gray(base_size = 11, base_family = "")
 plot + theme_gray() # this is the default
 ```
 
-![plot of chunk unnamed-chunk-48](module4_slides1-figure/unnamed-chunk-48-1.png)
+![plot of chunk unnamed-chunk-49](module4_slides1-figure/unnamed-chunk-49-1.png)
 
 
 ========================================================
@@ -648,7 +660,7 @@ plot + theme_gray() # this is the default
 plot + theme_bw()
 ```
 
-![plot of chunk unnamed-chunk-49](module4_slides1-figure/unnamed-chunk-49-1.png)
+![plot of chunk unnamed-chunk-50](module4_slides1-figure/unnamed-chunk-50-1.png)
 
 
 ========================================================
@@ -657,7 +669,7 @@ plot + theme_bw()
 plot + theme_linedraw()
 ```
 
-![plot of chunk unnamed-chunk-50](module4_slides1-figure/unnamed-chunk-50-1.png)
+![plot of chunk unnamed-chunk-51](module4_slides1-figure/unnamed-chunk-51-1.png)
 
 
 ========================================================
@@ -666,7 +678,7 @@ plot + theme_linedraw()
 plot + theme_light()
 ```
 
-![plot of chunk unnamed-chunk-51](module4_slides1-figure/unnamed-chunk-51-1.png)
+![plot of chunk unnamed-chunk-52](module4_slides1-figure/unnamed-chunk-52-1.png)
 
 
 ========================================================
@@ -675,7 +687,7 @@ plot + theme_light()
 plot + theme_dark()
 ```
 
-![plot of chunk unnamed-chunk-52](module4_slides1-figure/unnamed-chunk-52-1.png)
+![plot of chunk unnamed-chunk-53](module4_slides1-figure/unnamed-chunk-53-1.png)
 
 
 ========================================================
@@ -684,7 +696,7 @@ plot + theme_dark()
 plot + theme_minimal()
 ```
 
-![plot of chunk unnamed-chunk-53](module4_slides1-figure/unnamed-chunk-53-1.png)
+![plot of chunk unnamed-chunk-54](module4_slides1-figure/unnamed-chunk-54-1.png)
 
 
 ========================================================
@@ -693,7 +705,7 @@ plot + theme_minimal()
 plot + theme_classic()
 ```
 
-![plot of chunk unnamed-chunk-54](module4_slides1-figure/unnamed-chunk-54-1.png)
+![plot of chunk unnamed-chunk-55](module4_slides1-figure/unnamed-chunk-55-1.png)
 
 
 ========================================================
@@ -702,7 +714,7 @@ plot + theme_classic()
 plot + theme_void()
 ```
 
-![plot of chunk unnamed-chunk-55](module4_slides1-figure/unnamed-chunk-55-1.png)
+![plot of chunk unnamed-chunk-56](module4_slides1-figure/unnamed-chunk-56-1.png)
 
 
 ========================================================
@@ -711,7 +723,7 @@ plot + theme_void()
 plot + ggthemes::theme_economist()
 ```
 
-![plot of chunk unnamed-chunk-56](module4_slides1-figure/unnamed-chunk-56-1.png)
+![plot of chunk unnamed-chunk-57](module4_slides1-figure/unnamed-chunk-57-1.png)
 
 
 ========================================================
@@ -720,7 +732,7 @@ plot + ggthemes::theme_economist()
 plot + ggthemes::theme_fivethirtyeight()
 ```
 
-![plot of chunk unnamed-chunk-57](module4_slides1-figure/unnamed-chunk-57-1.png)
+![plot of chunk unnamed-chunk-58](module4_slides1-figure/unnamed-chunk-58-1.png)
 
 
 ========================================================
@@ -729,7 +741,7 @@ plot + ggthemes::theme_fivethirtyeight()
 plot + ggthemes::theme_hc()
 ```
 
-![plot of chunk unnamed-chunk-58](module4_slides1-figure/unnamed-chunk-58-1.png)
+![plot of chunk unnamed-chunk-59](module4_slides1-figure/unnamed-chunk-59-1.png)
 
 
 ========================================================
@@ -738,7 +750,7 @@ plot + ggthemes::theme_hc()
 plot + ggthemes::theme_solarized()
 ```
 
-![plot of chunk unnamed-chunk-59](module4_slides1-figure/unnamed-chunk-59-1.png)
+![plot of chunk unnamed-chunk-60](module4_slides1-figure/unnamed-chunk-60-1.png)
 
 
 ========================================================
@@ -758,18 +770,19 @@ plot + theme(...)
 
 ggplot2 resources
 ========================================================
-* `ggplot2` official [reference](http://ggplot2.tidyverse.org/reference/index.html)
-* ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) by RStudio
-* [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/) by Winston Chang
-* [`ggplot2` tutorials in *r-statistics.co*](http://r-statistics.co/ggplot2-Tutorial-With-R.html) by Selva Prabhakaran
-* Extending `ggplot2`:
-    * [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html) website by Daniel Emaasit
+* Chang, W. [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/).
+* Emaasit, D. [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html).
+    * A list of R pacakges extending `ggplot2`
+* Prabhakaran, S. ["How to make any plot in `ggplot2`?"](http://r-statistics.co/ggplot2-Tutorial-With-R.html). *r-statistics.co*.
+* RStudio. ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+* Tidyverse. ["Reference"](http://ggplot2.tidyverse.org/reference/index.html). *ggplot2.tidyverse.org*.
+* Wilke, C. [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/).
 
 
 Questions?
 ========================================================
 type: section
-<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-61" alt="plot of chunk unnamed-chunk-61" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
 </p>
@@ -788,7 +801,7 @@ References
 
 ========================================================
 type: section
-<img src="../images/pause.png" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/pause.png" title="plot of chunk unnamed-chunk-63" alt="plot of chunk unnamed-chunk-63" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

@@ -46,7 +46,7 @@ knitr::include_graphics("./images/icjia-x-r.png")
 <div class="col-sm-6">
 * **Time**: 1-3PM (130-330PM for Module 2 only)
     * ~~Module 1: March 14, 2018 (Wed)~~
-    * Module 2: March 22, 2018 (Thur)
+    * ~~Module 2: March 22, 2018 (Thur)~~
     * Module 3: March 28, 2018 (Wed)
     * Module 4: April 4, 2018 (Wed)
     * Module 5: April 11, 2018 (Wed)

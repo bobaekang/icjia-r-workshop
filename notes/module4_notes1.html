@@ -382,6 +382,10 @@ ggplot(data, mapping = aes(x, y, ...))</code></pre>
 </tr>
 </tbody>
 </table>
+The following figure provides a visual illustration of these aesthetics: <img src="../images/ggplot2_aesthetics.png" width="720" />
+<p style="font-size:0.5em; color: #777;">
+Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html">Figure 1.1</a> in Wilke, C. (n.d). <span style="font-style:italic">Data Visualiation</span>.
+</p>
 <p>And the following two pictures illustrate <code>shape</code> and <code>linetype</code> values available in <code>ggplot2</code>:</p>
 </div>
 <div id="shape-values" class="section level3">
@@ -474,29 +478,31 @@ ggplot(data) +
 data &lt;- ispcrime %&gt;% filter(year == 2015, county != &quot;Cook&quot;)
 ggplot(data, aes(violentCrime)) +
   geom_histogram()</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
 <p>The second example is a bar plot using another differently modified <code>ispcrime</code> data. This time, we have three variables to map to: <code>type</code>, <code>count</code>, and <code>fill</code>. Not that the first two inputs for <code>aes()</code> are automatically understood as inputs for <code>x</code> and <code>y</code>, in that order. Any additional mapping argument must be specified explicitly.</p>
 <p>The output is a bar chart where x-axis is <code>type</code> values and <code>y-axis</code> is correspoding <code>count</code> values. We also have the bars colored by their <code>type</code> value. Yes, this is somewhat redundant since each bar is already corresponding to a unique <code>type</code> value, but additional coloring helps viewers to easily distinguish these bars.</p>
 <pre class="r"><code># geom col example
 data &lt;- ispcrime %&gt;% filter(county == &quot;Cook&quot;) %&gt;% gather(&quot;type&quot;, &quot;count&quot;, murder:aggAssault)
 ggplot(data, aes(type, count, fill = type)) +
   geom_col(width = 0.8)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
+<p>The third example is a bubble plot, or a modified scattorplot, using a subset of <code>ispcrime</code> table (excluding Cook county data) joined with <code>regions</code> table. Here, we use <code>violentCrime</code> as <code>x</code> value and <code>propertyCrime</code> as <code>y</code> value. Also, we use <code>region</code> values as color aesthetics and the sum of <code>violentCrime</code> and <code>propertyCrime</code> as size aesthetics. Lastly, we set the transparency value (<code>alpha</code>) to 0.5.</p>
 <pre class="r"><code># geom point example
 data &lt;- ispcrime %&gt;% filter(county != &quot;Cook&quot;) %&gt;% left_join(regions)
 ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p>The last example is a line graph with one horizontal reference line. The line graph uses a subset of <code>ispcrime</code> data (excluding Cook data) as the data input and use <code>year</code> and <code>violentCrime</code> as <code>x</code> and <code>y</code> axes. In <code>geom_line()</code>, the line color and size are specified. In <code>geom_hline()</code>, the y intercept for the reference line is given as the mean of <code>violentCrime</code> values and the linetype is specified to be the long-dash.</p>
 <pre class="r"><code># geom line example
 data &lt;- ispcrime %&gt;% filter(county == &quot;Cook&quot;)
 ggplot(data, aes(year, violentCrime)) +
   geom_line(color = &quot;maroon&quot;, size = 1.5) +
   geom_hline(yintercept = mean(data$violentCrime), linetype = &quot;longdash&quot;)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 </div>
 <div id="other-geoms" class="section level3">
 <h3>Other <code>geom</code>s</h3>
-<p>There are more <code>geom</code>s</p>
+<p><code>ggplot2</code> offers more <code>geom</code>s, some of which are listed in the following table with their descriptions:</p>
 <table>
 <thead>
 <tr class="header">
@@ -547,30 +553,21 @@ ggplot(data, aes(year, violentCrime)) +
 <h2>Labels</h2>
 <pre class="r"><code># adding labels
 plot + labs(title, subtitle, caption, x, y, ...)</code></pre>
-<ul>
-<li>Each argument of <code>labs()</code> take a character vector of length 1
-<ul>
-<li><code>title</code> and <code>subtitle</code> appear at the top-left.</li>
-<li><code>caption</code> appears at the bottom-right</li>
-<li><code>x</code> and <code>y</code> are for x-axis and y-axis names</li>
-</ul></li>
-<li>Adjusting the position and style of labels is handled via <code>theme()</code></li>
-</ul>
-<p><strong>alternatively …</strong></p>
+<p>Labels include title, subtitle, caption, and x-axis and y-axis names of a plot. One way to specifiy these labels is to use <code>labs()</code> function, each argument of which takes a character vector of length 1. As default, <code>title</code> and <code>subtitle</code> appear at the top-left, and <code>caption</code> appears at the bottom-right. <code>x</code> and <code>y</code> inputs correspond to x-axis and y-axis names. Adjusting the position and style of labels is handled via <code>theme()</code>.</p>
 <pre class="r"><code>plot +
   xlab(label) +
   ylab(label) +
   ggtitle(label, subtitle = NULL)</code></pre>
-<ul>
-<li>Each argument of the <code>labs()</code> can be added with a separate function.
+<p>Alternatively, we have the following functions to give labels to a plot:</p>
 <ul>
 <li><code>xlab()</code> is for x-axis name</li>
 <li><code>ylab()</code> is for y-axis name</li>
 <li><code>ggtitle()</code> is for plot title and subtitle</li>
-</ul></li>
 </ul>
 <div id="examples" class="section level3">
 <h3>Examples</h3>
+<p>First, we create a <code>ggplot</code> object to give labels to.</p>
+<p>Here, we add all labels to the <code>plot</code> using the <code>labs()</code> function.</p>
 <pre class="r"><code># a generic example with title, subtitle, and axes names
 plot +
   labs(
@@ -578,17 +575,19 @@ plot +
     x = &quot;x-axis here&quot;, y = &quot;y-axis here&quot;,
     caption = &quot;(and caption...)&quot;
   )</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
+<p>As an alternative, we use <code>ggtitle</code> to add only the title to the <code>plot</code>. Note that, with the <code>expression()</code> function, it is possible to include mathematical expression in our title. We can use <code>expression()</code> for any label with either <code>labs()</code> or separate label functions.</p>
 <pre class="r"><code># a title with mathematical expressions
 plot +
   ggtitle(label = expression(paste(&quot;Another plot title with math expressions like &quot;, pi, &quot; and &quot;, sigma^{2})))</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
 <hr />
 </div>
 </div>
 </div>
 <div id="additional-components" class="section level1">
 <h1>Additional components</h1>
+<p>For simple plots, the three components we have seen above would be sufficient. With the following additional components, we can have greater flexibility to generate more complex plots:</p>
 <ul>
 <li>Scales</li>
 <li>Guides</li>
@@ -615,7 +614,7 @@ plot +
 <pre class="r"><code># limit x axis to 2000 at the top;
 # this removes points with violentCrime &gt; 2000
 plot + xlim(NA, 2000)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
 </div>
 <div id="position-scales" class="section level3">
 <h3>Position scales</h3>
@@ -633,9 +632,12 @@ scale_y_sqrt(...)
 
 scale_x_reverse(...)
 scale_y_reverse(...)</code></pre>
+<p>Position scales functions are used to change on which scale the x or y axis is presented. <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code> are general functions to manipulate the scale of continuous x and y variables.</p>
+<p>The default scale is “identity”. There are a few shortcuts for commonly used scales. Other transformation options for <code>trans</code> include: “asn”, “atanh”, “boxcox”, “exp”, “log”, “log1p”, “log2”, “logit”, “probability”, “probit”, and “reciprocal”.</p>
 </div>
 <div id="common-scale-arguments" class="section level4">
 <h4>Common <code>scale</code> arguments</h4>
+<p>The following table lists some common arguments for <code>scale</code> functions and provide descriptions.</p>
 <table>
 <thead>
 <tr class="header">
@@ -662,6 +664,7 @@ scale_y_reverse(...)</code></pre>
 </tr>
 </tbody>
 </table>
+<p>Refer to the official documentation <a href="http://ggplot2.tidyverse.org/reference/scale_continuous.html">here</a> for more on the <code>scale</code> arguments.</p>
 </div>
 <div id="position-scales-discrete" class="section level4">
 <h4>Position scales (discrete)</h4>
@@ -679,33 +682,31 @@ scale_y_datetime(...)
 
 scale_x_time(...)
 scale_y_time(...)</code></pre>
+<p>There are position scales functiosn specific to date/datetime variables.</p>
+</div>
+<div id="example" class="section level4">
+<h4>Example</h4>
+<p>The following example applies the log 10 scale to the y-axis.</p>
 <pre class="r"><code># apply the log 10 scale to the y-axis 
 plot + scale_y_log10()</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-25-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-26-1.png" width="576" /></p>
 </div>
 </div>
 <div id="custom-scale-manuals" class="section level3">
 <h3>Custom scale “manuals”</h3>
 <pre class="r"><code>scale_*_manual(name, breaks, labels, limits, ..., values)</code></pre>
-<ul>
-<li>Scale manuals is used to create my own discrete scale</li>
-<li>“Manual” is available for:
-<ul>
-<li><code>colour</code></li>
-<li><code>fill</code></li>
-<li><code>size</code></li>
-<li><code>shape</code></li>
-<li><code>linetype</code></li>
-<li><code>alpha</code></li>
-</ul></li>
-</ul>
-<pre class="r"><code>plot + scale_color_manual(
+<p>Scale manuals are used to create customized discrete scales. Such “manuals” are available for the following aesthetics: * <code>colour</code> or <code>color</code> * <code>fill</code> * <code>size</code> * <code>shape</code> * <code>linetype</code> * <code>alpha</code></p>
+<div id="example-1" class="section level4">
+<h4>Example</h4>
+<p>The example below uses <code>scale_colour_manual()</code> to specify the scale of <code>colour</code> mapping.</p>
+<pre class="r"><code>plot + scale_colour_manual(
   name = &quot;&quot;,
   breaks = c(&quot;Central&quot;, &quot;Northern&quot;, &quot;Southern&quot;),
   labels = c(&quot;Central region&quot;, &quot;Northern region&quot;, &quot;Southern region&quot;),
   values = c(&quot;#00ffff&quot;, &quot;#ffff00&quot;, &quot;#ff00ff&quot;)
 )</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-27-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-28-1.png" width="576" /></p>
+</div>
 </div>
 <div id="other-custom-scales" class="section level3">
 <h3>Other custom scales</h3>
@@ -716,21 +717,18 @@ plot + scale_y_log10()</code></pre>
 <div id="guides" class="section level2">
 <h2>Guides</h2>
 <pre class="r"><code>guides(...)
-guide_legend(...)</code></pre>
-<ul>
-<li><code>guides</code> can be used to set (or remove) guides for each scale</li>
-<li><code>guide_legend()</code> can be used to specify the legend components for each visual properties (e.g. <code>colour</code>, <code>size</code>, <code>alpha</code>, etc.)
-<ul>
-<li><code>guide_legned()</code> is used as an input for each scale argument in <code>guide()</code></li>
-</ul></li>
-</ul>
-<div id="example" class="section level3">
+guide_legend(...)
+guide_colourbar() # equivalent to guide_colorbar()</code></pre>
+<p>The guides refer to the axes and the legends that help viewers to interpret the plots. While most aspect of the guides can be controlled by scale functions, there are sometimes needs for additional fine-tuning.</p>
+<p>The <code>guides()</code> can be used to set (or remove) guides for each scale. The <code>guide_legend()</code> is used as an input for each scale argument in <code>guide()</code> (e.g., <code>fill</code>) to specify the legend components for each visual properties (e.g. <code>colour</code>, <code>size</code>, <code>alpha</code>, etc.). Similarly, <code>guide_colourbar()</code> or <code>guide_colorbar()</code> is used as an input for a scale arguement in <code>guide()</code> to control the continous color bar.</p>
+<div id="example-2" class="section level3">
 <h3>Example</h3>
+<p>The following example uses <code>guides()</code> to control the legend title of <code>colour</code> mapping and remove the legend for <code>size</code> mapping.</p>
 <pre class="r"><code>plot + guides(
   colour = guide_legend(title = &quot;Region&quot;, title.position = &quot;bottom&quot;),
   size = FALSE
 )</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-29-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-30-1.png" width="576" /></p>
 </div>
 </div>
 <div id="coordinate-systems" class="section level2">
@@ -744,17 +742,17 @@ guide_legend(...)</code></pre>
 <p>Let’s quickly see how manipulating the coordinate system works. We have a bar plot that looks like the following:</p>
 <pre class="r"><code># default plot
 plot</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-32-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-33-1.png" width="576" /></p>
 <p>What if we want to have bar plots that go horizaontally? This may be a reasonable choice if the <code>x</code> axis values are two long and look bad on the plot. Applying <code>coord_flip()</code> will take us there:</p>
 <pre class="r"><code># with coord_flip()
 plot + coord_flip()</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-33-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-34-1.png" width="576" /></p>
 <p>The following is an example of creating a pie chart using <code>coord_polar()</code>. Frankly, it is not the most intuitive way to create a pie chart, but it can be done:</p>
 <pre class="r"><code># pie chart with coord_polar()
 ggplot(ispcrime %&gt;% filter(county == &quot;Cook&quot;) %&gt;% gather(&quot;type&quot;, &quot;count&quot;, murder:aggAssault), aes(&quot;&quot;, count, fill = type)) +
   geom_col(width = 1) +
   coord_polar(&quot;y&quot;)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-34-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-35-1.png" width="576" /></p>
 </div>
 </div>
 <div id="facets" class="section level2">
@@ -814,34 +812,34 @@ plot + facet_wrap(facets, nrow, ncol, scales, ...)</code></pre>
 <p>The first example applies <code>facet_grid()</code> for facetting the data <em>horizontally</em> using <code>region</code> values.</p>
 <pre class="r"><code># facet_grid horizontal
 plot + facet_grid(. ~ region)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-38-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-39-1.png" width="576" /></p>
 <p>The second example is the same as the previous example, except that the scale is “freed up” so that each facet has its own scale for the <code>x</code> (hosizontal) axis. We can verify this by looking at the <code>x</code> axis of each facet.</p>
 <pre class="r"><code># facet_grid horizontal with free scales
 plot + facet_grid(. ~ region, scales = &quot;free&quot;)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-39-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-40-1.png" width="576" /></p>
 <p>The next example applies <code>facet_grid()</code> for facetting the data <em>vertically</em> using <code>year</code> values.</p>
 <pre class="r"><code># facet_grid vertical
 plot + facet_grid(year ~ .)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-40-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-41-1.png" width="576" /></p>
 <p>We can get a two-dimensional facetting by combining horizonal and vertical facetting with <code>facet_grid()</code>, like the following:</p>
 <pre class="r"><code># facet_grid two-dimensional
 plot + facet_grid(year ~ region)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-41-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-42-1.png" width="576" /></p>
 </div>
 <div id="facet_wrap-examples" class="section level4">
 <h4><code>facet_wrap()</code> examples</h4>
 <p>The first <code>facet_wrap()</code> example facets the plot based on <code>year</code> values. Note that the plots are rearranged automatically into 2 rows and 2 columns.</p>
 <pre class="r"><code># facet wrap
 plot + facet_wrap(~ year)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-42-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-43-1.png" width="576" /></p>
 <p>It is possible to explicitly specify the arrangement of facets. In the following example, we forec the <code>facet_wrap()</code> output to have 3 columns.</p>
 <pre class="r"><code># facet wrap with specified nrow/ncol
 plot + facet_wrap(~ year, ncol = 3)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-43-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-44-1.png" width="576" /></p>
 <p>We can combine multiple variables to create a more detailed facetting of plots, by adding more variables with <code>+</code> operator. Each facet corresponds to a combination of the two varialbe values. This is also available with <code>facet_grid()</code>. Remember that introducing more and more variables will lead to a uninformative plot.</p>
 <pre class="r"><code># facet wrap with multiple variables
 plot + facet_wrap(~ year + region, ncol = 3)</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-44-1.png" width="576" /></p>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-45-1.png" width="576" /></p>
 </div>
 </div>
 </div>
@@ -859,33 +857,33 @@ plot + theme_gray(base_size = 11, base_family = &quot;&quot;)</code></pre>
 <h4><code>ggplot2</code> examples</h4>
 <p>We will start with 8 predefined themes provided by <code>ggplot2</code>:</p>
 <pre class="r"><code>plot + theme_gray() # this is the default</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-47-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_bw()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-48-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_linedraw()</code></pre>
+<pre class="r"><code>plot + theme_bw()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-49-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_light()</code></pre>
+<pre class="r"><code>plot + theme_linedraw()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-50-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_dark()</code></pre>
+<pre class="r"><code>plot + theme_light()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-51-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_minimal()</code></pre>
+<pre class="r"><code>plot + theme_dark()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-52-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_classic()</code></pre>
+<pre class="r"><code>plot + theme_minimal()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-53-1.png" width="576" /></p>
-<pre class="r"><code>plot + theme_void()</code></pre>
+<pre class="r"><code>plot + theme_classic()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-54-1.png" width="576" /></p>
+<pre class="r"><code>plot + theme_void()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-55-1.png" width="576" /></p>
 </div>
 <div id="ggthemes-examples" class="section level4">
 <h4><code>ggthemes</code> examples</h4>
 <p>Now let’s see some predefined themes provided by <code>ggthemes</code>. Please visit <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">this vignette page</a> to find out more <code>ggthemes</code> options.</p>
 <pre class="r"><code>plot + ggthemes::theme_economist()</code></pre>
-<p><img src="module4_notes1_files/figure-html/unnamed-chunk-55-1.png" width="576" /></p>
-<pre class="r"><code>plot + ggthemes::theme_fivethirtyeight()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-56-1.png" width="576" /></p>
-<pre class="r"><code>plot + ggthemes::theme_hc()</code></pre>
+<pre class="r"><code>plot + ggthemes::theme_fivethirtyeight()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-57-1.png" width="576" /></p>
-<pre class="r"><code>plot + ggthemes::theme_solarized()</code></pre>
+<pre class="r"><code>plot + ggthemes::theme_hc()</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-58-1.png" width="576" /></p>
+<pre class="r"><code>plot + ggthemes::theme_solarized()</code></pre>
+<p><img src="module4_notes1_files/figure-html/unnamed-chunk-59-1.png" width="576" /></p>
 </div>
 </div>
 <div id="general-themeatic-specifications" class="section level3">
@@ -900,14 +898,15 @@ plot + theme_gray(base_size = 11, base_family = &quot;&quot;)</code></pre>
 <div id="resources" class="section level1">
 <h1>Resources</h1>
 <ul>
-<li><code>ggplot2</code> official <a href="http://ggplot2.tidyverse.org/reference/index.html">reference</a></li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">“Data Visualization Cheat Sheet”</a> by RStudio</li>
-<li><a href="http://www.cookbook-r.com/Graphs/"><em>R Graphics Cookbook</em></a> by Winston Chang</li>
-<li><a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html"><code>ggplot2</code> tutorials in <em>r-statistics.co</em></a> by Selva Prabhakaran</li>
-<li>Extending <code>ggplot2</code>:
+<li>Chang, W. <a href="http://www.cookbook-r.com/Graphs/"><em>R Graphics Cookbook</em></a>.</li>
+<li>Emaasit, D. <a href="http://www.ggplot2-exts.org/index.html"><em><code>ggplot2</code> extentions</em></a>.
 <ul>
-<li><a href="http://www.ggplot2-exts.org/index.html"><em><code>ggplot2</code> extentions</em></a> website by Daniel Emaasit</li>
+<li>A list of R pacakges extending <code>ggplot2</code></li>
 </ul></li>
+<li>Prabhakaran, S. <a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html">“How to make any plot in <code>ggplot2</code>?”</a>. <em>r-statistics.co</em>.</li>
+<li>RStudio. <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">“Data Visualization Cheat Sheet”</a>.</li>
+<li>Tidyverse. <a href="http://ggplot2.tidyverse.org/reference/index.html">“Reference”</a>. <em>ggplot2.tidyverse.org</em>.</li>
+<li>Wilke, C. <a href="http://serialmentor.com/dataviz/"><em>Fundamentals of Data Visualization</em></a>.</li>
 </ul>
 <hr />
 </div>
