@@ -625,9 +625,9 @@ There are also R packages for visualizing specific kinds of data. I find the fol
 
 # References
 <ul style="list-style-type:none">
-  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><span style="font-style:italic">ggiraph</span></a><./li>
-  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><span style="font-style:italic">HIGHCHARTER</span></a>.</li>
-  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><span style="font-style:italic">plotly for R</span></a>.</li>
+  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><i>ggiraph</i></a>.</li>
+  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><i>HIGHCHARTER</i></a>.</li>
+  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><i>plotly for R</i></a>.</li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a>.</li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a>.</li>
 </ul>
