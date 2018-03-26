@@ -770,12 +770,13 @@ plot + theme(...)
 
 ggplot2 resources
 ========================================================
-* `ggplot2` official [reference](http://ggplot2.tidyverse.org/reference/index.html)
-* ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) by RStudio
-* [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/) by Winston Chang
-* [`ggplot2` tutorials in *r-statistics.co*](http://r-statistics.co/ggplot2-Tutorial-With-R.html) by Selva Prabhakaran
-* Extending `ggplot2`:
-    * [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html) website by Daniel Emaasit
+* Chang, W. [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/).
+* Emaasit, D. [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html).
+    * A list of R pacakges extending `ggplot2`
+* Prabhakaran, S. ["How to make any plot in `ggplot2`?"](http://r-statistics.co/ggplot2-Tutorial-With-R.html). *r-statistics.co*.
+* RStudio. ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+* Tidyverse. ["Reference"](http://ggplot2.tidyverse.org/reference/index.html). *ggplot2.tidyverse.org*.
+* Wilke, C. [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/).
 
 
 Questions?

@@ -293,26 +293,22 @@ kable(
 # adding labels
 plot + labs(title, subtitle, caption, x, y, ...)
 ```
-* Each argument of `labs()` take a character vector of length 1
-    * `title` and `subtitle` appear at the top-left.
-    * `caption` appears at the bottom-right
-    * `x` and `y` are for x-axis and y-axis names
-* Adjusting the position and style of labels is handled via `theme()`
+Labels include title, subtitle, caption, and x-axis and y-axis names of a plot. One way to specifiy these labels is to use `labs()` function, each argument of which takes a character vector of length 1. As default, `title` and `subtitle` appear at the top-left, and `caption` appears at the bottom-right. `x` and `y` inputs correspond to x-axis and y-axis names. Adjusting the position and style of labels is handled via `theme()`.
 
-**alternatively ...**
 ```{r eval=FALSE}
 plot +
   xlab(label) +
   ylab(label) +
   ggtitle(label, subtitle = NULL)
 ```
-* Each argument of the `labs()` can be added with a separate function.
-    * `xlab()` is for x-axis name
-    * `ylab()` is for y-axis name
-    * `ggtitle()` is for plot title and subtitle
+Alternatively, we have the following functions to give labels to a plot:
+
+  * `xlab()` is for x-axis name
+  * `ylab()` is for y-axis name
+  * `ggtitle()` is for plot title and subtitle
 
 ### Examples
-
+First, we create a `ggplot` object to give labels to.
 ```{r include=FALSE}
 # plot to use
 plot <- ggplot(
@@ -322,6 +318,7 @@ plot <- ggplot(
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
 ```
 
+Here, we add all labels to the `plot` using the `labs()` function. 
 ```{r}
 # a generic example with title, subtitle, and axes names
 plot +
@@ -332,16 +329,20 @@ plot +
   )
 ```
 
-
+As an alternative, we use `ggtitle` to add only the title to the `plot`. Note that, with the `expression()` function, it is possible to include mathematical expression in our title. We can use `expression()` for any label with either `labs()` or separate label functions.    
 ```{r}
 # a title with mathematical expressions
 plot +
   ggtitle(label = expression(paste("Another plot title with math expressions like ", pi, " and ", sigma^{2})))
 ```
 
+
 ***
 
+
 # Additional components
+
+For simple plots, the three components we have seen above would be sufficient. With the following additional components, we can have greater flexibility to generate more complex plots:
 
 * Scales
 * Guides
@@ -390,6 +391,9 @@ scale_y_sqrt(...)
 scale_x_reverse(...)
 scale_y_reverse(...)
 ```
+Position scales functions are used to change on which scale the x or y axis is presented. `scale_x_continuous()` and `scale_y_continuous()` are general functions to manipulate the scale of continuous x and y variables.
+
+The default scale is "identity". There are a few shortcuts for commonly used scales. Other transformation options for `trans` include: "asn", "atanh", "boxcox", "exp", "log", "log1p", "log2", "logit", "probability", "probit", and "reciprocal".
 
 #### Common `scale` arguments
 The following table lists some common arguments for `scale` functions and provide descriptions.
@@ -426,6 +430,7 @@ scale_y_datetime(...)
 scale_x_time(...)
 scale_y_time(...)
 ```
+There are position scales functiosn specific to date/datetime variables.
 
 #### Example
 The following example applies the log 10 scale to the y-axis.
@@ -716,14 +721,16 @@ plot + theme(...)
 
 ***
 
+
 # Resources
 
-* `ggplot2` official [reference](http://ggplot2.tidyverse.org/reference/index.html)
-* ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) by RStudio
-* [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/) by Winston Chang
-* [`ggplot2` tutorials in *r-statistics.co*](http://r-statistics.co/ggplot2-Tutorial-With-R.html) by Selva Prabhakaran
-* Extending `ggplot2`:
-    * [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html) website by Daniel Emaasit
+* Chang, W. [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/).
+* Emaasit, D. [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html).
+    * A list of R pacakges extending `ggplot2`
+* Prabhakaran, S. ["How to make any plot in `ggplot2`?"](http://r-statistics.co/ggplot2-Tutorial-With-R.html). *r-statistics.co*.
+* RStudio. ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+* Tidyverse. ["Reference"](http://ggplot2.tidyverse.org/reference/index.html). *ggplot2.tidyverse.org*.
+* Wilke, C. [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/).
 
 
 

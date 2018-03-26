@@ -553,30 +553,21 @@ ggplot(data, aes(year, violentCrime)) +
 <h2>Labels</h2>
 <pre class="r"><code># adding labels
 plot + labs(title, subtitle, caption, x, y, ...)</code></pre>
-<ul>
-<li>Each argument of <code>labs()</code> take a character vector of length 1
-<ul>
-<li><code>title</code> and <code>subtitle</code> appear at the top-left.</li>
-<li><code>caption</code> appears at the bottom-right</li>
-<li><code>x</code> and <code>y</code> are for x-axis and y-axis names</li>
-</ul></li>
-<li>Adjusting the position and style of labels is handled via <code>theme()</code></li>
-</ul>
-<p><strong>alternatively …</strong></p>
+<p>Labels include title, subtitle, caption, and x-axis and y-axis names of a plot. One way to specifiy these labels is to use <code>labs()</code> function, each argument of which takes a character vector of length 1. As default, <code>title</code> and <code>subtitle</code> appear at the top-left, and <code>caption</code> appears at the bottom-right. <code>x</code> and <code>y</code> inputs correspond to x-axis and y-axis names. Adjusting the position and style of labels is handled via <code>theme()</code>.</p>
 <pre class="r"><code>plot +
   xlab(label) +
   ylab(label) +
   ggtitle(label, subtitle = NULL)</code></pre>
-<ul>
-<li>Each argument of the <code>labs()</code> can be added with a separate function.
+<p>Alternatively, we have the following functions to give labels to a plot:</p>
 <ul>
 <li><code>xlab()</code> is for x-axis name</li>
 <li><code>ylab()</code> is for y-axis name</li>
 <li><code>ggtitle()</code> is for plot title and subtitle</li>
-</ul></li>
 </ul>
 <div id="examples" class="section level3">
 <h3>Examples</h3>
+<p>First, we create a <code>ggplot</code> object to give labels to.</p>
+<p>Here, we add all labels to the <code>plot</code> using the <code>labs()</code> function.</p>
 <pre class="r"><code># a generic example with title, subtitle, and axes names
 plot +
   labs(
@@ -585,6 +576,7 @@ plot +
     caption = &quot;(and caption...)&quot;
   )</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
+<p>As an alternative, we use <code>ggtitle</code> to add only the title to the <code>plot</code>. Note that, with the <code>expression()</code> function, it is possible to include mathematical expression in our title. We can use <code>expression()</code> for any label with either <code>labs()</code> or separate label functions.</p>
 <pre class="r"><code># a title with mathematical expressions
 plot +
   ggtitle(label = expression(paste(&quot;Another plot title with math expressions like &quot;, pi, &quot; and &quot;, sigma^{2})))</code></pre>
@@ -595,6 +587,7 @@ plot +
 </div>
 <div id="additional-components" class="section level1">
 <h1>Additional components</h1>
+<p>For simple plots, the three components we have seen above would be sufficient. With the following additional components, we can have greater flexibility to generate more complex plots:</p>
 <ul>
 <li>Scales</li>
 <li>Guides</li>
@@ -639,6 +632,8 @@ scale_y_sqrt(...)
 
 scale_x_reverse(...)
 scale_y_reverse(...)</code></pre>
+<p>Position scales functions are used to change on which scale the x or y axis is presented. <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code> are general functions to manipulate the scale of continuous x and y variables.</p>
+<p>The default scale is “identity”. There are a few shortcuts for commonly used scales. Other transformation options for <code>trans</code> include: “asn”, “atanh”, “boxcox”, “exp”, “log”, “log1p”, “log2”, “logit”, “probability”, “probit”, and “reciprocal”.</p>
 </div>
 <div id="common-scale-arguments" class="section level4">
 <h4>Common <code>scale</code> arguments</h4>
@@ -687,6 +682,7 @@ scale_y_datetime(...)
 
 scale_x_time(...)
 scale_y_time(...)</code></pre>
+<p>There are position scales functiosn specific to date/datetime variables.</p>
 </div>
 <div id="example" class="section level4">
 <h4>Example</h4>
@@ -902,14 +898,15 @@ plot + theme_gray(base_size = 11, base_family = &quot;&quot;)</code></pre>
 <div id="resources" class="section level1">
 <h1>Resources</h1>
 <ul>
-<li><code>ggplot2</code> official <a href="http://ggplot2.tidyverse.org/reference/index.html">reference</a></li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">“Data Visualization Cheat Sheet”</a> by RStudio</li>
-<li><a href="http://www.cookbook-r.com/Graphs/"><em>R Graphics Cookbook</em></a> by Winston Chang</li>
-<li><a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html"><code>ggplot2</code> tutorials in <em>r-statistics.co</em></a> by Selva Prabhakaran</li>
-<li>Extending <code>ggplot2</code>:
+<li>Chang, W. <a href="http://www.cookbook-r.com/Graphs/"><em>R Graphics Cookbook</em></a>.</li>
+<li>Emaasit, D. <a href="http://www.ggplot2-exts.org/index.html"><em><code>ggplot2</code> extentions</em></a>.
 <ul>
-<li><a href="http://www.ggplot2-exts.org/index.html"><em><code>ggplot2</code> extentions</em></a> website by Daniel Emaasit</li>
+<li>A list of R pacakges extending <code>ggplot2</code></li>
 </ul></li>
+<li>Prabhakaran, S. <a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html">“How to make any plot in <code>ggplot2</code>?”</a>. <em>r-statistics.co</em>.</li>
+<li>RStudio. <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">“Data Visualization Cheat Sheet”</a>.</li>
+<li>Tidyverse. <a href="http://ggplot2.tidyverse.org/reference/index.html">“Reference”</a>. <em>ggplot2.tidyverse.org</em>.</li>
+<li>Wilke, C. <a href="http://serialmentor.com/dataviz/"><em>Fundamentals of Data Visualization</em></a>.</li>
 </ul>
 <hr />
 </div>
