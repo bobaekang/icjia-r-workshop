@@ -45,7 +45,10 @@ Agenda
 Basic Descriptive Statistics
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/vadlo_descriptive_statistics.gif" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
+</p>
 
 
 Quick summary stats
@@ -130,6 +133,7 @@ median(ispcrime$violentCrime)
 ```
 <p style="text-align:center">... wait, what?</p>
 
+
 ========================================================
 
 ```r
@@ -149,6 +153,7 @@ median(ispcrime$violentCrime, na.rm = TRUE)
 ```
 * `NA` is known to be "contagious" in R, making any operation with missing values return `NA`
 * `na.rm` is an argument with a boolean input to control whether `NA` values are removed/excluded in calculation
+
 
 Variability
 ========================================================
@@ -235,6 +240,7 @@ quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.1), na.rm = TRUE)
 * The default setting output of `quantile()` is equal to `fivenum()` output
 * However, `quantile()` can use `probs` arugment to get more flexible output
 
+
 ========================================================
 **Variance**
 
@@ -257,6 +263,7 @@ sd(ispcrime$violentCrime, na.rm = TRUE)
     * $s^2 = (\sum{x - \bar{x}}^2)/(n-1)$
 * `sd()` returns the standard deviation of the given data:
     * $s = \sqrt{(\sum{x - \bar{x}}^2)/(n-1)}$
+
 
 ========================================================
 
@@ -315,11 +322,13 @@ data %>%
 ```
 
 
-
 Basic Inferential Statistics
 ========================================================
 type:section
-<img src="../images/icjia-x-r.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/vadlo_inferential_statistics.gif" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
+</p>
 
 
 Comparing means
@@ -510,6 +519,7 @@ $$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$$
 $$\boldsymbol{\text{y}} = \boldsymbol{\text{X}}^{\text{T}}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
 </p>
 
+
 The lm() function
 ========================================================
 
@@ -517,6 +527,8 @@ The lm() function
 lm(formula, data, subset, na.action, ...)
 ```
 * `lm()` is used to fit linear models, according to the `formula` input.
+* `data` is an optional argument, which can take a data frame
+    * If `data` input is provided, its column names can be used directly in the formula
 
 
 R formula
@@ -525,16 +537,94 @@ R formula
 ```r
 formula <- y ~ x1 + x2
 ```
-* simply use `y ~ .` to include all other columns additively as explanatory variables
+* The response variable is placed on the left-hand side of the tilde symbol (`~`), and the explanatory variables on the right-hand side
+    * Adding multiple explanatory variables can be done using `+` symbol
+* Simply use `y ~ .` to include all other columns additively as explanatory variables
+
 
 Model summary
 ========================================================
 
 ```r
 lmfit <- lm(formula, data)
+
+print(lmfit) # not recommended
 summary(lmfit)
 ```
+* `lm()` output is an object of `lm` class
+* Simply printing an `lm` object gives only minimal information on the fitted model
+* `summary()` function with a model input (e.g. `lm`) prints a more comprehensive model summary
 
+
+========================================================
+
+```r
+my_lmfit <- lm(violentCrime ~ propertyCrime, ispcrime)
+class(my_lmfit)
+```
+
+```
+[1] "lm"
+```
+
+```r
+my_lmfit
+```
+
+```
+
+Call:
+lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+
+Coefficients:
+  (Intercept)  propertyCrime  
+     -79.7683         0.1994  
+```
+
+
+========================================================
+
+```r
+summary(my_lmfit)
+```
+
+```
+
+Call:
+lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2239.5    -2.2    57.0    78.3  3992.9 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   -79.768287  16.496961  -4.835 1.77e-06 ***
+propertyCrime   0.199367   0.001059 188.303  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 363.5 on 501 degrees of freedom
+  (7 observations deleted due to missingness)
+Multiple R-squared:  0.9861,	Adjusted R-squared:  0.986 
+F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: < 2.2e-16
+```
+
+
+Model evaluation
+========================================================
+
+```r
+logLik(object, ...)
+AIC(object, ..., k = 2)
+BIC(object, ...) # equivalent to AIC with k = log(n)
+```
+* There are measures of model fit other than $R^2$.
+* For a model fitted by maximum likelihood algorithm:
+    * `logLik()` for log-liklehood value
+    * `AIC()` for Akaike Information Criterion (with default `k`)
+    * `BIC()` for Bayesian Information Criterion
+* Read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) for more on maximum likelihood estimation
 
 Extending lm() formula
 ========================================================
@@ -550,7 +640,25 @@ Transformations
 ```r
 scale(y) ~ log(x1) + sqrt(x2) + ...
 ```
-* We can transform the terms in either side of `~`
+* We can transform formula terms on either side of `~` by applying a function to each term
+* Common transformations include:
+    * `log()`: natural log (cf. `log2` and `log10`)
+    * `exp()`: exponentiate
+    * `sqrt()`: square root
+    * `scale()`: rescale data such that the mean is 0 and the standard deviation is 1 
+
+
+========================================================
+<br>
+**Transforming `x`**
+<br>
+![plot of chunk unnamed-chunk-30](module5_slides1-figure/unnamed-chunk-30-1.png)
+
+***
+<br>
+**Transforming `y`**
+<br>
+![plot of chunk unnamed-chunk-31](module5_slides1-figure/unnamed-chunk-31-1.png)
 
 
 Interactions
@@ -604,45 +712,108 @@ y ~ bs(x, degree = n, ...)
 broom package
 ========================================================
 * `broom` is a `tidyverse` package for "tidying up" statistical model outputs in R, i.e., converting them into tidy data frames.
-* Key functions:
+* `broom` functions:
   * `glance()`
   * `tidy()`
+  * `augment()`
+* Visit `broom` [GitHub repository](https://github.com/tidyverse/broom) and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html) for more
 
 
-The glance() function
+broom functions
 ========================================================
 
 ```r
 glance(x, ...)
-```
-* `glance()` takes a model object as `x` input and returns a concise one-row summary of the model.
-
-The tidy() function
-========================================================
 tidy(x, ...)
+augment(x, ...)
+```
+* `glance()` takes a model object and returns a concise one-row summary of the model.
+* `tidy()` takes a model object and returns a `data.frame` with the coeffcient estimation results
+* `augment()` takes a model object and returns a `data.frame` for each observation with additional columns such as predictions, residuals and cluster assignments
 
-* 
+
+========================================================
+
+```r
+glance(my_lmfit)
+```
+
+```
+  r.squared adj.r.squared    sigma statistic p.value df    logLik      AIC
+1 0.9860675     0.9860396 363.4653  35457.96       0  2 -3678.253 7362.506
+       BIC deviance df.residual
+1 7375.168 66185630         501
+```
+
+```r
+tidy(my_lmfit)
+```
+
+```
+           term    estimate   std.error  statistic      p.value
+1   (Intercept) -79.7682868 16.49696109  -4.835332 1.771126e-06
+2 propertyCrime   0.1993675  0.00105876 188.302852 0.000000e+00
+```
+
+```r
+# check the class of each output
+c(class(glance(my_lmfit)), class(glance(my_lmfit)))
+```
+
+```
+[1] "data.frame" "data.frame"
+```
+
+
+========================================================
+
+```r
+head(augment(my_lmfit))
+```
+
+```
+  .rownames violentCrime propertyCrime   .fitted  .se.fit     .resid
+1         1          218          1555 230.24816 16.26976 -12.248156
+2         2          119           290 -21.95172 16.44233 140.951715
+3         3            6           211 -37.70175 16.45666  43.701747
+4         4           59           733  66.36808 16.36964  -7.368081
+5         5            7            38 -72.19232 16.48949  79.192322
+6         6           42           505  20.91229 16.40542  21.087706
+         .hat   .sigma      .cooksd  .std.resid
+1 0.002003718 363.8282 1.142258e-06 -0.03373209
+2 0.002046448 363.7739 1.545129e-04  0.38819703
+3 0.002050017 363.8234 1.487927e-05  0.12035979
+4 0.002028394 363.8285 4.184743e-07 -0.02029235
+5 0.002058203 363.8113 4.905554e-05  0.21810593
+6 0.002037270 363.8274 3.442885e-06  0.05807767
+```
+
+```r
+class(augment(my_lmfit))
+```
+
+```
+[1] "data.frame"
+```
+
 
 modelr package
 ========================================================
 * `modelr` is a `tidyverse` package that provides helper functions for statistical modeling in R
-* partitioning and sampling
-    * `resample()`, `resample_partition()`, `bootstrap()`
-* model quality metrics
-    * `rmse()`, `mae()`, `qae()`
-* interacting with models
-    * `add_predictions()`, `add_residuals()`
+  * partitioning and sampling
+  * model quality metrics
+  * interacting with models
+* Visit `modelr` [GitHub repository](https://github.com/tidyverse/modelr) and the ["Model Basics" chapter](http://r4ds.had.co.nz/model-basics.html) in *R for Data Science* for more
 
 
 Partitioning and sampling
 ========================================================
 
 ```r
-resample()
-resample_partition()
-bootstrap()
+resample(data, idx)
+resample_partition(data, p)
+bootstrap(data, n, id = ".id")
 ```
-
 
 
 Model quality metrics
@@ -671,6 +842,28 @@ add_residuals(data, model, var = "resid")
 * `add_residuals()` adds a new column to a data frame for residuals based on a model
 
 
+========================================================
+
+```r
+ispcrime_subset <- select(ispcrime, year:violentCrime, propertyCrime)
+ispcrime_subset2 <- ispcrime_subset %>%
+  add_predictions(my_lmfit) %>%
+  add_residuals(my_lmfit)
+
+head(ispcrime_subset2)
+```
+
+```
+  year    county violentCrime propertyCrime      pred      resid
+1 2011     Adams          218          1555 230.24816 -12.248156
+2 2011 Alexander          119           290 -21.95172 140.951715
+3 2011      Bond            6           211 -37.70175  43.701747
+4 2011     Boone           59           733  66.36808  -7.368081
+5 2011     Brown            7            38 -72.19232  79.192322
+6 2011    Bureau           42           505  20.91229  21.087706
+```
+
+
 Generalized linear models
 ========================================================
 type:section
@@ -689,30 +882,33 @@ GLM basics
     * A linear predictor, $\eta = \boldsymbol{\text{X}\beta}$
     * A link function $g$, such that $\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)$
 
+
 The glm() function
 ========================================================
 
 ```r
 glm(formula, family = gaussian, data, ...)
 ```
-* `formula`
+* `formula` is the same formula we have seen all along
 * `family` input specifies the link function $g$
     * the default is `gaussian(link = "identity")` for the linear model
+* `glm()` function returns a `glm` class object
+    * Use `summary()` to inspect the model estimation results
 
 
 ========================================================
 **`family` objects**
 
-|family                              |Use                                                                     |
-|:-----------------------------------|:-----------------------------------------------------------------------|
-|`gaussian(link = "identity")`       |Linear model for continous outcome<br>(ordinary linear regression; OLS) |
-|`binomial(link = "logit")`          |Logit model for binary outcome<br>(logistic regression)                 |
-|`poisson(link = "log"`)             |Poisson model for count outcome                                         |
-|`Gamma(link = "inverse")`           |                                                                        |
-|`inverse.gaussian(link = "1/mu^2")` |                                                                        |
-|`quasi(link = "identitiy")`         |                                                                        |
-|`quasibinomial(link = "logit")`     |                                                                        |
-|`quasipoisson(link = "log")`        |                                                                        |
+|family             |Default link function  |Use                                                                     |
+|:------------------|:----------------------|:-----------------------------------------------------------------------|
+|`gaussian`         |`(link = "identity")`  |Linear model for continous outcome<br>(ordinary linear regression; OLS) |
+|`binomial`         |`(link = "logit")`     |Logit model for binary outcome<br>(logistic regression)                 |
+|`poisson`          |`(link = "log"`)       |Poisson model for count outcome                                         |
+|`Gamma`            |`(link = "inverse")`   |...                                                                     |
+|`inverse.gaussian` |`(link = "1/mu^2")`    |...                                                                     |
+|`quasi`            |`(link = "identitiy")` |...                                                                     |
+|`quasibinomial`    |`(link = "logit")`     |...                                                                     |
+|`quasipoisson`     |`(link = "log")`       |...                                                                     |
 
 
 Logit model
@@ -721,6 +917,8 @@ Logit model
 ```r
 glm(formula, family = binomial, data, ...)
 ```
+* A logit model, i.e. logistic regression, can be fitted using `glm()` with `family = binomial`
+* The response variable must range between 0 and 1 (an error will be thrown otherwise)
 
 
 Poisson model
@@ -729,6 +927,8 @@ Poisson model
 ```r
 glm(formula, family = poisson, data, ...)
 ```
+* A possion model can be fitted using `glm()` with `family = poisson`
+* The response variable must not include negative values (an error will be thrown otherwise)
 
 
 Better ways?
@@ -756,7 +956,7 @@ Resources
 Questions?
 ========================================================
 type: section
-<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/kpop-bts-8lPSqcjcNjymIOS4Pm">Giphy</a>
 </p>
@@ -776,7 +976,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>
