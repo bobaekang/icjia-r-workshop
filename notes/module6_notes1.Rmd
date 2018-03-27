@@ -772,7 +772,7 @@ include_graphics("../images/blogdown_example3.png")
 
 
 # References
-<ul style="list-style-type:none">
+<ul>
   <li>Sellors, M. <a href="http://awesome-blogdown.com/"><i>Awesome Blogdown</i></a></li>
   <li>Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html">"App formats and launching apps"</a>. <i>Shiny from RStudio</i></li>
   <li>Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html">"Introduction to interactive documents"</a>. <i>Shiny from RStudio</i>.</li>

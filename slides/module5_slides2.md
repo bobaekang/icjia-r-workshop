@@ -669,7 +669,7 @@ References
   <li>Anselin, L. & Rey, S. (2014). <i>Modern Spatial Econometrics in Practice</i>.</li>
   <li>Bivand, Roger. (2018). <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data"</a>.</li>
   <li>Fox, J. (2016). <a href="https://cran.r-project.org/web/views/SocialSciences.html">"CRAN Task View: Statistics for the Social Sciences"</a>.</li>
-  <li>Harrell, F. Jr. (2015). <i>Regression Modeling Strategies</i> (2nd ed.).<li>
+  <li>Harrell, F. Jr. (2015). <i>Regression Modeling Strategies</i> (2nd ed.).</li>
   <li>Hyndman, R. J. (2018). <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a>.</li>
   <li>NIST/SEMATECH. (2013). <a href="http://www.itl.nist.gov/div898/handbook/"><span style="font-style:italic">e-Handbook of Statistical Methods</span></a>.</li>
   <li>Reference manuals for the aforementioned R packages.</li>

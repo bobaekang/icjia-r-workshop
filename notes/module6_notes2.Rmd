@@ -492,6 +492,6 @@ Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanf
 
 
 # References
-<ul style="list-style-type:none">
+<ul>
   <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a></li>
 </ul>

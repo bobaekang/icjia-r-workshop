@@ -738,7 +738,7 @@ plot + theme(...)
 
 
 # References
-<ul style="list-style-type:none">
+<ul>
   <li>Grolemund, G. & Wickham, H. (2017).<a href="http://r4ds.had.co.nz/data-visualisation.html">"Data visualization"</a>. <span style="font-style:italic">R for Data Science</span></li>
   <li>Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference">"References"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span></li>
   <li>Wickham, H. (2010). "A Layered Grammar of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 19(1)</span>:3-28.</li>
