@@ -689,7 +689,7 @@ Polynomial splines
 ========================================================
 
 ```r
-library(splines)
+library(splines) # part of R "base pacakges"
 y ~ ns(x, ...)
 ```
 
@@ -704,9 +704,9 @@ y ~ bs(x, degree = n, ...)
 ```
 y ~ bs(x, degree = n, ...)
 ```
-* `splines::ns()` is used for the natural cubic splines
-* `splines::bs()` is used for the n-th degree polynomial splines
-    * equivalent to `splines::bs(x, degree = 3)`
+* `ns()` is used for the natural cubic splines
+* `bs()` is used for the n-th degree polynomial splines
+    * equivalent to `bs(x, degree = 3)`
 
 
 broom package

@@ -1767,7 +1767,7 @@ y ~ x + I(x^2) + I(x^3) + ...
 <section data-transition="linear" data-transition-speed="default">
 <h3>Polynomial splines</h3>
 <div class="slideContent" >
-<pre><code class="r">library(splines)
+<pre><code class="r">library(splines) # part of R &quot;base pacakges&quot;
 y ~ ns(x, ...)
 </code></pre>
 
@@ -1781,11 +1781,11 @@ y ~ ns(x, ...)
 </code></pre>
 
 <ul>
-<li><code>splines::ns()</code> is used for the natural cubic splines</li>
-<li><code>splines::bs()</code> is used for the n-th degree polynomial splines
+<li><code>ns()</code> is used for the natural cubic splines</li>
+<li><code>bs()</code> is used for the n-th degree polynomial splines
 
 <ul>
-<li>equivalent to <code>splines::bs(x, degree = 3)</code></li>
+<li>equivalent to <code>bs(x, degree = 3)</code></li>
 </ul></li>
 </ul>
 
