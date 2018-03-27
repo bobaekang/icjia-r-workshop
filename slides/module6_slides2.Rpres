@@ -28,8 +28,6 @@ Bobae Kang
 <small>(Bobae.Kang@illinois.gov)</small>  
 
 ```{r setup, include=FALSE}
-library(dplyr)
-library(tibble)
 library(knitr)
 ```
 
@@ -140,7 +138,7 @@ Source: <a href="https://www.r-project.org/logo/">R Project</a>
 </p>
 
 
-CRAN
+CRAN website
 ========================================================
 * The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following 
     * Manuals
@@ -305,7 +303,7 @@ include_graphics("../images/tidyverse_page.png")
 ========================================================
 ```{r echo=FALSE}
 kable(
-  tribble(
+  tibble::tribble(
     ~Pacakge, ~Description, ~URL,
     "`ggplot2`", "For data visualization", "http://ggplot2.tidyverse.org/",
     "`dplyr`", "For data manpulation", "http://dplyr.tidyverse.org/",

@@ -129,7 +129,7 @@ Source: <a href="https://www.r-project.org/logo/">R Project</a>
 </p>
 
 
-CRAN
+CRAN website
 ========================================================
 * The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following 
     * Manuals

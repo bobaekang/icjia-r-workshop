@@ -98,16 +98,16 @@ include_graphics("../images/rmarkdown4.png")
 ```
 
 
-Basics
+R Markdown structure
 ========================================================
 * YAML header
-* knit and preview outputs
-* markdown
-* code chucks
+* Knit and preview outputs
+* Markdown
+* Code chucks
 
 
 ========================================================
-**yaml header**
+**YAML header**
 <br><br>
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown5.png")
@@ -124,7 +124,7 @@ YAML header options
 
 
 ========================================================
-**knit and prevew**
+**Knit and preview**
 <br><br>
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown6.png")
@@ -132,7 +132,7 @@ include_graphics("../images/rmarkdown6.png")
 
 
 ========================================================
-**knit options**
+**Knit options**
 <br><br>
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown6-1.png")
@@ -140,7 +140,7 @@ include_graphics("../images/rmarkdown6-1.png")
 
 
 ========================================================
-**preview options**
+**Preview options**
 <br><br>
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown6-2.png")
@@ -148,7 +148,7 @@ include_graphics("../images/rmarkdown6-2.png")
 
 
 ========================================================
-**markdown**
+**Markdown**
 <br><br>
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown7.png")
@@ -334,7 +334,7 @@ Tables
 
 
 ========================================================
-**default print example**
+**Default print example**
 ```{r echo=FALSE}
 my_table <- data.frame(
   my_fruits = c("apple", "banana", "clementine"),
@@ -351,14 +351,14 @@ my_table
 
 
 ========================================================
-**kable example**
+**`kable` example**
 ```{r}
 knitr::kable(my_table)
 ```
 
 
 ========================================================
-**datatable example**
+**`datatable` example**
 ```{r eval=FALSE}
 DT::datatable(my_table)
 ```
@@ -502,7 +502,7 @@ output: ioslides_presentation
 
 
 ========================================================
-**Slides example**
+**`ioslides` sample source code**
 ```
 ---
 title: "My first ioslide presentation"
@@ -531,7 +531,7 @@ This slide has a two-column layout
 
 
 ========================================================
-<iframe src="../interactive/slides_ioslides.html" style="display: block; margin: auto; min-height:650px; width:90%;"></iframe>
+<iframe src="../interactive/slides_ioslides.html" style="display: block; margin: auto; min-height:650px; width:100%;"></iframe>
 
 
 revealjs
@@ -631,7 +631,7 @@ runExample("01_hello")
 * Try a simple built-in example for Shiny application!
 
 
-Shiny application
+Parts of Shiny application
 ========================================================
 * A Shiny app consists of two parts, `server` and `ui` 
 * They can be separated into two files, `server.R` and `ui.R`

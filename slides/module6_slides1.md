@@ -86,16 +86,16 @@ Getting started
 <img src="../images/rmarkdown4.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
 
-Basics
+R Markdown structure
 ========================================================
 * YAML header
-* knit and preview outputs
-* markdown
-* code chucks
+* Knit and preview outputs
+* Markdown
+* Code chucks
 
 
 ========================================================
-**yaml header**
+**YAML header**
 <br><br>
 <img src="../images/rmarkdown5.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
@@ -110,25 +110,25 @@ YAML header options
 
 
 ========================================================
-**knit and prevew**
+**Knit and preview**
 <br><br>
 <img src="../images/rmarkdown6.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-**knit options**
+**Knit options**
 <br><br>
 <img src="../images/rmarkdown6-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-**preview options**
+**Preview options**
 <br><br>
 <img src="../images/rmarkdown6-2.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
 
 ========================================================
-**markdown**
+**Markdown**
 <br><br>
 <img src="../images/rmarkdown7.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 
@@ -304,7 +304,7 @@ Tables
 
 
 ========================================================
-**default print example**
+**Default print example**
 
 
 
@@ -321,7 +321,7 @@ my_table
 
 
 ========================================================
-**kable example**
+**`kable` example**
 
 ```r
 knitr::kable(my_table)
@@ -337,7 +337,7 @@ knitr::kable(my_table)
 
 
 ========================================================
-**datatable example**
+**`datatable` example**
 
 ```r
 DT::datatable(my_table)
@@ -468,7 +468,7 @@ output: ioslides_presentation
 
 
 ========================================================
-**Slides example**
+**`ioslides` sample source code**
 ```
 ---
 title: "My first ioslide presentation"
@@ -497,7 +497,7 @@ This slide has a two-column layout
 
 
 ========================================================
-<iframe src="../interactive/slides_ioslides.html" style="display: block; margin: auto; min-height:650px; width:90%;"></iframe>
+<iframe src="../interactive/slides_ioslides.html" style="display: block; margin: auto; min-height:650px; width:100%;"></iframe>
 
 
 revealjs
@@ -594,7 +594,7 @@ runExample("01_hello")
 * Try a simple built-in example for Shiny application!
 
 
-Shiny application
+Parts of Shiny application
 ========================================================
 * A Shiny app consists of two parts, `server` and `ui` 
 * They can be separated into two files, `server.R` and `ui.R`
