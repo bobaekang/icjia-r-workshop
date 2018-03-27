@@ -58,30 +58,49 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_
 
 What is Survival analysis?
 ========================================================
+> "Survival analysis is used to analyze data in which the time until the event is of interest. The response variable is the time until that event and is often called a failure time, survival time, or event time."<br>- Harrell Jr. (2015).
+
+* The response variable is a non-negative discrete/continuous random variable
 
 
 Survival analysis basics
 ========================================================
-* failure/event
-* hazard
-* failure rate
-* survival rate
+* Failure/event
+* Censoring
+* Survival function
+* Hazard function
 
 
 Failure/event
 ========================================================
+* Failure, or event, refers to an event of interest where the time, $T$, from the beginning of observation to the occurence of an event is measured and available for modeling.
+* Examples of event include:
+    * Death
+    * Recidivism (rearrest, reconviction, or reincarceration)
+    * Disease occurence/recurrence
 
 
-Hazard
+Censoring
 ========================================================
+* Observations are called censored when the information about their survival time is
+incomplete.
+* The most common form of censoring is right-censoring
+    * The final endpoint is only known to exceed a particular value.
+    * Most likely occurs due to the end of the study/observation period
 
 
-Failure rate
+Survival function
 ========================================================
+* The survival function $S(t)$ is the probability that the time of event/failure is later than some specified time $t$
+
+$$S(t) = \text{Pr}(T > t),\quad 0 < t < \infty$$
 
 
-Survival rate
+Hazard function
 ========================================================
+* The hazard function $\lambda(t)$ is the event rate at time $t$, conditional on survival (i.e. no event) until time $t$ or later:
+
+$$\lambda(t) = \lim_{dt\to0} \frac{\text{Pr}(t \leq T < t + dt)}{S(t)dt} = \frac{S'(t)}{S(t)}$$
 
 
 Packages on survival analysis
@@ -92,6 +111,7 @@ Packages on survival analysis
         * [Package website](http://www.sthda.com/english/rpkgs/survminer/)
         * [GiHub repo](https://github.com/kassambara/survminer)
 
+
 Basic survival models
 ========================================================
 * Kaplan-Meier estimator
@@ -100,6 +120,13 @@ Basic survival models
 
 Kaplan-Meier estimator
 ========================================================
+* Most widely used nonparametric estimator of the survival function
+* KM estiamor $\hat{S}(t)$ is the product over the failure times of the conditional probabilities of surviving to the next failure time
+    * $d_i$ is the number of subjects who fail at time $t$
+    * $n_i$ is the number of subjects at risk at time $t$
+
+$$\hat{S}(t) = \prod_{t_i \leq t} \Big( 1 - \frac{d_i}{n_i} \Big)$$
+
 
 
 Surv function and Surv class
@@ -411,9 +438,9 @@ Other resources
 Questions?
 ========================================================
 type: section
-<img src="" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media1.giphy.com/media/3ELtfmA4Apkju/giphy.gif" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href=""></a>
+Source: <a href="https://giphy.com/gifs/just-blinking-3ELtfmA4Apkju">Giphy</a>
 </p>
 
 
@@ -423,6 +450,7 @@ References
   <li>Allignol A. & Latouche, A. (2018). <a href="https://cran.r-project.org/web/views/Survival.html">"CRAN Task View: Survival Analysis"</a>.</li>
   <li>Bivand, Roger. (2018). <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data"</a>.</li>
   <li>NIST/SEMATECH. (2013). <a href="http://www.itl.nist.gov/div898/handbook/"><span style="font-style:italic">e-Handbook of Statistical Methods</span></a>.</li>
+  <li>Harrell, F. Jr. (2015). <i>Regression Modeling Strategies</i> (2nd ed.).<li>
   <li>Hyndman, R. J. (2018). <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a>.</li>
   <li>Fox, J. (2016). <a href="https://cran.r-project.org/web/views/SocialSciences.html">"CRAN Task View: Statistics for the Social Sciences"</a>.</li>
   <li>Reference manuals for the aforementioned R packages.</li>
