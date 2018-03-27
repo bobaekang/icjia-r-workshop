@@ -21,6 +21,8 @@
 library(knitr)
 library(dplyr)
 library(icjiar)
+library(broom)
+library(modelr)
 ```
 
 
@@ -49,9 +51,12 @@ Agenda
 Basic Descriptive Statistics
 ========================================================
 type:section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/vadlo_descriptive_statistics.gif")
 ```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
+</p>
 
 
 Quick summary stats
@@ -95,6 +100,7 @@ median(ispcrime$violentCrime)
 ```
 <p style="text-align:center">... wait, what?</p>
 
+
 ========================================================
 ```{r}
 mean(ispcrime$violentCrime, na.rm = TRUE)
@@ -102,6 +108,7 @@ median(ispcrime$violentCrime, na.rm = TRUE)
 ```
 * `NA` is known to be "contagious" in R, making any operation with missing values return `NA`
 * `na.rm` is an argument with a boolean input to control whether `NA` values are removed/excluded in calculation
+
 
 Variability
 ========================================================
@@ -141,6 +148,7 @@ quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.1), na.rm = TRUE)
 * The default setting output of `quantile()` is equal to `fivenum()` output
 * However, `quantile()` can use `probs` arugment to get more flexible output
 
+
 ========================================================
 **Variance**
 ```{r}
@@ -151,6 +159,7 @@ sd(ispcrime$violentCrime, na.rm = TRUE)
     * $s^2 = (\sum{x - \bar{x}}^2)/(n-1)$
 * `sd()` returns the standard deviation of the given data:
     * $s = \sqrt{(\sum{x - \bar{x}}^2)/(n-1)}$
+
 
 ========================================================
 ```{r}
@@ -200,13 +209,15 @@ data %>%
 ```
 
 
-
 Basic Inferential Statistics
 ========================================================
 type:section
-```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
-include_graphics("../images/icjia-x-r.png")
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/vadlo_inferential_statistics.gif")
 ```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
+</p>
 
 
 Comparing means
@@ -324,12 +335,15 @@ $$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$$
 $$\boldsymbol{\text{y}} = \boldsymbol{\text{X}}^{\text{T}}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
 </p>
 
+
 The lm() function
 ========================================================
 ```{r eval=FALSE}
 lm(formula, data, subset, na.action, ...)
 ```
 * `lm()` is used to fit linear models, according to the `formula` input.
+* `data` is an optional argument, which can take a data frame
+    * If `data` input is provided, its column names can be used directly in the formula
 
 
 R formula
@@ -337,15 +351,51 @@ R formula
 ```{r eval=FALSE}
 formula <- y ~ x1 + x2
 ```
-* simply use `y ~ .` to include all other columns additively as explanatory variables
+* The response variable is placed on the left-hand side of the tilde symbol (`~`), and the explanatory variables on the right-hand side
+    * Adding multiple explanatory variables can be done using `+` symbol
+* Simply use `y ~ .` to include all other columns additively as explanatory variables
+
 
 Model summary
 ========================================================
 ```{r eval=FALSE}
 lmfit <- lm(formula, data)
+
+print(lmfit) # not recommended
 summary(lmfit)
 ```
+* `lm()` output is an object of `lm` class
+* Simply printing an `lm` object gives only minimal information on the fitted model
+* `summary()` function with a model input (e.g. `lm`) prints a more comprehensive model summary
 
+
+========================================================
+```{r}
+my_lmfit <- lm(violentCrime ~ propertyCrime, ispcrime)
+class(my_lmfit)
+my_lmfit
+```
+
+
+========================================================
+```{r}
+summary(my_lmfit)
+```
+
+
+Model evaluation
+========================================================
+```{r eval=FALSE}
+logLik(object, ...)
+AIC(object, ..., k = 2)
+BIC(object, ...) # equivalent to AIC with k = log(n)
+```
+* There are measures of model fit other than $R^2$.
+* For a model fitted by maximum likelihood algorithm:
+    * `logLik()` for log-liklehood value
+    * `AIC()` for Akaike Information Criterion (with default `k`)
+    * `BIC()` for Bayesian Information Criterion
+* Read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) for more on maximum likelihood estimation
 
 Extending lm() formula
 ========================================================
@@ -360,7 +410,47 @@ Transformations
 ```{r eval=FALSE}
 scale(y) ~ log(x1) + sqrt(x2) + ...
 ```
-* We can transform the terms in either side of `~`
+* We can transform formula terms on either side of `~` by applying a function to each term
+* Common transformations include:
+    * `log()`: natural log (cf. `log2` and `log10`)
+    * `exp()`: exponentiate
+    * `sqrt()`: square root
+    * `scale()`: rescale data such that the mean is 0 and the standard deviation is 1 
+
+
+========================================================
+<br>
+**Transforming `x`**
+<br>
+```{r echo=FALSE}
+x <- seq(1, 100, 2)
+y <- seq(1, 100, 2)
+par(mfrow = c(2, 2))
+plot(x, y)
+abline(a = 0, b = 1, col = "red")
+plot(log(x), y)
+abline(a = 0, b = 1, col = "red")
+plot(sqrt(x), y)
+abline(a = 0, b = 1, col = "red")
+plot(exp(x), y)
+abline(a = 0, b = 1, col = "red")
+```
+
+***
+<br>
+**Transforming `y`**
+<br>
+```{r echo=FALSE}
+par(mfrow = c(2, 2))
+plot(x, y)
+abline(a = 0, b = 1, col = "red")
+plot(x, log(y))
+abline(a = 0, b = 1, col = "red")
+plot(x, sqrt(y))
+abline(a = 0, b = 1, col = "red")
+plot(x, exp(y))
+abline(a = 0, b = 1, col = "red")
+```
 
 
 Interactions
@@ -388,56 +478,69 @@ y ~ x + I(x^2) + I(x^3) + ...
 Polynomial splines
 ========================================================
 ```{r}
-library(splines)
+library(splines) # part of R "base pacakges"
 y ~ ns(x, ...)
 y ~ bs(x, degree = n, ...)
 ```
-* `splines::ns()` is used for the natural cubic splines
-* `splines::bs()` is used for the n-th degree polynomial splines
-    * equivalent to `splines::bs(x, degree = 3)`
+* `ns()` is used for the natural cubic splines
+* `bs()` is used for the n-th degree polynomial splines
+    * equivalent to `bs(x, degree = 3)`
 
 
 broom package
 ========================================================
 * `broom` is a `tidyverse` package for "tidying up" statistical model outputs in R, i.e., converting them into tidy data frames.
-* Key functions:
+* `broom` functions:
   * `glance()`
   * `tidy()`
+  * `augment()`
+* Visit `broom` [GitHub repository](https://github.com/tidyverse/broom) and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html) for more
 
 
-The glance() function
+broom functions
 ========================================================
 ```{r eval=FALSE}
 glance(x, ...)
-```
-* `glance()` takes a model object as `x` input and returns a concise one-row summary of the model.
-
-The tidy() function
-========================================================
 tidy(x, ...)
-```{r eval=FALSE}
+augment(x, ...)
 ```
-* 
+* `glance()` takes a model object and returns a concise one-row summary of the model.
+* `tidy()` takes a model object and returns a `data.frame` with the coeffcient estimation results
+* `augment()` takes a model object and returns a `data.frame` for each observation with additional columns such as predictions, residuals and cluster assignments
+
+
+========================================================
+```{r}
+glance(my_lmfit)
+tidy(my_lmfit)
+# check the class of each output
+c(class(glance(my_lmfit)), class(glance(my_lmfit)))
+```
+
+
+========================================================
+```{r}
+head(augment(my_lmfit))
+class(augment(my_lmfit))
+```
+
 
 modelr package
 ========================================================
 * `modelr` is a `tidyverse` package that provides helper functions for statistical modeling in R
-* partitioning and sampling
-    * `resample()`, `resample_partition()`, `bootstrap()`
-* model quality metrics
-    * `rmse()`, `mae()`, `qae()`
-* interacting with models
-    * `add_predictions()`, `add_residuals()`
+  * partitioning and sampling
+  * model quality metrics
+  * interacting with models
+* Visit `modelr` [GitHub repository](https://github.com/tidyverse/modelr) and the ["Model Basics" chapter](http://r4ds.had.co.nz/model-basics.html) in *R for Data Science* for more
 
 
 Partitioning and sampling
 ========================================================
 ```{r eval=FALSE}
-resample()
-resample_partition()
-bootstrap()
+resample(data, idx)
+resample_partition(data, p)
+bootstrap(data, n, id = ".id")
 ```
-
 
 
 Model quality metrics
@@ -464,6 +567,17 @@ add_residuals(data, model, var = "resid")
 * `add_residuals()` adds a new column to a data frame for residuals based on a model
 
 
+========================================================
+```{r}
+ispcrime_subset <- select(ispcrime, year:violentCrime, propertyCrime)
+ispcrime_subset2 <- ispcrime_subset %>%
+  add_predictions(my_lmfit) %>%
+  add_residuals(my_lmfit)
+
+head(ispcrime_subset2)
+```
+
+
 Generalized linear models
 ========================================================
 type:section
@@ -482,14 +596,17 @@ GLM basics
     * A linear predictor, $\eta = \boldsymbol{\text{X}\beta}$
     * A link function $g$, such that $\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)$
 
+
 The glm() function
 ========================================================
 ```{r eval=FALSE}
 glm(formula, family = gaussian, data, ...)
 ```
-* `formula`
+* `formula` is the same formula we have seen all along
 * `family` input specifies the link function $g$
     * the default is `gaussian(link = "identity")` for the linear model
+* `glm()` function returns a `glm` class object
+    * Use `summary()` to inspect the model estimation results
 
 
 ========================================================
@@ -497,15 +614,15 @@ glm(formula, family = gaussian, data, ...)
 ```{r echo=FALSE}
 kable(
   tribble(
-    ~`family`, ~Use,
-    "`gaussian(link = \"identity\")`", "Linear model for continous outcome<br>(ordinary linear regression; OLS)",
-    "`binomial(link = \"logit\")`", "Logit model for binary outcome<br>(logistic regression)",
-    "`poisson(link = \"log\"`)", "Poisson model for count outcome",
-    "`Gamma(link = \"inverse\")`", "",
-    "`inverse.gaussian(link = \"1/mu^2\")`", "",
-    "`quasi(link = \"identitiy\")`", "",
-    "`quasibinomial(link = \"logit\")`", "",
-    "`quasipoisson(link = \"log\")`", ""
+    ~`family`, ~"Default link function", ~Use,
+    "`gaussian`","`(link = \"identity\")`", "Linear model for continous outcome<br>(ordinary linear regression; OLS)",
+    "`binomial`","`(link = \"logit\")`", "Logit model for binary outcome<br>(logistic regression)",
+    "`poisson`","`(link = \"log\"`)", "Poisson model for count outcome",
+    "`Gamma`","`(link = \"inverse\")`", "...",
+    "`inverse.gaussian`","`(link = \"1/mu^2\")`", "...",
+    "`quasi`", "`(link = \"identitiy\")`", "...",
+    "`quasibinomial`", "`(link = \"logit\")`", "...",
+    "`quasipoisson`", "`(link = \"log\")`", "..."
   )
 )
 ```
@@ -516,6 +633,8 @@ Logit model
 ```{r eval=FALSE}
 glm(formula, family = binomial, data, ...)
 ```
+* A logit model, i.e. logistic regression, can be fitted using `glm()` with `family = binomial`
+* The response variable must range between 0 and 1 (an error will be thrown otherwise)
 
 
 Poisson model
@@ -523,6 +642,8 @@ Poisson model
 ```{r eval=FALSE}
 glm(formula, family = poisson, data, ...)
 ```
+* A possion model can be fitted using `glm()` with `family = poisson`
+* The response variable must not include negative values (an error will be thrown otherwise)
 
 
 Better ways?

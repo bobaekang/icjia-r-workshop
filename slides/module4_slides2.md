@@ -627,4 +627,5 @@ References
   <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><i>plotly for R</i></a>.</li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a>.</li>
   <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a>.</li>
+  <li>Reference manuals for the aforementioned R packages.</li>
 </ul>

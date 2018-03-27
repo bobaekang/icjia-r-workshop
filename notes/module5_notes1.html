@@ -278,24 +278,737 @@ div.tocify {
 <h1>Statistical modleing with R (1): Basics of statistical modeling</h1>
 <hr />
 </div>
-<div id="slides-in-development" class="section level1">
-<h1>slides in development</h1>
+<div id="basic-descriptive-statistics" class="section level1">
+<h1>Basic Descriptive Statistics</h1>
+<img src="../images/vadlo_descriptive_statistics.gif" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
+</p>
+<div id="quick-summary-stats" class="section level2">
+<h2>Quick summary stats</h2>
+<pre class="r"><code>summary(data)</code></pre>
+<ul>
+<li>Base R’s <code>summary()</code> function is a quick way to get descriptive statistics on each columan of a tabular data object.
+<ul>
+<li>For numerical columns, we get minimum, 1st quartile, median, mean, 3rd quartie and maximum values, as well as the count of missing value (<code>NA</code>).</li>
+<li>For categorical variables (e.g. <code>factor</code>), we can frequencies for each level as well as the count of missing value (<code>NA</code>).</li>
+</ul></li>
+<li><code>summary()</code> is also used to get the “summary” of a fitted model object (e.g. <code>lm</code>) as well, as we will see shortly.</li>
+</ul>
+<pre class="r"><code>summary(ispcrime)</code></pre>
+<pre><code>##       year            county     violentCrime       murder       
+##  Min.   :2011   Adams    :  5   Min.   :    0   Min.   :  0.000  
+##  1st Qu.:2012   Alexander:  5   1st Qu.:   19   1st Qu.:  0.000  
+##  Median :2013   Bond     :  5   Median :   42   Median :  0.000  
+##  Mean   :2013   Boone    :  5   Mean   :  501   Mean   :  7.026  
+##  3rd Qu.:2014   Brown    :  5   3rd Qu.:  133   3rd Qu.:  1.000  
+##  Max.   :2015   Bureau   :  5   Max.   :33348   Max.   :566.000  
+##                 (Other)  :480   NA&#39;s   :7       NA&#39;s   :7        
+##       rape            robbery          aggAssault      propertyCrime   
+##  Min.   :   0.00   Min.   :    0.0   Min.   :    0.0   Min.   :     0  
+##  1st Qu.:   1.00   1st Qu.:    0.0   1st Qu.:   15.0   1st Qu.:   133  
+##  Median :   6.00   Median :    2.0   Median :   33.0   Median :   349  
+##  Mean   :  41.29   Mean   :  172.3   Mean   :  280.4   Mean   :  2913  
+##  3rd Qu.:  22.00   3rd Qu.:   13.0   3rd Qu.:  102.0   3rd Qu.:  1190  
+##  Max.   :1986.00   Max.   :16095.0   Max.   :15129.0   Max.   :178902  
+##  NA&#39;s   :7         NA&#39;s   :7         NA&#39;s   :7         NA&#39;s   :7       
+##     burglary         larcenyTft           MVTft             arson        
+##  Min.   :    0.0   Min.   :     0.0   Min.   :    0.0   Min.   :   0.00  
+##  1st Qu.:   35.5   1st Qu.:    85.5   1st Qu.:    3.0   1st Qu.:   1.00  
+##  Median :   79.0   Median :   258.0   Median :   10.0   Median :   2.00  
+##  Mean   :  589.3   Mean   :  2084.9   Mean   :  215.2   Mean   :  23.45  
+##  3rd Qu.:  268.0   3rd Qu.:   852.0   3rd Qu.:   30.0   3rd Qu.:   8.50  
+##  Max.   :38485.0   Max.   :116145.0   Max.   :22879.0   Max.   :1418.00  
+##  NA&#39;s   :7         NA&#39;s   :7          NA&#39;s   :7         NA&#39;s   :7</code></pre>
+</div>
+<div id="numerical-variables" class="section level2">
+<h2>Numerical variables</h2>
+<ul>
+<li>Central tendency</li>
+<li>Variability</li>
+<li>Shape</li>
+<li>Outliers</li>
+</ul>
+<div id="central-tendency" class="section level3">
+<h3>Central tendency</h3>
+<ul>
+<li>In statistics, central tendency is concerned with the “center” of a distribution. The following three are the common measures of central tendency:</li>
+<li>“mean” for the arithmetic mean</li>
+<li>“median” for the 50th percentile</li>
+<li>“mode” for the most frequent value</li>
+<li>R has built-in functions for the first two: <code>mean()</code> and <code>median()</code></li>
+</ul>
+<pre class="r"><code>mean(ispcrime$violentCrime)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>median(ispcrime$violentCrime)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p style="text-align:center">
+… wait, what?
+</p>
+<pre class="r"><code>mean(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 500.9702</code></pre>
+<pre class="r"><code>median(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 42</code></pre>
+<ul>
+<li><code>NA</code> is known to be “contagious” in R, making any operation with missing values return <code>NA</code></li>
+<li><code>na.rm</code> is an argument with a boolean input to control whether <code>NA</code> values are removed/excluded in calculation</li>
+</ul>
+</div>
+<div id="variability" class="section level3">
+<h3>Variability</h3>
+<ul>
+<li>Variability (or dispersion) in statistics is concerned with the extent to which a distribution is spreaded out.</li>
+<li>There exist various measures for variability and R has built-in functions for many of them:</li>
+<li>range: <code>min()</code>, <code>max()</code>, <code>range()</code></li>
+<li>percentiles: <code>fivenum()</code>, <code>IQR()</code>, <code>quantile()</code></li>
+<li>variance: <code>var()</code>, <code>sd()</code></li>
+</ul>
+<div id="range" class="section level4">
+<h4>Range</h4>
+<pre class="r"><code>min(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>max(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 33348</code></pre>
+<pre class="r"><code>range(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1]     0 33348</code></pre>
+<ul>
+<li>Range is the interval between the minium nad maximum values.</li>
+</ul>
+</div>
+<div id="percentiles" class="section level4">
+<h4>Percentiles</h4>
+<pre class="r"><code>fivenum(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1]     0    19    42   133 33348</code></pre>
+<pre class="r"><code>IQR(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 114</code></pre>
+<ul>
+<li><code>fivenum()</code> returns what is called Tukey’s five number summary (minumum, 1st quartile, median, 3rd qurtile, maximum) for the input data</li>
+<li><code>IQR()</code> returns the inter-quartile range, which is the difference between the 1st quartile (25%) and 3rd quartile (75%)</li>
+</ul>
+<pre class="r"><code># default: equal to fivenum()
+quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.25), na.rm = TRUE)</code></pre>
+<pre><code>##    0%   25%   50%   75%  100% 
+##     0    19    42   133 33348</code></pre>
+<pre class="r"><code>quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.1), na.rm = TRUE)</code></pre>
+<pre><code>##      0%     10%     20%     30%     40%     50%     60%     70%     80% 
+##     0.0     5.0    13.0    24.0    32.0    42.0    57.0    90.0   246.2 
+##     90%    100% 
+##   668.4 33348.0</code></pre>
+<ul>
+<li>The default setting output of <code>quantile()</code> is equal to <code>fivenum()</code> output</li>
+<li>However, <code>quantile()</code> can use <code>probs</code> arugment to get more flexible output</li>
+</ul>
+</div>
+<div id="variance" class="section level4">
+<h4>Variance</h4>
+<pre class="r"><code>var(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 9463013</code></pre>
+<pre class="r"><code>sd(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 3076.201</code></pre>
+<ul>
+<li><code>var()</code> returns the sample variance of the given data:
+<ul>
+<li><span class="math inline">\(s^2 = (\sum{x - \bar{x}}^2)/(n-1)\)</span></li>
+</ul></li>
+<li><code>sd()</code> returns the standard deviation of the given data:
+<ul>
+<li><span class="math inline">\(s = \sqrt{(\sum{x - \bar{x}}^2)/(n-1)}\)</span></li>
+</ul></li>
+</ul>
+<pre class="r"><code>variables &lt;- ispcrime %&gt;% select(violentCrime, propertyCrime)
+var(variables, na.rm = TRUE)</code></pre>
+<pre><code>##               violentCrime propertyCrime
+## violentCrime       9463013      46803865
+## propertyCrime     46803865     234761775</code></pre>
+<ul>
+<li>When multiple variables are given as its input, <code>var()</code> returns a covariance matrix
+<ul>
+<li>In such cases, <code>cov()</code>can be used instead; however, <code>cov()</code> has no <code>na.rm</code> argument to remove missing values</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="shape" class="section level3">
+<h3>Shape</h3>
+<ul>
+<li>The skewness and kurtosis (fatness/thinness) of a distribution are called the “shape” of the distribution.</li>
+<li>The <code>moments</code> package offers the following functions to meaasure the shape of a distribution:
+<ul>
+<li><code>skewness()</code></li>
+<li><code>kurtosis()</code></li>
+<li>See <code>moments</code> package <a href="https://cran.r-project.org/web/packages/moments/moments.pdf">documentation</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="outliers" class="section level3">
+<h3>Outliers</h3>
+<ul>
+<li>Outliers are observations or data points that are far from most other observations and disproportinately affect key summary statistics</li>
+<li>The <code>outliers</code> package offers useful functions to detect and measure outliers in data.
+<ul>
+<li>See <code>outliers</code> package <a href="https://cran.r-project.org/web/packages/outliers/outliers.pdf">documentation</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="categorical-variables" class="section level2">
+<h2>Categorical variables</h2>
+<ul>
+<li>Frequency table is one of the most common ways to summarize the distribution of a catagorical variable:
+<ul>
+<li>In fractions</li>
+<li>With margins</li>
+</ul></li>
+</ul>
+<pre class="r"><code>ispcrime2 &lt;- left_join(ispcrime, regions)</code></pre>
+<pre><code>## Joining, by = &quot;county&quot;</code></pre>
+<div id="a-dplyr-way" class="section level3">
+<h3>A <code>dplyr</code> way</h3>
+<pre class="r"><code>data %&gt;%
+  group_by(variable) %&gt;%
+  count()</code></pre>
 <hr />
+</div>
+</div>
+</div>
+<div id="basic-inferential-statistics" class="section level1">
+<h1>Basic Inferential Statistics</h1>
+<img src="../images/vadlo_inferential_statistics.gif" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
+</p>
+<div id="comparing-means" class="section level2">
+<h2>Comparing means</h2>
+<ul>
+<li>Student’s t-test</li>
+<li>Wilcoxon rank-sum and signed-rank tests</li>
+<li>Analysis of variance (ANOVA)</li>
+</ul>
+<div id="students-t-test" class="section level3">
+<h3>Student’s t-test</h3>
+<pre class="r"><code>t.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+       mu = 0, conf.level = 0.95, ...)
+t.test(formula, data, subset, na.action, ...)</code></pre>
+<ul>
+<li>The null hypothesis assumes normal distribution</li>
+<li>The tested null hypothesis is no difference in mean and the alternative hypothesis can one of the three options, with the default of “two.sided”</li>
+<li>One sample t-test is conducted with only <code>x</code> input is given
+<ul>
+<li>The mean of <code>x</code> is compared against the <code>mu</code> value (default 0)</li>
+</ul></li>
+<li>Two sample t-test can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
+</ul>
+<pre class="r"><code>viol_crime_north &lt;- (filter(ispcrime2, region == &quot;Northern&quot;))$violentCrime
+viol_crime_south &lt;- (filter(ispcrime2, region == &quot;Southern&quot;))$violentCrime
+t.test(viol_crime_north, viol_crime_south)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  viol_crime_north and viol_crime_south
+## t = 4.4064, df = 105.49, p-value = 2.534e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  176.7132 465.8398
+## sample estimates:
+## mean of x mean of y 
+##  438.2000  116.9235</code></pre>
+</div>
+<div id="wilcox-tests" class="section level3">
+<h3>Wilcox tests</h3>
+<pre class="r"><code>wilcox.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+            mu = 0, conf.level = 0.95, ...)
+wilcox.test(formula, data, subset, na.action, ...)</code></pre>
+<ul>
+<li>The null hypothesis does NOT assume normality</li>
+<li>One sample Wilcox test (rank-sum test) is conducted with only <code>x</code> input is provided</li>
+<li>Two sample Wilcox test (singed-rank test) can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
+</ul>
+</div>
+<div id="analysis-of-variance" class="section level3">
+<h3>Analysis of Variance</h3>
+<pre class="r"><code>aov(formula, data, qr = TRUE, ...)</code></pre>
+<ul>
+<li><code>formula</code> is of the following format: <code>value ~ subgroup</code></li>
+<li><code>summary()</code> has a method for <code>aov</code> class that returns a refined print result</li>
+<li><code>model.tables()</code> has a method for <code>aov</code> class for reporting table of means or table of effects</li>
+</ul>
+<pre class="r"><code>aov_by_region &lt;- aov(formula = violentCrime ~ region, data = ispcrime2)
+print(aov_by_region)</code></pre>
+<pre><code>## Call:
+##    aov(formula = violentCrime ~ region, data = ispcrime2)
+## 
+## Terms:
+##                     region  Residuals
+## Sum of Squares  4657351567   93080910
+## Deg. of Freedom          3        499
+## 
+## Residual standard error: 431.8969
+## Estimated effects may be unbalanced
+## 7 observations deleted due to missingness</code></pre>
+<pre class="r"><code>summary(aov_by_region)</code></pre>
+<pre><code>##              Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
+## region        3 4.657e+09 1.552e+09    8323 &lt;2e-16 ***
+## Residuals   499 9.308e+07 1.865e+05                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 7 observations deleted due to missingness</code></pre>
+<pre class="r"><code>model.tables(aov_by_region, type = &quot;means&quot;)</code></pre>
+<pre><code>## Tables of means
+## Grand mean
+##          
+## 500.9702 
+## 
+##  region 
+##     Central  Cook Northern Southern
+##         170 30848    438.2    116.9
+## rep     230     5     85.0    183.0</code></pre>
+<pre class="r"><code>model.tables(aov_by_region, type = &quot;effects&quot;)</code></pre>
+<pre><code>## Tables of effects
+## 
+##  region 
+##     Central  Cook Northern Southern
+##        -331 30347   -62.77     -384
+## rep     230     5    85.00      183</code></pre>
+</div>
+</div>
+<div id="test-of-equal-proprtions-chi-square-test" class="section level2">
+<h2>_ * Test of equal proprtions * Chi-square test</h2>
+<div id="two-sample-z-test" class="section level3">
+<h3>Two sample Z-test</h3>
+<pre class="r"><code>prop.test(x, n, p = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+          conf.level = 0.95...)</code></pre>
+</div>
+<div id="chi-square-test" class="section level3">
+<h3>Chi-square test</h3>
+<pre class="r"><code>chisq.test(x, y = NULL, p = rep(1/length(x), length(x)), B = 2000, ...)</code></pre>
+</div>
+</div>
+<div id="other-statistical-tests" class="section level2">
+<h2>Other statistical tests</h2>
+<pre class="r"><code># Shapiro-Wilk test of normality
+shapiro.test(x)
+
+# One- or two-sample Kolmogorov-Smirnov test
+ks.test(x, y, ..., alternative = &quot;two.sided&quot;, exact = NULL)
+
+# F-test to compare variances
+var.test(x, y, ratio = 1, alternative = &quot;two.sided&quot;,
+         conf.level = 0.95, ...)
+var.test(formula, data, subset, na.action, ...)
+
+# Test of correlation between paired samples
+cor.test(x, y, alternative = &quot;two.sided&quot;, conf.level = 0.95,
+         method = c(&quot;pearson&quot;, &quot;kendell&quot;, &quot;spearman&quot;), ...)</code></pre>
+<hr />
+</div>
+</div>
+<div id="linear-models" class="section level1">
+<h1>Linear models</h1>
+<p style="font-size:1.5em">
+<span class="math display">\[y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\]</span> <span class="math display">\[\boldsymbol{\text{y}} = \boldsymbol{\text{X}}^{\text{T}}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\]</span>
+</p>
+<div id="the-lm-function" class="section level2">
+<h2>The lm() function</h2>
+<pre class="r"><code>lm(formula, data, subset, na.action, ...)</code></pre>
+<ul>
+<li><code>lm()</code> is used to fit linear models, according to the <code>formula</code> input.</li>
+<li><code>data</code> is an optional argument, which can take a data frame
+<ul>
+<li>If <code>data</code> input is provided, its column names can be used directly in the formula</li>
+</ul></li>
+</ul>
+</div>
+<div id="r-formula" class="section level2">
+<h2>R formula</h2>
+<pre class="r"><code>formula &lt;- y ~ x1 + x2</code></pre>
+<ul>
+<li>The response variable is placed on the left-hand side of the tilde symbol (<code>~</code>), and the explanatory variables on the right-hand side
+<ul>
+<li>Adding multiple explanatory variables can be done using <code>+</code> symbol</li>
+</ul></li>
+<li>Simply use <code>y ~ .</code> to include all other columns additively as explanatory variables</li>
+</ul>
+</div>
+<div id="model-summary" class="section level2">
+<h2>Model summary</h2>
+<pre class="r"><code>lmfit &lt;- lm(formula, data)
+
+print(lmfit) # not recommended
+summary(lmfit)</code></pre>
+<ul>
+<li><code>lm()</code> output is an object of <code>lm</code> class</li>
+<li>Simply printing an <code>lm</code> object gives only minimal information on the fitted model</li>
+<li><code>summary()</code> function with a model input (e.g. <code>lm</code>) prints a more comprehensive model summary</li>
+</ul>
+<pre class="r"><code>my_lmfit &lt;- lm(violentCrime ~ propertyCrime, ispcrime)
+class(my_lmfit)</code></pre>
+<pre><code>## [1] &quot;lm&quot;</code></pre>
+<pre class="r"><code>my_lmfit</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+## 
+## Coefficients:
+##   (Intercept)  propertyCrime  
+##      -79.7683         0.1994</code></pre>
+<pre class="r"><code>summary(my_lmfit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = violentCrime ~ propertyCrime, data = ispcrime)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2239.5    -2.2    57.0    78.3  3992.9 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -79.768287  16.496961  -4.835 1.77e-06 ***
+## propertyCrime   0.199367   0.001059 188.303  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 363.5 on 501 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.9861, Adjusted R-squared:  0.986 
+## F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="model-evaluation" class="section level2">
+<h2>Model evaluation</h2>
+<pre class="r"><code>logLik(object, ...)
+AIC(object, ..., k = 2)
+BIC(object, ...) # equivalent to AIC with k = log(n)</code></pre>
+<ul>
+<li>There are measures of model fit other than <span class="math inline">\(R^2\)</span>.</li>
+<li>For a model fitted by maximum likelihood algorithm:
+<ul>
+<li><code>logLik()</code> for log-liklehood value</li>
+<li><code>AIC()</code> for Akaike Information Criterion (with default <code>k</code>)</li>
+<li><code>BIC()</code> for Bayesian Information Criterion</li>
+</ul></li>
+<li>Read <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">this Wikipedia article</a> for more on maximum likelihood estimation</li>
+</ul>
+</div>
+<div id="extending-lm-formula" class="section level2">
+<h2>Extending lm() formula</h2>
+<ul>
+<li>Transformations</li>
+<li>Interaction terms</li>
+<li>Polynomials</li>
+<li>Polynomial splines</li>
+</ul>
+<div id="transformations" class="section level3">
+<h3>Transformations</h3>
+<pre class="r"><code>scale(y) ~ log(x1) + sqrt(x2) + ...</code></pre>
+<ul>
+<li>We can transform formula terms on either side of <code>~</code> by applying a function to each term</li>
+<li>Common transformations include:
+<ul>
+<li><code>log()</code>: natural log (cf. <code>log2</code> and <code>log10</code>)</li>
+<li><code>exp()</code>: exponentiate</li>
+<li><code>sqrt()</code>: square root</li>
+<li><code>scale()</code>: rescale data such that the mean is 0 and the standard deviation is 1</li>
+</ul></li>
+</ul>
+<div id="transforming-x" class="section level4">
+<h4>Transforming <code>x</code></h4>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="transforming-y" class="section level4">
+<h4>Transforming <code>y</code></h4>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+</div>
+<div id="interactions" class="section level3">
+<h3>Interactions</h3>
+<pre class="r"><code>y ~ x1 + x2 + x1:x2
+y ~ x1 * x2</code></pre>
+<ul>
+<li><code>x1:x2</code> takes the interactions of all terms in <code>x1</code> and <code>x2</code></li>
+<li><code>x1*x2</code> is equivalent to <code>x1:x2</code> <em>and</em> the original terms <code>x1</code> and <code>x2</code></li>
+<li>It is recommended to use an interaction term with all the original terms</li>
+</ul>
+</div>
+<div id="polynomials" class="section level3">
+<h3>Polynomials</h3>
+<pre class="r"><code>y ~ ploy(x, degree = n)
+y ~ x + I(x^2) + I(x^3) + ...</code></pre>
+<ul>
+<li><code>poly()</code> generates the n-th degree polynimals of the input <code>x</code></li>
+<li><code>ploy(x, 3)</code> is equivalent to using <code>x + I(x^2) + I(x^3)</code>
+<ul>
+<li><code>I()</code> ensures the <code>^</code> with a symbol is used as an arithmetic operator</li>
+</ul></li>
+</ul>
+</div>
+<div id="polynomial-splines" class="section level3">
+<h3>Polynomial splines</h3>
+<pre class="r"><code>library(splines) # part of R &quot;base pacakges&quot;
+y ~ ns(x, ...)
+y ~ bs(x, degree = n, ...)</code></pre>
+<ul>
+<li><code>ns()</code> is used for the natural cubic splines</li>
+<li><code>bs()</code> is used for the n-th degree polynomial splines
+<ul>
+<li>equivalent to <code>bs(x, degree = 3)</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="broom-package" class="section level2">
+<h2><code>broom</code> package</h2>
+<ul>
+<li><code>broom</code> is a <code>tidyverse</code> package for “tidying up” statistical model outputs in R, i.e., converting them into tidy data frames.</li>
+<li><code>broom</code> functions:</li>
+<li><code>glance()</code></li>
+<li><code>tidy()</code></li>
+<li><code>augment()</code></li>
+<li>Visit <code>broom</code> <a href="https://github.com/tidyverse/broom">GitHub repository</a> and “<code>broom</code> as well as <code>dplyr</code>” <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html">vignette</a> for more</li>
+</ul>
+<div id="broom-functions" class="section level3">
+<h3><code>broom</code> functions</h3>
+<pre class="r"><code>glance(x, ...)
+tidy(x, ...)
+augment(x, ...)</code></pre>
+<ul>
+<li><code>glance()</code> takes a model object and returns a concise one-row summary of the model.</li>
+<li><code>tidy()</code> takes a model object and returns a <code>data.frame</code> with the coeffcient estimation results</li>
+<li><code>augment()</code> takes a model object and returns a <code>data.frame</code> for each observation with additional columns such as predictions, residuals and cluster assignments</li>
+</ul>
+<pre class="r"><code>glance(my_lmfit)</code></pre>
+<pre><code>##   r.squared adj.r.squared    sigma statistic p.value df    logLik      AIC
+## 1 0.9860675     0.9860396 363.4653  35457.96       0  2 -3678.253 7362.506
+##        BIC deviance df.residual
+## 1 7375.168 66185630         501</code></pre>
+<pre class="r"><code>tidy(my_lmfit)</code></pre>
+<pre><code>##            term    estimate   std.error  statistic      p.value
+## 1   (Intercept) -79.7682868 16.49696109  -4.835332 1.771126e-06
+## 2 propertyCrime   0.1993675  0.00105876 188.302852 0.000000e+00</code></pre>
+<pre class="r"><code># check the class of each output
+c(class(glance(my_lmfit)), class(glance(my_lmfit)))</code></pre>
+<pre><code>## [1] &quot;data.frame&quot; &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>head(augment(my_lmfit))</code></pre>
+<pre><code>##   .rownames violentCrime propertyCrime   .fitted  .se.fit     .resid
+## 1         1          218          1555 230.24816 16.26976 -12.248156
+## 2         2          119           290 -21.95172 16.44233 140.951715
+## 3         3            6           211 -37.70175 16.45666  43.701747
+## 4         4           59           733  66.36808 16.36964  -7.368081
+## 5         5            7            38 -72.19232 16.48949  79.192322
+## 6         6           42           505  20.91229 16.40542  21.087706
+##          .hat   .sigma      .cooksd  .std.resid
+## 1 0.002003718 363.8282 1.142258e-06 -0.03373209
+## 2 0.002046448 363.7739 1.545129e-04  0.38819703
+## 3 0.002050017 363.8234 1.487927e-05  0.12035979
+## 4 0.002028394 363.8285 4.184743e-07 -0.02029235
+## 5 0.002058203 363.8113 4.905554e-05  0.21810593
+## 6 0.002037270 363.8274 3.442885e-06  0.05807767</code></pre>
+<pre class="r"><code>class(augment(my_lmfit))</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+</div>
+<div id="modelr-package" class="section level2">
+<h2><code>modelr</code> package</h2>
+<ul>
+<li><code>modelr</code> is a <code>tidyverse</code> package that provides helper functions for statistical modeling in R</li>
+<li>partitioning and sampling</li>
+<li>model quality metrics</li>
+<li>interacting with models</li>
+<li>Visit <code>modelr</code> <a href="https://github.com/tidyverse/modelr">GitHub repository</a> and the <a href="http://r4ds.had.co.nz/model-basics.html">“Model Basics” chapter</a> in <em>R for Data Science</em> for more</li>
+</ul>
+<div id="partitioning-and-sampling" class="section level3">
+<h3>Partitioning and sampling</h3>
+<pre class="r"><code>resample(data, idx)
+resample_partition(data, p)
+bootstrap(data, n, id = &quot;.id&quot;)</code></pre>
+</div>
+<div id="model-quality-metrics" class="section level3">
+<h3>Model quality metrics</h3>
+<pre class="r"><code>rmse(model, data)
+mae(model, data)
+qae(model, data, probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
+rsquare(model, data)</code></pre>
+<ul>
+<li><code>rmse()</code> returns the root mean squared error</li>
+<li><code>mae()</code> returns the mean abosolute error</li>
+<li><code>qae()</code> returns quantiles of absolute error</li>
+<li><code>rsquare()</code> returns the <span class="math inline">\(R^2\)</span> value, i.e. the variance of the predictions divided by the variance of the reponse</li>
+</ul>
+</div>
+<div id="interacting-with-models" class="section level3">
+<h3>Interacting with models</h3>
+<pre class="r"><code>add_predictions(data, model, var = &quot;pred&quot;)
+add_residuals(data, model, var = &quot;resid&quot;)</code></pre>
+<ul>
+<li><code>add_predictions()</code> adds a new column to a data frame for predicted values based on a model</li>
+<li><code>add_residuals()</code> adds a new column to a data frame for residuals based on a model</li>
+</ul>
+<pre class="r"><code>ispcrime_subset &lt;- select(ispcrime, year:violentCrime, propertyCrime)
+ispcrime_subset2 &lt;- ispcrime_subset %&gt;%
+  add_predictions(my_lmfit) %&gt;%
+  add_residuals(my_lmfit)
+
+head(ispcrime_subset2)</code></pre>
+<pre><code>##   year    county violentCrime propertyCrime      pred      resid
+## 1 2011     Adams          218          1555 230.24816 -12.248156
+## 2 2011 Alexander          119           290 -21.95172 140.951715
+## 3 2011      Bond            6           211 -37.70175  43.701747
+## 4 2011     Boone           59           733  66.36808  -7.368081
+## 5 2011     Brown            7            38 -72.19232  79.192322
+## 6 2011    Bureau           42           505  20.91229  21.087706</code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="generalized-linear-models" class="section level1">
+<h1>Generalized linear models</h1>
+<p style="font-size:1.5em">
+<span class="math display">\[\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\boldsymbol{\text{X}\beta})\]</span> <span class="math display">\[\text{Var}[\boldsymbol{\text{Y}}] = \text{V}[\mu] = \text{V}[g^{-1}(\boldsymbol{\text{X}}\boldsymbol{\beta})]\]</span>
+</p>
+<div id="glm-basics" class="section level2">
+<h2>GLM basics</h2>
+<ul>
+<li>GLM is extends the linear model to fit response variables with error distribution other than a gaussian distribution</li>
+<li>Three components of GLM:
+<ul>
+<li>A probability distribution from the exponential family</li>
+<li>A linear predictor, <span class="math inline">\(\eta = \boldsymbol{\text{X}\beta}\)</span></li>
+<li>A link function <span class="math inline">\(g\)</span>, such that <span class="math inline">\(\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="the-glm-function" class="section level2">
+<h2>The glm() function</h2>
+<pre class="r"><code>glm(formula, family = gaussian, data, ...)</code></pre>
+<ul>
+<li><code>formula</code> is the same formula we have seen all along</li>
+<li><code>family</code> input specifies the link function <span class="math inline">\(g\)</span>
+<ul>
+<li>the default is <code>gaussian(link = &quot;identity&quot;)</code> for the linear model</li>
+</ul></li>
+<li><code>glm()</code> function returns a <code>glm</code> class object
+<ul>
+<li>Use <code>summary()</code> to inspect the model estimation results</li>
+</ul></li>
+</ul>
+<div id="family-objects" class="section level3">
+<h3><code>family</code> objects</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">family</th>
+<th align="left">Default link function</th>
+<th align="left">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>gaussian</code></td>
+<td align="left"><code>(link = &quot;identity&quot;)</code></td>
+<td align="left">Linear model for continous outcome<br>(ordinary linear regression; OLS)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>binomial</code></td>
+<td align="left"><code>(link = &quot;logit&quot;)</code></td>
+<td align="left">Logit model for binary outcome<br>(logistic regression)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>poisson</code></td>
+<td align="left"><code>(link = &quot;log&quot;</code>)</td>
+<td align="left">Poisson model for count outcome</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Gamma</code></td>
+<td align="left"><code>(link = &quot;inverse&quot;)</code></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>inverse.gaussian</code></td>
+<td align="left"><code>(link = &quot;1/mu^2&quot;)</code></td>
+<td align="left">…</td>
+</tr>
+<tr class="even">
+<td align="left"><code>quasi</code></td>
+<td align="left"><code>(link = &quot;identitiy&quot;)</code></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>quasibinomial</code></td>
+<td align="left"><code>(link = &quot;logit&quot;)</code></td>
+<td align="left">…</td>
+</tr>
+<tr class="even">
+<td align="left"><code>quasipoisson</code></td>
+<td align="left"><code>(link = &quot;log&quot;)</code></td>
+<td align="left">…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="logit-model" class="section level3">
+<h3>Logit model</h3>
+<pre class="r"><code>glm(formula, family = binomial, data, ...)</code></pre>
+<ul>
+<li>A logit model, i.e. logistic regression, can be fitted using <code>glm()</code> with <code>family = binomial</code></li>
+<li>The response variable must range between 0 and 1 (an error will be thrown otherwise)</li>
+</ul>
+</div>
+<div id="poisson-model" class="section level3">
+<h3>Poisson model</h3>
+<pre class="r"><code>glm(formula, family = poisson, data, ...)</code></pre>
+<ul>
+<li>A possion model can be fitted using <code>glm()</code> with <code>family = poisson</code></li>
+<li>The response variable must not include negative values (an error will be thrown otherwise)</li>
+</ul>
+</div>
+</div>
+<div id="better-ways" class="section level2">
+<h2>Better ways?</h2>
+<p>There are thrid-party packages to provide additional fuctions and/or different interfaces to existing statistical analysis functions. Although I have little exposure to them, the following two might be worth checking:</p>
+<ul>
+<li><code>psych</code> package
+<ul>
+<li>See <a href="https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf">this package vignette</a> by the package author</li>
+</ul></li>
+<li><code>jmv</code> package
+<ul>
+<li>See <a href="https://www.jamovi.org/jmv/">this package documentation page</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li>Kabacoff, R. <a href="https://www.statmethods.net/stats/index.html">“Statistics”</a>. <em>Quick-R</em>.</li>
+<li>Lane D. et al. <a href="http://onlinestatbook.com/2/index.html"><em>Online Statistics: A Multimedia Course of Study</em></a>.</li>
+<li>Prabhakaran, S. <a href="http://r-statistics.co/">r-statistics.co</a>.</li>
+<li>UCLA Institute for Digital Research and Education. <a href="https://stats.idre.ucla.edu/r/">“R”</a>.</li>
+<li>University of Cincinnati. <a href="http://uc-r.github.io/descriptive">“Descriptive analytics”</a>. <em>UC Business Analytic R Programming Guide</em>.</li>
+<li>University of Cincinnati. <a href="http://uc-r.github.io/predictive">“Predictive analytics”</a>. <em>UC Business Analytic R Programming Guide</em>.</li>
+<li>Wollschlaeger, D. <a href="http://dwoll.de/rexrepos/index.html"><em>RExRepos</em></a>.</li>
+<li>Yau, C. <a href="http://www.r-tutor.com/elementary-statistics">“Elementary Statistics with R”</a>. <em>R Tutorial</em>.</li>
+</ul>
+<hr />
+</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
+Lane D. et al. (n.d.). <a href="http://onlinestatbook.com/2/index.html"><span style="font-style:italic">Online Statistics: A Multimedia Course of Study</span></a>.
 </li>
 <li>
-<a href="#">2</a>
+Prabhakaran, S. (n.d.). <a href="http://r-statistics.co/Statistical-Tests-in-R.html">“Statistic Tests”</a>. <i>r-statistics.co</i>.
 </li>
 <li>
-<a href="#">3</a>
+<a href="https://github.com/tidyverse/broom">tidyverse/broom Github repository</a>
 </li>
 <li>
-<a href="#"></a>
+<a href="https://github.com/tidyverse/modelr">tidyverse/modelr Github repository</a>
+</li>
+<li>
+University of Cincinnati. <i><a href="http://uc-r.github.io/">UC Business Analytics R Programming Guide</a></i>
+</li>
+<li>
+Wikipedia contributors. (2018). <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">“Generalized linear model”</a>. <i>Wikipedia, The Free Encyclopedia</i>.
 </li>
 </ul>
 </div>

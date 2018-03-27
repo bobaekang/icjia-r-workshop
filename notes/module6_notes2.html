@@ -278,24 +278,509 @@ div.tocify {
 <h1>“To Infinity and Beyond” (2): Leveraging online resources</h1>
 <hr />
 </div>
-<div id="slides-in-development" class="section level1">
-<h1>slides in development</h1>
+<div id="why-online-resources" class="section level1">
+<h1>Why online resources?</h1>
+<ul>
+<li>We cannot know everything.</li>
+<li>In fact, no one knows everything!</li>
+<li>“Someone has already done it.” <img src="http://www.azquotes.com/picture-quotes/quote-the-very-best-proof-that-something-can-be-done-is-that-someone-has-already-done-it-bertrand-russell-146-34-03.jpg" width="80%" style="display: block; margin: auto; margin-top: 5%; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.azquotes.com/quote/1463403">AZ Quotes</a>
+</p></li>
+</ul>
 <hr />
+</div>
+<div id="before-going-online" class="section level1">
+<h1>Before going online</h1>
+<img src="../images/wireless_icon.png" width="30%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg">Wikimedia Commons</a>
+</p>
+<div id="the-15-minute-rule" class="section level2">
+<h2>“The 15 minute rule”</h2>
+<ul>
+<li>First, try yourself. If you cannot solve it, <em>then</em> go online.</li>
+</ul>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+15 min rule: when stuck, you HAVE to try on your own for 15 min; after 15 min, you HAVE to ask for help.- Brain AMA <a href="https://t.co/MS7FnjXoGH">pic.twitter.com/MS7FnjXoGH</a>
+</p>
+— Rachel Thomas (<span class="citation">@math_rachel</span>) <a href="https://twitter.com/math_rachel/status/764931533383749632?ref_src=twsrc%5Etfw">August 14, 2016</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="oops-my-bad" class="section level2">
+<h2>“Oops, my bad”</h2>
+<ul>
+<li>We all make typos. Check for typos!
+<ul>
+<li>RStudio does not check for typos automatically</li>
+<li>But we can refer to an error caused by the typos</li>
+</ul></li>
+<li>Check if a package is loaded before using its functions
+<ul>
+<li><code>Error in some_function() : could not find function &quot;some_function&quot;</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="help-function" class="section level2">
+<h2>Help function</h2>
+<pre class="r"><code># these are equivalent
+?some_function
+help(some_function)</code></pre>
+<ul>
+<li>Looking ino the documentation is often the best way to understand what a function is and how to use it.</li>
+<li>Using the <code>?</code> followed by the function name or <code>help()</code> brings out the documentation if available</li>
+</ul>
+</div>
+<div id="error-messages-and-debugging" class="section level2">
+<h2>Error messages and debugging</h2>
+<ul>
+<li>When an error is thrown, it comes with an error message</li>
+<li>Error messages often have rich information about what went wrong and where it went wrong</li>
+<li>If we are working with custom functions we defined, RStudio’s debugging tools can help us to spot the source of an error in the script and debug it
+<ul>
+<li>See <a href="https://support.rstudio.com/hc/en-us/articles/200713843">this article</a> on debugging with RStudio</li>
+<li>See <a href="https://vimeo.com/99375765">this video</a> by RStudio on introduction to debugging</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="google" class="section level1">
+<h1>Google</h1>
+<img src="../images/google_help.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.google.com/about/products/">Google.com</a>
+</p>
+<div id="how-to-google-for-questions" class="section level2">
+<h2>How to google for questions</h2>
+<ul>
+<li>Be succinct and specific
+<ul>
+<li>The search term should be a set of keywords</li>
+<li>Package names and/or function names are good keywords</li>
+<li>Using the relevant error message as a serach term can help</li>
+</ul></li>
+<li>Look at questions/answers on platforms like:
+<ul>
+<li>Stack Overflow</li>
+<li>Quora</li>
+</ul></li>
+<li>Refer to “official” resources if available</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="official-resources" class="section level1">
+<h1>“Official” resources</h1>
+<img src="../images/Rlogo.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">R Project</a>
+</p>
+<div id="cran-website" class="section level2">
+<h2>CRAN website</h2>
+<ul>
+<li>The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following
+<ul>
+<li>Manuals</li>
+<li>Task Views</li>
+<li>Package pages</li>
+</ul></li>
+</ul>
+<div id="manuals" class="section level3">
+<h3>Manuals</h3>
+<ul>
+<li>CRAN offers the following manuals:
+<ul>
+<li><a href="https://cran.r-project.org/doc/manuals/R-intro.html">“An Introduction to R”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-data.html">“R Data Import/Export”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-admin.html">“R Installation and Administration”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-exts.html">“Writing R Extensions”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-lang.html">“The R language definition”</a> (draft)</li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-ints.html">“R Internals”</a></li>
+</ul></li>
+</ul>
+<p><img src="../images/cran_manuals_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+</div>
+<div id="task-views" class="section level3">
+<h3>Task Views</h3>
+<ul>
+<li>A Task View offers a brief introduction to a particular topic and an annotated list of relevant R packages</li>
+<li>CRAN has tasks views on a selection of topics, including:
+<ul>
+<li><a href="https://cran.r-project.org/web/views/MachineLearning.html">Machine learning &amp; Statistical Learning</a></li>
+<li><a href="https://cran.r-project.org/web/views/Multivariate.html">Multivariate Statistics</a></li>
+<li><a href="https://cran.r-project.org/web/views/OfficialStatistics.html">Official Statistics &amp; Survey Methodology</a></li>
+<li><a href="https://cran.r-project.org/web/views/SocialSciences.html">Statistics for the Social Sciences</a></li>
+<li><a href="https://cran.r-project.org/web/views/Survival.html">Survival Analysis</a></li>
+<li><a href="https://cran.r-project.org/web/views/TimeSeries.html">Time Series Analysis</a></li>
+</ul></li>
+</ul>
+<p><img src="../images/cran_taskviews_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+</div>
+<div id="package-pages" class="section level3">
+<h3>Package pages</h3>
+<ul>
+<li>Each contributed package that is listed on CRAN has a page</li>
+<li>A reference manual and vignettes can be found on the CRAN package page</li>
+<li>To directly get to the package page, try on your broswer:
+<ul>
+<li>“<a href="https://cran.project.org/package" class="uri">https://cran.project.org/package</a>=[package-name]”</li>
+<li>Replace [package-name] with any existing package name</li>
+</ul></li>
+</ul>
+<p><img src="../images/cran_packages_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<div id="cran-package-page-example-dplyr" class="section level4">
+<h4>CRAN package page example (<code>dplyr</code>)** <br><br> <img src="../images/cran_package_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></h4>
+</div>
+</div>
+<div id="pacakge-reference-manuals" class="section level3">
+<h3>Pacakge reference manuals</h3>
+<ul>
+<li>Packages have reference manuals that contain documentation for all its contents (i.e. functions and datasets)
+<ul>
+<li>Basically, it is a collection of <code>help()</code> documentations in a pdf format</li>
+</ul></li>
+<li>Reference manual can also be found by googling
+<ul>
+<li>Try “package-name pdf” as your search term</li>
+</ul></li>
+</ul>
+</div>
+<div id="pacakge-vignettes" class="section level3">
+<h3>Pacakge vignettes</h3>
+<ul>
+<li>Packages often have vignettes to introduce its contents
+<ul>
+<li>Some vignettes can be accessed via <code>vignette(&quot;package&quot;)</code> on console</li>
+<li>Other vignettes are found on the pacakge page on CRAN</li>
+</ul></li>
+<li>Unfortunately, not all packages have vignettes.</li>
+</ul>
+</div>
+</div>
+<div id="rstudio-website" class="section level2">
+<h2>RStudio website</h2>
+<ul>
+<li>RStudio’s <a href="https://www.rstudio.com/">website</a> offer many useful resources under “Resources” menu, including the following:
+<ul>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheet sheets page</a> has download links to over 30 “cheat sheets” on R and R packages in the PDF format.</li>
+<li><a href="https://www.rstudio.com/resources/webinars/">Webinar &amp; videos page</a></li>
+</ul></li>
+</ul>
+<p><a href="https://www.rstudio.com/"> <img src="../images/rstudio_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<div id="cheet-sheets" class="section level3">
+<h3>Cheet sheets</h3>
+<ul>
+<li>Currently, 13 RStudio cheat sheets are available, including:
+<ul>
+<li>“Data Transformation with dplyr”</li>
+<li>“Data Import”</li>
+<li>“Data Visualization with ggplot2”</li>
+<li>“Date and times with lubridate”</li>
+<li>“Work with strings with stringr”</li>
+</ul></li>
+<li>Currently, there are 15 user-made cheat sheats as well</li>
+<li>Some cheat sheats can also be found in RStudio IDE menu
+<ul>
+<li>“Help &gt; Cheatsheets”</li>
+</ul></li>
+</ul>
+<p><a href="https://www.rstudio.com/resources/cheatsheets/"> <img src="../images/rstudio_cheatsheets.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><img src="../images/rstudio_cheatsheet_example.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+</div>
+<div id="webinar-videos" class="section level3">
+<h3>Webinar &amp; videos</h3>
+<ul>
+<li>RStudio’s webinars and videos offer materials covering a variety of subjects.</li>
+<li>Some materials are organized by topics, including:
+<ul>
+<li>“RStudio Essentials”</li>
+<li>“Shiny Essentials” and “Advanced Shiny”
+<ul>
+<li>Some videos here are also available via Shiny website</li>
+</ul></li>
+<li>“The Essentials of Data Science”</li>
+<li>“Advanced Data Science”</li>
+</ul></li>
+<li>Materials from RStudio’s annual conference, <code>rstudio::conf</code>, are also made available.</li>
+</ul>
+<p><a href="https://www.rstudio.com/resources/webinars/"> <img src="../images/rstudio_webinars_videos.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+</div>
+</div>
+<div id="tidyverse-website" class="section level2">
+<h2>Tidyverse website</h2>
+<ul>
+<li>Tidyverse has its own <a href="https://www.tidyverse.org/">website</a> to
+<ul>
+<li>introduce tidyverse packages</li>
+<li>share updates and news on tidyverse, and</li>
+<li>offer guides to training matarials</li>
+</ul></li>
+<li>There are also child websites for many of tidyverse packages
+<ul>
+<li>URL: “[package-name].tidyverse.org”</li>
+</ul></li>
+</ul>
+<p><a href="https://www.tidyverse.org/"> <img src="../images/tidyverse_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<div id="tidyverse-child-websites" class="section level3">
+<h3>Tidyverse child websites</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Pacakge</th>
+<th align="left">Description</th>
+<th align="left">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ggplot2</code></td>
+<td align="left">For data visualization</td>
+<td align="left"><a href="http://ggplot2.tidyverse.org/" class="uri">http://ggplot2.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>dplyr</code></td>
+<td align="left">For data manpulation</td>
+<td align="left"><a href="http://dplyr.tidyverse.org/" class="uri">http://dplyr.tidyverse.org/</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tidyr</code></td>
+<td align="left">For tidying up data</td>
+<td align="left"><a href="http://tidyr.tidyverse.org/" class="uri">http://tidyr.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>readr</code></td>
+<td align="left">For data implort/export</td>
+<td align="left"><a href="http://readr.tidyverse.org/" class="uri">http://readr.tidyverse.org/</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>purrr</code></td>
+<td align="left">For better loops</td>
+<td align="left"><a href="http://purrr.tidyverse.org/" class="uri">http://purrr.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tibble</code></td>
+<td align="left">For extending <code>data.frame</code></td>
+<td align="left"><a href="http://tibble.tidyverse.org/" class="uri">http://tibble.tidyverse.org/</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>stringr</code></td>
+<td align="left">For working with strings</td>
+<td align="left"><a href="http://stringr.tidyverse.org/" class="uri">http://stringr.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>forcats</code></td>
+<td align="left">For working with factors</td>
+<td align="left"><a href="http://forcats.tidyverse.org/" class="uri">http://forcats.tidyverse.org/</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>readxl</code></td>
+<td align="left">For importing Excel files</td>
+<td align="left"><a href="http://readxl.tidyverse.org/" class="uri">http://readxl.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>haven</code></td>
+<td align="left">For SPSS, SAS, and Stata data</td>
+<td align="left"><a href="http://haven.tidyverse.org/" class="uri">http://haven.tidyverse.org/</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lubridate</code></td>
+<td align="left">For working with datetimes</td>
+<td align="left"><a href="http://lubridate.tidyverse.org/" class="uri">http://lubridate.tidyverse.org/</a></td>
+</tr>
+<tr class="even">
+<td align="left">`magrittr</td>
+<td align="left">For specialized pipe oprators</td>
+<td align="left"><a href="http://magrittr.tidyverse.org/" class="uri">http://magrittr.tidyverse.org/</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="r-markdown-website" class="section level2">
+<h2>R Markdown website</h2>
+<ul>
+<li>RStudio has a separate <a href="https://rmarkdown.rstudio.com/">website</a> focused on all things R Markdown.
+<ul>
+<li><a href="https://rmarkdown.rstudio.com/articles.html">Articles page</a> offers a number of tutorials on creating various sorts of R Markdown documents</li>
+<li><a href="https://rmarkdown.rstudio.com/formats.html">Formats page</a> provides links to reference matarials on various R Markdown formats and templates</li>
+</ul></li>
+</ul>
+<p><a href="https://rmarkdown.rstudio.com"> <img src="../images/rmarkdown_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+</div>
+<div id="shiny-website" class="section level2">
+<h2>Shiny website</h2>
+<ul>
+<li>RStudio also has a separate <a href="https://shiny.rstudio.com/">website</a> on everything Shiny</li>
+<li><a href="https://shiny.rstudio.com/tutorial/">Video &amp; wrttien tutorial page</a> has links to tutorial videos and articles on Shiny as well as recorded conference presentations and webinars<br />
+</li>
+<li><a href="https://shiny.rstudio.com/articles/">Articles page</a> offers a list of web articles on building Shiny applications</li>
+<li><a href="https://shiny.rstudio.com/reference/shiny/">Reference page</a> contains links to upgrade notes and function references for lastest as well as previous versions of the Shiny package</li>
+</ul>
+<p><a href="https://shiny.rstudio.com/"> <img src="../images/shiny_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+</div>
+<div id="htmlwidgets-website" class="section level2">
+<h2><code>htmlwidgets</code> website</h2>
+<ul>
+<li><em><code>htmlwidgets</code> for R</em> <a href="http://www.htmlwidgets.org/">website</a> presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem
+<ul>
+<li>Currently ~100 widgets are registered
+<ul>
+<li>See its <a href="http://gallery.htmlwidgets.org/">“Gallery” page</a></li>
+</ul></li>
+<li>Popular <code>htmlwidgets</code> packagees include:
+<ul>
+<li><code>plotly</code> and <code>highcharter</code> for interactive visualizations</li>
+<li><code>leaflet</code> for interactive maps</li>
+<li><code>DT</code> for interactive data tables</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><a href="http://www.htmlwidgets.org/"> <img src="../images/htmlwidgets_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="http://gallery.htmlwidgets.org/"> <img src="../images/htmlwidgets_gallery.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<hr />
+</div>
+</div>
+<div id="r-community" class="section level1">
+<h1>R Community</h1>
+<img src="../images/community_title.jpg" width="70%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)">“Community (TV series)”, Wikipedia</a>
+</p>
+<div id="r-bloggers" class="section level2">
+<h2>R-bloggers</h2>
+<ul>
+<li><a href="https://www.r-bloggers.com/"><em>R-bloggers</em></a> is a blog that collects and features articles and blog posts on R and programming in R from a variety of sources.</li>
+<li>The blog offers an excellent way to stay up-to-date on new packages and developments in the R community.</li>
+<li>Its posts cover new updates in R and major R packages, tutorials, information on upcoming events and conferences, and much more.</li>
+</ul>
+<p><a href="https://www.r-bloggers.com/"> <img src="../images/rbloggers_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+</div>
+<div id="online-books" class="section level2">
+<h2>Online “books”</h2>
+<ul>
+<li>Healy, K. (2018). <a href="http://socviz.co/index.html"><em>Data Visualization: A practical introduction</em></a>.</li>
+<li>Grolemund, G. and Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><em>R for Data Science</em></a>.</li>
+<li>Lovelace, R. et al. (2018). <a href="https://bookdown.org/robinlovelace/geocompr/"><em>Geocomputation in R</em></a>.</li>
+<li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><em>Advanced R</em></a>.</li>
+<li>Wilke, C. (n.d.). <a href="http://serialmentor.com/dataviz/"><em>Fundamentals of Data Visualization</em></a>.</li>
+</ul>
+<p>Visit the <code>bookdown</code> package <a href="https://bookdown.org/">website</a> to find many more free online books on R!</p>
+<div id="r-for-data-science" class="section level3">
+<h3><em>R for Data Science</em></h3>
+<br><br> <img src="../images/r4ds_cover.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+</p>
+</div>
+</div>
+<div id="helpful-websites" class="section level2">
+<h2>Helpful websites</h2>
+<ul>
+<li>Kabacoff, R. <a href="https://www.statmethods.net/index.html"><em>Quick-R</em></a>.</li>
+<li>Prahbhakaran, S. <a href="http://r-statistics.co/"><em>r-statistics.co</em></a>.</li>
+<li>U of Cincinnati. <a href="http://uc-r.github.io/"><em>UC Business Analytics R Programming Guide</em></a>.</li>
+<li>Wollschlaeger, D. <a href="http://dwoll.de/rexrepos/index.html"><em>R Examples Repository</em></a>.</li>
+<li>Yau, C. <a href="http://www.r-tutor.com/"><em>R Tutorial</em></a>.</li>
+</ul>
+<p>And, of course, this workshop’s <a href="bobaekang.github.io/icjia-r-workshop">website</a> :)</p>
+<hr />
+</div>
+</div>
+<div id="github-repositories" class="section level1">
+<h1>GitHub repositories</h1>
+<img src="../images/octacat_github.png" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://github.com/logos">GitHub</a>
+</p>
+<div id="what-is-github" class="section level2">
+<h2>What is GitHub?</h2>
+<blockquote>
+<p>“GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside millions of other developers.” - GitHub.com</p>
+</blockquote>
+<ul>
+<li>Most R packages are available as GitHub repositories, which can be “cloned” and downloaded if wanted.</li>
+<li>Many R package authors offer brief explanations and even quick tutorials for their packages on the GitHub repositories.</li>
+</ul>
+<div id="github-repository-example-dplyr" class="section level3">
+<h3>Github repository example (<code>dplyr</code>)</h3>
+<p><br><br> <img src="../images/github_repo1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p><img src="../images/github_repo2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="online-courses" class="section level1">
+<h1>Online courses</h1>
+<img src="../images/mooc.png" width="40%" style="display: block; margin: auto; box-shadow: none;" />
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanford.edu</a>
+</p>
+<div id="popular-sites" class="section level2">
+<h2>Popular sites</h2>
+<ul>
+<li><a href="https://www.datacamp.com/">DataCamp</a></li>
+<li><a href="https://www.coursera.org/">Coursera</a></li>
+<li><a href="https://www.edx.org/">edX</a></li>
+</ul>
+</div>
+<div id="datacamp" class="section level2">
+<h2>Datacamp</h2>
+<ul>
+<li>Requires registration and log-in</li>
+<li>Some free courses are available, but most are paid courses with one free chapter</li>
+<li>Cost is $25/month with the annual plan or $29/month
+<ul>
+<li>Onces subscribed, all courses become available</li>
+</ul></li>
+<li>Offers 70+ courses on R
+<ul>
+<li>Each course is short (~4 hours) and focused on a specific topic</li>
+<li>Ranging from basic to intermediate level</li>
+</ul></li>
+</ul>
+</div>
+<div id="coursera" class="section level2">
+<h2>Coursera</h2>
+<ul>
+<li>Requires registration and log-in</li>
+<li>Offers courses, specializations and online degrees
+<ul>
+<li>Find out more about different options <a href="https://about.coursera.org/">here</a></li>
+</ul></li>
+<li>You can “audit” a course for free
+<ul>
+<li>Course Certificate and online support are available for a fee ($29-$99)</li>
+</ul></li>
+<li>Notable contents</li>
+<li>Data Science Specialization (10 courses)</li>
+<li>Statistics with R Specialization (5 courses)</li>
+</ul>
+</div>
+<div id="edx" class="section level2">
+<h2>edX</h2>
+<ul>
+<li>Requires registration and log-in</li>
+<li>Courses are free and mostly self-paced
+<ul>
+<li>edX offer <a href="https://www.edx.org/verified-certificate">verified certificate</a> for individual courses and <a href="https://www.edx.org/xseries">XSeries certificate</a> for XSeries programs for a small fee</li>
+</ul></li>
+<li>Courses are usually organized in a college-course like format</li>
+<li>Perhaps better for learning basics on topics like:
+<ul>
+<li>Computer science and programming</li>
+<li>Probability and statistics</li>
+</ul></li>
+</ul>
+<hr />
+</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<ul style="list-style-type:none">
+<ul>
 <li>
-<a href="#">1</a>
-</li>
-<li>
-<a href="#">2</a>
-</li>
-<li>
-<a href="#">3</a>
-</li>
-<li>
-<a href="#"></a>
+Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a>
 </li>
 </ul>
 </div>
