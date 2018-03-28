@@ -472,11 +472,11 @@ ispcrime %>%
 # A tibble: 5 x 3
    year violentCrimeAverage propertyCrimeAverage
   <int>               <dbl>                <dbl>
-1  2011                 538                 3329
-2  2012                 520                 3192
-3  2013                 503                 2940
-4  2014                 464                 2609
-5  2015                 478                 2481
+1  2011                538.                3329.
+2  2012                520.                3192.
+3  2013                503.                2940.
+4  2014                464.                2609.
+5  2015                478.                2481.
 ```
 
 
@@ -561,16 +561,16 @@ ispcrime %>%
 # Groups:   region [4]
    region   county    annualAvgCrime
    <fct>    <fct>              <dbl>
- 1 Cook     Cook              182818
- 2 Northern Du Page            14316
- 3 Northern Lake               12779
- 4 Northern Winnebago          12275
- 5 Northern Will               11078
- 6 Southern St. Clair           9262
- 7 Central  Sangamon            8876
- 8 Northern Kane                8332
- 9 Central  Peoria              7229
-10 Central  Champaign           6567
+ 1 Cook     Cook             182818.
+ 2 Northern Du Page           14316.
+ 3 Northern Lake              12779.
+ 4 Northern Winnebago         12275.
+ 5 Northern Will              11078.
+ 6 Southern St. Clair          9262.
+ 7 Central  Sangamon           8876.
+ 8 Northern Kane               8332.
+ 9 Central  Peoria             7229.
+10 Central  Champaign          6567.
 # ... with 92 more rows
 ```
 
@@ -580,6 +580,7 @@ More on dplyr
 * `dplyr` on [tidyverse.org](http://dplyr.tidyverse.org/)
 * `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
 * `dplyr` [Github repository](https://github.com/tidyverse/dplyr)
+* RStudio. (2017). ["Data Manipulation Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
 
 
 Tidying Up Your Data
@@ -831,6 +832,7 @@ More on tidyr
 * `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
 * `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
 * `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
+* Page 2 of RStudio. (2017). ["Data Import Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf).
 
 
 Questions?

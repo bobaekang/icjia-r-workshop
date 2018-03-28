@@ -276,6 +276,7 @@ div.tocify {
 </div>
 <div id="statistical-modleing-with-r-1-basics-of-statistical-modeling" class="section level1">
 <h1>Statistical modleing with R (1): Basics of statistical modeling</h1>
+<p>R is first designed as a programming language and an environment for statistics and data analysis. Accordingly, R provides as part of its base packages a host of handy tools for conducting statistical analysis. This part introduces the basics of descriptive and inferential statistics in R and touches on fitting linear and generalized linear models.</p>
 <hr />
 </div>
 <div id="basic-descriptive-statistics" class="section level1">
@@ -287,14 +288,13 @@ Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
 <div id="quick-summary-stats" class="section level2">
 <h2>Quick summary stats</h2>
 <pre class="r"><code>summary(data)</code></pre>
-<ul>
-<li>Base R’s <code>summary()</code> function is a quick way to get descriptive statistics on each columan of a tabular data object.
-<ul>
-<li>For numerical columns, we get minimum, 1st quartile, median, mean, 3rd quartie and maximum values, as well as the count of missing value (<code>NA</code>).</li>
-<li>For categorical variables (e.g. <code>factor</code>), we can frequencies for each level as well as the count of missing value (<code>NA</code>).</li>
-</ul></li>
-<li><code>summary()</code> is also used to get the “summary” of a fitted model object (e.g. <code>lm</code>) as well, as we will see shortly.</li>
-</ul>
+<p>The Base R <code>summary()</code> function is a quick way to get descriptive statistics on each columan of a tabular data object.</p>
+<p>For numerical columns, we get the minimum, 1st quartile, median, mean, 3rd quartie and maximum values, as well as the count of missing value (<code>NA</code>).</p>
+<p>For categorical variables (e.g. <code>factor</code>), we can the count for each level as well as the missing value (<code>NA</code>).</p>
+<p><code>summary()</code> is also used to get the “summary” of a fitted model object (e.g. <code>lm</code>) as well, as we will see shortly.</p>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Let’s take a look at <code>summary</code> of the <code>ispcrime</code> dataset.</p>
 <pre class="r"><code>summary(ispcrime)</code></pre>
 <pre><code>##       year            county     violentCrime       murder       
 ##  Min.   :2011   Adams    :  5   Min.   :    0   Min.   :  0.000  
@@ -321,70 +321,68 @@ Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
 ##  Max.   :38485.0   Max.   :116145.0   Max.   :22879.0   Max.   :1418.00  
 ##  NA&#39;s   :7         NA&#39;s   :7          NA&#39;s   :7         NA&#39;s   :7</code></pre>
 </div>
+</div>
 <div id="numerical-variables" class="section level2">
 <h2>Numerical variables</h2>
+<p>A distribution of numerical values can be described using statistics on the following characteristics:</p>
 <ul>
 <li>Central tendency</li>
 <li>Variability</li>
 <li>Shape</li>
 <li>Outliers</li>
 </ul>
+<p>In the following, we will briefly discuss what each of these characteristics means and how we can get relevant statistics in R.</p>
 <div id="central-tendency" class="section level3">
 <h3>Central tendency</h3>
+<p>In statistics, central tendency is concerned with the “center” of a distribution. The following three are the common measures of central tendency:</p>
 <ul>
-<li>In statistics, central tendency is concerned with the “center” of a distribution. The following three are the common measures of central tendency:</li>
 <li>“mean” for the arithmetic mean</li>
 <li>“median” for the 50th percentile</li>
 <li>“mode” for the most frequent value</li>
-<li>R has built-in functions for the first two: <code>mean()</code> and <code>median()</code></li>
 </ul>
+<p>R has built-in functions for the first two: <code>mean()</code> and <code>median()</code>. Unfortunately, there is no native R function for mode. However, it is possible to create a custom function using the definition, i.e. the most frequnt value. Also, check out the <code>modeest</code> package that offers mode estimators.</p>
+<p>Let us try using <code>mean()</code> and <code>median()</code> for the <code>violentCrime</code> column. And the result is …</p>
 <pre class="r"><code>mean(ispcrime$violentCrime)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="r"><code>median(ispcrime$violentCrime)</code></pre>
 <pre><code>## [1] NA</code></pre>
-<p style="text-align:center">
-… wait, what?
-</p>
+<p>… wait, what? We get <code>NA</code> for both values.</p>
+<p>This is because <code>NA</code> in R is a “contagious” value, making any operation with missing values return <code>NA</code>. To remedy this, we can use the <code>na.rm</code> argument, which takes a boolean input to control weather whether <code>NA</code> values are removed/excluded in calculation. The default is <code>na.rm = FALSE</code></p>
+<p>We try again with <code>na.rm = TRUE</code>:</p>
 <pre class="r"><code>mean(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 500.9702</code></pre>
 <pre class="r"><code>median(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 42</code></pre>
-<ul>
-<li><code>NA</code> is known to be “contagious” in R, making any operation with missing values return <code>NA</code></li>
-<li><code>na.rm</code> is an argument with a boolean input to control whether <code>NA</code> values are removed/excluded in calculation</li>
-</ul>
 </div>
 <div id="variability" class="section level3">
 <h3>Variability</h3>
+<p>Variability (or dispersion) in statistics is concerned with the extent to which a distribution is spreaded out.</p>
+<p>There exist various measures for variability and R has built-in functions for many of them:</p>
 <ul>
-<li>Variability (or dispersion) in statistics is concerned with the extent to which a distribution is spreaded out.</li>
-<li>There exist various measures for variability and R has built-in functions for many of them:</li>
 <li>range: <code>min()</code>, <code>max()</code>, <code>range()</code></li>
 <li>percentiles: <code>fivenum()</code>, <code>IQR()</code>, <code>quantile()</code></li>
 <li>variance: <code>var()</code>, <code>sd()</code></li>
 </ul>
 <div id="range" class="section level4">
 <h4>Range</h4>
+<p>Range is the interval between the minium nad maximum values. R offers <code>min</code> for getting the minimum value, <code>max()</code> for the maximum value, and <code>range()</code> for the range. Each of functions has the <code>na.rm</code> argument, so make sure change its input as needed.</p>
 <pre class="r"><code>min(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 0</code></pre>
 <pre class="r"><code>max(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 33348</code></pre>
 <pre class="r"><code>range(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1]     0 33348</code></pre>
-<ul>
-<li>Range is the interval between the minium nad maximum values.</li>
-</ul>
 </div>
 <div id="percentiles" class="section level4">
 <h4>Percentiles</h4>
+<p>R has a few useful functions to inspect the distribution of numerical data in terms of percentiles.</p>
+<p>The <code>fivenum()</code> function returns what is called Tukey’s five number summary (minumum, 1st quartile, median, 3rd qurtile, maximum) for the input data. <code>IQR()</code> returns the inter-quartile range, which is the difference between the 1st quartile (25%) and 3rd quartile (75%).</p>
+<p>The following shows the outputs of these functions using <code>violentCrime</code> as the input:</p>
 <pre class="r"><code>fivenum(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1]     0    19    42   133 33348</code></pre>
 <pre class="r"><code>IQR(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 114</code></pre>
-<ul>
-<li><code>fivenum()</code> returns what is called Tukey’s five number summary (minumum, 1st quartile, median, 3rd qurtile, maximum) for the input data</li>
-<li><code>IQR()</code> returns the inter-quartile range, which is the difference between the 1st quartile (25%) and 3rd quartile (75%)</li>
-</ul>
+<p><code>quntile()</code> is a somewhat more flexible function. The default setting output of <code>quantile()</code> is equal to <code>fivenum()</code> output. However, <code>quantile()</code> can use <code>probs</code> arugment to get more flexible output.</p>
 <pre class="r"><code># default: equal to fivenum()
 quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.25), na.rm = TRUE)</code></pre>
 <pre><code>##    0%   25%   50%   75%  100% 
@@ -394,74 +392,48 @@ quantile(ispcrime$violentCrime, probs = seq(0, 1, 0.25), na.rm = TRUE)</code></p
 ##     0.0     5.0    13.0    24.0    32.0    42.0    57.0    90.0   246.2 
 ##     90%    100% 
 ##   668.4 33348.0</code></pre>
-<ul>
-<li>The default setting output of <code>quantile()</code> is equal to <code>fivenum()</code> output</li>
-<li>However, <code>quantile()</code> can use <code>probs</code> arugment to get more flexible output</li>
-</ul>
 </div>
 <div id="variance" class="section level4">
 <h4>Variance</h4>
+<p>The R function for variance is <code>var()</code>, which returns the sample variance of the given data: <span class="math display">\[s^2 = (\sum{x - \bar{x}}^2)/(n-1)\]</span></p>
 <pre class="r"><code>var(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 9463013</code></pre>
+<p>Similarly, <code>sd()</code> returns the standard deviation of the given data: <span class="math display">\[s = \sqrt{(\sum{x - \bar{x}}^2)/(n-1)}\]</span></p>
 <pre class="r"><code>sd(ispcrime$violentCrime, na.rm = TRUE)</code></pre>
 <pre><code>## [1] 3076.201</code></pre>
-<ul>
-<li><code>var()</code> returns the sample variance of the given data:
-<ul>
-<li><span class="math inline">\(s^2 = (\sum{x - \bar{x}}^2)/(n-1)\)</span></li>
-</ul></li>
-<li><code>sd()</code> returns the standard deviation of the given data:
-<ul>
-<li><span class="math inline">\(s = \sqrt{(\sum{x - \bar{x}}^2)/(n-1)}\)</span></li>
-</ul></li>
-</ul>
+<p>Note that <code>var()</code> returns a covariance matrix when multiple variables are given as its input. In such cases, another function named <code>cov()</code> can be used instead for clarity; however, <code>cov()</code> has no <code>na.rm</code> argument to handle missing values.</p>
 <pre class="r"><code>variables &lt;- ispcrime %&gt;% select(violentCrime, propertyCrime)
 var(variables, na.rm = TRUE)</code></pre>
 <pre><code>##               violentCrime propertyCrime
 ## violentCrime       9463013      46803865
 ## propertyCrime     46803865     234761775</code></pre>
-<ul>
-<li>When multiple variables are given as its input, <code>var()</code> returns a covariance matrix
-<ul>
-<li>In such cases, <code>cov()</code>can be used instead; however, <code>cov()</code> has no <code>na.rm</code> argument to remove missing values</li>
-</ul></li>
-</ul>
 </div>
 </div>
 <div id="shape" class="section level3">
 <h3>Shape</h3>
-<ul>
-<li>The skewness and kurtosis (fatness/thinness) of a distribution are called the “shape” of the distribution.</li>
-<li>The <code>moments</code> package offers the following functions to meaasure the shape of a distribution:
+<p>The skewness and kurtosis (fatness/thinness) of a distribution are called the “shape” of the distribution.</p>
+<p>While base R has no functions to get these statistics (which are rarely used for common descriptive statistics anyway), the <code>moments</code> package offers the following functions to meaasure the shape of a distribution:</p>
 <ul>
 <li><code>skewness()</code></li>
 <li><code>kurtosis()</code></li>
-<li>See <code>moments</code> package <a href="https://cran.r-project.org/web/packages/moments/moments.pdf">documentation</a></li>
-</ul></li>
 </ul>
+<p>See <code>moments</code> package’s <a href="https://cran.r-project.org/web/packages/moments/moments.pdf">reference manual</a> to find out more.</p>
 </div>
 <div id="outliers" class="section level3">
 <h3>Outliers</h3>
-<ul>
-<li>Outliers are observations or data points that are far from most other observations and disproportinately affect key summary statistics</li>
-<li>The <code>outliers</code> package offers useful functions to detect and measure outliers in data.
-<ul>
-<li>See <code>outliers</code> package <a href="https://cran.r-project.org/web/packages/outliers/outliers.pdf">documentation</a></li>
-</ul></li>
-</ul>
+<p>Outliers are observations or data points that are far from most other observations and disproportinately affect key summary statistics</p>
+<p>The <code>outliers</code> package offers useful functions to detect and measure outliers in data. See <code>outliers</code> package’s <a href="https://cran.r-project.org/web/packages/outliers/outliers.pdf">reference manual</a> to learn more.</p>
 </div>
 </div>
 <div id="categorical-variables" class="section level2">
 <h2>Categorical variables</h2>
-<ul>
-<li>Frequency table is one of the most common ways to summarize the distribution of a catagorical variable</li>
-<li>Frequency tables can be made using table functions
+<p>Inspecting the distribution of a categorical variable requires a different set of tools. Frequency table is one of the most common ways to summarize the distribution of a catagorical variable.</p>
+<p>In R, frequency tables can be made using table functions. We will take a look at the following:</p>
 <ul>
 <li><code>table()</code> for generating frequency tables</li>
 <li><code>prop.table()</code> for tables of proportions</li>
 <li><code>xtabs()</code> for creating frequency tables using formula</li>
 <li><code>ftable()</code> for creating “flat” contingency tables</li>
-</ul></li>
 </ul>
 <div id="table-functions" class="section level3">
 <h3>Table functions</h3>
@@ -469,21 +441,13 @@ var(variables, na.rm = TRUE)</code></pre>
 prop.table(x, margin = NULL)
 ftable(x)
 xtabs(formula, data, ...)</code></pre>
-<ul>
-<li><code>table()</code> takes one or more data vectors of same length
-<ul>
-<li>Each input data can be named</li>
-<li>Use <code>as.data.frame()</code> to turn a <code>table</code> into a data frame</li>
-</ul></li>
-<li><code>prop.table()</code> and <code>ftable()</code> takes a <code>table</code> object</li>
-<li><code>xtabs</code> use formula to generate a frequency table
-<ul>
-<li>If a data frame is provided as the <code>data</code> input, its column names can be used directly in formula</li>
-</ul></li>
-</ul>
+<p><code>table()</code> takes one or more data vectors of same length. Each input data can be named like in the case of creating a <code>list</code> or a <code>data.frame</code> object. We can use <code>as.data.frame()</code> to turn a <code>table</code> into a data frame.</p>
+<p>Both <code>prop.table()</code> and <code>ftable()</code> takes a <code>table</code> object. <code>prop.table()</code> returns a table in terms of proportion, where <span class="math inline">\(0 \leq p \leq 1\)</span> for each value. <code>ftable()</code> returns a <code>flat</code> contingency table. We will shorty see what this means with an example below.</p>
+<p>Finally, <code>xtabs</code> use formula to generate a frequency table. If a data frame is provided as the <code>data</code> input, its column names can be used directly in formula.</p>
 </div>
 <div id="table-example" class="section level3">
 <h3><code>table()</code> example</h3>
+<p>First, let us create a data to use for creating tables:</p>
 <pre class="r"><code>my_data &lt;- ispcrime %&gt;%
   left_join(regions) %&gt;%
   select(
@@ -496,18 +460,20 @@ xtabs(formula, data, ...)</code></pre>
     high_prop = ifelse(prop &gt; mean(prop, na.rm = TRUE), 1, 0)
   )</code></pre>
 <pre><code>## Joining, by = &quot;county&quot;</code></pre>
+<p>Now, we create a <code>table</code> object with two dimensions: <code>region</code> for regions in the state, and <code>hviol</code> for the greater-than-average violent crime count.</p>
 <pre class="r"><code>my_tbl &lt;- table(
   region = my_data$region,
   hviol = my_data$high_viol
-)
-
-my_tbl</code></pre>
+)</code></pre>
+<p>Now we print the table.</p>
+<pre class="r"><code>my_tbl</code></pre>
 <pre><code>##           hviol
 ## region       0   1
 ##   Central  206  24
 ##   Cook       0   5
 ##   Northern  60  25
 ##   Southern 175   8</code></pre>
+<p>We can turn it into a <code>data.frame</code>, which can be more easily manipulated.</p>
 <pre class="r"><code>as.data.frame(my_tbl)</code></pre>
 <pre><code>##     region hviol Freq
 ## 1  Central     0  206
@@ -521,6 +487,7 @@ my_tbl</code></pre>
 </div>
 <div id="prop.table-example" class="section level3">
 <h3><code>prop.table()</code> example</h3>
+<p><code>prop.table()</code> has a <code>margin</code> argument to control how to generate margin for. <code>magin</code> takes an index, or vector of indices as an input. Take a look at the following examples to see how <code>margin</code> argument works:</p>
 <pre class="r"><code>prop.table(my_tbl, 1) # each row adds up to 1 </code></pre>
 <pre><code>##           hviol
 ## region              0          1
@@ -535,16 +502,18 @@ my_tbl</code></pre>
 ##   Cook     0.00000000 0.08064516
 ##   Northern 0.13605442 0.40322581
 ##   Southern 0.39682540 0.12903226</code></pre>
+<p>If <code>margin</code> input is , each cell is <code>x/sum(x)</code>.</p>
 </div>
 <div id="ftable-example" class="section level3">
 <h3><code>ftable()</code> example</h3>
+<p>To better illustrate what <code>ftable()</code> does, we first create a table with three dimensions. This is becuase using <code>ftable()</code> for a table of 2 dimensions or less makes little difference.</p>
 <pre class="r"><code>my_tbl2 &lt;- table(
   region = my_data$region,
   hviol = my_data$high_viol,
   hprop = my_data$high_prop
-)
-
-# with ftable
+)</code></pre>
+<p>Now, we first see the <code>ftable()</code> output.</p>
+<pre class="r"><code># with ftable
 ftable(my_tbl2)</code></pre>
 <pre><code>##                hprop   0   1
 ## region   hviol              
@@ -556,6 +525,7 @@ ftable(my_tbl2)</code></pre>
 ##          1             0  25
 ## Southern 0           173   2
 ##          1             0   8</code></pre>
+<p>Then compare it to the default printing otuput.</p>
 <pre class="r"><code># without ftable
 my_tbl2</code></pre>
 <pre><code>## , , hprop = 0
@@ -578,11 +548,13 @@ my_tbl2</code></pre>
 </div>
 <div id="xtabs-example" class="section level3">
 <h3><code>xtabs()</code> example</h3>
+<p><code>xtabs()</code> creates an <code>xtabs</code> object, which is built on top of <code>table</code>. Creating one-dimensional table with <code>xtabs()</code> looks like the following:</p>
 <pre class="r"><code># one-dimension
 xtabs(~ region, my_data)</code></pre>
 <pre><code>## region
 ##  Central     Cook Northern Southern 
 ##      230        5       85      190</code></pre>
+<p>Adding more dimensions can be done usign the <code>+</code> operator in the formula:</p>
 <pre class="r"><code># two-dimension
 xtabs(~ region + high_viol, my_data)</code></pre>
 <pre><code>##           high_viol
@@ -601,15 +573,8 @@ xtabs(~ region + high_viol, my_data)</code></pre>
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
 </p>
-<div id="comparing-means" class="section level2">
-<h2>Comparing means</h2>
-<ul>
-<li>Student’s t-test</li>
-<li>Wilcoxon rank-sum and signed-rank tests</li>
-<li>Analysis of variance (ANOVA)</li>
-</ul>
-<div id="students-t-test" class="section level3">
-<h3>Student’s t-test</h3>
+<div id="students-t-test" class="section level2">
+<h2>Student’s t-test</h2>
 <pre class="r"><code>t.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
        mu = 0, conf.level = 0.95, ...)
 t.test(formula, data, subset, na.action, ...)</code></pre>
@@ -639,8 +604,8 @@ t.test(viol_crime_north, viol_crime_south)</code></pre>
 ## mean of x mean of y 
 ##  438.2000  116.9235</code></pre>
 </div>
-<div id="wilcox-tests" class="section level3">
-<h3>Wilcox tests</h3>
+<div id="wilcox-tests" class="section level2">
+<h2>Wilcox tests</h2>
 <pre class="r"><code>wilcox.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
             mu = 0, conf.level = 0.95, ...)
 wilcox.test(formula, data, subset, na.action, ...)</code></pre>
@@ -650,8 +615,8 @@ wilcox.test(formula, data, subset, na.action, ...)</code></pre>
 <li>Two sample Wilcox test (singed-rank test) can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
 </ul>
 </div>
-<div id="analysis-of-variance" class="section level3">
-<h3>Analysis of Variance</h3>
+<div id="analysis-of-variance" class="section level2">
+<h2>Analysis of Variance</h2>
 <pre class="r"><code>aov(formula, data, qr = TRUE, ...)</code></pre>
 <ul>
 <li><code>formula</code> is of the following format: <code>value ~ subgroup</code></li>
@@ -696,22 +661,15 @@ print(aov_by_region)</code></pre>
 ##        -331 30347   -62.77     -384
 ## rep     230     5    85.00      183</code></pre>
 </div>
-</div>
-<div id="test-of-equal-proprtions-chi-square-test" class="section level2">
-<h2>_ * Test of equal proprtions * Chi-square test</h2>
-<div id="two-sample-z-test" class="section level3">
-<h3>Two sample Z-test</h3>
-<pre class="r"><code>prop.test(x, n, p = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
-          conf.level = 0.95...)</code></pre>
-</div>
-<div id="chi-square-test" class="section level3">
-<h3>Chi-square test</h3>
-<pre class="r"><code>chisq.test(x, y = NULL, p = rep(1/length(x), length(x)), B = 2000, ...)</code></pre>
-</div>
-</div>
 <div id="other-statistical-tests" class="section level2">
 <h2>Other statistical tests</h2>
-<pre class="r"><code># Shapiro-Wilk test of normality
+<pre class="r"><code># Test of equal proprtions
+prop.test(x, n, p, ...)
+
+# Chi-square test of indepndence/goodness-of-fit
+chisq.test(x, y = NULL, ...)
+
+# Shapiro-Wilk test of normality
 shapiro.test(x)
 
 # One- or two-sample Kolmogorov-Smirnov test
@@ -798,6 +756,25 @@ class(my_lmfit)</code></pre>
 ## Multiple R-squared:  0.9861, Adjusted R-squared:  0.986 
 ## F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<div id="model-diagnostics" class="section level2">
+<h2>Model diagnostics</h2>
+<pre class="r"><code>plot(lmfit, which = c(1:3, 5), ...)</code></pre>
+<ul>
+<li>Base R <code>plot()</code> function has a method for <code>lm</code> objects</li>
+<li>`Total 6 plots are generated
+<ul>
+<li>“Residuals vs Fitted”</li>
+<li>“Normal Q-Q”</li>
+<li>“Scale-Location”</li>
+<li>“Cook’s distance”</li>
+<li>“Residuals vs Leverage”</li>
+<li>“Cook’s dist vs Leverage <span class="math inline">\(h_{ii}/(1-h_ii)\)</span>”</li>
+</ul></li>
+</ul>
+<pre class="r"><code>par(mfrow = c(2,3))
+plot(my_lmfit, which = c(1:6))</code></pre>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-37-1.png" width="768" /></p>
+</div>
 <div id="model-evaluation" class="section level2">
 <h2>Model evaluation</h2>
 <pre class="r"><code>logLik(object, ...)
@@ -837,11 +814,11 @@ BIC(object, ...) # equivalent to AIC with k = log(n)</code></pre>
 </ul>
 <div id="transforming-x" class="section level4">
 <h4>Transforming <code>x</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
 <div id="transforming-y" class="section level4">
 <h4>Transforming <code>y</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 </div>
 <div id="interactions" class="section level3">
@@ -991,32 +968,23 @@ head(ispcrime_subset2)</code></pre>
 </p>
 <div id="glm-basics" class="section level2">
 <h2>GLM basics</h2>
-<ul>
-<li>GLM is extends the linear model to fit response variables with error distribution other than a gaussian distribution</li>
-<li>Three components of GLM:
+<p>The generalized linear model (GLM) extends the linear model to fit response variables with error distribution other than a gaussian distribution.</p>
+<p>Three components of GLM are:</p>
 <ul>
 <li>A probability distribution from the exponential family</li>
 <li>A linear predictor, <span class="math inline">\(\eta = \boldsymbol{\text{X}\beta}\)</span></li>
 <li>A link function <span class="math inline">\(g\)</span>, such that <span class="math inline">\(\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)\)</span></li>
-</ul></li>
 </ul>
+<p>See <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">this Wikipedia article</a> for more on GLM and the model components.</p>
 </div>
 <div id="the-glm-function" class="section level2">
 <h2>The glm() function</h2>
 <pre class="r"><code>glm(formula, family = gaussian, data, ...)</code></pre>
-<ul>
-<li><code>formula</code> is the same formula we have seen all along</li>
-<li><code>family</code> input specifies the link function <span class="math inline">\(g\)</span>
-<ul>
-<li>the default is <code>gaussian(link = &quot;identity&quot;)</code> for the linear model</li>
-</ul></li>
-<li><code>glm()</code> function returns a <code>glm</code> class object
-<ul>
-<li>Use <code>summary()</code> to inspect the model estimation results</li>
-</ul></li>
-</ul>
+<p>R offers the <code>glm()</code> function to fit GLM models. <code>glm()</code> uses <code>formula</code> to specify the model. Then, it uses <code>family</code> input to specify the link function <span class="math inline">\(g\)</span>. The default is <code>gaussian(link = &quot;identity&quot;)</code>, which corresponds to the linear model.</p>
+<p><code>glm()</code> function returns a <code>glm</code> class object, which has a <code>summary()</code> method to inspect the model estimation results.</p>
 <div id="family-objects" class="section level3">
 <h3><code>family</code> objects</h3>
+<p>The following table lists GLM <code>family</code> options available for <code>glm()</code>:</p>
 <table>
 <thead>
 <tr class="header">
@@ -1072,36 +1040,25 @@ head(ispcrime_subset2)</code></pre>
 <div id="logit-model" class="section level3">
 <h3>Logit model</h3>
 <pre class="r"><code>glm(formula, family = binomial, data, ...)</code></pre>
-<ul>
-<li>A logit model, i.e. logistic regression, can be fitted using <code>glm()</code> with <code>family = binomial</code></li>
-<li>The response variable must range between 0 and 1 (an error will be thrown otherwise)</li>
-</ul>
+<p>A logit model, i.e. logistic regression, can be fitted using <code>glm()</code> with <code>family = binomial</code>. The response variable must range between 0 and 1 (an error will be thrown otherwise).</p>
 </div>
 <div id="poisson-model" class="section level3">
 <h3>Poisson model</h3>
 <pre class="r"><code>glm(formula, family = poisson, data, ...)</code></pre>
-<ul>
-<li>A possion model can be fitted using <code>glm()</code> with <code>family = poisson</code></li>
-<li>The response variable must not include negative values (an error will be thrown otherwise)</li>
-</ul>
+<p>A possion model can be fitted using <code>glm()</code> with <code>family = poisson</code>. Here, the response variable must not include negative values (an error will be thrown otherwise).</p>
 </div>
 </div>
 <div id="better-ways" class="section level2">
 <h2>Better ways?</h2>
 <p>There are thrid-party packages to provide additional fuctions and/or different interfaces to existing statistical analysis functions. Although I have little exposure to them, the following two might be worth checking:</p>
 <ul>
-<li><code>psych</code> package
-<ul>
-<li>See <a href="https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf">this package vignette</a> by the package author</li>
-</ul></li>
-<li><code>jmv</code> package
-<ul>
-<li>See <a href="https://www.jamovi.org/jmv/">this package documentation page</a></li>
-</ul></li>
+<li><p><code>psych</code> package. See <a href="https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf">this package vignette</a> by the package author to learn more about it.</p></li>
+<li><p><code>jmv</code> package. See <a href="https://www.jamovi.org/jmv/">this package documentation page</a> to learn more about it.</p></li>
 </ul>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
+<p>Just as in any previous work module parts, what we have seen in this part is only an introduction tot he topic. The following are some useful resources that would help you to deepen your understanding of the basic statistics in R.</p>
 <ul>
 <li>Kabacoff, R. <a href="https://www.statmethods.net/stats/index.html">“Statistics”</a>. <em>Quick-R</em>.</li>
 <li>Lane D. et al. <a href="http://onlinestatbook.com/2/index.html"><em>Online Statistics: A Multimedia Course of Study</em></a>.</li>

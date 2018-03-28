@@ -393,6 +393,7 @@ More on stringr
 * `stringr` on [tidyverse.org](http://stringr.tidyverse.org/)
 * `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf)
 * `stringr` [Github repository](https://github.com/tidyverse/stringr)
+* RStudio. (2017). ["Work with Strings Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/strings.pdf).
 
 
 Regular expression (regex)
@@ -870,6 +871,7 @@ More on lubridate
 * `lubridate` on [tidyverse.org](http://lubridate.tidyverse.org/)
 * `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf)
 * `lubridate` [Github repository](https://github.com/tidyverse/lubridate)
+* RStudio. (2017). ["Dates and Times Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/lubridate.pdf).
 
 
 Importing/Exporting Data
