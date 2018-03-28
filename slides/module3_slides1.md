@@ -181,19 +181,19 @@ arrange(ispcrime, desc(county), desc(year))
 
 ```
   year    county violentCrime murder rape robbery aggAssault propertyCrime
-1 2011  Woodford           15      1    4       0         10           350
-2 2012  Woodford           23      0    3       1         19           405
+1 2015  Woodford           29      0    5       0         24           227
+2 2014  Woodford           25      0    4       0         21           283
 3 2013  Woodford           17      0   10       2          5           349
-4 2014  Woodford           25      0    4       0         21           283
-5 2015  Woodford           29      0    5       0         24           227
-6 2011 Winnebago         2430     27  150     622       1631         10569
+4 2012  Woodford           23      0    3       1         19           405
+5 2011  Woodford           15      1    4       0         10           350
+6 2015 Winnebago         2692     22  197     563       1910          8279
   burglary larcenyTft MVTft arson
-1       90        247    10     3
-2       65        329    10     1
+1       35        186     6     0
+2       50        218    13     2
 3       81        257    11     0
-4       50        218    13     2
-5       35        186     6     0
-6     2635       7239   598    97
+4       65        329    10     1
+5       90        247    10     3
+6     1958       5635   618    68
 ```
 
 
