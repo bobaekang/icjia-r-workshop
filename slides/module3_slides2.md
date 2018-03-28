@@ -777,7 +777,7 @@ fast_strptime(x, format, tz = "UTC", lt = TRUE, cutoff_2000 = 68L)
 |%B     |Month in words              |March   |
 |%b     |Month in words, abbriviated |Mar     |
 |%m     |Month in 2 digits           |03      |
-|d      |Date in 2 digits            |28      |
+|%d     |Date in 2 digits            |28      |
 
 
 ========================================================
@@ -903,7 +903,7 @@ write_csv(x, path, na = "NA", append = FALSE, col_names = !append)
 * `file` is a path to the .csv file to import
 * `x` is a data object to export
 * `path` is a path to the directory where the exported data will be created
-* The output of`read_csv()` is a `tibble` object
+* The output of `read_csv()` is a `tibble` object
 * The output of `write_csv()` is a .csv file
 
 
