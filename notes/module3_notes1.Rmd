@@ -213,7 +213,7 @@ The folloiwng code illustrates using `desc()` to sort in a descending order:
 ```{r}
 # sort by county, in a DESCENDING order
 ispcrime %>%
-  arrange(desc(county)) %>%
+  arrange(desc(county), desc(year)) %>%
   head() 
 ```
 

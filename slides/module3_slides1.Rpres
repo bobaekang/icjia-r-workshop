@@ -175,7 +175,7 @@ arrange(ispcrime, desc(county), desc(year))
 
 ```{r echo=FALSE}
 ispcrime %>%
-  arrange(desc(county)) %>%
+  arrange(desc(county), desc(year)) %>%
   head() 
 ```
 
