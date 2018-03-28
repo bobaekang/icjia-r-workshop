@@ -59,7 +59,7 @@ summary(data)
 ```
 * Base R's `summary()` function is a quick way to get descriptive statistics on each columan of a tabular data object.
     * For numerical columns, we get minimum, 1st quartile, median, mean, 3rd quartie and maximum values, as well as the count of missing value (`NA`).
-    * For categorical variables (e.g. `factor`), we can frequencies for each level as well as the count of missing value (`NA`). 
+    * For categorical variables (e.g. `factor`), we can the count of each level as well as the missing value (`NA`).
 * `summary()` is also used to get the "summary" of a fitted model object (e.g. `lm`) as well, as we will see shortly.
 
 
@@ -757,6 +757,32 @@ F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: < 2.2e-16
 ```
 
 
+Model diagnostics
+========================================================
+
+```r
+plot(lmfit, which = c(1:3, 5), ...)
+```
+* Base R `plot()` function has a method for `lm` objects
+* `Total 6 plots are generated
+    * "Residuals vs Fitted"
+    * "Normal Q-Q"
+    * "Scale-Location"
+    * "Cook's distance"
+    * "Residuals vs Leverage"
+    * "Cook's dist vs Leverage $h_{ii}/(1-h_ii)$"
+
+
+========================================================
+
+```r
+par(mfrow = c(2,3))
+plot(my_lmfit, which = c(1:6))
+```
+
+![plot of chunk unnamed-chunk-32](module5_slides1-figure/unnamed-chunk-32-1.png)
+
+
 Model evaluation
 ========================================================
 
@@ -771,6 +797,7 @@ BIC(object, ...) # equivalent to AIC with k = log(n)
     * `AIC()` for Akaike Information Criterion (with default `k`)
     * `BIC()` for Bayesian Information Criterion
 * Read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) for more on maximum likelihood estimation
+
 
 Extending lm() formula
 ========================================================
@@ -798,13 +825,13 @@ scale(y) ~ log(x1) + sqrt(x2) + ...
 <br>
 **Transforming `x`**
 <br>
-![plot of chunk unnamed-chunk-33](module5_slides1-figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-35](module5_slides1-figure/unnamed-chunk-35-1.png)
 
 ***
 <br>
 **Transforming `y`**
 <br>
-![plot of chunk unnamed-chunk-34](module5_slides1-figure/unnamed-chunk-34-1.png)
+![plot of chunk unnamed-chunk-36](module5_slides1-figure/unnamed-chunk-36-1.png)
 
 
 Interactions
@@ -1022,11 +1049,12 @@ $$\text{Var}[\boldsymbol{\text{Y}}] = \text{V}[\mu] = \text{V}[g^{-1}(\boldsymbo
 
 GLM basics
 ========================================================
-* GLM is extends the linear model to fit response variables with error distribution other than a gaussian distribution
+* Generalized linear models (GLMs) extend the linear model to fit response variables with error distribution other than the Gaussian (normal) distribution
 * Three components of GLM:
     * A probability distribution from the exponential family
     * A linear predictor, $\eta = \boldsymbol{\text{X}\beta}$
     * A link function $g$, such that $\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)$
+* See [this Wikipedia article](https://en.wikipedia.org/wiki/Generalized_linear_model) for more on GLM and the model components
 
 
 The glm() function
@@ -1102,7 +1130,7 @@ Resources
 Questions?
 ========================================================
 type: section
-<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/kpop-bts-8lPSqcjcNjymIOS4Pm">Giphy</a>
 </p>
@@ -1122,7 +1150,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>
