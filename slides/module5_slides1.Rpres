@@ -188,24 +188,92 @@ Outliers
 
 Categorical variables
 ========================================================
-* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable:
-    * In fractions
-    * With margins
+* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable
+* Frequency tables can be made using table functions
+    * `table()` for generating frequency tables
+    * `prop.table()` for tables of proportions
+    * `xtabs()` for creating frequency tables using formula
+    * `ftable()` for creating "flat" contingency tables
 
+
+Table functions
+========================================================
+```{r eval=FALSE}
+table(...)
+prop.table(x, margin = NULL)
+ftable(x)
+xtabs(formula, data, ...)
+```
+* `table()` takes one or more data vectors of same length
+    * Each input data can be named
+    * Use `as.data.frame()` to turn a `table` into a data frame 
+* `prop.table()` and `ftable()` takes a `table` object
+* `xtabs` use formula to generate a frequency table
+    * If a data frame is provided as the `data` input, its column names can be used directly in formula
+
+
+========================================================
+<br>
+```{r}
+my_data <- ispcrime %>%
+  left_join(regions) %>%
+  select(
+    region,
+    viol = violentCrime,
+    prop = propertyCrime
+  ) %>%
+  mutate(
+    high_viol = ifelse(viol > mean(viol, na.rm = TRUE), 1, 0),
+    high_prop = ifelse(prop > mean(prop, na.rm = TRUE), 1, 0)
+  )
+
+my_tbl <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol
+)
+```
+***
+<br>
+```{r}
+my_tbl
+as.data.frame(my_tbl)
+```
 
 
 ========================================================
 ```{r}
-ispcrime2 <- left_join(ispcrime, regions)
+prop.table(my_tbl, 1) # each row adds up to 1 
+prop.table(my_tbl, 2) # each column adds up to 1
 ```
 
 
-A dplyr way
 ========================================================
-```{r eval=FALSE}
-data %>%
-  group_by(variable) %>%
-  count()
+<br>
+```{r}
+my_tbl2 <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol,
+  hprop = my_data$high_prop
+)
+
+# with ftable
+ftable(my_tbl2)
+```
+*** 
+<br>
+```{r}
+# without ftable
+my_tbl2
+```
+
+
+========================================================
+```{r}
+# one-dimension
+xtabs(~ region, my_data)
+
+# two-dimension
+xtabs(~ region + high_viol, my_data)
 ```
 
 
@@ -218,13 +286,6 @@ include_graphics("../images/vadlo_inferential_statistics.gif")
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
 </p>
-
-
-Comparing means
-========================================================
-* Student's t-test
-* Wilcoxon rank-sum and signed-rank tests
-* Analysis of variance (ANOVA)
 
 
 Student's t-test
@@ -243,6 +304,7 @@ t.test(formula, data, subset, na.action, ...)
 
 ========================================================
 ```{r}
+ispcrime2 <- left_join(ispcrime, regions)
 viol_crime_north <- (filter(ispcrime2, region == "Northern"))$violentCrime
 viol_crime_south <- (filter(ispcrime2, region == "Southern"))$violentCrime
 t.test(viol_crime_north, viol_crime_south)
@@ -286,29 +348,15 @@ model.tables(aov_by_region, type = "effects")
 ```
 
 
-========================================================
-* Test of equal proprtions
-* Chi-square test
-
-
-Two sample Z-test
-========================================================
-```{r eval=FALSE}
-prop.test(x, n, p = NULL, alternative = c("two.sided", "less", "greater"),
-          conf.level = 0.95...)
-```
-
-
-Chi-square test
-========================================================
-```{r eval=FALSE}
-chisq.test(x, y = NULL, p = rep(1/length(x), length(x)), B = 2000, ...)
-```
-
-
 Other statistical tests
 ========================================================
 ```{r eval=FALSE}
+# Test of equal proprtions
+prop.test(x, n, p, ...)
+
+# Chi-square test of indepndence/goodness-of-fit
+chisq.test(x, y = NULL, ...)
+
 # Shapiro-Wilk test of normality
 shapiro.test(x)
 

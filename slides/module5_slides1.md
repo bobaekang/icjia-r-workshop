@@ -299,43 +299,204 @@ Outliers
 
 Categorical variables
 ========================================================
-* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable:
-    * In fractions
-    * With margins
+* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable
+* Frequency tables can be made using table functions
+    * `table()` for generating frequency tables
+    * `prop.table()` for tables of proportions
+    * `xtabs()` for creating frequency tables using formula
+    * `ftable()` for creating "flat" contingency tables
 
 
-
+Table functions
 ========================================================
 
 ```r
-ispcrime2 <- left_join(ispcrime, regions)
+table(...)
+prop.table(x, margin = NULL)
+ftable(x)
+xtabs(formula, data, ...)
+```
+* `table()` takes one or more data vectors of same length
+    * Each input data can be named
+    * Use `as.data.frame()` to turn a `table` into a data frame 
+* `prop.table()` and `ftable()` takes a `table` object
+* `xtabs` use formula to generate a frequency table
+    * If a data frame is provided as the `data` input, its column names can be used directly in formula
+
+
+========================================================
+<br>
+
+```r
+my_data <- ispcrime %>%
+  left_join(regions) %>%
+  select(
+    region,
+    viol = violentCrime,
+    prop = propertyCrime
+  ) %>%
+  mutate(
+    high_viol = ifelse(viol > mean(viol, na.rm = TRUE), 1, 0),
+    high_prop = ifelse(prop > mean(prop, na.rm = TRUE), 1, 0)
+  )
+
+my_tbl <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol
+)
+```
+***
+<br>
+
+```r
+my_tbl
+```
+
+```
+          hviol
+region       0   1
+  Central  206  24
+  Cook       0   5
+  Northern  60  25
+  Southern 175   8
+```
+
+```r
+as.data.frame(my_tbl)
+```
+
+```
+    region hviol Freq
+1  Central     0  206
+2     Cook     0    0
+3 Northern     0   60
+4 Southern     0  175
+5  Central     1   24
+6     Cook     1    5
+7 Northern     1   25
+8 Southern     1    8
 ```
 
 
-A dplyr way
 ========================================================
 
 ```r
-data %>%
-  group_by(variable) %>%
-  count()
+prop.table(my_tbl, 1) # each row adds up to 1 
+```
+
+```
+          hviol
+region              0          1
+  Central  0.89565217 0.10434783
+  Cook     0.00000000 1.00000000
+  Northern 0.70588235 0.29411765
+  Southern 0.95628415 0.04371585
+```
+
+```r
+prop.table(my_tbl, 2) # each column adds up to 1
+```
+
+```
+          hviol
+region              0          1
+  Central  0.46712018 0.38709677
+  Cook     0.00000000 0.08064516
+  Northern 0.13605442 0.40322581
+  Southern 0.39682540 0.12903226
+```
+
+
+========================================================
+<br>
+
+```r
+my_tbl2 <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol,
+  hprop = my_data$high_prop
+)
+
+# with ftable
+ftable(my_tbl2)
+```
+
+```
+               hprop   0   1
+region   hviol              
+Central  0           197   9
+         1             1  23
+Cook     0             0   0
+         1             0   5
+Northern 0            55   5
+         1             0  25
+Southern 0           173   2
+         1             0   8
+```
+*** 
+<br>
+
+```r
+# without ftable
+my_tbl2
+```
+
+```
+, , hprop = 0
+
+          hviol
+region       0   1
+  Central  197   1
+  Cook       0   0
+  Northern  55   0
+  Southern 173   0
+
+, , hprop = 1
+
+          hviol
+region       0   1
+  Central    9  23
+  Cook       0   5
+  Northern   5  25
+  Southern   2   8
+```
+
+
+========================================================
+
+```r
+# one-dimension
+xtabs(~ region, my_data)
+```
+
+```
+region
+ Central     Cook Northern Southern 
+     230        5       85      190 
+```
+
+```r
+# two-dimension
+xtabs(~ region + high_viol, my_data)
+```
+
+```
+          high_viol
+region       0   1
+  Central  206  24
+  Cook       0   5
+  Northern  60  25
+  Southern 175   8
 ```
 
 
 Basic Inferential Statistics
 ========================================================
 type:section
-<img src="../images/vadlo_inferential_statistics.gif" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="50%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/vadlo_inferential_statistics.gif" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="50%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
 </p>
-
-
-Comparing means
-========================================================
-* Student's t-test
-* Wilcoxon rank-sum and signed-rank tests
-* Analysis of variance (ANOVA)
 
 
 Student's t-test
@@ -356,6 +517,7 @@ t.test(formula, data, subset, na.action, ...)
 ========================================================
 
 ```r
+ispcrime2 <- left_join(ispcrime, regions)
 viol_crime_north <- (filter(ispcrime2, region == "Northern"))$violentCrime
 viol_crime_south <- (filter(ispcrime2, region == "Southern"))$violentCrime
 t.test(viol_crime_north, viol_crime_south)
@@ -467,32 +629,16 @@ rep     230     5    85.00      183
 ```
 
 
-========================================================
-* Test of equal proprtions
-* Chi-square test
-
-
-Two sample Z-test
-========================================================
-
-```r
-prop.test(x, n, p = NULL, alternative = c("two.sided", "less", "greater"),
-          conf.level = 0.95...)
-```
-
-
-Chi-square test
-========================================================
-
-```r
-chisq.test(x, y = NULL, p = rep(1/length(x), length(x)), B = 2000, ...)
-```
-
-
 Other statistical tests
 ========================================================
 
 ```r
+# Test of equal proprtions
+prop.test(x, n, p, ...)
+
+# Chi-square test of indepndence/goodness-of-fit
+chisq.test(x, y = NULL, ...)
+
 # Shapiro-Wilk test of normality
 shapiro.test(x)
 
@@ -652,13 +798,13 @@ scale(y) ~ log(x1) + sqrt(x2) + ...
 <br>
 **Transforming `x`**
 <br>
-![plot of chunk unnamed-chunk-30](module5_slides1-figure/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-33](module5_slides1-figure/unnamed-chunk-33-1.png)
 
 ***
 <br>
 **Transforming `y`**
 <br>
-![plot of chunk unnamed-chunk-31](module5_slides1-figure/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-34](module5_slides1-figure/unnamed-chunk-34-1.png)
 
 
 Interactions
@@ -956,7 +1102,7 @@ Resources
 Questions?
 ========================================================
 type: section
-<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/kpop-bts-8lPSqcjcNjymIOS4Pm">Giphy</a>
 </p>
@@ -976,7 +1122,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

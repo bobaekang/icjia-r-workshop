@@ -194,19 +194,78 @@ var(variables, na.rm = TRUE)
 
 
 ## Categorical variables
-* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable:
-    * In fractions
-    * With margins
+* Frequency table is one of the most common ways to summarize the distribution of a catagorical variable
+* Frequency tables can be made using table functions
+    * `table()` for generating frequency tables
+    * `prop.table()` for tables of proportions
+    * `xtabs()` for creating frequency tables using formula
+    * `ftable()` for creating "flat" contingency tables
 
+### Table functions
+```{r eval=FALSE}
+table(...)
+prop.table(x, margin = NULL)
+ftable(x)
+xtabs(formula, data, ...)
+```
+* `table()` takes one or more data vectors of same length
+    * Each input data can be named
+    * Use `as.data.frame()` to turn a `table` into a data frame 
+* `prop.table()` and `ftable()` takes a `table` object
+* `xtabs` use formula to generate a frequency table
+    * If a data frame is provided as the `data` input, its column names can be used directly in formula
+
+### `table()` example
 ```{r}
-ispcrime2 <- left_join(ispcrime, regions)
+my_data <- ispcrime %>%
+  left_join(regions) %>%
+  select(
+    region,
+    viol = violentCrime,
+    prop = propertyCrime
+  ) %>%
+  mutate(
+    high_viol = ifelse(viol > mean(viol, na.rm = TRUE), 1, 0),
+    high_prop = ifelse(prop > mean(prop, na.rm = TRUE), 1, 0)
+  )
+
+my_tbl <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol
+)
+
+my_tbl
+as.data.frame(my_tbl)
 ```
 
-### A `dplyr` way
-```{r eval=FALSE}
-data %>%
-  group_by(variable) %>%
-  count()
+### `prop.table()` example
+```{r}
+prop.table(my_tbl, 1) # each row adds up to 1 
+prop.table(my_tbl, 2) # each column adds up to 1
+```
+
+### `ftable()` example
+```{r}
+my_tbl2 <- table(
+  region = my_data$region,
+  hviol = my_data$high_viol,
+  hprop = my_data$high_prop
+)
+
+# with ftable
+ftable(my_tbl2)
+
+# without ftable
+my_tbl2
+```
+
+### `xtabs()` example
+```{r}
+# one-dimension
+xtabs(~ region, my_data)
+
+# two-dimension
+xtabs(~ region + high_viol, my_data)
 ```
 
 
@@ -242,6 +301,7 @@ t.test(formula, data, subset, na.action, ...)
 
 
 ```{r}
+ispcrime2 <- left_join(ispcrime, regions)
 viol_crime_north <- (filter(ispcrime2, region == "Northern"))$violentCrime
 viol_crime_south <- (filter(ispcrime2, region == "Southern"))$violentCrime
 t.test(viol_crime_north, viol_crime_south)
