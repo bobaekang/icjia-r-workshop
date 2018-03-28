@@ -532,6 +532,7 @@ Source: <a href="https://www.rstudio.com/">RStudio</a>
 
 ## Key `lubridate` functions
 In this section, we will learn the following `lubridate` functions:
+
 * `as_date()` `as_datetime()`
 * `year()`, `month()`, `day()`, `hour()`, ...
 * `parse_date_time()` `fast_strptime()`
