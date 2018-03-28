@@ -454,19 +454,143 @@ var(variables, na.rm = TRUE)</code></pre>
 <div id="categorical-variables" class="section level2">
 <h2>Categorical variables</h2>
 <ul>
-<li>Frequency table is one of the most common ways to summarize the distribution of a catagorical variable:
+<li>Frequency table is one of the most common ways to summarize the distribution of a catagorical variable</li>
+<li>Frequency tables can be made using table functions
 <ul>
-<li>In fractions</li>
-<li>With margins</li>
+<li><code>table()</code> for generating frequency tables</li>
+<li><code>prop.table()</code> for tables of proportions</li>
+<li><code>xtabs()</code> for creating frequency tables using formula</li>
+<li><code>ftable()</code> for creating “flat” contingency tables</li>
 </ul></li>
 </ul>
-<pre class="r"><code>ispcrime2 &lt;- left_join(ispcrime, regions)</code></pre>
+<div id="table-functions" class="section level3">
+<h3>Table functions</h3>
+<pre class="r"><code>table(...)
+prop.table(x, margin = NULL)
+ftable(x)
+xtabs(formula, data, ...)</code></pre>
+<ul>
+<li><code>table()</code> takes one or more data vectors of same length
+<ul>
+<li>Each input data can be named</li>
+<li>Use <code>as.data.frame()</code> to turn a <code>table</code> into a data frame</li>
+</ul></li>
+<li><code>prop.table()</code> and <code>ftable()</code> takes a <code>table</code> object</li>
+<li><code>xtabs</code> use formula to generate a frequency table
+<ul>
+<li>If a data frame is provided as the <code>data</code> input, its column names can be used directly in formula</li>
+</ul></li>
+</ul>
+</div>
+<div id="table-example" class="section level3">
+<h3><code>table()</code> example</h3>
+<pre class="r"><code>my_data &lt;- ispcrime %&gt;%
+  left_join(regions) %&gt;%
+  select(
+    region,
+    viol = violentCrime,
+    prop = propertyCrime
+  ) %&gt;%
+  mutate(
+    high_viol = ifelse(viol &gt; mean(viol, na.rm = TRUE), 1, 0),
+    high_prop = ifelse(prop &gt; mean(prop, na.rm = TRUE), 1, 0)
+  )</code></pre>
 <pre><code>## Joining, by = &quot;county&quot;</code></pre>
-<div id="a-dplyr-way" class="section level3">
-<h3>A <code>dplyr</code> way</h3>
-<pre class="r"><code>data %&gt;%
-  group_by(variable) %&gt;%
-  count()</code></pre>
+<pre class="r"><code>my_tbl &lt;- table(
+  region = my_data$region,
+  hviol = my_data$high_viol
+)
+
+my_tbl</code></pre>
+<pre><code>##           hviol
+## region       0   1
+##   Central  206  24
+##   Cook       0   5
+##   Northern  60  25
+##   Southern 175   8</code></pre>
+<pre class="r"><code>as.data.frame(my_tbl)</code></pre>
+<pre><code>##     region hviol Freq
+## 1  Central     0  206
+## 2     Cook     0    0
+## 3 Northern     0   60
+## 4 Southern     0  175
+## 5  Central     1   24
+## 6     Cook     1    5
+## 7 Northern     1   25
+## 8 Southern     1    8</code></pre>
+</div>
+<div id="prop.table-example" class="section level3">
+<h3><code>prop.table()</code> example</h3>
+<pre class="r"><code>prop.table(my_tbl, 1) # each row adds up to 1 </code></pre>
+<pre><code>##           hviol
+## region              0          1
+##   Central  0.89565217 0.10434783
+##   Cook     0.00000000 1.00000000
+##   Northern 0.70588235 0.29411765
+##   Southern 0.95628415 0.04371585</code></pre>
+<pre class="r"><code>prop.table(my_tbl, 2) # each column adds up to 1</code></pre>
+<pre><code>##           hviol
+## region              0          1
+##   Central  0.46712018 0.38709677
+##   Cook     0.00000000 0.08064516
+##   Northern 0.13605442 0.40322581
+##   Southern 0.39682540 0.12903226</code></pre>
+</div>
+<div id="ftable-example" class="section level3">
+<h3><code>ftable()</code> example</h3>
+<pre class="r"><code>my_tbl2 &lt;- table(
+  region = my_data$region,
+  hviol = my_data$high_viol,
+  hprop = my_data$high_prop
+)
+
+# with ftable
+ftable(my_tbl2)</code></pre>
+<pre><code>##                hprop   0   1
+## region   hviol              
+## Central  0           197   9
+##          1             1  23
+## Cook     0             0   0
+##          1             0   5
+## Northern 0            55   5
+##          1             0  25
+## Southern 0           173   2
+##          1             0   8</code></pre>
+<pre class="r"><code># without ftable
+my_tbl2</code></pre>
+<pre><code>## , , hprop = 0
+## 
+##           hviol
+## region       0   1
+##   Central  197   1
+##   Cook       0   0
+##   Northern  55   0
+##   Southern 173   0
+## 
+## , , hprop = 1
+## 
+##           hviol
+## region       0   1
+##   Central    9  23
+##   Cook       0   5
+##   Northern   5  25
+##   Southern   2   8</code></pre>
+</div>
+<div id="xtabs-example" class="section level3">
+<h3><code>xtabs()</code> example</h3>
+<pre class="r"><code># one-dimension
+xtabs(~ region, my_data)</code></pre>
+<pre><code>## region
+##  Central     Cook Northern Southern 
+##      230        5       85      190</code></pre>
+<pre class="r"><code># two-dimension
+xtabs(~ region + high_viol, my_data)</code></pre>
+<pre><code>##           high_viol
+## region       0   1
+##   Central  206  24
+##   Cook       0   5
+##   Northern  60  25
+##   Southern 175   8</code></pre>
 <hr />
 </div>
 </div>
@@ -498,6 +622,8 @@ t.test(formula, data, subset, na.action, ...)</code></pre>
 </ul></li>
 <li>Two sample t-test can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
 </ul>
+<pre class="r"><code>ispcrime2 &lt;- left_join(ispcrime, regions)</code></pre>
+<pre><code>## Joining, by = &quot;county&quot;</code></pre>
 <pre class="r"><code>viol_crime_north &lt;- (filter(ispcrime2, region == &quot;Northern&quot;))$violentCrime
 viol_crime_south &lt;- (filter(ispcrime2, region == &quot;Southern&quot;))$violentCrime
 t.test(viol_crime_north, viol_crime_south)</code></pre>
@@ -711,11 +837,11 @@ BIC(object, ...) # equivalent to AIC with k = log(n)</code></pre>
 </ul>
 <div id="transforming-x" class="section level4">
 <h4>Transforming <code>x</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="transforming-y" class="section level4">
 <h4>Transforming <code>y</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 </div>
 <div id="interactions" class="section level3">
