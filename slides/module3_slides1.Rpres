@@ -405,6 +405,7 @@ More on dplyr
 * `dplyr` on [tidyverse.org](http://dplyr.tidyverse.org/)
 * `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
 * `dplyr` [Github repository](https://github.com/tidyverse/dplyr)
+* RStudio. (2017). ["Data Manipulation Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
 
 
 Tidying Up Your Data
@@ -547,6 +548,7 @@ More on tidyr
 * `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
 * `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
 * `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
+* Page 2 of RStudio. (2017). ["Data Import Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf).
 
 
 Questions?
