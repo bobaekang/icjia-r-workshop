@@ -105,14 +105,15 @@ devtools::install_github("hadley/tidyverse")
 ```
 
 Installing `tidyverse` package installs the following:
-  * core tidyverse packages
-      * `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`
-  * packages to work with specific vector types 
-      * `hms`, `stringr`, `lubridate`, `forcats`
-  * packages to import data
-      * `feather`, `haven`, `httr`, `jsonlite`, `readxl`, `rvest`, `xml2`
-  * packages to facilitate statistical modeling
-      * `modelr`, `broom`
+
+* core tidyverse packages
+    * `ggplot2`, `dplyr`, `tidyr`, `readr`, `purrr`, `tibble`
+* packages to work with specific vector types 
+    * `hms`, `stringr`, `lubridate`, `forcats`
+* packages to import data
+    * `feather`, `haven`, `httr`, `jsonlite`, `readxl`, `rvest`, `xml2`
+* packages to facilitate statistical modeling
+    * `modelr`, `broom`
 
 Alternatively, each pacakge can be installed separately:
 
