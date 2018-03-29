@@ -276,6 +276,8 @@ div.tocify {
 </div>
 <div id="statistical-modleing-with-r-2-options-for-advanced-modeling" class="section level1">
 <h1>Statistical modleing with R (2): Options for advanced modeling</h1>
+<p>In the previous Part of Module 5, we have explored how to conduct basic statistical analysis with R. Now we would like move toward the realm of advanced statistical modeling. In order to facilitate such progress in knowledge, this Part offers a crude introduction to some advanced modeling topics (survival analysis, time series analyis, spatial regression analysis, and machine learning) as well as a list of relevant R packages.</p>
+<p>Please note that the current Part is barely scratching the surface of any of the introduced topics. Think of this Part as taking the very first step, and refer to the suggested resource materials to learn more about each topic.</p>
 <hr />
 </div>
 <div id="survival-analysis" class="section level1">
@@ -289,158 +291,91 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_
 <blockquote>
 <p>“Survival analysis is used to analyze data in which the time until the event is of interest. The response variable is the time until that event and is often called a failure time, survival time, or event time.”<br>- Harrell Jr. (2015).</p>
 </blockquote>
-<ul>
-<li>The response variable is a non-negative discrete/continuous random variable</li>
-</ul>
+<p>In surviala analysis, the response variable is a non-negative discrete/continuous random variable, which represents the time to event for each subject/observation.</p>
 </div>
 <div id="survival-analysis-basics" class="section level2">
 <h2>Survival analysis basics</h2>
-<ul>
-<li>Failure/event</li>
-<li>Censoring</li>
-<li>Survival function</li>
-<li>Hazard function</li>
-</ul>
+<p>We start this section by introducing some basic concepts in survival anaylsis.</p>
 <div id="failureevent" class="section level3">
 <h3>Failure/event</h3>
-<ul>
-<li>Failure, or event, refers to an event of interest where the time, <span class="math inline">\(T\)</span>, from the beginning of observation to the occurence of an event is measured and available for modeling.</li>
-<li>Examples of event include:
-<ul>
-<li>Death</li>
-<li>Recidivism (rearrest, reconviction, or reincarceration)</li>
-<li>Disease occurence/recurrence</li>
-</ul></li>
-</ul>
+<p>Failure, or event, refers to an event of interest where the time, <span class="math inline">\(T\)</span>, from the beginning of observation to the occurence of an event is measured and available for modeling.</p>
+<p>Examples of event include: * Death * Recidivism (rearrest, reconviction, or reincarceration) * Disease occurence/recurrence</p>
 </div>
 <div id="censoring" class="section level3">
 <h3>Censoring</h3>
-<ul>
-<li>Observations are called censored when the information about their survival time is incomplete.</li>
-<li>The most common form of censoring is right-censoring
-<ul>
-<li>The final endpoint is only known to exceed a particular value.</li>
-<li>Most likely occurs due to the end of the study/observation period</li>
-</ul></li>
-</ul>
+<p>Observations are called censored when the information about their survival time is incomplete.</p>
+<p>The most common form of censoring is right-censoring, where the final endpoint is only known to exceed a particular value. Right censored data most likely occurs due to the end of the study/observation period.</p>
 </div>
 <div id="survival-function" class="section level3">
 <h3>Survival function</h3>
-<ul>
-<li>The survival function <span class="math inline">\(S(t)\)</span> is the probability that the time of event/failure is later than some specified time <span class="math inline">\(t\)</span></li>
-</ul>
-<p><span class="math display">\[S(t) = \text{Pr}(T &gt; t),\quad 0 &lt; t &lt; \infty\]</span></p>
+<p>The survival function <span class="math inline">\(S(t)\)</span> is the probability that the time of event/failure is later than some specified time <span class="math inline">\(t\)</span>. Using mathematical notation:</p>
+<p><span class="math display">\[S(t) = \text{Pr}(T &gt; t),\quad 0 &lt; t &lt; \infty.\]</span></p>
 </div>
 <div id="hazard-function" class="section level3">
 <h3>Hazard function</h3>
-<ul>
-<li>The hazard function <span class="math inline">\(\lambda(t)\)</span> is the event rate at time <span class="math inline">\(t\)</span>, conditional on survival (i.e. no event) until time <span class="math inline">\(t\)</span> or later:</li>
-</ul>
+<p>The hazard function <span class="math inline">\(\lambda(t)\)</span> is the event rate at time <span class="math inline">\(t\)</span>, conditional on survival (i.e. no event) until time <span class="math inline">\(t\)</span> or later:</p>
 <p><span class="math display">\[\lambda(t) = \lim_{dt\to0} \frac{\text{Pr}(t \leq T &lt; t + dt)}{S(t)dt} = \frac{S&#39;(t)}{S(t)}\]</span></p>
 </div>
 </div>
 <div id="packages-on-survival-analysis" class="section level2">
 <h2>Packages on survival analysis</h2>
-<ul>
-<li><code>survival</code> package</li>
-<li><code>survminer</code> package for visualization
-<ul>
-<li>Resources:
-<ul>
-<li><a href="http://www.sthda.com/english/rpkgs/survminer/">Package website</a></li>
-<li><a href="https://github.com/kassambara/survminer">GiHub repo</a></li>
-</ul></li>
-</ul></li>
-</ul>
+<p>R ecosystem offers a number of packages to offer tools and functionalities pertaining to survival analysis.</p>
+<p>Among many, the <code>survival</code> package is the most essential, which makes available the <code>Surv</code> class that is fundamental to a survival analysis tools in R ecosystem. For more details, you may visit its <a href="https://github.com/therneau/survival">GitHub repository</a> and read the package vignettes available on <a href="https://cran.r-project.org/web/packages/survival/index.html">the package CRAN page</a></p>
+<p><code>survminer</code> package helps visualization of survival models. Take a look at the <a href="http://www.sthda.com/english/rpkgs/survminer/">package website</a> or the <a href="https://github.com/kassambara/survminer">GiHub repository</a> for more information.</p>
 </div>
 <div id="basic-survival-models" class="section level2">
 <h2>Basic survival models</h2>
+<p>In the following, we will introduce two basic models for survival analysis:</p>
 <ul>
 <li>Kaplan-Meier estimator</li>
 <li>Cox proportioanl hazards model</li>
 </ul>
 <div id="kaplan-meier-estimator" class="section level3">
 <h3>Kaplan-Meier estimator</h3>
-<ul>
-<li>Most widely used nonparametric estimator of the survival function</li>
-<li>KM estiamor <span class="math inline">\(\hat{S}(t)\)</span> is the product over the failure times of the conditional probabilities of surviving to the next failure time
-<ul>
-<li><span class="math inline">\(d_i\)</span> is the number of subjects who fail at time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(n_i\)</span> is the number of subjects at risk at time <span class="math inline">\(t\)</span></li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\hat{S}(t) = \prod_{t_i \leq t} \Big( 1 - \frac{d_i}{n_i} \Big)\]</span></p>
+<p>The Kaplan-Meier (KM) estimator is perhaps the most widely used nonparametric estimator of the survival function. Mathematically, the KM estiamor <span class="math inline">\(\hat{S}(t)\)</span> is the product over the failure times of the conditional probabilities of surviving to the next failure time, expressed as follows:</p>
+<p><span class="math display">\[\hat{S}(t) = \prod_{t_i \leq t} \Big( 1 - \frac{d_i}{n_i} \Big),\]</span></p>
+<p>where <span class="math inline">\(d_i\)</span> is the number of subjects who fail at time <span class="math inline">\(t\)</span> and <span class="math inline">\(n_i\)</span> is the number of subjects at risk at time <span class="math inline">\(t\)</span>.</p>
 </div>
 <div id="surv-function-and-surv-class" class="section level3">
 <h3><code>Surv</code> function and <code>Surv</code> class</h3>
 <pre class="r"><code>survival::Surv(time, time2, event, type, ...)</code></pre>
-<ul>
-<li><code>time</code> is the follow up time for the right censored data
-<ul>
-<li>for interval censored data, <code>time</code> is the starting time and <code>time2</code> is the ending time</li>
-</ul></li>
-<li><code>event</code> is the status indicator, where 0 = alive (i.e., event not occured), 1 = dead (i.e., event occured)</li>
-<li><code>type</code> is a character string of the censoring type
-<ul>
-<li>E.g. “right”, “left”, and “interval”</li>
-</ul></li>
-<li>Returns a <code>Surv</code> class object, used to fit survival models</li>
-</ul>
+<p><code>survival</code> package has <code>Surv()</code> function to create objects of <code>Surv</code> class, which is used in many survival analysis tools in R.</p>
+<p>In <code>Surv()</code>, <code>time</code> is the follow up time for the right censored data. For interval censored data, <code>time</code> is the starting time and <code>time2</code> is the ending time.</p>
+<p><code>event</code> is the status indicator, where 0 = alive (i.e., event not occured), 1 = dead (i.e., event occured).</p>
+<p><code>type</code> is a character string of the censoring type. Available inputs include “right” for right censoring, “left” for left censoring, and “interval” for interval data.</p>
+<p><code>Surv()</code> returns a <code>Surv</code> class object, used to fit survival models.</p>
 </div>
 <div id="survfit-function" class="section level3">
 <h3><code>survfit</code> function</h3>
 <pre class="r"><code>survival::survfit(formula/model, data, ...)</code></pre>
-<ul>
-<li><code>survfit</code> returns a survival curve
-<ul>
-<li>Uses KM estimator if with <code>formula</code></li>
-<li>Based on the model, if with <code>model</code> (e.g. Cox model)</li>
-</ul></li>
-<li><code>formula</code> for the KM estimator must have the <code>Surv</code> object as the response variable
-<ul>
-<li>E.g. <code>Surv(time, status) ~ x</code></li>
-</ul></li>
-<li><code>data</code> is optional; if provided, the columns of the input data frame can be used in the formula</li>
-</ul>
+<p><code>survfit()</code> function returns a survival curve. The function uses KM estimator if with <code>formula</code>. If <code>model</code> is given, the survival curve is based on the input model (e.g. Cox model).</p>
+<p>When <code>formula</code> is used for the KM estimator, it must have the <code>Surv</code> object as the response variable and might look like: <code>Surv(time, status) ~ x</code>.</p>
+<p><code>data</code> is optional, and if provided, the columns of the input data frame can be used in the formula.</p>
 </div>
 <div id="proportional-hazards-model" class="section level3">
 <h3>Proportional hazards model</h3>
-<p><span class="math display">\[\lambda(t|\boldsymbol{\text{x}}_i) = \lambda_0(t)\psi_i = \lambda_0(t)\text{exp}(\boldsymbol{\text{x}}_i^{\text{T}}\beta)\]</span></p>
-<ul>
-<li>The model assumes that the unique effect of a change in a covariate is multiplicative w.r.t. the hazard rate
-<ul>
-<li><span class="math inline">\(\boldsymbol{\text{x}}_i\)</span> denotes the covariate values for subject <span class="math inline">\(i\)</span></li>
-<li>The estimated coefficient is interpreted in a releative sense</li>
-</ul></li>
-</ul>
+<p>Cox proportional hazrads model, or simply Cox (regression) model, models the effect of a set of explanatory variables on the hazard or risk of failure over time.</p>
+<p>The model assumes that the unique effect of a change in a covariate is multiplicative with respect to the hazard rate. The model is given as follows:</p>
+<p><span class="math display">\[\lambda(t|\boldsymbol{\text{x}}_i) = \lambda_0(t)\psi_i = \lambda_0(t)\text{exp}(\boldsymbol{\text{x}}_i^{\text{T}}\beta),\]</span> where <span class="math inline">\(\boldsymbol{\text{x}}_i\)</span> denotes the covariate values for subject <span class="math inline">\(i\)</span>. The estimated coefficient is interpreted in releative terms.</p>
 </div>
 <div id="coxph-function" class="section level3">
 <h3><code>coxph</code> function</h3>
 <pre class="r"><code>survival::coxph(formula, data, ...)</code></pre>
-<ul>
-<li><code>formula</code> must have the <code>Surv</code> object as the response variable</li>
-<li><code>data</code> is optional; if provided, the columns of the input data frame can be used in the formula</li>
-</ul>
+<p><code>survival</code> package offers <code>coxph</code> function to fit Cox models. As in the case of <code>survfit()</code>, <code>formula</code> for <code>coxph()</code> must have the <code>Surv</code> object as the response variable. Again, <code>data</code> is optional and if provided, the columns of the input data frame can be used in the formula.</p>
 </div>
 <div id="plotting-survival-curve" class="section level3">
 <h3>Plotting survival curve</h3>
 <pre class="r"><code>plot(survfit)
 survminer::ggsurvplot(survfit, data, ...)</code></pre>
-<ul>
-<li><code>survival</code> package offers <code>plot</code> methods for <code>survfit</code> objects
-<ul>
-<li>Uses the base R plotting</li>
-</ul></li>
-<li><code>survminer</code> package offers an alternative way to plot survival curves
-<ul>
-<li><code>ggsurvplot()</code> has <code>ggplot2</code>-like API and makes <code>ggplot2</code> themes available</li>
-</ul></li>
-</ul>
+<p>There are two ways to plot survival curves.</p>
+<p>First, we can simply use the bas R plotting function, <code>plot()</code>, since the <code>survival</code> package provides a <code>plot</code> method for <code>survfit</code> objects.</p>
+<p>Alternatively, we can used <code>ggsurvplot()</code> from the <code>survminer</code> package to plot survival curves. <code>ggsurvplot()</code> has <code>ggplot2</code>-like API and makes <code>ggplot2</code> themes available. The output of <code>ggsurvplot()</code> might look like this:</p>
 <p><img src="../images/ggsurvplot.png" width="60%" /></p>
 </div>
 </div>
 <div id="other-resources" class="section level2">
 <h2>Other resources</h2>
+<p>Obviously, what we have covered above is only the first step toward survival analysis in R. Please refer to the following resources. Also, for specific functions, remember to take advantage of the reference manuals using <code>?</code> or <code>help()</code>.</p>
 <ul>
 <li>Diez, D. M. (2013). <a href="https://www.openintro.org/download.php?file=survival_analysis_in_R">“Survival Analysis in R”</a>.</li>
 <li>Econometrics Academy. (2013). <a href="https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis">“Survival Analysis”</a>.</li>
@@ -458,71 +393,44 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Stationarycomparison.pn
 </p>
 <div id="what-is-time-series-analysis" class="section level2">
 <h2>What is time series analysis?</h2>
-<ul>
-<li>A time series is a set of observations measured sequentially through time.</li>
-<li>Time series examples:
-<ul>
-<li>Annual crime count for multiple years</li>
-<li>Changes in stock prices</li>
-</ul></li>
-<li>Time series analysis involves modeling such time series data, often for making forecasts</li>
-</ul>
+<p>A time series is a set of observations measured sequentially through time. Examples of time series include annual crime count for multiple years and fluctuations in stock prices.</p>
+<p>Time series analysis then involves modeling such time series data, often for making forecasts, i.e., predicting what comes next based on the information from the historical records.</p>
 </div>
 <div id="time-series-basics" class="section level2">
 <h2>Time series basics</h2>
-<ul>
-<li>Decomposition</li>
-<li>Seasonality</li>
-<li>Stationarity</li>
-<li>Differencing</li>
-</ul>
+<p>Before we take a look at specific time series analysis tools and models, let’s take a brief look at some basic concepts</p>
 <div id="decomposition" class="section level3">
 <h3>Decomposition</h3>
-<ul>
-<li>Separating a time series into trend, seasonal effects, and remaining variability.</li>
-</ul>
+<p>Decomposition refers to the work of separating a time series into trend, seasonal effects, and remaining variability.</p>
+<p>The following plot provides a visual illustration of decomposing a time series into its components:</p>
+<p><img src="module5_notes2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="seasonality" class="section level3">
 <h3>Seasonality</h3>
-<ul>
-<li>Also called seasonal variation</li>
-<li>Similar and recurrent patterns of behavior in data at particular times of the given period</li>
-<li>Generally annual in period, but could be monthly, weekly, daily, or any other kind of periods</li>
-</ul>
-<p><img src="module5_notes2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The notion of seasonality, also called seasonal variation, pertains to similar and recurrent patterns of behavior in data at particular times of the given period. Seaonality is generally annual in period, but could be monthly, weekly, daily, or any other kind of periods.</p>
 </div>
 <div id="stationarity" class="section level3">
 <h3>Stationarity</h3>
-<ul>
-<li>A common assumption underlying any time series analysis techniques</li>
-<li>A stationary process is a stochastic process of which the mean, covariance and autocorrelation structure do not change over time</li>
-</ul>
-</div>
-<div id="differencing" class="section level3">
-<h3>Differencing</h3>
-<ul>
-<li>A technique to make the series stationary, de-trend, and control the auto-correlations.</li>
-</ul>
+<p>Stationarity is a common assumption underlying any time series analysis techniques. A stationary process is a stochastic process of which the mean, covariance and autocorrelation structure do not change over time.</p>
+<p>The following figure illustrates the difference between a stationary time series and a non-stationary one:</p>
 <img src="../images/stationarity.png" width="60%" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://en.wikipedia.org/wiki/Stationary_process">“Stationary process”</a>, Wikipedia
 </p>
 </div>
+<div id="differencing" class="section level3">
+<h3>Differencing</h3>
+<p>Differencing refers to a time sereis analysis technique to make the series stationary, de-trend, and control the auto-correlations.</p>
+</div>
 </div>
 <div id="packages-on-time-series-analysis" class="section level2">
 <h2>Packages on time series analysis</h2>
-<ul>
-<li><code>stats</code> package (part of R “base packages”)</li>
-<li><code>tseries</code> pacakge</li>
-<li><code>forcast</code> package
-<ul>
-<li><a href="http://pkg.robjhyndman.com/forecast/index.html">Package website</a></li>
-<li>Hyndman, R. &amp; Athanasopoulos, G. (2018). <a href="https://otexts.org/fpp2/"><em>Forecasting: Principles and Practice</em></a>. (online textbook)</li>
-</ul></li>
-</ul>
+<p><code>stats</code> package, which is part of R “base packages”, provide a wide range of useful tools for time series analysis.</p>
+<p>There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, <code>forcast</code> package seems to be a popular choice. Visit the <a href="http://pkg.robjhyndman.com/forecast/index.html">package website</a>] to find out more. There also exists a full-fledged online textbook using <code>forcast</code> pacakge: Hyndman, R. &amp; Athanasopoulos, G. (2018). <a href="https://otexts.org/fpp2/"><em>Forecasting: Principles and Practice</em></a>.</p>
 </div>
 <div id="basic-time-series-analysis" class="section level2">
 <h2>Basic time series analysis</h2>
+<p>Let’s take a look at some basic time series analysis techniques and how to implement them in R. Specifically, we will take a look at the following:</p>
 <ul>
 <li>Tieme seires decomposition</li>
 <li>Autocorrelation function plots</li>
@@ -530,47 +438,30 @@ Source: <a href="https://en.wikipedia.org/wiki/Stationary_process">“Stationary
 </ul>
 <div id="time-series-decomposition" class="section level3">
 <h3>Time series decomposition</h3>
+<p>A time series <span class="math inline">\(y_t\)</span> can be decoposed into three components: * The seasonal component <span class="math inline">\(S_t\)</span> * The trend-cylce <span class="math inline">\(T_t\)</span> * The remainder <span class="math inline">\(R_t\)</span></p>
+<p>There are two models for decomposing a time series. One is additive and the other is multiplicative.</p>
 <ul>
-<li>A time series <span class="math inline">\(y_t\)</span> can be decoposed into three components:
-<ul>
-<li>The seasonal component <span class="math inline">\(S_t\)</span></li>
-<li>The trend-cylce <span class="math inline">\(T_t\)</span></li>
-<li>The remainder <span class="math inline">\(R_t\)</span></li>
-</ul></li>
-<li>Additive model: <span class="math inline">\(\quad y_t = S_t + T_t + R_t\)</span></li>
-<li>Multiplicative model: <span class="math inline">\(\quad y_t = S_t \times T_t \times R_t\)</span>
-<ul>
-<li>Can be rewrtten as <span class="math inline">\(\quad \text{ln } y_t = \text{ln } S_t + \text{ln } T_t + \text{ln } R_t\)</span></li>
-</ul></li>
+<li>Additive model is expressed in the following way: <span class="math inline">\(\quad y_t = S_t + T_t + R_t\)</span>.</li>
+<li>Multiplicative model is expressed as follows: <span class="math inline">\(\quad y_t = S_t \times T_t \times R_t\)</span>. Taking natural log of both sides of the equation, we can rewrite it as <span class="math inline">\(\quad \text{ln } y_t = \text{ln } S_t + \text{ln } T_t + \text{ln } R_t\)</span>.</li>
 </ul>
 </div>
 <div id="decompose-and-stl-functions" class="section level3">
 <h3><code>decompose</code> and <code>stl</code> functions</h3>
 <pre class="r"><code>decompose(x, type = c(&quot;additive&quot;, &quot;multiplicative&quot;), ...)
 stl(x, s.window, ...)</code></pre>
-<ul>
-<li><code>stats</code> offer two functions for time series decomposition</li>
-<li><code>decompose()</code> uses moving averages
-<ul>
-<li>Seasonal component can be additive or multiplicative</li>
-</ul></li>
-<li><code>stl()</code> uses LOESS (local regression)
-<ul>
-<li><code>stl</code> is often recommended for time series decomposition</li>
-<li><code>s.window</code> is the span of the LOESS window for seasonal extraction (must be odd and at least 7)</li>
-</ul></li>
-</ul>
+<p><code>stats</code> offers two functions for time series decomposition using different methods for time series decomposition.</p>
+<p><code>decompose()</code> uses moving averages to decompose a time series. Here, <code>type</code> input specifices whether seasonal components are additive or multiplicative.</p>
+<p><code>stl()</code> uses LOESS (local regression), which is a more modern technique for time series decomposition. For that reason, <code>stl</code> is often recommended for time series decomposition. <code>s.window</code> input controls the span of the LOESS window for seasonal extraction (must be odd and at least 7). The decomposion is additive by default, but taking natural log of the data will account for multiplicative decomposition.</p>
 </div>
 <div id="acf-and-pacf-plots" class="section level3">
 <h3>ACF and PACF plots</h3>
+<p>Autocorrelation function (ACF) and Partial autocorrelation function (PACF) plots of a differenced time series offer a heuristic way to choose specifications for ARIMA models, which we will explore shortly.</p>
+<p>It is beyond the scope of the current Part to offer a full description of how each function is computed and how to use them as a guide to selecting a proper time series model. However, you can read this <a href="ftp://ftp.boulder.ibm.com/software/analytics/spss/support/Stats/Docs/Statistics/Miscellaneous/Guide_to_ACF_PACF_plots.pdf">“Guide”</a> for how to use ACF and PACF plots for selecting models to fit.</p>
+<p>Roughly:</p>
 <ul>
-<li>ACF and PACF plots of a differenced series offer a heuristic way to choose specifications for ARIMA models</li>
-<li>See this <a href="ftp://ftp.boulder.ibm.com/software/analytics/spss/support/Stats/Docs/Statistics/Miscellaneous/Guide_to_ACF_PACF_plots.pdf">“Guide”</a> for how to use ACF and PACF plots for selecting models to fit
-<ul>
-<li>Nonstationary series: ACF with many significant lags</li>
-<li>Autoregressive processes: Exponentially declining ACF and one or more significant lags of the PACF</li>
-<li>Moving average processes: ACF and PACF with the pattern opposite to that of autoregressive processes</li>
-</ul></li>
+<li>Nonstationary series would present ACF with many significant lags</li>
+<li>Autoregressive processes would present exponentially declining ACF and one or more significant lags of the PACF</li>
+<li>Moving average processes would present ACF and PACF with the pattern opposite to that of autoregressive processes</li>
 </ul>
 </div>
 <div id="acf-and-pacf-functions" class="section level3">
@@ -578,15 +469,13 @@ stl(x, s.window, ...)</code></pre>
 <pre class="r"><code>acf(x, lag.max = NULL, plot = TRUE,
            type = c(&quot;correlation&quot;, &quot;covariance&quot;, &quot;partial&quot;), ...)
 pacf(x, lag.max = NULL, plot = TRUE, ...)</code></pre>
-<ul>
-<li><code>x</code> is a univariate time series</li>
-<li><code>type = &quot;correlation&quot;</code> is the default for an ACF plot</li>
-<li><code>pacf()</code> is equivalent to <code>acf()</code> with <code>type = &quot;partial&quot;</code></li>
-</ul>
+<p><code>acf()</code> and <code>pacf()</code> from <code>stats</code> package can generate ACF and PACF plots from the input <code>x</code>, a univariate time series.</p>
+<p>In <code>acf()</code>, <code>type = &quot;correlation&quot;</code> is the default for an ACF plot. Also, <code>pacf()</code> is equivalent to <code>acf()</code> with <code>type = &quot;partial&quot;</code>.</p>
 </div>
 </div>
 <div id="basic-time-series-models" class="section level2">
 <h2>Basic time series models</h2>
+<p>Here we will take a brief look at the following basic time series models:</p>
 <ul>
 <li>Autoregressive (AR) model</li>
 <li>Moving average (MA) model</li>
@@ -595,51 +484,33 @@ pacf(x, lag.max = NULL, plot = TRUE, ...)</code></pre>
 </ul>
 <div id="ar-model" class="section level3">
 <h3>AR model</h3>
-<p><span class="math display">\[X_t = Z_t + \sum_{i=1}^p \phi_i X_{t-i},\]</span> <span class="math display">\[\text{rewritten as }\phi(B)X_t = Z_t\]</span></p>
-<ul>
-<li><span class="math inline">\(\{X_t\}\)</span> is an autoregressive process of order <span class="math inline">\(p\)</span>, <span class="math inline">\(\text{AR}(p)\)</span>
-<ul>
-<li><span class="math inline">\(Z_t\)</span> is a white noise (stationary) with mean 0 and the constant variance</li>
-<li><span class="math inline">\(\phi_i\)</span> is the autoregressive parameter for the <span class="math inline">\(i^{th}\)</span> order</li>
-<li><span class="math inline">\(\phi(B)X_t = 1 - \phi_1B - ... - \phi_pB^p\)</span></li>
-</ul></li>
-</ul>
+<p><span class="math inline">\(\{X_t\}\)</span> is an autoregressive process of order <span class="math inline">\(p\)</span>, <span class="math inline">\(\text{AR}(p)\)</span>:</p>
+<p><span class="math display">\[X_t = Z_t + \sum_{i=1}^p \phi_i X_{t-i},\]</span> <span class="math display">\[\text{rewritten as }\phi(B)X_t = Z_t\]</span> Here, <span class="math inline">\(Z_t\)</span> is a white noise (stationary) with mean 0 and the constant variance, and <span class="math inline">\(\phi_i\)</span> is the autoregressive parameter for the <span class="math inline">\(i^{th}\)</span> order. Finally, <span class="math inline">\(\phi(B)X_t\)</span> can be unpacked: <span class="math inline">\(\phi(B)X_t = 1 - \phi_1B - ... - \phi_pB^p\)</span>.</p>
 </div>
 <div id="ma-model" class="section level3">
 <h3>MA model</h3>
-<p><span class="math display">\[X_t = Z_t + \sum_{i=1}^q \theta_i X_{t-i},\]</span> <span class="math display">\[\text{rewritten as }X_t =\theta(B)Z_t\]</span></p>
-<ul>
-<li><span class="math inline">\(\{X_t\}\)</span> is an moving average process of order <span class="math inline">\(q\)</span>, <span class="math inline">\(\text{MA}(q)\)</span>
-<ul>
-<li><span class="math inline">\(Z_t\)</span> is a white noise</li>
-<li><span class="math inline">\(\theta(B) = 1 + \theta_1B + ... + \theta_qB^q\)</span></li>
-</ul></li>
-</ul>
+<p><span class="math inline">\(\{X_t\}\)</span> is an moving average process of order <span class="math inline">\(q\)</span>, <span class="math inline">\(\text{MA}(q)\)</span>:</p>
+<p><span class="math display">\[X_t = Z_t + \sum_{i=1}^q \theta_i X_{t-i},\]</span> <span class="math display">\[\text{rewritten as }X_t =\theta(B)Z_t\]</span> Again, <span class="math inline">\(Z_t\)</span> is a white noise. <span class="math inline">\(\theta(B)\)</span> can be unpacked as: <span class="math inline">\(\theta(B) = 1 + \theta_1B + ... + \theta_qB^q\)</span></p>
 </div>
 <div id="arma-and-arima-model" class="section level3">
 <h3>ARMA and ARIMA model</h3>
-<ul>
-<li>Combining <span class="math inline">\(\text{AR}(p)\)</span> and <span class="math inline">\(\text{MA}(q)\)</span>, we get <span class="math inline">\(\text{ARMA}(p, q)\)</span>:</li>
-</ul>
+<p>Combining <span class="math inline">\(\text{AR}(p)\)</span> and <span class="math inline">\(\text{MA}(q)\)</span>, we get <span class="math inline">\(\text{ARMA}(p, q)\)</span>:</p>
 <p><span class="math display">\[\phi(B)X_t =\theta(B)Z_t\]</span></p>
-<ul>
-<li>Differencing non-stationary data can generate stationarity needed to fit AR, MA, and ARMA models</li>
-<li>With <span class="math inline">\(d^{th}\)</span> differences, we get <span class="math inline">\(\text{ARIMA}(p, d, q)\)</span>:</li>
-</ul>
+<p>We can also incorporate differencing to non-stationary data in order to generate stationarity needed to fit AR, MA, and ARMA models. With <span class="math inline">\(d^{th}\)</span> differences, we get <span class="math inline">\(\text{ARIMA}(p, d, q)\)</span>:</p>
 <p><span class="math display">\[\phi(B)(1-B)^dX_t =\theta(B)Z_t\]</span></p>
 </div>
 <div id="arima-function" class="section level3">
 <h3><code>arima</code> function</h3>
 <pre class="r"><code>arima(x, order = c(0L, 0L, 0L), seasonal = list(order, period) ...)</code></pre>
-<ul>
-<li><code>x</code> is a vector of a univariate time series</li>
-<li><code>order</code> is a sepcification of the (p, d, q) for ARIMA model, in that order</li>
-<li><code>seasonal</code> is a specification of the seasonal part of ARIMA model, consists of <code>order</code> and <code>period</code></li>
-</ul>
+<p><code>arima()</code> from the <code>stats</code> pacakge is the function used to fit ARIMA univariate time series models. The first input of <code>arima()</code> is <code>x</code>, a vector of a univariate time series.</p>
+<p>Then, <code>order</code> input is used to specify the (p, d, q) for ARIMA model, in that order. If d and q are both 0, it is a <span class="math inline">\(\text{AR}(p)\)</span> model. If p and d are both 0, it is a <span class="math inline">\(\text{MA}(q)\)</span> model. If d equals 0, it is <span class="math inline">\(\text{ARMA}(p, q)\)</span> model.</p>
+<p><code>seasonal</code> is a specification of the seasonal part of ARIMA model, consists of <code>order</code> and <code>period</code>.</p>
+<p>Refer to the reference manual documentation using <code>?armia</code> for more details.</p>
 </div>
 </div>
 <div id="other-resources-1" class="section level2">
 <h2>Other resources</h2>
+<p>The following resource materials can help you to dive deeper into the time series analysis with R:</p>
 <ul>
 <li>Coghlan, A. (2017). <a href="http://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/index.html">“A Little Book of R for Time Series”</a>.</li>
 <li>Econometrics Academy. (2013). <a href="https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models">“Time Series ARIMA Models”</a>.
@@ -660,101 +531,69 @@ Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-er
 </p>
 <div id="what-is-spatial-regression-analysis" class="section level2">
 <h2>What is spatial regression analysis?</h2>
-<ul>
-<li>Spatial regression analysis is for modeling data with spatial dependence</li>
-<li>Spatial dependence refers to the spatial relationship of variable values or locations</li>
-<li>Spatial regression seeks to capture the effect of spatial dependence in the statistical modeling efforts</li>
-</ul>
+<p>Spatial regression analysis is for modeling data with spatial dependence, which refers to the spatial relationship of variable values or locations. Spatial regression then seeks to capture the effect of spatial dependence in the statistical modeling efforts.</p>
 </div>
 <div id="spatial-regression-basics" class="section level2">
 <h2>Spatial regression basics</h2>
 <div id="neighbors" class="section level3">
 <h3>Neighbors</h3>
+<p>Neighbors of a spatial data point are other data points that are proximate to the focal data point. There are various ways to define neighbors:</p>
 <ul>
-<li>Neighbors of a spatial data point are other data points that are proximate to the focal data point</li>
-<li>Neighbors may be defined in different ways:
-<ul>
-<li>Contiguity-based (rook and queen contiguity)</li>
-<li>Distance-based</li>
-<li>K-nearest neighbors</li>
-</ul></li>
-<li>Try <a href="http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html">this Shiny application</a> by Klye E. Walker to see how the neighboring structure changes with different definitions</li>
+<li>Contiguity-based (rook and queen contiguity) ways define neighbors based on shared borders.</li>
+<li>Distance-based ways define neighbors based on some distance crieterion. All data points that are within <span class="math inline">\(d\)</span> units of distance from a data point <code>x</code> are neighbors of <code>x</code>.</li>
+<li>K-nearest neighbors define <span class="math inline">\(k\)</span> nearest data points to a data point <code>x</code> to be the neighbors of <code>x</code>.</li>
 </ul>
+<p>Try <a href="http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html">this Shiny application</a> by Klye E. Walker to see how the neighboring structure changes with different definitions.</p>
 </div>
 <div id="spatial-weights" class="section level3">
 <h3>spatial weights</h3>
+<p>Spatial weights represent the significance of neighbors. This reflects an intuition that not all neighbors are equally important. However, in practice, weights are often binary: 1 if neighbors and 0 otherwise.</p>
+<p>For geospaital data expressed in polygons (e.g. counties), contiguity-based neighbors are used to construct spatial weights.</p>
 <ul>
-<li>Spatial weights represent the significance of neighbors
-<ul>
-<li>Not all neighbors are equally important</li>
-</ul></li>
-<li>For geospaital data expressed in polygons (e.g. counties), contiguity-based neighbors are used to construct spatial weights
-<ul>
-<li>Rook contiguity weights</li>
-<li>Queen contiguity weights</li>
-<li>Block weights</li>
-<li>Higher order contiguity</li>
-</ul></li>
+<li>Rook contiguity weights are based on rook contiguity, where any polygons with multiple points of shared border are considered to be neighbors.</li>
+<li>Queen contiguity weights are based on queen contiguity, where any polygons with a single point of shared border are considered to be neighbors.<br />
+</li>
+<li>Block weights are constructed by considering all data points in the same block to be neighbors to one another.</li>
+<li>Higher order contiguity accounts for the influnece of neighbors of neighbors, often with some decay parameter to differentiate different orders of neighbors.</li>
 </ul>
 </div>
 </div>
 <div id="spatial-pacakges-in-r" class="section level2">
 <h2>Spatial pacakges in R</h2>
-<ul>
-<li>Currently, there are two major packages to create and manipulate spatial objects: <code>sp</code> and <code>sf</code></li>
-<li><code>sp</code> is a mature package but its objects have un-tidy structures
-<ul>
-<li>First released on CRAN in 2005</li>
-<li>130+ pacakges on CRAN are currently dependent on <code>sp</code></li>
-</ul></li>
-<li><code>sf</code> is a new package better suited for tidy framework
-<ul>
-<li>First released on CRAN in 2016</li>
-<li><code>sf</code> is an R implementation of the “Simple Features Access” standard (ISO 19125) for geospatial data</li>
-</ul></li>
-</ul>
+<p>Currently, there are two major packages to create and manipulate spatial objects: <code>sp</code> and <code>sf</code>.</p>
+<p><code>sp</code> is a mature package that is first release on CRAN in 2005. Currently, over 130 pacakges on CRAN are dependent on and built on top of <code>sp</code>. However its objects have un-tidy structures, making it often difficult to work with.</p>
+<p><code>sf</code> is a new package that is first released on CRAN in 2016. It is an R implementation of the “Simple Features Access” standard (ISO 19125) for geospatial data. Its spatial objects are better suited for tidy framework and its user base is growing. So far, however, <code>sp</code> remains to be the dominant framework for spatial data structure and analysis.</p>
 <div id="spdep-package" class="section level3">
 <h3><code>spdep</code> package</h3>
-<ul>
-<li>To my knowledge, the most comprehensive package for spatial regression analysis in R</li>
-<li><code>spdep</code> functions use <code>sp</code> spatial objects</li>
-<li>Resources:
+<p><code>spdep</code> package is, to my knowledge, the most comprehensive package for spatial regression analysis in R. Its functions use <code>sp</code> spatial objects. To use <code>spdep</code> with <code>sf</code> objects, they must be first coerced into <code>sp</code> spatial objects.</p>
+<p>Take a look at the following resource materials for <code>spdep</code> and spatial data analysis with R:</p>
 <ul>
 <li>Package <code>spdep</code> <a href="https://cran.r-project.org/web/packages/spdep/spdep.pdf">reference manual</a>.</li>
 <li>Bivand R. (2017). <a href="https://cran.r-project.org/web/packages/spdep/vignettes/nb.pdf">“Creating Neighbours.”</a></li>
 <li>Bivand R. (2017). <a href="https://cran.r-project.org/web/packages/spdep/vignettes/CO69.pdf">“The Problem of Spatial Autocorrelation: forty years on.”</a></li>
-</ul></li>
 </ul>
 </div>
 </div>
 <div id="creating-neighbors-and-weights-matrix" class="section level2">
 <h2>Creating neighbors and weights matrix</h2>
-<ul>
-<li><code>spdep</code> offers <code>*2nb</code> functions to create neighbors (<code>nb</code> object)</li>
-<li><code>poly2nb</code> for continuity-based neighbors</li>
-<li><code>knn2nb</code> for distance-based neighbors</li>
-<li><code>tri2nb</code> for grid-based neighbors</li>
-<li><code>cell2nb</code> for grid neighbors</li>
-<li><code>nb2listw</code> function is used to generate a list of spatial weights (<code>listw</code> object) from an <code>nb</code> object</li>
-</ul>
+<p>The first step of spatial regression analysis involves creating neighbors and weights matrix for the model specification.</p>
+<p><code>spdep</code> offers <code>*2nb()</code> functions to create neighbors (<code>nb</code> object): * <code>poly2nb()</code> for continuity-based neighbors * <code>knn2nb()</code> for distance-based neighbors * <code>tri2nb()</code> for grid-based neighbors * <code>cell2nb()</code> for grid neighbors</p>
+<p>Then, <code>nb2listw()</code> function is used to generate a list of spatial weights (<code>listw</code> object) from an <code>nb</code> object.</p>
 <div id="poly2nb-function" class="section level3">
 <h3><code>poly2nb</code> function</h3>
 <pre class="r"><code>spdep::ploy2nb(pl, row.names = NULL, queen = TRUE, ...)</code></pre>
-<ul>
-<li><code>pl</code> is a list of polygons (e.g. <code>SpatialPolygons</code> class)</li>
-<li>If <code>queen</code> is <code>TRUE</code>, polygons with a single shared boundary point are considered neighbors; if <code>FALSE</code>, more than two shared poitns are needed</li>
-</ul>
+<p>Let’s take a look at the <code>poly2nb</code> function interface as an example of <code>*2nb()</code> functions.</p>
+<p>Here, <code>pl</code> is a list of polygons (e.g. <code>SpatialPolygons</code> class). If <code>queen</code> is <code>TRUE</code>, polygons with a single shared boundary point are considered neighbors; if <code>FALSE</code>, more than two shared poitns are needed.</p>
 </div>
 <div id="nb2listw-function" class="section level3">
 <h3><code>nb2listw</code> function</h3>
 <pre class="r"><code>spdep::nb2listw(neighbours, ...)</code></pre>
-<ul>
-<li><code>nb2listw</code> functions takes a neighbours object of class <code>nb</code> and returns a spatial weights list (<code>listw</code>)</li>
-</ul>
+<p>The <code>nb2listw</code> function takes a neighbours object of class <code>nb</code> and returns a spatial weights list (<code>listw</code>)</p>
 </div>
 </div>
 <div id="basics-of-spatial-modeling" class="section level2">
 <h2>Basics of spatial modeling</h2>
+<p>Now we will explore the basics of spatial modeling, which include the following:</p>
 <ul>
 <li>Morans’ I</li>
 <li>Lagrange multplier tests</li>
@@ -763,85 +602,62 @@ Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-er
 </ul>
 <div id="morans-i" class="section level3">
 <h3>Moran’s I</h3>
-<p><span class="math display">\[I = \frac{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{W}}\boldsymbol{\text{e}}/S_0}{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{e}}/n} = \frac{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{W}}\boldsymbol{\text{e}}/S_0}{\hat{\sigma}^2_{ML}}\]</span></p>
-<ul>
-<li>One of the most commonly used statistic for spatial autocorrelation
-<ul>
-<li><span class="math inline">\(S_0\)</span> is the sum of the weights</li>
-<li><span class="math inline">\(\boldsymbol{\text{e}}\)</span> is a vector of OLS residulas</li>
-</ul></li>
-<li>A non-constructive test (no specific model as an alternative)</li>
-</ul>
+<p>Moran’s I is one of the most commonly used statistic for spatial autocorrelation. It is given in the following format:</p>
+<p><span class="math display">\[I = \frac{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{W}}\boldsymbol{\text{e}}/S_0}{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{e}}/n} = \frac{\boldsymbol{\text{e}}^\text{T}\boldsymbol{\text{W}}\boldsymbol{\text{e}}/S_0}{\hat{\sigma}^2_{ML}},\]</span></p>
+<p>where <span class="math inline">\(S_0\)</span> is the sum of the weights, and <span class="math inline">\(\boldsymbol{\text{e}}\)</span> is a vector of OLS residulas.</p>
+<p>It is a non-constructive test, which means that no specific model is implied as an alternative hypothesis. The test is formulated as follows:</p>
 <p><span class="math display">\[I_z = \frac{I - \text{E}[I]}{\sqrt{\text{Var}[I]}} \sim N(0, 1)\]</span></p>
 </div>
 <div id="moran.test-and-lm.morantest" class="section level3">
 <h3><code>moran.test</code> and <code>lm.morantest</code></h3>
 <pre class="r"><code>spdep::moran.test(x, listw, ...)
 spdep::lm.morantest(model, listw, ...)</code></pre>
-<ul>
-<li><code>moran()</code> takes a numeric vector of data and a spatial weights list (<code>listw</code>) created by <code>nb2listw</code></li>
-<li><code>lm.morantest()</code> takes a <code>lm</code> object and a spatial weights list</li>
-<li>A small <code>p-value</code> suggests special autocorrelation</li>
-</ul>
+<p><code>spdep</code> offers two functiosn for conducting Moran’s I test.</p>
+<p><code>moran()</code> takes a numeric vector of data and a spatial weights list (<code>listw</code>) created by <code>nb2listw</code>. On the other hand, <code>lm.morantest()</code> takes a <code>lm</code> object and a spatial weights list.</p>
+<p>A small <code>p-value</code> for the test statistic suggests the presence of special autocorrelation that is not accounted for in the ordinary least squares (OLS) model.</p>
 </div>
 <div id="lagrange-multiplier-tests" class="section level3">
 <h3>Lagrange multiplier tests</h3>
-<ul>
-<li>Separate LM tests exist for lag model and error modal
-<ul>
-<li>The null hypothesis is no spatial autocorrelation
+<p>Unlike Moran’s I test, Lagrange multiplier (LM) tests for spatial lag model and spatial error model have specific models implied in their alternative hypothesis.</p>
+<p>In either type of LM test, the null hypothesis is no spatial autocorrelation</p>
 <ul>
 <li><span class="math inline">\(H_0: \rho = 0\)</span> for spatial lag model</li>
 <li><span class="math inline">\(H_0: \lambda = 0\)</span> for spatial error model</li>
-</ul></li>
-</ul></li>
-<li>“Robust” LM test are used when LM tests both lag model and error model reject the null</li>
 </ul>
+<p>There are also “Robust” LM test, which are used when LM tests for both lag model and error model reject the null.</p>
 </div>
 <div id="lm.lmtests-function" class="section level3">
 <h3><code>lm.LMtests</code> function</h3>
 <pre class="r"><code>spdep::lm.LMtests(model, listw, test = &quot;LMerr&quot;)</code></pre>
-<ul>
-<li><code>lm.LMtests()</code> takes a <code>lm</code> model and a spatial weights list</li>
-<li>Available <code>test</code> inputs include:
+<p>The <code>lm.LMtests()</code> function is used for conducting LM tests for various types of spatial models. <code>lm.LMtests()</code> takes a <code>lm</code> model and a spatial weights list (<code>listw</code>).</p>
+<p>Then, <code>test</code> input specifies which test to implement. Available inputs for <code>test</code> include:</p>
 <ul>
 <li>“LMerr” and “LMlag” for spatial error and spatial lag model</li>
 <li>“RLMerr” and “RLMlag” for robust LM tests</li>
 <li>“SARMA” for spatial ARMA model</li>
-</ul></li>
 </ul>
 </div>
 <div id="spatial-lag-model" class="section level3">
 <h3>Spatial lag model</h3>
-<p><span class="math display">\[\boldsymbol{\text{y}} = \rho\boldsymbol{\text{W}}\boldsymbol{\text{y}} + \boldsymbol{\text{X}}\beta + \boldsymbol{\text{u}}\]</span></p>
-<ul>
-<li>Spatial lag model models spatial autoregression on</li>
-<li><span class="math inline">\(\boldsymbol{\text{W}}\boldsymbol{\text{y}}\)</span> is a spatial lag term</li>
-<li><span class="math inline">\(\rho\)</span> is a spatial autoregressive parameter</li>
-<li><span class="math inline">\(\boldsymbol{\text{u}}\)</span> is an error term</li>
-</ul>
+<p>Spatial lag model models spatial autoregression of the response variable. The model is formulated as follows:</p>
+<p><span class="math display">\[\boldsymbol{\text{y}} = \rho\boldsymbol{\text{W}}\boldsymbol{\text{y}} + \boldsymbol{\text{X}}\beta + \boldsymbol{\text{u}},\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\text{W}}\boldsymbol{\text{y}}\)</span> is a spatial lag term, <span class="math inline">\(\rho\)</span> is a spatial autoregressive parameter, and <span class="math inline">\(\boldsymbol{\text{u}}\)</span> is an error term.</p>
 </div>
 <div id="spatial-error-model" class="section level3">
 <h3>Spatial error model</h3>
-<p><span class="math display">\[\boldsymbol{\text{y}} = \boldsymbol{\text{X}}\beta + \boldsymbol{\text{u}}, \text{where}\]</span> <span class="math display">\[\boldsymbol{\text{u}} = \lambda\boldsymbol{\text{W}}\boldsymbol{\text{u}} + \varepsilon\]</span></p>
-<ul>
-<li><span class="math inline">\(\boldsymbol{\text{W}}\)</span> is a weights matrix</li>
-<li><span class="math inline">\(\lambda\)</span> is a spatial autoregressive parameter</li>
-<li><span class="math inline">\(\varepsilon\)</span> is an idiosyncratic error term</li>
-</ul>
+<p>Spatial error model models spatial dependence on the error term, and is expressed in the following form:</p>
+<p><span class="math display">\[\boldsymbol{\text{y}} = \boldsymbol{\text{X}}\beta + \boldsymbol{\text{u}}, \text{where}\]</span> <span class="math display">\[\boldsymbol{\text{u}} = \lambda\boldsymbol{\text{W}}\boldsymbol{\text{u}} + \varepsilon\]</span> Here, <span class="math inline">\(\boldsymbol{\text{W}}\)</span> is a weights matrix, <span class="math inline">\(\lambda\)</span> is a spatial autoregressive parameter for the error term, and <span class="math inline">\(\varepsilon\)</span> is an idiosyncratic error term.</p>
 </div>
-<div id="lagsarlm-and-errorsarlm-function" class="section level3">
-<h3><code>lagsarlm</code> and <code>errorsarlm</code> function</h3>
+<div id="lagsarlm-and-errorsarlm" class="section level3">
+<h3><code>lagsarlm()</code> and <code>errorsarlm()</code></h3>
 <pre class="r"><code>spdep::lagsarlm(formula, data, listw, ...)
 spdep::errorsarlm(formula, data, listw, ...)</code></pre>
-<ul>
-<li><code>formula</code> and <code>data</code> works like in <code>lm()</code></li>
-<li><code>listw</code> is a spatial weights matrix</li>
-</ul>
+<p>These two are functions to fit lag and error models. <code>formula</code> and <code>data</code> works like in <code>lm()</code>, and <code>listw</code> is a spatial weights matrix.</p>
 </div>
 </div>
 <div id="other-resources-2" class="section level2">
 <h2>Other resources</h2>
+<p>To know more about spatial regression analysis in general and its implementation in R, refer to the following materials:</p>
 <ul>
 <li>Anselin, L. (2007). <a href="http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf"><em>Spatial Regression Analysis in R: A Workbook</em></a>.</li>
 <li>Econometrics Academy. (2013). <a href="https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics">“Spatial Econometrics”</a>.</li>
@@ -863,38 +679,35 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png">Wik
 <blockquote>
 <p>“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experience E.”<br>-Tom M. Matchell</p>
 </blockquote>
-<ul>
-<li>Machine learning (ML) is a key factor of the recent success of artificial intelligence (AI) algorithms and applications</li>
-<li>ML can be thought as the automated optimization of model parameters through iteratively reducing the difference between the model outputs and the input data</li>
-</ul>
+<p>Machine learning (ML) is a key factor of the recent success of artificial intelligence (AI) algorithms and applications. ML can be roughly thought as the automated optimization of model parameters through iteratively reducing the difference between the model outputs and the input data.</p>
 </div>
 <div id="types-of-ml" class="section level2">
 <h2>Types of ML</h2>
+<p>The field of machine learning is largely divided into the following three subfields:</p>
 <ul>
-<li>Supervised learning
+<li>Supervised learning refers to the learning method using labeled data to train machine learning models (learners). Depending on the type of the lable, or target variable, there are two kinds of supervised learning tasks:
 <ul>
 <li>Classification (categorical target variable)</li>
 <li>Regression (numerical target variable)</li>
 </ul></li>
-<li>Unsupervised learning
-<ul>
-<li>Clustering</li>
-</ul></li>
-<li>Reinforcement learning</li>
+<li>Unsupervised learning refers to the learning method using unlabeled data to train learners. A common goal of unsupervised learning is to discover previously unknown structure and patterns in the data. One common application of unsupervised learning is clustering.</li>
+<li>Reinforcement learning refers to the learning method where the artificial agent learns from interacting with its environment.</li>
 </ul>
 </div>
 <div id="basic-ml-workflow" class="section level2">
 <h2>Basic ML workflow</h2>
+<p>The basic machine learning workflow can be roughly divided into the following steps:</p>
 <ul>
-<li>Collect data</li>
-<li>Prepare data (normalization, handling missing values, etc.)</li>
-<li>Divide data into training and test sets</li>
-<li>Train a learner (model) using the training set</li>
-<li>Evaluate the learner using the test set</li>
+<li><strong>Collect data</strong>. In order to train a learner, we must have data to use. In many cases, a larger set of training data tend to result in a better learner.</li>
+<li><strong>Prepare data</strong>. Learners are often best trained when the training data is made into the right format. This step is also called data preprocessing, and relevant techniques include normalization, handling missing values, and more.</li>
+<li><strong>Divide data into training and test sets</strong>. A key objective of training a machine learning model is to be able to generalize its prediction beyond the data used to train it. To that end, machine learning practitioners often split the data into training and test sets, using the former to, well, train a learner and the latter to test how well its predictions generalize.</li>
+<li><strong>Train a learner (model) using the training set</strong>. In machine learning terminology, training refers to applying the algorithm to the input data to iteratively optimize the model parameters. Onces the model, or learner, is trained, it is now ready to make predictions for unseen data.</li>
+<li><strong>Evaluate the learner(s) using the test set</strong>. When we have a trained learner, we can now evaluate how good it is by using the test set. The model is given the test set without the label to predict the label values. Then the predicted values are compared against the true values. The test set is often used to choose the best among multiple trained learners.</li>
 </ul>
 </div>
 <div id="common-ml-algorithms" class="section level2">
 <h2>Common ML algorithms</h2>
+<p>Here is a brief list of commonly used machine learning algorithms:</p>
 <ul>
 <li>Linear regression</li>
 <li>Logistic regression</li>
@@ -911,42 +724,33 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png">Wik
 <li>“Deep learning”</li>
 </ul></li>
 </ul>
+<p>It is beyond the scope of the current Part to offer a full description of each algorithm and how it works. However, feel free to leverage the power of the Internet and search online for each algorithm. There is a wealth of resources (articles, books, written and video tutorials, online courses, etc.) available on the subject of machine learning.</p>
 </div>
 <div id="packages-on-ml" class="section level2">
 <h2>Packages on ML</h2>
+<p>R has many packages that offer machine learning algorithms and relevant tools. The following two are among the most comprehensive packages providing a wide range of machine learning functionalities.</p>
 <div id="caret-pacakage" class="section level3">
 <h3><code>caret</code> pacakage</h3>
-<ul>
-<li>Classification And REgression Training</li>
-<li>Resources:</li>
-<li><a href="https://cran.r-project.org/web/packages/caret/vignettes/caret.pdf">Package vignette PDF</a></li>
-<li><a href="http://topepo.github.io/caret/index.html">Online textbook</a></li>
-<li><a href="https://github.com/topepo/caret">GitHub repo</a></li>
-</ul>
+<p><code>caret</code> is a shorthand for “Classification And REgression Training”, and one of the most mature machine learning package out there. Check out the package vignettes on <a href="https://cran.r-project.org/web/packages/caret">the CRAN page</a> and the package <a href="https://github.com/topepo/caret">GitHub repository</a>. There is also <a href="http://topepo.github.io/caret/index.html">an online textbook</a> on using <code>caret</code> for machine learning.</p>
 </div>
 <div id="mlr-pacakge" class="section level3">
 <h3><code>mlr</code> pacakge</h3>
-<ul>
-<li>Machine Learning in R</li>
-<li>Resources:</li>
-<li><a href="https://cran.r-project.org/web/packages/mlr/vignettes/mlr.html">Package vignette HTML</a></li>
-<li><a href="https://mlr-org.github.io/mlr-tutorial/devel/html/">Tutorial website</a></li>
-<li><a href="https://github.com/mlr-org/mlr/">GitHub repo</a></li>
-</ul>
+<p><code>mlr</code> is an abbreviation of “Machine Learning in R”. Take a look at the vignettes on <a href="https://cran.r-project.org/web/packages/mlr/">the package CRAN page</a> and its <a href="https://github.com/mlr-org/mlr/">GitHub repository</a>. Also visit <a href="(https://mlr-org.github.io/mlr-tutorial/devel/html/)">the package website</a>, which provide tutorials on the <code>mlr</code> API.</p>
 </div>
 </div>
 <div id="other-resources-3" class="section level2">
 <h2>Other resources</h2>
+<p>To get started with machine learning, you may want to try the following materials. Also, don’t forget to search online for other machine learning materials.</p>
 <ul>
 <li>Andrew Ng’s <a href="https://www.coursera.org/learn/machine-learning">“Machine Learning” course</a> on Coursera</li>
 <li>James, G. et al. (2013). <em>An Introduction to Statistical Learning</em>. (textbook)
 <ul>
 <li><a href="http://www-bcf.usc.edu/~gareth/ISL/">Website with a link to free textbook</a></li>
-<li>Examples in R code</li>
+<li>Examples are in R code</li>
 </ul></li>
 <li>Google’s <a href="https://developers.google.com/machine-learning/crash-course/"><em>Machine Learning Crash Course</em></a>
 <ul>
-<li>Examples in Python code</li>
+<li>Examples are in Python code</li>
 </ul></li>
 </ul>
 <hr />
