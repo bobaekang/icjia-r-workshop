@@ -23,7 +23,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 6: "To Infinity and Beyond" (1)</h3>  
-2018-04-18  
+2018-04-25  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 
