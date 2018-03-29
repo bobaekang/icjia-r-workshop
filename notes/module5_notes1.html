@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bobae Kang" />
 
-<meta name="date" content="2018-04-11" />
+<meta name="date" content="2018-04-18" />
 
 <title>R Workshop: Module 5 (1)</title>
 
@@ -220,7 +220,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">R Workshop: Module 5 (1)</h1>
 <h4 class="author"><em>Bobae Kang</em></h4>
-<h4 class="date"><em>April 11, 2018</em></h4>
+<h4 class="date"><em>April 18, 2018</em></h4>
 
 </div>
 
@@ -578,20 +578,20 @@ Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
 <pre class="r"><code>t.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
        mu = 0, conf.level = 0.95, ...)
 t.test(formula, data, subset, na.action, ...)</code></pre>
-<ul>
-<li>The null hypothesis assumes normal distribution</li>
-<li>The tested null hypothesis is no difference in mean and the alternative hypothesis can one of the three options, with the default of “two.sided”</li>
-<li>One sample t-test is conducted with only <code>x</code> input is given
-<ul>
-<li>The mean of <code>x</code> is compared against the <code>mu</code> value (default 0)</li>
-</ul></li>
-<li>Two sample t-test can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
-</ul>
+<p>R offers the <code>t.test()</code> function to conduct Student’s t-test. <code>x</code> and <code>y</code> are numeric vectors of data values.</p>
+<p>If only <code>x</code> is given, one sample t-test is conducted and the mean of <code>x</code> is compared agianst the <code>mu</code> value with the default of 0. If both <code>x</code> and <code>y</code> are provided, two sample t-test is conducted.</p>
+<p>The test null hypothesis is no difference in the sample means, assuming that each sample comes from a normal distribution.</p>
+<p><code>alternative</code> defines the alternative hypothesis, which can take the value of “two.sided” (default), “less”, or “greater”.</p>
+<p>Two sample t-test can also be conducted by using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input.</p>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<p>Let’s take a look at an example of using <code>t.test()</code>. First we prepae <code>x</code> and <code>y</code> to use.</p>
 <pre class="r"><code>ispcrime2 &lt;- left_join(ispcrime, regions)</code></pre>
 <pre><code>## Joining, by = &quot;county&quot;</code></pre>
 <pre class="r"><code>viol_crime_north &lt;- (filter(ispcrime2, region == &quot;Northern&quot;))$violentCrime
-viol_crime_south &lt;- (filter(ispcrime2, region == &quot;Southern&quot;))$violentCrime
-t.test(viol_crime_north, viol_crime_south)</code></pre>
+viol_crime_south &lt;- (filter(ispcrime2, region == &quot;Southern&quot;))$violentCrime</code></pre>
+<p>Now we conduct two sample t-test using <code>viol_crime_north</code> and <code>viol_crime_south</code> with the default “two.sided” alternative hypothesis:</p>
+<pre class="r"><code>t.test(viol_crime_north, viol_crime_south)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -604,27 +604,28 @@ t.test(viol_crime_north, viol_crime_south)</code></pre>
 ## mean of x mean of y 
 ##  438.2000  116.9235</code></pre>
 </div>
-<div id="wilcox-tests" class="section level2">
-<h2>Wilcox tests</h2>
+</div>
+<div id="wilcoxon-tests" class="section level2">
+<h2>Wilcoxon tests</h2>
 <pre class="r"><code>wilcox.test(x, y = NULL, alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
             mu = 0, conf.level = 0.95, ...)
 wilcox.test(formula, data, subset, na.action, ...)</code></pre>
-<ul>
-<li>The null hypothesis does NOT assume normality</li>
-<li>One sample Wilcox test (rank-sum test) is conducted with only <code>x</code> input is provided</li>
-<li>Two sample Wilcox test (singed-rank test) can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input</li>
-</ul>
+<p>R offers <code>wilcox.test()</code> for Wilcoxon tests. It is often considered a nonparametric counterpart of the t-test, and can be performed using either one sample or two samples. Unliked in Student’s t-test, Wilcoxon test does not assume normality.</p>
+<p>One sample Wilcoxon test (i.e. rank-sum test) is conducted with only <code>x</code> input is provided.</p>
+<p>Two sample Wilcoxon test (singed-rank test) can be conducted by either supplying <code>x</code> and <code>y</code> inputs or using <code>formula</code> (<code>y ~ x</code>) with <code>data</code> input.</p>
 </div>
 <div id="analysis-of-variance" class="section level2">
 <h2>Analysis of Variance</h2>
 <pre class="r"><code>aov(formula, data, qr = TRUE, ...)</code></pre>
-<ul>
-<li><code>formula</code> is of the following format: <code>value ~ subgroup</code></li>
-<li><code>summary()</code> has a method for <code>aov</code> class that returns a refined print result</li>
-<li><code>model.tables()</code> has a method for <code>aov</code> class for reporting table of means or table of effects</li>
-</ul>
-<pre class="r"><code>aov_by_region &lt;- aov(formula = violentCrime ~ region, data = ispcrime2)
-print(aov_by_region)</code></pre>
+<p><code>aov()</code> is the built-in R function to perform analysis of variance (ANOVA) to analyze the differences among group means.</p>
+<p>Here we use <code>formula</code> in the following format: <code>value ~ subgroup</code>. <code>data</code> is a data.frame with both <code>value</code> and <code>subgroup</code> as its columns.</p>
+<p><code>summary()</code> has a method for <code>aov</code> class that returns a refined print result. Also, <code>model.tables()</code> has a method for <code>aov</code> class for reporting table of means or table of effects.</p>
+<div id="example-2" class="section level3">
+<h3>Example</h3>
+<p>This example is to illustrate different printing methods for the ANOVA model results. We first fit the model, using <code>violentCrime</code> as the value column and <code>region</code> as the subgroup column.</p>
+<pre class="r"><code>aov_by_region &lt;- aov(formula = violentCrime ~ region, data = ispcrime2)</code></pre>
+<p>Here is the default printing output:</p>
+<pre class="r"><code>print(aov_by_region)</code></pre>
 <pre><code>## Call:
 ##    aov(formula = violentCrime ~ region, data = ispcrime2)
 ## 
@@ -636,6 +637,7 @@ print(aov_by_region)</code></pre>
 ## Residual standard error: 431.8969
 ## Estimated effects may be unbalanced
 ## 7 observations deleted due to missingness</code></pre>
+<p>And here is using <code>summary()</code>, of which the ouput includes the F statistic and the relevant p-value:</p>
 <pre class="r"><code>summary(aov_by_region)</code></pre>
 <pre><code>##              Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
 ## region        3 4.657e+09 1.552e+09    8323 &lt;2e-16 ***
@@ -643,6 +645,7 @@ print(aov_by_region)</code></pre>
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 7 observations deleted due to missingness</code></pre>
+<p>Finally, using <code>model.tables</code> with different <code>type</code> input, we get the tables of means and effects:</p>
 <pre class="r"><code>model.tables(aov_by_region, type = &quot;means&quot;)</code></pre>
 <pre><code>## Tables of means
 ## Grand mean
@@ -661,8 +664,10 @@ print(aov_by_region)</code></pre>
 ##        -331 30347   -62.77     -384
 ## rep     230     5    85.00      183</code></pre>
 </div>
+</div>
 <div id="other-statistical-tests" class="section level2">
 <h2>Other statistical tests</h2>
+<p>The following is a list of other statistical tests with built-in R fuctions:</p>
 <pre class="r"><code># Test of equal proprtions
 prop.test(x, n, p, ...)
 
@@ -694,24 +699,15 @@ cor.test(x, y, alternative = &quot;two.sided&quot;, conf.level = 0.95,
 <div id="the-lm-function" class="section level2">
 <h2>The lm() function</h2>
 <pre class="r"><code>lm(formula, data, subset, na.action, ...)</code></pre>
-<ul>
-<li><code>lm()</code> is used to fit linear models, according to the <code>formula</code> input.</li>
-<li><code>data</code> is an optional argument, which can take a data frame
-<ul>
-<li>If <code>data</code> input is provided, its column names can be used directly in the formula</li>
-</ul></li>
-</ul>
+<p>R offers <code>lm()</code> to fit linear models, one of the most fundamental yet powerful tools for statistical modeling. A linear model with a single explanatory variable is called a simple linear model. A linaer model with multiple explanatory variables is called muliple linear regression model.</p>
+<p>A model to be fitted is specificed according to the <code>formula</code> input. <code>data</code> is an optional argument, which can take a data frame or one of its variants. If <code>data</code> input is provided, its column names can be used directly in the formula.</p>
 </div>
 <div id="r-formula" class="section level2">
 <h2>R formula</h2>
 <pre class="r"><code>formula &lt;- y ~ x1 + x2</code></pre>
-<ul>
-<li>The response variable is placed on the left-hand side of the tilde symbol (<code>~</code>), and the explanatory variables on the right-hand side
-<ul>
-<li>Adding multiple explanatory variables can be done using <code>+</code> symbol</li>
-</ul></li>
-<li>Simply use <code>y ~ .</code> to include all other columns additively as explanatory variables</li>
-</ul>
+<p>Here we take a closer look at the R <code>formula</code> object.</p>
+<p>The response variable is placed on the left-hand side of the tilde symbol (<code>~</code>), and the explanatory variables on the right-hand side.</p>
+<p>Adding multiple explanatory variables can be done using <code>+</code> symbol. We can simply use <code>y ~ .</code> to include all other columns additively as expanatory variables.</p>
 </div>
 <div id="model-summary" class="section level2">
 <h2>Model summary</h2>
@@ -719,14 +715,15 @@ cor.test(x, y, alternative = &quot;two.sided&quot;, conf.level = 0.95,
 
 print(lmfit) # not recommended
 summary(lmfit)</code></pre>
-<ul>
-<li><code>lm()</code> output is an object of <code>lm</code> class</li>
-<li>Simply printing an <code>lm</code> object gives only minimal information on the fitted model</li>
-<li><code>summary()</code> function with a model input (e.g. <code>lm</code>) prints a more comprehensive model summary</li>
-</ul>
+<p>An output of <code>lm()</code> is an R object of <code>lm</code> class. Simply printing an <code>lm</code> object gives only minimal information on the fitted model.</p>
+<p>In order to get a more compresensive model summary, we can we <code>summary()</code> function with a model input (e.g. <code>lm</code>).</p>
+<div id="example-3" class="section level3">
+<h3>Example</h3>
+<p>We fit a simple linear model with <code>violentCrime</code> as the reponse variable and <code>propertyCrime</code> as the explanatory variable. The class of the fitted model object is <code>lm</code>.</p>
 <pre class="r"><code>my_lmfit &lt;- lm(violentCrime ~ propertyCrime, ispcrime)
 class(my_lmfit)</code></pre>
 <pre><code>## [1] &quot;lm&quot;</code></pre>
+<p>Here is the output for using the default printing method:</p>
 <pre class="r"><code>my_lmfit</code></pre>
 <pre><code>## 
 ## Call:
@@ -735,6 +732,7 @@ class(my_lmfit)</code></pre>
 ## Coefficients:
 ##   (Intercept)  propertyCrime  
 ##      -79.7683         0.1994</code></pre>
+<p>And here is using <code>summary()</code>:</p>
 <pre class="r"><code>summary(my_lmfit)</code></pre>
 <pre><code>## 
 ## Call:
@@ -756,69 +754,48 @@ class(my_lmfit)</code></pre>
 ## Multiple R-squared:  0.9861, Adjusted R-squared:  0.986 
 ## F-statistic: 3.546e+04 on 1 and 501 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+</div>
 <div id="model-diagnostics" class="section level2">
 <h2>Model diagnostics</h2>
 <pre class="r"><code>plot(lmfit, which = c(1:3, 5), ...)</code></pre>
-<ul>
-<li>Base R <code>plot()</code> function has a method for <code>lm</code> objects</li>
-<li>`Total 6 plots are generated
-<ul>
-<li>“Residuals vs Fitted”</li>
-<li>“Normal Q-Q”</li>
-<li>“Scale-Location”</li>
-<li>“Cook’s distance”</li>
-<li>“Residuals vs Leverage”</li>
-<li>“Cook’s dist vs Leverage <span class="math inline">\(h_{ii}/(1-h_ii)\)</span>”</li>
-</ul></li>
-</ul>
+<p>Base R <code>plot()</code> function has a method for <code>lm</code> objects, which generates the following 6 diagnostics plots: * “Residuals vs Fitted” * “Normal Q-Q” * “Scale-Location” * “Cook’s distance” * “Residuals vs Leverage” * “Cook’s dist vs Leverage <span class="math inline">\(h_{ii}/(1-h_ii)\)</span>”</p>
+<p>The default option only prints the first, second, third and fifth of these plots.</p>
+<div id="example-4" class="section level3">
+<h3>Example</h3>
+<p>Let’s take a look at all six diagnostic plots for our fitted model:</p>
 <pre class="r"><code>par(mfrow = c(2,3))
 plot(my_lmfit, which = c(1:6))</code></pre>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-37-1.png" width="768" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-41-1.png" width="768" /></p>
+</div>
 </div>
 <div id="model-evaluation" class="section level2">
 <h2>Model evaluation</h2>
 <pre class="r"><code>logLik(object, ...)
 AIC(object, ..., k = 2)
 BIC(object, ...) # equivalent to AIC with k = log(n)</code></pre>
-<ul>
-<li>There are measures of model fit other than <span class="math inline">\(R^2\)</span>.</li>
-<li>For a model fitted by maximum likelihood algorithm:
-<ul>
-<li><code>logLik()</code> for log-liklehood value</li>
-<li><code>AIC()</code> for Akaike Information Criterion (with default <code>k</code>)</li>
-<li><code>BIC()</code> for Bayesian Information Criterion</li>
-</ul></li>
-<li>Read <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">this Wikipedia article</a> for more on maximum likelihood estimation</li>
-</ul>
+<p>There are measures of model fit other than <span class="math inline">\(R^2\)</span>. For a model fitted by maximum likelihood algorithm, including the <code>lm</code> model, the following functions are available to get goodness-of-fit measures: * <code>logLik()</code> for log-liklehood value * <code>AIC()</code> for Akaike Information Criterion (with default <code>k</code>) * <code>BIC()</code> for Bayesian Information Criterion</p>
+<p>We can read <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">this Wikipedia article</a> for more on maximum likelihood estimation.</p>
 </div>
 <div id="extending-lm-formula" class="section level2">
 <h2>Extending lm() formula</h2>
+<p>A linear model can be extended with simple “tricks” to better fit the data. Four such tricks include:</p>
 <ul>
-<li>Transformations</li>
-<li>Interaction terms</li>
+<li>Transformating model terms</li>
+<li>Including interaction terms</li>
 <li>Polynomials</li>
 <li>Polynomial splines</li>
 </ul>
 <div id="transformations" class="section level3">
 <h3>Transformations</h3>
 <pre class="r"><code>scale(y) ~ log(x1) + sqrt(x2) + ...</code></pre>
-<ul>
-<li>We can transform formula terms on either side of <code>~</code> by applying a function to each term</li>
-<li>Common transformations include:
-<ul>
-<li><code>log()</code>: natural log (cf. <code>log2</code> and <code>log10</code>)</li>
-<li><code>exp()</code>: exponentiate</li>
-<li><code>sqrt()</code>: square root</li>
-<li><code>scale()</code>: rescale data such that the mean is 0 and the standard deviation is 1</li>
-</ul></li>
-</ul>
+<p>We can transform formula terms on either side of <code>~</code> by applying a function to each term * Common transformations include: * <code>log()</code>: natural log (cf. <code>log2</code> and <code>log10</code>) * <code>exp()</code>: exponentiate * <code>sqrt()</code>: square root * <code>scale()</code>: rescale data such that the mean is 0 and the standard deviation is 1</p>
 <div id="transforming-x" class="section level4">
 <h4>Transforming <code>x</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="transforming-y" class="section level4">
 <h4>Transforming <code>y</code></h4>
-<p><img src="module5_notes1_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="module5_notes1_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 </div>
 <div id="interactions" class="section level3">
@@ -910,13 +887,13 @@ c(class(glance(my_lmfit)), class(glance(my_lmfit)))</code></pre>
 </div>
 <div id="modelr-package" class="section level2">
 <h2><code>modelr</code> package</h2>
+<p><code>modelr</code> is a <code>tidyverse</code> package that provides helper functions for statistical modeling in R. Its helper functions are designed to facilitate the following:</p>
 <ul>
-<li><code>modelr</code> is a <code>tidyverse</code> package that provides helper functions for statistical modeling in R</li>
 <li>partitioning and sampling</li>
 <li>model quality metrics</li>
 <li>interacting with models</li>
-<li>Visit <code>modelr</code> <a href="https://github.com/tidyverse/modelr">GitHub repository</a> and the <a href="http://r4ds.had.co.nz/model-basics.html">“Model Basics” chapter</a> in <em>R for Data Science</em> for more</li>
 </ul>
+<p>You can visit <code>modelr</code> <a href="https://github.com/tidyverse/modelr">GitHub repository</a> or read the <a href="http://r4ds.had.co.nz/model-basics.html">“Model Basics” chapter</a> in <em>R for Data Science</em> to learn more about the package.</p>
 <div id="partitioning-and-sampling" class="section level3">
 <h3>Partitioning and sampling</h3>
 <pre class="r"><code>resample(data, idx)

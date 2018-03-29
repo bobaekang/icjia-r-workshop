@@ -1,7 +1,7 @@
 ---
 title: "R Workshop: Module 6 (2)"
 author: "Bobae Kang"
-date: "April 18, 2018"
+date: "April 25, 2018"
 output:
   html_document:
     self_contained: false

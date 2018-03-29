@@ -23,7 +23,7 @@ R Workshop
 type: slide-body
 css: ../css/style_slides.css
 <h3 style="color: #789">Module 5: Statistical modeling with R (2)</h3>  
-2018-04-11  
+2018-04-18  
 Bobae Kang  
 <small>(Bobae.Kang@illinois.gov)</small>  
 

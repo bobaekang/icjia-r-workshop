@@ -47,10 +47,11 @@ knitr::include_graphics("./images/icjia-x-r.png")
 * **Time**: 1-3PM (130-330PM for Module 2 only)
     * ~~Module 1: March 14, 2018 (Wed)~~
     * ~~Module 2: March 22, 2018 (Thur)~~
-    * Module 3: March 28, 2018 (Wed)
-    * Module 4: April 4, 2018 (Wed)
-    * Module 5: April 11, 2018 (Wed)
-    * Module 6: April 18, 2018 (Wed)
+    * ~~Module 3: March 28, 2018 (Wed)~~
+    * **Midterm break**
+    * Module 4: April 11, 2018 (Wed)
+    * Module 5: April 18, 2018 (Wed)
+    * Module 6: April 25, 2018 (Wed)
 </div>
 <div class="col-sm-6">
 * **Location**: ICJIA Large Conference Room
@@ -60,6 +61,8 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ***
 
 ## Workshop news
+* **Change in schedule: Midterm break**
+    * To best accommodate the Workshop's regular attendees and their schedule, the fourth, fifth and sixth weeks' meetings are pushed back one week. Accordingly, the Workshop will have **a "midterm break" in the first week of April** and meet again on April 18.
 * **Second Workshop meeting,** March 22, 2018
     * Please note that the starting hour of this week's meeting has changed **from 1PM to 130PM**.
 * **First Workshop meeting,** March 14, 2018
