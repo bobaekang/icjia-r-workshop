@@ -35,7 +35,7 @@ The workshop consists of six separate modules which are meant to be followed in 
 Read the below to get an overview of each module. Also, click the "SEE MORE" button and follow the links to check out the relevant workshop materials. Enjoy!
 
 <br>
-(Note: Currently, slides and notes for only the first four modules are ready for use. Materials for later modules are in active development and scheduled to be completed by the end of March. Thank you for your understanding!)
+(Note: Currently, most slides and notes are ready for use, except for Module 6. Module 6 materials are currently in active development, and are scheduled to be completed by the end of March. Thank you for your understanding!)
 
 ***
 
@@ -138,13 +138,13 @@ In this module, workshop participants will learn how to conduct basic statistica
 <div style="padding:20px;">
 ### Part 1: Basics of statistical modeling
 
-* [**Slides**](./slides/module5_slides1.html) (in development)
-* [**Notes**](./notes/module5_notes1.html) (in development)
+* [**Slides**](./slides/module5_slides1.html)
+* [**Notes**](./notes/module5_notes1.html)
 
 ### Part 2: Options for advanced modeling
 
-* [**Slides**](./slides/module5_slides2.html) (in development)
-* [**Notes**](./notes/module5_notes2.html) (in development)
+* [**Slides**](./slides/module5_slides2.html)
+* [**Notes**](./notes/module5_notes2.html)
 </div>
 </div>
 </div>
