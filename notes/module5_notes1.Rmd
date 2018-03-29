@@ -432,6 +432,22 @@ cor.test(x, y, alternative = "two.sided", conf.level = 0.95,
 ```
 
 
+## An alternative framework
+* `infer` package is an attempt to "to perform statistical inference using an expressive statistical grammar that coheres with the tidyverse design framework."
+* Watch the package author's presentation [video](https://www.rstudio.com/resources/videos/infer-a-package-for-tidy-statistical-inference/)
+* Visit the package [website](http://infer.netlify.com/index.html) to learn more about it
+
+```{r echo=FALSE, out.width="750%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/infer.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://infer.netlify.com/index.html">infer package website</a>
+</p>
+
+
+
+
+
 ***
 
 
@@ -539,12 +555,14 @@ A linear model can be extended with simple "tricks" to better fit the data. Four
 ```{r eval=FALSE}
 scale(y) ~ log(x1) + sqrt(x2) + ...
 ```
-We can transform formula terms on either side of `~` by applying a function to each term
-* Common transformations include:
-    * `log()`: natural log (cf. `log2` and `log10`)
-    * `exp()`: exponentiate
-    * `sqrt()`: square root
-    * `scale()`: rescale data such that the mean is 0 and the standard deviation is 1 
+We can transform terms on either side of `~` in the formula to get a better model. Common such transformations include:
+
+* `log()`: natural log (cf. `log2` and `log10`)
+* `exp()`: exponentiate
+* `sqrt()`: square root
+* `scale()`: rescale data such that the mean is 0 and the standard deviation is 1
+
+The following two figures offer a visual illustration of the effect of applying some of these transformations.
 
 #### Transforming `x`
 ```{r echo=FALSE, fig.height=8}
@@ -579,15 +597,18 @@ abline(a = 0, b = 1, col = "red")
 y ~ x1 + x2 + x1:x2
 y ~ x1 * x2
 ```
-* `x1:x2` takes the interactions of all terms in `x1` and `x2`
-* `x1*x2` is equivalent to `x1:x2` *and* the original terms `x1` and `x2` 
-* It is recommended to use an interaction term with all the original terms
+Interaction terms are used to account for any significant interaction between explanatory variables where the effect of one explanatory variable on the response variable depends on the value of another explanatory variable.
+
+In R formula, `x1:x2` takes the interactions of all terms in `x1` and `x2`. Additionally, `x1*x2` is equivalent to `x1:x2` *and* the original terms `x1` and `x2`. 
+
+Please note that it is generally recommended to keep all the original terms if their interaction term is included.
 
 ### Polynomials
 ```{r eval=FALSE}
 y ~ ploy(x, degree = n)
 y ~ x + I(x^2) + I(x^3) + ...
 ```
+
 * `poly()` generates the n-th degree polynimals of the input `x`
 * `ploy(x, 3)` is equivalent to using `x + I(x^2) + I(x^3)`
     * `I()` ensures the `^` with a symbol is used as an arithmetic operator
@@ -604,12 +625,9 @@ y ~ bs(x, degree = n, ...)
 
 
 ## `broom` package
-* `broom` is a `tidyverse` package for "tidying up" statistical model outputs in R, i.e., converting them into tidy data frames.
-* `broom` functions:
-  * `glance()`
-  * `tidy()`
-  * `augment()`
-* Visit `broom` [GitHub repository](https://github.com/tidyverse/broom) and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html) for more
+`broom` is a `tidyverse` package for "tidying up" statistical model outputs in R, i.e., converting them into tidy data frames.
+
+Visit `broom` [GitHub repository](https://github.com/tidyverse/broom) and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html) to learn more about the package.
 
 
 ### `broom` functions
@@ -618,21 +636,38 @@ glance(x, ...)
 tidy(x, ...)
 augment(x, ...)
 ```
+`broom` is a small package consists of only the following three functions: 
+
 * `glance()` takes a model object and returns a concise one-row summary of the model.
 * `tidy()` takes a model object and returns a `data.frame` with the coeffcient estimation results
 * `augment()` takes a model object and returns a `data.frame` for each observation with additional columns such as predictions, residuals and cluster assignments
 
+### Example
+Let's try these functions to see how they work. We will use `my_lmfit` and apply each `broom` function to the model.
 
+First, we use `glance()` to see the model summary metrics in a tidy format.
 ```{r}
 glance(my_lmfit)
+```
+
+Next, `tidy` returns the model estimates in a tidy format.
+```{r}
 tidy(my_lmfit)
+```
+
+And the outputs really are of `data.frame` class
+```{r}
 # check the class of each output
 c(class(glance(my_lmfit)), class(glance(my_lmfit)))
 ```
 
-
+Finally, we use `augment` to add to the input data additional columns based on the fitted model:
 ```{r}
 head(augment(my_lmfit))
+```
+
+The output is, again, a tidy `data.frame` object.
+```{r}
 class(augment(my_lmfit))
 ```
 
@@ -652,6 +687,28 @@ resample(data, idx)
 resample_partition(data, p)
 bootstrap(data, n, id = ".id")
 ```
+* `resample` take a data frame and a vector of indices to create a pointer object, which can be either turned into a data frame or used directly in modeling functions (e.g. `lm()`)
+* `resample_partition` takes a data and a named numeric vector to specify partitioning. Its output is a list of random partitions.
+* `bootstrap` takes a data frame and an integer to specify the number of bootstrap replicates to generate. The output is a data frame of bootstrap samples column and id column
+
+#### `resample_partition()` example
+`resample_partition()` is suited for creating randomly assigned treatment/control groups. The output is a nested list of partitions. Note that resampling is a "random" process and the output will change each time the code is executed. To ensure reproducibility (i.e. the same result), use `set.seed()`.
+```{r}
+set.seed(1) # for reproducibility
+
+partitioned <- ispcrime %>%
+  filter(year == "2015") %>%
+  resample_partition(p = c(treatment = 0.5, control = 0.5))
+
+partitioned
+```
+
+Each partition is also a list, which contains `data` and `idx`. The former is a `data.frame` of the partition, the the latter is a numeric vector of indices assigned to the partition.
+```{r}
+head(partitioned$treatment$data)
+partitioned$treatment$idx
+```
+
 
 ### Model quality metrics
 ```{r eval=FALSE}
@@ -660,6 +717,8 @@ mae(model, data)
 qae(model, data, probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
 rsquare(model, data)
 ```
+`modelr` offers the following functions to quickly extract model quality metrics: 
+
 * `rmse()` returns the root mean squared error
 * `mae()` returns the mean abosolute error
 * `qae()` returns quantiles of absolute error
@@ -673,14 +732,18 @@ add_residuals(data, model, var = "resid")
 * `add_predictions()` adds a new column to a data frame for predicted values based on a model
 * `add_residuals()` adds a new column to a data frame for residuals based on a model
 
-
+#### Example
+Let's see how `add_predictions()` and `add_residuals()` work with an example. To make it easier to view, we first get a subset of `ispcrime`
 ```{r}
 ispcrime_subset <- select(ispcrime, year:violentCrime, propertyCrime)
-ispcrime_subset2 <- ispcrime_subset %>%
-  add_predictions(my_lmfit) %>%
-  add_residuals(my_lmfit)
+```
 
-head(ispcrime_subset2)
+Now we use both functiosn to add prediction and residual columns. Note that the residual values equal true values - predicted values.
+```{r}
+ispcrime_subset %>%
+  add_predictions(my_lmfit) %>%
+  add_residuals(my_lmfit) %>%
+  head()
 ```
 
 
