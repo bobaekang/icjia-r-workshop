@@ -237,14 +237,14 @@ div.tocify {
 <p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
 <!-- logo -->
 <div class="logo">
-<p><a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
+<p><a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
 </div>
-<p>This page contains the notes for <strong>the first part of R Workshop Module 6: “To Infinity and Beyond”</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<p>This page contains the notes for <strong>the first part of R Workshop Module 6: “To Infinity and Beyond”</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang" target="_blank">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
 <div id="links" class="section level3">
 <h3>Links</h3>
 <p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
 <p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
-<p>Click <a href="../slides/module6_slides1.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 6, Part 1</strong>.</p>
+<p>Click <a href="../slides/module6_slides1.html" target="_blank"><strong>here</strong></a> to view the accompanying <strong>slides for Module 6, Part 1</strong>.</p>
 <p>Navigate to the other workshop materials:</p>
 <button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">
 <strong>SEE MORE</strong>
@@ -291,7 +291,7 @@ div.tocify {
 <h1>R Markdown</h1>
 <img src="../images/rmarkdown.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown</a>
+Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html" target="_blank">R Markdown</a>
 </p>
 <div id="what-is-r-markdown" class="section level2">
 <h2>What is R Markdown?</h2>
@@ -313,18 +313,22 @@ Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Mark
 <p>To get started with R Markdown, we first have to install <code>rmakrdown</code> package. If you are using RStudio IDE (which you should), this is already taken care of.</p>
 <p>Creating a new R Markdown file is easily done using RStudio IDE. Go to its menu bar, and click File &gt; New File &gt; R Markdown.</p>
 <p>Onces we have our R Markdown file ready to be rendered, we “Knit” the R Markdown file into a document in the desired format.</p>
-<p>The following series of screenshots show how this is done:</p>
-<p><img src="../images/rmarkdown1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p><img src="../images/rmarkdown2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p><img src="../images/rmarkdown3.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p><img src="../images/rmarkdown4.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>The following screenshots show how this is done:</p>
+<p><img src="../images/rmarkdown1.png" width="80%" /></p>
+<p>On the RStuido IDE menu, click “File &gt; New File &gt; R Markdown”.</p>
+<p><img src="../images/rmarkdown2.png" width="80%" /></p>
+<p>Alternatively, you can click a button right below File menu, which is for creating a new file. When you clikc the button, you will see various options for a new file. Click “R Markdown”.</p>
+<p><img src="../images/rmarkdown3.png" width="80%" /></p>
+<p>When you click “R Markdown”, you will see a small window for specifying a few options, including “Title”, “Author”, and “Default Output format”.</p>
+<p><img src="../images/rmarkdown4.png" width="80%" /></p>
+<p>Onces you click “OK”, a new R Markdown script shows up on the script pane of RStudio IDE. Now we are ready to work on our R Markdown file!</p>
 </div>
 <div id="r-markdown-structure" class="section level2">
 <h2>R Markdown structure</h2>
 <div id="yaml-header" class="section level3">
 <h3>YAML header</h3>
 <p>An R Markdown file starts with a YAML header, which specifies options for rendering the output document. In the following picture, the part in the red box is a YAML header, enclosed by three dashes (<code>---</code>) on the top and bottom.</p>
-<p><img src="../images/rmarkdown5.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p><img src="../images/rmarkdown5.png" width="80%" /></p>
 </div>
 <div id="yaml-header-options" class="section level3">
 <h3>YAML header options</h3>
@@ -332,23 +336,26 @@ Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Mark
 </div>
 <div id="knit-and-preview" class="section level3">
 <h3>Knit and preview</h3>
-<p><br><br> <img src="../images/rmarkdown6.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>RStudio IDE offers a button for “knitting” the R Markdown file into documents of specified formats. Next to the “Knit” button is a button with options for previews.</p>
+<p><img src="../images/rmarkdown6.png" width="80%" /></p>
 </div>
 <div id="knit-options" class="section level3">
 <h3>Knit options</h3>
-<p><br><br> <img src="../images/rmarkdown6-1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>Clickling the “Knit” button will simply knit the document. On the other hand, clicking a small down-arrow button will show some options for knitting the document.</p>
+<p><img src="../images/rmarkdown6-1.png" width="80%" /></p>
 </div>
 <div id="preview-options" class="section level3">
 <h3>Preview options</h3>
-<p><br><br> <img src="../images/rmarkdown6-2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>Clikcing the cogwheel icon next to “Knit” button presents optiosn for preview. <img src="../images/rmarkdown6-2.png" width="80%" /></p>
 </div>
 <div id="markdown" class="section level3">
 <h3>Markdown</h3>
-<p><br><br> <img src="../images/rmarkdown7.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>The main body of the R Markdown file is a markdown script. <img src="../images/rmarkdown7.png" width="80%" /></p>
 </div>
 </div>
 <div id="markdown-basics" class="section level2">
 <h2>Markdown basics</h2>
+<p>We will take a quick tour of markdown basics. More specifically, we will see the markdown syntax for the following elements:</p>
 <ul>
 <li>Headers</li>
 <li>Font types (italic, bold, strikethrough, superscript)</li>
@@ -440,44 +447,30 @@ $$y = x^2 + 2x + 1$$</code></pre>
 </div>
 <div id="r-code-chunk" class="section level3">
 <h3>R code chunk</h3>
-<p><br><br> <img src="../images/rmarkdown8.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>The highlighted part in the markdown body is an R code chunk. Each code chunk can have R code that will be executed when knitting the whole document. <img src="../images/rmarkdown8.png" width="80%" /></p>
 </div>
 <div id="insert-a-new-code-chunk" class="section level3">
 <h3>Insert a new code chunk</h3>
-<p><br><br> <img src="../images/rmarkdown9.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<ul>
-<li><small>keyboard shortcut: <code>Ctrl + Alt + i</code></small></li>
-</ul>
+<p>Inserting a new code chunk can be done with clicking the “Insert” button on the right top of the script pane. Alternatively, we can used a keyboard shortcut: <code>Ctrl + Alt + i</code>. <img src="../images/rmarkdown9.png" width="80%" /></p>
 </div>
 <div id="run-code-chunks" class="section level3">
 <h3>Run code chunks</h3>
-<p><br><br> <img src="../images/rmarkdown10.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<ul>
-<li><small>keyboard shortcut: <code>Ctrl + Enter</code></small></li>
-</ul>
+<p>Click the “Run” button to see options for executing R code chunks. Also, we can execute each code chunk separately with the green play button on the right top of the code chunk. Alternatively, we can use a keyboard shortcut: <code>Ctrl + Enter</code>.</p>
+<p><img src="../images/rmarkdown10.png" width="80%" /></p>
 </div>
 </div>
 <div id="knitr-options" class="section level2">
 <h2>knitr options</h2>
+<p><code>knitr</code> package offers various options to control the knitted output of code chunks. There are global options and local options.</p>
 <pre class="r"><code># use the following to control global options
 knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
-<ul>
-<li>Global options
-<ul>
-<li>Act as the default settings for the whole document</li>
-</ul></li>
-</ul>
+<p>Global options act as the default settings for the whole document. This can be specified using <code>opts_chunk$set()</code> function</p>
 <pre class="r"><code>_```{r eval = FALSE, echo = FALSE, ...}</code></pre>
-<ul>
-<li>Local options (per code chunk)
-<ul>
-<li>Only applied to the specific code chunck</li>
-<li>Overide the global options if relevant</li>
-</ul></li>
-<li>See <a href="https://yihui.name/knitr/options/">here</a> for full documentation of <code>knitr</code> chunk options</li>
-</ul>
+<p>Local options per code chunk are only applied to the specific code chunck. They can specified in the curly braces <code>{}</code> at the beginning of the code chunk. Local options overide the global options if relevant.</p>
+<p>See <a href="https://yihui.name/knitr/options/" target="_blank">here</a> for full documentation of <code>knitr</code> chunk options.</p>
 <div id="commonly-used-options" class="section level3">
 <h3>Commonly used options</h3>
+<p>The following table lists commonly used code chunk options and their descriptions.</p>
 <table>
 <thead>
 <tr class="header">
@@ -524,6 +517,7 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
 </div>
 <div id="tables" class="section level2">
 <h2>Tables</h2>
+<p>There are often cases where we want to generate a table using R code and include it in the R Markdown output. There are different options for printing a table:</p>
 <ul>
 <li>Printing basic data frame object</li>
 <li>Proper (HTML) tables with <code>knitr::kable()</code></li>
@@ -531,7 +525,15 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
 </ul>
 <div id="default-print-example" class="section level3">
 <h3>Default print example</h3>
-<pre class="r"><code>my_table</code></pre>
+<pre class="r"><code>my_table &lt;- data.frame(
+  my_fruits = c(&quot;apple&quot;, &quot;banana&quot;, &quot;clementine&quot;),
+  my_animals = c(&quot;dogs&quot;, &quot;cats&quot;, &quot;llamas&quot;),
+  my_flavors = c(&quot;chocolate&quot;, &quot;vanila&quot;, &quot;cookie dough&quot;),
+  my_colors = c(&quot;red&quot;, &quot;green&quot;, &quot;orange&quot;),
+  my_cities = c(&quot;Chicago&quot;, &quot;New Work&quot;, &quot;Los Angeles&quot;)
+)
+
+my_table</code></pre>
 <pre><code>##    my_fruits my_animals   my_flavors my_colors   my_cities
 ## 1      apple       dogs    chocolate       red     Chicago
 ## 2     banana       cats       vanila     green    New Work
@@ -578,8 +580,8 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
 <div id="datatable-example" class="section level3">
 <h3><code>datatable</code> example</h3>
 <pre class="r"><code>DT::datatable(my_table)</code></pre>
-<div id="htmlwidget-cb3ae1db2cca6cc59189" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cb3ae1db2cca6cc59189">{"x":{"filter":"none","data":[["1","2","3"],["apple","banana","clementine"],["dogs","cats","llamas"],["chocolate","vanila","cookie dough"],["red","green","orange"],["Chicago","New Work","Los Angeles"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>my_fruits<\/th>\n      <th>my_animals<\/th>\n      <th>my_flavors<\/th>\n      <th>my_colors<\/th>\n      <th>my_cities<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-36b04e474e9aede91728" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-36b04e474e9aede91728">{"x":{"filter":"none","data":[["1","2","3"],["apple","banana","clementine"],["dogs","cats","llamas"],["chocolate","vanila","cookie dough"],["red","green","orange"],["Chicago","New Work","Los Angeles"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>my_fruits<\/th>\n      <th>my_animals<\/th>\n      <th>my_flavors<\/th>\n      <th>my_colors<\/th>\n      <th>my_cities<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 <hr />
 </div>
 </div>
@@ -588,23 +590,16 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
 <h1>Documents</h1>
 <img src="../images/document_icon.png" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 <div id="r-markdown-output-formats" class="section level2">
 <h2>R Markdown output formats</h2>
-<ul>
-<li>R Markdown supports various output formats</li>
-<li>Output format can be specified using <code>output</code> in the YAML header
-<ul>
-<li>The same document can be rendered in multiple formats</li>
-</ul></li>
-<li>Different output format has different YAML render options
-<ul>
-<li>Refer the page 2 of R Markdown cheat sheet on RStudio’s <a href="https://www.rstudio.com/resources/cheatsheets/">Cheat Sheets page</a> for a full list</li>
-</ul></li>
-</ul>
+<p>R Markdown supports various output formats, including HTML, PDF, Microsoft Word, and more.</p>
+<p>Output format can be specified using <code>output</code> in the YAML header. R Markdown is not limited to generate a single format for the given file. In order words, depending on the YAML <code>output</code> setting, the same file can be rendered in multiple formats.</p>
+<p>Different output format has different YAML render options. Refer the page 2 of R Markdown cheat sheet on RStudio’s <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">Cheat Sheets page</a> for a full list.</p>
 <div id="common-output-formats" class="section level3">
 <h3>Common output formats</h3>
+<p>The following table lists common output formats on YAML header and what they create.</p>
 <table>
 <thead>
 <tr class="header">
@@ -642,6 +637,7 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </div>
 <div id="commonly-used-yaml-render-options" class="section level3">
 <h3>Commonly used YAML render options</h3>
+<p>The following table lists commonly used YAML render options and their descriptions as well as availability.</p>
 <table>
 <thead>
 <tr class="header">
@@ -691,13 +687,8 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 </div>
 <div id="output-appearances" class="section level3">
 <h3>Output appearances</h3>
-<ul>
-<li>Available highlights: <code>&quot;default&quot;</code>, <code>&quot;tango&quot;</code>, <code>&quot;pygments&quot;</code>, <code>&quot;kate&quot;</code>, <code>&quot;monochrome&quot;</code>, <code>&quot;espresso&quot;</code>, <code>&quot;zenburn&quot;</code>, <code>&quot;haddock&quot;</code>, and <code>&quot;textmate&quot;</code></li>
-<li>Available themes: <code>&quot;default&quot;</code>, <code>&quot;cerulean&quot;</code>, <code>&quot;journal&quot;</code>, <code>&quot;flatly&quot;</code>, <code>&quot;readable&quot;</code>, <code>&quot;spacelab&quot;</code>, <code>&quot;united&quot;</code>, <code>&quot;cosmo&quot;</code>, <code>&quot;lumen&quot;</code>, <code>&quot;paper&quot;</code>, <code>&quot;sandstone&quot;</code>, <code>&quot;simplex&quot;</code>, and <code>&quot;yeti&quot;</code>
-<ul>
-<li>R Markdown themes are drawn from <a href="https://bootswatch.com/">“Bootswatch”</a> themes</li>
-</ul></li>
-</ul>
+<p>Available highlights for R Markdown documents are as follows: <code>&quot;default&quot;</code>, <code>&quot;tango&quot;</code>, <code>&quot;pygments&quot;</code>, <code>&quot;kate&quot;</code>, <code>&quot;monochrome&quot;</code>, <code>&quot;espresso&quot;</code>, <code>&quot;zenburn&quot;</code>, <code>&quot;haddock&quot;</code>, and <code>&quot;textmate&quot;</code></p>
+<p>Available themes for R Markdown documents are as follows: <code>&quot;default&quot;</code>, <code>&quot;cerulean&quot;</code>, <code>&quot;journal&quot;</code>, <code>&quot;flatly&quot;</code>, <code>&quot;readable&quot;</code>, <code>&quot;spacelab&quot;</code>, <code>&quot;united&quot;</code>, <code>&quot;cosmo&quot;</code>, <code>&quot;lumen&quot;</code>, <code>&quot;paper&quot;</code>, <code>&quot;sandstone&quot;</code>, <code>&quot;simplex&quot;</code>, and <code>&quot;yeti&quot;</code>. R Markdown themes are in fact drawn from <a href="https://bootswatch.com/" target="_blank">“Bootswatch”</a> themes, so you can visit the website to get a feel for each theme for your own R Markdown document.</p>
 </div>
 </div>
 <div id="r-notebooks" class="section level2">
@@ -705,15 +696,12 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 <blockquote>
 <p>“An R Notebook is an R Markdown document with chunks that can be executed independently and interactively, with output visible immediately beneath the input.”<br>- “R Notebooks”, RStudio</p>
 </blockquote>
-<ul>
-<li>While all other R Markdown formats requires “knitting” to see the final output, an R notebook document is automatically re-rendered each time the source file (<code>.Rmd</code>) is saved</li>
-<li>Offers a more interactive workflow</li>
-</ul>
+<p>While all other R Markdown formats requires “knitting” to see the final output, an R notebook document is automatically re-rendered each time the source file (<code>.Rmd</code>) is saved. This offers a more interactive workflow.</p>
 </div>
 <div id="htmlwidgets-for-r" class="section level2">
 <h2><code>htmlwidgets</code> for R</h2>
 <ul>
-<li>Thera are many R packages (90+) for taking full advantage of the interactivity that web can offer.</li>
+<li>There are many R packages (90+) for taking full advantage of the interactivity that web can offer.</li>
 <li>With these packages, we can easily incorporate interactive widgets into HTML documents generated using R Markdown</li>
 <li>Examples of <code>htmlwidgets</code> include:
 <ul>
@@ -721,7 +709,7 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 <li><code>leaflet</code> for interactive maps</li>
 <li><code>DT</code> for interactive data tables</li>
 </ul></li>
-<li>Visit <em><code>htmlwidgets</code> for R</em> <a href="http://www.htmlwidgets.org/">website</a> to find out more</li>
+<li>Visit <em><code>htmlwidgets</code> for R</em> <a href="http://www.htmlwidgets.org/" target="_blank">website</a> to find out more</li>
 </ul>
 </div>
 <div id="rpubs" class="section level2">
@@ -729,11 +717,9 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 <blockquote>
 <p>“RPubs is a quick and easy way to disseminate data analysis and R code and do ad-hoc collaboration with peers.”<br>- RStudio Team</p>
 </blockquote>
-<ul>
-<li>Publishing an R Markdown output on RPubs is as easy as clicking the “publish” button on RStudio</li>
-<li>Comparable to Tableau Public’s Gallery website(?)</li>
-</ul>
-<p><a href="https://rpubs.com/"> <img src="../images/rpubs_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>Publishing an R Markdown output on RPubs is as easy as clicking the “publish” button on RStudio. You may consider RPubs as something comparable to Tableau Public’s Gallery website, although there are some differences.</p>
+<p>Click the image below to try R</p>
+<p><a href="https://rpubs.com/" target="_blank"> <img src="../images/rpubs_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
 <hr />
 </div>
 </div>
@@ -741,13 +727,12 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 <h1>Presentations</h1>
 <img src="../images/presentation_icon.png" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 <div id="creating-presentation-slides" class="section level2">
 <h2>Creating presentation slides</h2>
-<ul>
-<li>RStudio supports many ways to create presentation slides that are both modern-looking and highly customizable</li>
-<li>Popular ways to create slides using R include:
+<p>RStudio supports many options for creating presentation slides that are both modern-looking and highly customizable.</p>
+<p>Popular ways to create slides using R include:</p>
 <ul>
 <li>R Markdown formats:
 <ul>
@@ -757,7 +742,6 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 <li><code>beamer_presentation</code> (PDF)</li>
 </ul></li>
 <li>R Presentation (HTML)</li>
-</ul></li>
 </ul>
 </div>
 <div id="ioslides" class="section level2">
@@ -766,16 +750,11 @@ Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
 title: &quot;My first ioslide presentation&quot;
 output: ioslides_presentation
 ---</code></pre>
-<ul>
-<li><code>ioslides</code> output format is built into RStudio</li>
-<li>Fully integrates R Markdown syntax
-<ul>
-<li>Creating new slides is as easy as using <code>#</code> and <code>##</code> headings</li>
-</ul></li>
-<li>To learn more about <code>ioslides</code>, read the “Presentations with ioslides” <a href="https://rmarkdown.rstudio.com/ioslides_presentation_format.html">article</a> on RStudio</li>
-</ul>
+<p><code>ioslides</code> output format is built into RStudio. <code>ioslides</code> fully integrates R Markdown syntax. For example, creating new slides is as easy as using <code>#</code> and <code>##</code> headings.</p>
+<p>To learn more about <code>ioslides</code>, read the “Presentations with ioslides” <a href="https://rmarkdown.rstudio.com/ioslides_presentation_format.html" target="_blank">article</a> on RStudio.</p>
 <div id="ioslides-sample-source-code" class="section level3">
 <h3><code>ioslides</code> sample source code</h3>
+<p>Here is a sample course code for creating simple <code>ioslides</code> HTML slides. The result will have a title slide with the information in YAML header.</p>
 <pre><code>---
 title: &quot;My first ioslide presentation&quot;
 author: Bobae Kang
@@ -801,7 +780,8 @@ This slide has a two-column layout
 </code></pre>
 </div>
 <div id="example" class="section level3">
-<h3>example</h3>
+<h3>Example</h3>
+<p>The following is my own sample <code>ioslides</code> presentation slides:</p>
 <iframe src="../interactive/slides_ioslides.html" style="display: block; margin: auto; min-height:650px; width:100%;">
 </iframe>
 </div>
@@ -812,49 +792,42 @@ This slide has a two-column layout
 title: &quot;My first revealjs presentation&quot;
 output: revealjs::revealjs_presentation
 ---</code></pre>
-<ul>
-<li>With <code>revealjs</code> R package, it is possible to use R Markdown (and its syntax) to generate slides using reveal.js, a JavaScript library for interactive slides in HTML
-<ul>
-<li>Try <a href="https://revealjs.com/">this demo slides</a> generated using reveal.js</li>
-</ul></li>
-<li>To learn more about <code>revealjs</code>, read the “Presentations with reveal.js” <a href="https://rmarkdown.rstudio.com/revealjs_presentation_format.html">article</a> on RStudio</li>
-</ul>
+<p>With <code>revealjs</code> R package, it is possible to use R Markdown (and its syntax) to generate slides using reveal.js, a JavaScript library for interactive slides in HTML. Try <a href="https://revealjs.com/" target="_blank">this demo slides</a> generated using reveal.js to see how its slides look like.</p>
+<p>Creating slides with <code>revealjs</code> is mostly the same as using <code>ioslides</code>, except for certain options that are available only with <code>revealjs</code>. To learn more about <code>revealjs</code>, read the “Presentations with reveal.js” <a href="https://rmarkdown.rstudio.com/revealjs_presentation_format.html" target="_blank">article</a> on RStudio.</p>
 <div id="example-1" class="section level3">
-<h3>example</h3>
+<h3>Example</h3>
+<p>The following is my own sample <code>reveal.js</code> presentation slides:</p>
 <iframe src="../interactive/slides_revealjs.html" style="display: block; margin: auto; min-height:650px; width:100%;">
 </iframe>
 </div>
 </div>
 <div id="other-formats" class="section level2">
 <h2>Other formats</h2>
+<p>There are more options for creating presentation slides via R Markdown, including the following:</p>
 <ul>
 <li>HTML presentations with <code>slidy</code>
 <ul>
 <li>Use <code>output: slidy_presentation</code> in the YAML header</li>
-<li>See the “Presentations with Slidy” <a href="https://rmarkdown.rstudio.com/slidy_presentation_format.html">article</a> on RStudio</li>
+<li>See the “Presentations with Slidy” <a href="https://rmarkdown.rstudio.com/slidy_presentation_format.html" target="_blank">article</a> on RStudio</li>
 </ul></li>
 <li>PDF presentations with <code>beamer</code>
 <ul>
 <li>Use <code>output: beamer_presentation</code></li>
-<li>See the “Presentations with Beamer” <a href="https://rmarkdown.rstudio.com/beamer_presentation_format.html">article</a> on RStudio</li>
+<li>See the “Presentations with Beamer” <a href="https://rmarkdown.rstudio.com/beamer_presentation_format.html" target="_blank">article</a> on RStudio</li>
 </ul></li>
 <li>HTML presentations with <code>xaringan</code>
 <ul>
 <li>Use <code>output: xaringan::moom_reader</code></li>
-<li>Visit the package <a href="https://github.com/yihui/xaringan">GitHub repository</a> for more</li>
+<li>Visit the package <a href="https://github.com/yihui/xaringan" target="_blank">GitHub repository</a> for more</li>
 </ul></li>
 </ul>
 </div>
 <div id="r-presentation" class="section level2">
 <h2>R Presentation</h2>
-<ul>
-<li>R Presentation is not a R Markdown document</li>
-<li>Similar to R Notebook, R Presentation offers an interactive “Preview” which gets automatically re-rendered each time the source file (<code>.RPres</code>) is saved</li>
-<li>R Presentation slides are built on reveal.js</li>
-<li>All Workshop slides are generated using R Presentation</li>
-<li>Unfortunately, it is no longer in active development</li>
-<li>To learn more about R Presentation, visit <a href="https://support.rstudio.com/hc/en-us/sections/200130218-R-Presentations">relevant pages</a> on RStudio Support website</li>
-</ul>
+<p>R Presentation is another file format for an interactive HTML slides that are built on amazing reveal.js. All Workshop slides are generated using R Presentation with some customizing work.</p>
+<p>Unlike what we have seen abvoe, R Presentation is not a R Markdown document and has its own file extension (<code>.RPres</code>). Similar to R Notebook, R Presentation offers an interactive “Preview” which gets automatically re-rendered each time the source file (<code>.RPres</code>) is saved. This can support a more interactive workflow for creating slides.</p>
+<p>Unfortunately, R Presentation is no longer in active development.</p>
+<p>To learn more about R Presentation, visit <a href="https://support.rstudio.com/hc/en-us/sections/200130218-R-Presentations" target="_blank">relevant pages</a> on RStudio Support website.</p>
 <hr />
 </div>
 </div>
@@ -862,38 +835,30 @@ output: revealjs::revealjs_presentation
 <h1>Shiny</h1>
 <img src="../images/shiny_logo.png" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.rstudio.com/">R Studio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">R Studio</a>
 </p>
 <div id="what-is-shiny" class="section level2">
 <h2>What is Shiny?</h2>
 <blockquote>
 <p>“Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge.”<br>- RStudio.com</p>
 </blockquote>
-<ul>
-<li>Try my ICJIA Uniform Crime Report Data dashboard app <a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/">here</a></li>
-<li>Check out more examples on RStudio’s <a href="https://www.rstudio.com/products/shiny/shiny-user-showcase/">“Shiny User Showcase” page</a></li>
-</ul>
+<p>To get a feel for what Shiny is capable of, try my ICJIA Uniform Crime Report Data dashboard app <a href="https://bobaekang.shinyapps.io/crime_data_profile_demo/" target="_blank">here</a>.</p>
+<p>Also, check out more examples on RStudio’s <a href="https://www.rstudio.com/products/shiny/shiny-user-showcase/" target="_blank">“Shiny User Showcase” page</a>.</p>
+<p>Shiny opens up a whole new world of opportunities. Two common “applications” of Shiny include building dashboards and generating interactive documents.</p>
 </div>
 <div id="dashboards" class="section level2">
 <h2>Dashboards</h2>
-<ul>
-<li>A data dashboard is a visual interface to data to allow its viewers for gain key insights</li>
-<li>It is often an interactive application that provides viewers with options to explore data from multiple angles interactively</li>
-<li>A Shiny application can make a great dashboard</li>
-</ul>
+<p>A data dashboard is a visual interface to data to allow its viewers for gain key insights. It is often an interactive application that provides viewers with options to explore data from multiple angles interactively. A Shiny application is perfectly capable of making a great dashboard.</p>
 </div>
 <div id="interactive-documents" class="section level2">
 <h2>Interactive documents</h2>
-<ul>
-<li>Shiny can be used to generate interactive documents with Shiny app widgets</li>
-<li>An interactive document is an R Markdown file with the YAML head including <code>runtime: shiny</code> and <code>output: html_document</code> or <code>output: ioslids_presentation</code></li>
-<li>Embedded Shiny R code will render a mini application</li>
-</ul>
+<p>Shiny can be used to generate interactive documents with Shiny app widgets embedded. An interactive document can be created by knitting an R Markdown file with the YAML head including <code>runtime: shiny</code> and <code>output: html_document</code> or <code>output: ioslids_presentation</code>. Embedded Shiny R code chunks will render a mini application, which can offer your readers yet another way to gain insights from your work.</p>
 <div id="structure-of-an-interactive-document" class="section level3">
 <h3>Structure of an interactive document</h3>
-<br><br> <img src="../images/shiny_interactive_doc.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<p>The following figure offers a visual illustration of the structure of an interactive document powered by Shiny.</p>
+<img src="../images/shiny_interactive_doc.png" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://shiny.rstudio.com/articles/interactive-docs.html">“Introduction to interactive documents”</a>. Shiny from R Studio
+Source: <a href="https://shiny.rstudio.com/articles/interactive-docs.html" target="_blank">“Introduction to interactive documents”</a>. Shiny from R Studio
 </p>
 </div>
 </div>
@@ -903,51 +868,33 @@ Source: <a href="https://shiny.rstudio.com/articles/interactive-docs.html">“In
 library(shiny)
 
 runExample(&quot;01_hello&quot;)</code></pre>
-<ul>
-<li>Shiny is a package: install and import it</li>
-<li>Try a simple built-in example for Shiny application!</li>
-</ul>
+<p>Shiny is a package, so you first have to install and import it. Once the package is imported to your R environment, try a simple built-in example for Shiny application!</p>
 </div>
 <div id="parts-of-shiny-application" class="section level2">
 <h2>Parts of Shiny application</h2>
-<ul>
-<li>A Shiny app consists of two parts, <code>server</code> and <code>ui</code></li>
-<li>They can be separated into two files, <code>server.R</code> and <code>ui.R</code>
-<ul>
-<li>Both files must be located in the same directory</li>
-</ul></li>
-<li>Alternatively, both parts can live in a single file, <code>app.R</code></li>
-</ul>
+<p>A Shiny app consists of two parts, <code>server</code> and <code>ui</code>.</p>
+<p>They can be separated into two files, <code>server.R</code> and <code>ui.R</code>. In this case, both files must be located in the same directory, typically named “app”.</p>
+<p>Alternatively, both parts can live in a single file, <code>app.R</code>.</p>
+<p>For interactive documents, the R Markdown document serves as the user interface, so there is no need for a serarate <code>ui</code> file.</p>
 <div id="server.r" class="section level3">
 <h3>server.R</h3>
 <pre class="r"><code>function(input, output, session) {
   ## R code for server logic
 }</code></pre>
-<ul>
-<li><code>server.R</code> contains the server-side logic of the application</li>
-<li><code>input</code> object is an environment for storing user inputs modified by user’s interaction with the application UI</li>
-<li><code>output</code> object is an environment for storing elements (plots, tables, texts, etc) to be rendered and shown in the UI</li>
-<li><code>session</code> object is an environment that can be used to access information relating to the session
-<ul>
-<li><code>session</code> is optional</li>
-</ul></li>
-</ul>
+<p><code>server.R</code> file contains the server-side logic of the application. It contains a function with two required arguments (<code>input</code> and <code>output</code>) and one optional argument (<code>session</code>) to define the server logic.</p>
+<p><code>input</code> object is an environment for storing user inputs modified by user’s interaction with the application <code>ui</code>.</p>
+<p><code>output</code> object is an environment for storing elements (plots, tables, texts, etc) to be rendered and shown in the <code>ui</code>.</p>
+<p>Finally, <code>session</code> object is an environment that can be used to access information relating to the session. Using <code>session</code> is optional.</p>
 </div>
 <div id="ui.r" class="section level3">
 <h3>ui.R</h3>
 <pre class="r"><code>fluidPage(
   ## R code for user interface
 )</code></pre>
-<ul>
-<li><code>ui.R</code> defines the user interface elements:
-<ul>
-<li>layouts, panels, inputs and outputs</li>
-</ul></li>
-<li>Available layouts include: the sidebar layout and grid layout</li>
-<li>Available panels include: the title panel, sidebar panel, main panel, tabset panel, navigation list panel, and more</li>
-<li><code>shiny</code> offers many functions to take user inputs</li>
-<li><code>shiny</code> offers many functions to render outputs (as defined in <code>server.R</code>)</li>
-</ul>
+<p><code>ui.R</code> file defines the user interface elements, such as layouts, panels, inputs and outputs. The file contains <code>fluidPage()</code> function.</p>
+<p>Available layouts include: the sidebar layout and grid layout.</p>
+<p>Available panels include: the title panel, sidebar panel, main panel, tabset panel, navigation list panel, and more.</p>
+<p><code>shiny</code> offers functions to take user inputs and functions to render outputs (as defined in <code>server.R</code>).</p>
 </div>
 <div id="app.r" class="section level3">
 <h3>app.R</h3>
@@ -962,51 +909,27 @@ ui &lt;- fluidPage(
 )
 
 shinyApp(ui, server)</code></pre>
-<ul>
-<li><code>app.R</code> must include <code>shinyApp(ui, server)</code> at the end</li>
-<li><code>server</code> is an object containing code for server-side logic</li>
-<li><code>ui</code> is an object containing user interface elements</li>
-</ul>
+<p><code>app.R</code> file must include <code>shinyApp(ui, server)</code> at the end, where <code>server</code> is an object containing code for server-side logic and <code>ui</code> is an object containing user interface elements.</p>
 </div>
 </div>
 <div id="more-on-shiny-development" class="section level2">
 <h2>More on Shiny development</h2>
-<ul>
-<li>Developing a Shiny app takes much practice, planning and <span style="text-decoration:line-through">pain</span> experiment
-<ul>
-<li>However, the reward is YUGE!</li>
-</ul></li>
-<li>Start with <a href="https://shiny.rstudio.com/tutorial/">these tutorials</a> by RStudio</li>
-<li>Follow along <a href="https://shiny.rstudio.com/articles/">these articles</a> by RStudio</li>
-<li>Refer to Shiny <a href="https://shiny.rstudio.com/gallery/widget-gallery.html">Gallery</a> for examples and inspirations</li>
-</ul>
+<p>Developing a Shiny app takes much practice, planning and <span style="text-decoration:line-through">pain</span> experiment. However, the reward is YUGE!</p>
+<p>You can get started with Shiny using <a href="https://shiny.rstudio.com/tutorial/" target="_blank">these tutorials</a> by RStudio. Also, follow along <a href="https://shiny.rstudio.com/articles/" target="_blank">these articles</a> by RStudio to hone your Shiny skills.</p>
+<p>If you need examples and inspirations for your own projects, visit Shiny <a href="https://shiny.rstudio.com/gallery/widget-gallery.html" target="_blank">Gallery</a> and check out featured applications and widgets.</p>
 </div>
 <div id="deploying-shiny-apps" class="section level2">
 <h2>Deploying Shiny apps</h2>
+<p>Shiny applications, including the interactive documents, can be deployed for use in the following ways:</p>
 <ul>
-<li>Shiny applications, including the interactive documents, can be deployed for use in the following ways:
-<ul>
-<li>Via <a href="http://www.shinyapps.io/">shinyapps.io</a></li>
-<li>Via <a href="https://www.rstudio.com/products/shiny/shiny-server/">Shiny Server</a></li>
-<li>Via <a href="https://www.shinyproxy.io">ShinyProxy</a></li>
-</ul></li>
+<li>Via <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io</a></li>
+<li>Via <a href="https://www.rstudio.com/products/shiny/shiny-server/" target="_blank">Shiny Server</a></li>
+<li>Via <a href="https://www.shinyproxy.io" target="_blank">ShinyProxy</a></li>
 </ul>
 <div id="deploying-via-shinyapps.io" class="section level3">
 <h3>Deploying via shinyapps.io</h3>
-<ul>
-<li>The easiest way to deploy/publish a Shiny application
-<ul>
-<li>Takes only a few clicks on the RStudio IDE</li>
-</ul></li>
-<li>Requires signing up to <a href="http://www.shinyapps.io/">shinyapps.io</a>
-<ul>
-<li>Can log in with Google or GitHub account</li>
-</ul></li>
-<li>See the pricing for hosting Shiny apps on the website
-<ul>
-<li>Free hosting is available but limited to 5 applications and 25 active hours per month</li>
-</ul></li>
-</ul>
+<p>The easiest way to deploy/publish a Shiny application is via <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io</a>, RStudio’s cloud hosting service for Shiny application. Using <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io</a> requires signing up to their service, which can also be done with Google or GitHub account. Onces registered, it takes only a few clicks on the RStudio IDE to deploy an application via <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io</a>.</p>
+<p>While free hosting of Shiny application is available, it is limited to 5 applications and 25 active hours per month. This might be sufficient for quickly sharing demo projects, but not enough for serious applications. See the pricing for hosting Shiny apps on <a href="http://www.shinyapps.io/" target="_blank">shinyapps.io website</a> for more.</p>
 <hr />
 </div>
 </div>
@@ -1015,21 +938,16 @@ shinyApp(ui, server)</code></pre>
 <h1>Websites</h1>
 <img src="../images/globe_icon.png" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 <div id="static-websites" class="section level2">
 <h2>Static websites</h2>
-<ul>
-<li>A collection R Markdown documents in HTML format can be made into a website
-<ul>
-<li>To do so, we need a <code>_site.yml</code> file in the same folder as individual documents to be put together</li>
-<li><code>_site.yml</code> specifies the name and the routing structure of the resulting website</li>
-<li>With <code>_site.yml</code> and all HTML documents ready, run <code>rstudio::render_site()</code> to generate the website</li>
-</ul></li>
-<li>For details, see the “R Markdown Websites” <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html">article</a> on RStudio website</li>
-</ul>
-<div id="site.yml-format-example-workshop-website" class="section level3">
-<h3>_site.yml format example (Workshop website)</h3>
+<p>A collection R Markdown documents in HTML format can be made into a website.</p>
+<p>To do so, we need a <code>_site.yml</code> file in the same folder as individual documents to be put together. <code>_site.yml</code> specifies the name and the routing structure of the resulting website.</p>
+<p>With <code>_site.yml</code> and all HTML documents ready, run <code>rstudio::render_site()</code> to generate the website.</p>
+<p>For details, see the “R Markdown Websites” <a href="https://rmarkdown.rstudio.com/rmarkdown_websites.html" target="_blank">article</a> on RStudio website.</p>
+<div id="site.yml-format-example-workshop-website-the-following-is-a-_site.yml-format-example.-this-is-in-fact-the-actual-yaml-file-for-the-r-workshop-website-which-can-be-found-here." class="section level3">
+<h3>_site.yml format example (Workshop website) The following is a _site.yml format example. This is in fact the actual YAML file for the R Workshop website, which can be found <a href="https://github.com/bobaekang/icjia-r-workshop/blob/master/_site.yml" target="_blank">here</a>.</h3>
 <pre><code>name: ICJIA R Workshop
 output_dir: &#39;.&#39;
 navbar:
@@ -1054,49 +972,38 @@ output:
 <blockquote>
 <p>“GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.”<br>-“What is GitHub Pages?”, GitHub Help</p>
 </blockquote>
-<ul>
-<li><a href="https://github.com/">GitHub</a> is a free and commercial online repository service for storing and sharing projects using <a href="https://git-scm.com/">Git</a></li>
-<li>The ICJIA R Workshop website is hosted on GitHub Pages</li>
-<li>Read more about GitHub Pages and hosting static sites on GitHub Pages on <em>GitHub Help</em> <a href="https://help.github.com/categories/github-pages-basics/">here</a></li>
-</ul>
+<p><a href="https://github.com/" target="_blank">GitHub</a> is a free and commercial online repository service for storing and sharing projects using <a href="https://git-scm.com/" target="_blank">Git</a>.</p>
+<p>The ICJIA R Workshop website is hosted on GitHub Pages. (Please not that the ICJIA network currently blocks all websites hosted on GitHub Pages.)</p>
+<p>Read more about GitHub Pages and hosting static sites on GitHub Pages on <em>GitHub Help</em> <a href="https://help.github.com/categories/github-pages-basics/" target="_blank">here</a>.</p>
 </div>
 </div>
 <div id="books-with-blogdown" class="section level2">
 <h2>Books with <code>blogdown</code></h2>
-<ul>
-<li><code>bookdown</code> package, built on R Markdown, facilitates writing books and long articles/reports.
-<ul>
-<li>A <code>bookdown</code> publication is made downloadable in PDF, EPUB and MOBI formats</li>
-</ul></li>
-<li>Check out <code>bookdown</code> package <a href="https://bookdown.org/">website</a> to find out more</li>
-<li>Also, read Xie, Y. (2018). <a href="https://bookdown.org/yihui/bookdown/"><em><code>bookdown</code>: Authoring Books and Technical Documents with R Markdown</em></a> for a comprehensive guide for <code>bookdown</code>
-<ul>
-<li>The book itself is generated using <code>bookdown</code></li>
-</ul></li>
-</ul>
+<p><code>bookdown</code> package, built on R Markdown, facilitates writing books and long articles/reports. A <code>bookdown</code> publication is made downloadable in PDF, EPUB and MOBI formats, making it more like a real electronic “book” than just an online documentation website.</p>
+<p>Check out <code>bookdown</code> package <a href="https://bookdown.org/" target="_blank">website</a> to find out more.</p>
+<p>Also, read Xie, Y. (2018). <a href="https://bookdown.org/yihui/bookdown/" target="_blank"><em><code>bookdown</code>: Authoring Books and Technical Documents with R Markdown</em></a> for a comprehensive guide for <code>bookdown</code>. The book itself is generated using <code>bookdown</code>.</p>
 <div id="bookdown-authoring-books-and-technical-documents-with-r-markdown" class="section level3">
 <h3><em>bookdown: Authoring Books and Technical Documents with R Markdown</em></h3>
-<p><a href="https://bookdown.org/yihui/bookdown/"> <img src="../images/bookdown_example.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="https://bookdown.org/yihui/bookdown/" target="_blank"> <img src="../images/bookdown_example.png" width="80%" /> </a></p>
 </div>
 </div>
 <div id="blogs-with-blogdown" class="section level2">
 <h2>Blogs with <code>blogdown</code></h2>
-<ul>
-<li><code>blogdown</code> is a package to generate static websites using R Markdown and the <a href="">Hugo</a> open-source framework for building websites</li>
-<li>Visit <em>Awesome Blogdown</em> <a href="http://awesome-blogdown.com/">website</a> for a curated list of <code>blogdown</code> examples</li>
-<li>Also, read Xie, Y. et al. (2018). <a href="https://bookdown.org/yihui/blogdown/"><em><code>blogdown</code>: Creating Websites with R Markdown</em></a> for a comprehensive guide for <code>blogdown</code></li>
-</ul>
+<p><code>blogdown</code> is a package to generate static websites using R Markdown and the <a href="https://gohugo.io/">Hugo</a>, a popular open-source static website generator.</p>
+<p>You can visit <em>Awesome Blogdown</em> <a href="http://awesome-blogdown.com/" target="_blank">website</a> for a curated list of <code>blogdown</code> examples.</p>
+<p>Also, read Xie, Y. et al. (2018). <a href="https://bookdown.org/yihui/blogdown/" target="_blank"><em><code>blogdown</code>: Creating Websites with R Markdown</em></a> for a comprehensive guide for <code>blogdown</code>.</p>
+<p>The following are examples of blogs/websites built using <code>blogdown</code>:</p>
 <div id="example-1-opengis-and-stuff" class="section level3">
 <h3>Example 1: <em>OpenGIS and Stuff</em></h3>
-<p><a href="http://roelandtn.frama.io/post/"> <img src="../images/blogdown_example1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="http://roelandtn.frama.io/post/" target="_blank"> <img src="../images/blogdown_example1.png" width="80%" /> </a></p>
 </div>
 <div id="example-2-visible-data" class="section level3">
 <h3>Example 2: <em>Visible Data</em></h3>
-<p><a href="http://www.visibledata.co.uk/"> <img src="../images/blogdown_example2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="http://www.visibledata.co.uk/" target="_blank"> <img src="../images/blogdown_example2.png" width="80%" /> </a></p>
 </div>
 <div id="example-3-tales-of-r" class="section level3">
 <h3>Example 3: <em>Tales of R</em></h3>
-<p><a href="https://aurora-mareviv.github.io/talesofr/"> <img src="../images/blogdown_example3.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="https://aurora-mareviv.github.io/talesofr/" target="_blank"> <img src="../images/blogdown_example3.png" width="80%" /> </a></p>
 <hr />
 </div>
 </div>
@@ -1105,22 +1012,22 @@ output:
 <h1>References</h1>
 <ul>
 <li>
-Sellors, M. <a href="http://awesome-blogdown.com/"><i>Awesome Blogdown</i></a>
+Sellors, M. <a href="http://awesome-blogdown.com/" target="_blank"><i>Awesome Blogdown</i></a>
 </li>
 <li>
-Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html">“App formats and launching apps”</a>. <i>Shiny from RStudio</i>
+Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html" target="_blank">“App formats and launching apps”</a>. <i>Shiny from RStudio</i>
 </li>
 <li>
-Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html">“Introduction to interactive documents”</a>. <i>Shiny from RStudio</i>.
+Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html" target="_blank">“Introduction to interactive documents”</a>. <i>Shiny from RStudio</i>.
 </li>
 <li>
-Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html">“Introduction to R Studio”</a>. <i>R Markdown from RStudio</i>.
+Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html" target="_blank">“Introduction to R Studio”</a>. <i>R Markdown from RStudio</i>.
 </li>
 <li>
-RStudio. (2016). <a href="https://www.rstudio.com/resources/cheatsheets/">R Markdown Cheat Sheet“</a>.
+RStudio. (2016). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">R Markdown Cheat Sheet“</a>.
 </li>
 <li>
-Xi, Y. (2018). <a href="https://yihui.name/knitr/options/">“Options: Chunk options and package options”</a>. <i>knitr: Elegant, flexible, and fast dynamic report generation with R</i>.
+Xi, Y. (2018). <a href="https://yihui.name/knitr/options/" target="_blank">“Options: Chunk options and package options”</a>. <i>knitr: Elegant, flexible, and fast dynamic report generation with R</i>.
 </li>
 </ul>
 </div>
