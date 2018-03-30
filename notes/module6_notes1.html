@@ -284,11 +284,12 @@ div.tocify {
 </div>
 <div id="to-infinity-and-beyond-1-sharing-your-work" class="section level1">
 <h1>“To Infinity and Beyond” (1): Sharing your work</h1>
+<p>After learning how to use R to analyze data and get results, now is the time for us to explore various options to share our work effectively and elegantly.</p>
 <hr />
 </div>
 <div id="r-markdown" class="section level1">
 <h1>R Markdown</h1>
-type:section <img src="../images/rmarkdown.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/rmarkdown.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown</a>
 </p>
@@ -297,28 +298,22 @@ Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Mark
 <blockquote>
 <p>“R Markdown is a file format for making dynamic documents with R. An R Markdown document is written in markdown (an easy-to-write plain text format) and contains chunks of embedded R code.”<br><br> - Garret Grolemund from R Studio</p>
 </blockquote>
+<p>R Markdown supports a variety of document formats and makes it easy to create amazing reports, presentation slides, or even websites to share your findings in R with others.</p>
 </div>
 <div id="why-use-r-markdown" class="section level2">
 <h2>Why use R Markdown?</h2>
-<ul>
-<li>Reproducible</li>
-<li>Multiple document formats</li>
-<li>Embedding R code chunks (and the outputs)</li>
-</ul>
+<p>There are many benefits of using R Markdown.</p>
+<p>First, it is a great way to incorporate your R code into a document. It not only shows your code to make it transparent, but also runs it as the document is rendered so that the resulting output is always true to the code. This is particularly useful when the code is used to compute certain key values or create tables/plots using data.</p>
+<p>Second, R Markdown makes it easy to generate various formats of documents for the same contents–an HTML document, a PDF report, presentation slides, etc.–with little to no changes to the R Markdown script.</p>
+<p>R Markdown’s ability to incorporate R code makes the rendered document and its content largely reproducible. If the data changes and we have to compute certain values again, we simply re-render the document using the modified data.</p>
+<p>Finally, the report generating process can be largely automated with <code>rmarkdown</code> tools.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting started</h2>
-<ul>
-<li>Install <code>rmarkdown</code>
-<ul>
-<li>not necessary if using R Studio IDE</li>
-</ul></li>
-<li>Create a R markdown document
-<ul>
-<li>File &gt; New File &gt; R Markdown</li>
-</ul></li>
-<li>“Knit” the R markdown document into a file in the desired format</li>
-</ul>
+<p>To get started with R Markdown, we first have to install <code>rmakrdown</code> package. If you are using RStudio IDE (which you should), this is already taken care of.</p>
+<p>Creating a new R Markdown file is easily done using RStudio IDE. Go to its menu bar, and click File &gt; New File &gt; R Markdown.</p>
+<p>Onces we have our R Markdown file ready to be rendered, we “Knit” the R Markdown file into a document in the desired format.</p>
+<p>The following series of screenshots show how this is done:</p>
 <p><img src="../images/rmarkdown1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
 <p><img src="../images/rmarkdown2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
 <p><img src="../images/rmarkdown3.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
@@ -326,25 +321,14 @@ Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Mark
 </div>
 <div id="r-markdown-structure" class="section level2">
 <h2>R Markdown structure</h2>
-<ul>
-<li>YAML header</li>
-<li>Knit and preview outputs</li>
-<li>Markdown</li>
-<li>Code chucks</li>
-</ul>
 <div id="yaml-header" class="section level3">
 <h3>YAML header</h3>
-<p><br><br> <img src="../images/rmarkdown5.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>An R Markdown file starts with a YAML header, which specifies options for rendering the output document. In the following picture, the part in the red box is a YAML header, enclosed by three dashes (<code>---</code>) on the top and bottom.</p>
+<p><img src="../images/rmarkdown5.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
 </div>
 <div id="yaml-header-options" class="section level3">
 <h3>YAML header options</h3>
-<ul>
-<li>Title, author, date</li>
-<li>output</li>
-<li>output format</li>
-<li>output options</li>
-<li>different output format has different options</li>
-</ul>
+<p>Basic YAML header options include the title, author, and date of the document as well as the output specifications (output format and related options). We will take a closer look at the output options below.</p>
 </div>
 <div id="knit-and-preview" class="section level3">
 <h3>Knit and preview</h3>
@@ -594,8 +578,8 @@ knitr::opts_chunk$set(eval = TRUE, echo = TRUE, ...)</code></pre>
 <div id="datatable-example" class="section level3">
 <h3><code>datatable</code> example</h3>
 <pre class="r"><code>DT::datatable(my_table)</code></pre>
-<div id="htmlwidget-05898e812e068f1687c5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-05898e812e068f1687c5">{"x":{"filter":"none","data":[["1","2","3"],["apple","banana","clementine"],["dogs","cats","llamas"],["chocolate","vanila","cookie dough"],["red","green","orange"],["Chicago","New Work","Los Angeles"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>my_fruits<\/th>\n      <th>my_animals<\/th>\n      <th>my_flavors<\/th>\n      <th>my_colors<\/th>\n      <th>my_cities<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cb3ae1db2cca6cc59189" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb3ae1db2cca6cc59189">{"x":{"filter":"none","data":[["1","2","3"],["apple","banana","clementine"],["dogs","cats","llamas"],["chocolate","vanila","cookie dough"],["red","green","orange"],["Chicago","New Work","Los Angeles"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>my_fruits<\/th>\n      <th>my_animals<\/th>\n      <th>my_flavors<\/th>\n      <th>my_colors<\/th>\n      <th>my_cities<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 <hr />
 </div>
 </div>

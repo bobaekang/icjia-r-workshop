@@ -68,13 +68,12 @@ Navigate to the other workshop materials:
 
 
 # "To Infinity and Beyond" (1): Sharing your work
-
+After learning how to use R to analyze data and get results, now is the time for us to explore various options to share our work effectively and elegantly.   
 
 ***
 
 
 # R Markdown
-type:section
 ```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown.png")
 ```
@@ -86,19 +85,29 @@ Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Mark
 ## What is R Markdown?
 > "R Markdown is a file format for making dynamic documents with R. An R Markdown document is written in markdown (an easy-to-write plain text format) and contains chunks of embedded R code."<br><br> - Garret Grolemund from R Studio
 
+R Markdown supports a variety of document formats and makes it easy to create amazing reports, presentation slides, or even websites to share your findings in R with others.
+
 
 ## Why use R Markdown?
-* Reproducible
-* Multiple document formats
-* Embedding R code chunks (and the outputs)
+There are many benefits of using R Markdown.
+
+First, it is a great way to incorporate your R code into a document. It not only shows your code to make it transparent, but also runs it as the document is rendered so that the resulting output is always true to the code. This is particularly useful when the code is used to compute certain key values or create tables/plots using data. 
+
+Second, R Markdown makes it easy to generate various formats of documents for the same contents--an HTML document, a PDF report, presentation slides, etc.--with little to no changes to the R Markdown script.
+
+R Markdown's ability to incorporate R code makes the rendered document and its content largely reproducible. If the data changes and we have to compute certain values again, we simply re-render the document using the modified data.
+
+Finally, the report generating process can be largely automated with `rmarkdown` tools.
 
 
 ## Getting started
-* Install `rmarkdown`
-    * not necessary if using R Studio IDE
-* Create a R markdown document
-    * File > New File > R Markdown
-* "Knit" the R markdown document into a file in the desired format
+To get started with R Markdown, we first have to install `rmakrdown` package. If you are using RStudio IDE (which you should), this is already taken care of.
+
+Creating a new R Markdown file is easily done using RStudio IDE. Go to its menu bar, and click File > New File > R Markdown.
+
+Onces we have our R Markdown file ready to be rendered, we "Knit" the R Markdown file into a document in the desired format.
+
+The following series of screenshots show how this is done:
 
 
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -122,23 +131,17 @@ include_graphics("../images/rmarkdown4.png")
 
 
 ## R Markdown structure
-* YAML header
-* Knit and preview outputs
-* Markdown
-* Code chucks
 
 ### YAML header
-<br><br>
+An R Markdown file starts with a YAML header, which specifies options for rendering the output document. In the following picture, the part in the red box is a YAML header, enclosed by three dashes (`---`) on the top and bottom.
+
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/rmarkdown5.png")
 ```
 
 ### YAML header options
-* Title, author, date
-* output
-  * output format
-  * output options 
-  * different output format has different options
+
+Basic YAML header options include the title, author, and date of the document as well as the output specifications (output format and related options). We will take a closer look at the output options below. 
 
 ### Knit and preview
 <br><br>

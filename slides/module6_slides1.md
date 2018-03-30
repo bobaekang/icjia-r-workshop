@@ -57,18 +57,19 @@ What is R Markdown?
 
 Why use R Markdown?
 ========================================================
-* Reproducible
-* Multiple document formats
 * Embedding R code chunks (and the outputs)
+* Multiple document formats
+* Reproducibility
+* Automation
 
 
 Getting started
 ========================================================
 * Install `rmarkdown`
-    * not necessary if using R Studio IDE
-* Create a R markdown document
+    * not necessary if using RStudio IDE
+* Create a R Markdown document
     * File > New File > R Markdown
-* "Knit" the R markdown document into a file in the desired format
+* "Knit" the R Markdown file into a document in the desired format
 
 
 ========================================================
