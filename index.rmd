@@ -61,6 +61,8 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ***
 
 ## Workshop news
+* **All Workshop Modules materials now available**
+    * Slides and notes for all 6 modules are now available! (^__^) View all workshop materials on [**Modules page**](./modules.html).
 * **Change in schedule: Midterm break**
     * To best accommodate the Workshop's regular attendees and their schedule, the fourth, fifth and sixth weeks' meetings are pushed back one week. Accordingly, the Workshop will have **a "midterm break" in the first week of April** and meet again on April 18.
 * **Second Workshop meeting,** March 22, 2018
