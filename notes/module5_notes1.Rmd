@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -31,14 +31,14 @@ library(modelr)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **the first part of R Workshop Module 5: Statistical modeling with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the first part of R Workshop Module 5: Statistical modeling with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module5_slides1.html) to view the accompanying **slides for Module 5, Part 1**.
+Click [**here**](../slides/module5_slides1.html){target="_blank"} to view the accompanying **slides for Module 5, Part 1**.
 
 Navigate to the other workshop materials:
 
@@ -84,7 +84,7 @@ R is first designed as a programming language and an environment for statistics 
 include_graphics("../images/vadlo_descriptive_statistics.gif")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://vadlo.com/cartoons.php?id=196">Vadlo.com</a>
+Source: <a href="http://vadlo.com/cartoons.php?id=196" target="_blank">Vadlo.com</a>
 </p>
 
 
@@ -209,13 +209,13 @@ While base R has no functions to get these statistics (which are rarely used for
 * `skewness()`
 * `kurtosis()`
 
-See `moments` package's [reference manual](https://cran.r-project.org/web/packages/moments/moments.pdf) to find out more.
+See `moments` package's [reference manual](https://cran.r-project.org/web/packages/moments/moments.pdf){target="_blank"} to find out more.
 
 ### Outliers
 
 Outliers are observations or data points that are far from most other observations and disproportinately affect key summary statistics
 
-The `outliers` package offers useful functions to detect and measure outliers in data. See `outliers` package's  [reference manual](https://cran.r-project.org/web/packages/outliers/outliers.pdf) to learn more.
+The `outliers` package offers useful functions to detect and measure outliers in data. See `outliers` package's  [reference manual](https://cran.r-project.org/web/packages/outliers/outliers.pdf){target="_blank"} to learn more.
 
 
 ## Categorical variables
@@ -327,7 +327,7 @@ xtabs(~ region + high_viol, my_data)
 include_graphics("../images/vadlo_inferential_statistics.gif")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://vadlo.com/cartoons.php?id=407">Vadlo.com</a>
+Source: <a href="http://vadlo.com/cartoons.php?id=407" target="_blank">Vadlo.com</a>
 </p>
 
 
@@ -434,14 +434,14 @@ cor.test(x, y, alternative = "two.sided", conf.level = 0.95,
 
 ## An alternative framework
 * `infer` package is an attempt to "to perform statistical inference using an expressive statistical grammar that coheres with the tidyverse design framework."
-* Watch the package author's presentation [video](https://www.rstudio.com/resources/videos/infer-a-package-for-tidy-statistical-inference/)
-* Visit the package [website](http://infer.netlify.com/index.html) to learn more about it
+* Watch the package author's presentation [video](https://www.rstudio.com/resources/videos/infer-a-package-for-tidy-statistical-inference/){target="_blank"}
+* Visit the package [website](http://infer.netlify.com/index.html){target="_blank"} to learn more about it
 
 ```{r echo=FALSE, out.width="750%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
 include_graphics("../images/infer.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://infer.netlify.com/index.html">infer package website</a>
+Source: <a href="http://infer.netlify.com/index.html" target="_blank">infer package website</a>
 </p>
 
 
@@ -540,7 +540,7 @@ There are measures of model fit other than $R^2$. For a model fitted by maximum 
     * `AIC()` for Akaike Information Criterion (with default `k`)
     * `BIC()` for Bayesian Information Criterion
 
-We can read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) for more on maximum likelihood estimation.
+We can read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation){target="_blank"} for more on maximum likelihood estimation.
 
 
 ## Extending lm() formula
@@ -627,7 +627,7 @@ y ~ bs(x, degree = n, ...)
 ## `broom` package
 `broom` is a `tidyverse` package for "tidying up" statistical model outputs in R, i.e., converting them into tidy data frames.
 
-Visit `broom` [GitHub repository](https://github.com/tidyverse/broom) and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html) to learn more about the package.
+Visit `broom` [GitHub repository](https://github.com/tidyverse/broom){target="_blank"} and "`broom` as well as `dplyr`" [vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom_and_dplyr.html){target="_blank"} to learn more about the package.
 
 
 ### `broom` functions
@@ -679,7 +679,7 @@ class(augment(my_lmfit))
 * model quality metrics
 * interacting with models
 
-You can visit `modelr` [GitHub repository](https://github.com/tidyverse/modelr) or read the ["Model Basics" chapter](http://r4ds.had.co.nz/model-basics.html) in *R for Data Science* to learn more about the package.
+You can visit `modelr` [GitHub repository](https://github.com/tidyverse/modelr){target="_blank"} or read the ["Model Basics" chapter](http://r4ds.had.co.nz/model-basics.html){target="_blank"} in *R for Data Science* to learn more about the package.
 
 ### Partitioning and sampling
 ```{r eval=FALSE}
@@ -766,7 +766,7 @@ Three components of GLM are:
 * A linear predictor, $\eta = \boldsymbol{\text{X}\beta}$
 * A link function $g$, such that $\text{E}[\boldsymbol{\text{Y}}] = \mu = g^{-1}(\eta)$
 
-See [this Wikipedia article](https://en.wikipedia.org/wiki/Generalized_linear_model) for more on GLM and the model components.
+See [this Wikipedia article](https://en.wikipedia.org/wiki/Generalized_linear_model){target="_blank"} for more on GLM and the model components.
 
 
 ## The glm() function
@@ -811,23 +811,23 @@ A possion model can be fitted using `glm()` with `family = poisson`. Here, the r
 ## Better ways?
 There are thrid-party packages to provide additional fuctions and/or different interfaces to existing statistical analysis functions. Although I have little exposure to them, the following two might be worth checking:
 
-* `psych` package. See [this package vignette](https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf) by the package author to learn more about it.
+* `psych` package. See [this package vignette](https://cran.r-project.org/web/packages/psych/vignettes/intro.pdf){target="_blank"} by the package author to learn more about it.
 
-* `jmv` package. See [this package documentation page](https://www.jamovi.org/jmv/) to learn more about it.
+* `jmv` package. See [this package documentation page](https://www.jamovi.org/jmv/){target="_blank"} to learn more about it.
 
 
 ## Resources
 
 Just as in any previous work module parts, what we have seen in this part is only an introduction tot he topic. The following are some useful resources that would help you to deepen your understanding of the basic statistics in R.
 
-* Kabacoff, R. ["Statistics"](https://www.statmethods.net/stats/index.html). *Quick-R*.
-* Lane D. et al. [*Online Statistics: A Multimedia Course of Study*](http://onlinestatbook.com/2/index.html).
-* Prabhakaran, S. [r-statistics.co](http://r-statistics.co/).
-* UCLA Institute for Digital Research and Education. ["R"](https://stats.idre.ucla.edu/r/).
-* University of Cincinnati. ["Descriptive analytics"](http://uc-r.github.io/descriptive). *UC Business Analytic R Programming Guide*.
-* University of Cincinnati. ["Predictive analytics"](http://uc-r.github.io/predictive). *UC Business Analytic R Programming Guide*.
-* Wollschlaeger, D. [*RExRepos*](http://dwoll.de/rexrepos/index.html).
-* Yau, C. ["Elementary Statistics with R"](http://www.r-tutor.com/elementary-statistics). *R Tutorial*.
+* Kabacoff, R. ["Statistics"](https://www.statmethods.net/stats/index.html){target="_blank"}. *Quick-R*.
+* Lane D. et al. [*Online Statistics: A Multimedia Course of Study*](http://onlinestatbook.com/2/index.html){target="_blank"}.
+* Prabhakaran, S. [r-statistics.co](http://r-statistics.co/){target="_blank"}.
+* UCLA Institute for Digital Research and Education. ["R"](https://stats.idre.ucla.edu/r/){target="_blank"}.
+* University of Cincinnati. ["Descriptive analytics"](http://uc-r.github.io/descriptive){target="_blank"}. *UC Business Analytic R Programming Guide*.
+* University of Cincinnati. ["Predictive analytics"](http://uc-r.github.io/predictive){target="_blank"}. *UC Business Analytic R Programming Guide*.
+* Wollschlaeger, D. [*RExRepos*](http://dwoll.de/rexrepos/index.html){target="_blank"}.
+* Yau, C. ["Elementary Statistics with R"](http://www.r-tutor.com/elementary-statistics){target="_blank"}. *R Tutorial*.
 
 
 
@@ -837,10 +837,10 @@ Just as in any previous work module parts, what we have seen in this part is onl
 
 # References
 <ul>
-  <li>Lane D. et al. (n.d.). <a href="http://onlinestatbook.com/2/index.html"><span style="font-style:italic">Online Statistics: A Multimedia Course of Study</span></a>.</li>
-  <li>Prabhakaran, S. (n.d.). <a href="http://r-statistics.co/Statistical-Tests-in-R.html">"Statistic Tests"</a>. <i>r-statistics.co</i>.</li>
-  <li><a href="https://github.com/tidyverse/broom">tidyverse/broom Github repository</a></li>
-  <li><a href="https://github.com/tidyverse/modelr">tidyverse/modelr Github repository</a></li>
-  <li>University of Cincinnati. <i><a href="http://uc-r.github.io/">UC Business Analytics R Programming Guide</a></i></li>
-  <li>Wikipedia contributors. (2018). <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">"Generalized linear model"</a>. <i>Wikipedia, The Free Encyclopedia</i>.</li>
+  <li>Lane D. et al. (n.d.). <a href="http://onlinestatbook.com/2/index.html" target="_blank"><i>Online Statistics: A Multimedia Course of Study</i></a>.</li>
+  <li>Prabhakaran, S. (n.d.). <a href="http://r-statistics.co/Statistical-Tests-in-R.html" target="_blank">"Statistic Tests"</a>. <i>r-statistics.co</i>.</li>
+  <li><a href="https://github.com/tidyverse/broom" target="_blank">tidyverse/broom Github repository</a></li>
+  <li><a href="https://github.com/tidyverse/modelr" target="_blank">tidyverse/modelr Github repository</a></li>
+  <li>University of Cincinnati. <i><a href="http://uc-r.github.io/" target="_blank">UC Business Analytics R Programming Guide</a></i></li>
+  <li>Wikipedia contributors. (2018). <a href="https://en.wikipedia.org/wiki/Generalized_linear_model" target="_blank">"Generalized linear model"</a>. <i>Wikipedia, The Free Encyclopedia</i>.</li>
 </ul>

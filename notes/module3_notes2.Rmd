@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -29,14 +29,14 @@ library(lubridate)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **the second part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the second part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module3_slides2.html) to view the accompanying **slides for Module 3, Part 2**.
+Click [**here**](../slides/module3_slides2.html){target="_blank"} to view the accompanying **slides for Module 3, Part 2**.
 
 Navigate to the other workshop materials:
 
@@ -75,7 +75,7 @@ Navigate to the other workshop materials:
 include_graphics("../images/more_data_analysis.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a>
+Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png" target="_blank">Iconfinder.com</a>
 </div>
 
 The second part of Module 3 introduces more `tidyverse` tools for working with data. Specifically, this part covers (1) working with string data using `stringr`, (2) working with date and date-time data using `lubridate`, and (3) importing and exporting data using various packages.
@@ -90,7 +90,7 @@ The second part of Module 3 introduces more `tidyverse` tools for working with d
 include_graphics("../images/font_case.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.rstudio.com/">RStudio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a>
 </div>
 
 In computer programming, a "string" often refers to a string of characters. Manipulating strings is an important skill for data analysis. 
@@ -100,7 +100,7 @@ In computer programming, a "string" often refers to a string of characters. Mani
 include_graphics("../images/stringr.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.rstudio.com/">RStudio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a>
 </div>
 
 ## Key `stringr` functions
@@ -301,10 +301,10 @@ The base R alternative `str_sub()` is `substr()`, which can also be used to both
 ## More on `stringr`
 What we have touched upon so far is only a small (though highly useful) part of `stringr`. I recommend you to check out the following resources:
 
-* `stringr` on [tidyverse.org](http://stringr.tidyverse.org/)
-* `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf)
-* `stringr` [Github repository](https://github.com/tidyverse/stringr)
-* RStudio. (2017). ["Work with Strings Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/strings.pdf).
+* `stringr` on [tidyverse.org](http://stringr.tidyverse.org/){target="_blank"}
+* `stringr` [CRAN documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf){target="_blank"}
+* `stringr` [Github repository](https://github.com/tidyverse/stringr){target="_blank"}
+* RStudio. (2017). ["Work with Strings Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/strings.pdf){target="_blank"}.
 
 ***
 
@@ -495,9 +495,9 @@ str_detect(str, "p{2,}")
 
 As mentioned earlier, regular expression is a broad topic. To get a better hold of regular expression, I recommend you to check out the following resources:
 
-* [Regular-Expressions.info](https://www.regular-expressions.info/rlanguage.html)
-* RStudio. (2016).["Basic Regular Expressions in R: Cheat Sheet".](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
-* Tidyverse. (n.d.). ["Regualr Expressions"](http://stringr.tidyverse.org/articles/regular-expressions.html). *stringr.tidyverse.org*.
+* [Regular-Expressions.info](https://www.regular-expressions.info/rlanguage.html){target="_blank"}
+* RStudio. (2016).["Basic Regular Expressions in R: Cheat Sheet".](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf){target="_blank"}
+* Tidyverse. (n.d.). ["Regualr Expressions"](http://stringr.tidyverse.org/articles/regular-expressions.html){target="_blank"}. *stringr.tidyverse.org*.
 
 
 ***
@@ -508,7 +508,7 @@ As mentioned earlier, regular expression is a broad topic. To get a better hold 
 include_graphics("../images/calendar.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a>
+Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" target="_blank">Iconfinder.com</a>
 </div>
 
 The work of data analysis often deals with dates. R has data types for date and datetime, which come with useful properties for understanding and analyzing temporal characteristics of data.
@@ -526,7 +526,7 @@ type:section
 include_graphics("../images/lubridate.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.rstudio.com/">RStudio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a>
 </div>
 
 
@@ -748,10 +748,10 @@ kable(
 ## More on lubridate
 As in the case of `stringr`, what we have seen is only part of what `lubridate` offers. I recommend you to check out the following resources to learn more about `lubridate`.
 
-* `lubridate` on [tidyverse.org](http://lubridate.tidyverse.org/)
-* `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf)
-* `lubridate` [Github repository](https://github.com/tidyverse/lubridate)
-* RStudio. (2017). ["Dates and Times Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/lubridate.pdf).
+* `lubridate` on [tidyverse.org](http://lubridate.tidyverse.org/){target="_blank"}
+* `lubridate` [CRAN documentation](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf){target="_blank"}
+* `lubridate` [Github repository](https://github.com/tidyverse/lubridate){target="_blank"}
+* RStudio. (2017). ["Dates and Times Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/lubridate.pdf){target="_blank"}.
 
 ***
 
@@ -761,7 +761,7 @@ As in the case of `stringr`, what we have seen is only part of what `lubridate` 
 include_graphics("../images/data_transfer.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 
 Importing and exporting datasets in different formats is one of the basic operations for any data analysis task. Here we will explore some options for this task with datasets in various file formats. 
@@ -821,9 +821,9 @@ In `read_excel()`, `path` is a path to an Excel file (.xls or .xlsx) to import, 
 For more on the function arguments, refer to the relevant documentations.
 
 ### More on `readxl`
-* `readxl` on [tidyverse.org](http://readxl.tidyverse.org/)
-* `readxl` [CRAN documentation](https://cran.r-project.org/web/packages/readxl/readxl.pdf)
-* `readxl` [Github repository](https://github.com/tidyverse/readxl)
+* `readxl` on [tidyverse.org](http://readxl.tidyverse.org/){target="_blank"}
+* `readxl` [CRAN documentation](https://cran.r-project.org/web/packages/readxl/readxl.pdf){target="_blank"}
+* `readxl` [Github repository](https://github.com/tidyverse/readxl){target="_blank"}
 
 
 ## SPSS data files (.sav)
@@ -841,9 +841,9 @@ In `read_sav()`, `file` is a path to the SPSS file (.sav) to import. `read_spss(
 In `write_sav()`, `file` is a path to export the data in `write_sav()`, and `data` is a data object to export. The output of `write_sav()` is an SPSS data file.
 
 ### More on `haven`
-* `haven` on [tidyverse.org](http://haven.tidyverse.org/)
-* `haven` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
-* `haven` [Github repository](https://github.com/tidyverse/haven)
+* `haven` on [tidyverse.org](http://haven.tidyverse.org/){target="_blank"}
+* `haven` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf){target="_blank"}
+* `haven` [Github repository](https://github.com/tidyverse/haven){target="_blank"}
 
 
 ## A "fast-on-disk" data frame storage (.feather) 
@@ -858,8 +858,8 @@ In `read_feather()`, `path` is a path to the .feather file to import. The output
 In `write_feather()`, `path` is a path to export the data in `write_feather()`, and `x` is the data object to export. The output of `write_feather()` is a .feather file.
 
 ### More on `feather`
-* Wickham, H. (2016), ["Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow"](https://blog.rstudio.com/2016/03/29/feather/). *RStudio Blog*.
-* `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf)
+* Wickham, H. (2016), ["Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow"](https://blog.rstudio.com/2016/03/29/feather/){target="_blank"}. *RStudio Blog*.
+* `feather` [CRAN documentation](https://cran.r-project.org/web/packages/haven/haven.pdf){target="_blank"}
 
 
 ***
@@ -867,13 +867,13 @@ In `write_feather()`, `path` is a path to export the data in `write_feather()`, 
 
 # References
 <ul>
-  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
-  <li>Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html">"Date Values"</a>. <span style="font-syle:italic">Quick-R</span>.</li>
-  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Dates and Times Cheat Sheet"</a>.</li>
-  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Work with Strings Cheat Sheet"</a>.</li>
-  <li>Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a></li>
-  <li>Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a></li>
-  <li>Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a></li>
-  <li>Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a></li>
-  <li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a></li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/" target="_blank"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html" target="_blank">"Date Values"</a>. <span style="font-syle:italic">Quick-R</span>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">"Dates and Times Cheat Sheet"</a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">"Work with Strings Cheat Sheet"</a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">haven.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">lubridate.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">readr.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">readxl.tidyverse.org</span></a></li>
+  <li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">stringr.tidyverse.org</span></a></li>
 </ul>

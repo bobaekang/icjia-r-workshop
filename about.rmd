@@ -18,29 +18,25 @@ knitr::opts_chunk$set(echo = FALSE)
 ***
 
 ## About ICJIA
-```{r include=FALSE}
-knitr::include_graphics("http://www.icjia.state.il.us/_themes/icjia/img/logo-icjia-small-blue-3.png")
-```
-  
 <div class="row">
 <div class="col-sm-9 col-xs-12>
-Created in 1983, [**the Illinois Criminal Justice Information Authority**](http://www.icjia.state.il.us) is a state agency dedicated to improving the administration of criminal justice.
+Created in 1983, [**the Illinois Criminal Justice Information Authority**](http://www.icjia.state.il.us){target="_blank"} is a state agency dedicated to improving the administration of criminal justice.
 
-The Authority brings together key leaders from the justice system and the public to identify critical issues facing the criminal justice system in Illinois, and to propose and evaluate policies, programs, and legislation that address those issues. The agency also works to ensure the criminal justice system in Illinois is efficient and effective. The Authority's specific powers and duties are detailed in the Illinois Criminal Justice Information Act [[**20 ILCS 3930 et. seq.**](http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=397&ChapterID=5)].
+The Authority brings together key leaders from the justice system and the public to identify critical issues facing the criminal justice system in Illinois, and to propose and evaluate policies, programs, and legislation that address those issues. The agency also works to ensure the criminal justice system in Illinois is efficient and effective. The Authority's specific powers and duties are detailed in the Illinois Criminal Justice Information Act [[**20 ILCS 3930 et. seq.**](http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=397&ChapterID=5){target="_blank"}].
 
-The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, [**click here**](http://www.icjia.state.il.us/assets/img/orgchart15.png).
+The statutory responsibilities of the Authority fall under the categories of grants administration, research and analysis, policy and planning, and information systems and technology. To display the Authority organization chart, [**click here**](http://www.icjia.state.il.us/assets/img/orgchart15.png){target="_blank"}.
 
-For information about contacting the Authority, please see [**this page**](http://www.icjia.state.il.us/about/contact).
+For information about contacting the Authority, please see [**this page**](http://www.icjia.state.il.us/about/contact){target="_blank"}.
 </div>
 <div class="col-sm-3 col-xs-4 offset-xs-4">
-<img src="images/icjia.png">
+<a href="http://icjia.state.il.us" target="_blank"><img src="images/icjia.png"></a>
 </div>
 </div>
 
 ***
 
 ## About ICJIA Research & Analysis Unit
-[**The Research & Analysis Unit**](http://www.icjia.state.il.us/research/overview#tab_research-overview) serves as Illinois' Statistical Analysis Center (SAC). State SACs provide objective analysis of criminal justice data for informing statewide policy and practice. The Illinois SAC is affiliated with and supported by the Justice Research and Statistics Association, a national nonprofit organization that promotes collaboration and exchange of information among state SACs, and acts as a liaison between state agencies and the U.S. Department of Justice.
+[**The Research & Analysis Unit**](http://www.icjia.state.il.us/research/overview#tab_research-overview){target="_blank"} serves as Illinois' Statistical Analysis Center (SAC). State SACs provide objective analysis of criminal justice data for informing statewide policy and practice. The Illinois SAC is affiliated with and supported by the Justice Research and Statistics Association, a national nonprofit organization that promotes collaboration and exchange of information among state SACs, and acts as a liaison between state agencies and the U.S. Department of Justice.
 
 ***
 
@@ -50,7 +46,7 @@ For information about contacting the Authority, please see [**this page**](http:
 <img src="https://avatars3.githubusercontent.com/u/22449454?s=460&v=4">
 </div>
 <div class="col-sm-9 col-xs-12>
-My name is Bobae Kang and I joined ICJIA as a Research Analyst in the Center for Criminal Justice Data and Analytics in October 2017. I earned my [**MA in Social Sciences from the University of Chicago**](https://mapss.uchicago.edu/), with a [**Certificate in Computational Social Sciences**](https://macss.uchicago.edu/content/certificate-current-students), and [**BA in Sociology and Anthropology from Colgate University**](http://www.colgate.edu/academics/departments-and-programs/sociology-and-anthropology). My areas of interest include machine learning and computational methods in social sciences and data analysis. Please contact me via **Bobae.Kang@illinois.gov** for any questions regarding this workshop.
+My name is Bobae Kang and I joined ICJIA as a Research Analyst in the Center for Criminal Justice Data and Analytics in October 2017. I earned my [**MA in Social Sciences from the University of Chicago**](https://mapss.uchicago.edu/){target="_blank"}, with a [**Certificate in Computational Social Sciences**](https://macss.uchicago.edu/content/certificate-current-students){target="_blank"}, and [**BA in Sociology and Anthropology from Colgate University**](http://www.colgate.edu/academics/departments-and-programs/sociology-and-anthropology){target="_blank". My areas of interest include machine learning and computational methods in social sciences and data analysis. Please contact me via **Bobae.Kang@illinois.gov** for any questions regarding this workshop.
 </div>
 </div>
 

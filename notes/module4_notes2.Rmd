@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -38,14 +38,14 @@ library(highcharter)
 opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-This page contains the notes for **the second part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the second part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module4_slides2.html) to view the accompanying **slides for Module 4, Part 2**.
+Click [**here**](../slides/module4_slides2.html){target="_blank"} to view the accompanying **slides for Module 4, Part 2**.
 
 Navigate to the other workshop materials:
 
@@ -147,7 +147,7 @@ There are multiple spatial vector object types provided by the `sp` package.
 
 `Spatial*DataFrame` classes are those with additional attributes in a `data.frame` table, which can be accesssed using standard methods for accessing data in a `data.frame`.
 
-* See the ["Spatial Cheatsheet"](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html) for more one spatial objects in R
+* See the ["Spatial Cheatsheet"](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html){target="_blank"} for more one spatial objects in R
 
 ### Example
 ```{r}
@@ -167,7 +167,7 @@ The `icjiar` package provides a spatial object named `counties` for countes in I
 include_graphics("../images/tmap_worldmap.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://github.com/mtennekes/tmap">tmap GitHub repo</a>
+Source: <a href="https://github.com/mtennekes/tmap" target="_blank">tmap GitHub repo</a>
 </p>
 
 ### What is `tmap`?
@@ -216,7 +216,7 @@ kable(
 )
 ```
 
-<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html" target="_blank">vignette page</a></p>
 
 #### Derived `tmap` drawing layers
 The following table lists `tmap'`s derieved drawing layers, with their descriptions and options for aesthetic mappings.
@@ -235,7 +235,7 @@ kable(
 )
 ```
 
-<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html" target="_blank">vignette page</a></p>
 
 #### `tmap` attribute layers
 The following table lists `tmap`'s attribute layers with their descriptions.
@@ -251,7 +251,7 @@ kable(
 )
 ```
 
-<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">vignette page</a></p>
+<p style="font-size:0.5em">The table is duplicated from a `tmap` <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html" target="_blank">vignette page</a></p>
 
 #### Example
 This example code shows how to create the same map in the `tm_*()` way.
@@ -355,7 +355,7 @@ qtm(counties, fill = "circuit")
 include_graphics("../images/leaflet.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="http://leafletjs.com/">leafletjs.com</a>
+Source: <a href="http://leafletjs.com/" target="_blank">leafletjs.com</a>
 </p>
 
 ### What is `leaflet`?
@@ -383,7 +383,7 @@ leaflet(counties) %>%
 * Base R plot is capable of draw a simple map from a spatial object. However, anything more than a simple plotting of borders is better handled with third-party packages. 
 * The `sp` package offers `spplot()`, which builds on the base R plot functionality. `spplot()` takes an object of spatial classes as its source data, making it easy to work with imported shapefiles (See Eubank, N. (2015) in [Resources](#resources_map) for more). 
 * `ggplot2` can use `geom_polygon()` and/or `geom_map()` to plot spatial polygons with some modificiations (See Kahle, D. & Wickham, H. (2013) in [Resources](#resources_map) for more).
-* `ggmap` is an R package offering functions to easily downlaod base maps from various sources, which can be used with `ggplot2` layers (See Kahle, D. & Wickham, H. (2013) in [Resources](#resources_map) or `ggmap` [github repo](https://github.com/dkahle/ggmap) for more).
+* `ggmap` is an R package offering functions to easily downlaod base maps from various sources, which can be used with `ggplot2` layers (See Kahle, D. & Wickham, H. (2013) in [Resources](#resources_map) or `ggmap` [github repo](https://github.com/dkahle/ggmap){target="_blank"} for more).
 
 
 ## Resources {#resources_map}
@@ -393,14 +393,14 @@ Also, if you are interested in digging deeper into spatial data manipulation in 
 
 Finally, a new paradigm for working with spatial objects in R has recently emerged and is implemented by the `sf` package. To learn more about `sf`, take a look at Pebesma (n.d.) and the package vignettes listed on the webpage.
 
-* Eubank, N. (2015). ["Making maps in R"](http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS3_MakingMaps_part1_mappingVectorData.html).
-* Hijmans, R. (2016). ["Spatial Data Manipulation"](http://rspatial.org/spatial/index.html). *R Spatial*.
-* `leaftlet` [official documentation page](https://rstudio.github.io/leaflet/)
+* Eubank, N. (2015). ["Making maps in R"](http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS3_MakingMaps_part1_mappingVectorData.html){target="_blank"}.
+* Hijmans, R. (2016). ["Spatial Data Manipulation"](http://rspatial.org/spatial/index.html){target="_blank"}. *R Spatial*.
+* `leaftlet` [official documentation page](https://rstudio.github.io/leaflet/){target="_blank"}
 * Lovelace, R. et al. (2017). ["Introduction to visualising spatial data in R
-"](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf).
-* Pebesma, E. (n.d.). [*Simple Features for R*](http://r-spatial.github.io/sf/).
-* `tmap` [github repository](https://github.com/mtennekes/tmap)
-    * [Links to package vignettes and examples](https://github.com/mtennekes/tmap#vignettes-and-examples)
+"](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf){target="_blank"}.
+* Pebesma, E. (n.d.). [*Simple Features for R*](http://r-spatial.github.io/sf/){target="_blank"}.
+* `tmap` [github repository](https://github.com/mtennekes/tmap){target="_blank"}
+    * [Links to package vignettes and examples](https://github.com/mtennekes/tmap#vignettes-and-examples){target="_blank"}
 
 
 ***
@@ -411,7 +411,7 @@ Finally, a new paradigm for working with spatial objects in R has recently emerg
 include_graphics("../images/interactive.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Interactive_icon.svg">Wikipedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Interactive_icon.svg" target="_blank">Wikipedia Commons</a>
 </p>
 
 More compelling visualizations can be created with incorporating interactivity. We have already seen some interactive plots with `tmap` view mode and `leaflet`. Here we will explore some options for creating plots in general with some interactive features. Please note that this section is not meant to serve as a comprehensive or exhaustive manual for any of the introduced packages.
@@ -428,7 +428,7 @@ More compelling visualizations can be created with incorporating interactivity. 
 include_graphics("../images/ggiraph.gif")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://davidgohel.github.io/ggiraph/">ggiraph documentation page</a>
+Source: <a href="https://davidgohel.github.io/ggiraph/" target="_blank">ggiraph documentation page</a>
 </p>
 
 ### What is `ggiraph`?
@@ -478,7 +478,7 @@ ggiraph(code = print(p), hover_css = "fill:orange; fill-opacity:.3; cursor:point
 include_graphics("../images/plotly.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png">wikimedia.org</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Plotly_logo_for_digital_final_(6).png" target="_blank">wikimedia.org</a>
 </p>
 
 ### What is `plotly`?
@@ -551,13 +551,13 @@ plot_ly(data, x = ~violentCrime, y = ~propertyCrime, color = ~region) %>%
 include_graphics("../images/highcharter.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://github.com/jbkunst/highcharter">highcharter github repo (jbkunst/highcharter)</a>
+Source: <a href="https://github.com/jbkunst/highcharter" target="_blank">highcharter github repo (jbkunst/highcharter)</a>
 </p>
 
 ### What is `highcharter`?
 > "Highcharter is a R wrapper for Highcharts javascript libray and its modules. Highcharts is very mature and flexible javascript charting library and it has a great and powerful API."<br>-Kunst, J. (package author)
 
-`Highcharts` is one of my favorite JavaScript visualization library that offers elegant plots with interactive features. In fact, you may have already seen `Highcharts` plots in ICJIA R&A Unit's online articles (e.g. Figure 1 and Figure 2 in [this article](http://www.icjia.state.il.us/articles/evaluation-of-illinois-multi-jurisdictional-drug-task-forces)).
+`Highcharts` is one of my favorite JavaScript visualization library that offers elegant plots with interactive features. In fact, you may have already seen `Highcharts` plots in ICJIA R&A Unit's online articles (e.g. Figure 1 and Figure 2 in [this article](http://www.icjia.state.il.us/articles/evaluation-of-illinois-multi-jurisdictional-drug-task-forces){target="_blank"}).
 
 ### The `hchart()` function
 ```{r eval=FALSE}
@@ -597,27 +597,27 @@ highchart() %>%
 ## Resources
 As usual, we have only scratched the surface of these interactive plotting packages. I recommand you to pick one package you are intersted and take a look through its official documentation to gain a deeper understanding of their APIs.
 
-* `ggiraph` [official documentation page](https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html)
-* `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html)
-* `plotly` [official documentation page](https://plot.ly/r/)
-* Sievert, C. (n.d.) [*`plotly` for R*](https://plotly-book.cpsievert.me/).
+* `ggiraph` [official documentation page](https://davidgohel.github.io/ggiraph/articles/offcran/using_ggiraph.html){target="_blank"}
+* `highcharter` [official documentation page](http://jkunst.com/highcharter/index.html){target="_blank"}
+* `plotly` [official documentation page](https://plot.ly/r/){target="_blank"}
+* Sievert, C. (n.d.) [*`plotly` for R*](https://plotly-book.cpsievert.me/){target="_blank"}.
 
 
 ## More on interactive plotting
 To be honest, the interactive plotting packages we have explored above are only those I have some experience with. As you might have suspected, there are many more R pakcages for interactive plotting. The following are few of such packages that I find interesting:
 
-* `rAmCharts` is an R interface to the [`amCharts`](https://www.amcharts.com/products/) JavaScript library that offers interactive options for many common plot types and more. See `rAmCharts` [online documentation](https://datastorm-open.github.io/introduction_ramcharts/amBoxplot.html) for more.
-* `chartjs` is an R interface to the [`Chart.js`](http://www.chartjs.org/) JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots. See `chartjs` [website](http://tutuchan.github.io/chartjs/) for more.
-* `googleVis` offers an R API to [Google Charts](https://developers.google.com/chart/), which offers rich set of interactive charts and data tools. See `googleVis` tutorial [slides](http://decastillo.github.io/googleVis_Tutorial/) by the package creator for more information.
-* `dygraphs` is an R interface to the [dygraphs](http://rstudio.github.io/dygraphs/index.html) JavaScript library for interactive time-series plots. See `dygraph` [online documentation](http://rstudio.github.io/dygraphs/index.html) for more.
+* `rAmCharts` is an R interface to the [`amCharts`](https://www.amcharts.com/products/){target="_blank"} JavaScript library that offers interactive options for many common plot types and more. See `rAmCharts` [online documentation](https://datastorm-open.github.io/introduction_ramcharts/amBoxplot.html){target="_blank"} for more.
+* `chartjs` is an R interface to the [`Chart.js`](http://www.chartjs.org/){target="_blank"} JavaScript library and offers six chart types (bar, line, pie, doughnut, radar, and polar area) for interactive plots. See `chartjs` [website](http://tutuchan.github.io/chartjs/){target="_blank"} for more.
+* `googleVis` offers an R API to [Google Charts](https://developers.google.com/chart/){target="_blank"}, which offers rich set of interactive charts and data tools. See `googleVis` tutorial [slides](http://decastillo.github.io/googleVis_Tutorial/){target="_blank"} by the package creator for more information.
+* `dygraphs` is an R interface to the [dygraphs](http://rstudio.github.io/dygraphs/index.html){target="_blank"} JavaScript library for interactive time-series plots. See `dygraph` [online documentation](http://rstudio.github.io/dygraphs/index.html){target="_blank"} for more.
 
 
 ## Other visualizations
 There are also R packages for visualizing specific kinds of data. I find the following three to be particuarly interesting and worth exploring: 
 
-* [`visNetwork`](http://datastorm-open.github.io/visNetwork/) (wrapper for `vis.js`) and [`networkD3`](http://visjs.org/) are two popular packages for interactive visualization of network/graph data in R. Start with [`igraph`](http://igraph.org/r/) or [`tidygraph`](https://github.com/thomasp85/tidygraph) package to learn how to work with network objects in R
-* [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html) (wrapper for `worldcloud2.js`) is a package for creating word clouds, a popular way to visualize text data.
-* [`data.tree`](https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html) is an R package for managing as well as visualizing hierarchical data and tree structures.
+* [`visNetwork`](http://datastorm-open.github.io/visNetwork/){target="_blank"} (wrapper for `vis.js`) and [`networkD3`](http://visjs.org/){target="_blank"} are two popular packages for interactive visualization of network/graph data in R. Start with [`igraph`](http://igraph.org/r/){target="_blank"} or [`tidygraph`](https://github.com/thomasp85/tidygraph){target="_blank"} package to learn how to work with network objects in R
+* [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html){target="_blank"} (wrapper for `worldcloud2.js`) is a package for creating word clouds, a popular way to visualize text data.
+* [`data.tree`](https://cran.r-project.org/web/packages/data.tree/vignettes/data.tree.html){target="_blank"} is an R package for managing as well as visualizing hierarchical data and tree structures.
 
 
 ***
@@ -625,9 +625,9 @@ There are also R packages for visualizing specific kinds of data. I find the fol
 
 # References
 <ul>
-  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html"><i>ggiraph</i></a>.</li>
-  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html"><i>HIGHCHARTER</i></a>.</li>
-  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/"><i>plotly for R</i></a>.</li>
-  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html">"tmap in a nutshell"</a>.</li>
-  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html">"tmap modes: plot and interactive view"</a>.</li>
+  <li>Gohel, D. (n.d.). <a href="https://davidgohel.github.io/ggiraph/index.html" target="_blank"><i>ggiraph</i></a>.</li>
+  <li>Kunst, J. (2017). <a href="http://jkunst.com/highcharter/index.html" target="_blank"><i>HIGHCHARTER</i></a>.</li>
+  <li>Sievert, C. (n.d.). <a href="https://plotly-book.cpsievert.me/" target="_blank"><i>plotly for R</i></a>.</li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html" target="_blank">"tmap in a nutshell"</a>.</li>
+  <li>Tennekes, M. (n.d.). <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-modes.html" target="_blank">"tmap modes: plot and interactive view"</a>.</li>
 </ul>

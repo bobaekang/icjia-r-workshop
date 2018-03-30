@@ -229,14 +229,14 @@ div.tocify {
 <p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
 <!-- logo -->
 <div class="logo">
-<p><a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
+<p><a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
 </div>
-<p>This page contains the notes for <strong>the second part of R Workshop Module 2: R basics</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<p>This page contains the notes for <strong>the second part of R Workshop Module 2: R basics</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang" target="_blank">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
 <div id="links" class="section level3">
 <h3>Links</h3>
 <p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
 <p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
-<p>Click <a href="../slides/module2_slides2.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 2, Part 2</strong>.</p>
+<p>Click <a href="../slides/module2_slides2.html" target="_blank"><strong>here</strong></a> to view the accompanying <strong>slides for Module 2, Part 2</strong>.</p>
 <p>Navigate to the other workshop materials:</p>
 <button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">
 <strong>SEE MORE</strong>
@@ -615,7 +615,7 @@ df1</code></pre>
 ## 4     41.     42.     43.     44.     45.
 ## 5     51.     52.     53.     54.     55.</code></pre>
 <p><code>tibble</code> is a part of the <code>tidyverse</code> framework (we’ll come back to this). A <code>tibble</code> object follows easily understood <code>tidyverse</code> syntax and has a refined print method, which can be seen as more informative and convenient. Coercing a data.frame object into a <code>tibble</code> can be done with <code>as_tibble()</code> from the <code>tibble</code> package.</p>
-<p>Please see <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on <code>tibble</code>.</p>
+<p>Please see <a href="http://r4ds.had.co.nz/tibbles.html" target="_blank">here</a> for more on <code>tibble</code>.</p>
 </div>
 <div id="data.table" class="section level3">
 <h3><code>data.table</code></h3>
@@ -626,7 +626,7 @@ df1</code></pre>
 ## 4:      41      42      43      44      45
 ## 5:      51      52      53      54      55</code></pre>
 <p><code>data.frame</code> objects are made available via the <code>data.table</code> package. It is highly optimized for larger tables (e.g. &gt;100K rows) and provides compact syntax for advanced slicing and dicing of tablular data. Coercing a <code>data.frame</code> object into a <code>data.table</code> can be done with <code>as.data.table()</code>.</p>
-<p>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on <code>data.table</code>.</p>
+<p>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" target="_blank">here</a> for more on <code>data.table</code>.</p>
 <hr />
 </div>
 </div>
@@ -635,7 +635,7 @@ df1</code></pre>
 <h1>R Add-On Packages</h1>
 <img src="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/R+Packages+Guide/content_rdoc10.png" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.datacamp.com/">DataCamp</a></p>
+<p>Source: <a href="https://www.datacamp.com/" target="_blank">DataCamp</a></p>
 </div>
 <div id="what-are-add-on-packages" class="section level2">
 <h2>What are add-on packages?</h2>
@@ -665,7 +665,7 @@ library(some_package)</code></pre>
 <li>If we want the latest version of a package with cutting-edge features, we may choose to install the package using the <code>install_github(&quot;author/package&quot;)</code> method, which will pull the most up-to-date version of the package as shown in its GitHub repository. The <code>install_github()</code> function is available via the <code>devtools</code> package.</li>
 </ul></li>
 </ol>
-<p>Also, check out “Install Packages” <a href="https://vimeo.com/203516241">tutorial video</a> by RStudio, Inc.</p>
+<p>Also, check out “Install Packages” <a href="https://vimeo.com/203516241" target="_blank">tutorial video</a> by RStudio, Inc.</p>
 <hr />
 </div>
 </div>
@@ -673,7 +673,7 @@ library(some_package)</code></pre>
 <h1>Tidyverse Framework</h1>
 <img src="../images/tidyverse.png" width="100%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+<p>Source: <a href="https://www.tidyverse.org/" target="_blank">tidyverse.org</a></p>
 </div>
 <p><code>tidyverse</code> is a set of packages that are based on a particular perspective on working with data in R. It is also one of the most popular styles of doing data analysis.</p>
 <div id="tidy-approach-to-data-science" class="section level2">
@@ -688,10 +688,10 @@ library(some_package)</code></pre>
 </blockquote>
 <img src="http://r4ds.had.co.nz/images/tidy-1.png" width="100%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a></p>
+<p>Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/" target="_blank"><span style="font-style:italic">R for Data Science</span></a></p>
 </div>
 <ul>
-<li>See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data</li>
+<li>See <a href="http://r4ds.had.co.nz/tidy-data.html" target="_blank">here</a> for more on tidy data</li>
 </ul>
 </div>
 <div id="untidy-data" class="section level2">
@@ -751,7 +751,7 @@ library(some_package)</code></pre>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
 <ul>
-<li>RStudio, Inc., “tidy tutorial” <a href="https://vimeo.com/211352331">video</a></li>
+<li>RStudio, Inc., “tidy tutorial” <a href="https://vimeo.com/211352331" target="_blank">video</a></li>
 </ul>
 <hr />
 </div>
@@ -760,7 +760,7 @@ library(some_package)</code></pre>
 <h1>Good Code, Bad Code</h1>
 <img src="https://static01.nyt.com/images/2016/11/27/opinion/RFD-digital-connectedness/RFD-digital-connectedness-sfSpan.jpg" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.nytimes.com/">The New York Times</a></p>
+<p>Source: <a href="https://www.nytimes.com/" target="_blank">The New York Times</a></p>
 </div>
 <div id="why-style-guide" class="section level2">
 <h2>Why style guide?</h2>
@@ -778,8 +778,8 @@ library(some_package)</code></pre>
 <h2>Which style guide?</h2>
 <p>Currently, there is no single style guide adopted by the R community as <em>the</em> standard. However, there are two style guides that are considered authoritative:</p>
 <ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style guide</a></li>
-<li><a href="http://style.tidyverse.org/">Tidyverse style guide</a></li>
+<li><a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">Google’s R Style guide</a></li>
+<li><a href="http://style.tidyverse.org/" target="_blank">Tidyverse style guide</a></li>
 </ul>
 </div>
 <div id="personal-recommendations" class="section level2">
@@ -946,23 +946,23 @@ average &lt;- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr
 <h1>References</h1>
 <ul>
 <li>
-Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml">“Google’s R Style Guide”</a>.
+Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">“Google’s R Style Guide”</a>.
 </li>
 <li>
-Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.
+Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/" target="_blank"><span style="font-style:italic">R for Data Science</span></a>.
 </li>
 <li>
-Wickham, H. (n.d.). <a href="http://style.tidyverse.org/">“The tidyverse style guide”</a>.
+Wickham, H. (n.d.). <a href="http://style.tidyverse.org/" target="_blank">“The tidyverse style guide”</a>.
 </li>
 </ul>
 </div>
 
 <footer>
   <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
-  <a href="https://github.com/bobaekang/" class="icon-footer">
+  <a href="https://github.com/bobaekang/" class="icon-footer" target="_blank">
     <i class="fa fa-github fa-2x"></i>
   </a>
-  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer" target="_blank">
     <i class="fa fa-linkedin-square fa-2x"></i>
   </a>
 </footer>

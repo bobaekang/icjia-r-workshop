@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -27,14 +27,14 @@ library(knitr)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **the second part of R Workshop Module 5: Statistical modeling with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the second part of R Workshop Module 5: Statistical modeling with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module5_slides2.html) to view the accompanying **slides for Module 5, Part 2**.
+Click [**here**](../slides/module5_slides2.html){target="_blank"} to view the accompanying **slides for Module 5, Part 2**.
 
 Navigate to the other workshop materials:
 
@@ -82,7 +82,7 @@ Please note that the current Part is barely scratching the surface of any of the
 knitr::include_graphics("../images/survival_analysis.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_aml_with_confidence_bounds.svg">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_aml_with_confidence_bounds.svg" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -122,9 +122,9 @@ $$\lambda(t) = \lim_{dt\to0} \frac{\text{Pr}(t \leq T < t + dt)}{S(t)dt} = \frac
 ## Packages on survival analysis
 R ecosystem offers a number of packages to offer tools and functionalities pertaining to survival analysis.
 
-Among many, the `survival` package is the most essential, which makes available the `Surv` class that is fundamental to a  survival analysis tools in R ecosystem. For more details, you may visit its [GitHub repository](https://github.com/therneau/survival) and read the package vignettes available on [the package CRAN page](https://cran.r-project.org/web/packages/survival/index.html)
+Among many, the `survival` package is the most essential, which makes available the `Surv` class that is fundamental to a  survival analysis tools in R ecosystem. For more details, you may visit its [GitHub repository](https://github.com/therneau/survival){target="_blank"} and read the package vignettes available on [the package CRAN page](https://cran.r-project.org/web/packages/survival/index.html){target="_blank"}
 
-`survminer` package helps visualization of survival models. Take a look at the [package website](http://www.sthda.com/english/rpkgs/survminer/) or the [GiHub repository](https://github.com/kassambara/survminer) for more information.
+`survminer` package helps visualization of survival models. Take a look at the [package website](http://www.sthda.com/english/rpkgs/survminer/){target="_blank"} or the [GiHub repository](https://github.com/kassambara/survminer){target="_blank"} for more information.
 
 
 ## Basic survival models
@@ -200,9 +200,9 @@ knitr::include_graphics("../images/ggsurvplot.png")
 ## Other resources
 Obviously, what we have covered above is only the first step toward survival analysis in R. Please refer to the following resources. Also, for specific functions, remember to take advantage of the reference manuals using `?` or `help()`.
 
-* Diez, D. M. (2013). ["Survival Analysis in R"](https://www.openintro.org/download.php?file=survival_analysis_in_R).
-* Econometrics Academy. (2013). ["Survival Analysis"](https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis).
-* Rickert, J. (2017). ["Survival Analysis with R"](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/) on *R Views*.
+* Diez, D. M. (2013). ["Survival Analysis in R"](https://www.openintro.org/download.php?file=survival_analysis_in_R){target="_blank"}.
+* Econometrics Academy. (2013). ["Survival Analysis"](https://sites.google.com/site/econometricsacademy/econometrics-models/survival-analysis){target="_blank"}.
+* Rickert, J. (2017). ["Survival Analysis with R"](https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/){target="_blank"} on *R Views*.
 * Moore, D. R. (2016). *Applied Survival Analysis Using R*.
 
 
@@ -214,7 +214,7 @@ Obviously, what we have covered above is only the first step toward survival ana
 knitr::include_graphics("../images/time_series.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Stationarycomparison.png">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Stationarycomparison.png" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -248,7 +248,7 @@ The following figure illustrates the difference between a stationary time series
 knitr::include_graphics("../images/stationarity.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://en.wikipedia.org/wiki/Stationary_process">"Stationary process"</a>, Wikipedia
+Source: <a href="https://en.wikipedia.org/wiki/Stationary_process" target="_blank">"Stationary process"</a>, Wikipedia
 </p>
 
 ### Differencing
@@ -258,7 +258,7 @@ Differencing refers to a time sereis analysis technique to make the series stati
 ## Packages on time series analysis
 `stats` package, which is part of R "base packages", provide a wide range of useful tools for time series analysis.
 
-There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forcast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html)] to find out more. There also exists a full-fledged online textbook using `forcast` pacakge: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/).
+There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forcast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html){target="_blank"}] to find out more. There also exists a full-fledged online textbook using `forcast` pacakge: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/){target="_blank"}.
 
 
 ## Basic time series analysis
@@ -293,7 +293,7 @@ stl(x, s.window, ...)
 ### ACF and PACF plots
 Autocorrelation function (ACF) and Partial autocorrelation function (PACF) plots of a differenced time series offer a heuristic way to choose specifications for ARIMA models, which we will explore shortly.
 
-It is beyond the scope of the current Part to offer a full description of how each function is computed and how to use them as a guide to selecting a proper time series model. However, you can read this ["Guide"](ftp://ftp.boulder.ibm.com/software/analytics/spss/support/Stats/Docs/Statistics/Miscellaneous/Guide_to_ACF_PACF_plots.pdf) for how to use ACF and PACF plots for selecting models to fit.
+It is beyond the scope of the current Part to offer a full description of how each function is computed and how to use them as a guide to selecting a proper time series model. However, you can read this ["Guide"](ftp://ftp.boulder.ibm.com/software/analytics/spss/support/Stats/Docs/Statistics/Miscellaneous/Guide_to_ACF_PACF_plots.pdf){target="_blank"} for how to use ACF and PACF plots for selecting models to fit.
 
 Roughly:
 
@@ -359,10 +359,10 @@ Refer to the reference manual documentation using `?armia` for more details.
 ## Other resources
 The following resource materials can help you to dive deeper into the time series analysis with R:
 
-* Coghlan, A. (2017). ["A Little Book of R for Time Series"](http://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/index.html).
-* Econometrics Academy. (2013). ["Time Series ARIMA Models"](https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models).
+* Coghlan, A. (2017). ["A Little Book of R for Time Series"](http://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/index.html){target="_blank"}.
+* Econometrics Academy. (2013). ["Time Series ARIMA Models"](https://sites.google.com/site/econometricsacademy/econometrics-models/time-series-arima-models){target="_blank"}.
     * Vidoe lectures; using `stats` and `tseries` packages
-* Prabhakaran, S. ["Time Series Analysis"](http://r-statistics.co/Time-Series-Analysis-With-R.html) on [r-statistics.co](http://r-statistics.co/).
+* Prabhakaran, S. ["Time Series Analysis"](http://r-statistics.co/Time-Series-Analysis-With-R.html){target="_blank"} on [r-statistics.co](http://r-statistics.co/){target="_blank"}.
 * Shumway, R. & Stoffer, D. (2017). *Time Series Analysis and Its Applications: With R Examples*. (4th ed.). (textbook)
 
 
@@ -374,7 +374,7 @@ The following resource materials can help you to dive deeper into the time serie
 include_graphics("../images/spatial_regression.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-error-model">R Spatial</a>
+Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-error-model" target="_blank">R Spatial</a>
 </p>
 
 
@@ -391,7 +391,7 @@ Neighbors of a spatial data point are other data points that are proximate to th
 * Distance-based ways define neighbors based on some distance crieterion. All data points that are within $d$ units of distance from a data point `x` are neighbors of `x`. 
 * K-nearest neighbors define $k$ nearest data points to a data point `x` to be the neighbors of `x`.
     
-Try [this Shiny application](http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html) by Klye E. Walker to see how the neighboring structure changes with different definitions.
+Try [this Shiny application](http://personal.tcu.edu/kylewalker/spatial-neighbors-in-r.html){target="_blank"} by Klye E. Walker to see how the neighboring structure changes with different definitions.
 
 ### spatial weights
 Spatial weights represent the significance of neighbors. This reflects an intuition that not all neighbors are equally important. However, in practice, weights are often binary: 1 if neighbors and 0 otherwise.
@@ -416,9 +416,9 @@ Currently, there are two major packages to create and manipulate spatial objects
 
 Take a look at the following resource materials for `spdep` and spatial data analysis with R:
 
-* Package `spdep` [reference manual](https://cran.r-project.org/web/packages/spdep/spdep.pdf).
-* Bivand R. (2017). ["Creating Neighbours."](https://cran.r-project.org/web/packages/spdep/vignettes/nb.pdf)
-* Bivand R. (2017). ["The Problem of Spatial Autocorrelation: forty years on."](https://cran.r-project.org/web/packages/spdep/vignettes/CO69.pdf)
+* Package `spdep` [reference manual](https://cran.r-project.org/web/packages/spdep/spdep.pdf){target="_blank".
+* Bivand R. (2017). ["Creating Neighbours."](https://cran.r-project.org/web/packages/spdep/vignettes/nb.pdf){target="_blank"}
+* Bivand R. (2017). ["The Problem of Spatial Autocorrelation: forty years on."](https://cran.r-project.org/web/packages/spdep/vignettes/CO69.pdf){target="_blank"}
 
 
 ## Creating neighbors and weights matrix
@@ -524,11 +524,11 @@ These two are functions to fit lag and error models. `formula` and `data` works 
 ## Other resources
 To know more about spatial regression analysis in general and its implementation in R, refer to the following materials:
 
-* Anselin, L. (2007). [*Spatial Regression Analysis in R: A Workbook*](http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf).
-* Econometrics Academy. (2013). ["Spatial Econometrics"](https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics).
-* Lovelace, R. et al. (2018).[*Geocomputation with R*](https://geocompr.robinlovelace.net/).
-* Sarmiento-Barbieri, I. ["An Introduction to Spatial Econometrics in R"](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html).
-* Hijmans, R. (2016). [*R Spatial*](http://rspatial.org/intr/index.html).
+* Anselin, L. (2007). [*Spatial Regression Analysis in R: A Workbook*](http://www.csiss.org/gispopsci/workshops/2011/PSU/readings/W15_Anselin2007.pdf){target="_blank"}.
+* Econometrics Academy. (2013). ["Spatial Econometrics"](https://sites.google.com/site/econometricsacademy/econometrics-models/spatial-econometrics){target="_blank"}.
+* Lovelace, R. et al. (2018).[*Geocomputation with R*](https://geocompr.robinlovelace.net/){target="_blank"}.
+* Sarmiento-Barbieri, I. ["An Introduction to Spatial Econometrics in R"](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html){target="_blank"}.
+* Hijmans, R. (2016). [*R Spatial*](http://rspatial.org/intr/index.html){target="_blank"}.
 
 
 ***
@@ -539,7 +539,7 @@ To know more about spatial regression analysis in general and its implementation
 include_graphics("../images/machine_learning.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -592,20 +592,20 @@ It is beyond the scope of the current Part to offer a full description of each a
 R has many packages that offer machine learning algorithms and relevant tools. The following two are among the most comprehensive packages providing a wide range of machine learning functionalities.
 
 ### `caret` pacakage
-`caret` is a shorthand for "Classification And REgression Training", and one of the most mature machine learning package out there. Check out the package vignettes on [the CRAN page](https://cran.r-project.org/web/packages/caret) and the package [GitHub repository](https://github.com/topepo/caret). There is also [an online textbook](http://topepo.github.io/caret/index.html) on using `caret` for machine learning.
+`caret` is a shorthand for "Classification And REgression Training", and one of the most mature machine learning package out there. Check out the package vignettes on [the CRAN page](https://cran.r-project.org/web/packages/caret){target="_blank"} and the package [GitHub repository](https://github.com/topepo/caret){target="_blank"}. There is also [an online textbook](http://topepo.github.io/caret/index.html){target="_blank"} on using `caret` for machine learning.
 
 ### `mlr` pacakge
-`mlr` is an abbreviation of "Machine Learning in R". Take a look at the vignettes on [the package CRAN page](https://cran.r-project.org/web/packages/mlr/) and its [GitHub repository](https://github.com/mlr-org/mlr/). Also visit [the package website]((https://mlr-org.github.io/mlr-tutorial/devel/html/)), which provide tutorials on the `mlr` API.
+`mlr` is an abbreviation of "Machine Learning in R". Take a look at the vignettes on [the package CRAN page](https://cran.r-project.org/web/packages/mlr/){target="_blank"} and its [GitHub repository](https://github.com/mlr-org/mlr/){target="_blank"}. Also visit [the package website](https://mlr-org.github.io/mlr-tutorial/devel/html/){target="_blank"}, which provide tutorials on the `mlr` API.
 
 
 ## Other resources
 To get started with machine learning, you may want to try the following materials. Also, don't forget to search online for other machine learning materials.
 
-* Andrew Ng's ["Machine Learning" course](https://www.coursera.org/learn/machine-learning) on Coursera
+* Andrew Ng's ["Machine Learning" course](https://www.coursera.org/learn/machine-learning){target="_blank"} on Coursera
 * James, G. et al. (2013). *An Introduction to Statistical Learning*. (textbook)
-    * [Website with a link to free textbook](http://www-bcf.usc.edu/~gareth/ISL/)
+    * [Website with a link to free textbook](http://www-bcf.usc.edu/~gareth/ISL/){target="_blank"}
     * Examples are in R code
-* Google's [*Machine Learning Crash Course*](https://developers.google.com/machine-learning/crash-course/)
+* Google's [*Machine Learning Crash Course*](https://developers.google.com/machine-learning/crash-course/){target="_blank"}
     * Examples are in Python code
 
 
@@ -614,13 +614,13 @@ To get started with machine learning, you may want to try the following material
 
 # References
 <ul>
-  <li>Allignol A. & Latouche, A. (2018). <a href="https://cran.r-project.org/web/views/Survival.html">"CRAN Task View: Survival Analysis"</a>.</li>
+  <li>Allignol A. & Latouche, A. (2018). <a href="https://cran.r-project.org/web/views/Survival.html" target="_blank">"CRAN Task View: Survival Analysis"</a>.</li>
   <li>Anselin, L. & Rey, S. (2014). <i>Modern Spatial Econometrics in Practice</i>.</li>
-  <li>Bivand, Roger. (2018). <a href="https://cran.r-project.org/web/views/Spatial.html">"CRAN Task View: Analysis of Spatial Data"</a>.</li>
-  <li>Fox, J. (2016). <a href="https://cran.r-project.org/web/views/SocialSciences.html">"CRAN Task View: Statistics for the Social Sciences"</a>.</li>
+  <li>Bivand, Roger. (2018). <a href="https://cran.r-project.org/web/views/Spatial.html" target="_blank">"CRAN Task View: Analysis of Spatial Data"</a>.</li>
+  <li>Fox, J. (2016). <a href="https://cran.r-project.org/web/views/SocialSciences.html" target="_blank">"CRAN Task View: Statistics for the Social Sciences"</a>.</li>
   <li>Harrell, F. Jr. (2015). <i>Regression Modeling Strategies</i> (2nd ed.).</li>
-  <li>Hyndman, R. J. (2018). <a href="https://cran.r-project.org/web/views/TimeSeries.html">"CRAN Task View: Time Series Analysis"</a>.</li>
-  <li>NIST/SEMATECH. (2013). <a href="http://www.itl.nist.gov/div898/handbook/"><span style="font-style:italic">e-Handbook of Statistical Methods</span></a>.</li>
+  <li>Hyndman, R. J. (2018). <a href="https://cran.r-project.org/web/views/TimeSeries.html" target="_blank">"CRAN Task View: Time Series Analysis"</a>.</li>
+  <li>NIST/SEMATECH. (2013). <a href="http://www.itl.nist.gov/div898/handbook/" target="_blank"><i>e-Handbook of Statistical Methods</i></a>.</li>
   <li>Reference manuals for the aforementioned R packages.</li>
   <li>Wikipedia articles on relevant topics.</li>
 </ul>

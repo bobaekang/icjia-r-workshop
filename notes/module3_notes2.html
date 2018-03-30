@@ -229,14 +229,14 @@ div.tocify {
 <p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></p>
 <!-- logo -->
 <div class="logo">
-<p><a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
+<p><a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a></p>
 </div>
-<p>This page contains the notes for <strong>the second part of R Workshop Module 3: Data Analysis with R</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
+<p>This page contains the notes for <strong>the second part of R Workshop Module 3: Data Analysis with R</strong>, which is part of the R Workshop series prepared by ICJIA Research Analyst <a href="http://www.icjia.state.il.us/biographies/bobae-kang" target="_blank">Bobae Kang</a> to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.</p>
 <div id="links" class="section level3">
 <h3>Links</h3>
 <p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
 <p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
-<p>Click <a href="../slides/module3_slides2.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 3, Part 2</strong>.</p>
+<p>Click <a href="../slides/module3_slides2.html" target="_blank"><strong>here</strong></a> to view the accompanying <strong>slides for Module 3, Part 2</strong>.</p>
 <p>Navigate to the other workshop materials:</p>
 <button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">
 <strong>SEE MORE</strong>
@@ -278,7 +278,7 @@ div.tocify {
 <h1>Data Analysis with R (2): More on data analysis</h1>
 <img src="../images/more_data_analysis.png" width="35%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png">Iconfinder.com</a></p>
+<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/basic-dashboard-1/512/Basic_Dashboard_UI_fix_option_machine_tools-512.png" target="_blank">Iconfinder.com</a></p>
 </div>
 <p>The second part of Module 3 introduces more <code>tidyverse</code> tools for working with data. Specifically, this part covers (1) working with string data using <code>stringr</code>, (2) working with date and date-time data using <code>lubridate</code>, and (3) importing and exporting data using various packages.</p>
 <hr />
@@ -287,14 +287,14 @@ div.tocify {
 <h1>Working with Strings</h1>
 <img src="../images/font_case.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
+<p>Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a></p>
 </div>
 <p>In computer programming, a “string” often refers to a string of characters. Manipulating strings is an important skill for data analysis.</p>
 <div id="stringr-from-tidyverse" class="section level2">
 <h2><code>stringr</code> from tidyverse</h2>
 <img src="../images/stringr.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
+<p>Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a></p>
 </div>
 </div>
 <div id="key-stringr-functions" class="section level2">
@@ -474,10 +474,10 @@ substr(x, start, stop) &lt;- value</code></pre>
 <h2>More on <code>stringr</code></h2>
 <p>What we have touched upon so far is only a small (though highly useful) part of <code>stringr</code>. I recommend you to check out the following resources:</p>
 <ul>
-<li><code>stringr</code> on <a href="http://stringr.tidyverse.org/">tidyverse.org</a></li>
-<li><code>stringr</code> <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">CRAN documentation</a></li>
-<li><code>stringr</code> <a href="https://github.com/tidyverse/stringr">Github repository</a></li>
-<li>RStudio. (2017). <a href="https://github.com/rstudio/cheatsheets/blob/master/strings.pdf">“Work with Strings Cheat Sheet”</a>.</li>
+<li><code>stringr</code> on <a href="http://stringr.tidyverse.org/" target="_blank">tidyverse.org</a></li>
+<li><code>stringr</code> <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf" target="_blank">CRAN documentation</a></li>
+<li><code>stringr</code> <a href="https://github.com/tidyverse/stringr" target="_blank">Github repository</a></li>
+<li>RStudio. (2017). <a href="https://github.com/rstudio/cheatsheets/blob/master/strings.pdf" target="_blank">“Work with Strings Cheat Sheet”</a>.</li>
 </ul>
 <hr />
 </div>
@@ -759,9 +759,9 @@ str_detect(str, &quot;p*&quot;)</code></pre>
 <h2>More on regular expression</h2>
 <p>As mentioned earlier, regular expression is a broad topic. To get a better hold of regular expression, I recommend you to check out the following resources:</p>
 <ul>
-<li><a href="https://www.regular-expressions.info/rlanguage.html">Regular-Expressions.info</a></li>
-<li>RStudio. (2016).<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf">“Basic Regular Expressions in R: Cheat Sheet”.</a></li>
-<li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/articles/regular-expressions.html">“Regualr Expressions”</a>. <em>stringr.tidyverse.org</em>.</li>
+<li><a href="https://www.regular-expressions.info/rlanguage.html" target="_blank">Regular-Expressions.info</a></li>
+<li>RStudio. (2016).<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf" target="_blank">“Basic Regular Expressions in R: Cheat Sheet”.</a></li>
+<li>Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/articles/regular-expressions.html" target="_blank">“Regualr Expressions”</a>. <em>stringr.tidyverse.org</em>.</li>
 </ul>
 <hr />
 </div>
@@ -770,7 +770,7 @@ str_detect(str, &quot;p*&quot;)</code></pre>
 <h1>Working with Datetimes</h1>
 <img src="../images/calendar.png" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png">Iconfinder.com</a></p>
+<p>Source: <a href="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" target="_blank">Iconfinder.com</a></p>
 </div>
 <p>The work of data analysis often deals with dates. R has data types for date and datetime, which come with useful properties for understanding and analyzing temporal characteristics of data.</p>
 <div id="datesdatetimes-basics" class="section level2">
@@ -782,7 +782,7 @@ str_detect(str, &quot;p*&quot;)</code></pre>
 <h2><code>lubridate</code> from tidyverse</h2>
 type:section <img src="../images/lubridate.png" width="25%" style="box-shadow: none; display: block; margin: auto;" />
 <div style="font-size:0.5em; text-align:center; color: #777;">
-<p>Source: <a href="https://www.rstudio.com/">RStudio</a></p>
+<p>Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a></p>
 </div>
 </div>
 <div id="key-lubridate-functions" class="section level2">
@@ -1033,10 +1033,10 @@ ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
 <h2>More on lubridate</h2>
 <p>As in the case of <code>stringr</code>, what we have seen is only part of what <code>lubridate</code> offers. I recommend you to check out the following resources to learn more about <code>lubridate</code>.</p>
 <ul>
-<li><code>lubridate</code> on <a href="http://lubridate.tidyverse.org/">tidyverse.org</a></li>
-<li><code>lubridate</code> <a href="https://cran.r-project.org/web/packages/lubridate/lubridate.pdf">CRAN documentation</a></li>
-<li><code>lubridate</code> <a href="https://github.com/tidyverse/lubridate">Github repository</a></li>
-<li>RStudio. (2017). <a href="https://github.com/rstudio/cheatsheets/blob/master/lubridate.pdf">“Dates and Times Cheat Sheet”</a>.</li>
+<li><code>lubridate</code> on <a href="http://lubridate.tidyverse.org/" target="_blank">tidyverse.org</a></li>
+<li><code>lubridate</code> <a href="https://cran.r-project.org/web/packages/lubridate/lubridate.pdf" target="_blank">CRAN documentation</a></li>
+<li><code>lubridate</code> <a href="https://github.com/tidyverse/lubridate" target="_blank">Github repository</a></li>
+<li>RStudio. (2017). <a href="https://github.com/rstudio/cheatsheets/blob/master/lubridate.pdf" target="_blank">“Dates and Times Cheat Sheet”</a>.</li>
 </ul>
 <hr />
 </div>
@@ -1045,7 +1045,7 @@ ymd(..., quiet = FALSE, tz = &quot;UTC&quot;, ...)</code></pre>
 <h1>Importing/Exporting Data</h1>
 <img src="../images/data_transfer.png" width="30%" style="box-shadow: none; display: block; margin: auto;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 <p>Importing and exporting datasets in different formats is one of the basic operations for any data analysis task. Here we will explore some options for this task with datasets in various file formats.</p>
 <div id="comma-separated-values-.csv" class="section level2">
@@ -1089,9 +1089,9 @@ read_xlsx(path, ...)</code></pre>
 <div id="more-on-readxl" class="section level3">
 <h3>More on <code>readxl</code></h3>
 <ul>
-<li><code>readxl</code> on <a href="http://readxl.tidyverse.org/">tidyverse.org</a></li>
-<li><code>readxl</code> <a href="https://cran.r-project.org/web/packages/readxl/readxl.pdf">CRAN documentation</a></li>
-<li><code>readxl</code> <a href="https://github.com/tidyverse/readxl">Github repository</a></li>
+<li><code>readxl</code> on <a href="http://readxl.tidyverse.org/" target="_blank">tidyverse.org</a></li>
+<li><code>readxl</code> <a href="https://cran.r-project.org/web/packages/readxl/readxl.pdf" target="_blank">CRAN documentation</a></li>
+<li><code>readxl</code> <a href="https://github.com/tidyverse/readxl" target="_blank">Github repository</a></li>
 </ul>
 </div>
 </div>
@@ -1107,9 +1107,9 @@ write_sav(data, path)</code></pre>
 <div id="more-on-haven" class="section level3">
 <h3>More on <code>haven</code></h3>
 <ul>
-<li><code>haven</code> on <a href="http://haven.tidyverse.org/">tidyverse.org</a></li>
-<li><code>haven</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf">CRAN documentation</a></li>
-<li><code>haven</code> <a href="https://github.com/tidyverse/haven">Github repository</a></li>
+<li><code>haven</code> on <a href="http://haven.tidyverse.org/" target="_blank">tidyverse.org</a></li>
+<li><code>haven</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf" target="_blank">CRAN documentation</a></li>
+<li><code>haven</code> <a href="https://github.com/tidyverse/haven" target="_blank">Github repository</a></li>
 </ul>
 </div>
 </div>
@@ -1123,8 +1123,8 @@ write_feather(x, path)</code></pre>
 <div id="more-on-feather" class="section level3">
 <h3>More on <code>feather</code></h3>
 <ul>
-<li>Wickham, H. (2016), <a href="https://blog.rstudio.com/2016/03/29/feather/">“Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow”</a>. <em>RStudio Blog</em>.</li>
-<li><code>feather</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf">CRAN documentation</a></li>
+<li>Wickham, H. (2016), <a href="https://blog.rstudio.com/2016/03/29/feather/" target="_blank">“Feather: A Fast On-Disk Format for Data Frames for R and Python, powered by Apache Arrow”</a>. <em>RStudio Blog</em>.</li>
+<li><code>feather</code> <a href="https://cran.r-project.org/web/packages/haven/haven.pdf" target="_blank">CRAN documentation</a></li>
 </ul>
 <hr />
 </div>
@@ -1134,41 +1134,41 @@ write_feather(x, path)</code></pre>
 <h1>References</h1>
 <ul>
 <li>
-Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.
+Grolemund, G. &amp; Wickham, H. (2017). <a href="http://r4ds.had.co.nz/" target="_blank"><span style="font-style:italic">R for Data Science</span></a>.
 </li>
 <li>
-Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html">“Date Values”</a>. <span style="font-syle:italic">Quick-R</span>.
+Kabacoff, R. (2017). <a href="https://www.statmethods.net/input/dates.html" target="_blank">“Date Values”</a>. <span style="font-syle:italic">Quick-R</span>.
 </li>
 <li>
-RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Dates and Times Cheat Sheet”</a>.
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">“Dates and Times Cheat Sheet”</a>.
 </li>
 <li>
-RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">“Work with Strings Cheat Sheet”</a>.
+RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">“Work with Strings Cheat Sheet”</a>.
 </li>
 <li>
-Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html"><span style="font-style:italic">haven.tidyverse.org</span></a>
+Tidyverse. (n.d.). <a href="http://haven.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">haven.tidyverse.org</span></a>
 </li>
 <li>
-Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html"><span style="font-style:italic">lubridate.tidyverse.org</span></a>
+Tidyverse. (n.d.). <a href="http://lubridate.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">lubridate.tidyverse.org</span></a>
 </li>
 <li>
-Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html"><span style="font-style:italic">readr.tidyverse.org</span></a>
+Tidyverse. (n.d.). <a href="http://readr.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">readr.tidyverse.org</span></a>
 </li>
 <li>
-Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html"><span style="font-style:italic">readxl.tidyverse.org</span></a>
+Tidyverse. (n.d.). <a href="http://readxl.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">readxl.tidyverse.org</span></a>
 </li>
 <li>
-Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html"><span style="font-style:italic">stringr.tidyverse.org</span></a>
+Tidyverse. (n.d.). <a href="http://stringr.tidyverse.org/index.html" target="_blank"><span style="font-style:italic">stringr.tidyverse.org</span></a>
 </li>
 </ul>
 </div>
 
 <footer>
   <p>Copyright &copy; 2018 Bobae Kang. All rights reserved.</p>
-  <a href="https://github.com/bobaekang/" class="icon-footer">
+  <a href="https://github.com/bobaekang/" class="icon-footer" target="_blank">
     <i class="fa fa-github fa-2x"></i>
   </a>
-  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer">
+  <a href="https://www.linkedin.com/in/bobaekang/" class="icon-footer" target="_blank">
     <i class="fa fa-linkedin-square fa-2x"></i>
   </a>
 </footer>

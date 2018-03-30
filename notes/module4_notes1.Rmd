@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -33,14 +33,14 @@ library(knitr)
 opts_chunk$set(echo = TRUE, warning = FALSE, fig.height = 4.5, fig.width = 6, message = FALSE)
 ```
 
-This page contains the notes for **the first part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the first part of R Workshop Module 4: Data visualization with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module4_slides1.html) to view the accompanying **slides for Module 4, Part 1**.
+Click [**here**](../slides/module4_slides1.html){target="_blank"} to view the accompanying **slides for Module 4, Part 1**.
 
 Navigate to the other workshop materials:
 
@@ -106,7 +106,7 @@ A graphic object then consists of, or is parameterized by, these components. It 
 include_graphics("../images/ggplot2.png")
 ```
 <p style="font-size:0.5em; text-align:center; color:#777;">
-Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png">tidyverse.com</a>
+Source: <a href="https://d33wubrfki0l68.cloudfront.net/0ab849ed51b0b866ef6895c253d3899f4926d397/dbf0f/images/hex-ggplot2.png" target="_blank">tidyverse.com</a>
 </p>
 
 `ggplot2` is R ecosystem's response to Wilkinson's grammar of graphics. It is an R package developed by Hadley Wickham, one of the main authors of many `tidyverse` packages.
@@ -169,7 +169,7 @@ The following figure provides a visual illustration of these aesthetics:
 include_graphics("../images/ggplot2_aesthetics.png")
 ```
 <p style="font-size:0.5em; color: #777;">
-Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html">Figure 1.1</a> in Wilke, C. (n.d). <span style="font-style:italic">Data Visualiation</span>.
+Source: <a href="http://serialmentor.com/dataviz/aesthetic-mapping.html" target="_blank">Figure 1.1</a> in Wilke, C. (n.d). <span style="font-style:italic">Data Visualiation</span>.
 </p>
 
 And the following two pictures illustrate `shape` and `linetype` values available in `ggplot2`: 
@@ -179,7 +179,7 @@ And the following two pictures illustrate `shape` and `linetype` values availabl
 include_graphics("../images/ggplot2_shapes.png")
 ```
 <p style="font-size:0.5em; color: #777;">
-Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
+Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html" target="_blank">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
 </p>
 
 
@@ -188,7 +188,7 @@ Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot
 include_graphics("../images/ggplot2_linetypes.png")
 ```
 <p style="font-size:0.5em; color: #777;">
-Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
+Source: Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/articles/ggplot2-specs.html" target="_blank">"Aesthetic specifications"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span>.
 </p>
 
 
@@ -285,7 +285,7 @@ kable(
 )
 ```
 
-* See [the official reference page](http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms) for the full list of `geom`s.
+* See [the official reference page](http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms){target="_blank"} for the full list of `geom`s.
 
 
 ## Labels
@@ -409,7 +409,7 @@ kable(
 )
 ```
 
-Refer to the official documentation [here](http://ggplot2.tidyverse.org/reference/scale_continuous.html) for more on the `scale` arguments.
+Refer to the official documentation [here](http://ggplot2.tidyverse.org/reference/scale_continuous.html){target="_blank"} for more on the `scale` arguments.
 
 #### Position scales (discrete)
 ```{r eval=FALSE}
@@ -466,7 +466,7 @@ plot + scale_colour_manual(
 
 `ggplot2` offers many more functions to customize scales.
 
-See the full documentation on scales [here](http://ggplot2.tidyverse.org/reference/#section-scales).
+See the full documentation on scales [here](http://ggplot2.tidyverse.org/reference/#section-scales){target="_blank"}.
 
 
 ## Guides
@@ -682,7 +682,7 @@ plot + theme_void()
 ```
 
 #### `ggthemes` examples
-Now let's see some predefined themes provided by `ggthemes`. Please visit [this vignette page](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) to find out more `ggthemes` options. 
+Now let's see some predefined themes provided by `ggthemes`. Please visit [this vignette page](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html){target="_blank"} to find out more `ggthemes` options. 
 
 ```{r}
 plot + ggthemes::theme_economist()
@@ -716,7 +716,7 @@ plot + theme(...)
     * panel aspect ratio, border, and grid lines
     * and more
 
-`theme()` is a powerful function, but its wide range of choices make it difficult to go over all. That said, I recommend you to read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html).
+`theme()` is a powerful function, but its wide range of choices make it difficult to go over all. That said, I recommend you to read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html){target="_blank"}.
 
 
 ***
@@ -724,13 +724,13 @@ plot + theme(...)
 
 # Resources
 
-* Chang, W. [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/).
-* Emaasit, D. [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html).
+* Chang, W. [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/){target="_blank"}.
+* Emaasit, D. [*`ggplot2` extentions*](http://www.ggplot2-exts.org/index.html){target="_blank"}.
     * A list of R pacakges extending `ggplot2`
-* Prabhakaran, S. ["How to make any plot in `ggplot2`?"](http://r-statistics.co/ggplot2-Tutorial-With-R.html). *r-statistics.co*.
-* RStudio. ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
-* Tidyverse. ["Reference"](http://ggplot2.tidyverse.org/reference/index.html). *ggplot2.tidyverse.org*.
-* Wilke, C. [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/).
+* Prabhakaran, S. ["How to make any plot in `ggplot2`?"](http://r-statistics.co/ggplot2-Tutorial-With-R.html){target="_blank"}. *r-statistics.co*.
+* RStudio. ["Data Visualization Cheat Sheet"](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf){target="_blank"}.
+* Tidyverse. ["Reference"](http://ggplot2.tidyverse.org/reference/index.html){target="_blank"}. *ggplot2.tidyverse.org*.
+* Wilke, C. [*Fundamentals of Data Visualization*](http://serialmentor.com/dataviz/){target="_blank"}.
 
 
 
@@ -739,9 +739,9 @@ plot + theme(...)
 
 # References
 <ul>
-  <li>Grolemund, G. & Wickham, H. (2017).<a href="http://r4ds.had.co.nz/data-visualisation.html">"Data visualization"</a>. <span style="font-style:italic">R for Data Science</span></li>
-  <li>Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference">"References"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span></li>
-  <li>Wickham, H. (2010). "A Layered Grammar of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 19(1)</span>:3-28.</li>
-  <li>Wilkinson, L. (2005). <span style="font-style:italic">The Grammar of Graphics</span>.</li>
-  <li>Wilkinson, L., Rope, D., Carr, D. & Rubin, M. (2000). "The Language of Graphics". <span style="font-style:italic">Journal of Computational and Graphical Statistics 9(3)</span>:530-543.</li>
+  <li>Grolemund, G. & Wickham, H. (2017).<a href="http://r4ds.had.co.nz/data-visualisation.html" target="_blank">"Data visualization"</a>. <span style="font-style:italic">R for Data Science</span></li>
+  <li>Tidyverse. (n.d.). <a href="http://ggplot2.tidyverse.org/reference" target="_blank">"References"</a>. <span style="font-style:italic">ggplot2.tidyverse.org</span></li>
+  <li>Wickham, H. (2010). "A Layered Grammar of Graphics". <i>Journal of Computational and Graphical Statistics 19(1)</i>:3-28.</li>
+  <li>Wilkinson, L. (2005). <i>The Grammar of Graphics</i>.</li>
+  <li>Wilkinson, L., Rope, D., Carr, D. & Rubin, M. (2000). "The Language of Graphics". <i>Journal of Computational and Graphical Statistics 9(3)</i>:530-543.</li>
 </ul>
