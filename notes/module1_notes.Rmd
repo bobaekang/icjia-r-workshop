@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -27,14 +27,14 @@ library(knitr)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module1_slides.html) to view the accompanying **slides for Module 1**.
+Click [**here**](../slides/module1_slides.html){target="_blank"} to view the accompanying **slides for Module 1**.
 
 Navigate to the other workshop materials:
 
@@ -73,7 +73,7 @@ include_graphics("../images/icjia-x-r.png")
 
 ## Instructor (Bobae Kang)
 
-My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for approximately one year and a half at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html) to read more about me.
+My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for approximately one year and a half at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html){target="_blank"} to read more about me.
 
 ## Workshop objectives
 
@@ -91,7 +91,7 @@ Of course, mastering any of the listed skills requires more than this workshop. 
 
 ## A programming approach to research[^1]
 
-[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu), and much of this section's contents is drawn from his work albeit with modifications.
+[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu){target="_blank"}, and much of this section's contents is drawn from his work albeit with modifications.
 
 Among the core objectives of this workshop is to convince its participants to try a different approach to research: **a programming (or programmatic) approach**.
 
@@ -165,7 +165,7 @@ At its core, a programming approach to research seeks for automating the work of
 
 ### Modularity
 
-> In software design, modularity refers to a logical partitioning of the "software design" that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - ["Modularity", Wikipedia](https://en.wikipedia.org/wiki/Modularity)
+> In software design, modularity refers to a logical partitioning of the "software design" that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - ["Modularity", Wikipedia](https://en.wikipedia.org/wiki/Modularity){target="_blank"}
 
 A programming approach to research enables researchers to acheive a great degree of modularity, where a researcher can break down different stages or steps of research work into smaller but meaningful parts. In our example, this is shown by Lana's writing separate programs for collecting, clearning, and analyzing her data. The benefit of modularity is clear here. When Lana had to make changes on her data clearning, she only had to change the part of the program that is relevant to the change while leaving everything else pretty much intact--a great gain in efficiency.
 
@@ -173,7 +173,7 @@ In fact, a researcher may accomplish a greater degree of modularity, for instanc
 
 ### Reproducibiltiy
 
-> Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. [...] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - [U.S. NSF Subcommittee on Replicability in Science](https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf)
+> Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. [...] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - [U.S. NSF Subcommittee on Replicability in Science](https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf){target="_blank"}
 
 Although it may be possible to ensure reproducibility with a GUI-oriented approach it is no less than an uphill battle, since each step in the procedure has to be documented thoroughly and separately. Also, there is little guarantee that researchers who come later will follow the directions strictly as intended by the original researcher. In contrast, the work of research stored in a program, or a set of programs, is highly reproducible. Replicating such a work does not rely on human interpretation of the documented procedure. Rather, the computer simply and faithfully follows the directions inscribed in the program.
 
@@ -183,7 +183,7 @@ A high degree of reproducibility can also greatly enhance productivity in a coll
 
 The notion of version control refers to the practice of managing changes in a document or a program in a systematic fashion. One major benefit of version control is that it can protect the work of research from unwanted changes, such as mistakenly deleting files, as such changes can be easily identified and reverted. 
 
-Although the topic of version control is beyond the scope of this workshop, suffice it to note that a programming approach to research makes it easy to implement version control in research as there exist many excellent version control systems available free of charge. Git is the most popular of such systems; [read its documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) to learn more about Git.
+Although the topic of version control is beyond the scope of this workshop, suffice it to note that a programming approach to research makes it easy to implement version control in research as there exist many excellent version control systems available free of charge. Git is the most popular of such systems; [read its documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control){target="_blank"} to learn more about Git.
 
 
 ***
@@ -196,7 +196,7 @@ print("Hellow World!")
 include_graphics("https://www.r-project.org/logo/Rlogo.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+Source: <a href="https://www.r-project.org/logo/" target="_blank">r-project.org</a>
 </p>
 
 ## What is R?
@@ -211,7 +211,7 @@ Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
 include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
+Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/" target="_blank">"The Impresseive Growth of R"</a>
 </p>
 
 ## Why R?
@@ -233,7 +233,7 @@ Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/imp
     * Generating reports in various formats (html webpage, MS word, PDF)
     * Slideshows, websites, interactive dashboards, etc.
 
-[^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
+[^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/){target="_blank"} published on R-bloggers for more on the R community.
 
 ## Comparisons
 
@@ -281,9 +281,9 @@ include_graphics("../images/spss-logo.png")
 </div>
 </div>
 
-[^3]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing) for more information.
+[^3]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing){target="_blank"} for more information.
 
-[^4]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference) and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/) for more on this point.
+[^4]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference){target="_blank"} and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/){target="_blank"} for more on this point.
 
 ### R vs Tableau
 
@@ -306,9 +306,9 @@ include_graphics("../images/tableau-logo.png")
 </div>
 </div>
 
-[^5]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing) for more information.
+[^5]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing){target="_blank"} for more information.
 
-[^6]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/) for more on the limitation of Tableau's data manipulation functionality with an example.
+[^6]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/){target="_blank"} for more on the limitation of Tableau's data manipulation functionality with an example.
 
 This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferior to R in all aspects. Each software is designed with a specific set of tasks and comes with the ease of use for the right tasks. Furthermore, compared to these tools, R has a relatively steep learning curve, which makes it difficult for anyone without sufficient background knowledge to quickly master and use it for real tasks.
 
@@ -324,7 +324,7 @@ Nonetheless, R is a highly performant, versatile, and flexible tool for research
 include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.rstudio.com//">RStudio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">RStudio</a>
 </p>
 
 ## What is RStudio? Why use it?
@@ -347,7 +347,7 @@ Source: <a href="https://www.rstudio.com//">RStudio</a>
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org//" target="_blank">Wikimedia.org</a>
 </p>
 
 ### Source editor pane
@@ -387,19 +387,19 @@ The overall appearance can be customized as well. Go to **Tools > Global options
 # Basic Setup
 ## Installing R
 
-* Visit [**https://cran.r-project.org/**](https://cran.r-project.org/)
+* Visit [**https://cran.r-project.org/**](https://cran.r-project.org/){target="_blank"}
 * Or simply google "download R" to find the link to download page.
 * *Installation requires the Administrator account*; talk to DoIT!
 
-* Also, check out "Install R" [**tutorial video**](https://vimeo.com/203516510) by RStudio, Inc.
+* Also, check out "Install R" [**tutorial video**](https://vimeo.com/203516510){target="_blank"} by RStudio, Inc.
 
 ## Installing RStudio
 
-* Visit [**https://www.rstudio.com/products/rstudio/download/**](https://www.rstudio.com/products/rstudio/download/)
+* Visit [**https://www.rstudio.com/products/rstudio/download/**](https://www.rstudio.com/products/rstudio/download/){target="_blank"}
 * Or simply google "download Rstudio" to find the link to download page.
 * Agin, *installation requires the Administrator account*; talk to DoIT!
 
-* Also, check out "Install RStudio" [**tutorial video**](https://vimeo.com/203516968) by RStudio, Inc.
+* Also, check out "Install RStudio" [**tutorial video**](https://vimeo.com/203516968){target="_blank"} by RStudio, Inc.
 
 
 ***
@@ -411,7 +411,7 @@ The overall appearance can be customized as well. Go to **Tools > Global options
 include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org/ target="_blank"">Wikimedia.org</a>
 </p>
 
 ## Module 2
@@ -464,11 +464,11 @@ This module consists of the following two parts:
 
 All the workshop materials are available as a website:
 
-* [bobaekang.github.io/icjia-r-workshop](https://bobaekang.github.io/icjia-r-workshop/)
+* [bobaekang.github.io/icjia-r-workshop](https://bobaekang.github.io/icjia-r-workshop/){target="_blank"}
 
 And all the materials that constitute this website, including the workshop materials, are available as a GitHub repository:
 
-* [github.com/bobaekang/icjia-r-workshop](https://github.com/bobaekang/icjia-r-workshop)
+* [github.com/bobaekang/icjia-r-workshop](https://github.com/bobaekang/icjia-r-workshop){target="_blank"}
 
 I encourage you to check out these pages to find out more about this workshop and check out the workshop materials before or after each session.
 
@@ -477,9 +477,9 @@ I encourage you to check out these pages to find out more about this workshop an
 
 # References
 <ul>
-  <li>Bollen, K., Cacioppo, J., Kaplan, R., Krosnick, J. & Olds, J. (2015). <a href="https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf">"Social, Behaviroal, and Economic Sciences Perspectives on Robust and Reliable Science"</a>.</li>
-  <li>Gentzkow, M. & Shapiro, J. M. (2014). <a href="https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf">"Code and Data for the Social Sciences: A Practitioner's Guide"</a>.</li>
-  <li>Robinson, D. (2017). <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impressive Growth of R"</a>. <span style="font-style:italic">Stack Overflow Blog</span>.</li>
-  <li>Soltoff, B. (2018). <a href="http://cfss.uchicago.edu/block001_intro.html">"Introduction to computing for the social sciences"</a>. <span style="font-style:italic">Computing for the Social Sciences</span>.</li>
+  <li>Bollen, K., Cacioppo, J., Kaplan, R., Krosnick, J. & Olds, J. (2015). <a href="https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf" target="_blank">"Social, Behaviroal, and Economic Sciences Perspectives on Robust and Reliable Science"</a>.</li>
+  <li>Gentzkow, M. & Shapiro, J. M. (2014). <a href="https://people.stanford.edu/gentzkow/sites/default/files/codeanddata.pdf" target="_blank">"Code and Data for the Social Sciences: A Practitioner's Guide"</a>.</li>
+  <li>Robinson, D. (2017). <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/" target="_blank">"The Impressive Growth of R"</a>. <span style="font-style:italic">Stack Overflow Blog</span>.</li>
+  <li>Soltoff, B. (2018). <a href="http://cfss.uchicago.edu/block001_intro.html" target="_blank">"Introduction to computing for the social sciences"</a>. <span style="font-style:italic">Computing for the Social Sciences</span>.</li>
   <li>Wikipedia articles on relevant topics.</li>
 </ul>

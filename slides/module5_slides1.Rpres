@@ -612,6 +612,28 @@ resample(data, idx)
 resample_partition(data, p)
 bootstrap(data, n, id = ".id")
 ```
+* `resample` take a data frame and a vector of indices to create a pointer object, which can be either turned into a data frame or used directly in modeling functions (e.g. `lm()`)
+* `resample_partition` takes a data and a named numeric vector to specify partitioning. Its output is a list of random partitions.
+* `bootstrap` takes a data frame and an integer to specify the number of bootstrap replicates to generate. The output is a data frame of bootstrap samples column and id column
+
+
+========================================================
+```{r}
+set.seed(1) # for reproducibility
+
+partitioned <- ispcrime %>%
+  filter(year == "2015") %>%
+  resample_partition(p = c(treatment = 0.5, control = 0.5))
+
+partitioned
+```
+
+
+========================================================
+```{r}
+head(partitioned$treatment$data)
+partitioned$treatment$idx
+```
 
 
 Model quality metrics
@@ -641,11 +663,11 @@ add_residuals(data, model, var = "resid")
 ========================================================
 ```{r}
 ispcrime_subset <- select(ispcrime, year:violentCrime, propertyCrime)
-ispcrime_subset2 <- ispcrime_subset %>%
-  add_predictions(my_lmfit) %>%
-  add_residuals(my_lmfit)
 
-head(ispcrime_subset2)
+ispcrime_subset %>%
+  add_predictions(my_lmfit) %>%
+  add_residuals(my_lmfit) %>%
+  head()
 ```
 
 

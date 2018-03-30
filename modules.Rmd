@@ -3,6 +3,9 @@ title: "ICJIA R Workshop: Modules"
 output:
   html_document
 ---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 <style>
 body {
   padding-bottom: 100px;
@@ -27,15 +30,12 @@ knitr::include_graphics("images/module.png")
 ```
 </div>
 <p style="font-size:0.6em; text-align:center; color: #777;">
-Source: <a href="https://www.shareicon.net/cubes-squares-geometrical-shapes-and-symbols-3d-interface-shapes-cube-823602">Flaticon via shareicon.net</a>
+Source: <a href="https://www.shareicon.net/cubes-squares-geometrical-shapes-and-symbols-3d-interface-shapes-cube-823602" target="_blank">Flaticon via shareicon.net</a>
 </p>
 
 The workshop consists of six separate modules which are meant to be followed in order. Each module has a specific focus. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
 
 Read the below to get an overview of each module. Also, click the "SEE MORE" button and follow the links to check out the relevant workshop materials. Enjoy!
-
-<br>
-(Note: Currently, slides and notes for only the first four modules are ready for use. Materials for later modules are in active development and scheduled to be completed by the end of March. Thank you for your understanding!)
 
 ***
 
@@ -49,8 +49,8 @@ In this module, workshop participants will be introduced to the programmatic app
 
 <div class="collapse" id="collapse-module-1">
 <div style="padding:20px;">
-* [**Slides**](./slides/module1_slides.html)
-* [**Notes**](./notes/module1_notes.html)
+* [**Slides**](./slides/module1_slides.html){target="_blank"}
+* [**Notes**](./notes/module1_notes.html){target="_blank"}
 </div>
 </div>
 </div>
@@ -66,13 +66,13 @@ Workshop participants will learn the basic building blocks of R language. Once p
 <div style="padding:20px;">
 ### Part 1: Fundamentals of R programming
 
-* [**Slides**](./slides/module2_slides1.html)
-* [**Notes**](./notes/module2_notes1.html)
+* [**Slides**](./slides/module2_slides1.html){target="_blank"}
+* [**Notes**](./notes/module2_notes1.html){target="_blank"}
 
 ### Part 2: Gearing up for data analysis
 
-* [**Slides**](./slides/module2_slides2.html)
-* [**Notes**](./notes/module2_notes2.html)
+* [**Slides**](./slides/module2_slides2.html){target="_blank"}
+* [**Notes**](./notes/module2_notes2.html){target="_blank"}
 </div>
 </div>
 </div>
@@ -91,13 +91,13 @@ This module focuses on manimuplating and transforming tabular data using R. Work
 <div style="padding:20px;">
 ### Part 1: Getting started with `tidyverse`
 
-* [**Slides**](./slides/module3_slides1.html)
-* [**Notes**](./notes/module3_notes1.html)
+* [**Slides**](./slides/module3_slides1.html){target="_blank"}
+* [**Notes**](./notes/module3_notes1.html){target="_blank"}
 
 ### Part 2: More on data analysis
 
-* [**Slides**](./slides/module3_slides2.html)
-* [**Notes**](./notes/module3_notes2.html)
+* [**Slides**](./slides/module3_slides2.html){target="_blank"}
+* [**Notes**](./notes/module3_notes2.html){target="_blank"}
 </div>
 </div>
 </div>
@@ -113,13 +113,13 @@ In this module, workshop participants will get started with generating plots to 
 <div style="padding:20px;">
 ### Part 1: The Grammar of Graphics
 
-* [**Slides**](./slides/module4_slides1.html)
-* [**Notes**](./notes/module4_notes1.html)
+* [**Slides**](./slides/module4_slides1.html){target="_blank"}
+* [**Notes**](./notes/module4_notes1.html){target="_blank"}
 
 ### Part 2: Maps and interactive plots
 
-* [**Slides**](./slides/module4_slides2.html)
-* [**Notes**](./notes/module4_notes2.html)
+* [**Slides**](./slides/module4_slides2.html){target="_blank"}
+* [**Notes**](./notes/module4_notes2.html){target="_blank"}
 </div>
 </div>
 </div>
@@ -138,13 +138,13 @@ In this module, workshop participants will learn how to conduct basic statistica
 <div style="padding:20px;">
 ### Part 1: Basics of statistical modeling
 
-* [**Slides**](./slides/module5_slides1.html) (in development)
-* [**Notes**](./notes/module5_notes1.html) (in development)
+* [**Slides**](./slides/module5_slides1.html){target="_blank"}
+* [**Notes**](./notes/module5_notes1.html){target="_blank"}
 
 ### Part 2: Options for advanced modeling
 
-* [**Slides**](./slides/module5_slides2.html) (in development)
-* [**Notes**](./notes/module5_notes2.html) (in development)
+* [**Slides**](./slides/module5_slides2.html){target="_blank"}
+* [**Notes**](./notes/module5_notes2.html){target="_blank"}
 </div>
 </div>
 </div>
@@ -160,13 +160,13 @@ This module will introduce workshop participants to various ways to share their 
 <div style="padding:20px;">
 ### Part 1: Sharing your work
 
-* [**Slides**](./slides/module6_slides1.html) (in development)
-* [**Notes**](./notes/module6_notes1.html) (in development)
+* [**Slides**](./slides/module6_slides1.html){target="_blank"}
+* [**Notes**](./notes/module6_notes1.html){target="_blank"}
 
 ### Part 2: Leveraging online resources
 
-* [**Slides**](./slides/module6_slides2.html) (in development)
-* [**Notes**](./notes/module6_notes2.html) (in development)
+* [**Slides**](./slides/module6_slides2.html){target="_blank"}
+* [**Notes**](./notes/module6_notes2.html){target="_blank"}
 </div>
 </div>
 </div>

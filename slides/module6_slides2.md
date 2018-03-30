@@ -48,7 +48,7 @@ Why online resources?
 * "Someone has already done it."
 <img src="http://www.azquotes.com/picture-quotes/quote-the-very-best-proof-that-something-can-be-done-is-that-someone-has-already-done-it-bertrand-russell-146-34-03.jpg" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="80%" style="display: block; margin: auto; margin-top: 5%; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://www.azquotes.com/quote/1463403">AZ Quotes</a>
+Source: <a href="http://www.azquotes.com/quote/1463403" target="_blank">AZ Quotes</a>
 </p>
 
 
@@ -57,7 +57,7 @@ Before going online
 type:section
 <img src="../images/wireless_icon.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -95,8 +95,8 @@ Error messages and debugging
 * When an error is thrown, it comes with an error message
 * Error messages often have rich information about what went wrong and where it went wrong
 * If we are working with custom functions we defined, RStudio's debugging tools can help us to spot the source of an error in the script and debug it
-    * See [this article](https://support.rstudio.com/hc/en-us/articles/200713843) on debugging with RStudio
-    * See [this video](https://vimeo.com/99375765) by RStudio on introduction to debugging
+    * See [this article](https://support.rstudio.com/hc/en-us/articles/200713843/) on debugging with RStudio
+    * See [this video](https://vimeo.com/99375765/) by RStudio on introduction to debugging
 
 
 Google
@@ -104,7 +104,7 @@ Google
 type:section
 <img src="../images/google_help.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.google.com/about/products/">Google.com</a>
+Source: <a href="https://www.google.com/about/products/" target="_blank">Google.com</a>
 </p>
 
 
@@ -125,7 +125,7 @@ How to google for questions
 type:section
 <img src="../images/Rlogo.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.r-project.org/logo/">R Project</a>
+Source: <a href="https://www.r-project.org/logo/" target="_blank">R Project</a>
 </p>
 
 
@@ -211,7 +211,7 @@ RStudio website
 
 
 ========================================================
-<a href="https://www.rstudio.com/">
+<a href="https://www.rstudio.com/" target="_blank">
 <img src="../images/rstudio_page.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -230,7 +230,7 @@ Cheet sheets
 
 
 ========================================================
-<a href="https://www.rstudio.com/resources/cheatsheets/">
+<a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">
 <img src="../images/rstudio_cheatsheets.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -252,7 +252,7 @@ Webinar & videos
 
 
 ========================================================
-<a href="https://www.rstudio.com/resources/webinars/">
+<a href="https://www.rstudio.com/resources/webinars/" target="_blank">
 <img src="../images/rstudio_webinars_videos.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -268,7 +268,7 @@ Tidyverse website
 
 
 ========================================================
-<a href="https://www.tidyverse.org/">
+<a href="https://www.tidyverse.org/" target="_blank">
 <img src="../images/tidyverse_page.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -299,7 +299,7 @@ R Markdown website
 
 
 ========================================================
-<a href="https://rmarkdown.rstudio.com">
+<a href="https://rmarkdown.rstudio.com" target="_blank">
 <img src="../images/rmarkdown_page.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -313,7 +313,7 @@ Shiny website
 
 
 ========================================================
-<a href="https://shiny.rstudio.com/">
+<a href="https://shiny.rstudio.com/" target="_blank">
 <img src="../images/shiny_page.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -323,20 +323,20 @@ htmlwidgets website
 * *`htmlwidgets` for R* [website](http://www.htmlwidgets.org/) presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem
     * Currently ~100 widgets are registered
         * See its ["Gallery" page](http://gallery.htmlwidgets.org/)
-    * Popular `htmlwidgets` packagees include:
+    * Popular `htmlwidgets` packages include:
         * `plotly` and `highcharter` for interactive visualizations
         * `leaflet` for interactive maps
         * `DT` for interactive data tables
         
 
 ========================================================
-<a href="http://www.htmlwidgets.org/">
+<a href="http://www.htmlwidgets.org/" target="_blank">
 <img src="../images/htmlwidgets_page.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 ========================================================
-<a href="http://gallery.htmlwidgets.org/">
+<a href="http://gallery.htmlwidgets.org/" target="_blank">
 <img src="../images/htmlwidgets_gallery.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -346,7 +346,7 @@ R Community
 type:section
 <img src="../images/community_title.jpg" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="70%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)">"Community (TV series)", Wikipedia</a>
+Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)" target="_blank">"Community (TV series)", Wikipedia</a>
 </p>
 
 
@@ -358,7 +358,7 @@ R-bloggers
 
 
 ========================================================
-<a href="https://www.r-bloggers.com/">
+<a href="https://www.r-bloggers.com/" target="_blank">
 <img src="../images/rbloggers_page.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -379,7 +379,7 @@ Visit the `bookdown` package [website](https://bookdown.org/) to find many more 
 <br><br>
 <img src="../images/r4ds_cover.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+Source: <a href="http://r4ds.had.co.nz/" target="_blank">R for Data Science</a>
 </p>
 
 
@@ -426,7 +426,7 @@ Online courses
 type:section
 <img src="../images/mooc.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanford.edu</a>
+Source: <a href="http://worldview.stanford.edu/blog/edtech-2013" target="_blank">worldview.stanford.edu</a>
 </p>
 
 
@@ -464,7 +464,7 @@ edX
 ========================================================
 * Requires registration and log-in
 * Courses are free and mostly self-paced
-    * edX offer [verified certificate](https://www.edx.org/verified-certificate) for individual courses and [XSeries certificate](https://www.edx.org/xseries) for XSeries programs for a small fee
+    * edX offer [verified certificate](https://www.edx.org/verified-certificate/) for individual courses and [XSeries certificate](https://www.edx.org/xseries/) for XSeries programs for a small fee
 * Courses are usually organized in a college-course like format
 * Perhaps better for learning basics on topics like:
     * Computer science and programming
@@ -476,14 +476,14 @@ Questions?
 type: section
 <img src="https://media0.giphy.com/media/12mPcp41D9a1i0/giphy.gif" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D9a1i0">Giphy</a>
+Source: <a href="https://giphy.com/gifs/cheezburger-critters-flamingos-12mPcp41D9a1i0" target="_blank">Giphy</a>
 </p>
 
 
 ========================================================
 References
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a></li>
+  <li>Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu" target="_blank"><i>Computing for Social Sciences</i></a>.</li>
 </ul>
 
 
@@ -497,11 +497,10 @@ What's next (for you)?
 ========================================================
 * Start using R for your work
     * Use the available workshop materials as a guide
-* Try reading *R for Data Science* book
+* Start reading *R for Data Science* book
 * Learn HTML/CSS for fully customizing your R Markdown documents and more
 * Come talk to me if you need:
-    * Quick help on your R code
-        * Don't foget "The 15 minutes rule"!
+    * Help on your R code (Remember "the 15 minutes rule"!)
     * Recommendations for study materials
 
 
@@ -512,25 +511,22 @@ What's next (for this workshop)?
 * Update the `icjiar` package
 * Short articles on specific topics, such as:
     * Connecting to SQL server on RStudio
-    * `apply` family functions
     * Git and GitHub for version control and collaboration
     * Using "Chrome DevTools" to inspect HTML documents
     * ... any suggestions?
-
+* Regular ICJIA R user meeting?
 
 Now let's get to it!
 ========================================================
 type: section
 <img src="https://media1.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://giphy.com/gifs/JIX9t2j0ZTN9S">Giphy</a>
+Source: <a href="https://giphy.com/gifs/JIX9t2j0ZTN9S" target="_blank">Giphy</a>
 </p>
 
 
 ========================================================
 <img src="https://media.giphy.com/media/ehfWmij1MrqjS/giphy.gif" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://giphy.com/gifs/reaction-friends-ehfWmij1MrqjS">Giphy</a>
+Source: <a href="https://giphy.com/gifs/reaction-friends-ehfWmij1MrqjS" target="_blank">Giphy</a>
 </p>
-
-

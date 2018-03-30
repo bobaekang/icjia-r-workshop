@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -31,14 +31,14 @@ library(icjiar)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **the first part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the first part of R Workshop Module 3: Data Analysis with R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module3_slides1.html) to view the accompanying **slides for Module 3, Part 1**.
+Click [**here**](../slides/module3_slides1.html){target="_blank"} to view the accompanying **slides for Module 3, Part 1**.
 
 Navigate to the other workshop materials:
 
@@ -78,7 +78,7 @@ images <- c("../images/dplyr.png", "../images/tidyr.png")
 include_graphics(images)
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+Source: <a href="https://www.tidyverse.org/" target="_blank">tidyverse.org</a>
 </div>
 
 
@@ -152,7 +152,7 @@ In the following, we will explore two powerful `tidyverse` packages for wranglin
 knitr::include_graphics(images[1])
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+Source: <a href="https://www.tidyverse.org/" target="_blank">tidyverse.org</a>
 </div>
 
 
@@ -309,7 +309,7 @@ The following four Venn diagrams show how different types of join compare to one
 include_graphics("../images/join-venn.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html"><span href="font-style:italic">R for Data Science</span></a>
+Source: Wickham, H. (2017). <a href="http://r4ds.had.co.nz/relational-data.html" target="_blank"><span href="font-style:italic">R for Data Science</span></a>
 </div>
 
 ### Example
@@ -468,10 +468,10 @@ In this example, we we want to answer the following question: what is the annual
 
 What we have seen is only a tip of an iceberg that is `dplyr`. Although the aforementioned functions are among the most commonly used in usual data manipulation and analysis tasks, the description and examples here are by no means comprehensive. Also, `dplyr` offers many other functions to facilitate data manipulation work. I recommend you to check out the following resources to learn more about `dplyr`:
 
-* `dplyr` on [tidyverse.org](http://dplyr.tidyverse.org/)
-* `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
-* `dplyr` [Github repository](https://github.com/tidyverse/dplyr)
-* RStudio. (2017). ["Data Manipulation Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf).
+* `dplyr` on [tidyverse.org](http://dplyr.tidyverse.org/){target="_blank"}
+* `dplyr` [CRAN documentation](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf){target="_blank"}
+* `dplyr` [Github repository](https://github.com/tidyverse/dplyr){target="_blank"}
+* RStudio. (2017). ["Data Manipulation Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf){target="_blank"}.
 
 ***
 
@@ -482,7 +482,7 @@ What we have seen is only a tip of an iceberg that is `dplyr`. Although the afor
 knitr::include_graphics(images[2])
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+Source: <a href="https://www.tidyverse.org/" target="_blank">tidyverse.org</a>
 </div>
 
 
@@ -491,7 +491,7 @@ Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
 knitr::include_graphics("../images/tidy-1.png")
 ```
 <div style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+Source: <a href="http://r4ds.had.co.nz/" target="_blank">R for Data Science</a>
 </div>
 
 We have learned the notion of "tidy" data in the second part of the previous module. In short, a dataset is "tidy" when:
@@ -612,20 +612,20 @@ We also have `separate_rows()`, which is similar to `separate()`, except the for
 
 As in the earlier `dplyr` case, what we have seen is only part of what `tidyr` offers. I recommend you to check out the following resources to learn more about `tidyr`
 
-* `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/)
-* `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)
-* `tidyr` [Github repository](https://github.com/tidyverse/tidyr)
-* Page 2 of RStudio. (2017). ["Data Import Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf).
+* `tidyr` on [tidyverse.org](http://tidyr.tidyverse.org/){target="_blank"}
+* `tidyr` [CRAN documentation](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf){target="_blank"}
+* `tidyr` [Github repository](https://github.com/tidyverse/tidyr){target="_blank"}
+* Page 2 of RStudio. (2017). ["Data Import Cheat Sheet"](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf){target="_blank"}.
 
 ***
 
 
 # References
 <ul>
-  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
-  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Import Cheat Sheet"</a>.</li>
-  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/">"Data Transformation Cheat Sheet"</a>.</li>
-  <li>Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.</li>
-  <li>Tidyverse. (n.d.). <a href="http://tidyr.tidyverse.org/"><span style="font-style:italic">tidyr.tidyverse.org</span></a>.</li>
-  <li>Tidyverse. (n.d.). <a href="http://www.tidyverse.org/"><span style="font-style:italic">tidyverse.org</span></a>.</li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/" target="_blank"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">"Data Import Cheat Sheet"</a>.</li>
+  <li>RStudio. (2017). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">"Data Transformation Cheat Sheet"</a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://dplyr.tidyverse.org/" target="_blank"><span style="font-style:italic">dplyr.tidyverse.org</span></a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://tidyr.tidyverse.org/" target="_blank"><span style="font-style:italic">tidyr.tidyverse.org</span></a>.</li>
+  <li>Tidyverse. (n.d.). <a href="http://www.tidyverse.org/" target="_blank"><span style="font-style:italic">tidyverse.org</span></a>.</li>
 </ul>

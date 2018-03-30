@@ -46,7 +46,7 @@ R Markdown
 type:section
 <img src="../images/rmarkdown.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown</a>
+Source: <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html" target="_blank">R Markdown</a>
 </p>
 
 
@@ -57,18 +57,19 @@ What is R Markdown?
 
 Why use R Markdown?
 ========================================================
-* Reproducible
-* Multiple document formats
 * Embedding R code chunks (and the outputs)
+* Multiple document formats
+* Reproducibility
+* Automation
 
 
 Getting started
 ========================================================
 * Install `rmarkdown`
-    * not necessary if using R Studio IDE
-* Create a R markdown document
+    * not necessary if using RStudio IDE
+* Create a R Markdown document
     * File > New File > R Markdown
-* "Knit" the R markdown document into a file in the desired format
+* "Knit" the R Markdown file into a document in the desired format
 
 
 ========================================================
@@ -350,7 +351,7 @@ Documents
 type:section
 <img src="../images/document_icon.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -408,7 +409,7 @@ R Notebooks
 
 htmlwidgets for R
 ========================================================
-* Thera are many R packages (90+) for taking full advantage of the interactivity that web can offer.
+* There are many R packages (90+) for taking full advantage of the interactivity that web can offer.
 * With these packages, we can easily incorporate interactive widgets into HTML documents generated using R Markdown
 * Examples of `htmlwidgets` include:
     * `plotly` and `highcharter` for interactive visualizations
@@ -426,7 +427,7 @@ RPubs
 
 
 ========================================================
-<a href="https://rpubs.com/">
+<a href="https://rpubs.com/" target="_blank">
 <img src="../images/rpubs_page.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -436,13 +437,13 @@ Presentations
 type:section
 <img src="../images/presentation_icon.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 
 
 Creating presentation slides
 ========================================================
-* RStudio supports many ways to create presentation slides that are both modern-looking and highly customizable
+* RStudio supports many options for creating presentation slides that are both modern-looking and highly customizable
 * Popular ways to create slides using R include:
     * R Markdown formats:
         * `ioslides_presentation` (HTML)
@@ -546,7 +547,7 @@ Shiny
 type:section
 <img src="../images/shiny_logo.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="25%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.rstudio.com/">R Studio</a>
+Source: <a href="https://www.rstudio.com/" target="_blank">R Studio</a>
 </p>
 
 
@@ -577,7 +578,7 @@ Interactive documents
 <br><br>
 <img src="../images/shiny_interactive_doc.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://shiny.rstudio.com/articles/interactive-docs.html">"Introduction to interactive documents"</a>. Shiny from R Studio
+Source: <a href="https://shiny.rstudio.com/articles/interactive-docs.html" target="_blank">"Introduction to interactive documents"</a>. Shiny from R Studio
 </p>
 
 
@@ -611,8 +612,8 @@ function(input, output, session) {
 }
 ```
 * `server.R` contains the server-side logic of the application
-* `input` object is an environment for storing user inputs modified by user's interaction with the application UI
-* `output` object is an environment for storing elements (plots, tables, texts, etc) to be rendered and shown in the UI
+* `input` object is an environment for storing user inputs modified by user's interaction with the application `ui`
+* `output` object is an environment for storing elements (plots, tables, texts, etc) to be rendered and shown in the `ui`
 * `session` object is an environment that can be used to access information relating to the session
     * `session` is optional
 
@@ -686,7 +687,7 @@ Websites
 type: section
 <img src="../images/globe_icon.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="33%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 
 
@@ -742,32 +743,32 @@ Books with blogdown
 
 
 ========================================================
-<a href="https://bookdown.org/yihui/bookdown/">
+<a href="https://bookdown.org/yihui/bookdown/"target="_blank">
 <img src="../images/bookdown_example.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 Blogs with blogdown
 ========================================================
-* `blogdown` is a package to generate static websites using R Markdown and the [Hugo]() open-source framework for building websites
+* `blogdown` is a package to generate static websites using R Markdown and the [Hugo](https://gohugo.io/), a popular open-source static website generator
 * Visit *Awesome Blogdown* [website](http://awesome-blogdown.com/) for a curated list of `blogdown` examples
 * Also, read Xie, Y. et al. (2018). [*`blogdown`: Creating Websites with R Markdown*](https://bookdown.org/yihui/blogdown/) for a comprehensive guide for `blogdown`
 
 
 ========================================================
-<a href="http://roelandtn.frama.io/post/">
+<a href="http://roelandtn.frama.io/post/" target="_blank">
 <img src="../images/blogdown_example1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 ========================================================
-<a href="http://www.visibledata.co.uk/">
+<a href="http://www.visibledata.co.uk/" target="_blank">
 <img src="../images/blogdown_example2.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
 
 ========================================================
-<a href="https://aurora-mareviv.github.io/talesofr/">
+<a href="https://aurora-mareviv.github.io/talesofr/" target="_blank">
 <img src="../images/blogdown_example3.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 </a>
 
@@ -777,19 +778,19 @@ Questions?
 type: section
 <img src="https://media1.giphy.com/media/Z1Exz24FbX3Ko/giphy.gif" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://giphy.com/gifs/2013-question-disney-animation-Z1Exz24FbX3Ko">Giphy</a>
+Source: <a href="https://giphy.com/gifs/2013-question-disney-animation-Z1Exz24FbX3Ko" target="_blank">Giphy</a>
 </p>
 
 
 ========================================================
 References
 <ul style="font-size: 0.6em; list-style-type:none">
-  <li>Sellors, M. <a href="http://awesome-blogdown.com/"><i>Awesome Blogdown</i></a></li>
-  <li>Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html">"App formats and launching apps"</a>. <i>Shiny from RStudio</i></li>
-  <li>Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html">"Introduction to interactive documents"</a>. <i>Shiny from RStudio</i>.</li>
-  <li>Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html">"Introduction to R Studio"</a>. <i>R Markdown from RStudio</i>.</li>
-  <li>RStudio. (2016). <a href="https://www.rstudio.com/resources/cheatsheets/">R Markdown Cheat Sheet"</a>.</li>
-  <li>Xi, Y. (2018). <a href="https://yihui.name/knitr/options/">"Options: Chunk options and package options"</a>. <i>knitr: Elegant, flexible, and fast dynamic report generation with R</i>.</li>
+  <li>Sellors, M. <a href="http://awesome-blogdown.com/" target="_blank"><i>Awesome Blogdown</i></a>.</li>
+  <li>Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html" target="_blank">"App formats and launching apps"</a>. <i>Shiny from RStudio</i>.</li>
+  <li>Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html" target="_blank">"Introduction to interactive documents"</a>. <i>Shiny from RStudio</i>.</li>
+  <li>Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html" target="_blank">"Introduction to R Studio"</a>. <i>R Markdown from RStudio</i>.</li>
+  <li>RStudio. (2016). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">R Markdown Cheat Sheet"</a>.</li>
+  <li>Xi, Y. (2018). <a href="https://yihui.name/knitr/options/" target="_blank">"Options: Chunk options and package options"</a>. <i>knitr: Elegant, flexible, and fast dynamic report generation with R</i>.</li>
 </ul>
 
 
@@ -797,5 +798,5 @@ References
 type: section
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia.org</a>
 </p>

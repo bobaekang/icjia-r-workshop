@@ -61,6 +61,8 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ***
 
 ## Workshop news
+* **All Workshop Modules materials now available**
+    * Slides and notes for all 6 modules are now available! (^__^) View all workshop materials on [**Modules page**](./modules.html).
 * **Change in schedule: Midterm break**
     * To best accommodate the Workshop's regular attendees and their schedule, the fourth, fifth and sixth weeks' meetings are pushed back one week. Accordingly, the Workshop will have **a "midterm break" in the first week of April** and meet again on April 18.
 * **Second Workshop meeting,** March 22, 2018
@@ -68,7 +70,7 @@ knitr::include_graphics("./images/icjia-x-r.png")
 * **First Workshop meeting,** March 14, 2018
     * Total 15 workshop participants attended the first meeting on **Module 1. Introduction to R**! Check out the workshop materials on [**Modules page**](./modules.html).
 * **ICJIA R&A Unit Meeting Presentation,** February 13, 2018
-    * I gave a brief presentation where I introduced the R&A Unit to R and discussd the Workshop objectives and structure. Check out the [**slides**](./slides/presentation_slides.html) as well as the [**script**](./notes/presentation_notes.html) for the presentation!
+    * I gave a brief presentation where I introduced the R&A Unit to R and discussd the Workshop objectives and structure. Check out the [**slides**](./slides/presentation_slides.html){target="_blank"} as well as the [**script**](./notes/presentation_notes.html){target="_blank"} for the presentation!
 
 
 ***
@@ -76,7 +78,7 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ## Workshop instructor
 My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that **R is one of the most powerful modern computational tools for research and data analysis**. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [**About Me**](about.html#about-me) to read more about me.
 
-[^1]: For example, this website as well as all workshop materials (notes and slides) are produced with R Markdown. Also, check out [**this interactive dashboard**](https://bobaekang.shinyapps.io/crime_data_profile_demo/) generated with R Shiny.
+[^1]: For example, this website as well as all workshop materials (notes and slides) are produced with R Markdown. Also, check out [**this interactive dashboard**](https://bobaekang.shinyapps.io/crime_data_profile_demo/){target="_blank"} generated with R Shiny.
 
 <br>
 <br>

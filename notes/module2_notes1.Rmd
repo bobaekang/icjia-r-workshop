@@ -18,7 +18,7 @@ css: ../css/style.css
 
 <!-- logo -->
 <div class="logo">
-  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+  <a href="http://www.icjia.state.il.us/" target="_blank"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
 </div>
 
 
@@ -27,14 +27,14 @@ library(knitr)
 opts_chunk$set(echo = TRUE)
 ```
 
-This page contains the notes for **the first part of R Workshop Module 2: R basics**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+This page contains the notes for **the first part of R Workshop Module 2: R basics**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang){target="_blank"} to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
 
 ### Links
 Click [**here**](../index.html) to go to the workshop **home page**.
 
 Click [**here**](../modules.html) to go to the workshop **Modules page**.
 
-Click [**here**](../slides/module2_slides1.html) to view the accompanying **slides for Module 2, Part 1**.
+Click [**here**](../slides/module2_slides1.html){target="_blank"} to view the accompanying **slides for Module 2, Part 1**.
 
 Navigate to the other workshop materials:
 
@@ -89,7 +89,7 @@ Here are the key concepts we will be learning in this part:
 include_graphics("../images/object.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg" target="_blank">Wikimedia Commons</a>
 </p>
 
 ## Key object types
@@ -304,7 +304,7 @@ print(to_vector)
 include_graphics("../images/expression.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+Source: <a href="http://www.clker.com/clipart-16340.html" target="_blank">clker.com</a>
 </p>
 
 ## What are expressions
@@ -546,7 +546,7 @@ for (element in iterable_object) {
 include_graphics("../images/while_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
+Source: <a href="https://www.datamentor.io/r-programming/while-loop" target="_blank">DataMentor</a>
 </p>
 
 A `while` loop consists of a condition and a group of statments (expression) to be executed.
@@ -582,7 +582,7 @@ while (count < 5) {
 include_graphics("../images/for_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
+Source: <a href="https://www.datamentor.io/r-programming/for-loop" target="_blank">DataMentor</a>
 </p>
 
 A `for` loop is similar to `while` loop, except that it takes an iterable object (vector or list) rather than a condition.
@@ -625,7 +625,7 @@ for (i in 1:length(flavors)) {
 include_graphics("../images/break_loop.jpg")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+Source: <a href="https://www.datamentor.io/r-programming/break-next" target="_blank">DataMentor</a>
 </p>
 
 By combining conditionals and loops, we can generate a more complex flow control structure. Here we introduce two additional statements, `break` and `next`, which support creating advanced control structure.
@@ -656,7 +656,7 @@ while (loop_condition) {
 include_graphics("../images/next_loop.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+Source: <a href="https://www.datamentor.io/r-programming/break-next" target="_blank">DataMentor</a>
 </p>
 
 ```{r eval=FALSE}
@@ -688,7 +688,7 @@ while (loop_condition) {
 include_graphics("../images/function-machine.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+Source: <a href="https://www.wikimedia.org" target="_blank">Wikimedia Commons</a>
 </p>
 
 ## What are functions
@@ -783,7 +783,7 @@ A function can be given default values to its arguments. If the argument value i
 knitr::include_graphics("../images/environments_bindings.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html" target="_blank"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 ## What are environments
@@ -803,7 +803,7 @@ There are two simple rules to know about the nesting of environments:
 knitr::include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/parents.png")
 ```
 <p style="font-size:0.5em; text-align: center; color: #777;">
-Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html" target="_blank"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 In this picture, the box on the left represents a parent environment and the box on the right is a child environment. Variables `a`, `b`, and `c` are stored in the parent environment while `d` and `e` are in the child environment. According to the two basic rules about environments, accessing variables `d` and `e` from the parent environment is not possible but, `a`, `b`, and `c` are still accessible from the child environment.
@@ -845,7 +845,7 @@ Searching for an object in R follows the lexical scoping rules.
 knitr::include_graphics("http://adv-r.had.co.nz/diagrams/environments.png/search-path.png")
 ```
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html" target="_blank"><span style="font-style: italic">Advanced R</span></a>
 </p>
 
 
@@ -854,8 +854,8 @@ Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"
 
 # References
 <ul>
-  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a></li>
-  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">"An Introduction to R"</a>.</li>
-  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">"R Language Definition"</a>.</li>
-  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.</li>
+  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/" target="_blank"><span style="font-style:italic">R Tutorials</span></a></li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html" target="_blank">"An Introduction to R"</a>.</li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html" target="_blank">"R Language Definition"</a>.</li>
+  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/" target="_blank"><span style="font-style:italic"> Advanced R</span></a>.</li>
 </ul>

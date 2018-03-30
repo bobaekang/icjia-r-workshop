@@ -106,10 +106,11 @@ $$\lambda(t) = \lim_{dt\to0} \frac{\text{Pr}(t \leq T < t + dt)}{S(t)dt} = \frac
 Packages on survival analysis
 ========================================================
 * `survival` package
+    * [GitHub repository](https://github.com/therneau/survival)
+    * Vignettes on package [CRAN page](https://cran.r-project.org/web/packages/survival/index.html) 
 * `survminer` package for visualization
-    * Resources:
-        * [Package website](http://www.sthda.com/english/rpkgs/survminer/)
-        * [GiHub repo](https://github.com/kassambara/survminer)
+    * [Package website](http://www.sthda.com/english/rpkgs/survminer/)
+    * [GiHub repository](https://github.com/kassambara/survminer)
 
 
 Basic survival models
@@ -148,7 +149,7 @@ survfit function
 ```r
 survival::survfit(formula/model, data, ...)
 ```
-* `survfit` returns a survival curve
+* `survfit()` returns a survival curve
     * Uses KM estimator if with `formula`
     * Based on the model, if with `model` (e.g. Cox model)
 * `formula` for the KM estimator must have the `Surv` object as the response variable
@@ -162,7 +163,7 @@ $$\lambda(t|\boldsymbol{\text{x}}_i) = \lambda_0(t)\psi_i = \lambda_0(t)\text{ex
 
 * The model assumes that the unique effect of a change in a covariate is multiplicative w.r.t. the hazard rate 
     * $\boldsymbol{\text{x}}_i$ denotes the covariate values for subject $i$
-    * The estimated coefficient is interpreted in a releative sense
+    * The estimated coefficient is interpreted in relative terms
 
 
 coxph function
@@ -182,7 +183,7 @@ Plotting survival curve
 plot(survfit)
 survminer::ggsurvplot(survfit, data, ...)
 ```
-* `survival` package offers `plot` methods for `survfit` objects
+* `survival` package provides a `plot` method for `survfit` objects
     * Uses the base R plotting
 * `survminer` package offers an alternative way to plot survival curves
     * `ggsurvplot()` has `ggplot2`-like API and makes `ggplot2` themes available
@@ -259,7 +260,6 @@ Source: <a href="https://en.wikipedia.org/wiki/Stationary_process">"Stationary p
 Packages on time series analysis
 ========================================================
 * `stats` package (part of R "base packages")
-* `tseries` pacakge
 * `forcast` package
     * [Package website](http://pkg.robjhyndman.com/forecast/index.html)
     * Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/). (online textbook)
@@ -290,7 +290,7 @@ decompose and stl functions
 decompose(x, type = c("additive", "multiplicative"), ...)
 stl(x, s.window, ...)
 ```
-* `stats` offer two functions for time series decomposition
+* `stats` offers two functions for time series decomposition
 * `decompose()` uses moving averages
     * Seasonal component can be additive or multiplicative
 * `stl()` uses LOESS (local regression)
@@ -448,12 +448,12 @@ spdep package
 
 Creating neighbors and weights matrix
 ========================================================
-* `spdep` offers `*2nb` functions to create neighbors (`nb` object)
-  * `poly2nb` for continuity-based neighbors
-  * `knn2nb` for distance-based neighbors
-  * `tri2nb` for grid-based neighbors
-  * `cell2nb` for grid neighbors
-* `nb2listw` function is used to generate a list of spatial weights (`listw` object) from an `nb` object
+* `spdep` offers `*2nb()` functions to create neighbors (`nb` object)
+  * `poly2nb()` for continuity-based neighbors
+  * `knn2nb()` for distance-based neighbors
+  * `tri2nb()` for grid-based neighbors
+  * `cell2nb()` for grid neighbors
+* `nb2listw()` function is used to generate a list of spatial weights (`listw` object) from an `nb` object
 
 
 ========================================================
@@ -470,7 +470,7 @@ spdep::ploy2nb(pl, row.names = NULL, queen = TRUE, ...)
 ```r
 spdep::nb2listw(neighbours, ...)
 ```
-* `nb2listw` functions takes a neighbours object of class `nb` and returns a spatial weights list (`listw`)
+* The `nb2listw()` function takes a neighbours object of class `nb` and returns a spatial weights list (`listw`)
 
 
 Basics of spatial modeling
@@ -511,7 +511,7 @@ Lagrange multiplier tests
     * The null hypothesis is no spatial autocorrelation
         * $H_0: \rho = 0$ for spatial lag model
         * $H_0: \lambda = 0$ for spatial error model
-* "Robust" LM test are used when LM tests both lag model and error model reject the null
+* "Robust" LM test are used when LM tests for both lag model and error model reject the null
 
 
 lm.LMtests function
@@ -547,7 +547,7 @@ $$\boldsymbol{\text{u}} = \lambda\boldsymbol{\text{W}}\boldsymbol{\text{u}} + \v
 * $\varepsilon$ is an idiosyncratic error term
 
 
-lagsarlm and errorsarlm function
+lagsarlm() and errorsarlm()
 ========================================================
 
 ```r

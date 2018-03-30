@@ -987,6 +987,64 @@ resample(data, idx)
 resample_partition(data, p)
 bootstrap(data, n, id = ".id")
 ```
+* `resample` take a data frame and a vector of indices to create a pointer object, which can be either turned into a data frame or used directly in modeling functions (e.g. `lm()`)
+* `resample_partition` takes a data and a named numeric vector to specify partitioning. Its output is a list of random partitions.
+* `bootstrap` takes a data frame and an integer to specify the number of bootstrap replicates to generate. The output is a data frame of bootstrap samples column and id column
+
+
+========================================================
+
+```r
+set.seed(1) # for reproducibility
+
+partitioned <- ispcrime %>%
+  filter(year == "2015") %>%
+  resample_partition(p = c(treatment = 0.5, control = 0.5))
+
+partitioned
+```
+
+```
+$treatment
+<resample [50 x 12]> 1, 2, 5, 10, 11, 12, 14, 16, 19, 22, ...
+
+$control
+<resample [52 x 12]> 3, 4, 6, 7, 8, 9, 13, 15, 17, 18, ...
+```
+
+
+========================================================
+
+```r
+head(partitioned$treatment$data)
+```
+
+```
+  year    county violentCrime murder rape robbery aggAssault propertyCrime
+1 2015     Adams          227      5   39       9        174          1268
+2 2015 Alexander          107      0    3       3        101           194
+3 2015      Bond            5      1    0       0          4           130
+4 2015     Boone            0      0    0       0          0             1
+5 2015     Brown            9      0    1       0          8            11
+6 2015    Bureau           53      1   17       4         31           360
+  burglary larcenyTft MVTft arson
+1      274        944    43     7
+2       58        119     9     8
+3       39         84     7     0
+4        0          0     0     1
+5        4          5     2     0
+6      110        244     6     0
+```
+
+```r
+partitioned$treatment$idx
+```
+
+```
+ [1]   1   2   5  10  11  12  14  16  19  22  24  25  26  27  28  30  32
+[18]  34  36  38  39  40  42  44  45  48  50  53  54  55  56  57  58  61
+[35]  64  69  71  75  77  82  84  86  87  91  92  95  97  98  99 100
+```
 
 
 Model quality metrics
@@ -1019,11 +1077,11 @@ add_residuals(data, model, var = "resid")
 
 ```r
 ispcrime_subset <- select(ispcrime, year:violentCrime, propertyCrime)
-ispcrime_subset2 <- ispcrime_subset %>%
-  add_predictions(my_lmfit) %>%
-  add_residuals(my_lmfit)
 
-head(ispcrime_subset2)
+ispcrime_subset %>%
+  add_predictions(my_lmfit) %>%
+  add_residuals(my_lmfit) %>%
+  head()
 ```
 
 ```
@@ -1130,7 +1188,7 @@ Resources
 Questions?
 ========================================================
 type: section
-<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="60%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://media0.giphy.com/media/8lPSqcjcNjymIOS4Pm/giphy.gif" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="60%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://giphy.com/gifs/kpop-bts-8lPSqcjcNjymIOS4Pm">Giphy</a>
 </p>
@@ -1150,7 +1208,7 @@ References
 
 ========================================================
 type: section
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="45%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ic_pause_circle_outline_48px.svg/2000px-Ic_pause_circle_outline_48px.svg.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="45%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
 Source: <a href="https://www.wikimedia.org">Wikimedia.org</a>
 </p>

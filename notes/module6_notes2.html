@@ -236,7 +236,7 @@ div.tocify {
 <h3>Links</h3>
 <p>Click <a href="../index.html"><strong>here</strong></a> to go to the workshop <strong>home page</strong>.</p>
 <p>Click <a href="../modules.html"><strong>here</strong></a> to go to the workshop <strong>Modules page</strong>.</p>
-<p>Click <a href="../slides/module6_slides2.html"><strong>here</strong></a> to view the accompanying <strong>slides for Module 6, Part 2</strong>.</p>
+<p>Click <a href="../slides/module6_slides2.html" target="_blank"><strong>here</strong></a> to view the accompanying <strong>slides for Module 6, Part 2</strong>.</p>
 <p>Navigate to the other workshop materials:</p>
 <button class="btn" data-toggle="collapse" data-target="#collapse-navigate" aria-expanded="false" aria-controls="collapse-navigate">
 <strong>SEE MORE</strong>
@@ -276,31 +276,29 @@ div.tocify {
 </div>
 <div id="to-infinity-and-beyond-2-leveraging-online-resources" class="section level1">
 <h1>“To Infinity and Beyond” (2): Leveraging online resources</h1>
+<p>In this final part, we will explore options for getting help and find resource materials to get answers to our questions. R users are blessed with a wealth of information that is freely available online from a variety of sources. Knowing where to look when in need of help, we are truly ready to solve any problems using R.</p>
 <hr />
 </div>
 <div id="why-online-resources" class="section level1">
 <h1>Why online resources?</h1>
-<ul>
-<li>We cannot know everything.</li>
-<li>In fact, no one knows everything!</li>
-<li>“Someone has already done it.” <img src="http://www.azquotes.com/picture-quotes/quote-the-very-best-proof-that-something-can-be-done-is-that-someone-has-already-done-it-bertrand-russell-146-34-03.jpg" width="80%" style="display: block; margin: auto; margin-top: 5%; box-shadow: none;" />
+<p>One of the key reasons we must know how to leverage online resources is simply that we cannot know everything.</p>
+<p>In fact, no one knows everything! Many advanced R programmers still rely on the Internet partly because the ecosystem keeps evolving and partly because they, too, are only humans with plastic memories.</p>
+<p>For us emerging R programmers, one of the greatest benefit of knowing where to look online comes from the fact that “Someone has already done it.” Questions we ask are often not so unique. Even when we are asking truly unique questions, there are many others who worked on similar questions or questions that address some part of ours. And, as R community is very active online, we are likley to find some information on what others have done on the Internet!</p>
+<img src="http://www.azquotes.com/picture-quotes/quote-the-very-best-proof-that-something-can-be-done-is-that-someone-has-already-done-it-bertrand-russell-146-34-03.jpg" width="80%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://www.azquotes.com/quote/1463403">AZ Quotes</a>
-</p></li>
-</ul>
+Source: <a href="http://www.azquotes.com/quote/1463403" target="_blank">AZ Quotes</a>
+</p>
 <hr />
 </div>
 <div id="before-going-online" class="section level1">
 <h1>Before going online</h1>
 <img src="../images/wireless_icon.png" width="30%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg">Wikimedia Commons</a>
+Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg" target="_blank">Wikimedia Commons</a>
 </p>
 <div id="the-15-minute-rule" class="section level2">
 <h2>“The 15 minute rule”</h2>
-<ul>
-<li>First, try yourself. If you cannot solve it, <em>then</em> go online.</li>
-</ul>
+<p>But, wait. Before going online, you should first try to solve the problem on your own. If you cannot solve it after “15 mintues,” <em>then</em> go online looking for advices.</p>
 <blockquote class="twitter-tweet" data-lang="en">
 <p lang="en" dir="ltr">
 15 min rule: when stuck, you HAVE to try on your own for 15 min; after 15 min, you HAVE to ask for help.- Brain AMA <a href="https://t.co/MS7FnjXoGH">pic.twitter.com/MS7FnjXoGH</a>
@@ -308,66 +306,43 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Wireless-icon.svg">Wiki
 — Rachel Thomas (<span class="citation">@math_rachel</span>) <a href="https://twitter.com/math_rachel/status/764931533383749632?ref_src=twsrc%5Etfw">August 14, 2016</a>
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Even though you shouldn’t be reinventing the wheel all the time, “first trying it yourself” will help you to become an indepedent thinker/programmer. In the long run, this will prove to be a critical skill you need to adapt to the changing R ecosystem.</p>
 </div>
 <div id="oops-my-bad" class="section level2">
 <h2>“Oops, my bad”</h2>
-<ul>
-<li>We all make typos. Check for typos!
-<ul>
-<li>RStudio does not check for typos automatically</li>
-<li>But we can refer to an error caused by the typos</li>
-</ul></li>
-<li>Check if a package is loaded before using its functions
-<ul>
-<li><code>Error in some_function() : could not find function &quot;some_function&quot;</code></li>
-</ul></li>
-</ul>
+<p>When faced with some error, remember that we all make typos. Always. So we should check for typos!</p>
+<p>Unfortunately, RStudio does not check for typos in our code automatically. However, we can refer to an error caused by the typos to figure out what went wrong.</p>
+<p>Also, check if a package is loaded before using its functions. A common error message we might see would be the following:</p>
+<pre><code>Error in some_function() : could not find function &quot;some_function&quot;</code></pre>
+<p>Make sure the intended package is imported or the function is defined before using it.</p>
 </div>
 <div id="help-function" class="section level2">
 <h2>Help function</h2>
 <pre class="r"><code># these are equivalent
 ?some_function
 help(some_function)</code></pre>
-<ul>
-<li>Looking ino the documentation is often the best way to understand what a function is and how to use it.</li>
-<li>Using the <code>?</code> followed by the function name or <code>help()</code> brings out the documentation if available</li>
-</ul>
+<p>Looking ino the documentation is often the best way to understand what a function is and how to use it. We can bring out the documentation if available using the <code>?</code> followed by the function name or <code>help()</code>.</p>
 </div>
 <div id="error-messages-and-debugging" class="section level2">
 <h2>Error messages and debugging</h2>
-<ul>
-<li>When an error is thrown, it comes with an error message</li>
-<li>Error messages often have rich information about what went wrong and where it went wrong</li>
-<li>If we are working with custom functions we defined, RStudio’s debugging tools can help us to spot the source of an error in the script and debug it
-<ul>
-<li>See <a href="https://support.rstudio.com/hc/en-us/articles/200713843">this article</a> on debugging with RStudio</li>
-<li>See <a href="https://vimeo.com/99375765">this video</a> by RStudio on introduction to debugging</li>
-</ul></li>
-</ul>
+<p>When an error is thrown, it comes with an error message. Error messages often have rich information about what went wrong and where it went wrong.</p>
+<p>If we are working with custom functions we defined, RStudio’s debugging tools can help us to spot the source of an error in the script and debug it. See <a href="https://support.rstudio.com/hc/en-us/articles/200713843" target="_blank">this article</a> on debugging with RStudio. Also, see <a href="https://vimeo.com/99375765" target="_blank">this video</a> by RStudio on introduction to debugging.</p>
 </div>
 </div>
 <div id="google" class="section level1">
 <h1>Google</h1>
 <img src="../images/google_help.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.google.com/about/products/">Google.com</a>
+Source: <a href="https://www.google.com/about/products/" target="_blank">Google.com</a>
 </p>
 <div id="how-to-google-for-questions" class="section level2">
 <h2>How to google for questions</h2>
-<ul>
-<li>Be succinct and specific
-<ul>
-<li>The search term should be a set of keywords</li>
-<li>Package names and/or function names are good keywords</li>
-<li>Using the relevant error message as a serach term can help</li>
-</ul></li>
-<li>Look at questions/answers on platforms like:
-<ul>
-<li>Stack Overflow</li>
-<li>Quora</li>
-</ul></li>
-<li>Refer to “official” resources if available</li>
-</ul>
+<p>“Googling” is a great technique to find answers to our own questions. Here are some tips to effectively take advantage of Google.</p>
+<ol style="list-style-type: decimal">
+<li>Be succinct and specific. The search term should be a set of keywords. Here, package names and/or function names often make good keywords. Also, using the relevant error message as a serach term can help.</li>
+<li>Look at questions/answers on platforms like Stack Overflow and Quora</li>
+<li>Refer to “official” resources if available. From your search results, first try the links to CRAN, RStudio, package GitHub repository, and other “official” resource mateirals.</li>
+</ol>
 <hr />
 </div>
 </div>
@@ -375,125 +350,99 @@ Source: <a href="https://www.google.com/about/products/">Google.com</a>
 <h1>“Official” resources</h1>
 <img src="../images/Rlogo.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://www.r-project.org/logo/">R Project</a>
+Source: <a href="https://www.r-project.org/logo/" target="_blank">R Project</a>
 </p>
+<p>“Official” resources are those provided by authortative entities, such as CRAN, RStudio, and package authors/maintainers. Though we can get to such “official” resources via Google search. knowing how to find them directly can facilitate our search for answers.</p>
 <div id="cran-website" class="section level2">
 <h2>CRAN website</h2>
-<ul>
-<li>The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following
+<p>The Comprehensive R Archive Network (CRAN) has many resources for R and R packages, including the following:</p>
 <ul>
 <li>Manuals</li>
 <li>Task Views</li>
 <li>Package pages</li>
-</ul></li>
 </ul>
 <div id="manuals" class="section level3">
 <h3>Manuals</h3>
+<p>CRAN offers the following “manuals”:</p>
 <ul>
-<li>CRAN offers the following manuals:
-<ul>
-<li><a href="https://cran.r-project.org/doc/manuals/R-intro.html">“An Introduction to R”</a></li>
-<li><a href="https://cran.r-project.org/doc/manuals/R-data.html">“R Data Import/Export”</a></li>
-<li><a href="https://cran.r-project.org/doc/manuals/R-admin.html">“R Installation and Administration”</a></li>
-<li><a href="https://cran.r-project.org/doc/manuals/R-exts.html">“Writing R Extensions”</a></li>
-<li><a href="https://cran.r-project.org/doc/manuals/R-lang.html">“The R language definition”</a> (draft)</li>
-<li><a href="https://cran.r-project.org/doc/manuals/R-ints.html">“R Internals”</a></li>
-</ul></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-intro.html" target="_blank">“An Introduction to R”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-data.html" target="_blank">“R Data Import/Export”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-admin.html" target="_blank">“R Installation and Administration”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-exts.html" target="_blank">“Writing R Extensions”</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-lang.html" target="_blank">“The R language definition”</a> (draft)</li>
+<li><a href="https://cran.r-project.org/doc/manuals/R-ints.html" target="_blank">“R Internals”</a></li>
 </ul>
-<p><img src="../images/cran_manuals_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>Manuals page can be found under “Documentation” on the menu located on the left side of the CRAN website. Each manual can be viewed as an HTML page or downloaded as PDF or EPUB file.</p>
+<p><img src="../images/cran_manuals_page.png" width="100%" /></p>
 </div>
 <div id="task-views" class="section level3">
 <h3>Task Views</h3>
+<p>A Task View offers a brief introduction to a particular topic and an annotated list of relevant R packages.</p>
+<p>CRAN has tasks views on a selection of topics, including:</p>
 <ul>
-<li>A Task View offers a brief introduction to a particular topic and an annotated list of relevant R packages</li>
-<li>CRAN has tasks views on a selection of topics, including:
-<ul>
-<li><a href="https://cran.r-project.org/web/views/MachineLearning.html">Machine learning &amp; Statistical Learning</a></li>
-<li><a href="https://cran.r-project.org/web/views/Multivariate.html">Multivariate Statistics</a></li>
-<li><a href="https://cran.r-project.org/web/views/OfficialStatistics.html">Official Statistics &amp; Survey Methodology</a></li>
-<li><a href="https://cran.r-project.org/web/views/SocialSciences.html">Statistics for the Social Sciences</a></li>
-<li><a href="https://cran.r-project.org/web/views/Survival.html">Survival Analysis</a></li>
-<li><a href="https://cran.r-project.org/web/views/TimeSeries.html">Time Series Analysis</a></li>
-</ul></li>
+<li><a href="https://cran.r-project.org/web/views/MachineLearning.html" target="_blank">Machine learning &amp; Statistical Learning</a></li>
+<li><a href="https://cran.r-project.org/web/views/Multivariate.html" target="_blank">Multivariate Statistics</a></li>
+<li><a href="https://cran.r-project.org/web/views/OfficialStatistics.html" target="_blank">Official Statistics &amp; Survey Methodology</a></li>
+<li><a href="https://cran.r-project.org/web/views/SocialSciences.html" target="_blank">Statistics for the Social Sciences</a></li>
+<li><a href="https://cran.r-project.org/web/views/Survival.html" target="_blank">Survival Analysis</a></li>
+<li><a href="https://cran.r-project.org/web/views/TimeSeries.html" target="_blank">Time Series Analysis</a></li>
 </ul>
-<p><img src="../images/cran_taskviews_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>CRAN Task Views page can be found under “CRAN” on the menu located on the left side of the CRAN website.</p>
+<p><img src="../images/cran_taskviews_page.png" width="100%" /></p>
 </div>
 <div id="package-pages" class="section level3">
 <h3>Package pages</h3>
-<ul>
-<li>Each contributed package that is listed on CRAN has a page</li>
-<li>A reference manual and vignettes can be found on the CRAN package page</li>
-<li>To directly get to the package page, try on your broswer:
+<p>Each contributed package that is listed on CRAN has a page on the CRAN website. Here we can find a reference manual and vignettes for the package.</p>
+<p>To directly get to the package page, try on your broswer:</p>
 <ul>
 <li>“<a href="https://cran.project.org/package" class="uri">https://cran.project.org/package</a>=[package-name]”</li>
-<li>Replace [package-name] with any existing package name</li>
-</ul></li>
 </ul>
-<p><img src="../images/cran_packages_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>with replacing [package-name] with any existing package name.</p>
+<p>Alternatively, we can search for a particular package on the CRAN website user interface. Packages page can be found under “Software” on the menu located on the left side of the CRAN website.</p>
+<p><img src="../images/cran_packages_page.png" width="100%" /></p>
 <div id="cran-package-page-example-dplyr" class="section level4">
-<h4>CRAN package page example (<code>dplyr</code>)** <br><br> <img src="../images/cran_package_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></h4>
+<h4>CRAN package page example (<code>dplyr</code>)</h4>
+<p>Here is an example page for <code>dplyr</code> package. It offers detailed information about the current version available on CRAN as well as links to its reference manual and vignettes (in the red box).</p>
+<p><img src="../images/cran_package_page.png" width="100%" /></p>
 </div>
 </div>
 <div id="pacakge-reference-manuals" class="section level3">
 <h3>Pacakge reference manuals</h3>
-<ul>
-<li>Packages have reference manuals that contain documentation for all its contents (i.e. functions and datasets)
-<ul>
-<li>Basically, it is a collection of <code>help()</code> documentations in a pdf format</li>
-</ul></li>
-<li>Reference manual can also be found by googling
-<ul>
-<li>Try “package-name pdf” as your search term</li>
-</ul></li>
-</ul>
+<p>R packages have reference manuals that contain documentation for all its contents, i.e. functions and datasets. Basically, it is a collection of <code>help()</code> documentations in a pdf format.</p>
+<p>Reference manual can also be found by googling. Just try “package-name pdf” as your Google search term.</p>
 </div>
 <div id="pacakge-vignettes" class="section level3">
 <h3>Pacakge vignettes</h3>
-<ul>
-<li>Packages often have vignettes to introduce its contents
-<ul>
-<li>Some vignettes can be accessed via <code>vignette(&quot;package&quot;)</code> on console</li>
-<li>Other vignettes are found on the pacakge page on CRAN</li>
-</ul></li>
-<li>Unfortunately, not all packages have vignettes.</li>
-</ul>
+<p>Packages often have vignettes to introduce its contents. Some vignettes can be accessed via <code>vignette(&quot;package&quot;)</code> on R console. Other vignettes are found on the pacakge page on CRAN.</p>
+<p>Unfortunately, not all packages have vignettes, so don’t be suprised when you cannot find vignettes for certain packages.</p>
 </div>
 </div>
 <div id="rstudio-website" class="section level2">
 <h2>RStudio website</h2>
+<p>RStudio’s <a href="https://www.rstudio.com/" target="_blank">website</a> offer many useful resources under “Resources” menu, including the following:</p>
 <ul>
-<li>RStudio’s <a href="https://www.rstudio.com/">website</a> offer many useful resources under “Resources” menu, including the following:
-<ul>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheet sheets page</a> has download links to over 30 “cheat sheets” on R and R packages in the PDF format.</li>
-<li><a href="https://www.rstudio.com/resources/webinars/">Webinar &amp; videos page</a></li>
-</ul></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">Cheet sheets page</a> has download links to over 30 “cheat sheets” on R and R packages in the PDF format.</li>
+<li><a href="https://www.rstudio.com/resources/webinars/" target="_blank">Webinar &amp; videos page</a></li>
 </ul>
-<p><a href="https://www.rstudio.com/"> <img src="../images/rstudio_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="https://www.rstudio.com/" target="_blank"> <img src="../images/rstudio_page.png" width="100%" /> </a></p>
 <div id="cheet-sheets" class="section level3">
 <h3>Cheet sheets</h3>
-<ul>
-<li>Currently, 13 RStudio cheat sheets are available, including:
+<p>Currently, 13 RStudio cheat sheets are available, including:</p>
 <ul>
 <li>“Data Transformation with dplyr”</li>
 <li>“Data Import”</li>
 <li>“Data Visualization with ggplot2”</li>
 <li>“Date and times with lubridate”</li>
 <li>“Work with strings with stringr”</li>
-</ul></li>
-<li>Currently, there are 15 user-made cheat sheats as well</li>
-<li>Some cheat sheats can also be found in RStudio IDE menu
-<ul>
-<li>“Help &gt; Cheatsheets”</li>
-</ul></li>
 </ul>
-<p><a href="https://www.rstudio.com/resources/cheatsheets/"> <img src="../images/rstudio_cheatsheets.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
-<p><img src="../images/rstudio_cheatsheet_example.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>There are about 15 user-made cheat sheats as well.</p>
+<p>Some RStudio cheat sheats can also be found in RStudio IDE menu at “Help &gt; Cheatsheets”.</p>
+<p>The image below shows the Cheet Sheets page on RStudio website under “Resources” menu. <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank"> <img src="../images/rstudio_cheatsheets.png" width="100%" /> </a></p>
+<p><br> And the following is the example cheat sheet for using <code>dplyr</code> to manipulate tabular datasets in R. <a href="https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf" target="_blank"> <img src="../images/rstudio_cheatsheet_example.png" width="100%" /> </a></p>
 </div>
 <div id="webinar-videos" class="section level3">
 <h3>Webinar &amp; videos</h3>
-<ul>
-<li>RStudio’s webinars and videos offer materials covering a variety of subjects.</li>
-<li>Some materials are organized by topics, including:
+<p>RStudio’s webinars and videos offer materials covering a variety of subjects. Some materials are organized by topics, including:</p>
 <ul>
 <li>“RStudio Essentials”</li>
 <li>“Shiny Essentials” and “Advanced Shiny”
@@ -502,29 +451,19 @@ Source: <a href="https://www.r-project.org/logo/">R Project</a>
 </ul></li>
 <li>“The Essentials of Data Science”</li>
 <li>“Advanced Data Science”</li>
-</ul></li>
-<li>Materials from RStudio’s annual conference, <code>rstudio::conf</code>, are also made available.</li>
 </ul>
-<p><a href="https://www.rstudio.com/resources/webinars/"> <img src="../images/rstudio_webinars_videos.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>Materials from RStudio’s annual conference, <code>rstudio::conf</code>, are also made available.</p>
+<p><a href="https://www.rstudio.com/resources/webinars/" target="_blank"> <img src="../images/rstudio_webinars_videos.png" width="100%" /> </a></p>
 </div>
 </div>
 <div id="tidyverse-website" class="section level2">
 <h2>Tidyverse website</h2>
-<ul>
-<li>Tidyverse has its own <a href="https://www.tidyverse.org/">website</a> to
-<ul>
-<li>introduce tidyverse packages</li>
-<li>share updates and news on tidyverse, and</li>
-<li>offer guides to training matarials</li>
-</ul></li>
-<li>There are also child websites for many of tidyverse packages
-<ul>
-<li>URL: “[package-name].tidyverse.org”</li>
-</ul></li>
-</ul>
-<p><a href="https://www.tidyverse.org/"> <img src="../images/tidyverse_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>Tidyverse has its own <a href="https://www.tidyverse.org/" target="_blank">website</a> to introduce tidyverse packages, share updates and news on tidyverse, and offer guides to training matarials.</p>
+<p><a href="https://www.tidyverse.org/" target="_blank"> <img src="../images/tidyverse_page.png" width="100%" /> </a></p>
+<p>There are also child websites for many of tidyverse packages with standardized URL: “[package-name].tidyverse.org”.</p>
 <div id="tidyverse-child-websites" class="section level3">
 <h3>Tidyverse child websites</h3>
+<p>The following table lists tidyverse’s child websites for some of its packages:</p>
 <table>
 <thead>
 <tr class="header">
@@ -600,45 +539,30 @@ Source: <a href="https://www.r-project.org/logo/">R Project</a>
 </div>
 <div id="r-markdown-website" class="section level2">
 <h2>R Markdown website</h2>
-<ul>
-<li>RStudio has a separate <a href="https://rmarkdown.rstudio.com/">website</a> focused on all things R Markdown.
-<ul>
-<li><a href="https://rmarkdown.rstudio.com/articles.html">Articles page</a> offers a number of tutorials on creating various sorts of R Markdown documents</li>
-<li><a href="https://rmarkdown.rstudio.com/formats.html">Formats page</a> provides links to reference matarials on various R Markdown formats and templates</li>
-</ul></li>
-</ul>
-<p><a href="https://rmarkdown.rstudio.com"> <img src="../images/rmarkdown_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>RStudio has a separate <a href="https://rmarkdown.rstudio.com/" target="_blank">website</a> focused on all things R Markdown.</p>
+<p>The R Markdown website has useful resources such as its <a href="https://rmarkdown.rstudio.com/articles.html" target="_blank">Articles page</a> that offers a number of tutorials on creating various sorts of R Markdown documents and the <a href="https://rmarkdown.rstudio.com/formats.html" target="_blank">Formats page</a> that provides links to reference matarials on various R Markdown formats and templates.</p>
+<p><a href="https://rmarkdown.rstudio.com" target="_blank"> <img src="../images/rmarkdown_page.png" width="100%" /> </a></p>
 </div>
 <div id="shiny-website" class="section level2">
 <h2>Shiny website</h2>
-<ul>
-<li>RStudio also has a separate <a href="https://shiny.rstudio.com/">website</a> on everything Shiny</li>
-<li><a href="https://shiny.rstudio.com/tutorial/">Video &amp; wrttien tutorial page</a> has links to tutorial videos and articles on Shiny as well as recorded conference presentations and webinars<br />
-</li>
-<li><a href="https://shiny.rstudio.com/articles/">Articles page</a> offers a list of web articles on building Shiny applications</li>
-<li><a href="https://shiny.rstudio.com/reference/shiny/">Reference page</a> contains links to upgrade notes and function references for lastest as well as previous versions of the Shiny package</li>
-</ul>
-<p><a href="https://shiny.rstudio.com/"> <img src="../images/shiny_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p>RStudio also has a separate <a href="https://shiny.rstudio.com/" target="_blank">website</a> on everything Shiny. Some of the useful resource materials can be found in the following pages:</p>
+<p>First, its <a href="https://shiny.rstudio.com/tutorial/" target="_blank">Video &amp; wrttien tutorial page</a> has links to tutorial videos and articles on Shiny as well as recorded conference presentations and webinars.</p>
+<p>Second, the <a href="https://shiny.rstudio.com/articles/" target="_blank">Articles page</a> offers a list of web articles on building Shiny applications.</p>
+<p>Finally, the <a href="https://shiny.rstudio.com/reference/shiny/" target="_blank">Reference page</a> contains links to upgrade notes and function references for lastest as well as previous versions of the Shiny package.</p>
+<p><a href="https://shiny.rstudio.com/" target="_blank"> <img src="../images/shiny_page.png" width="100%" /> </a></p>
 </div>
 <div id="htmlwidgets-website" class="section level2">
 <h2><code>htmlwidgets</code> website</h2>
-<ul>
-<li><em><code>htmlwidgets</code> for R</em> <a href="http://www.htmlwidgets.org/">website</a> presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem
-<ul>
-<li>Currently ~100 widgets are registered
-<ul>
-<li>See its <a href="http://gallery.htmlwidgets.org/">“Gallery” page</a></li>
-</ul></li>
-<li>Popular <code>htmlwidgets</code> packagees include:
+<p><em><code>htmlwidgets</code> for R</em> <a href="http://www.htmlwidgets.org/" target="_blank">website</a> presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem.</p>
+<p>Curretnly, there are alom 100 widgets registered as <code>htmlwidgets</code>. Visit its <a href="http://gallery.htmlwidgets.org/" target="_blank">“Gallery” page</a> to see what widgets are available.</p>
+<p>Some popular <code>htmlwidgets</code> packagees include:</p>
 <ul>
 <li><code>plotly</code> and <code>highcharter</code> for interactive visualizations</li>
 <li><code>leaflet</code> for interactive maps</li>
 <li><code>DT</code> for interactive data tables</li>
-</ul></li>
-</ul></li>
 </ul>
-<p><a href="http://www.htmlwidgets.org/"> <img src="../images/htmlwidgets_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
-<p><a href="http://gallery.htmlwidgets.org/"> <img src="../images/htmlwidgets_gallery.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="http://www.htmlwidgets.org/" target="_blank"> <img src="../images/htmlwidgets_page.png" width="100%" /> </a></p>
+<p><a href="http://gallery.htmlwidgets.org/" target="_blank"> <img src="../images/htmlwidgets_gallery.png" width="100%" /> </a></p>
 <hr />
 </div>
 </div>
@@ -646,45 +570,46 @@ Source: <a href="https://www.r-project.org/logo/">R Project</a>
 <h1>R Community</h1>
 <img src="../images/community_title.jpg" width="70%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)">“Community (TV series)”, Wikipedia</a>
+Source: <a href="https://en.wikipedia.org/wiki/Community_(TV_series)" target="_blank">“Community (TV series)”, Wikipedia</a>
 </p>
+<p>One of the greatest strengths of R is its community that is highly active and diverse. Naturally, a lot of quality resource materials on the Internet come from the members of R community.</p>
 <div id="r-bloggers" class="section level2">
 <h2>R-bloggers</h2>
-<ul>
-<li><a href="https://www.r-bloggers.com/"><em>R-bloggers</em></a> is a blog that collects and features articles and blog posts on R and programming in R from a variety of sources.</li>
-<li>The blog offers an excellent way to stay up-to-date on new packages and developments in the R community.</li>
-<li>Its posts cover new updates in R and major R packages, tutorials, information on upcoming events and conferences, and much more.</li>
-</ul>
-<p><a href="https://www.r-bloggers.com/"> <img src="../images/rbloggers_page.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /> </a></p>
+<p><a href="https://www.r-bloggers.com/" target="_blank"><em>R-bloggers</em></a> is a blog that collects and features articles and blog posts on R and programming in R from a variety of sources.</p>
+<p>The blog offers an excellent way to stay up-to-date on new packages and developments in the R community. Its posts cover new updates in R and major R packages, tutorials, information on upcoming events and conferences, and much more.</p>
+<p><a href="https://www.r-bloggers.com/" target="_blank"> <img src="../images/rbloggers_page.png" width="100%" /> </a></p>
 </div>
 <div id="online-books" class="section level2">
 <h2>Online “books”</h2>
+<p>There are many “books” written by R community members that are freely available online. Some excellent online books are as follows:</p>
 <ul>
-<li>Healy, K. (2018). <a href="http://socviz.co/index.html"><em>Data Visualization: A practical introduction</em></a>.</li>
-<li>Grolemund, G. and Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><em>R for Data Science</em></a>.</li>
-<li>Lovelace, R. et al. (2018). <a href="https://bookdown.org/robinlovelace/geocompr/"><em>Geocomputation in R</em></a>.</li>
-<li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><em>Advanced R</em></a>.</li>
-<li>Wilke, C. (n.d.). <a href="http://serialmentor.com/dataviz/"><em>Fundamentals of Data Visualization</em></a>.</li>
+<li>Healy, K. (2018). <a href="http://socviz.co/index.html" target="_blank"><em>Data Visualization: A practical introduction</em></a>.</li>
+<li>Grolemund, G. and Wickham, H. (2017). <a href="http://r4ds.had.co.nz/" target="_blank"><em>R for Data Science</em></a>.</li>
+<li>Lovelace, R. et al. (2018). <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank"><em>Geocomputation in R</em></a>.</li>
+<li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/" target="_blank"><em>Advanced R</em></a>.</li>
+<li>Wilke, C. (n.d.). <a href="http://serialmentor.com/dataviz/" target="_blank"><em>Fundamentals of Data Visualization</em></a>.</li>
 </ul>
-<p>Visit the <code>bookdown</code> package <a href="https://bookdown.org/">website</a> to find many more free online books on R!</p>
+<p>Also, visit the <code>bookdown</code> package <a href="https://bookdown.org/" target="_blank">website</a> to find many more free online books on R!</p>
 <div id="r-for-data-science" class="section level3">
 <h3><em>R for Data Science</em></h3>
-<br><br> <img src="../images/r4ds_cover.png" width="35%" style="display: block; margin: auto; box-shadow: none;" />
+<img src="../images/r4ds_cover.png" width="35%" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
+Source: <a href="http://r4ds.had.co.nz/" target="_blank">R for Data Science</a>
 </p>
+<p>I especially recommend <em>R for Data Science</em> by Hadley Wickham and Garrett Grolemund as your first R book. Much of this workshop is inspired by this book. It is written for beginners and covers key concepts and applications of R programming for data analysis.</p>
 </div>
 </div>
 <div id="helpful-websites" class="section level2">
 <h2>Helpful websites</h2>
+<p>There are many excellent websites providing tutorials and learning materials on R and data analysis with R. The following are some of my personal favorites:</p>
 <ul>
-<li>Kabacoff, R. <a href="https://www.statmethods.net/index.html"><em>Quick-R</em></a>.</li>
-<li>Prahbhakaran, S. <a href="http://r-statistics.co/"><em>r-statistics.co</em></a>.</li>
-<li>U of Cincinnati. <a href="http://uc-r.github.io/"><em>UC Business Analytics R Programming Guide</em></a>.</li>
-<li>Wollschlaeger, D. <a href="http://dwoll.de/rexrepos/index.html"><em>R Examples Repository</em></a>.</li>
-<li>Yau, C. <a href="http://www.r-tutor.com/"><em>R Tutorial</em></a>.</li>
+<li>Kabacoff, R. <a href="https://www.statmethods.net/index.html" target="_blank"><em>Quick-R</em></a>.</li>
+<li>Prahbhakaran, S. <a href="http://r-statistics.co/" target="_blank"><em>r-statistics.co</em></a>.</li>
+<li>U of Cincinnati. <a href="http://uc-r.github.io/" target="_blank"><em>UC Business Analytics R Programming Guide</em></a>.</li>
+<li>Wollschlaeger, D. <a href="http://dwoll.de/rexrepos/index.html" target="_blank"><em>R Examples Repository</em></a>.</li>
+<li>Yau, C. <a href="http://www.r-tutor.com/" target="_blank"><em>R Tutorial</em></a>.</li>
 </ul>
-<p>And, of course, this workshop’s <a href="bobaekang.github.io/icjia-r-workshop">website</a> :)</p>
+<p>And, of course, take advantage of this workshop’s <a href="bobaekang.github.io/icjia-r-workshop" target="_blank">website</a>! :)</p>
 <hr />
 </div>
 </div>
@@ -692,21 +617,19 @@ Source: <a href="http://r4ds.had.co.nz/">R for Data Science</a>
 <h1>GitHub repositories</h1>
 <img src="../images/octacat_github.png" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="https://github.com/logos">GitHub</a>
+Source: <a href="https://github.com/logos" target="_blank">GitHub</a>
 </p>
 <div id="what-is-github" class="section level2">
 <h2>What is GitHub?</h2>
 <blockquote>
 <p>“GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside millions of other developers.” - GitHub.com</p>
 </blockquote>
-<ul>
-<li>Most R packages are available as GitHub repositories, which can be “cloned” and downloaded if wanted.</li>
-<li>Many R package authors offer brief explanations and even quick tutorials for their packages on the GitHub repositories.</li>
-</ul>
+<p>Most R packages are available as GitHub repositories, which can be “cloned” and downloaded if wanted. Here we can view the source code that shows what the package functions are doing under the hood to get restults they promise. Not only can we understand better what the functions are doing, we can also use the source code as an inspiration for writing our own functions or even packages.</p>
+<p>Also, many R package authors offer brief explanations and even quick tutorials for their packages on the GitHub repositories.</p>
 <div id="github-repository-example-dplyr" class="section level3">
 <h3>Github repository example (<code>dplyr</code>)</h3>
-<p><br><br> <img src="../images/github_repo1.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
-<p><img src="../images/github_repo2.png" width="80%" style="display: block; margin: auto; box-shadow: none;" /></p>
+<p>Here is a screenshot of <code>dplyr</code> GitHub repository:</p>
+<p><img src="../images/github_repo1.png" width="100%" /><img src="../images/github_repo2.png" width="100%" /></p>
 <hr />
 </div>
 </div>
@@ -715,63 +638,42 @@ Source: <a href="https://github.com/logos">GitHub</a>
 <h1>Online courses</h1>
 <img src="../images/mooc.png" width="40%" style="display: block; margin: auto; box-shadow: none;" />
 <p style="font-size:0.5em; text-align:center; color: #777;">
-Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanford.edu</a>
+Source: <a href="http://worldview.stanford.edu/blog/edtech-2013" target="_blank">worldview.stanford.edu</a>
 </p>
+<p>If you are a kind of person who learns best from taking courses on the subject matter, you can take advantage of online courses on R.</p>
 <div id="popular-sites" class="section level2">
 <h2>Popular sites</h2>
+<p>Some popular online learning websites with courses on R are as follows:</p>
 <ul>
-<li><a href="https://www.datacamp.com/">DataCamp</a></li>
-<li><a href="https://www.coursera.org/">Coursera</a></li>
-<li><a href="https://www.edx.org/">edX</a></li>
+<li><a href="https://www.datacamp.com/" target="_blank">DataCamp</a></li>
+<li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+<li><a href="https://www.edx.org/" target="_blank">edX</a></li>
 </ul>
 </div>
 <div id="datacamp" class="section level2">
 <h2>Datacamp</h2>
-<ul>
-<li>Requires registration and log-in</li>
-<li>Some free courses are available, but most are paid courses with one free chapter</li>
-<li>Cost is $25/month with the annual plan or $29/month
-<ul>
-<li>Onces subscribed, all courses become available</li>
-</ul></li>
-<li>Offers 70+ courses on R
-<ul>
-<li>Each course is short (~4 hours) and focused on a specific topic</li>
-<li>Ranging from basic to intermediate level</li>
-</ul></li>
-</ul>
+<p>DataCamp is one of the best website there is for learning R. It appears that many programmers and package authors at RStudio have courses on DataCamp. This means that you can learn about certain packages directly from the authors!</p>
+<p>DataCamp requires registration and log-in to take the courses. There are some free courses available, but most are paid courses with one free chapter. Cost is $25/month with the annual plan or $29/month. Onces you are subscribed, all courses are made available.</p>
+<p>DataCamp offers 70+ courses on R. In general, a course is short (~4 hours) and focused on a specific topic. DataCamp’s R courses cover materials that range from basic to intermediate level.</p>
 </div>
 <div id="coursera" class="section level2">
 <h2>Coursera</h2>
+<p>Coursera is a MOOC (massive open online courses) site works with universities and offers learning materials that feel like a college course on a variety of subjects. Coursera has courses, specializations and online degrees. You can find out more about differences between these options <a href="https://about.coursera.org/" target="_blank">here</a>.</p>
+<p>Coursera requires registration and log-in. Once you are logged in, you can “audit” any course for free. For a small fee ($29 to $99), you can get course Certificate and online support.</p>
+<p>Some notable contents on Coursera include:</p>
 <ul>
-<li>Requires registration and log-in</li>
-<li>Offers courses, specializations and online degrees
-<ul>
-<li>Find out more about different options <a href="https://about.coursera.org/">here</a></li>
-</ul></li>
-<li>You can “audit” a course for free
-<ul>
-<li>Course Certificate and online support are available for a fee ($29-$99)</li>
-</ul></li>
-<li>Notable contents</li>
 <li>Data Science Specialization (10 courses)</li>
 <li>Statistics with R Specialization (5 courses)</li>
 </ul>
 </div>
 <div id="edx" class="section level2">
 <h2>edX</h2>
-<ul>
-<li>Requires registration and log-in</li>
-<li>Courses are free and mostly self-paced
-<ul>
-<li>edX offer <a href="https://www.edx.org/verified-certificate">verified certificate</a> for individual courses and <a href="https://www.edx.org/xseries">XSeries certificate</a> for XSeries programs for a small fee</li>
-</ul></li>
-<li>Courses are usually organized in a college-course like format</li>
-<li>Perhaps better for learning basics on topics like:
+<p>edX is another MOOC site that offers university-level courses, which are generally free and self-paced. Like Coursera, edX courses are usually organized in a college-course like format.</p>
+<p>Taking courses on edX requires registration and log-in. edX offer <a href="https://www.edx.org/verified-certificate" target="_blank">verified certificate</a> for individual courses and <a href="https://www.edx.org/xseries" target="_blank">XSeries certificate</a> for XSeries programs for a small fee.</p>
+<p>edX is perhaps better for learning basics on topics like:</p>
 <ul>
 <li>Computer science and programming</li>
 <li>Probability and statistics</li>
-</ul></li>
 </ul>
 <hr />
 </div>
@@ -780,7 +682,7 @@ Source: <a href="http://worldview.stanford.edu/blog/edtech-2013">worldview.stanf
 <h1>References</h1>
 <ul>
 <li>
-Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu"><i>Computing for Social Sciences</i></a>
+Soltoff, B. (n.d.). <a href="http://cfss.uchicago.edu" target="_blank"><i>Computing for Social Sciences</i></a>.
 </li>
 </ul>
 </div>
