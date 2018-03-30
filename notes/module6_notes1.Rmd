@@ -808,8 +808,8 @@ include_graphics("../images/blogdown_example3.png")
 
 # References
 <ul>
-  <li>Sellors, M. <a href="http://awesome-blogdown.com/" target="_blank"><i>Awesome Blogdown</i></a></li>
-  <li>Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html" target="_blank">"App formats and launching apps"</a>. <i>Shiny from RStudio</i></li>
+  <li>Sellors, M. <a href="http://awesome-blogdown.com/" target="_blank"><i>Awesome Blogdown</i></a>.</li>
+  <li>Chang, W. (2017). <a href="https://shiny.rstudio.com/articles/app-formats.html" target="_blank">"App formats and launching apps"</a>. <i>Shiny from RStudio</i>.</li>
   <li>Grolemund, G. (2014). <a href="http://shiny.rstudio.com/articles/interactive-docs.html" target="_blank">"Introduction to interactive documents"</a>. <i>Shiny from RStudio</i>.</li>
   <li>Grolemund, G. (2014). <a href="https://rmarkdown.rstudio.com/articles_intro.html" target="_blank">"Introduction to R Studio"</a>. <i>R Markdown from RStudio</i>.</li>
   <li>RStudio. (2016). <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">R Markdown Cheat Sheet"</a>.</li>
