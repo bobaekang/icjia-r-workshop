@@ -493,7 +493,7 @@ data &lt;- ispcrime %&gt;% filter(county != &quot;Cook&quot;) %&gt;% left_join(r
 ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)</code></pre>
 <p><img src="module4_notes1_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
-<p>The last example is a line graph with one horizontal reference line. The line graph uses a subset of <code>ispcrime</code> data (excluding Cook data) as the data input and use <code>year</code> and <code>violentCrime</code> as <code>x</code> and <code>y</code> axes. In <code>geom_line()</code>, the line color and size are specified. In <code>geom_hline()</code>, the y intercept for the reference line is given as the mean of <code>violentCrime</code> values and the linetype is specified to be the long-dash.</p>
+<p>The last example is a line graph with one horizontal reference line. The line graph uses a subset of <code>ispcrime</code> data (Cook data only) as the data input and use <code>year</code> and <code>violentCrime</code> as <code>x</code> and <code>y</code> axes. In <code>geom_line()</code>, the line color and size are specified. In <code>geom_hline()</code>, the y intercept for the reference line is given as the mean of <code>violentCrime</code> values and the linetype is specified to be the long-dash.</p>
 <pre class="r"><code># geom line example
 data &lt;- ispcrime %&gt;% filter(county == &quot;Cook&quot;)
 ggplot(data, aes(year, violentCrime)) +
@@ -696,7 +696,15 @@ plot + scale_y_log10()</code></pre>
 <div id="custom-scale-manuals" class="section level3">
 <h3>Custom scale “manuals”</h3>
 <pre class="r"><code>scale_*_manual(name, breaks, labels, limits, ..., values)</code></pre>
-<p>Scale manuals are used to create customized discrete scales. Such “manuals” are available for the following aesthetics: * <code>colour</code> or <code>color</code> * <code>fill</code> * <code>size</code> * <code>shape</code> * <code>linetype</code> * <code>alpha</code></p>
+<p>Scale manuals are used to create customized discrete scales. Such “manuals” are available for the following aesthetics:</p>
+<ul>
+<li><code>colour</code> or <code>color</code></li>
+<li><code>fill</code></li>
+<li><code>size</code></li>
+<li><code>shape</code></li>
+<li><code>linetype</code></li>
+<li><code>alpha</code></li>
+</ul>
 <div id="example-1" class="section level4">
 <h4>Example</h4>
 <p>The example below uses <code>scale_colour_manual()</code> to specify the scale of <code>colour</code> mapping.</p>
@@ -763,7 +771,11 @@ plot + facet_wrap(facets, nrow, ncol, scales, ...)</code></pre>
 <p><code>ggplot2</code> implements a notion of facetting with <code>facet_grid()</code> and <code>facet_wrap()</code>, which together offer a great way to visualize multi-dimensional data as a series of 2D graphes. In both functions, <code>facets</code> input takes a “formula” according to which the faceting is applied.</p>
 <div id="facet_grid-vs-facet_wrap" class="section level3">
 <h3><code>facet_grid</code> vs <code>facet_wrap</code></h3>
-<p>Let us quickly compare <code>facet_grid()</code> and <code>facet_wrap()</code>. Although <code>facet_grid()</code> and <code>facet_wrap()</code> are mostly similar to each other, they differ where: * <code>facet_grid()</code> facets the plot with a variable in a single direction (horizontal or vertical) * <code>facet_wrap()</code> simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.</p>
+<p>Let us quickly compare <code>facet_grid()</code> and <code>facet_wrap()</code>. Although <code>facet_grid()</code> and <code>facet_wrap()</code> are mostly similar to each other, they differ where:</p>
+<ul>
+<li><code>facet_grid()</code> facets the plot with a variable in a single direction (horizontal or vertical)</li>
+<li><code>facet_wrap()</code> simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.</li>
+</ul>
 </div>
 <div id="facet-formulas" class="section level3">
 <h3>Facet formulas</h3>
@@ -890,7 +902,15 @@ plot + theme_gray(base_size = 11, base_family = &quot;&quot;)</code></pre>
 <div id="general-themeatic-specifications" class="section level3">
 <h3>General themeatic specifications</h3>
 <pre class="r"><code>plot + theme(...)</code></pre>
-<p><code>ggplot2</code> allows for a greater degree of flexibility on controlling thematic components via <code>theme()</code>. <code>theme()</code> ahs many arguments to control and motify individual components of a plot theme, including: * all line, rectangular, text and title elements * aspect ratio of the panel * axis title, text, ticks, and lines * legend background, margin, text, title, position, and more * panel aspect ratio, border, and grid lines * and more</p>
+<p><code>ggplot2</code> allows for a greater degree of flexibility on controlling thematic components via <code>theme()</code>. <code>theme()</code> ahs many arguments to control and motify individual components of a plot theme, including:</p>
+<ul>
+<li>all line, rectangular, text and title elements</li>
+<li>aspect ratio of the panel</li>
+<li>axis title, text, ticks, and lines</li>
+<li>legend background, margin, text, title, position, and more</li>
+<li>panel aspect ratio, border, and grid lines</li>
+<li>and more</li>
+</ul>
 <p><code>theme()</code> is a powerful function, but its wide range of choices make it difficult to go over all. That said, I recommend you to read the full documentation <a href="http://ggplot2.tidyverse.org/reference/theme.html" target="_blank">here</a>.</p>
 <hr />
 </div>

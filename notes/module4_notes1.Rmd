@@ -258,7 +258,7 @@ ggplot(data, aes(violentCrime, propertyCrime, color = region)) +
   geom_point(aes(size = violentCrime + propertyCrime), alpha = .5)
 ```
 
-The last example is a line graph with one horizontal reference line. The line graph uses a subset of `ispcrime` data (excluding Cook data) as the data input and use `year` and `violentCrime` as `x` and `y` axes. In `geom_line()`,  the line color and size are specified. In `geom_hline()`, the y intercept for the reference line is given as the mean of `violentCrime` values and the linetype is specified to be the long-dash.
+The last example is a line graph with one horizontal reference line. The line graph uses a subset of `ispcrime` data (Cook data only) as the data input and use `year` and `violentCrime` as `x` and `y` axes. In `geom_line()`,  the line color and size are specified. In `geom_hline()`, the y intercept for the reference line is given as the mean of `violentCrime` values and the linetype is specified to be the long-dash.
 
 ```{r}
 # geom line example
@@ -303,9 +303,9 @@ plot +
 ```
 Alternatively, we have the following functions to give labels to a plot:
 
-  * `xlab()` is for x-axis name
-  * `ylab()` is for y-axis name
-  * `ggtitle()` is for plot title and subtitle
+* `xlab()` is for x-axis name
+* `ylab()` is for y-axis name
+* `ggtitle()` is for plot title and subtitle
 
 ### Examples
 First, we create a `ggplot` object to give labels to.
@@ -444,12 +444,13 @@ plot + scale_y_log10()
 scale_*_manual(name, breaks, labels, limits, ..., values)
 ```
 Scale manuals are used to create customized discrete scales. Such "manuals" are available for the following aesthetics:
-    * `colour` or `color`
-    * `fill`
-    * `size`
-    * `shape`
-    * `linetype`
-    * `alpha`
+
+* `colour` or `color`
+* `fill`
+* `size`
+* `shape`
+* `linetype`
+* `alpha`
 
 #### Example
 The example below uses `scale_colour_manual()` to specify the scale of `colour` mapping.
@@ -539,8 +540,9 @@ plot + facet_wrap(facets, nrow, ncol, scales, ...)
 
 ### `facet_grid` vs `facet_wrap`
 Let us quickly compare `facet_grid()` and `facet_wrap()`. Although `facet_grid()` and `facet_wrap()` are mostly similar to each other, they differ where:
-    * `facet_grid()` facets the plot with a variable in a single direction (horizontal or vertical)
-    * `facet_wrap()` simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.
+
+* `facet_grid()` facets the plot with a variable in a single direction (horizontal or vertical)
+* `facet_wrap()` simply places the facets next to each other and wraps them accoridng to the provided number of columns and/or rows.
 
 ### Facet formulas
 The following table describes how `facet` formulas work in `facet_grid()` and `facet_wrap()`:
@@ -709,12 +711,13 @@ plot + ggthemes::theme_solarized()
 plot + theme(...)
 ```
 `ggplot2` allows for a greater degree of flexibility on controlling thematic components via `theme()`. `theme()` ahs many arguments to control and motify individual components of a plot theme, including:
-    * all line, rectangular, text and title elements
-    * aspect ratio of the panel
-    * axis title, text, ticks, and lines
-    * legend background, margin, text, title, position, and more
-    * panel aspect ratio, border, and grid lines
-    * and more
+
+* all line, rectangular, text and title elements
+* aspect ratio of the panel
+* axis title, text, ticks, and lines
+* legend background, margin, text, title, position, and more
+* panel aspect ratio, border, and grid lines
+* and more
 
 `theme()` is a powerful function, but its wide range of choices make it difficult to go over all. That said, I recommend you to read the full documentation [here](http://ggplot2.tidyverse.org/reference/theme.html){target="_blank"}.
 
