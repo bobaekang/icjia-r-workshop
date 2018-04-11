@@ -157,6 +157,7 @@ The `icjiar` package provides a spatial object named `counties` for countes in I
 
 
 ## Packages for maps
+
 * `tmap` package for thematic maps
 * `leaftlet` package for interactive maps
 * And more
@@ -380,6 +381,7 @@ leaflet(counties) %>%
 
 
 ## Other options
+
 * Base R plot is capable of draw a simple map from a spatial object. However, anything more than a simple plotting of borders is better handled with third-party packages. 
 * The `sp` package offers `spplot()`, which builds on the base R plot functionality. `spplot()` takes an object of spatial classes as its source data, making it easy to work with imported shapefiles (See Eubank, N. (2015) in [Resources](#resources_map) for more). 
 * `ggplot2` can use `geom_polygon()` and/or `geom_map()` to plot spatial polygons with some modificiations (See Kahle, D. & Wickham, H. (2013) in [Resources](#resources_map) for more).
@@ -417,6 +419,7 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Interactive_icon.svg" t
 More compelling visualizations can be created with incorporating interactivity. We have already seen some interactive plots with `tmap` view mode and `leaflet`. Here we will explore some options for creating plots in general with some interactive features. Please note that this section is not meant to serve as a comprehensive or exhaustive manual for any of the introduced packages.
 
 ## Packages for interactive plots
+
 * `ggiraph`: an `htmlwidget` package for interactive `ggplot2` graphics
 * `plotly`: R API for the plotly.js library
 * `highcharter`: R API for the highchart.js library
@@ -444,18 +447,20 @@ ggiraph(code = print(p), ...)
 To add interactivity to `ggplot2` plot with `ggiraph`, we first need to create a `ggplot` object (`plot` in the code chunk above) with interactive "geom" layers. The `ggiraph()` function than uses the `ggplot` object with interactive layers to generate an interactive plot.
 
 `ggiraph` offers 12 interactive "geom" layers that can be integrated into a `ggplot` object, including the following:
-    * `geom_bar_interactive`, `geom_boxplot_interactive`, `geom_histogram_interactive`, `geom_line_interactive`, `geom_map_interactive`, `geom_path_interactive`, `geom_point_interactive`, `geom_polygon_interactive`, `geom_rect_interactive`, `geom_segment_interactive`, `geom_text_interactive`, and `geom_tile_interactive`.
+
+* `geom_bar_interactive`, `geom_boxplot_interactive`, `geom_histogram_interactive`, `geom_line_interactive`, `geom_map_interactive`, `geom_path_interactive`, `geom_point_interactive`, `geom_polygon_interactive`, `geom_rect_interactive`, `geom_segment_interactive`, `geom_text_interactive`, and `geom_tile_interactive`.
 
 ### Interactive aesthetic mappings
 ```{r eval=FALSE}
 aes(tooltip, onclick, data_id)
 ```
 Each interactive "geom" has mapping for the following interactive elements: 
-  * `tooltip` is a column containing information to be displayed as tooltip
-  * `onclick` is a column containing JavaScript instructions to run for a "click" event
-  * `data_id` is a column containing id to be associated with elements. Please note that this mapping must be specified to use a customized "hover" effect.
 
-##### Example
+* `tooltip` is a column containing information to be displayed as tooltip
+* `onclick` is a column containing JavaScript instructions to run for a "click" event
+* `data_id` is a column containing id to be associated with elements. Please note that this mapping must be specified to use a customized "hover" effect.
+
+#### Example
 First we get the data we will use, which is a filtered subset of `ispcrime` dataset joined with `regions` dataset. 
 ```{r}
 data <- ispcrime %>% filter(county != "Cook") %>% left_join(regions)
