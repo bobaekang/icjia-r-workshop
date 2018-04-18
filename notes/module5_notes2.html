@@ -291,7 +291,7 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_
 <blockquote>
 <p>“Survival analysis is used to analyze data in which the time until the event is of interest. The response variable is the time until that event and is often called a failure time, survival time, or event time.”<br>- Harrell Jr. (2015).</p>
 </blockquote>
-<p>In surviala analysis, the response variable is a non-negative discrete/continuous random variable, which represents the time to event for each subject/observation.</p>
+<p>In survival analysis, the response variable is a non-negative discrete/continuous random variable, which represents the time to event for each subject/observation.</p>
 </div>
 <div id="survival-analysis-basics" class="section level2">
 <h2>Survival analysis basics</h2>
@@ -299,7 +299,12 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_
 <div id="failureevent" class="section level3">
 <h3>Failure/event</h3>
 <p>Failure, or event, refers to an event of interest where the time, <span class="math inline">\(T\)</span>, from the beginning of observation to the occurence of an event is measured and available for modeling.</p>
-<p>Examples of event include: * Death * Recidivism (rearrest, reconviction, or reincarceration) * Disease occurence/recurrence</p>
+<p>Examples of event include:</p>
+<ul>
+<li>Death</li>
+<li>Recidivism (rearrest, reconviction, or reincarceration)</li>
+<li>Disease occurence/recurrence</li>
+</ul>
 </div>
 <div id="censoring" class="section level3">
 <h3>Censoring</h3>
@@ -426,7 +431,7 @@ Source: <a href="https://en.wikipedia.org/wiki/Stationary_process" target="_blan
 <div id="packages-on-time-series-analysis" class="section level2">
 <h2>Packages on time series analysis</h2>
 <p><code>stats</code> package, which is part of R “base packages”, provide a wide range of useful tools for time series analysis.</p>
-<p>There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, <code>forcast</code> package seems to be a popular choice. Visit the <a href="http://pkg.robjhyndman.com/forecast/index.html" target="_blank">package website</a>] to find out more. There also exists a full-fledged online textbook using <code>forcast</code> pacakge: Hyndman, R. &amp; Athanasopoulos, G. (2018). <a href="https://otexts.org/fpp2/" target="_blank"><em>Forecasting: Principles and Practice</em></a>.</p>
+<p>There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, <code>forcast</code> package seems to be a popular choice. Visit the <a href="http://pkg.robjhyndman.com/forecast/index.html" target="_blank">package website</a>] to find out more. There also exists a full-fledged online textbook using <code>forcast</code> package: Hyndman, R. &amp; Athanasopoulos, G. (2018). <a href="https://otexts.org/fpp2/" target="_blank"><em>Forecasting: Principles and Practice</em></a>.</p>
 </div>
 <div id="basic-time-series-analysis" class="section level2">
 <h2>Basic time series analysis</h2>
@@ -438,7 +443,12 @@ Source: <a href="https://en.wikipedia.org/wiki/Stationary_process" target="_blan
 </ul>
 <div id="time-series-decomposition" class="section level3">
 <h3>Time series decomposition</h3>
-<p>A time series <span class="math inline">\(y_t\)</span> can be decoposed into three components: * The seasonal component <span class="math inline">\(S_t\)</span> * The trend-cylce <span class="math inline">\(T_t\)</span> * The remainder <span class="math inline">\(R_t\)</span></p>
+<p>A time series <span class="math inline">\(y_t\)</span> can be decoposed into three components:</p>
+<ul>
+<li>The seasonal component <span class="math inline">\(S_t\)</span></li>
+<li>The trend-cylce <span class="math inline">\(T_t\)</span></li>
+<li>The remainder <span class="math inline">\(R_t\)</span></li>
+</ul>
 <p>There are two models for decomposing a time series. One is additive and the other is multiplicative.</p>
 <ul>
 <li>Additive model is expressed in the following way: <span class="math inline">\(\quad y_t = S_t + T_t + R_t\)</span>.</li>
@@ -502,7 +512,7 @@ pacf(x, lag.max = NULL, plot = TRUE, ...)</code></pre>
 <div id="arima-function" class="section level3">
 <h3><code>arima</code> function</h3>
 <pre class="r"><code>arima(x, order = c(0L, 0L, 0L), seasonal = list(order, period) ...)</code></pre>
-<p><code>arima()</code> from the <code>stats</code> pacakge is the function used to fit ARIMA univariate time series models. The first input of <code>arima()</code> is <code>x</code>, a vector of a univariate time series.</p>
+<p><code>arima()</code> from the <code>stats</code> package is the function used to fit ARIMA univariate time series models. The first input of <code>arima()</code> is <code>x</code>, a vector of a univariate time series.</p>
 <p>Then, <code>order</code> input is used to specify the (p, d, q) for ARIMA model, in that order. If d and q are both 0, it is a <span class="math inline">\(\text{AR}(p)\)</span> model. If p and d are both 0, it is a <span class="math inline">\(\text{MA}(q)\)</span> model. If d equals 0, it is <span class="math inline">\(\text{ARMA}(p, q)\)</span> model.</p>
 <p><code>seasonal</code> is a specification of the seasonal part of ARIMA model, consists of <code>order</code> and <code>period</code>.</p>
 <p>Refer to the reference manual documentation using <code>?armia</code> for more details.</p>
@@ -558,10 +568,10 @@ Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-er
 </ul>
 </div>
 </div>
-<div id="spatial-pacakges-in-r" class="section level2">
-<h2>Spatial pacakges in R</h2>
+<div id="spatial-packages-in-r" class="section level2">
+<h2>Spatial packages in R</h2>
 <p>Currently, there are two major packages to create and manipulate spatial objects: <code>sp</code> and <code>sf</code>.</p>
-<p><code>sp</code> is a mature package that is first release on CRAN in 2005. Currently, over 130 pacakges on CRAN are dependent on and built on top of <code>sp</code>. However its objects have un-tidy structures, making it often difficult to work with.</p>
+<p><code>sp</code> is a mature package that is first release on CRAN in 2005. Currently, over 130 packages on CRAN are dependent on and built on top of <code>sp</code>. However its objects have un-tidy structures, making it often difficult to work with.</p>
 <p><code>sf</code> is a new package that is first released on CRAN in 2016. It is an R implementation of the “Simple Features Access” standard (ISO 19125) for geospatial data. Its spatial objects are better suited for tidy framework and its user base is growing. So far, however, <code>sp</code> remains to be the dominant framework for spatial data structure and analysis.</p>
 <div id="spdep-package" class="section level3">
 <h3><code>spdep</code> package</h3>
@@ -577,7 +587,13 @@ Source: <a href="http://rspatial.org/analysis/rst/7-spregression.html#spatial-er
 <div id="creating-neighbors-and-weights-matrix" class="section level2">
 <h2>Creating neighbors and weights matrix</h2>
 <p>The first step of spatial regression analysis involves creating neighbors and weights matrix for the model specification.</p>
-<p><code>spdep</code> offers <code>*2nb()</code> functions to create neighbors (<code>nb</code> object): * <code>poly2nb()</code> for continuity-based neighbors * <code>knn2nb()</code> for distance-based neighbors * <code>tri2nb()</code> for grid-based neighbors * <code>cell2nb()</code> for grid neighbors</p>
+<p><code>spdep</code> offers <code>*2nb()</code> functions to create neighbors (<code>nb</code> object):</p>
+<ul>
+<li><code>poly2nb()</code> for continuity-based neighbors</li>
+<li><code>knn2nb()</code> for distance-based neighbors</li>
+<li><code>tri2nb()</code> for grid-based neighbors</li>
+<li><code>cell2nb()</code> for grid neighbors</li>
+</ul>
 <p>Then, <code>nb2listw()</code> function is used to generate a list of spatial weights (<code>listw</code> object) from an <code>nb</code> object.</p>
 <div id="poly2nb-function" class="section level3">
 <h3><code>poly2nb</code> function</h3>
@@ -632,9 +648,9 @@ spdep::lm.morantest(model, listw, ...)</code></pre>
 <p>The <code>lm.LMtests()</code> function is used for conducting LM tests for various types of spatial models. <code>lm.LMtests()</code> takes a <code>lm</code> model and a spatial weights list (<code>listw</code>).</p>
 <p>Then, <code>test</code> input specifies which test to implement. Available inputs for <code>test</code> include:</p>
 <ul>
-<li>“LMerr” and “LMlag” for spatial error and spatial lag model</li>
-<li>“RLMerr” and “RLMlag” for robust LM tests</li>
-<li>“SARMA” for spatial ARMA model</li>
+<li><code>&quot;LMerr&quot;</code> and <code>&quot;LMlag&quot;</code> for spatial error and spatial lag model</li>
+<li><code>&quot;RLMerr&quot;</code> and <code>&quot;RLMlag&quot;</code> for robust LM tests</li>
+<li><code>&quot;SARMA&quot;</code> for spatial ARMA model</li>
 </ul>
 </div>
 <div id="spatial-lag-model" class="section level3">
@@ -729,12 +745,12 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kernel_Machine.png" tar
 <div id="packages-on-ml" class="section level2">
 <h2>Packages on ML</h2>
 <p>R has many packages that offer machine learning algorithms and relevant tools. The following two are among the most comprehensive packages providing a wide range of machine learning functionalities.</p>
-<div id="caret-pacakage" class="section level3">
-<h3><code>caret</code> pacakage</h3>
+<div id="caret-package" class="section level3">
+<h3><code>caret</code> package</h3>
 <p><code>caret</code> is a shorthand for “Classification And REgression Training”, and one of the most mature machine learning package out there. Check out the package vignettes on <a href="https://cran.r-project.org/web/packages/caret" target="_blank">the CRAN page</a> and the package <a href="https://github.com/topepo/caret" target="_blank">GitHub repository</a>. There is also <a href="http://topepo.github.io/caret/index.html" target="_blank">an online textbook</a> on using <code>caret</code> for machine learning.</p>
 </div>
-<div id="mlr-pacakge" class="section level3">
-<h3><code>mlr</code> pacakge</h3>
+<div id="mlr-package" class="section level3">
+<h3><code>mlr</code> package</h3>
 <p><code>mlr</code> is an abbreviation of “Machine Learning in R”. Take a look at the vignettes on <a href="https://cran.r-project.org/web/packages/mlr/" target="_blank">the package CRAN page</a> and its <a href="https://github.com/mlr-org/mlr/" target="_blank">GitHub repository</a>. Also visit <a href="https://mlr-org.github.io/mlr-tutorial/devel/html/" target="_blank">the package website</a>, which provide tutorials on the <code>mlr</code> API.</p>
 </div>
 </div>

@@ -89,7 +89,7 @@ Source: <a href="https://commons.wikimedia.org/wiki/File:Kaplan-Meier_curve_for_
 ## What is Survival analysis?
 > "Survival analysis is used to analyze data in which the time until the event is of interest. The response variable is the time until that event and is often called a failure time, survival time, or event time."<br>- Harrell Jr. (2015).
 
-In surviala analysis, the response variable is a non-negative discrete/continuous random variable, which represents the time to event for each subject/observation.
+In survival analysis, the response variable is a non-negative discrete/continuous random variable, which represents the time to event for each subject/observation.
 
 
 ## Survival analysis basics
@@ -99,9 +99,10 @@ We start this section by introducing some basic concepts in survival anaylsis.
 Failure, or event, refers to an event of interest where the time, $T$, from the beginning of observation to the occurence of an event is measured and available for modeling.
 
 Examples of event include:
-    * Death
-    * Recidivism (rearrest, reconviction, or reincarceration)
-    * Disease occurence/recurrence
+
+* Death
+* Recidivism (rearrest, reconviction, or reincarceration)
+* Disease occurence/recurrence
 
 ### Censoring
 Observations are called censored when the information about their survival time is incomplete.
@@ -172,8 +173,6 @@ The model assumes that the unique effect of a change in a covariate is multiplic
 
 $$\lambda(t|\boldsymbol{\text{x}}_i) = \lambda_0(t)\psi_i = \lambda_0(t)\text{exp}(\boldsymbol{\text{x}}_i^{\text{T}}\beta),$$
 where $\boldsymbol{\text{x}}_i$ denotes the covariate values for subject $i$. The estimated coefficient is interpreted in releative terms.
-
-
 
 ### `coxph` function
 ```{r eval=FALSE}
@@ -258,7 +257,7 @@ Differencing refers to a time sereis analysis technique to make the series stati
 ## Packages on time series analysis
 `stats` package, which is part of R "base packages", provide a wide range of useful tools for time series analysis.
 
-There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forcast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html){target="_blank"}] to find out more. There also exists a full-fledged online textbook using `forcast` pacakge: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/){target="_blank"}.
+There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forcast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html){target="_blank"}] to find out more. There also exists a full-fledged online textbook using `forcast` package: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/){target="_blank"}.
 
 
 ## Basic time series analysis
@@ -270,9 +269,10 @@ Let's take a look at some basic time series analysis techniques and how to imple
 
 ### Time series decomposition
 A time series $y_t$ can be decoposed into three components:
-    * The seasonal component $S_t$
-    * The trend-cylce $T_t$
-    * The remainder $R_t$
+
+* The seasonal component $S_t$
+* The trend-cylce $T_t$
+* The remainder $R_t$
 
 There are two models for decomposing a time series. One is additive and the other is multiplicative.
 
@@ -347,7 +347,7 @@ $$\phi(B)(1-B)^dX_t =\theta(B)Z_t$$
 ```{r eval=FALSE}
 arima(x, order = c(0L, 0L, 0L), seasonal = list(order, period) ...)
 ```
-`arima()` from the `stats` pacakge is the function used to fit ARIMA univariate time series models. The first input of `arima()` is `x`, a vector of a univariate time series.
+`arima()` from the `stats` package is the function used to fit ARIMA univariate time series models. The first input of `arima()` is `x`, a vector of a univariate time series.
 
 Then, `order` input is used to specify the (p, d, q) for ARIMA model, in that order. If d and q are both 0, it is a $\text{AR}(p)$ model. If p and d are both 0, it is a $\text{MA}(q)$ model. If d equals 0, it is $\text{ARMA}(p, q)$ model. 
 
@@ -404,10 +404,10 @@ For geospaital data expressed in polygons (e.g. counties), contiguity-based neig
 * Higher order contiguity accounts for the influnece of neighbors of neighbors, often with some decay parameter to differentiate different orders of neighbors.
 
 
-## Spatial pacakges in R
+## Spatial packages in R
 Currently, there are two major packages to create and manipulate spatial objects: `sp` and `sf`.
 
-`sp` is a mature package that is first release on CRAN in 2005. Currently, over 130 pacakges on CRAN are dependent on and built on top of `sp`. However its objects have un-tidy structures, making it often difficult to work with.
+`sp` is a mature package that is first release on CRAN in 2005. Currently, over 130 packages on CRAN are dependent on and built on top of `sp`. However its objects have un-tidy structures, making it often difficult to work with.
 
 `sf` is a new package that is first released on CRAN in 2016. It is an R implementation of the "Simple Features Access" standard (ISO 19125) for geospatial data. Its spatial objects are better suited for tidy framework and its user base is growing. So far, however, `sp` remains to be the dominant framework for spatial data structure and analysis.
 
@@ -425,6 +425,7 @@ Take a look at the following resource materials for `spdep` and spatial data ana
 The first step of spatial regression analysis involves creating neighbors and weights matrix for the model specification.
 
 `spdep` offers `*2nb()` functions to create neighbors (`nb` object):
+
 * `poly2nb()` for continuity-based neighbors
 * `knn2nb()` for distance-based neighbors
 * `tri2nb()` for grid-based neighbors
@@ -496,9 +497,9 @@ The `lm.LMtests()` function is used for conducting LM tests for various types of
 
 Then, `test` input specifies which test to implement. Available inputs for `test` include:
 
-* "LMerr" and "LMlag" for spatial error and spatial lag model 
-* "RLMerr" and "RLMlag" for robust LM tests
-* "SARMA" for spatial ARMA model
+* `"LMerr"` and `"LMlag"` for spatial error and spatial lag model 
+* `"RLMerr"`  and `"RLMlag"` for robust LM tests
+* `"SARMA"` for spatial ARMA model
 
 ### Spatial lag model
 Spatial lag model models spatial autoregression of the response variable. The model is formulated as follows:
@@ -591,10 +592,10 @@ It is beyond the scope of the current Part to offer a full description of each a
 
 R has many packages that offer machine learning algorithms and relevant tools. The following two are among the most comprehensive packages providing a wide range of machine learning functionalities.
 
-### `caret` pacakage
+### `caret` package
 `caret` is a shorthand for "Classification And REgression Training", and one of the most mature machine learning package out there. Check out the package vignettes on [the CRAN page](https://cran.r-project.org/web/packages/caret){target="_blank"} and the package [GitHub repository](https://github.com/topepo/caret){target="_blank"}. There is also [an online textbook](http://topepo.github.io/caret/index.html){target="_blank"} on using `caret` for machine learning.
 
-### `mlr` pacakge
+### `mlr` package
 `mlr` is an abbreviation of "Machine Learning in R". Take a look at the vignettes on [the package CRAN page](https://cran.r-project.org/web/packages/mlr/){target="_blank"} and its [GitHub repository](https://github.com/mlr-org/mlr/){target="_blank"}. Also visit [the package website](https://mlr-org.github.io/mlr-tutorial/devel/html/){target="_blank"}, which provide tutorials on the `mlr` API.
 
 

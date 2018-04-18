@@ -425,12 +425,12 @@ spatial weights
     * Higher order contiguity
 
 
-Spatial pacakges in R
+Spatial packages in R
 ========================================================
 * Currently, there are two major packages to create and manipulate spatial objects: `sp` and `sf`
 * `sp` is a mature package but its objects have un-tidy structures
     * First released on CRAN in 2005
-    * 130+ pacakges on CRAN are currently dependent on `sp`
+    * 130+ packages on CRAN are currently dependent on `sp`
 * `sf` is a new package better suited for tidy framework
     * First released on CRAN in 2016
     * `sf` is an R implementation of the "Simple Features Access" standard (ISO 19125) for geospatial data
@@ -522,9 +522,9 @@ spdep::lm.LMtests(model, listw, test = "LMerr")
 ```
 * `lm.LMtests()` takes a `lm` model and a spatial weights list
 * Available `test` inputs include:
-    * "LMerr" and "LMlag" for spatial error and spatial lag model 
-    * "RLMerr" and "RLMlag" for robust LM tests
-    * "SARMA" for spatial ARMA model
+    * `"LMerr"` and `"LMlag"` for spatial error and spatial lag model 
+    * `"RLMerr"`  and `"RLMlag"` for robust LM tests
+    * `"SARMA"` for spatial ARMA model
 
 
 Spatial lag model
@@ -625,7 +625,7 @@ Common ML algorithms
 Packages on ML
 ========================================================
 <br>
-* `caret` pacakage
+* `caret` package
     * Classification And REgression Training
     * Resources:
       * [Package vignette PDF](https://cran.r-project.org/web/packages/caret/vignettes/caret.pdf)
@@ -635,7 +635,7 @@ Packages on ML
 ***
 
 <br>
-* `mlr` pacakge
+* `mlr` package
     * Machine Learning in R
     * Resources:
       * [Package vignette HTML](https://cran.r-project.org/web/packages/mlr/vignettes/mlr.html)
