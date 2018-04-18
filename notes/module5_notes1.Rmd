@@ -512,12 +512,13 @@ summary(my_lmfit)
 plot(lmfit, which = c(1:3, 5), ...)
 ```
 Base R `plot()` function has a method for `lm` objects, which generates the following 6 diagnostics plots:
-    * "Residuals vs Fitted"
-    * "Normal Q-Q"
-    * "Scale-Location"
-    * "Cook's distance"
-    * "Residuals vs Leverage"
-    * "Cook's dist vs Leverage $h_{ii}/(1-h_ii)$"
+
+* "Residuals vs Fitted"
+* "Normal Q-Q"
+* "Scale-Location"
+* "Cook's distance"
+* "Residuals vs Leverage"
+* "Cook's dist vs Leverage $h_{ii}/(1-h_ii)$"
 
 The default option only prints the first, second, third and fifth of these plots.
 
@@ -536,9 +537,10 @@ AIC(object, ..., k = 2)
 BIC(object, ...) # equivalent to AIC with k = log(n)
 ```
 There are measures of model fit other than $R^2$. For a model fitted by maximum likelihood algorithm, including the `lm` model, the following functions are available to get goodness-of-fit measures:
-    * `logLik()` for log-liklehood value
-    * `AIC()` for Akaike Information Criterion (with default `k`)
-    * `BIC()` for Bayesian Information Criterion
+
+* `logLik()` for log-liklehood value
+* `AIC()` for Akaike Information Criterion (with default `k`)
+* `BIC()` for Bayesian Information Criterion
 
 We can read [this Wikipedia article](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation){target="_blank"} for more on maximum likelihood estimation.
 
@@ -688,6 +690,7 @@ resample_partition(data, p)
 bootstrap(data, n, id = ".id")
 ```
 * `resample` take a data frame and a vector of indices to create a pointer object, which can be either turned into a data frame or used directly in modeling functions (e.g. `lm()`)
+
 * `resample_partition` takes a data and a named numeric vector to specify partitioning. Its output is a list of random partitions.
 * `bootstrap` takes a data frame and an integer to specify the number of bootstrap replicates to generate. The output is a data frame of bootstrap samples column and id column
 

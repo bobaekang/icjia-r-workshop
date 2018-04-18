@@ -538,7 +538,7 @@ mean of x mean of y
 ```
 
 
-Wilcox tests
+Wilcoxon tests
 ========================================================
 
 ```r
@@ -547,8 +547,8 @@ wilcox.test(x, y = NULL, alternative = c("two.sided", "less", "greater"),
 wilcox.test(formula, data, subset, na.action, ...)
 ```
 * The null hypothesis does NOT assume normality
-* One sample Wilcox test (rank-sum test) is conducted with only `x` input is provided
-* Two sample Wilcox test (singed-rank test) can be conducted by either supplying `x` and `y` inputs or using `formula` (`y ~ x`) with `data` input
+* One sample Wilcoxon test (rank-sum test) is conducted with only `x` input is provided
+* Two sample Wilcoxon test (singed-rank test) can be conducted by either supplying `x` and `y` inputs or using `formula` (`y ~ x`) with `data` input
 
 
 Analysis of Variance
