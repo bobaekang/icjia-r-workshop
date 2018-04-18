@@ -260,14 +260,14 @@ Source: <a href="https://en.wikipedia.org/wiki/Stationary_process">"Stationary p
 Packages on time series analysis
 ========================================================
 * `stats` package (part of R "base packages")
-* `forcast` package
+* `forecast` package
     * [Package website](http://pkg.robjhyndman.com/forecast/index.html)
     * Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/). (online textbook)
 
 
 Basic time series analysis
 ========================================================
-* Tieme seires decomposition
+* Time series decomposition
 * Autocorrelation function plots
 * Partial autocorrelation function plots
 
