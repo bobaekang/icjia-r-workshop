@@ -257,13 +257,13 @@ Differencing refers to a time sereis analysis technique to make the series stati
 ## Packages on time series analysis
 `stats` package, which is part of R "base packages", provide a wide range of useful tools for time series analysis.
 
-There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forcast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html){target="_blank"}] to find out more. There also exists a full-fledged online textbook using `forcast` package: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/){target="_blank"}.
+There is, of course, no shortage of third-party packages to offer additional functionalities relevant to time series analysis. Among many, `forecast` package seems to be a popular choice. Visit the [package website](http://pkg.robjhyndman.com/forecast/index.html){target="_blank"}] to find out more. There also exists a full-fledged online textbook using `forecast` package: Hyndman, R. & Athanasopoulos, G. (2018). [*Forecasting: Principles and Practice*](https://otexts.org/fpp2/){target="_blank"}.
 
 
 ## Basic time series analysis
 Let's take a look at some basic time series analysis techniques and how to implement them in R. Specifically, we will take a look at the following:
 
-* Tieme seires decomposition
+* Time series decomposition
 * Autocorrelation function plots
 * Partial autocorrelation function plots
 
