@@ -1,16 +1,14 @@
-# ICJIA R Workshop
+﻿# ICJIA R Workshop
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
-This workshop is planned to offer a gentle introduction to the R programming language for ICJIA researchers who want to leverage the power and flexibility of R to improve their technical prowess as researcher.
+This workshop is developed to offer a gentle introduction to the R programming language for ICJIA researchers who want to leverage the power and flexibility of R to improve their technical prowess as researcher.
 
 Visit the official website for the workshop for more information, including the workshop schedule and course materials: https://bobaekang.github.io/icjia-r-workshop/
 
 
 # Workshop curriculum
 The workshop consists of six separate modules which are meant to be followed in order. The goal of this workshop is help its participants to get familiar with basic concepts and tools for using R for data analysis tasks and research projects.
-
-(Note: Currently, slides and notes for only the first two modules are ready for use. Other workshop materials for later modules are in active development. Thank you for your understanding!)
 
 ### Module 1: Introduction to R
 In this module, workshop participants will be introduced to the programmatic approach to research. Then they will learn what the R language is as well as the benefits of using R for their research projects. They will also be introduced to the R Studio IDE. An overview of the entire workshop curriculum is provided at the end of the module.
