@@ -502,8 +502,8 @@ Some popular online learning websites with courses on R are as follows:
 * [edX](https://www.edx.org/){target="_blank"}
 
 
-## Datacamp
-DataCamp is one of the best website there is for learning R. It appears that many programmers and package authors at RStudio have courses on DataCamp. This means that you can learn about certain packages directly from the authors!
+## DataCamp
+DataCamp is one of the best websites out there for learning R. It appears that many programmers and package authors at RStudio have courses on DataCamp. This means that you can learn about certain packages directly from the authors!
 
 DataCamp requires registration and log-in to take the courses. There are some free courses available, but most are paid courses with one free chapter. Cost is $25/month with the annual plan or \$29/month. Onces you are subscribed, all courses are made available.
 

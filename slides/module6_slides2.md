@@ -437,7 +437,7 @@ Popular sites
 * [edX](https://www.edx.org/)
 
 
-Datacamp
+DataCamp
 ========================================================
 * Requires registration and log-in
 * Some free courses are available, but most are paid courses with one free chapter
