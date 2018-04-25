@@ -528,10 +528,10 @@ Other formats
     * Use `output: beamer_presentation`
     * See the "Presentations with Beamer" [article](https://rmarkdown.rstudio.com/beamer_presentation_format.html) on RStudio
 * HTML presentations with `xaringan`
-    * Use `output: xaringan::moom_reader`
+    * Use `output: xaringan::moon_reader`
     * Visit the package [GitHub repository](https://github.com/yihui/xaringan) for more 
 
-
+g
 R Presentation
 ========================================================
 * R Presentation is not a R Markdown document
