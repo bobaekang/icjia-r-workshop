@@ -332,7 +332,7 @@ kable(
     "`readxl`", "For importing Excel files", "http://readxl.tidyverse.org/",
     "`haven`", "For SPSS, SAS, and Stata data", "http://haven.tidyverse.org/",
     "`lubridate`", "For working with datetimes", "http://lubridate.tidyverse.org/",
-    "`magrittr", "For specialized pipe oprators", "http://magrittr.tidyverse.org/"
+    "`magrittr`", "For specialized pipe oprators", "http://magrittr.tidyverse.org/"
   )
 )
 ```
@@ -369,7 +369,7 @@ include_graphics("../images/shiny_page.png")
 ## `htmlwidgets` website
 *`htmlwidgets` for R* [website](http://www.htmlwidgets.org/){target="_blank"} presents brief descriptions and examples for various packages for incorporating interactive widgets into R ecosystem.
 
-Curretnly, there are alom 100 widgets registered as `htmlwidgets`. Visit its ["Gallery" page](http://gallery.htmlwidgets.org/){target="_blank"} to see what widgets are available.
+Currently, there are about 100 widgets registered as `htmlwidgets`. Visit its ["Gallery" page](http://gallery.htmlwidgets.org/){target="_blank"} to see what widgets are available.
 
 Some popular `htmlwidgets` packagees include:
 
