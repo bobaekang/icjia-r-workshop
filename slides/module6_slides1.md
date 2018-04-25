@@ -285,7 +285,7 @@ _```{r eval = FALSE, echo = FALSE, ...}
 ========================================================
 **Commonly used options**
 
-|Option                          |Description                                                                                    |
+|Option (default)                |Description                                                                                    |
 |:-------------------------------|:----------------------------------------------------------------------------------------------|
 |`eval` (`TRUE`)                 |Evaluate code in chunk? If FALSE, only code is shown                                           |
 |`echo` (`TRUE`)                 |Show code in chunk? If FALSe, only output is shown                                             |
@@ -555,7 +555,7 @@ What is Shiny?
 ========================================================
 > "Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge."<br>- RStudio.com
 
-* Try my ICJIA Uniform Crime Report Data dashboard app [here](https://bobaekang.shinyapps.io/crime_data_profile_demo/)
+* Try my ICJIA Uniform Crime Report Data dashboard app [here](https://bobaekang.shinyapps.io/icjia-dashboard-demo/)
 * Check out more examples on RStudio's ["Shiny User Showcase" page](https://www.rstudio.com/products/shiny/shiny-user-showcase/) 
 
 
