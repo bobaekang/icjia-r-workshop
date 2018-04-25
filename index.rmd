@@ -78,7 +78,7 @@ knitr::include_graphics("./images/icjia-x-r.png")
 ## Workshop instructor
 My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that **R is one of the most powerful modern computational tools for research and data analysis**. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [**About Me**](about.html#about-me) to read more about me.
 
-[^1]: For example, this website as well as all workshop materials (notes and slides) are produced with R Markdown. Also, check out [**this interactive dashboard**](https://bobaekang.shinyapps.io/crime_data_profile_demo/){target="_blank"} generated with R Shiny.
+[^1]: For example, this website as well as all workshop materials (notes and slides) are produced with R Markdown. Also, check out [**this interactive dashboard**](https://bobaekang.shinyapps.io/icjia-dashboard-demo/){target="_blank"} generated with R Shiny.
 
 <br>
 <br>

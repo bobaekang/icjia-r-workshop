@@ -322,7 +322,7 @@ The following table lists commonly used code chunk options and their description
 ```{r echo=FALSE}
 kable(
   tibble::tribble(
-    ~Option, ~Description,
+    ~"Option (default)", ~Description,
     "`eval` (`TRUE`)", "Evaluate code in chunk? If FALSE, only code is shown",
     "`echo` (`TRUE`)", "Show code in chunk? If FALSe, only output is shown",
     "`error` (`FALSE`)", "Preserve the error? If TRUE, knitting continues in case of errors",
@@ -445,7 +445,7 @@ While all other R Markdown formats requires "knitting" to see the final output, 
 
 Publishing an R Markdown output on RPubs is as easy as clicking the "publish" button on RStudio. You may consider RPubs as something comparable to Tableau Public's Gallery website, although there are some differences.
 
-Click the image below to try R
+Click the image below to view what others have shared:
 
 <a href="https://rpubs.com/" target="_blank">
 ```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
@@ -586,7 +586,7 @@ Source: <a href="https://www.rstudio.com/" target="_blank">R Studio</a>
 ## What is Shiny?
 > "Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge."<br>- RStudio.com
 
-To get a feel for what Shiny is capable of, try my ICJIA Uniform Crime Report Data dashboard app [here](https://bobaekang.shinyapps.io/crime_data_profile_demo/){target="_blank"}.
+To get a feel for what Shiny is capable of, try my ICJIA Uniform Crime Report Data dashboard app [here](https://bobaekang.shinyapps.io/icjia-dashboard-demo/){target="_blank"}.
 
 Also, check out more examples on RStudio's ["Shiny User Showcase" page](https://www.rstudio.com/products/shiny/shiny-user-showcase/){target="_blank"}.
 
@@ -724,6 +724,7 @@ With `_site.yml` and all HTML documents ready, run `rstudio::render_site()` to g
 For details, see the "R Markdown Websites" [article](https://rmarkdown.rstudio.com/rmarkdown_websites.html){target="_blank"} on RStudio website.
 
 ### _site.yml format example (Workshop website)
+
 The following is a _site.yml format example. This is in fact the actual YAML file for the R Workshop website, which can be found [here](https://github.com/bobaekang/icjia-r-workshop/blob/master/_site.yml){target="_blank"}.
 
 ```
