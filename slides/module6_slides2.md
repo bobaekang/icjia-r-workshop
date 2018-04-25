@@ -288,7 +288,7 @@ Tidyverse website
 |`readxl`    |For importing Excel files     |http://readxl.tidyverse.org/    |
 |`haven`     |For SPSS, SAS, and Stata data |http://haven.tidyverse.org/     |
 |`lubridate` |For working with datetimes    |http://lubridate.tidyverse.org/ |
-|`magrittr   |For specialized pipe oprators |http://magrittr.tidyverse.org/  |
+|`magrittr`  |For specialized pipe oprators |http://magrittr.tidyverse.org/  |
 
 
 R Markdown website
