@@ -557,7 +557,7 @@ There are more options for creating presentation slides via R Markdown, includin
     * Use `output: beamer_presentation`
     * See the "Presentations with Beamer" [article](https://rmarkdown.rstudio.com/beamer_presentation_format.html){target="_blank"} on RStudio
 * HTML presentations with `xaringan`
-    * Use `output: xaringan::moom_reader`
+    * Use `output: xaringan::moon_reader`
     * Visit the package [GitHub repository](https://github.com/yihui/xaringan){target="_blank"} for more 
 
 
