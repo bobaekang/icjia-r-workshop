@@ -1,0 +1,783 @@
+---
+title: "R Workshop"
+subtitle: "Module 2: R basics (1)"
+author: "Bobae Kang (bobae.kang@illinois.gov)"
+date: "March 22, 2018"
+output:
+  revealjs::revealjs_presentation:
+    center: true
+    transition: concave
+    incremental: false
+    css: ../css/style_revealjs.css
+    reveal_options:
+      slideNumber: true
+    includes:
+      in_header: header.html
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+## Agenda
+<div style="text-align:center; margin-top:10%;">
+<ul style="list-style: none">
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 1: Fundamentals of R programming</li>
+<li>
+  Part 2: Gearing up for data analysis</li>
+</div>
+
+
+## Fundamentals of R Programming
+type:section
+```{r out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+print("Hello World!")
+```
+  
+
+## Key concepts
+* Obejcts
+* Expressions
+* Functions
+* Environments
+
+
+## R Objects
+type: section
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/object.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://commons.wikimedia.org/wiki/File:Antu_object-group-calligra.svg">Wikimedia Commons</a>
+</p>
+
+
+## Key object types
+* Vectors (`c()`)
+* Lists (`list()`)
+* Factors (`factor()`)
+* Data frame (`data.frame()`)
+
+
+## Basic ("atomic") vector types
+* `logical`: Boolean values of `TRUE` and `FALSE`
+* `double`: floating-point numbers representing real numbers
+* `integer`: integers
+* `complex`: complex numbers
+* `character`: string of alphanumeric letters
+
+
+## 
+```{r}
+# this is a logical vector
+logical_vector <- c(TRUE, FALSE, T, F)
+
+is.logical(logical_vector)
+class(logical_vector)
+```
+
+
+##
+```{r}
+# this is a double (numeric)  vector
+double_vector <- c(1, 2, 3)
+
+is.double(double_vector)
+class(double_vector)
+
+# this is an integer (numeric) vector
+integer_vector <- c(1L, 2L ,3L)
+
+is.integer(integer_vector)
+class(integer_vector)
+```
+
+
+##
+```{r}
+# this is a character vector
+character_vector <- c("a", "b", "c")
+
+is.character(character_vector)
+class(character_vector)
+
+```
+
+
+##
+```{r}
+# an object with a single element is also a vector!
+x <- 1
+y <- "Am I a vector?"
+
+is.vector(x)
+is.vector(y)
+```
+
+
+## Accessing vector elements
+* Use index with `[]` to access an element in a vector:
+
+```{r}
+fruits <- c("apple", "banana", "clementine")
+first_fruit <- fruits[1]
+
+print(first_fruit)
+```
+```{r}
+second_fruit <- fruits[2]
+
+print(second_fruit)
+```
+
+
+##
+* We can also assign a new value to the accessed vector element
+
+```{r}
+# giving a new value to an existing element
+fruits[1] <- "apricot"
+
+print(fruits)
+```
+
+* Or create a new element
+
+```{r}
+# creating a new element
+fruits[4] <- "dried mango"
+
+fruits
+```
+
+
+##
+* Multiple elements can be accessed, using *a vector of indices*
+
+```{r}
+first_and_third_fruits <- fruits[c(1, 3)]
+
+print(first_and_third_fruits)
+```
+
+* Or using *the colon operator* for a sequence
+
+```{r}
+first_thru_third_fruits <- fruits[1:3]
+
+print(first_thru_third_fruits)
+```
+
+
+##
+* Vector elements can be accessed *conditionally* as well
+
+```{r}
+my_vector <- c(1, 2, 3, 4, 5)
+
+# print only elements less than 3 
+print(my_vector[my_vector < 3])
+
+# assign 0 to such elements
+my_vector[my_vector < 3] <- 0
+
+print(my_vector)
+```
+
+
+## Lists
+* An R list, created by `list()` function, can contain elements of different types
+```{r}
+my_list <- list("abc", 125, FALSE, c("Hello", "World"))
+
+print(my_list)
+```
+
+
+## Naming list elements
+```{r}
+names(my_list) <- c("character", "numeric", "logical", "character vector")
+
+my_list
+```
+
+
+## Accessing list elements
+* Elements in a list can be accessed using their indices or names
+```{r}
+# using index (this returns a list element, NOT the actual content)
+my_list[4]
+```
+
+```{r}
+# using name (this returns the content itself)
+my_list$`character vector`
+```
+
+
+##
+* In order to access the content of a list element using the index approach, we must use `[[]]` instead
+```{r}
+my_list[[1]]
+```
+
+```{r}
+# the result is the same with accessing an element using name
+identical(my_list[[1]], my_list$character)
+```
+
+```{r}
+# in contrast:
+identical(my_list[1], my_list$character)
+```
+
+
+## Lists to vector
+* A list can be "unlisted", i.e., converted into a vector
+```{r}
+new_list <- list(1:5)
+to_vector <- unlist(new_list)
+
+# this is a list
+print(new_list)
+
+# this is a vector
+print(to_vector)
+```
+
+
+
+## R Expressions
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/expression.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="http://www.clker.com/clipart-16340.html">clker.com</a>
+</p>
+
+
+## Expressions
+* Executable pieces of code
+* Consisting of:
+    * objects
+    * operators
+    * control structures
+    * functions
+
+
+## Operators
+* Arithmetic operators
+* Logical operators
+* Relational operators
+* Assignment operators
+* Miscellaneous operators
+* Others
+    * User-defined operators
+    * From third-party pacakges
+
+
+## Arithmetic operators
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`+`', '`-`', '`*`', '`/`', '`^` or `**`', '`%%`', '`%/%`'),
+    Description = c(
+      'Addition',
+      'Substraction',
+      'Multiplication',
+      'Division',
+      'Exponentiation',
+      'Modulus',
+      'Integer division'
+    ),
+    Example = c(
+      '`1 + 1`    (returns 2)',
+      '`3 - 2`  (returns 1)',
+      '`3 * 4`  (returns 12)',
+      '`5 / 2`  (returns 2.5)',
+      '`2**4`  (returns 16)',
+      '`5 %% 2`  (returns 1)',
+      '`5 %/% 2`  (returns 2)'
+    )
+  )
+)
+```
+
+
+## Logical operators
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`&`', '|', '`!`', '`&&`', '||'),
+    Description = c(
+      'Element-wise logical AND',
+      'Element-wise logical OR',
+      'Logical NOT',
+      'Logical AND<br>(considers the first element only)',
+      'Logical OR<br>(considers the first element only)'
+    ),
+    Example = c(
+      '`c(TRUE, TRUE) & c(TRUE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`c(TRUE, FALSE)` | `c(FALSE, FALSE)`<br>returns `TRUE` `FALSE`',
+      '`!c(TRUE, FALSE)`<br>returns `TRUE`',
+      '`c(TRUE, TRUE) && c(FALSE, TRUE)`<br>returns `FALSE`',
+      '`c(TRUE, TRUE)` || `c(FALSE, TRUE)`<br>returns `TRUE`'
+    )
+  )
+)
+```
+
+
+## Relational operators
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`>`', '`<`', '`==`', '`>=`', '`<=`', '`!=`'),
+    Description = c(
+      'Greater than',
+      'Less than',
+      'Equal to',
+      'Greater than or equal to',
+      'Less than or equal to',
+      'Not equal to'
+    ),
+    Example = c(
+      '`3 > 1` returns `TRUE`',
+      '`3 < 1` returns `FALSE`',
+      '`2 == 2` returns `TRUE`',
+      '`3 >= 4` returns `FALSE`',
+      '`4 <= 4` returns `TRUE`',
+      '`2 != 3` returns `TRUE`'
+    )
+  )
+)
+```
+
+
+## Assignment operators
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`<-` or `=`', '`->`', '`<<-`', '`->>`'),
+    Description = c(
+      'Left assignment',
+      'Right assignment',
+      'Left scoping assignment',
+      'Right scoping assignment'
+    ),
+    Example = c(
+      '`a <- "Hello"` assigns `"Hello"` to the object `a`',
+      'The use of `->` is mostly discouraged',
+      'Search for the variable in the parent<br>environments takes place before assignment',
+      'Ditto'
+    )
+  )
+)
+```
+
+
+## Miscellaneous operators
+```{r echo=FALSE}
+kable(
+  data.frame(
+    Operator = c('`:`', '`?`', '`$`', '`%in%`', '`%*%`'),
+    Description = c(
+      'Colon operator to generate sequences',
+      'Help function to see documentation',
+      'List subset',
+      '"In" operator',
+      'Matrix multiplication'
+    ),
+    Example = c(
+      '`1:10` generates a vector of integer sequence from 1 to 10',
+      '`?my_function` is equivalent to `help(my_function)`',
+      '`my_list$a` will access the subset `a` in the list',
+      '`1 %in% c(1,2,3)` returns `TRUE`',
+      ''
+    )
+  )
+)
+```
+
+
+## Other operators
+
+* New operators can be defined by users
+* Some third party packages offer custom operators
+    * e.g. the "pipe" operator (`%>%`) from `magrittr` package (also available through `dplyr` pacakge)
+
+
+## Flow Control
+* Conditionals
+* Loops
+
+
+## Conditionals
+* `if` statement
+* Basic structure
+    * if ( condition ) { expression }
+
+```{r}
+a <- TRUE
+
+if (a) {
+  print("Hello World!")
+}
+```
+
+
+## Multiple conditions
+* `if`-`else` statement
+* allows for multiple conditions
+
+```{r}
+a <- 1
+b <- 2
+
+if (a > b) {
+  print("a is larger than b.")
+} else if (a < b) {
+  print("a is smaller than b.")
+} else {
+  print("a and b are equal!")
+}
+```
+
+
+## ifelse function
+```{r eval=FALSE}
+ifelse(test_expression, true_value, false_value)
+```
+* Element-wise if-else condition
+* Condition is tested for each and every element of a vector 
+* Example:
+
+```{r}
+a <- c(1,2,3,4)
+ifelse(a < 3, "Less than 3", "Not less than 3")
+```
+
+
+## Loops
+* `while` loops
+
+```{r eval=FALSE}
+while ( condition ) {
+  expression
+}
+```
+
+* `for` loops
+
+```{r eval=FALSE}
+for (element in iterable_object) {
+  expression
+}
+```
+
+
+## while loop
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/while_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/while-loop">DataMentor</a>
+</p>
+
+##
+```{r eval=FALSE}
+while (condition) {
+  expression
+}
+```
+
+* If the given `condition` is satisfied (i.e. evaluates as `TRUE`), then the following `expression` is executed.
+* Onces the `expression` is executed, the `condition` is re-evaluated.
+* The `expression` is repetitively executed as long as the `condition` is satisfied.
+    * beware of infinite loop!
+
+
+##
+```{r}
+count <- 0
+
+while (count < 5) {
+  print(count)
+  count = count + 1  # increase count by 1 at each iteration
+}
+```
+
+
+## for loop
+```{r echo=FALSE, out.width="25%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/for_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/for-loop">DataMentor</a>
+</p>
+
+
+##
+```{r eval=FALSE}
+for (element in iterable_object) {
+  expression
+}
+```
+
+* Requires an iterable object (e.g. vector or list).
+* Iterates over all elements of the given object in order.
+* At each step of iteration, can use the given element for the `expression` if appropriate.
+
+
+##
+```{r}
+fruits <- c("apple", "banana", "clementine")
+
+# iterate over elements directly
+for (fruit in fruits) {
+  print(paste("I love ", fruit, "!", sep=""))
+}
+```
+
+```{r}
+flavors <- c("chocolate", "vanilla", "cookie dough")
+
+# iterate over elements indirectly
+for (i in 1:length(flavors)) {
+  flavor <- flavors[i]
+  print(paste("Do you want some", flavor, "ice cream?"))
+}
+```
+
+
+## break statement
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/break_loop.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+
+
+##
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (break_condition) {
+    break
+  }
+  expression
+}
+```
+* `break` can be used to "break out" of a loop based on a break condition
+
+
+## next statement
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/next_loop.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.datamentor.io/r-programming/break-next">DataMentor</a>
+</p>
+
+
+##
+```{r eval=FALSE}
+# with for loop
+for (element in iterable_object) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+
+# with while loop
+while (loop_condition) {
+  if (next_condition) {
+    next
+  }
+  expression
+}
+```
+* `next` can be used to skip a step in a loop based on a next condition
+
+
+## R Functions
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/function-machine.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+</p>
+
+
+## Functions
+* Functions are "call-able" objects
+    * can be called or invoked by following `()`
+    * can be manipulated in the same way as any other object
+* Three elements of a function (or function closure)
+    1. an argument list (a.k.a. parameters; optional)
+    2. body
+    3. function environment
+    
+    
+## Why use functions
+* Encapsulate repeated operations
+    * Simplify code (clearner and more concise)
+    * Avoid unintended bugs/errors
+    * Enhance reproducibility
+
+
+##
+**Define a function**
+```{r eval=FALSE}
+my_function <- function(arg1, arg2) {
+  
+  # body exist in a local environment
+  body expression1
+  body expression2
+  body expression3
+
+}
+```
+
+**Call a function**
+```{r eval=FALSE}
+my_function(arg1 = input1, arg2 = input2)
+```
+
+
+##
+**Examples**
+```{r}
+# a custom function for adding two numbers
+add_nums <- function(num1, num2) {
+  num1 + num2
+}
+
+add_output <- add_nums(3, 5) # assign the function output to a variable
+
+print(add_output)
+```
+
+```{r}
+# a custom function without arguments
+print_hello_world <- function() {
+  print("Hello world")
+}
+
+print_hello_world()
+```
+
+
+##
+**Function with a default argument value**
+```{r}
+add_nums_2 <- function(num1, num2 = 5) {
+  num1 + num2
+}
+
+add_nums_2(3) # call a function using the default value for num2
+```
+* A function can be given default values to its arguments
+* Default values can be something that are expected to be used most often when calling the function
+
+
+## R Environments
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/environments_bindings.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+
+
+## Environments
+* Simply put, an environment is a place to store variables.
+* All variables (as bindings of symbols and objects) exist in a specific environment.
+    * More precisely, *objects* live in memory outside all environment;
+    * It is the *symbols* and the *associations* of the symbols (variable names) and objects to which the symbols point/refer that an environment contains.
+* Environments can have nested structure.
+
+
+## Nesting of environments
+* Variables in a parent environment are accessible in a child environment
+* Variables in a child environment are *NOT* accessible in a parent environment
+
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/environments_parents.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+
+
+## The global environment
+* The interactive workspace for the given R session.
+* Its immediate parent is the environment of the package that is imported last.
+* Can be accessed using `globalenv()`, which works like a named list
+```{r}
+some_variable <- 1 # a variable in the global environment
+global_env <-globalenv() # the environment itself can be assigned to a variable
+
+# the following two are identical 
+identical(some_variable, global_env$some_variable)
+```
+
+## Local environments
+* Local environments are created by
+    * any function calls
+    * `new.env()`
+* Can be used to protect the global environment from arbitrarily created variables
+
+
+## Lexical scoping
+Searching for an object in R follows the lexical scoping rules.  
+* First, R looks for the object in the current environment  
+* If the object is not found in the current environment, R moves up to its parent environment.  
+* The process is repeated until the object is found or the outermost environment (`emptyenv()`) is reached.
+
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/environments_search-path.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://adv-r.had.co.nz/Environments.html"><span style="font-style: italic">Advanced R</span></a>
+</p>
+
+
+## Questions?
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://media.tenor.com/images/4ea52aade3c0ee8cdf2ec81f0dae34ff/tenor.gif")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://tenor.com/view/mario-question-block-super-mario-gif-7732885">tenor.com</a>
+</p>
+
+
+## References
+<ul style="font-size: 0.6em">
+  <li>DataMentor. (n.d.). <a href="https://www.datamentor.io/r-programming/"><span style="font-style:italic">R Tutorials</span></a></li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-intro.html">"An Introduction to R"</a>.</li>
+  <li>R Core Team. (2017). <a href="https://cran.r-project.org/doc/manuals/R-lang.html">"R Language Definition"</a>.</li>
+  <li>Wickham, H. (2017). <a href="http://adv-r.had.co.nz/"><span style="font-style:italic"> Advanced R</span></a>.</li>
+</ul>
+
+
+##
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/pause.png")
+```
+<p style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org">Wikimedia Commons</a>
+</p>
+

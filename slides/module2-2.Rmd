@@ -1,0 +1,626 @@
+---
+title: "R Workshop"
+subtitle: "Module 2: R basics (2)"
+author: "Bobae Kang (bobae.kang@illinois.gov)"
+date: "March 22, 2018"
+output:
+  revealjs::revealjs_presentation:
+    center: true
+    transition: concave
+    incremental: false
+    css: ../css/style_revealjs.css
+    reveal_options:
+      slideNumber: true
+    includes:
+      in_header: header.html
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+## Agenda
+<div style="text-align:center; margin-top:10%;">
+<ul style="list-style: none">
+<li>
+  Part 1: Fundamentals of R programming</li>
+<li style="color: #00061a; font-size: 1.1em; font-weight:700">
+  Part 2: Gearing up for data analysis</li>
+</div>
+
+
+## Gearing Up for Data Analysis
+type:section
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/tools.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.wikimedia.org/">Wikimedia.org</a>
+</div>
+
+  
+## R Data Frame
+
+```{r echo=FALSE}
+print("Look, a data frame!")
+data.frame(
+  column1 = seq(1,5)*10 + 1,
+  column2 = seq(1,5)*10 + 2,
+  column3 = seq(1,5)*10 + 3,
+  column4 = seq(1,5)*10 + 4,
+  column5 = seq(1,5)*10 + 5
+)
+```
+
+
+## What is a data frame?
+* A tabular representation of data where each column is a vector of some type.
+    * think of Excel spreadsheets, SPSS tables, etc.!
+* Can be seen as a *list of vectors* of *the same length*, but with additional functionalities for data analysis!
+    * accessing data in a data frame works similarly
+    * a list can be easily converted into a data frame using `as.data.frame()` (... and vice versa, with `as.list()`)
+
+
+## Example: ISP crime data 
+I have created an R package `icjiar`, which comes with some sample datasets, including a data frame of ISP UCR data (`ispcrime`). Let's take a look:
+
+```{r}
+# install.packages("devtools")
+# devtools::install_github("bobaekang/icjiar")
+library(icjiar)
+
+class(ispcrime)         # the class of ispcrime object is "data.frame"
+is.data.frame(ispcrime) # check if ispcrime is a data.frame; TRUE, as expected
+```
+
+
+##
+```{r}
+str(ispcrime) # reports the "structure" of the data frame 
+```
+
+
+##
+```{r}
+head(ispcrime, 5) # returns the first n rows of the data frame (default 6)
+```
+
+
+##
+```{r}
+dim(ispcrime)  # returns the dimension of the data frame (row  column)
+nrow(ispcrime)  # returns the number of rows in the data frame
+ncol(ispcrime)  # returns the number of columns in the data frame
+colnames(ispcrime)  # returns a vector containing the column names 
+```
+
+
+##
+**Accessing desired subsets**
+```{r eval=FALSE}
+ispcrime$year # access a column by name
+ispcrime[[1]] # access the first column by index
+ispcrime[, 1] # yet another way to access the first column!
+```
+```{r echo=FALSE}
+ispcrime$year[1:150]
+```
+
+
+##
+```{r}
+ispcrime[1, ]  # access the first row by index
+```
+```{r eval=FALSE}
+# access a specific cell (first row of the first column)
+ispcrime$year[1]
+ispcrime[[1]][1]
+ispcrime[1, 1]
+```
+```{r echo=FALSE}
+ispcrime[1, 1]
+```
+
+
+## Creating a data.frame object
+* Using `data.frame()`
+    * Using existing vectors as arguments
+    * Simultanesouly creating vectors and assigning column names to them  
+* Coercing a list using `as.data.frame()`
+
+
+##
+**Using `data.frame()`**
+
+* Using existing vectors
+```{r}
+fruits <- c("apple", "banana", "clementine")
+animals <- c("dogs", "cats", "llamas")
+icecream_flavors <- c("chocolate", "vanila", "cookie dough")
+
+df1 <- data.frame(fruits, animals, icecream_flavors)
+
+print(df1)
+```
+
+
+##
+* Simultaneously creating vectors and assigning names
+```{r}
+df2 <- data.frame(
+  fruits = c("apple", "banana", "clementine"),
+  animals = c("dogs", "cats", "llamas"),
+  icecream_flavors = c("chocolate", "vanila", "cookie dough")
+)
+
+print(df2)
+```
+
+
+##
+**Converting a list using `as.data.frame()`**
+```{r}
+lt <- list(
+  fruits = c("apple", "banana", "clementine"),
+  animals = c("dogs", "cats", "llamas"),
+  icecream_flavors = c("chocolate", "vanila", "cookie dough")
+)
+
+df3 <- as.data.frame(lt)
+
+print(df3)
+```
+
+
+## Transforming a data.frame object
+* change column names
+* add / modify / remove columns
+* add / modify / remove rows
+* modify cell values
+
+
+##
+**Change column names**
+```{r}
+colnames(df1) <- c("my_fruits", "my_animals", "my_flavors")
+
+print(df1)
+```
+
+##
+**Add columns**
+```{r}
+# using $ index
+df1$my_colors <- c("red", "green", "orange")
+
+# using cbind() function
+my_cities <- c("Chicago", "New Work", "Los Angeles")
+df1 <- cbind(df1, my_cities)
+
+print(df1)
+```
+
+
+##
+**Modify columns**
+```{r}
+df1[["my_colors"]] <- c("maroon", "blue", "purple")
+df1$my_cities <- c("Chicago", "London", "Paris")
+
+df1
+```
+
+
+##
+**Remove columns**
+```{r}
+# assinging NULL
+df1$my_colors <- NULL
+
+df1
+
+# subsetting
+df1 <- df1[, 1:3]  # or c("my_fruits", "my_animals", "my_flavors")
+
+df1
+```
+
+
+##
+**Add rows**
+```{r}
+new_row <- data.frame(
+  my_fruits = "strawberry",
+  my_animals = "monkeys",
+  my_flavors = "butter pecan"
+)
+df1 <- rbind(df1, new_row)
+
+df1
+```
+
+
+##
+**Remove rows**
+```{r}
+# subsetting
+df1 <- df1[1:3, ]
+
+df1
+```
+
+
+##
+**Modify cells**
+```{r}
+# this doesn't work ... why?
+df1$my_flavors[1] <- "mint chocolate chip"
+
+df1
+
+# because the column is a factor and only
+# new values of the existing levels can be added
+df1$my_flavors
+```
+
+
+##
+```{r}
+# first we coerce the column into character class
+df1$my_flavors <- as.character(df1$my_flavors)
+
+# now works!
+df1$my_flavors[1] <- "mint chocolate chip"
+
+df1
+
+```
+
+
+## Extending data.frame
+* In practice, R's original `data.frame` is rarely used since better alternatives are available.
+    * `tibble`
+    * `data.table`
+* Both alternatives are extension of the original `data.frame`
+    * either can be manipulated just like a data frame
+
+
+## tibble
+```{r echo=FALSE}
+tibble::tibble(
+  column1 = seq(1,5)*10 + 1,
+  column2 = seq(1,5)*10 + 2,
+  column3 = seq(1,5)*10 + 3,
+  column4 = seq(1,5)*10 + 4,
+  column5 = seq(1,5)*10 + 5
+)
+```
+
+* Part of the `tidyverse` framework (we'll come back to this)
+* More easily understood `tidyverse` syntax
+* Refined print method
+* Coercing a `data.frame` object into a `tibble` can be done with `as_tibble()` from the `tibble` package 
+
+<div style="font-size:0.75em; text-align:center">See <a href="http://r4ds.had.co.nz/tibbles.html">here</a> for more on tibble</div>
+
+
+## data.table
+```{r echo=FALSE}
+data.table::data.table(
+  column1 = seq(1,5)*10 + 1,
+  column2 = seq(1,5)*10 + 2,
+  column3 = seq(1,5)*10 + 3,
+  column4 = seq(1,5)*10 + 4,
+  column5 = seq(1,5)*10 + 5
+)
+```
+* Made available via `data.table` package.
+* Highly optimized for larger tables (e.g. >100K rows).
+* Compact syntax for advanced slicing and dicing of tablular data.
+* Coercing a `data.frame` object into a `data.table` can be done with `as.data.table()` 
+
+<div style="font-size:0.75em; text-align:center">See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a> for more on data.table</div>
+
+
+## R Add-On Packages
+type:section
+```{r echo=FALSE, out.width="45%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/r-packages.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.datacamp.com/">DataCamp</a>
+</div>
+
+
+## What are add-on packages?
+> The capabilities of R are extended through user-created packages, which allow specialized statistical techniques, graphical devices, import/export capabilities, reporting tools [...], etc.<br><br>- "R (programming language)", Wikipedia
+
+
+## Using packages
+```{r eval=FALSE}
+# first we should install the desired package
+install.packages("some_package")
+
+# then we import the package to use its functionalities
+library(some_package)
+```
+
+
+## Two ways of installing packages
+* From CRAN (Comprehensive R Archive Network)
+    * tested and trusted
+    * using `install.packages("package")`
+* From specific Github repositories (i.e., development versions)
+    * latest versions with cutting-edge features 
+    * using `install_github("author/package")`
+        * `install_github()` is available via `devtools` package.
+
+
+## Tidyverse Framework
+```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/tidyverse.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.tidyverse.org/">tidyverse.org</a>
+</div>
+
+
+## Tidy approach to data science
+Tidy data is data where:
+
+> (1) Each variable is in a column<br>
+(2) Each observation is a row<br>
+(3) Each value is a cell.
+
+
+##
+```{r echo=FALSE, out.width="100%", out.extra='style="display: block; margin-top:10%; box-shadow: none;"'}
+include_graphics("../images/tidy-1.png")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: Hadley Wickham, 2017, <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>
+</div>
+<div style="font-size:0.75em; text-align:center; margin-top:5%;">
+See <a href="http://r4ds.had.co.nz/tidy-data.html">here</a> for more on tidy data
+</div>
+
+
+## Untidy data?
+Anything that is not tidy!
+* Multiple variables in a single column
+* Multiple observations in a single row
+* Multiple rows for a single observation
+* Multiple values in a single cell
+* Multiple cells for a single value
+
+
+##
+**Untidy example 1**
+```{r echo=FALSE}
+library(dplyr)
+ispcrime %>%
+  mutate(
+    `year/county` = paste(year, "/", county, sep = ""),
+    `violentCrime/propertyCrime` = paste(violentCrime, "/", propertyCrime, sep = "")
+  ) %>%
+  select(`year/county`, `violentCrime/propertyCrime`) %>%
+  head()
+```
+
+**Untidy example 2**
+```{r echo=FALSE}
+library(tidyr)
+ispcrime2 <- ispcrime
+ispcrime$index <- as.numeric(row.names(ispcrime))
+ispcrime %>%
+  gather(murder, rape, robbery, aggAssault, key = "typeViolent", value = "valueViolent") %>%
+  select(index, year, county, typeViolent, valueViolent) %>%
+  arrange(index) %>%
+  head(10)
+```
+
+
+## Tidyverse core packages
+* `ggplot2` for data visualization
+* `dplyr` for data manipulation
+* `tidyr` for creating "tidy data"
+* `readr` for data import/export
+* `purrr` for loop operations
+* `tibble` for data representation
+
+
+## ood Code, Bad Code
+type:section
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/good-bad.jpg")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="https://www.nytimes.com/">The New York Times</a>
+</div>
+
+
+## Why style guide?
+> The goal [of the style guide] is to make our R code easier to read, share, and verify.<br>- Google's R Style guide
+
+* Readability
+* Productivity
+* Reproducibility
+
+
+## Which style guide?
+* Currently, there is no single style guide adopted by the R community as *the* standard.
+    * [Google's R Style guide](https://google.github.io/styleguide/Rguide.xml)
+    * [Tidyverse style guide](http://style.tidyverse.org/)
+
+
+## Personal recommendation
+* Start with the tidyverse style guide
+* Consider adding extra rules *only if* they will help your team to better collaborate and maintain code
+* Keep the changes to minimum so that code remains accessible to others, including future teammates and even your future self!
+
+
+## Object naming
+* Be descriptive yet concise
+    * somewhat dependent on the shared knowledge on the subject matter
+* Use underscore for names consisting of multiple words
+* Nouns for variables, verbs for functions
+* Avoid re-using common names for functions and variables
+    * Using "reserved words" to assign objects will throw errors
+
+
+##
+**Naming a variable (e.g. for firearm arrests)**
+```{r eval=FALSE}
+# Good
+firearm_arrests
+fa_arr
+
+# Bad
+arrests_with_firearm_charges  # too verbose
+firearmArrests                # violating underscore convention
+FireArm_Arrests               # mixing underscore with other way of naming
+farr                          # not descriptive enough
+x                             # not descriptive at all
+```
+
+**Naming a function (e.g. for counting arrests)**
+```{r eval=FALSE}
+# Good
+count_arr <- function(x) { ... }
+
+# Bad
+num_arr <- function(x) { ... }  # noun for a function
+do_arr  <- function(x) { ... }  # not descriptive enough
+count   <- function(x) { ... }  # too generic (common name)
+```
+
+##
+**Reserved words in R**
+```{r eval=FALSE}
+if else repeat while function for  
+in next break  # used in loops, conditions, functions
+
+TRUE FALSE  # logical values
+
+NULL  # undefined
+
+Inf  # infinity
+
+NaN  # Not a Number
+
+NA  # not available (missing)
+
+NA_integer_ NA_real_
+NA_complex_ NA_character_  # NA for atomic vector types
+
+...  # dot method for one function to pass arguments to another
+```
+
+
+## Whitespaces for readable code
+* Add a space
+    * around operators (`+`, `-`, `<`, `=`, etc.)
+        * Exceptions include `:`, `::`, and `:::`  
+    * after a comma (but not before--like in regular English)
+    * before a left paranthesis `(`, except when it is a function call
+* Extra spacing for alignment of code
+* Indentation for clarifying hierarchy
+
+
+##
+**Adding spaces**
+```{r eval=FALSE}
+# Good
+greetings <- paste("Hello", "World!", sep = " ")
+df[2, ]
+x <- 1:10 
+base::Random() # calling a function with specifying the package
+
+# Bad
+greetings<-paste("Hello","world!",sep="")
+df[ 2,]
+x<- 1 : 10
+base :: Random ()
+```
+
+
+##
+**Extra spacing**
+```{r eval=FALSE}
+# for aligning function arguments
+some_function (
+  first_argument   = value_1
+  another_argument = value_2
+  example          = value_3
+)
+
+# for aligning variable assignments
+numbers        <- c(1, 2, 3)
+roman_numerals <- c("I", "II", "III")
+letters        <- c("a", "b", "c")        
+```
+
+
+##
+**Indentation**
+```{r eval=FALSE}
+# Good
+if (x > 0) {
+  i = 0
+  while (i < 10) {
+    message("Wait, I'm in a loop")  
+    i <- i + 1
+  }
+  message("x is positive.")
+} else {
+  message("x is not positive")
+}
+
+# Bad
+if (y > 0) {
+    j = 0
+while (j < 10) {
+message("Wait, I'm in a loop")  
+j <- j + 1
+    }
+      message("y is positive.")
+} else {
+message("y is not positive")
+}
+```
+
+
+## Comments for intelligible code 
+* Use comments (words after the `#` symbol) for clarification
+    * add two spaces before starting a comment if the comment comes after an expression
+* However, whenever possible, use *descriptive names* to reduce the need for clarification and avoid verbosity!
+* Example of unnecesary comment:
+```{r eval=FALSE}
+# the following code calculates the average of some numbers
+numbers <- c(1, 3, 5)  # assign a vector of numbers to numbers object
+average <- sum(numbers) / length(numbers)  # divide the sum of numbers vecotr by its length to get the average
+```
+
+
+## Most importantly...
+* Be consistent!
+* Be concise!
+* Be clear!
+
+
+## Questions?
+```{r echo=FALSE, out.width="40%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("http://4.bp.blogspot.com/-JZeedUQTiiw/VVVHntnJznI/AAAAAAAACsc/SMKT9Lcr53Y/s1600/pikachugif.gif")
+```
+<div style="font-size:0.5em; text-align:center; color: #777;">
+Source: <a href="http://www.poke-blast-news.net/">Pokemon Blast News</a>
+</div>
+
+
+## References
+<ul style="font-size: 0.6em">
+  <li>Google. (n.d.). <a href="https://google.github.io/styleguide/Rguide.xml">"Google's R Style Guide"</a>.</li>
+  <li>Grolemund, G. & Wickham, H. (2017). <a href="http://r4ds.had.co.nz/"><span style="font-style:italic">R for Data Science</span></a>.</li>
+  <li>Wickham, H. (n.d.). <a href="http://style.tidyverse.org/">"The tidyverse style guide"</a>.</li>
+</ul>
